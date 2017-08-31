@@ -1,0 +1,30 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.TypeScript.azure.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Azure.Model.CodeModelTSa>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+@Model.ConstructRuntimeImportForModelIndex()
+@if (Model.ContainsDurationPropertyInModels())
+{
+@:import * as moment from "moment";
+}
+@if (Model.IsAnyModelInheritingFromRequestOptionsBase())
+{
+@:import { RequestOptionsBase } from "ms-rest-ts";
+}
+@EmptyLine
+export { BaseResource, CloudError };
+@EmptyLine
+@foreach (var model in Model.OrderedModelTemplateModels) {
+@EmptyLine
+@:@(Include(new ModelTemplate(), model))
+}
+@EmptyLine
+@foreach (var model in Model.PageTemplateModels)
+{
+@EmptyLine
+@:@(Include(new PageModelTemplate(), model))
+}

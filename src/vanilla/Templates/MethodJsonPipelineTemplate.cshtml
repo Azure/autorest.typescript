@@ -1,0 +1,56 @@
+﻿@using System.Linq;
+@using AutoRest.TypeScript.Model
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
+// Send Request
+let operationRes: msRest.HttpOperationResponse;
+try {
+  operationRes = await client.pipeline(httpRequest);
+  let response = operationRes.response;
+  let statusCode = response.status;
+  if (@(Model.FailureStatusCodePredicate)) {
+    let error = new msRest.RestError(operationRes.bodyAsText as string);
+    error.statusCode = response.status;
+    error.request = msRest.stripRequest(httpRequest);
+    error.response = msRest.stripResponse(response);
+    let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+    try {
+      if (parsedErrorResponse) {
+        @(Model.PopulateErrorCodeAndMessage())
+      }
+  @if (Model.DefaultResponse.Body != null)
+  {
+      var deserializeErrorBody = Model.GetDeserializationString(Model.DefaultResponse.Body, "error.body", "parsedErrorResponse");
+      if (!string.IsNullOrWhiteSpace(deserializeErrorBody))
+      {
+@:      if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+@:        @(deserializeErrorBody)
+@:      }
+      }
+  }
+    } catch (defaultError) {
+      error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` + 
+                       `- "${operationRes.bodyAsText}" for the default response.`;
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  }
+  @Model.InitializeResult
+  @foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
+  {
+      <text>
+  // Deserialize Response
+  if (statusCode === @MethodTS.GetStatusCodeReference(responsePair.Key)) {
+    @(Model.DeserializeResponse(responsePair.Value.Body, "operationRes.bodyAsJson"))
+  }
+      </text>
+  }
+  @if (Model.ReturnType.Body != null && Model.DefaultResponse.Body != null && !Model.Responses.Any())
+  {
+    @(Model.DeserializeResponse(Model.DefaultResponse.Body, "operationRes.bodyAsJson"))
+  }
+@EmptyLine
+} catch(err) {
+  return Promise.reject(err);
+}
+@EmptyLine
+return Promise.resolve(operationRes);

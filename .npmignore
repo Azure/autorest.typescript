@@ -1,0 +1,7 @@
+.gulp/
+.vscode/
+test/
+gulpfile.js
+*.sln
+
+src/obj/

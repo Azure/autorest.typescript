@@ -1,0 +1,30 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.TsConfigModel>
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "target": "es6",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowJs": false,
+    "strict": true,
+    "strictNullChecks": true,
+    @(Model.SpecficOptions())
+    @(Model.SupportedLib())
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./lib/**/*.ts"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "target": "es6",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist/Expected/AcceptanceTests",
+    "allowJs": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "lib": [
+      "dom",
+      "es2015",
+      "es2016"
+    ]
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules",
+    "./AcceptanceTests",
+    "node_modules/typescript",
+    "node_modules/tslint"
+  ],
+  "include": [
+    "./Expected/AcceptanceTests"
+  ]
+}

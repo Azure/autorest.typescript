@@ -1,0 +1,19 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+@foreach (var model in Model.OrderedModelTemplateModels)
+{
+@EmptyLine
+@:@(Include(new MapperTemplate(), model))
+}
+@if (!string.IsNullOrWhiteSpace(Model.PolymorphicDictionary))
+{
+@EmptyLine
+@:export const discriminators = {
+@:  @(Model.PolymorphicDictionary)
+@:};
+}

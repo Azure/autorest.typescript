@@ -1,0 +1,28 @@
+{
+  // we use gulp. npm is just for show.
+  "npm.autoDetect": "off",
+  "[csharp]": {
+    "editor.tabSize": 4
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
+  },
+  "files.associations": {
+    "*.iced": "coffeescript"
+  }
+}
