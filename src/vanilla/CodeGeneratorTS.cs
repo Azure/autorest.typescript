@@ -39,6 +39,9 @@ namespace AutoRest.TypeScript
                 throw new InvalidCastException("CodeModel is not a TypeScript code model.");
             }
 
+            codeModel.PackageName = Settings.Instance.PackageName;
+            codeModel.PackageVersion = Settings.Instance.PackageVersion;
+
             // Service client
             var serviceClientTemplate = new ServiceClientTemplate {Model = codeModel};
             await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");
@@ -65,17 +68,21 @@ namespace AutoRest.TypeScript
                 }
             }
 
-            //// package.json
-            var packageJson = new PackageJson { Model = codeModel };
-            await Write(packageJson, Path.Combine("../", "package.json"));
+            var generateMetadata = Singleton<GeneratorSettingsTS>.Instance.GenerateMetadata;
+            if (generateMetadata)
+            {
+                // package.json
+                var packageJson = new PackageJson { Model = codeModel };
+                await Write(packageJson, Path.Combine("../", "package.json"));
 
-            // tsconfig.browser
-            var browserTsConfig = new TsConfig { Model = new TsConfigModel(true) };
-            await Write(browserTsConfig, Path.Combine("../", "tsconfig.browser.json"));
+                // tsconfig.browser
+                var browserTsConfig = new TsConfig { Model = new TsConfigModel(true) };
+                await Write(browserTsConfig, Path.Combine("../", "tsconfig.browser.json"));
 
-            //tsconfig.node
-            var nodeTsConfig = new TsConfig { Model = new TsConfigModel(false) };
-            await Write(nodeTsConfig, Path.Combine("../", "tsconfig.node.json"));
+                //tsconfig.node
+                var nodeTsConfig = new TsConfig { Model = new TsConfigModel(false) };
+                await Write(nodeTsConfig, Path.Combine("../", "tsconfig.node.json"));
+            }
         }
     }
 }

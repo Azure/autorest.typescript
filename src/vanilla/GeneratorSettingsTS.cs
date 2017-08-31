@@ -12,7 +12,7 @@ namespace AutoRest.TypeScript
         /// <summary>
         ///     Change to true if you want to no longer generate the 3 d.ts files, for some reason
         /// </summary>
-        public bool DisableTypeScriptGeneration { get; set; }
+        public bool GenerateMetadata { get; set; }
 
     }
 }
