@@ -276,5 +276,12 @@ namespace AutoRest.TypeScript.Model
         {
             return "\"ms-rest-ts\": \"amarzavery/ms-rest#master\"";
         }
+
+        public virtual string GenerateDependencyPaths()
+        {
+            var builder = new IndentedStringBuilder("  ");
+            builder.AppendLine("\"ms-rest-ts\": path.resolve('./node_modules/ms-rest-ts/dist/lib/msRest.js')");
+            return builder.ToString();
+        }
     }
 }

@@ -78,5 +78,13 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             return "\"ms-rest-azure-ts\": \"amarzavery/ms-rest-azure#master\"";
         }
+
+        public override string GenerateDependencyPaths()
+        {
+            var builder = new IndentedStringBuilder("  ");
+            builder.AppendLine("\"ms-rest-ts\": path.resolve('./node_modules/ms-rest-ts/dist/lib/msRest.js'),")
+                   .AppendLine("\"ms-rest-azure-ts\": path.resolve('./node_modules/ms-rest-azure-ts/dist/lib/msRestAzure.js')");
+            return builder.ToString();
+        }
     }
 }

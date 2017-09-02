@@ -37,8 +37,8 @@ namespace AutoRest.TypeScript.Model
             var builder = new IndentedStringBuilder("  ");
             if (IsBrowser)
             {
-                builder.AppendLine("\"module\": \"es6\",")
-                    .AppendLine("\"outDir\": \"dist/browser\",")
+                builder.AppendLine("\"module\": \"commonjs\",")
+                    .AppendLine("\"outDir\": \"dist/lib\",")
                     .AppendLine("\"declaration\": true,")
                     .Append("\"declarationDir\": \"./typings/lib\",");
             }

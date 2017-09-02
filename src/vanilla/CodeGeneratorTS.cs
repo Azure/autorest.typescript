@@ -75,13 +75,13 @@ namespace AutoRest.TypeScript
                 var packageJson = new PackageJson { Model = codeModel };
                 await Write(packageJson, Path.Combine("../", "package.json"));
 
-                // tsconfig.browser
-                var browserTsConfig = new TsConfig { Model = new TsConfigModel(true) };
-                await Write(browserTsConfig, Path.Combine("../", "tsconfig.browser.json"));
-
-                //tsconfig.node
+                //tsconfig.json
                 var nodeTsConfig = new TsConfig { Model = new TsConfigModel(false) };
-                await Write(nodeTsConfig, Path.Combine("../", "tsconfig.node.json"));
+                await Write(nodeTsConfig, Path.Combine("../", "tsconfig.json"));
+
+                // webpack.config.js
+                var webpackConfig = new WebpackConfig { Model = codeModel };
+                await Write(packageJson, Path.Combine("../", "webpack.config.js"));
             }
         }
     }

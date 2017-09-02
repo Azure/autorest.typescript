@@ -71,13 +71,13 @@ namespace AutoRest.TypeScript.Azure
                 var packageJson = new PackageJson { Model = codeModel };
                 await Write(packageJson, Path.Combine("../", "package.json"));
 
-                // tsconfig.browser
+                // tsconfig.json
                 var browserTsConfig = new TsConfig { Model = new TsConfigModel(true) };
-                await Write(browserTsConfig, Path.Combine("../", "tsconfig.browser.json"));
+                await Write(browserTsConfig, Path.Combine("../", "tsconfig.json"));
 
-                //tsconfig.node
-                var nodeTsConfig = new TsConfig { Model = new TsConfigModel(false) };
-                await Write(nodeTsConfig, Path.Combine("../", "tsconfig.node.json"));
+                // webpack.config.js
+                var webpackConfig = new WebpackConfig { Model = codeModel };
+                await Write(packageJson, Path.Combine("../", "webpack.config.js"));
             }
         }
     }
