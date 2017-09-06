@@ -79,7 +79,8 @@ defaultMappings = {
   'AcceptanceTests/Validation': 'validation.json',
   'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json',
   'AcceptanceTests/CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
-  'AcceptanceTests/ModelFlattening': 'model-flattening.json'
+  'AcceptanceTests/ModelFlattening': 'model-flattening.json',
+  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
 }
 
 defaultAzureMappings = {

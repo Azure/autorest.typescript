@@ -531,26 +531,37 @@ namespace AutoRest.TypeScript.Model
             }
 
             builder.AppendLine("let queryParamsArray: Array<any> = [];");
-            foreach (var queryParameter in LogicalParameters
-                .Where(p => p.Location == ParameterLocation.Query))
+            foreach (var queryParameter in LogicalParameters.Where(p => p.Location == ParameterLocation.Query))
             {
                 var queryAddFormat = "queryParamsArray.push('{0}=' + encodeURIComponent({1}));";
                 if (queryParameter.SkipUrlEncoding())
                 {
                     queryAddFormat = "queryParamsArray.push('{0}=' + {1});";
                 }
+
                 if (!queryParameter.IsRequired)
                 {
                     builder.AppendLine("if ({0} !== null && {0} !== undefined) {{", queryParameter.Name)
-                        .Indent()
-                        .AppendLine(queryAddFormat,
-                            queryParameter.SerializedName, queryParameter.GetFormattedReferenceValue()).Outdent()
-                        .AppendLine("}");
+                        .Indent();
+                }
+                if (queryParameter.CollectionFormat == CollectionFormat.Multi)
+                {
+                    builder.AppendLine("if ({0}.length == 0) {{", queryParameter.Name).Indent()
+                           .AppendLine(queryAddFormat, queryParameter.SerializedName, "''").Outdent()
+                           .AppendLine("} else {").Indent()
+                           .AppendLine("for (let item of {0}) {{", queryParameter.Name).Indent()
+                           .AppendLine(queryAddFormat, queryParameter.SerializedName, "'' + item").Outdent()
+                           .AppendLine("}").Outdent()
+                           .AppendLine("}").Outdent();
                 }
                 else
                 {
                     builder.AppendLine(queryAddFormat,
                         queryParameter.SerializedName, queryParameter.GetFormattedReferenceValue());
+                }
+                if (!queryParameter.IsRequired)
+                {
+                    builder.Outdent().AppendLine("}");
                 }
             }
         }
