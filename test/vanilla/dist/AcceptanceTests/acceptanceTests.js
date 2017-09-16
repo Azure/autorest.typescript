@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const should = require("should");
 const util = require("util");
 const assert = require("assert");
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const moment = require("moment");
 const fs = require("fs");
 const autoRestBoolTestService_1 = require("../Expected/AcceptanceTests/BodyBoolean/autoRestBoolTestService");

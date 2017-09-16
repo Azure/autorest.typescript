@@ -3,7 +3,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const should = require("should");
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const autoRestAzureSpecialParametersTestClient_1 = require("../Expected/AcceptanceTests/AzureSpecials/autoRestAzureSpecialParametersTestClient");
 var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
@@ -13,7 +13,7 @@ var baseUri = 'http://localhost:3000';
 describe('typescript', function () {
     describe('Azure Special Properties', function () {
         var testClient = new autoRestAzureSpecialParametersTestClient_1.AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, baseUri, clientOptions);
-        it('should use the default api-version when no api-version parameter is present', function (done) {
+        it.only('should use the default api-version when no api-version parameter is present', function (done) {
             testClient.apiVersionDefault.getMethodGlobalValid(function (error, result, request, response) {
                 should.not.exist(error);
                 response.status.should.equal(200);

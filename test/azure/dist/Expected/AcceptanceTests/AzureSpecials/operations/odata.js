@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a Odata. */
@@ -68,18 +68,18 @@ class Odata {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/odata/filter';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (filter !== null && filter !== undefined) {
-                queryParameters.push('$filter=' + encodeURIComponent(filter));
+                queryParamsArray.push('$filter=' + encodeURIComponent(filter));
             }
             if (top !== null && top !== undefined) {
-                queryParameters.push('$top=' + encodeURIComponent(top.toString()));
+                queryParamsArray.push('$top=' + encodeURIComponent(top.toString()));
             }
             if (orderby !== null && orderby !== undefined) {
-                queryParameters.push('$orderby=' + encodeURIComponent(orderby));
+                queryParamsArray.push('$orderby=' + encodeURIComponent(orderby));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

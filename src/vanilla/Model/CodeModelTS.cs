@@ -267,21 +267,14 @@ namespace AutoRest.TypeScript.Model
             var builder = new IndentedStringBuilder("  ");
             if (OptionalParameterTypeForClientConstructor != "ServiceClientOptions")
             {
-                builder.Append("import { ServiceClientOptions } from \"ms-rest-ts\";");
+                builder.Append("import { ServiceClientOptions } from \"ms-rest-js\";");
             }
             return builder.ToString();
         }
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-ts\": \"amarzavery/ms-rest#master\"";
-        }
-
-        public virtual string GenerateDependencyPaths()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("\"ms-rest-ts\": path.resolve('./node_modules/ms-rest-ts/dist/lib/msRest.js')");
-            return builder.ToString();
+            return "\"ms-rest-js\": \"azure/ms-rest-js#master\"";
         }
     }
 }

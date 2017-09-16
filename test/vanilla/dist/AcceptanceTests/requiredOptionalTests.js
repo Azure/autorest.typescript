@@ -3,7 +3,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const should = require("should");
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const autoRestRequiredOptionalTestService_1 = require("../Expected/AcceptanceTests/RequiredOptional/autoRestRequiredOptionalTestService");
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);

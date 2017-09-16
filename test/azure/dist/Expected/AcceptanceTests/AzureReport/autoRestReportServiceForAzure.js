@@ -21,8 +21,8 @@ const Models = require("./models");
 exports.AutoRestReportServiceForAzureModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestReportServiceForAzureMappers = Mappers;
-const msRest = require("ms-rest-ts");
-const msRestAzure = require("ms-rest-azure-ts");
+const msRest = require("ms-rest-js");
+const msRestAzure = require("ms-rest-azure-js");
 const WebResource = msRest.WebResource;
 const packageName = 'foo';
 const packageVersion = '3.0.0-preview';
@@ -106,9 +106,9 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'report/azure';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

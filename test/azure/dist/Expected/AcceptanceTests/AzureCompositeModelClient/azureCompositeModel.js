@@ -21,8 +21,8 @@ const Models = require("./models");
 exports.AzureCompositeModelModels = Models;
 const Mappers = require("./models/mappers");
 exports.AzureCompositeModelMappers = Mappers;
-const msRest = require("ms-rest-ts");
-const msRestAzure = require("ms-rest-azure-ts");
+const msRest = require("ms-rest-js");
+const msRestAzure = require("ms-rest-azure-js");
 const operations = require("./operations");
 const WebResource = msRest.WebResource;
 const packageName = 'foo';
@@ -79,7 +79,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         if (options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
             this.generateClientRequestId = options.generateClientRequestId;
         }
-        this.basicOperations = new operations.BasicOperations(this);
+        this.basic = new operations.BasicOperations(this);
         this.primitive = new operations.Primitive(this);
         this.arrayModel = new operations.ArrayModel(this);
         this.dictionary = new operations.Dictionary(this);
@@ -128,10 +128,10 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -258,10 +258,10 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -403,10 +403,10 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a ParameterGrouping. */
@@ -96,12 +96,12 @@ class ParameterGrouping {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postRequired/{path}';
             requestUrl = requestUrl.replace('{path}', encodeURIComponent(path));
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (query !== null && query !== undefined) {
-                queryParameters.push('query=' + encodeURIComponent(query.toString()));
+                queryParamsArray.push('query=' + encodeURIComponent(query.toString()));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -234,12 +234,12 @@ class ParameterGrouping {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postOptional';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (query !== null && query !== undefined) {
-                queryParameters.push('query=' + encodeURIComponent(query.toString()));
+                queryParamsArray.push('query=' + encodeURIComponent(query.toString()));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -366,15 +366,15 @@ class ParameterGrouping {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postMultipleParameterGroups';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (queryOne !== null && queryOne !== undefined) {
-                queryParameters.push('query-one=' + encodeURIComponent(queryOne.toString()));
+                queryParamsArray.push('query-one=' + encodeURIComponent(queryOne.toString()));
             }
             if (queryTwo !== null && queryTwo !== undefined) {
-                queryParameters.push('query-two=' + encodeURIComponent(queryTwo.toString()));
+                queryParamsArray.push('query-two=' + encodeURIComponent(queryTwo.toString()));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -489,12 +489,12 @@ class ParameterGrouping {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/sharedParameterGroupObject';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (queryOne !== null && queryOne !== undefined) {
-                queryParameters.push('query-one=' + encodeURIComponent(queryOne.toString()));
+                queryParamsArray.push('query-one=' + encodeURIComponent(queryOne.toString()));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

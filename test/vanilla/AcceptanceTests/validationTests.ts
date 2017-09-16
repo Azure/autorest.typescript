@@ -6,7 +6,7 @@
 import * as should from 'should';
 import * as http from 'http';
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-ts';
+import * as msRest from 'ms-rest-js';
 import * as fs from 'fs';
 import * as stream from 'stream';
 

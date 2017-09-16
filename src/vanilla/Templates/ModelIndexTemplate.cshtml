@@ -12,7 +12,7 @@
 }
 @if (Model.IsAnyModelInheritingFromRequestOptionsBase())
 {
-@:import { RequestOptionsBase } from "ms-rest-ts";
+@:import { RequestOptionsBase } from "ms-rest-js";
 }
 @EmptyLine
 @foreach (var model in Model.OrderedModelTemplateModels) {

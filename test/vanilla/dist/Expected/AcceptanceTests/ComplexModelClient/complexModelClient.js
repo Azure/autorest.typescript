@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Models = require("./models");
 exports.ComplexModelModels = Models;
 const Mappers = require("./models/mappers");
@@ -91,10 +91,10 @@ class ComplexModelClient extends msRest.ServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(this.apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -211,10 +211,10 @@ class ComplexModelClient extends msRest.ServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(this.apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -346,10 +346,10 @@ class ComplexModelClient extends msRest.ServiceClient {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(this.apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

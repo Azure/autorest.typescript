@@ -15,7 +15,7 @@ before(function (done) {
     var out = fs.openSync('./server.log', 'w');
     fs.writeSync(out, 'Test run started at ' + new Date().toISOString() + '\n');
     process.env.PORT = "3000";
-    child = child_process.spawn(nodeCmd, [__dirname + '/../../../../dev/TestServer/server/startup/www.js']);
+    child = child_process.spawn(nodeCmd, [__dirname + '/../../../../node_modules/@microsoft.azure/autorest.testserver']);
     child.stdout.on('data', function (data) {
         fs.writeSync(out, data.toString('UTF-8'));
         if (data.toString().indexOf('started') > 0) {

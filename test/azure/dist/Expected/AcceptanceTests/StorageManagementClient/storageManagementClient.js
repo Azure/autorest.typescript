@@ -13,8 +13,8 @@ const Models = require("./models");
 exports.StorageManagementModels = Models;
 const Mappers = require("./models/mappers");
 exports.StorageManagementMappers = Mappers;
-const msRest = require("ms-rest-ts");
-const msRestAzure = require("ms-rest-azure-ts");
+const msRest = require("ms-rest-js");
+const msRestAzure = require("ms-rest-azure-js");
 const operations = require("./operations");
 const packageName = 'foo';
 const packageVersion = '3.0.0-preview';
@@ -77,7 +77,7 @@ class StorageManagementClient extends msRestAzure.AzureServiceClient {
             this.generateClientRequestId = options.generateClientRequestId;
         }
         this.storageAccounts = new operations.StorageAccounts(this);
-        this.usageOperations = new operations.UsageOperations(this);
+        this.usage = new operations.UsageOperations(this);
         this.serializer = new msRest.Serializer(Mappers);
     }
 }

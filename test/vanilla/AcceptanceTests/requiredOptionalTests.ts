@@ -6,7 +6,7 @@
 import should = require('should');
 import http = require('http');
 import assert = require('assert');
-import * as msRest from 'ms-rest-ts';
+import * as msRest from 'ms-rest-js';
 
 import { AutoRestRequiredOptionalTestService } from '../Expected/AcceptanceTests/RequiredOptional/autoRestRequiredOptionalTestService';
 

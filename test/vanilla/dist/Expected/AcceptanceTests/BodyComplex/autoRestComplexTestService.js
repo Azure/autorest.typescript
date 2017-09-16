@@ -9,7 +9,7 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Models = require("./models");
 exports.AutoRestComplexTestServiceModels = Models;
 const Mappers = require("./models/mappers");
@@ -45,7 +45,7 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
             this.baseUri = 'http://localhost';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-        this.basicOperations = new operations.BasicOperations(this);
+        this.basic = new operations.BasicOperations(this);
         this.primitive = new operations.Primitive(this);
         this.arrayModel = new operations.ArrayModel(this);
         this.dictionary = new operations.Dictionary(this);

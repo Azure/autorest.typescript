@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { RequestOptionsBase } from "ms-rest-ts";
+import { RequestOptionsBase } from "ms-rest-js";
 
 
 /**
@@ -188,7 +188,7 @@ export interface ProductWrapper {
 /**
  * @interface
  * An interface representing FlattenParameterGroup.
- * Additional parameters for the putSimpleProductWithGrouping operation.
+ * Additional parameters for putSimpleProductWithGrouping operation.
  *
  */
 export interface FlattenParameterGroup {

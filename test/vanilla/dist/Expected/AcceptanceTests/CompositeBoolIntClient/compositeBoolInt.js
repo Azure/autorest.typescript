@@ -9,7 +9,7 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Models = require("./models");
 exports.CompositeBoolIntModels = Models;
 const Mappers = require("./models/mappers");

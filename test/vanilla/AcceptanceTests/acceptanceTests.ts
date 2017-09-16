@@ -6,7 +6,7 @@
 import * as should from 'should';
 import * as util from 'util';
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-ts';
+import * as msRest from 'ms-rest-js';
 import * as moment from 'moment';
 import * as fs from 'fs';
 

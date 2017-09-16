@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a Polymorphism. */
@@ -55,9 +55,9 @@ class Polymorphism {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'complex/polymorphism/valid';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -198,9 +198,9 @@ class Polymorphism {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'complex/polymorphism/valid';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -335,9 +335,9 @@ class Polymorphism {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'complex/polymorphism/missingrequired/invalid';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

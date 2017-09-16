@@ -10,8 +10,8 @@
 
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-import * as msRest from "ms-rest-ts";
-import * as msRestAzure from "ms-rest-azure-ts";
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as operations from "./operations";
 const WebResource = msRest.WebResource;
 
@@ -32,7 +32,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
   baseUri: string;
 
   // Operation groups
-  basicOperations: operations.BasicOperations;
+  basic: operations.BasicOperations;
   primitive: operations.Primitive;
   arrayModel: operations.ArrayModel;
   dictionary: operations.Dictionary;
@@ -96,7 +96,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
       this.generateClientRequestId = options.generateClientRequestId;
     }
-    this.basicOperations = new operations.BasicOperations(this);
+    this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);
     this.dictionary = new operations.Dictionary(this);

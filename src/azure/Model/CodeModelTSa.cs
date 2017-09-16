@@ -50,7 +50,7 @@ namespace AutoRest.TypeScript.Azure.Model
         public override CompositeType Add(CompositeType item)
         {
             // Removing all models that contain the extension "x-ms-external", as they will be
-            // generated in TypeScript client runtime for azure - "ms-rest-azure-ts".
+            // generated in TypeScript client runtime for azure - "ms-rest-azure-js".
             if (item.Extensions.ContainsKey(AzureExtensions.PageableExtension) ||
                 item.Extensions.ContainsKey(AzureExtensions.ExternalExtension))
             {
@@ -70,21 +70,13 @@ namespace AutoRest.TypeScript.Azure.Model
             {
                 builder.Append(", AzureServiceClientOptions");
             }
-            builder.Append(" } from \"ms-rest-azure-ts\";");
+            builder.Append(" } from \"ms-rest-azure-js\";");
             return builder.ToString();
         }
 
         public override string PackageDependencies()
         {
-            return "\"ms-rest-azure-ts\": \"amarzavery/ms-rest-azure#master\"";
-        }
-
-        public override string GenerateDependencyPaths()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("\"ms-rest-ts\": path.resolve('./node_modules/ms-rest-ts/dist/lib/msRest.js'),")
-                   .AppendLine("\"ms-rest-azure-ts\": path.resolve('./node_modules/ms-rest-azure-ts/dist/lib/msRestAzure.js')");
-            return builder.ToString();
+            return "\"ms-rest-azure-js\": \"azure/ms-rest-azure-js#master\"";
         }
     }
 }

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { ServiceClientOptions } from "ms-rest-ts";
+import { ServiceClientOptions } from "ms-rest-js";
 
 
 /**

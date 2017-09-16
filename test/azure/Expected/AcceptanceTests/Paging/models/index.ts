@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-ts";
-import { RequestOptionsBase } from "ms-rest-ts";
+import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { RequestOptionsBase } from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
@@ -56,7 +56,7 @@ export interface OperationResult {
 /**
  * @interface
  * An interface representing PagingGetMultiplePagesOptions.
- * Additional parameters for the Paging_getMultiplePages operation.
+ * Additional parameters for getMultiplePages operation.
  *
  */
 export interface PagingGetMultiplePagesOptions {
@@ -76,7 +76,7 @@ export interface PagingGetMultiplePagesOptions {
 /**
  * @interface
  * An interface representing PagingGetOdataMultiplePagesOptions.
- * Additional parameters for the Paging_getOdataMultiplePages operation.
+ * Additional parameters for getOdataMultiplePages operation.
  *
  */
 export interface PagingGetOdataMultiplePagesOptions {
@@ -96,7 +96,7 @@ export interface PagingGetOdataMultiplePagesOptions {
 /**
  * @interface
  * An interface representing PagingGetMultiplePagesWithOffsetOptions.
- * Additional parameters for the Paging_getMultiplePagesWithOffset operation.
+ * Additional parameters for getMultiplePagesWithOffset operation.
  *
  */
 export interface PagingGetMultiplePagesWithOffsetOptions {
@@ -139,7 +139,7 @@ export interface CustomParameterGroup {
 /**
  * @interface
  * An interface representing PagingGetMultiplePagesWithOffsetNextOptions.
- * Additional parameters for the getMultiplePagesWithOffsetNext operation.
+ * Additional parameters for getMultiplePagesWithOffsetNext operation.
  *
  */
 export interface PagingGetMultiplePagesWithOffsetNextOptions {

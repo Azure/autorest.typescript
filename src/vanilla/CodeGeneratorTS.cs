@@ -18,7 +18,7 @@ namespace AutoRest.TypeScript
 {
     public class CodeGeneratorTS : CodeGenerator
     {
-        private const string ClientRuntimePackage = "ms-rest-ts version 1.0.0";
+        private const string ClientRuntimePackage = "ms-rest-js version 1.0.0";
 
 
         public override string ImplementationFileExtension => ".ts";
@@ -81,7 +81,7 @@ namespace AutoRest.TypeScript
 
                 // webpack.config.js
                 var webpackConfig = new WebpackConfig { Model = codeModel };
-                await Write(packageJson, Path.Combine("../", "webpack.config.js"));
+                await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
             }
         }
     }

@@ -9,6 +9,21 @@
       "type": "coreclr",
       "request": "attach",
       "processId": "${command:pickProcess}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Mocha Tests",
+      "program": "${workspaceRoot}/test/azure/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-u",
+        "tdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceRoot}/test/azure/dist/AcceptanceTests/azureSpecialProperties.js"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }

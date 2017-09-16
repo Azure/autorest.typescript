@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a Paging. */
@@ -55,9 +55,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/single';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -186,9 +186,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -328,9 +328,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/odata';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -483,9 +483,9 @@ class Paging {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/withpath/{offset}';
             requestUrl = requestUrl.replace('{offset}', encodeURIComponent(offset.toString()));
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -600,9 +600,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/retryfirst';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -709,9 +709,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/retrysecond';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -816,9 +816,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/single/failure';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -923,9 +923,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/failure';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -1030,9 +1030,9 @@ class Paging {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/failureuri';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -1148,10 +1148,10 @@ class Paging {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragment/{tenant}';
             requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-            let queryParameters = [];
-            queryParameters.push('api_version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -1283,10 +1283,10 @@ class Paging {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragmentwithgrouping/{tenant}';
             requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-            let queryParameters = [];
-            queryParameters.push('api_version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -1408,10 +1408,10 @@ class Paging {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragment/{tenant}/{nextLink}';
             requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
             requestUrl = requestUrl.replace('{nextLink}', nextLink);
-            let queryParameters = [];
-            queryParameters.push('api_version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -1548,10 +1548,10 @@ class Paging {
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}';
             requestUrl = requestUrl.replace('{nextLink}', nextLink);
             requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-            let queryParameters = [];
-            queryParameters.push('api_version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-ts";
-import { RequestOptionsBase } from "ms-rest-ts";
+import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { RequestOptionsBase } from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
@@ -51,8 +51,7 @@ export interface OdataFilter {
 /**
  * @interface
  * An interface representing HeaderCustomNamedRequestIdParamGroupingParameters.
- * Additional parameters for the Header_customNamedRequestIdParamGrouping
- * operation.
+ * Additional parameters for customNamedRequestIdParamGrouping operation.
  *
  */
 export interface HeaderCustomNamedRequestIdParamGroupingParameters {

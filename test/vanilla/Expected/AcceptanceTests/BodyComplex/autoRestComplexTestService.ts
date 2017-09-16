@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-ts";
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -21,7 +21,7 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
   baseUri: string;
 
   // Operation groups
-  basicOperations: operations.BasicOperations;
+  basic: operations.BasicOperations;
   primitive: operations.Primitive;
   arrayModel: operations.ArrayModel;
   dictionary: operations.Dictionary;
@@ -61,7 +61,7 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.basicOperations = new operations.BasicOperations(this);
+    this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);
     this.dictionary = new operations.Dictionary(this);

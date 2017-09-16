@@ -10,8 +10,8 @@
 
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-import * as msRest from "ms-rest-ts";
-import * as msRestAzure from "ms-rest-azure-ts";
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as operations from "./operations";
 
 const packageName = 'foo';
@@ -34,7 +34,7 @@ class StorageManagementClient extends msRestAzure.AzureServiceClient {
 
   // Operation groups
   storageAccounts: operations.StorageAccounts;
-  usageOperations: operations.UsageOperations;
+  usage: operations.UsageOperations;
   serializer: msRest.Serializer;
 
   /**
@@ -98,7 +98,7 @@ class StorageManagementClient extends msRestAzure.AzureServiceClient {
       this.generateClientRequestId = options.generateClientRequestId;
     }
     this.storageAccounts = new operations.StorageAccounts(this);
-    this.usageOperations = new operations.UsageOperations(this);
+    this.usage = new operations.UsageOperations(this);
     this.serializer = new msRest.Serializer(Mappers);
   }
 }

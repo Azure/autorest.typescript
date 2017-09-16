@@ -49,7 +49,7 @@ namespace AutoRest.TypeScript
 
         private string plugin;
 
-        public Program(Connection connection, string plugin, string sessionId) : base(connection, sessionId)
+        public Program(Connection connection, string plugin, string sessionId) : base(connection, plugin, sessionId)
         {
             this.plugin = plugin;
         }

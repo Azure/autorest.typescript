@@ -5,8 +5,8 @@
 
 import * as should from 'should';
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-ts';
-import * as msRestAzure from 'ms-rest-azure-ts';
+import * as msRest from 'ms-rest-js';
+import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestReportServiceForAzure } from '../Expected/AcceptanceTests/AzureReport/autoRestReportServiceForAzure';
 

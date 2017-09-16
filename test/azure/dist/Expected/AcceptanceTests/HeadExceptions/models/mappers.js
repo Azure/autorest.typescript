@@ -9,7 +9,7 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const ms_rest_azure_ts_1 = require("ms-rest-azure-ts");
-exports.CloudError = ms_rest_azure_ts_1.CloudErrorMapper;
-exports.BaseResource = ms_rest_azure_ts_1.BaseResourceMapper;
+const ms_rest_azure_js_1 = require("ms-rest-azure-js");
+exports.CloudError = ms_rest_azure_js_1.CloudErrorMapper;
+exports.BaseResource = ms_rest_azure_js_1.BaseResourceMapper;
 //# sourceMappingURL=mappers.js.map

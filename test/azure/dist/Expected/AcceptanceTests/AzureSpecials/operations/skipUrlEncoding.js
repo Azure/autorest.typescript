@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a SkipUrlEncoding. */
@@ -62,9 +62,9 @@ class SkipUrlEncoding {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}';
             requestUrl = requestUrl.replace('{unencodedPathParam}', unencodedPathParam);
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -159,9 +159,9 @@ class SkipUrlEncoding {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}';
             requestUrl = requestUrl.replace('{unencodedPathParam}', unencodedPathParam);
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -251,9 +251,9 @@ class SkipUrlEncoding {
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}';
             requestUrl = requestUrl.replace('{unencodedPathParam}', unencodedPathParam);
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -348,10 +348,10 @@ class SkipUrlEncoding {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/method/query/valid';
-            let queryParameters = [];
-            queryParameters.push('q1=' + q1);
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('q1=' + q1);
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -444,12 +444,12 @@ class SkipUrlEncoding {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/method/query/null';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (q1 !== null && q1 !== undefined) {
-                queryParameters.push('q1=' + q1);
+                queryParamsArray.push('q1=' + q1);
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -544,10 +544,10 @@ class SkipUrlEncoding {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/path/query/valid';
-            let queryParameters = [];
-            queryParameters.push('q1=' + q1);
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('q1=' + q1);
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -637,10 +637,10 @@ class SkipUrlEncoding {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/skipUrlEncoding/swagger/query/valid';
-            let queryParameters = [];
-            queryParameters.push('q1=' + q1);
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('q1=' + q1);
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

@@ -20,7 +20,7 @@ namespace AutoRest.TypeScript.Azure
 {
     public class CodeGeneratorTSa : TypeScript.CodeGeneratorTS
     {
-        private const string ClientRuntimePackage = "ms-rest-azure-ts version 0.1.0";
+        private const string ClientRuntimePackage = "ms-rest-azure-js version 0.1.0";
 
         public override string UsageInstructions => $"The {ClientRuntimePackage} or higher npm package is required to execute the generated code.";
 
@@ -77,7 +77,7 @@ namespace AutoRest.TypeScript.Azure
 
                 // webpack.config.js
                 var webpackConfig = new WebpackConfig { Model = codeModel };
-                await Write(packageJson, Path.Combine("../", "webpack.config.js"));
+                await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
             }
         }
     }

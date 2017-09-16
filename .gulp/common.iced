@@ -368,7 +368,7 @@ module.exports =
 
   autorest: (args,done,ignoreexitcode) ->
     echo info "Queuing up: AutoRest #{args.join(' ')}"
-    execute "autorest \"--use=#{basefolder}\" #{args.map((a) -> "\"#{a}\"").join(' ')}" , {silent:true, ignoreexitcode: ignoreexitcode || false}, (code,stdout,stderr) ->
+    execute "#{basefolder}/node_modules/.bin/autorest \"--use=#{basefolder}\" #{args.map((a) -> "\"#{a}\"").join(' ')}" , {silent:true, ignoreexitcode: ignoreexitcode || false}, (code,stdout,stderr) ->
       return done(code,stdout,stderr)
 
 # build task for global build
@@ -396,7 +396,6 @@ Import module.exports
 
 ###############################################
 # Global values
-process.env["autorest.home"] = path.normalize("#{os.tmpdir()}/autorest#{hashCode(basefolder)}")
 process.env.tmp = process.env.tmp or "#{basefolder}/tmp"
 
 package_json = require("#{basefolder}/package.json")
@@ -408,14 +407,13 @@ Import
   github_apikey: argv.github_apikey or process.env.GITHUB_APIKEY or null
   nuget_apikey: argv.nuget_apikey or process.env.NUGET_APIKEY or null
   npm_apikey:  argv.npm_apikey or process.env.NPM_APIKEY or null
-  autorest_home: process.env["autorest.home"]
   today: moment().format('YYYYMMDD')
   now: moment().format('YYYYMMDD-HHmm')
   force: argv.force or false
   threshold: argv.threshold or ((os.cpus().length)-1) or 1
-  verbose: argv.verbose or null
   workdir: "#{process.env.tmp}/gulp/#{module.exports.guid()}"
   watch: argv.watch or false
+global.verbose = argv.verbose or null
 
 mkdir "-p", workdir if !test "-d", workdir
 

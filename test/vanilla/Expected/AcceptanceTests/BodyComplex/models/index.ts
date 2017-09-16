@@ -9,7 +9,7 @@
  */
 
 import * as moment from "moment";
-import { RequestOptionsBase } from "ms-rest-ts";
+import { RequestOptionsBase } from "ms-rest-js";
 
 
 /**

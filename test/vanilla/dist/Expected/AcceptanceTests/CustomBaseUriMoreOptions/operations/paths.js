@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a Paths. */
@@ -82,12 +82,12 @@ class Paths {
             requestUrl = requestUrl.replace('{dnsSuffix}', this.client.dnsSuffix);
             requestUrl = requestUrl.replace('{keyName}', encodeURIComponent(keyName));
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (keyVersion !== null && keyVersion !== undefined) {
-                queryParameters.push('keyVersion=' + encodeURIComponent(keyVersion));
+                queryParamsArray.push('keyVersion=' + encodeURIComponent(keyVersion));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

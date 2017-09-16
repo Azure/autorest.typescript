@@ -21,8 +21,8 @@ const Models = require("./models");
 exports.AutoRestResourceFlatteningTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestResourceFlatteningTestServiceMappers = Mappers;
-const msRest = require("ms-rest-ts");
-const msRestAzure = require("ms-rest-azure-ts");
+const msRest = require("ms-rest-js");
+const msRestAzure = require("ms-rest-azure-js");
 const WebResource = msRest.WebResource;
 const packageName = 'foo';
 const packageVersion = '3.0.0-preview';
@@ -108,9 +108,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/array';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -228,9 +228,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/array';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -351,9 +351,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/dictionary';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -471,9 +471,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/dictionary';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -595,9 +595,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/resourcecollection';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -701,9 +701,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/resourcecollection';
-            let queryParameters = [];
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { RequestOptionsBase } from "ms-rest-ts";
+import { RequestOptionsBase } from "ms-rest-js";
 
 
 /**

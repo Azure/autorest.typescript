@@ -17,7 +17,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ``` yaml
 use-extension:
-  "@microsoft.azure/autorest.modeler": "1.9.4"
+  "@microsoft.azure/autorest.modeler": "1.9.6"
 
 pipeline:
   typescript/modeler:
@@ -44,7 +44,7 @@ pipeline:
   typescript/emitter:
     input: transform
     scope: scope-typescript/emitter
-
+    
 scope-typescript/emitter:
   input-artifact: source-file-typescript
   output-uri-expr: $key

@@ -3,7 +3,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 const should = require("should");
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const autoRestHeadTestService_1 = require("../Expected/AcceptanceTests/Head/autoRestHeadTestService");
 const autoRestHeadExceptionTestService_1 = require("../Expected/AcceptanceTests/HeadExceptions/autoRestHeadExceptionTestService");
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';

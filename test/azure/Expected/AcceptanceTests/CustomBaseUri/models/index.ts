@@ -8,7 +8,7 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-ts";
+import { BaseResource, CloudError, AzureServiceClientOptions } from "ms-rest-azure-js";
 
 export { BaseResource, CloudError };
 

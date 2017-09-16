@@ -15,6 +15,7 @@ regenExpected = (opts,done) ->
     swaggerFiles = (if optsMappingsValue instanceof Array then optsMappingsValue[0] else optsMappingsValue).split(";")
     args = [
       "--#{opts.language}",
+      "--clear-output-folder",
       "--output-folder=#{outputDir}/#{key}",
       "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
       "--enable-xml"
@@ -112,7 +113,7 @@ tsMappings = {
   'AcceptanceTests/ComplexModelClient': 'complex-model.json'
 }
 
-swaggerDir = "ts_modules/@microsoft.azure/autorest.testserver/swagger"
+swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
 
 task 'regenerate-tscomposite', '', (done) ->
   regenExpected {

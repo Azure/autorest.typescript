@@ -5,8 +5,8 @@
 
 import * as should from 'should';
 import * as assert from 'assert';
-import * as msRest from 'ms-rest-ts';
-import * as msRestAzure from 'ms-rest-azure-ts';
+import * as msRest from 'ms-rest-js';
+import * as msRestAzure from 'ms-rest-azure-js';
 
 import { MicrosoftAzureTestUrl } from '../Expected/AcceptanceTests/SubscriptionIdApiVersion/microsoftAzureTestUrl';
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';

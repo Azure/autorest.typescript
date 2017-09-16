@@ -6,7 +6,7 @@
 var should = require('should');
 var http = require('http');
 var assert = require('assert');
-import * as msRest from 'ms-rest-ts';
+import * as msRest from 'ms-rest-js';
 import * as moment from 'moment';
 import { AutoRestComplexTestService as AutoRestComplexTestService, AutoRestComplexTestServiceModels } from '../Expected/AcceptanceTests/BodyComplex/autoRestComplexTestService';
 
@@ -23,12 +23,12 @@ describe('typescript', function () {
     describe('Basic Types Operations', function () {
       var testClient = new AutoRestComplexTestService(baseUri, clientOptions);
       it('should get and put valid basic type properties', function (done) {
-        testClient.basicOperations.getValid(function (error, result) {
+        testClient.basic.getValid(function (error, result) {
           should.not.exist(error);
           result.id.should.equal(2);
           result.name.should.equal('abc');
           result.color.should.equal('YELLOW');
-          testClient.basicOperations.putValid({ 'id': 2, 'name': 'abc', color: 'Magenta' }, function (error, result) {
+          testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: 'Magenta' }, function (error, result) {
             should.not.exist(error);
             done();
           });
@@ -36,7 +36,7 @@ describe('typescript', function () {
       });
 
       it('should get null basic type properties', function (done) {
-        testClient.basicOperations.getNull(function (error, result) {
+        testClient.basic.getNull(function (error, result) {
           should.not.exist(error);
           assert.equal(null, result.id);
           assert.equal(null, result.name);
@@ -45,7 +45,7 @@ describe('typescript', function () {
       });
 
       it('should get empty basic type properties', function (done) {
-        testClient.basicOperations.getEmpty(function (error, result) {
+        testClient.basic.getEmpty(function (error, result) {
           should.not.exist(error);
           should.not.exist(result.id);
           should.not.exist(result.name);
@@ -54,7 +54,7 @@ describe('typescript', function () {
       });
 
       it('should get basic type properties when the payload is empty', function (done) {
-        testClient.basicOperations.getNotProvided(function (error, result) {
+        testClient.basic.getNotProvided(function (error, result) {
           should.not.exist(error);
           should.not.exist(result);
           done();
@@ -62,7 +62,7 @@ describe('typescript', function () {
       });
 
       it('should deserialize invalid basic types without throwing', function (done) {
-        testClient.basicOperations.getInvalid(function (error, result) {
+        testClient.basic.getInvalid(function (error, result) {
           should.not.exist(error);
           should.exist(result);
           done();

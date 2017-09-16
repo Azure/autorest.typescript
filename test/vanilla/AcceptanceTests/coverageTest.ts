@@ -6,7 +6,7 @@
 import should = require('should');
 import http = require('http');
 import assert = require('assert');
-import * as msRest from 'ms-rest-ts';
+import * as msRest from 'ms-rest-js';
 var _ = require('underscore')
 
 import { AutoRestReportService } from '../Expected/AcceptanceTests/Report/autoRestReportService';

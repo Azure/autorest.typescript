@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Mappers = require("../models/mappers");
 const WebResource = msRest.WebResource;
 /** Class representing a ApiVersionLocal. */
@@ -57,10 +57,10 @@ class ApiVersionLocal {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/apiVersion/method/string/none/query/local/2.0';
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -154,12 +154,12 @@ class ApiVersionLocal {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/apiVersion/method/string/none/query/local/null';
-            let queryParameters = [];
+            let queryParamsArray = [];
             if (apiVersion !== null && apiVersion !== undefined) {
-                queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
+                queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
             }
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -249,10 +249,10 @@ class ApiVersionLocal {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/apiVersion/path/string/none/query/local/2.0';
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -342,10 +342,10 @@ class ApiVersionLocal {
             // Construct URL
             let baseUrl = this.client.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/apiVersion/swagger/string/none/query/local/2.0';
-            let queryParameters = [];
-            queryParameters.push('api-version=' + encodeURIComponent(apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('api-version=' + encodeURIComponent(apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

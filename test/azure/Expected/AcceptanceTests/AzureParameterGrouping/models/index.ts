@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import { BaseResource, CloudError } from "ms-rest-azure-ts";
-import { RequestOptionsBase } from "ms-rest-ts";
+import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { RequestOptionsBase } from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
@@ -32,7 +32,7 @@ export interface ErrorModel {
 /**
  * @interface
  * An interface representing ParameterGroupingPostRequiredParameters.
- * Additional parameters for the ParameterGrouping_postRequired operation.
+ * Additional parameters for postRequired operation.
  *
  */
 export interface ParameterGroupingPostRequiredParameters {
@@ -57,7 +57,7 @@ export interface ParameterGroupingPostRequiredParameters {
 /**
  * @interface
  * An interface representing ParameterGroupingPostOptionalParameters.
- * Additional parameters for the ParameterGrouping_postOptional operation.
+ * Additional parameters for postOptional operation.
  *
  */
 export interface ParameterGroupingPostOptionalParameters {
@@ -94,8 +94,7 @@ export interface FirstParameterGroup {
 /**
  * @interface
  * An interface representing ParameterGroupingPostMultiParamGroupsSecondParamGroup.
- * Additional parameters for the ParameterGrouping_postMultiParamGroups
- * operation.
+ * Additional parameters for postMultiParamGroups operation.
  *
  */
 export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {

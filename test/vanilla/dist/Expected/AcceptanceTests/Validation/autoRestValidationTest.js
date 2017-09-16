@@ -17,7 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const msRest = require("ms-rest-ts");
+const msRest = require("ms-rest-js");
 const Models = require("./models");
 exports.AutoRestValidationTestModels = Models;
 const Mappers = require("./models/mappers");
@@ -137,10 +137,10 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
             requestUrl = requestUrl.replace('{id}', encodeURIComponent(id.toString()));
-            let queryParameters = [];
-            queryParameters.push('apiVersion=' + encodeURIComponent(this.apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('apiVersion=' + encodeURIComponent(this.apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
@@ -285,10 +285,10 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
             requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
             requestUrl = requestUrl.replace('{id}', encodeURIComponent(id.toString()));
-            let queryParameters = [];
-            queryParameters.push('apiVersion=' + encodeURIComponent(this.apiVersion));
-            if (queryParameters.length > 0) {
-                requestUrl += '?' + queryParameters.join('&');
+            let queryParamsArray = [];
+            queryParamsArray.push('apiVersion=' + encodeURIComponent(this.apiVersion));
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
             }
             // Create HTTP transport objects
             let httpRequest = new WebResource();

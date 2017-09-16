@@ -15,20 +15,18 @@
     }
   ],
   "dependencies": {
-    "ms-rest-ts": "amarzavery/ms-rest"
+    "ms-rest-js": "azure/ms-rest-js"
   },
   "devDependencies": {
-    "tslint": "^2.5.1",
-    "typescript": "^2.4.2",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2",
     "@types/mocha": "^2.2.41",
     "@types/should": "^8.3.0",
-    "@types/node": "^8.0.20",
-    "@types/underscore": "1.8.1",
+    "@types/node": "^8.0.28",
     "xunit-file": "0.0.5",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "moment": "^2.18.1",
-    "should": "^11.2.1",
-    "underscore": "^1.8.3"
+    "should": "^11.2.1"
   },
   "homepage": "https://github.com/Azure/AutoRest/src/generator/AutoRest.TypeScript.Tests",
   "repository": {
@@ -39,7 +37,7 @@
     "url": "http://github.com/Azure/AutoRest/issues"
   },
   "scripts": {
-    "pretest": "npm install --prefix ../../dev/TestServer/server && npm install",
+    "pretest": "npm install",
     "tsc-client": "tsc -p tsconfig.client.json",
     "tsc-test": "tsc -p tsconfig.test.json",
     "build": "npm -s run-script tsc-test && npm -s run-script tsc-client",

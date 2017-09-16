@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import { ServiceClientOptions } from "ms-rest-ts";
-import { RequestOptionsBase } from "ms-rest-ts";
+import { ServiceClientOptions } from "ms-rest-js";
+import { RequestOptionsBase } from "ms-rest-js";
 
 
 /**
