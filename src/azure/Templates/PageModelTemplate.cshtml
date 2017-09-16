@@ -1,0 +1,41 @@
+@using System
+@using System.Linq
+@using System.Collections.Generic
+@using AutoRest.Core.Model
+@using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Azure.Model
+@inherits AutoRest.Core.Template<PageCompositeTypeTSa>
+
+@{var propertyList = new List<AutoRest.Core.Model.Property>(Model.Properties.Where(p => !p.IsConstant)); }
+/**
+ * @@interface
+ * An interface representing the @(Model.Name).
+@if (!String.IsNullOrEmpty(Model.Summary))
+{
+@WrapComment(" * ", "@summary " + Model.Summary)@:
+@: *
+}
+@if (!String.IsNullOrEmpty(Model.Documentation))
+{
+@WrapComment(" * ", Model.Documentation)@:
+@: *
+}
+ * @@extends Array@(Model.ConstructTSItemTypeName())
+ */
+export interface @(Model.Name) extends Array@(Model.ConstructTSItemTypeName()) {
+@{
+  foreach (var property in propertyList)
+  {
+      if (!(property.Name.ToLowerInvariant() == "value" || property.Name.ToLowerInvariant() == "values"))
+      {
+  @:/**
+  @:@(PageCompositeTypeTSa.ConstructPropertyDocumentation(
+                                WrapComment(" * ", "@member {" + property.ModelType.TSType(true)
+                                                                + "} " + PageCompositeTypeTSa.GetPropertyDocumentationName(property)
+                                                    + " " + property.Documentation)))
+   @:*/
+  @:@(PageCompositeTypeTSa.PropertyTS(property, true));
+      }
+  }
+ }
+}

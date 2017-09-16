@@ -1,0 +1,45 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.Azure.Model
+@using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.TypeScript.azure.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+import * as msRest from "ms-rest-js";
+@if (Model.ContainsCompositeTypeInParametersOrReturnType())
+{
+@:import * as Models from "../models";
+}
+import * as Mappers from "../models/mappers";
+import { @(Model.CodeModel.Name) } from "../@(Model.CodeModel.Name.Substring(0, 1).ToLower() + Model.CodeModel.Name.Substring(1))";
+@if (Model.ContainsTimeSpan)
+{
+@:import * as moment from "moment";
+}
+@EmptyLine
+const WebResource = msRest.WebResource;
+@EmptyLine
+/** Class representing a @(Model.TypeName). */
+export class @(Model.TypeName) {
+  private readonly client: @(Model.CodeModel.Name);
+  /**
+   * Create a @Model.TypeName.
+   * @@param {@Model.CodeModel.Name} client Reference to the service client.
+   */
+  constructor(client: @(Model.CodeModel.Name)) {
+    this.client = client;
+  }
+@EmptyLine
+@foreach (var method in Model.MethodTemplateModels)
+{
+  @:@(Include(new AzureMethodTemplate(), method as MethodTSa))
+  @EmptyLine
+}
+@foreach (var method in Model.MethodTemplateModels)
+{
+  @:@(Include(new MethodCallbackWrapperTemplate(), method))
+  @EmptyLine
+}
+}

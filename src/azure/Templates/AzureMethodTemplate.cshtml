@@ -1,0 +1,51 @@
+@using System
+@using System.Linq
+@using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Model
+@using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.TypeScript.Azure.Model
+@inherits AutoRest.Core.Template<MethodTSa>
+
+@if (!Model.IsLongRunningOperation)
+{
+@:@(Include(new MethodTemplate(), Model as MethodTS))
+}
+else
+{
+<text>
+@EmptyLine
+@(Model.GenerateMethodDocumentation(MethodTS.MethodFlavor.HttpOperationResponse))
+async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
+  let client = @(Model.ClientReference);
+  // Send request
+  let initialResult: msRest.HttpOperationResponse;
+  try {
+    initialResult = await this.begin@(Model.Name.ToPascalCase())WithHttpOperationResponse(@(Model.MethodParameterDeclaration));
+  } catch (err) {
+    return Promise.reject(err);
+  }
+  let operationRes: msRest.HttpOperationResponse;
+  try {
+    operationRes = await client.getLongRunningOperationResult(initialResult, options);
+@if (Model.ReturnType.Body != null)
+{
+    @:let httpRequest = operationRes.request;
+    @:let response = operationRes.response;
+}
+    @EmptyLine
+    // Deserialize Response
+@if (Model.ReturnType.Body != null)
+{
+    @:@(Model.DeserializeResponse(Model.ReturnType.Body, "operationRes.bodyAsJson"))
+}
+@if (Model.ReturnType.Body != null && Model.DefaultResponse.Body != null && !Model.Responses.Any())
+{
+    @:@(Model.DeserializeResponse(Model.DefaultResponse.Body, "operationRes.bodyAsJson"))
+}
+} catch (err) {
+    return Promise.reject(err);
+  }
+  return Promise.resolve(operationRes);
+}
+</text>
+}

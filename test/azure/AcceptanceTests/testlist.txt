@@ -1,0 +1,14 @@
+startServer.js
+# The above file has a global before (starts the server) and a global
+# after (stops the server) that is run once before and once after
+# all the tests in the below mentioned files have been executed.
+azureCompositeClient.js
+azureCustomBaseUri.js
+azureSpecialProperties.js
+head.js
+lro.js
+paging.js
+parameterGrouping.js
+subscriptionIdApiVersion.js
+#####The following test will always be executed as the last test to get test coverage
+coverage.js

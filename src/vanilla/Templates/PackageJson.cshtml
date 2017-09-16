@@ -1,0 +1,36 @@
+﻿@using System.Linq
+@using AutoRest.Core.Utilities;
+@using AutoRest.TypeScript.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+{
+  "name": "@(Model.PackageName)",
+  "author": "Microsoft Corporation",
+  "description": "@(Model.Name.ToPascalCase()) Library with typescript type definitions and works in node.js and browser javascript.",
+  "version": "@(Model.PackageVersion)",
+  "dependencies": {
+    @(Model.PackageDependencies())
+  },
+  "keywords": [ "node", "azure", "typescript", "browser", "isomorphic"],
+  "license": "MIT",
+  "main": "./dist/lib/@(Model.Name.ToCamelCase()).js",
+  "types": "./typings/lib/@(Model.Name.ToCamelCase()).d.ts",
+  "devDependencies": {
+    "ts-loader": "^2.3.7",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0",
+    "uglify-es": "^3.1.0"
+  },
+  "homepage": "http://github.com/azure/azure-sdk-for-ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azure/azure-sdk-for-ts.git"
+  },
+  "bugs": {
+    "url": "http://github.com/Azure/azure-sdk-for-ts/issues"
+  },
+  "scripts": {
+    "tsc": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
+    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o bundle.min.js bundle.js"
+  }
+}

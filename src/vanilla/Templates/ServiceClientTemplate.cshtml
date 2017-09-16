@@ -1,0 +1,142 @@
+﻿@using System.Linq
+@using AutoRest.Core.Model
+@using AutoRest.Core.Utilities
+@using AutoRest.TypeScript
+@using AutoRest.TypeScript.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+import * as msRest from "ms-rest-js";
+import * as Models from "./models";
+import * as Mappers from "./models/mappers";
+@if (Model.MethodGroupModels.Any()) {
+@:import * as operations from "./operations";
+}
+@if (Model.ContainsDurationProperty())
+{
+@:import * as moment from "moment";
+@EmptyLine
+}
+@if (Model.MethodTemplateModels.Any())
+{
+@:const WebResource = msRest.WebResource;
+}
+@EmptyLine
+const packageName = 'foo';
+const packageVersion = '3.0.0-preview';
+@{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
+@{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);}
+@EmptyLine
+class @(Model.Name) extends msRest.ServiceClient {
+@foreach (var property in Model.Properties)
+{
+  @:@(property.Name): @property.ModelType.TSType(false);
+}
+  baseUri: string;
+@if (Model.MethodGroupModels.Any())
+{
+  @EmptyLine
+  @:// Operation groups
+foreach (var methodGroup in Model.MethodGroupModels)
+{
+  @:@(methodGroup.NameForProperty): operations.@(methodGroup.TypeName);
+}
+}
+  serializer: msRest.Serializer;
+  @EmptyLine
+  /**
+   * @@class
+   * Initializes a new instance of the @Model.Name class.
+   * @@constructor
+   *
+@foreach (var param in requiredParameters)
+{
+   @:* @@param {@param.ModelType.Name.ToCamelCase()} @param.Name - @param.Documentation
+   @:*
+}
+@if(!Model.IsCustomBaseUri)
+{ 
+   @:* @@param {string} [baseUri] - The base URI of the service.
+   @:*
+}
+   * @@param {object} [options] - The parameter options
+   *
+   * @@param {Array} [options.filters] - Filters to be added to the request pipeline
+   *
+   * @@param {object} [options.requestOptions] - The request options. Detailed info can be found at 
+   * {@@link https://github.github.io/fetch/#Request Options doc}
+   *
+   * @@param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
+   *
+@foreach (var param in optionalParameters)
+{
+   @:* @@param {@param.ModelType.Name.ToCamelCase()} [options.@param.Name] - @param.Documentation
+   @:*
+}
+   */
+@{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
+  constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", ": "")options?: @clientOptionType) {
+@foreach (var param in requiredParameters)
+{
+  @:  if (@(param.Name) === null || @(param.Name) === undefined) {
+  @:    throw new Error('\'@(param.Name)\' cannot be null.');
+  @:  }
+}
+@EmptyLine
+    if (!options) options = {};
+@EmptyLine
+    super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
+    @EmptyLine
+@foreach (var property in Model.Properties.Where(p => p.DefaultValue != null))
+{
+    @:this.@(property.Name) = @(property.DefaultValue);
+}
+  
+@if(!Model.IsCustomBaseUri)
+{
+    @:this.baseUri = baseUri as string;
+
+    @:if (!this.baseUri) {
+      @:this.baseUri = '@Model.BaseUrl';
+    @:}
+}
+else
+{
+    @:this.baseUri = '@Model.BaseUrl';
+}
+
+@foreach (var param in requiredParameters)
+{
+  @:  this.@(param.Name) = @(param.Name);
+}
+  @EmptyLine
+    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+  @foreach (var property in optionalParameters)
+  { 
+    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) { 
+    @:  this.@(property.Name) = options.@(property.Name);
+    @:}
+  }
+
+  @foreach (var methodGroup in Model.MethodGroupModels)
+  {
+    @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
+  }
+    this.serializer = new msRest.Serializer(Mappers);
+  }
+@foreach (var method in Model.MethodTemplateModels)
+{
+  @:// methods on the client.
+  @EmptyLine
+  @:@(Include(new MethodTemplate(), method))
+}
+@foreach (var method in Model.MethodTemplateModels)
+{
+  @EmptyLine
+  @:@(Include(new MethodCallbackWrapperTemplate(), method))
+}
+}
+@EmptyLine
+export { @(Model.Name), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };

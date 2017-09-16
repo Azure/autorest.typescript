@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "newLine": "LF",
+    "target": "es6",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "allowJs": true,
+    "lib": [
+      "dom",
+      "es2015",
+      "es2016"
+    ]
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "./Expected/AcceptanceTests",
+    "node_modules/typescript",
+    "node_modules/tslint",
+    "node_modules"
+  ],
+  "include": [
+    "./AcceptanceTests"
+  ]
+}

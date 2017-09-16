@@ -1,0 +1,21 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.vanilla.Templates
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+@Model.ConstructRuntimeImportForModelIndex()
+@if (Model.ContainsDurationPropertyInModels())
+{
+@:import * as moment from "moment";
+}
+@if (Model.IsAnyModelInheritingFromRequestOptionsBase())
+{
+@:import { RequestOptionsBase } from "ms-rest-js";
+}
+@EmptyLine
+@foreach (var model in Model.OrderedModelTemplateModels) {
+@EmptyLine
+@:@(Include(new ModelTemplate(), model))
+}
