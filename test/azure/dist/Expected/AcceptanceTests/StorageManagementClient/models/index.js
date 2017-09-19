@@ -9,4 +9,140 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for Reason.
+ * Possible values include: 'AccountNameInvalid', 'AlreadyExists'
+ * @readonly
+ * @enum {string}
+ */
+var Reason;
+(function (Reason) {
+    /**
+     * AccountNameInvalid.
+     */
+    Reason["AccountNameInvalid"] = "AccountNameInvalid";
+    /**
+     * AlreadyExists.
+     */
+    Reason["AlreadyExists"] = "AlreadyExists";
+})(Reason = exports.Reason || (exports.Reason = {}));
+/**
+ * Defines values for AccountType.
+ * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
+ * 'Standard_RAGRS', 'Premium_LRS'
+ * @readonly
+ * @enum {string}
+ */
+var AccountType;
+(function (AccountType) {
+    /**
+     * Standard_LRS.
+     */
+    AccountType["StandardLRS"] = "Standard_LRS";
+    /**
+     * Standard_ZRS.
+     */
+    AccountType["StandardZRS"] = "Standard_ZRS";
+    /**
+     * Standard_GRS.
+     */
+    AccountType["StandardGRS"] = "Standard_GRS";
+    /**
+     * Standard_RAGRS.
+     */
+    AccountType["StandardRAGRS"] = "Standard_RAGRS";
+    /**
+     * Premium_LRS.
+     */
+    AccountType["PremiumLRS"] = "Premium_LRS";
+})(AccountType = exports.AccountType || (exports.AccountType = {}));
+/**
+ * Defines values for ProvisioningState.
+ * Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'
+ * @readonly
+ * @enum {string}
+ */
+var ProvisioningState;
+(function (ProvisioningState) {
+    /**
+     * Creating.
+     */
+    ProvisioningState["Creating"] = "Creating";
+    /**
+     * ResolvingDNS.
+     */
+    ProvisioningState["ResolvingDNS"] = "ResolvingDNS";
+    /**
+     * Succeeded.
+     */
+    ProvisioningState["Succeeded"] = "Succeeded";
+})(ProvisioningState = exports.ProvisioningState || (exports.ProvisioningState = {}));
+/**
+ * Defines values for AccountStatus.
+ * Possible values include: 'Available', 'Unavailable'
+ * @readonly
+ * @enum {string}
+ */
+var AccountStatus;
+(function (AccountStatus) {
+    /**
+     * Available.
+     */
+    AccountStatus["Available"] = "Available";
+    /**
+     * Unavailable.
+     */
+    AccountStatus["Unavailable"] = "Unavailable";
+})(AccountStatus = exports.AccountStatus || (exports.AccountStatus = {}));
+/**
+ * Defines values for KeyName.
+ * Possible values include: 'key1', 'key2'
+ * @readonly
+ * @enum {string}
+ */
+var KeyName;
+(function (KeyName) {
+    /**
+     * key1.
+     */
+    KeyName["Key1"] = "key1";
+    /**
+     * key2.
+     */
+    KeyName["Key2"] = "key2";
+})(KeyName = exports.KeyName || (exports.KeyName = {}));
+/**
+ * Defines values for UsageUnit.
+ * Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent',
+ * 'CountsPerSecond', 'BytesPerSecond'
+ * @readonly
+ * @enum {string}
+ */
+var UsageUnit;
+(function (UsageUnit) {
+    /**
+     * Count.
+     */
+    UsageUnit["Count"] = "Count";
+    /**
+     * Bytes.
+     */
+    UsageUnit["Bytes"] = "Bytes";
+    /**
+     * Seconds.
+     */
+    UsageUnit["Seconds"] = "Seconds";
+    /**
+     * Percent.
+     */
+    UsageUnit["Percent"] = "Percent";
+    /**
+     * CountsPerSecond.
+     */
+    UsageUnit["CountsPerSecond"] = "CountsPerSecond";
+    /**
+     * BytesPerSecond.
+     */
+    UsageUnit["BytesPerSecond"] = "BytesPerSecond";
+})(UsageUnit = exports.UsageUnit || (exports.UsageUnit = {}));
 //# sourceMappingURL=index.js.map

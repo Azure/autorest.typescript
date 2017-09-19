@@ -132,10 +132,10 @@ export interface QueriesStringNullOptionalParams extends RequestOptionsBase {
  */
 export interface QueriesEnumValidOptionalParams extends RequestOptionsBase {
   /**
-   * @member {string} [enumQuery] 'green color' enum value. Possible values
+   * @member {UriColor} [enumQuery] 'green color' enum value. Possible values
    * include: 'red color', 'green color', 'blue color'
    */
-  enumQuery?: string;
+  enumQuery?: UriColor;
 }
 
 /**
@@ -147,10 +147,10 @@ export interface QueriesEnumValidOptionalParams extends RequestOptionsBase {
  */
 export interface QueriesEnumNullOptionalParams extends RequestOptionsBase {
   /**
-   * @member {string} [enumQuery] null string value. Possible values include:
+   * @member {UriColor} [enumQuery] null string value. Possible values include:
    * 'red color', 'green color', 'blue color'
    */
-  enumQuery?: string;
+  enumQuery?: UriColor;
 }
 
 /**
@@ -376,4 +376,25 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams extends Reques
    * @member {string} [pathItemStringQuery] should contain value null
    */
   pathItemStringQuery?: string;
+}
+
+/**
+ * Defines values for UriColor.
+ * Possible values include: 'red color', 'green color', 'blue color'
+ * @readonly
+ * @enum {string}
+ */
+export enum UriColor {
+  /**
+   * red color.
+   */
+  Redcolor = "red color",
+  /**
+   * green color.
+   */
+  Greencolor = "green color",
+  /**
+   * blue color.
+   */
+  Bluecolor = "blue color"
 }

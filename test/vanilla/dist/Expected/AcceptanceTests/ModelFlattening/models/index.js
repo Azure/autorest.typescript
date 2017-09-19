@@ -9,4 +9,63 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for PropertiesProvisioningStateValues.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: PropertiesProvisioningStateValues =
+ * <PropertiesProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
+ * @readonly
+ * @enum {string}
+ */
+var PropertiesProvisioningStateValues;
+(function (PropertiesProvisioningStateValues) {
+    /**
+     * Succeeded.
+     */
+    PropertiesProvisioningStateValues["Succeeded"] = "Succeeded";
+    /**
+     * Failed.
+     */
+    PropertiesProvisioningStateValues["Failed"] = "Failed";
+    /**
+     * canceled.
+     */
+    PropertiesProvisioningStateValues["Canceled"] = "canceled";
+    /**
+     * Accepted.
+     */
+    PropertiesProvisioningStateValues["Accepted"] = "Accepted";
+    /**
+     * Creating.
+     */
+    PropertiesProvisioningStateValues["Creating"] = "Creating";
+    /**
+     * Created.
+     */
+    PropertiesProvisioningStateValues["Created"] = "Created";
+    /**
+     * Updating.
+     */
+    PropertiesProvisioningStateValues["Updating"] = "Updating";
+    /**
+     * Updated.
+     */
+    PropertiesProvisioningStateValues["Updated"] = "Updated";
+    /**
+     * Deleting.
+     */
+    PropertiesProvisioningStateValues["Deleting"] = "Deleting";
+    /**
+     * Deleted.
+     */
+    PropertiesProvisioningStateValues["Deleted"] = "Deleted";
+    /**
+     * OK.
+     */
+    PropertiesProvisioningStateValues["OK"] = "OK";
+})(PropertiesProvisioningStateValues = exports.PropertiesProvisioningStateValues || (exports.PropertiesProvisioningStateValues = {}));
 //# sourceMappingURL=index.js.map

@@ -74,11 +74,11 @@ export interface FlattenedProduct extends Resource {
    */
   flattenedProductType?: string;
   /**
-   * @member {string} [provisioningStateValues] Possible values include:
-   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {PropertiesProvisioningStateValues} [provisioningStateValues]
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+   * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: string;
+  readonly provisioningStateValues?: PropertiesProvisioningStateValues;
   /**
    * @member {string} [provisioningState]
    */
@@ -313,4 +313,63 @@ export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProduct
    * @member {string} [odatavalue] URL value.
    */
   odatavalue?: string;
+}
+
+/**
+ * Defines values for PropertiesProvisioningStateValues.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: PropertiesProvisioningStateValues =
+ * <PropertiesProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
+ * @readonly
+ * @enum {string}
+ */
+export enum PropertiesProvisioningStateValues {
+  /**
+   * Succeeded.
+   */
+  Succeeded = "Succeeded",
+  /**
+   * Failed.
+   */
+  Failed = "Failed",
+  /**
+   * canceled.
+   */
+  Canceled = "canceled",
+  /**
+   * Accepted.
+   */
+  Accepted = "Accepted",
+  /**
+   * Creating.
+   */
+  Creating = "Creating",
+  /**
+   * Created.
+   */
+  Created = "Created",
+  /**
+   * Updating.
+   */
+  Updating = "Updating",
+  /**
+   * Updated.
+   */
+  Updated = "Updated",
+  /**
+   * Deleting.
+   */
+  Deleting = "Deleting",
+  /**
+   * Deleted.
+   */
+  Deleted = "Deleted",
+  /**
+   * OK.
+   */
+  OK = "OK"
 }

@@ -13,7 +13,7 @@ import * as fs from 'fs';
 import stream = require('stream');
 
 import { AutoRestBoolTestService } from '../Expected/AcceptanceTests/BodyBoolean/autoRestBoolTestService';
-import { AutoRestSwaggerBATService } from '../Expected/AcceptanceTests/BodyString/autoRestSwaggerBATService';
+import { AutoRestSwaggerBATService, AutoRestSwaggerBATServiceModels } from '../Expected/AcceptanceTests/BodyString/autoRestSwaggerBATService';
 import { AutoRestIntegerTestService } from '../Expected/AcceptanceTests/BodyInteger/autoRestIntegerTestService';
 import { CompositeBoolInt } from '../Expected/AcceptanceTests/CompositeBoolIntClient/compositeBoolInt';
 import { AutoRestNumberTestService } from '../Expected/AcceptanceTests/BodyNumber/autoRestNumberTestService';
@@ -22,7 +22,7 @@ import { AutoRestDateTestService } from '../Expected/AcceptanceTests/BodyDate/au
 import { AutoRestDateTimeTestService } from '../Expected/AcceptanceTests/BodyDateTime/autoRestDateTimeTestService';
 import { AutoRestRFC1123DateTimeTestService } from '../Expected/AcceptanceTests/BodyDateTimeRfc1123/autoRestRFC1123DateTimeTestService';
 import { AutoRestDurationTestService } from '../Expected/AcceptanceTests/BodyDuration/autoRestDurationTestService';
-import { AutoRestUrlTestService } from '../Expected/AcceptanceTests/Url/autoRestUrlTestService';
+import { AutoRestUrlTestService, AutoRestUrlTestServiceModels } from '../Expected/AcceptanceTests/Url/autoRestUrlTestService';
 import { AutoRestSwaggerBATFileService } from '../Expected/AcceptanceTests/BodyFile/autoRestSwaggerBATFileService';
 import { AutoRestSwaggerBATArrayService } from '../Expected/AcceptanceTests/BodyArray/autoRestSwaggerBATArrayService';
 import { AutoRestSwaggerBATdictionaryService, AutoRestSwaggerBATdictionaryServiceModels } from '../Expected/AcceptanceTests/BodyDictionary/autoRestSwaggerBATdictionaryService';
@@ -406,7 +406,7 @@ describe('nodejs', function () {
       });
 
       it('should support valid empty string value', function (done) {
-        testClient.string.putEmpty('', function (error, result) {
+        testClient.string.putEmpty(AutoRestSwaggerBATServiceModels.StringBody1.EMPTY_STRING, function (error, result) {
           should.not.exist(error);
           testClient.string.getEmpty(function (error, result) {
             result.should.equal('');
@@ -416,7 +416,7 @@ describe('nodejs', function () {
       });
 
       it('should support valid MBC string value', function (done) {
-        testClient.string.putMbcs('啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€', function (error, result) {
+        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣, function (error, result) {
           should.not.exist(error);
           testClient.string.getMbcs(function (error, result) {
             result.should.equal('啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€');
@@ -426,7 +426,7 @@ describe('nodejs', function () {
       });
 
       it('should support whitespace string value', function (done) {
-        testClient.string.putWhitespace('    Now is the time for all good men to come to the aid of their country    ', function (error, result) {
+        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3.Nowisthetimeforallgoodmentocometotheaidoftheircountry, function (error, result) {
           should.not.exist(error);
           testClient.string.getWhitespace(function (error, result) {
             result.should.equal('    Now is the time for all good men to come to the aid of their country    ');
@@ -447,7 +447,7 @@ describe('nodejs', function () {
         testClient.enumModel.getNotExpandable(function (error, result) {
           should.not.exist(error);
           result.should.equal('red color');
-          testClient.enumModel.putNotExpandable('red color', function (error, result) {
+          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.Redcolor, function (error, result) {
             should.not.exist(error);
             done();
           });
@@ -455,7 +455,7 @@ describe('nodejs', function () {
       });
 
       it('should correctly handle invalid values for enum', function (done) {
-        testClient.enumModel.putNotExpandable('orange color', function (error, result) {
+        testClient.enumModel.putNotExpandable(<AutoRestSwaggerBATServiceModels.Colors>'orange color', function (error, result) {
           should.exist(error);
           error.message.should.match(/.*is not a valid value.*/ig);
           done();
@@ -1940,12 +1940,12 @@ describe('nodejs', function () {
       });
 
       it('should work when path has enum', function (done) {
-        testClient.paths.enumValid('', function (error, result) {
+        testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>"", function (error, result) {
           should.exist(error);
           error.message.should.match(/.*cannot be null or undefined.*/ig);
           testClient.paths.enumNull(null, function (error, result) {
             should.exist(error);
-            testClient.paths.enumValid('green color', function (error, result) {
+            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
               should.not.exist(error);
               done();
             });
@@ -2097,11 +2097,11 @@ describe('nodejs', function () {
         });
       });
       it('should work when query has enum values', function (done) {
-        testClient.queries.enumValid({ enumQuery: '' }, function (error, result) {
+        testClient.queries.enumValid({ enumQuery: <AutoRestUrlTestServiceModels.UriColor>'' }, function (error, result) {
           should.exist(error);
           testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
             should.not.exist(error);
-            testClient.queries.enumValid({ enumQuery: 'green color' }, function (error, result) {
+            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
               should.not.exist(error);
               done();
             });

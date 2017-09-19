@@ -143,7 +143,7 @@ describe('typescript', function () {
                 });
             });
             it('should send and receive enum type headers', function (done) {
-                testClient.header.paramEnum('valid', { value: 'GREY' }, function (error, result) {
+                testClient.header.paramEnum('valid', { value: autoRestSwaggerBATHeaderService_1.AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY }, function (error, result) {
                     should.not.exist(error);
                     testClient.header.paramEnum('null', { value: null }, function (error, result) {
                         should.not.exist(error);

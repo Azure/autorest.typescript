@@ -9,4 +9,62 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for Status.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Status = <Status>"someUnknownValueThatWillStillBeValid";
+ * @readonly
+ * @enum {string}
+ */
+var Status;
+(function (Status) {
+    /**
+     * Succeeded.
+     */
+    Status["Succeeded"] = "Succeeded";
+    /**
+     * Failed.
+     */
+    Status["Failed"] = "Failed";
+    /**
+     * canceled.
+     */
+    Status["Canceled"] = "canceled";
+    /**
+     * Accepted.
+     */
+    Status["Accepted"] = "Accepted";
+    /**
+     * Creating.
+     */
+    Status["Creating"] = "Creating";
+    /**
+     * Created.
+     */
+    Status["Created"] = "Created";
+    /**
+     * Updating.
+     */
+    Status["Updating"] = "Updating";
+    /**
+     * Updated.
+     */
+    Status["Updated"] = "Updated";
+    /**
+     * Deleting.
+     */
+    Status["Deleting"] = "Deleting";
+    /**
+     * Deleted.
+     */
+    Status["Deleted"] = "Deleted";
+    /**
+     * OK.
+     */
+    Status["OK"] = "OK";
+})(Status = exports.Status || (exports.Status = {}));
 //# sourceMappingURL=index.js.map

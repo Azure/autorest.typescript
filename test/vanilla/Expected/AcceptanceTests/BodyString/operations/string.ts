@@ -313,7 +313,7 @@ export class String {
   /**
    * Set string value empty ''
    *
-   * @param {string} stringBody Possible values include: ''
+   * @param {StringBody1} stringBody Possible values include: ''
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -323,7 +323,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyWithHttpOperationResponse(stringBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyWithHttpOperationResponse(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -413,7 +413,7 @@ export class String {
 
   /**
    * Get mbcs string value
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -506,10 +506,10 @@ export class String {
 
   /**
    * Set string value mbcs
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {string} stringBody Possible values include:
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * @param {StringBody2} stringBody Possible values include:
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -519,7 +519,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putMbcsWithHttpOperationResponse(stringBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putMbcsWithHttpOperationResponse(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -706,8 +706,8 @@ export class String {
    * '<tab><space><space>Now is the time for all good men to come to the aid of
    * their country<tab><space><space>'
    *
-   * @param {string} stringBody Possible values include: '    Now is the time for
-   * all good men to come to the aid of their country    '
+   * @param {StringBody3} stringBody Possible values include: '    Now is the
+   * time for all good men to come to the aid of their country    '
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -717,7 +717,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putWhitespaceWithHttpOperationResponse(stringBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putWhitespaceWithHttpOperationResponse(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1285,25 +1285,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.GetNullOKResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNull(): Promise<string>;
-  getNull(options: msRest.RequestOptionsBase): Promise<string>;
-  getNull(callback: msRest.ServiceCallback<string>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getNull(): Promise<Models.GetNullOKResponse>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Models.GetNullOKResponse>;
+  getNull(callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNullOKResponse>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetNullOKResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<string>;
+    let cb = callback as msRest.ServiceCallback<Models.GetNullOKResponse>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as string);
+        return Promise.resolve(operationRes.bodyAsJson as Models.GetNullOKResponse);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1312,7 +1312,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as string;
+        let result = data.bodyAsJson as Models.GetNullOKResponse;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1373,25 +1373,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.GetEmptyOKResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEmpty(): Promise<string>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<string>;
-  getEmpty(callback: msRest.ServiceCallback<string>): void;
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getEmpty(): Promise<Models.GetEmptyOKResponse>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Models.GetEmptyOKResponse>;
+  getEmpty(callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEmptyOKResponse>): void;
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetEmptyOKResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<string>;
+    let cb = callback as msRest.ServiceCallback<Models.GetEmptyOKResponse>;
     if (!callback) {
       return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as string);
+        return Promise.resolve(operationRes.bodyAsJson as Models.GetEmptyOKResponse);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1400,7 +1400,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as string;
+        let result = data.bodyAsJson as Models.GetEmptyOKResponse;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1409,7 +1409,7 @@ export class String {
   /**
    * Set string value empty ''
    *
-   * @param {string} stringBody Possible values include: ''
+   * @param {StringBody1} stringBody Possible values include: ''
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1425,11 +1425,11 @@ export class String {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putEmpty(stringBody: string): Promise<void>;
-  putEmpty(stringBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putEmpty(stringBody: string, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(stringBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putEmpty(stringBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putEmpty(stringBody: Models.StringBody1): Promise<void>;
+  putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase): Promise<void>;
+  putEmpty(stringBody: Models.StringBody1, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmpty(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -1454,7 +1454,7 @@ export class String {
 
   /**
    * Get mbcs string value
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1464,25 +1464,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.GetMbcsOKResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getMbcs(): Promise<string>;
-  getMbcs(options: msRest.RequestOptionsBase): Promise<string>;
-  getMbcs(callback: msRest.ServiceCallback<string>): void;
-  getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getMbcs(): Promise<Models.GetMbcsOKResponse>;
+  getMbcs(options: msRest.RequestOptionsBase): Promise<Models.GetMbcsOKResponse>;
+  getMbcs(callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMbcsOKResponse>): void;
+  getMbcs(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetMbcsOKResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<string>;
+    let cb = callback as msRest.ServiceCallback<Models.GetMbcsOKResponse>;
     if (!callback) {
       return this.getMbcsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as string);
+        return Promise.resolve(operationRes.bodyAsJson as Models.GetMbcsOKResponse);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1491,7 +1491,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as string;
+        let result = data.bodyAsJson as Models.GetMbcsOKResponse;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1499,10 +1499,10 @@ export class String {
 
   /**
    * Set string value mbcs
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
-   * @param {string} stringBody Possible values include:
-   * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+   * @param {StringBody2} stringBody Possible values include:
+   * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1518,11 +1518,11 @@ export class String {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putMbcs(stringBody: string): Promise<void>;
-  putMbcs(stringBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putMbcs(stringBody: string, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(stringBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putMbcs(stringBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putMbcs(stringBody: Models.StringBody2): Promise<void>;
+  putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase): Promise<void>;
+  putMbcs(stringBody: Models.StringBody2, callback: msRest.ServiceCallback<void>): void;
+  putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putMbcs(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -1558,25 +1558,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.GetWhitespaceOKResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getWhitespace(): Promise<string>;
-  getWhitespace(options: msRest.RequestOptionsBase): Promise<string>;
-  getWhitespace(callback: msRest.ServiceCallback<string>): void;
-  getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
+  getWhitespace(): Promise<Models.GetWhitespaceOKResponse>;
+  getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.GetWhitespaceOKResponse>;
+  getWhitespace(callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): void;
+  getWhitespace(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GetWhitespaceOKResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<string>;
+    let cb = callback as msRest.ServiceCallback<Models.GetWhitespaceOKResponse>;
     if (!callback) {
       return this.getWhitespaceWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as string);
+        return Promise.resolve(operationRes.bodyAsJson as Models.GetWhitespaceOKResponse);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1585,7 +1585,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as string;
+        let result = data.bodyAsJson as Models.GetWhitespaceOKResponse;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1596,8 +1596,8 @@ export class String {
    * '<tab><space><space>Now is the time for all good men to come to the aid of
    * their country<tab><space><space>'
    *
-   * @param {string} stringBody Possible values include: '    Now is the time for
-   * all good men to come to the aid of their country    '
+   * @param {StringBody3} stringBody Possible values include: '    Now is the
+   * time for all good men to come to the aid of their country    '
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1613,11 +1613,11 @@ export class String {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putWhitespace(stringBody: string): Promise<void>;
-  putWhitespace(stringBody: string, options: msRest.RequestOptionsBase): Promise<void>;
-  putWhitespace(stringBody: string, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(stringBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putWhitespace(stringBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putWhitespace(stringBody: Models.StringBody3): Promise<void>;
+  putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase): Promise<void>;
+  putWhitespace(stringBody: Models.StringBody3, callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWhitespace(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

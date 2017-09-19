@@ -9,6 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AutoRestUrlTestService } from "../autoRestUrlTestService";
 
@@ -1059,8 +1060,8 @@ export class Paths {
   /**
    * Get using uri with 'green color' in path parameter
    *
-   * @param {string} enumPath send the value green. Possible values include: 'red
-   * color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send the value green. Possible values include:
+   * 'red color', 'green color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1070,7 +1071,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async enumValidWithHttpOperationResponse(enumPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1147,7 +1148,7 @@ export class Paths {
   /**
    * Get null (should throw on the client before the request is sent on wire)
    *
-   * @param {string} enumPath send null should throw. Possible values include:
+   * @param {UriColor} enumPath send null should throw. Possible values include:
    * 'red color', 'green color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -1158,7 +1159,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async enumNullWithHttpOperationResponse(enumPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -2659,8 +2660,8 @@ export class Paths {
   /**
    * Get using uri with 'green color' in path parameter
    *
-   * @param {string} enumPath send the value green. Possible values include: 'red
-   * color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send the value green. Possible values include:
+   * 'red color', 'green color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -2676,11 +2677,11 @@ export class Paths {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  enumValid(enumPath: string): Promise<void>;
-  enumValid(enumPath: string, options: msRest.RequestOptionsBase): Promise<void>;
-  enumValid(enumPath: string, callback: msRest.ServiceCallback<void>): void;
-  enumValid(enumPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumValid(enumPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  enumValid(enumPath: Models.UriColor): Promise<void>;
+  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
+  enumValid(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  enumValid(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -2706,7 +2707,7 @@ export class Paths {
   /**
    * Get null (should throw on the client before the request is sent on wire)
    *
-   * @param {string} enumPath send null should throw. Possible values include:
+   * @param {UriColor} enumPath send null should throw. Possible values include:
    * 'red color', 'green color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -2723,11 +2724,11 @@ export class Paths {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  enumNull(enumPath: string): Promise<void>;
-  enumNull(enumPath: string, options: msRest.RequestOptionsBase): Promise<void>;
-  enumNull(enumPath: string, callback: msRest.ServiceCallback<void>): void;
-  enumNull(enumPath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  enumNull(enumPath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  enumNull(enumPath: Models.UriColor): Promise<void>;
+  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase): Promise<void>;
+  enumNull(enumPath: Models.UriColor, callback: msRest.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  enumNull(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

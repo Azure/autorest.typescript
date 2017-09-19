@@ -320,7 +320,7 @@ class String {
     /**
      * Set string value empty ''
      *
-     * @param {string} stringBody Possible values include: ''
+     * @param {StringBody1} stringBody Possible values include: ''
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
      *
@@ -422,7 +422,7 @@ class String {
     }
     /**
      * Get mbcs string value
-     * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+     * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
      *
@@ -516,10 +516,10 @@ class String {
     }
     /**
      * Set string value mbcs
-     * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+     * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
      *
-     * @param {string} stringBody Possible values include:
-     * '啊齄丂狛狜隣郎隣兀﨩ˊ▇█〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€ '
+     * @param {StringBody2} stringBody Possible values include:
+     * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
      *
@@ -719,8 +719,8 @@ class String {
      * '<tab><space><space>Now is the time for all good men to come to the aid of
      * their country<tab><space><space>'
      *
-     * @param {string} stringBody Possible values include: '    Now is the time for
-     * all good men to come to the aid of their country    '
+     * @param {StringBody3} stringBody Possible values include: '    Now is the
+     * time for all good men to come to the aid of their country    '
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
      *

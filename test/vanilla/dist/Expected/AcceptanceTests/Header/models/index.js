@@ -9,4 +9,25 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for GreyscaleColors.
+ * Possible values include: 'White', 'black', 'GREY'
+ * @readonly
+ * @enum {string}
+ */
+var GreyscaleColors;
+(function (GreyscaleColors) {
+    /**
+     * White.
+     */
+    GreyscaleColors["White"] = "White";
+    /**
+     * black.
+     */
+    GreyscaleColors["Black"] = "black";
+    /**
+     * GREY.
+     */
+    GreyscaleColors["GREY"] = "GREY";
+})(GreyscaleColors = exports.GreyscaleColors || (exports.GreyscaleColors = {}));
 //# sourceMappingURL=index.js.map

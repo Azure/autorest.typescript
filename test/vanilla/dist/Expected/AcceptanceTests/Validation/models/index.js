@@ -9,4 +9,17 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for EnumConst.
+ * Possible values include: 'constant_string_as_enum'
+ * @readonly
+ * @enum {string}
+ */
+var EnumConst;
+(function (EnumConst) {
+    /**
+     * constant_string_as_enum.
+     */
+    EnumConst["ConstantStringAsEnum"] = "constant_string_as_enum";
+})(EnumConst = exports.EnumConst || (exports.EnumConst = {}));
 //# sourceMappingURL=index.js.map
