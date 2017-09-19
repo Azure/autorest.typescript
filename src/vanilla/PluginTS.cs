@@ -29,7 +29,7 @@ namespace AutoRest.TypeScript
                 new Factory<DictionaryType, DictionaryTypeTS>(),
                 new Factory<SequenceType, SequenceTypeTS>(),
                 new Factory<MethodGroup, MethodGroupTS>(),
-                new Factory<EnumType, EnumType>(),
+                new Factory<EnumType, EnumTypeTS>(),
                 new Factory<PrimaryType, PrimaryTypeTS>()
             };
         }

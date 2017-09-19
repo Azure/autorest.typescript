@@ -47,17 +47,17 @@ namespace AutoRest.TypeScript.Model
                     result = true;
                     break;
                 }
-                result = parametersToBeScanned.Any(p => p.ModelType is CompositeType ||
-                (p.ModelType is SequenceType && (p.ModelType as SequenceType).ElementType is CompositeType) ||
-                (p.ModelType is DictionaryType && (p.ModelType as DictionaryType).ValueType is CompositeType));
+                result = parametersToBeScanned.Any(p => p.ModelType is CompositeType || p.ModelType is EnumType ||
+                (p.ModelType is SequenceType && ((p.ModelType as SequenceType).ElementType is CompositeType || (p.ModelType as SequenceType).ElementType is EnumType)) ||
+                (p.ModelType is DictionaryType && ((p.ModelType as DictionaryType).ValueType is CompositeType || (p.ModelType as DictionaryType).ValueType is EnumType)));
 
                 if (result)
                     break;
             }
             if (!result)
-                result = MethodTemplateModels.Any(m => m.ReturnType.Body is CompositeType ||
-                (m.ReturnType.Body is SequenceType && (m.ReturnType.Body as SequenceType).ElementType is CompositeType) ||
-                (m.ReturnType.Body is DictionaryType && (m.ReturnType.Body as DictionaryType).ValueType is CompositeType));
+                result = MethodTemplateModels.Any(m => m.ReturnType.Body is CompositeType || m.ReturnType.Body is EnumType ||
+                (m.ReturnType.Body is SequenceType && ((m.ReturnType.Body as SequenceType).ElementType is CompositeType || (m.ReturnType.Body as SequenceType).ElementType is EnumType)) ||
+                (m.ReturnType.Body is DictionaryType && ((m.ReturnType.Body as DictionaryType).ValueType is CompositeType || (m.ReturnType.Body as DictionaryType).ValueType is EnumType)));
             return result;
         }
     }

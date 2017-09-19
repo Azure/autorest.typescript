@@ -48,7 +48,15 @@ namespace AutoRest.TypeScript
 
         public override string GetMethodName(string name) => CamelCase(GetEscapedReservedName(name, "Method"));
 
-        public override string GetEnumMemberName(string name) => CamelCase(name);
+        public override string GetEnumMemberName(string name)
+        {
+            var result = base.GetEnumMemberName(name);
+            if (string.IsNullOrEmpty(result))
+            {
+                result = "EMPTY_STRING";
+            }
+            return result;
+        }
 
         public override string IsNameLegal(string desiredName, IIdentifier whoIsAsking)
         {

@@ -1,0 +1,46 @@
+@using System.Linq
+@using AutoRest.TypeScript.Model
+@inherits AutoRest.Core.Template<EnumTypeTS>
+
+/**
+ * Defines values for @(Model.EnumName).
+@if (Model.ExtendedDocumentation != null)
+{
+@:@(WrapComment(" * ", Model.ExtendedDocumentation))
+}
+@if (Model.ModelAsString)
+{
+@:@(WrapComment(" * ", "There could be more values for this enum apart from the ones defined here." +
+        "If you want to set a value that is not from the known values then you can do the following:\n" +
+        "let param: " + Model.EnumName + " = <" + Model.EnumName + ">\"someUnknownValueThatWillStillBeValid\";"))
+}
+ * @@readonly
+ * @@enum {string}
+ */
+export enum @(Model.EnumName) {
+@{var last = Model.Values.Last(); }
+@foreach (var value in Model.Values)
+{
+if (value.Description != null)
+{
+  @:/**
+  @: * @(value.Description).
+  @: */
+}
+else
+{
+  @:/**
+  @: * @(value.SerializedName).
+  @: */
+}
+
+if (value == last)
+{
+  @:@(value.MemberName) = "@(value.SerializedName)"
+}
+else
+{
+  @:@(value.MemberName) = "@(value.SerializedName)",
+}
+}
+}

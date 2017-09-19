@@ -35,6 +35,9 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<CompositeTypeTS> ModelTemplateModels => ModelTypes.Cast<CompositeTypeTS>();
 
         [JsonIgnore]
+        public virtual IEnumerable<EnumTypeTS> EnumTemplateModels => EnumTypes.Cast<EnumTypeTS>();
+
+        [JsonIgnore]
         public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where( each => !each.IsCodeModelMethodGroup );
 
         /// <summary>
