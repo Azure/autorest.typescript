@@ -17,7 +17,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ``` yaml
 use-extension:
-  "@microsoft.azure/autorest.modeler": "1.9.6"
+  "@microsoft.azure/autorest.modeler": "~2.0.0"
 
 pipeline:
   typescript/modeler:
