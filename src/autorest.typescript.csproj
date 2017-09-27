@@ -68,8 +68,8 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-Perks.CodeGen" Version="1.0.16" />
-    <PackageReference Include="dotnet-Perks.CodeGen" Version="1.0.16">
+    <DotNetCliToolReference Include="dotnet-Perks.CodeGen" Version="2.0.1" />
+    <PackageReference Include="dotnet-Perks.CodeGen" Version="2.0.1">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
