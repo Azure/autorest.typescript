@@ -4,6 +4,7 @@ require './common.iced'
 # tasks required for this build 
 Tasks "dotnet"  # dotnet functions
 Tasks "regeneration"
+Tasks "publishing"
 
 # ==============================================================================
 # Settings

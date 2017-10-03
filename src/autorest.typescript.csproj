@@ -4,7 +4,7 @@
   <PropertyGroup>
     <AssemblyName>autorest.typescript</AssemblyName>
     <PackageTags>autorest.extension</PackageTags>
-    <VersionPrefix>1.2.2</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     
     <GenerateFullPaths>true</GenerateFullPaths>
     <Common>$(MsBuildThisFileDirectory)</Common>
@@ -61,15 +61,15 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.1" />
-    <PackageReference Include="autorest.common" Version="2.2.21" />
+    <PackageReference Include="autorest.common" Version="2.2.22" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="dotnet-Perks.CodeGen" Version="1.0.16" />
-    <PackageReference Include="dotnet-Perks.CodeGen" Version="1.0.16">
+    <DotNetCliToolReference Include="dotnet-Perks.CodeGen" Version="2.0.1" />
+    <PackageReference Include="dotnet-Perks.CodeGen" Version="2.0.1">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

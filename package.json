@@ -1,13 +1,15 @@
 {
   "name": "@microsoft.azure/autorest.typescript",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "The typescript extension for classic generators in AutoRest.",
   "scripts": {
+    "autorest": "autorest",
     "start": "dotnet src/bin/netcoreapp2.0/autorest.typescript.dll --server",
-    "test": "gulp testci",
+    "test": "gulp test",
     "testci": "gulp testci",
     "build": "gulp build",
     "prepare": "gulp build",
+    "publish-preview": "gulp publish-preview",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
     "nuke": "git clean -xdf"
@@ -29,7 +31,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.typescript/blob/master/README.md",
   "devDependencies": {
-    "autorest": "^1.9.1",
+    "autorest": "^2.0.0",
     "coffee-script": "^1.11.1",
     "dotnet-sdk-2.0.0": "^1.1.1",
     "gulp": "^3.9.1",
@@ -43,7 +45,8 @@
     "shx": "^0.2.2",
     "through2-parallel": "^0.1.3",
     "yargs": "^8.0.2",
-    "@microsoft.azure/autorest.testserver": "^2.1.0"
+    "@microsoft.azure/autorest.testserver": "^2.1.0",
+    "yarn": "^1.0.2"
   },
   "dependencies": {
     "dotnet-2.0.0": "^1.1.0"
