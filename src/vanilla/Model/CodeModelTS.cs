@@ -277,7 +277,57 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"azure/ms-rest-js#master\"";
+            return "\"ms-rest-js\": \"^0.1.0\"";
+        }
+
+        public virtual Method GetSampleMethod()
+        {
+            return Methods.Where(m => m.HttpMethod == HttpMethod.Get).FirstOrDefault();
+        }
+
+        public virtual string GetSampleMethodGroupName()
+        {
+            return GetSampleMethod()?.MethodGroup?.Name.ToCamelCase();
+        }
+
+        public virtual string GenerateSampleMethod(bool isBrowser = false)
+        {
+            var method = GetSampleMethod();
+            var methodGroup = GetSampleMethodGroupName();
+            var requiredParameters = method.LogicalParameters.Where(
+                p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant).OrderBy(item => !item.IsRequired).ToList();
+            //TODO: Build a robust declaration for different types
+            var declaration = new StringBuilder();
+            bool first = true;
+            foreach (var param in requiredParameters)
+            {
+                if (!first)
+                    declaration.Append(",");
+                declaration.Append(param.Name);
+                first = false;
+            }
+            var clientRef = "client.";
+            if (methodGroup != null)
+            {
+                clientRef = $"client.{methodGroup}.";
+            }
+            var methodRef = $"{clientRef}{method.Name.ToCamelCase()}({declaration.ToString()}).then((result) => {{";
+            var builder = new IndentedStringBuilder("  ");
+            builder.AppendLine(methodRef)
+                   .Indent()
+                   .AppendLine("console.log(\"The result is:\");")
+                   .AppendLine("console.log(result);")
+                   .Outdent();
+            if (isBrowser)
+            {
+                builder.Append("})");
+            }
+            else
+            {
+                builder.AppendLine("});");
+            }
+                   
+            return builder.ToString();
         }
     }
 }

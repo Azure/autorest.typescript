@@ -31,6 +31,6 @@
   },
   "scripts": {
     "tsc": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
-    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o bundle.min.js bundle.js"
+    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o @(Model.Name.ToCamelCase())Bundle.min.js @(Model.Name.ToCamelCase())Bundle.js"
   }
 }

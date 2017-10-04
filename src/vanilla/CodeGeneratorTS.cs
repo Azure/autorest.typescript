@@ -3,7 +3,6 @@
 // 
 
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -82,6 +81,10 @@ namespace AutoRest.TypeScript
                 // webpack.config.js
                 var webpackConfig = new WebpackConfig { Model = codeModel };
                 await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
+
+                //README.md
+                var readme = new ReadmeTemplate { Model = codeModel };
+                await Write(readme, Path.Combine("../", "README.md"));
             }
         }
     }
