@@ -939,5 +939,148 @@ namespace AutoRest.TypeScript
             return parameter.Extensions.ContainsKey(SwaggerExtensions.SkipUrlEncodingExtension) &&
                    (bool)parameter.Extensions[SwaggerExtensions.SkipUrlEncodingExtension];
         }
+
+        public static string InitializeType(this IModelType paramType, string paramName, bool isBrowser = false)
+        {
+            if (paramType is EnumType)
+            {
+                return paramType.InitializeEnumType(isBrowser);
+            }
+            else if (paramType is PrimaryType)
+            {
+                return paramType.InitializePrimaryType(paramName, isBrowser);
+            }
+            else if (paramType is SequenceType)
+            {
+                return paramType.InitializeSequenceType(paramName, isBrowser);
+            }
+            else if (paramType is DictionaryType)
+            {
+                return paramType.InitializeDictionaryType(paramName, isBrowser);
+            }
+            else if (paramType is CompositeType)
+            {
+                return paramType.InitializeCompositeType(paramName, isBrowser);
+            }
+
+            return null;
+        }
+
+        public static string InitializeCompositeType(this IModelType paramType, string paramName, bool isBrowser = false)
+        {
+            var builder = new IndentedStringBuilder("  ");
+            var composite = (CompositeType)paramType;
+            if (composite.ComposedProperties.Any())
+            {
+                builder.AppendLine("{").Indent();
+                var composedPropertyList = new List<Property>(composite.ComposedProperties.Where(p => /**p.IsRequired &&**/ !p.IsReadOnly));
+                for (var i = 0; i < composedPropertyList.Count; i++)
+                {
+                    var prop = composedPropertyList[i];
+                    if (i != composedPropertyList.Count - 1)
+                    {
+                        builder.AppendLine("{0}: {1},", prop.Name, prop.ModelType.InitializeType(prop.Name, isBrowser));
+                    }
+                    else
+                    {
+                        builder.AppendLine("{0}: {1}", prop.Name, prop.ModelType.InitializeType(prop.Name, isBrowser));
+                    }
+                }
+                builder.Outdent().Append("}");
+            }
+            else
+            {
+                builder.AppendLine("{}");
+            }
+            return builder.ToString();
+        }
+
+        public static string InitializeDictionaryType(this IModelType paramType, string paramName, bool isBrowser = false)
+        {
+            var dictionary = (DictionaryType)paramType;
+            var paramValue = $"{{ \"key1\": {dictionary.ValueType.InitializeType(paramName, isBrowser)} }}";
+            return paramValue;
+        }
+
+        public static string InitializeSequenceType(this IModelType paramType, string paramName, bool isBrowser = false)
+        {
+            var sequence = (SequenceType)paramType;
+            var paramValue = $"[{sequence.ElementType.InitializeType(paramName, isBrowser)}]";
+            return paramValue;
+        }
+
+        public static string InitializeEnumType(this IModelType paramType, bool isBrowser = false)
+        {
+            var paramValue = "\"\"";
+            var enumValue = ((EnumType)paramType).Values[0].SerializedName;
+            paramValue = $"\"{enumValue}\"";
+            // TODO: Till we support setting UnderlyingType in autorest.modeler we wil default to string type as the enum value
+            // if ( ((EnumType)paramType).UnderlyingType.IsPrimaryType(KnownPrimaryType.String))
+            // {
+            //     paramValue = $"\"{enumValue}\"";
+            // }
+            return paramValue;
+        }
+
+        public static string InitializePrimaryType(this IModelType paramType, string paramName, bool isBrowser = false)
+        {
+            var paramValue = "\"\"";
+            if (paramType.IsPrimaryType(KnownPrimaryType.String))
+            {
+                if (paramName.EqualsIgnoreCase("location"))
+                {
+                    paramValue = "\"westus\"";
+                }
+                else
+                {
+                    paramValue = $"\"test{paramName.ToCamelCase()}\"";
+                }
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Date))
+            {
+                paramValue = "new Date().toISOString().substring(0, 10)";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.DateTime))
+            {
+                paramValue = "new Date().toISOString()";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.DateTimeRfc1123))
+            {
+                paramValue = "new Date().toUTCString()";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.UnixTime))
+            {
+                paramValue = "new Date()";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.TimeSpan))
+            {
+                paramValue = "\"P1Y2M3DT4H5M6S\"";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Boolean))
+            {
+                paramValue = "true";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Int) || paramType.IsPrimaryType(KnownPrimaryType.Long))
+            {
+                paramValue = "1";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Decimal) || paramType.IsPrimaryType(KnownPrimaryType.Double))
+            {
+                paramValue = "1.01";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Object))
+            {
+                paramValue = "{}";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Uuid))
+            {
+                paramValue = "ec7b1657-199d-4d8a-bbb2-89a11a42e02a";
+            }
+            else if (paramType.IsPrimaryType(KnownPrimaryType.Stream))
+            {
+                paramValue = isBrowser ? "new ReadableStream()" : "new require(\"stream\").Readable()";
+            }
+            return paramValue;
+        }
     }
 }

@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace AutoRest.TypeScript.Model
 {
-   public class CodeModelTS : CodeModel
+    public class CodeModelTS : CodeModel
     {
         public CodeModelTS()
         {
@@ -29,7 +29,7 @@ namespace AutoRest.TypeScript.Model
         public bool IsCustomBaseUri => Extensions.ContainsKey(SwaggerExtensions.ParameterizedHostExtension);
 
         [JsonIgnore]
-        public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>().Where( each => each.MethodGroup.IsCodeModelMethodGroup);
+        public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>().Where(each => each.MethodGroup.IsCodeModelMethodGroup);
 
         [JsonIgnore]
         public virtual IEnumerable<CompositeTypeTS> ModelTemplateModels => ModelTypes.Cast<CompositeTypeTS>();
@@ -38,7 +38,7 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<EnumTypeTS> EnumTemplateModels => EnumTypes.Cast<EnumTypeTS>();
 
         [JsonIgnore]
-        public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where( each => !each.IsCodeModelMethodGroup );
+        public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where(each => !each.IsCodeModelMethodGroup);
 
         /// <summary>
         /// Provides an ordered ModelTemplateModel list such that the parent 
@@ -46,7 +46,7 @@ namespace AutoRest.TypeScript.Model
         /// requiring models in index.js
         /// </summary>
         [JsonIgnore]
-        public virtual IEnumerable<CompositeTypeTS> OrderedModelTemplateModels 
+        public virtual IEnumerable<CompositeTypeTS> OrderedModelTemplateModels
         {
             get
             {
@@ -83,10 +83,10 @@ namespace AutoRest.TypeScript.Model
 
         public bool ContainsDurationPropertyInModels()
         {
-             return OrderedModelTemplateModels.Any(m => m.Properties.FirstOrDefault(p =>
-                (p.ModelType is PrimaryTypeTS && (p.ModelType as PrimaryTypeTS).KnownPrimaryType == KnownPrimaryType.TimeSpan) ||
-                (p.ModelType is SequenceType && (p.ModelType as SequenceType).ElementType.IsPrimaryType(KnownPrimaryType.TimeSpan)) ||
-                (p.ModelType is DictionaryType && (p.ModelType as DictionaryType).ValueType.IsPrimaryType(KnownPrimaryType.TimeSpan))) != null);
+            return OrderedModelTemplateModels.Any(m => m.Properties.FirstOrDefault(p =>
+               (p.ModelType is PrimaryTypeTS && (p.ModelType as PrimaryTypeTS).KnownPrimaryType == KnownPrimaryType.TimeSpan) ||
+               (p.ModelType is SequenceType && (p.ModelType as SequenceType).ElementType.IsPrimaryType(KnownPrimaryType.TimeSpan)) ||
+               (p.ModelType is DictionaryType && (p.ModelType as DictionaryType).ValueType.IsPrimaryType(KnownPrimaryType.TimeSpan))) != null);
         }
 
         private void constructOrderedList(CompositeTypeTS model, List<CompositeTypeTS> orderedList)
@@ -100,8 +100,8 @@ namespace AutoRest.TypeScript.Model
             // They are required explicitly in a different way. Hence, they
             // are not included in the ordered list.
             if (model.BaseModelType == null ||
-                (model.BaseModelType != null && 
-                 (model.BaseModelType.Name == "BaseResource" || 
+                (model.BaseModelType != null &&
+                 (model.BaseModelType.Name == "BaseResource" ||
                   model.BaseModelType.Name == "CloudError")))
             {
                 if (!orderedList.Contains(model))
@@ -130,7 +130,7 @@ namespace AutoRest.TypeScript.Model
                 IndentedStringBuilder builder = new IndentedStringBuilder(IndentedStringBuilder.TwoSpaces);
                 var polymorphicTypes = ModelTemplateModels.Where(m => m.BaseIsPolymorphic);
 
-                for (int i = 0; i < polymorphicTypes.Count(); i++ )
+                for (int i = 0; i < polymorphicTypes.Count(); i++)
                 {
                     string discriminatorField = polymorphicTypes.ElementAt(i).SerializedName;
                     var polymorphicType = polymorphicTypes.ElementAt(i) as CompositeType;
@@ -155,13 +155,13 @@ namespace AutoRest.TypeScript.Model
                             discriminatorField,
                             polymorphicTypes.ElementAt(i).Name));
                     }
-                    
 
-                    if(i == polymorphicTypes.Count() -1)
+
+                    if (i == polymorphicTypes.Count() - 1)
                     {
                         builder.AppendLine();
                     }
-                    else 
+                    else
                     {
                         builder.AppendLine(",");
                     }
@@ -183,7 +183,7 @@ namespace AutoRest.TypeScript.Model
                     requireParams.Add("baseUri");
                 }
 
-                if(requireParams == null || requireParams.Count == 0)
+                if (requireParams == null || requireParams.Count == 0)
                 {
                     return string.Empty;
                 }
@@ -195,12 +195,15 @@ namespace AutoRest.TypeScript.Model
         /// <summary>
         /// Return the service client constructor required parameters, in TypeScript syntax.
         /// </summary>
-        public string RequiredConstructorParametersTS {
-            get {
+        public string RequiredConstructorParametersTS
+        {
+            get
+            {
                 StringBuilder requiredParams = new StringBuilder();
 
                 bool first = true;
-                foreach (var p in this.Properties) {
+                foreach (var p in this.Properties)
+                {
                     if (!p.IsRequired || p.IsConstant || (p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)))
                         continue;
 
@@ -248,21 +251,21 @@ namespace AutoRest.TypeScript.Model
             var length = methodGroups.Count();
             for (var i = 0; i < methodGroups.Count(); i++)
             {
-                if (i == length-1)
+                if (i == length - 1)
                 {
                     builder.Append(methodGroups[i].TypeName);
                 }
                 else
                 {
                     builder.Append(methodGroups[i].TypeName + ", ");
-                } 
+                }
             }
             return builder.ToString();
         }
 
         public bool IsAnyModelInheritingFromRequestOptionsBase()
         {
-            return ModelTemplateModels.Any(m => m != null && m.BaseModelType!= null && m.BaseModelType.Name.EqualsIgnoreCase("RequestOptionsBase"));
+            return ModelTemplateModels.Any(m => m != null && m.BaseModelType != null && m.BaseModelType.Name.EqualsIgnoreCase("RequestOptionsBase"));
         }
 
         public virtual string ConstructRuntimeImportForModelIndex()
@@ -282,12 +285,13 @@ namespace AutoRest.TypeScript.Model
 
         public virtual Method GetSampleMethod()
         {
-            return Methods.Where(m => m.HttpMethod == HttpMethod.Get).FirstOrDefault();
+            var getMethod = Methods.Where(m => m.HttpMethod == HttpMethod.Get).FirstOrDefault();
+            return getMethod != null ? getMethod : Methods.FirstOrDefault();
         }
 
         public virtual string GetSampleMethodGroupName()
         {
-            return GetSampleMethod()?.MethodGroup?.Name.ToCamelCase();
+            return GetSampleMethod()?.MethodGroup?.Name?.ToCamelCase();
         }
 
         public virtual string GenerateSampleMethod(bool isBrowser = false)
@@ -296,23 +300,24 @@ namespace AutoRest.TypeScript.Model
             var methodGroup = GetSampleMethodGroupName();
             var requiredParameters = method.LogicalParameters.Where(
                 p => p != null && !p.IsClientProperty && !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant).OrderBy(item => !item.IsRequired).ToList();
-            //TODO: Build a robust declaration for different types
+            var builder = new IndentedStringBuilder("  ");
+            var paramInit = InitializeParametersForSampleMethod(requiredParameters, isBrowser);
+            builder.AppendLine(paramInit);
             var declaration = new StringBuilder();
             bool first = true;
             foreach (var param in requiredParameters)
             {
                 if (!first)
-                    declaration.Append(",");
+                    declaration.Append(", ");
                 declaration.Append(param.Name);
                 first = false;
             }
             var clientRef = "client.";
-            if (methodGroup != null)
+            if (!string.IsNullOrEmpty(methodGroup))
             {
                 clientRef = $"client.{methodGroup}.";
             }
             var methodRef = $"{clientRef}{method.Name.ToCamelCase()}({declaration.ToString()}).then((result) => {{";
-            var builder = new IndentedStringBuilder("  ");
             builder.AppendLine(methodRef)
                    .Indent()
                    .AppendLine("console.log(\"The result is:\");")
@@ -326,7 +331,25 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.AppendLine("});");
             }
-                   
+
+            return builder.ToString();
+        }
+
+        public string InitializeParametersForSampleMethod(List<Parameter> requiredParameters, bool isBrowser = false)
+        {
+            var builder = new IndentedStringBuilder("  ");
+            foreach (var param in requiredParameters)
+            {
+                var paramValue = "\"\"";
+                paramValue = param.ModelType.InitializeType(param.Name, isBrowser);
+                var paramDeclaration = $"const {param.Name}";
+                if (param.ModelType is CompositeType && !isBrowser)
+                {
+                    paramDeclaration += $": {ClientPrefix}Models.{param.ModelTypeName}";
+                }
+                paramDeclaration += $" = {paramValue};";
+                builder.AppendLine(paramDeclaration);
+            }
             return builder.ToString();
         }
     }
