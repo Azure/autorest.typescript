@@ -68,11 +68,11 @@ export interface Product extends Resource {
    */
   provisioningState?: string;
   /**
-   * @member {PropertiesProvisioningStateValues} [provisioningStateValues]
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
-   * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {Enum} [provisioningStateValues] Possible values include:
+   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: PropertiesProvisioningStateValues;
+  readonly provisioningStateValues?: Enum;
 }
 
 /**
@@ -98,11 +98,11 @@ export interface SubProduct extends SubResource {
    */
   provisioningState?: string;
   /**
-   * @member {PropertiesProvisioningStateValues1} [provisioningStateValues]
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
-   * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {Enum} [provisioningStateValues] Possible values include:
+   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
+   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: PropertiesProvisioningStateValues1;
+  readonly provisioningStateValues?: Enum;
 }
 
 /**
@@ -126,11 +126,11 @@ export interface OperationResultError {
  */
 export interface OperationResult {
   /**
-   * @member {Status} [status] The status of the request. Possible values
+   * @member {Enum} [status] The status of the request. Possible values
    * include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
    * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  status?: Status;
+  status?: Enum;
   /**
    * @member {OperationResultError} [error]
    */
@@ -1509,179 +1509,3 @@ export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams exte
   product?: Product;
 }
 
-
-/**
- * Defines values for PropertiesProvisioningStateValues.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: PropertiesProvisioningStateValues =
- * <PropertiesProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum PropertiesProvisioningStateValues {
-  /**
-   * Succeeded.
-   */
-  Succeeded = "Succeeded",
-  /**
-   * Failed.
-   */
-  Failed = "Failed",
-  /**
-   * canceled.
-   */
-  Canceled = "canceled",
-  /**
-   * Accepted.
-   */
-  Accepted = "Accepted",
-  /**
-   * Creating.
-   */
-  Creating = "Creating",
-  /**
-   * Created.
-   */
-  Created = "Created",
-  /**
-   * Updating.
-   */
-  Updating = "Updating",
-  /**
-   * Updated.
-   */
-  Updated = "Updated",
-  /**
-   * Deleting.
-   */
-  Deleting = "Deleting",
-  /**
-   * Deleted.
-   */
-  Deleted = "Deleted",
-  /**
-   * OK.
-   */
-  OK = "OK"
-}
-
-/**
- * Defines values for PropertiesProvisioningStateValues1.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: PropertiesProvisioningStateValues1 =
- * <PropertiesProvisioningStateValues1>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum PropertiesProvisioningStateValues1 {
-  /**
-   * Succeeded.
-   */
-  Succeeded = "Succeeded",
-  /**
-   * Failed.
-   */
-  Failed = "Failed",
-  /**
-   * canceled.
-   */
-  Canceled = "canceled",
-  /**
-   * Accepted.
-   */
-  Accepted = "Accepted",
-  /**
-   * Creating.
-   */
-  Creating = "Creating",
-  /**
-   * Created.
-   */
-  Created = "Created",
-  /**
-   * Updating.
-   */
-  Updating = "Updating",
-  /**
-   * Updated.
-   */
-  Updated = "Updated",
-  /**
-   * Deleting.
-   */
-  Deleting = "Deleting",
-  /**
-   * Deleted.
-   */
-  Deleted = "Deleted",
-  /**
-   * OK.
-   */
-  OK = "OK"
-}
-
-/**
- * Defines values for Status.
- * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
- * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Status = <Status>"someUnknownValueThatWillStillBeValid";
- * @readonly
- * @enum {string}
- */
-export enum Status {
-  /**
-   * Succeeded.
-   */
-  Succeeded = "Succeeded",
-  /**
-   * Failed.
-   */
-  Failed = "Failed",
-  /**
-   * canceled.
-   */
-  Canceled = "canceled",
-  /**
-   * Accepted.
-   */
-  Accepted = "Accepted",
-  /**
-   * Creating.
-   */
-  Creating = "Creating",
-  /**
-   * Created.
-   */
-  Created = "Created",
-  /**
-   * Updating.
-   */
-  Updating = "Updating",
-  /**
-   * Updated.
-   */
-  Updated = "Updated",
-  /**
-   * Deleting.
-   */
-  Deleting = "Deleting",
-  /**
-   * Deleted.
-   */
-  Deleted = "Deleted",
-  /**
-   * OK.
-   */
-  OK = "OK"
-}

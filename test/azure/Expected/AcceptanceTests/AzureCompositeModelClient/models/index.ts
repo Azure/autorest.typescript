@@ -226,6 +226,23 @@ export interface Salmon extends Fish {
 
 /**
  * @interface
+ * An interface representing SmartSalmon.
+ * @extends Salmon
+ */
+export interface SmartSalmon extends Salmon {
+  /**
+   * @member {{ [propertyName: string]: any }} [additionalProperties] Unmatched
+   * properties from the message are deserialized this collection
+   */
+  additionalProperties?: { [propertyName: string]: any };
+  /**
+   * @member {string} [collegeDegree]
+   */
+  collegeDegree?: string;
+}
+
+/**
+ * @interface
  * An interface representing Shark.
  * @extends Fish
  */
