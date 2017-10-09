@@ -61,7 +61,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.1" />
-    <PackageReference Include="autorest.common" Version="2.2.26" />
+    <PackageReference Include="autorest.common" Version="2.2.27" />
   </ItemGroup>
 
   <ItemGroup>
