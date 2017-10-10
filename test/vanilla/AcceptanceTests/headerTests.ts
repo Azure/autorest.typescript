@@ -4,7 +4,6 @@
 'use strict';
 
 import should = require('should');
-import http = require('http');
 import assert = require('assert');
 import * as msRest from 'ms-rest-js';
 import moment = require('moment');

@@ -339,6 +339,91 @@ exports.Salmon = {
         }
     }
 };
+exports.SmartSalmon = {
+    required: false,
+    serializedName: 'smart_salmon',
+    type: {
+        name: 'Composite',
+        className: 'SmartSalmon',
+        modelProperties: {
+            species: {
+                required: false,
+                serializedName: 'species',
+                type: {
+                    name: 'String'
+                }
+            },
+            length: {
+                required: true,
+                serializedName: 'length',
+                type: {
+                    name: 'Number'
+                }
+            },
+            siblings: {
+                required: false,
+                serializedName: 'siblings',
+                type: {
+                    name: 'Sequence',
+                    element: {
+                        required: false,
+                        serializedName: 'FishElementType',
+                        type: {
+                            name: 'Composite',
+                            polymorphicDiscriminator: {
+                                serializedName: 'fishtype',
+                                clientName: 'fishtype'
+                            },
+                            uberParent: 'Fish',
+                            className: 'Fish'
+                        }
+                    }
+                }
+            },
+            fishtype: {
+                required: true,
+                serializedName: 'fishtype',
+                type: {
+                    name: 'String'
+                }
+            },
+            location: {
+                required: false,
+                serializedName: 'location',
+                type: {
+                    name: 'String'
+                }
+            },
+            iswild: {
+                required: false,
+                serializedName: 'iswild',
+                type: {
+                    name: 'Boolean'
+                }
+            },
+            additionalProperties: {
+                required: false,
+                type: {
+                    name: 'Dictionary',
+                    value: {
+                        required: false,
+                        serializedName: 'ObjectElementType',
+                        type: {
+                            name: 'Object'
+                        }
+                    }
+                }
+            },
+            collegeDegree: {
+                required: false,
+                serializedName: 'college_degree',
+                type: {
+                    name: 'String'
+                }
+            }
+        }
+    }
+};
 exports.Shark = {
     required: false,
     serializedName: 'shark',
@@ -1093,6 +1178,7 @@ exports.ReadonlypropertyPutValidOptionalParams = {
 exports.discriminators = {
     'Fish': exports.Fish,
     'Fish.salmon': exports.Salmon,
+    'Fish.smart_salmon': exports.SmartSalmon,
     'Fish.shark': exports.Shark,
     'Fish.sawshark': exports.Sawshark,
     'Fish.goblin': exports.Goblinshark,
