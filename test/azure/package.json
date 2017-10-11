@@ -15,12 +15,12 @@
     }
   ],
   "dependencies": {
-    "ms-rest-azure-js": "azure/ms-rest-azure-js"
+    "ms-rest-azure-js": "^0.1.0"
   },
   "devDependencies": {
     "tslint": "^5.7.0",
     "typescript": "^2.5.2",
-    "moment": "^2.18.1",
+    "moment": "2.18.1",
     "mocha": "3.5.3",
     "should": "5.2.0",
     "@types/mocha": "^2.2.43",
