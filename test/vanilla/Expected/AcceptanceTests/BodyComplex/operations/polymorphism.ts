@@ -240,6 +240,189 @@ export class Polymorphism {
   }
 
   /**
+   * Get complex types that are polymorphic, but not at the root of the
+   * hierarchy; also have additional properties
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'complex/polymorphism/complicated';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    httpRequest.body = null;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            let resultMapper = Mappers.ErrorModel;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = Mappers.Salmon;
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Put complex types that are polymorphic, but not at the root of the
+   * hierarchy; also have additional properties
+   *
+   * @param {Salmon} complexBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putComplicatedWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Validate
+    try {
+      if (complexBody === null || complexBody === undefined) {
+        throw new Error('complexBody cannot be null or undefined.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'complex/polymorphism/complicated';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (complexBody !== null && complexBody !== undefined) {
+        let requestModelMapper = Mappers.Salmon;
+        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
+        requestContent = JSON.stringify(requestModel);
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            let resultMapper = Mappers.ErrorModel;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Put complex types that are polymorphic, attempting to omit required
    * 'birthday' field - the request should not be allowed from the client
    *
@@ -475,6 +658,99 @@ export class Polymorphism {
       });
     } else {
       msRest.promiseToCallback(this.putValidWithHttpOperationResponse(complexBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as void;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Get complex types that are polymorphic, but not at the root of the
+   * hierarchy; also have additional properties
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Salmon} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Salmon} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getComplicated(): Promise<Models.Salmon>;
+  getComplicated(options: msRest.RequestOptionsBase): Promise<Models.Salmon>;
+  getComplicated(callback: msRest.ServiceCallback<Models.Salmon>): void;
+  getComplicated(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Salmon>): void;
+  getComplicated(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Salmon>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Salmon>;
+    if (!callback) {
+      return this.getComplicatedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Salmon);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getComplicatedWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.Salmon;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Put complex types that are polymorphic, but not at the root of the
+   * hierarchy; also have additional properties
+   *
+   * @param {Salmon} complexBody
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putComplicated(complexBody: Models.Salmon): Promise<void>;
+  putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase): Promise<void>;
+  putComplicated(complexBody: Models.Salmon, callback: msRest.ServiceCallback<void>): void;
+  putComplicated(complexBody: Models.Salmon, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putComplicated(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putComplicatedWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putComplicatedWithHttpOperationResponse(complexBody, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
