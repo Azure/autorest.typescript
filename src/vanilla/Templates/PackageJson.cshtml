@@ -21,16 +21,16 @@
     "webpack": "^3.6.0",
     "uglify-es": "^3.1.0"
   },
-  "homepage": "http://github.com/azure/azure-sdk-for-ts",
+  "homepage": "http://github.com/azure/azure-sdk-for-javascript",
   "repository": {
     "type": "git",
-    "url": "https://github.com/azure/azure-sdk-for-ts.git"
+    "url": "https://github.com/azure/azure-sdk-for-javascript.git"
   },
   "bugs": {
-    "url": "http://github.com/Azure/azure-sdk-for-ts/issues"
+    "url": "http://github.com/Azure/azure-sdk-for-javascript/issues"
   },
   "scripts": {
-    "tsc": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
-    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o bundle.min.js bundle.js"
+    "tsc": "tsc -p tsconfig.json",
+    "build": "npm -s run-script tsc && webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o @(Model.Name.ToCamelCase())Bundle.min.js @(Model.Name.ToCamelCase())Bundle.js"
   }
 }
