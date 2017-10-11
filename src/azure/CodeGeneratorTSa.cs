@@ -79,6 +79,10 @@ namespace AutoRest.TypeScript.Azure
                 var webpackConfig = new WebpackConfig { Model = codeModel };
                 await Write(webpackConfig, Path.Combine("../", "webpack.config.js"));
 
+                // .npmignore
+                var npmIgnore = new NpmIgnore { Model = codeModel };
+                await Write(npmIgnore, Path.Combine("../", ".npmignore"));
+
                 //README.md
                 var readme = new AzureReadmeTemplate { Model = codeModel };
                 await Write(readme, Path.Combine("../", "README.md"));
