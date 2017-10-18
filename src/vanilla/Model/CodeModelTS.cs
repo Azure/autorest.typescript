@@ -277,7 +277,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"azure/ms-rest-js#master\"";
+            return "\"ms-rest-js\": \"^0.2.1\"";
         }
     }
 }

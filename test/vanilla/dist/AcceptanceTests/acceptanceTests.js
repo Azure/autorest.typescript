@@ -47,7 +47,7 @@ var readStreamCountBytes = function (stream, callback) {
 };
 var clientOptions = {};
 var baseUri = 'http://localhost:3000';
-describe('nodejs', function () {
+describe('typescript', function () {
     describe('Swagger BAT', function () {
         describe('Custom BaseUri Client', function () {
             var customOptions = {

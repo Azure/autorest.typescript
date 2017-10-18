@@ -347,6 +347,92 @@ export const Salmon = {
   }
 };
 
+export const SmartSalmon = {
+  required: false,
+  serializedName: 'smart_salmon',
+  type: {
+    name: 'Composite',
+    className: 'SmartSalmon',
+    modelProperties: {
+      species: {
+        required: false,
+        serializedName: 'species',
+        type: {
+          name: 'String'
+        }
+      },
+      length: {
+        required: true,
+        serializedName: 'length',
+        type: {
+          name: 'Number'
+        }
+      },
+      siblings: {
+        required: false,
+        serializedName: 'siblings',
+        type: {
+          name: 'Sequence',
+          element: {
+              required: false,
+              serializedName: 'FishElementType',
+              type: {
+                name: 'Composite',
+                polymorphicDiscriminator: {
+                  serializedName: 'fishtype',
+                  clientName: 'fishtype'
+                },
+                uberParent: 'Fish',
+                className: 'Fish'
+              }
+          }
+        }
+      },
+      fishtype: {
+        required: true,
+        serializedName: 'fishtype',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      iswild: {
+        required: false,
+        serializedName: 'iswild',
+        type: {
+          name: 'Boolean'
+        }
+      },
+      additionalProperties: {
+        required: false,
+        type: {
+          name: 'Dictionary',
+          value: {
+              required: false,
+              serializedName: 'ObjectElementType',
+              type: {
+                name: 'Object'
+              }
+          }
+        }
+      },
+      collegeDegree: {
+        required: false,
+        serializedName: 'college_degree',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
 export const Shark = {
   required: false,
   serializedName: 'shark',
@@ -1126,6 +1212,7 @@ export const ReadonlypropertyPutValidOptionalParams = {
 export const discriminators = {
   'Fish' : Fish,
   'Fish.salmon' : Salmon,
+  'Fish.smart_salmon' : SmartSalmon,
   'Fish.shark' : Shark,
   'Fish.sawshark' : Sawshark,
   'Fish.goblin' : Goblinshark,
