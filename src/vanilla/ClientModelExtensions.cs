@@ -516,7 +516,12 @@ namespace AutoRest.TypeScript
             }
             else if (enumType != null)
             {
-                tsType = "string";
+                var enumName = enumType.Name;
+                tsType = "Models." + enumName;
+                if (inModelsModule || enumName.Contains('.'))
+                {
+                    tsType = enumName;
+                }
             }
             else if (composite != null)
             {

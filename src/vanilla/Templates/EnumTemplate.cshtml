@@ -1,0 +1,26 @@
+﻿@using AutoRest.Core
+@using AutoRest.Core.Model
+@using AutoRest.TypeScript
+@inherits AutoRest.Core.Template<EnumType>
+
+/**
+ * Defines values for @(Model.Name).
+@if (Model.ExtendedDocumentation != null)
+{
+@:@(WrapComment(" * ", Model.ExtendedDocumentation))
+}
+ * @@readonly
+ * @@enum {@CodeNamer.Instance.CamelCase(Model.UnderlyingType.Name)}
+ */
+export enum @(Model.Name) {
+@for (int i = 0; i < Model.Values.Count; i++)
+{
+    if (Model.Values[i].Description != null)
+    {
+  @:/**
+  @:@(WrapComment(" * ", Model.Values[i].Description))
+  @: */
+    }
+  @:@(CodeNamer.Instance.GetEnumMemberName(Model.Values[i].MemberName)) = @(CodeNamerTS.GetEnumValueName(Model.Values[i].SerializedName, Model.UnderlyingType)),
+}
+}
