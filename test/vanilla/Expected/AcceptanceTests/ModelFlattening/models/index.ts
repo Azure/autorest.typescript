@@ -74,11 +74,11 @@ export interface FlattenedProduct extends Resource {
    */
   flattenedProductType?: string;
   /**
-   * @member {string} [provisioningStateValues] Possible values include:
-   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {PropertiesProvisioningStateValues} [provisioningStateValues]
+   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+   * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: string;
+  readonly provisioningStateValues?: PropertiesProvisioningStateValues;
   /**
    * @member {string} [provisioningState]
    */
@@ -313,4 +313,25 @@ export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProduct
    * @member {string} [odatavalue] URL value.
    */
   odatavalue?: string;
+}
+
+/**
+ * Defines values for PropertiesProvisioningStateValues.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+export enum PropertiesProvisioningStateValues {
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
 }

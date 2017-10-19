@@ -65,8 +65,20 @@ export interface HeaderParamDatetimeRfc1123OptionalParams extends RequestOptions
  */
 export interface HeaderParamEnumOptionalParams extends RequestOptionsBase {
   /**
-   * @member {string} [value] Send a post request with header values 'GREY'.
-   * Possible values include: 'White', 'black', 'GREY'
+   * @member {GreyscaleColors} [value] Send a post request with header values
+   * 'GREY'. Possible values include: 'White', 'black', 'GREY'
    */
-  value?: string;
+  value?: GreyscaleColors;
+}
+
+/**
+ * Defines values for GreyscaleColors.
+ * Possible values include: 'White', 'black', 'GREY'
+ * @readonly
+ * @enum {string}
+ */
+export enum GreyscaleColors {
+  WHITE = 'White',
+  BLACK = 'black',
+  GREY = 'GREY',
 }

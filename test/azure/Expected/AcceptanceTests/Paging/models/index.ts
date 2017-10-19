@@ -46,11 +46,11 @@ export interface Product {
  */
 export interface OperationResult {
   /**
-   * @member {string} [status] The status of the request. Possible values
+   * @member {Status} [status] The status of the request. Possible values
    * include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
    * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  status?: string;
+  status?: Status;
 }
 
 /**
@@ -291,4 +291,25 @@ export interface OdataProductResult extends Array<Product> {
    * @member {string} [odatanextLink]
    */
   odatanextLink?: string;
+}
+
+/**
+ * Defines values for Status.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+export enum Status {
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
 }

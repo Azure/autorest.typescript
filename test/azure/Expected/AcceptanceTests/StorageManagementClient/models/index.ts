@@ -45,11 +45,11 @@ export interface CheckNameAvailabilityResult {
    */
   nameAvailable?: boolean;
   /**
-   * @member {string} [reason] Gets the reason that a storage account name
+   * @member {Reason} [reason] Gets the reason that a storage account name
    * could not be used. The Reason element is only returned if NameAvailable is
    * false. Possible values include: 'AccountNameInvalid', 'AlreadyExists'
    */
-  reason?: string;
+  reason?: Reason;
   /**
    * @member {string} [message] Gets an error message explaining the Reason
    * value in more detail.
@@ -94,11 +94,11 @@ export interface Resource extends BaseResource {
  */
 export interface StorageAccountCreateParameters extends Resource {
   /**
-   * @member {string} [accountType] Gets or sets the account type. Possible
-   * values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
+   * @member {AccountType} [accountType] Gets or sets the account type.
+   * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
    * 'Standard_RAGRS', 'Premium_LRS'
    */
-  accountType?: string;
+  accountType?: AccountType;
 }
 
 /**
@@ -189,17 +189,17 @@ export interface CustomDomain {
  */
 export interface StorageAccount extends Resource {
   /**
-   * @member {string} [provisioningState] Gets the status of the storage
-   * account at the time the operation was called. Possible values include:
-   * 'Creating', 'ResolvingDNS', 'Succeeded'
+   * @member {ProvisioningState} [provisioningState] Gets the status of the
+   * storage account at the time the operation was called. Possible values
+   * include: 'Creating', 'ResolvingDNS', 'Succeeded'
    */
-  provisioningState?: string;
+  provisioningState?: ProvisioningState;
   /**
-   * @member {string} [accountType] Gets the type of the storage account.
+   * @member {AccountType} [accountType] Gets the type of the storage account.
    * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
    * 'Standard_RAGRS', 'Premium_LRS'
    */
-  accountType?: string;
+  accountType?: AccountType;
   /**
    * @member {Endpoints} [primaryEndpoints] Gets the URLs that are used to
    * perform a retrieval of a public blob, queue or table object.Note that
@@ -212,11 +212,11 @@ export interface StorageAccount extends Resource {
    */
   primaryLocation?: string;
   /**
-   * @member {string} [statusOfPrimary] Gets the status indicating whether the
-   * primary location of the storage account is available or unavailable.
-   * Possible values include: 'Available', 'Unavailable'
+   * @member {AccountStatus} [statusOfPrimary] Gets the status indicating
+   * whether the primary location of the storage account is available or
+   * unavailable. Possible values include: 'Available', 'Unavailable'
    */
-  statusOfPrimary?: string;
+  statusOfPrimary?: AccountStatus;
   /**
    * @member {Date} [lastGeoFailoverTime] Gets the timestamp of the most recent
    * instance of a failover to the secondary location. Only the most recent
@@ -232,12 +232,12 @@ export interface StorageAccount extends Resource {
    */
   secondaryLocation?: string;
   /**
-   * @member {string} [statusOfSecondary] Gets the status indicating whether
-   * the secondary location of the storage account is available or unavailable.
-   * Only available if the accountType is StandardGRS or StandardRAGRS.
-   * Possible values include: 'Available', 'Unavailable'
+   * @member {AccountStatus} [statusOfSecondary] Gets the status indicating
+   * whether the secondary location of the storage account is available or
+   * unavailable. Only available if the accountType is StandardGRS or
+   * StandardRAGRS. Possible values include: 'Available', 'Unavailable'
    */
-  statusOfSecondary?: string;
+  statusOfSecondary?: AccountStatus;
   /**
    * @member {Date} [creationTime] Gets the creation date and time of the
    * storage account in UTC.
@@ -283,13 +283,13 @@ export interface StorageAccountKeys {
  */
 export interface StorageAccountUpdateParameters extends Resource {
   /**
-   * @member {string} [accountType] Gets or sets the account type. Note that
-   * StandardZRS and PremiumLRS accounts cannot be changed to other account
-   * types, and other account types cannot be changed to StandardZRS or
+   * @member {AccountType} [accountType] Gets or sets the account type. Note
+   * that StandardZRS and PremiumLRS accounts cannot be changed to other
+   * account types, and other account types cannot be changed to StandardZRS or
    * PremiumLRS. Possible values include: 'Standard_LRS', 'Standard_ZRS',
    * 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'
    */
-  accountType?: string;
+  accountType?: AccountType;
   /**
    * @member {CustomDomain} [customDomain] User domain assigned to the storage
    * account. Name is the CNAME source. Only one custom domain is supported per
@@ -305,9 +305,9 @@ export interface StorageAccountUpdateParameters extends Resource {
  */
 export interface StorageAccountRegenerateKeyParameters {
   /**
-   * @member {string} [keyName] Possible values include: 'key1', 'key2'
+   * @member {KeyName} [keyName] Possible values include: 'key1', 'key2'
    */
-  keyName?: string;
+  keyName?: KeyName;
 }
 
 /**
@@ -336,11 +336,11 @@ export interface UsageName {
  */
 export interface Usage {
   /**
-   * @member {string} [unit] Gets the unit of measurement. Possible values
+   * @member {UsageUnit} [unit] Gets the unit of measurement. Possible values
    * include: 'Count', 'Bytes', 'Seconds', 'Percent', 'CountsPerSecond',
    * 'BytesPerSecond'
    */
-  unit?: string;
+  unit?: UsageUnit;
   /**
    * @member {number} [currentValue] Gets the current count of the allocated
    * resources in the subscription.
@@ -391,9 +391,9 @@ export interface SubResource extends BaseResource {
  */
 export interface StorageAccountsRegenerateKeyOptionalParams extends RequestOptionsBase {
   /**
-   * @member {string} [keyName] Possible values include: 'key1', 'key2'
+   * @member {KeyName} [keyName] Possible values include: 'key1', 'key2'
    */
-  keyName?: string;
+  keyName?: KeyName;
 }
 
 
@@ -411,4 +411,80 @@ export interface StorageAccountListResult extends Array<StorageAccount> {
    * pagination.
    */
   nextLink?: string;
+}
+
+/**
+ * Defines values for Reason.
+ * Possible values include: 'AccountNameInvalid', 'AlreadyExists'
+ * @readonly
+ * @enum {string}
+ */
+export enum Reason {
+  ACCOUNT_NAME_INVALID = 'AccountNameInvalid',
+  ALREADY_EXISTS = 'AlreadyExists',
+}
+
+/**
+ * Defines values for AccountType.
+ * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
+ * 'Standard_RAGRS', 'Premium_LRS'
+ * @readonly
+ * @enum {string}
+ */
+export enum AccountType {
+  STANDARD_LRS = 'Standard_LRS',
+  STANDARD_ZRS = 'Standard_ZRS',
+  STANDARD_GRS = 'Standard_GRS',
+  STANDARD_RAGRS = 'Standard_RAGRS',
+  PREMIUM_LRS = 'Premium_LRS',
+}
+
+/**
+ * Defines values for ProvisioningState.
+ * Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'
+ * @readonly
+ * @enum {string}
+ */
+export enum ProvisioningState {
+  CREATING = 'Creating',
+  RESOLVING_DNS = 'ResolvingDNS',
+  SUCCEEDED = 'Succeeded',
+}
+
+/**
+ * Defines values for AccountStatus.
+ * Possible values include: 'Available', 'Unavailable'
+ * @readonly
+ * @enum {string}
+ */
+export enum AccountStatus {
+  AVAILABLE = 'Available',
+  UNAVAILABLE = 'Unavailable',
+}
+
+/**
+ * Defines values for KeyName.
+ * Possible values include: 'key1', 'key2'
+ * @readonly
+ * @enum {string}
+ */
+export enum KeyName {
+  KEY1 = 'key1',
+  KEY2 = 'key2',
+}
+
+/**
+ * Defines values for UsageUnit.
+ * Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent',
+ * 'CountsPerSecond', 'BytesPerSecond'
+ * @readonly
+ * @enum {string}
+ */
+export enum UsageUnit {
+  COUNT = 'Count',
+  BYTES = 'Bytes',
+  SECONDS = 'Seconds',
+  PERCENT = 'Percent',
+  COUNTS_PER_SECOND = 'CountsPerSecond',
+  BYTES_PER_SECOND = 'BytesPerSecond',
 }

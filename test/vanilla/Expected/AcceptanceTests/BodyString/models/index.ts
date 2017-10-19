@@ -46,9 +46,9 @@ export interface RefColorConstant {
  */
 export interface StringPutNullOptionalParams extends RequestOptionsBase {
   /**
-   * @member {string} [stringBody] Possible values include: ''
+   * @member {StringBody} [stringBody] Possible values include: ''
    */
-  stringBody?: string;
+  stringBody?: StringBody;
 }
 
 /**
@@ -63,4 +63,100 @@ export interface EnumModelPutReferencedConstantOptionalParams extends RequestOpt
    * @member {string} [field1] Sample string.
    */
   field1?: string;
+}
+
+/**
+ * Defines values for Colors.
+ * Possible values include: 'red color', 'green-color', 'blue_color'
+ * @readonly
+ * @enum {string}
+ */
+export enum Colors {
+  RED_COLOR = 'red color',
+  GREEN_COLOR = 'green-color',
+  BLUE_COLOR = 'blue_color',
+}
+
+/**
+ * Defines values for GetNullOKResponse.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+export enum GetNullOKResponse {
+  NULL = null,
+}
+
+/**
+ * Defines values for StringBody.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+export enum StringBody {
+  NULL = null,
+}
+
+/**
+ * Defines values for GetEmptyOKResponse.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+export enum GetEmptyOKResponse {
+  EMPTY_STRING = '',
+}
+
+/**
+ * Defines values for StringBody1.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+export enum StringBody1 {
+  EMPTY_STRING = '',
+}
+
+/**
+ * Defines values for GetMbcsOKResponse.
+ * Possible values include:
+ * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
+ * @readonly
+ * @enum {string}
+ */
+export enum GetMbcsOKResponse {
+  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
+}
+
+/**
+ * Defines values for StringBody2.
+ * Possible values include:
+ * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
+ * @readonly
+ * @enum {string}
+ */
+export enum StringBody2 {
+  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
+}
+
+/**
+ * Defines values for GetWhitespaceOKResponse.
+ * Possible values include: '    Now is the time for all good men to come to
+ * the aid of their country    '
+ * @readonly
+ * @enum {string}
+ */
+export enum GetWhitespaceOKResponse {
+  _NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_ = '    Now is the time for all good men to come to the aid of their country    ',
+}
+
+/**
+ * Defines values for StringBody3.
+ * Possible values include: '    Now is the time for all good men to come to
+ * the aid of their country    '
+ * @readonly
+ * @enum {string}
+ */
+export enum StringBody3 {
+  _NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_ = '    Now is the time for all good men to come to the aid of their country    ',
 }
