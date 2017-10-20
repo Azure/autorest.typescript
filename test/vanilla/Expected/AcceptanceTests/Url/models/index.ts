@@ -385,16 +385,7 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams extends Reques
  * @enum {string}
  */
 export enum UriColor {
-  /**
-   * red color.
-   */
-  Redcolor = "red color",
-  /**
-   * green color.
-   */
-  Greencolor = "green color",
-  /**
-   * blue color.
-   */
-  Bluecolor = "blue color"
+  RED_COLOR = 'red color',
+  GREEN_COLOR = 'green color',
+  BLUE_COLOR = 'blue color',
 }

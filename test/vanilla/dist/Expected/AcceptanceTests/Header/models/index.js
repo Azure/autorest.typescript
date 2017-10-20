@@ -17,17 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var GreyscaleColors;
 (function (GreyscaleColors) {
-    /**
-     * White.
-     */
-    GreyscaleColors["White"] = "White";
-    /**
-     * black.
-     */
-    GreyscaleColors["Black"] = "black";
-    /**
-     * GREY.
-     */
+    GreyscaleColors["WHITE"] = "White";
+    GreyscaleColors["BLACK"] = "black";
     GreyscaleColors["GREY"] = "GREY";
 })(GreyscaleColors = exports.GreyscaleColors || (exports.GreyscaleColors = {}));
 //# sourceMappingURL=index.js.map

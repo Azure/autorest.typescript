@@ -27,7 +27,66 @@ namespace AutoRest.TypeScript
             PerformParameterMapping(codeModel);
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
+            AddEnumTypesToCodeModel(codeModel);
             return codeModel;
+        }
+
+        public void AddEnumTypesToCodeModel(CodeModelTS cm)
+        {
+            // If there is an model property that is an EnumType and has not been added to the EnumTypes then add it.
+            foreach (var modelType in cm.AllModelTypes)
+            {
+                foreach(var property in modelType.Properties)
+                {
+                    if (property.ModelType is EnumType propertyAsEnum && !cm.EnumTypes.Contains(propertyAsEnum))
+                    {
+                        if(string.IsNullOrEmpty(propertyAsEnum.Name.RawValue))
+                        {
+                            propertyAsEnum.SetName(property.Name);
+                        }
+                        cm.Add(propertyAsEnum);
+                    }
+                }
+            }
+            // If there is a method parameter that is an EnumType and has not been added to the EnumTypes then add it.
+            foreach (var method in cm.Methods)
+            {
+                foreach(var parameter in method.Parameters)
+                {
+                    if (parameter.ModelType is EnumType parameterAsEnum && !cm.EnumTypes.Contains(parameterAsEnum))
+                    {
+                        if (string.IsNullOrEmpty(parameterAsEnum.Name.RawValue))
+                        {
+                            parameterAsEnum.SetName(parameter.Name);
+                        }
+                        cm.Add(parameterAsEnum);
+                    }
+                }
+                // If there is a response body or header in the response pair that is an EnumType and has not been 
+                // added to the EnumTypes then add it.
+                foreach (var responsePair in method.Responses)
+                {
+                    var response = responsePair.Value;
+                    var modelTypes = new List<IModelType>
+                    {
+                        response.Body,
+                        response.Headers
+                    };
+                    foreach (var modelType in modelTypes)
+                    {
+                        if (modelType is EnumType modelTypeAsEnum && !cm.EnumTypes.Contains(modelTypeAsEnum))
+                        {
+                            if (string.IsNullOrEmpty(modelTypeAsEnum.Name.RawValue))
+                            {
+                                var enumName = $"{method.Name.ToPascalCase()}{responsePair.Key}";
+                                if (modelType.Equals(response.Body)) enumName += "Response";
+                                modelTypeAsEnum.SetName(enumName);
+                            }
+                            cm.Add(modelTypeAsEnum);
+                        }
+                    }
+                }
+            }
         }
 
         public void PerformParameterMapping(CodeModelTS cm)
@@ -120,7 +179,7 @@ namespace AutoRest.TypeScript
                     optionsParameterModelType.BaseModelType = New<CompositeType>(new { Name = "RequestOptionsBase", SerializedName = "RequestOptionsBase" });
                     foreach(var optionalParameter in optionalParameters)
                     {
-                        optionsParameterModelType.Add(New<Core.Model.Property>(new
+                        optionsParameterModelType.Add(New<Property>(new
                         {
                             IsReadOnly = false,
                             Name = optionalParameter.Name,

@@ -17,17 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var UriColor;
 (function (UriColor) {
-    /**
-     * red color.
-     */
-    UriColor["Redcolor"] = "red color";
-    /**
-     * green color.
-     */
-    UriColor["Greencolor"] = "green color";
-    /**
-     * blue color.
-     */
-    UriColor["Bluecolor"] = "blue color";
+    UriColor["RED_COLOR"] = "red color";
+    UriColor["GREEN_COLOR"] = "green color";
+    UriColor["BLUE_COLOR"] = "blue color";
 })(UriColor = exports.UriColor || (exports.UriColor = {}));
 //# sourceMappingURL=index.js.map

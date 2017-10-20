@@ -297,56 +297,19 @@ export interface OdataProductResult extends Array<Product> {
  * Defines values for Status.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Status = <Status>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
 export enum Status {
-  /**
-   * Succeeded.
-   */
-  Succeeded = "Succeeded",
-  /**
-   * Failed.
-   */
-  Failed = "Failed",
-  /**
-   * canceled.
-   */
-  Canceled = "canceled",
-  /**
-   * Accepted.
-   */
-  Accepted = "Accepted",
-  /**
-   * Creating.
-   */
-  Creating = "Creating",
-  /**
-   * Created.
-   */
-  Created = "Created",
-  /**
-   * Updating.
-   */
-  Updating = "Updating",
-  /**
-   * Updated.
-   */
-  Updated = "Updated",
-  /**
-   * Deleting.
-   */
-  Deleting = "Deleting",
-  /**
-   * Deleted.
-   */
-  Deleted = "Deleted",
-  /**
-   * OK.
-   */
-  OK = "OK"
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
 }

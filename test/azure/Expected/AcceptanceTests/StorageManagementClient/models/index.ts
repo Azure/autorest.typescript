@@ -420,14 +420,8 @@ export interface StorageAccountListResult extends Array<StorageAccount> {
  * @enum {string}
  */
 export enum Reason {
-  /**
-   * AccountNameInvalid.
-   */
-  AccountNameInvalid = "AccountNameInvalid",
-  /**
-   * AlreadyExists.
-   */
-  AlreadyExists = "AlreadyExists"
+  ACCOUNT_NAME_INVALID = 'AccountNameInvalid',
+  ALREADY_EXISTS = 'AlreadyExists',
 }
 
 /**
@@ -438,26 +432,11 @@ export enum Reason {
  * @enum {string}
  */
 export enum AccountType {
-  /**
-   * Standard_LRS.
-   */
-  StandardLRS = "Standard_LRS",
-  /**
-   * Standard_ZRS.
-   */
-  StandardZRS = "Standard_ZRS",
-  /**
-   * Standard_GRS.
-   */
-  StandardGRS = "Standard_GRS",
-  /**
-   * Standard_RAGRS.
-   */
-  StandardRAGRS = "Standard_RAGRS",
-  /**
-   * Premium_LRS.
-   */
-  PremiumLRS = "Premium_LRS"
+  STANDARD_LRS = 'Standard_LRS',
+  STANDARD_ZRS = 'Standard_ZRS',
+  STANDARD_GRS = 'Standard_GRS',
+  STANDARD_RAGRS = 'Standard_RAGRS',
+  PREMIUM_LRS = 'Premium_LRS',
 }
 
 /**
@@ -467,18 +446,9 @@ export enum AccountType {
  * @enum {string}
  */
 export enum ProvisioningState {
-  /**
-   * Creating.
-   */
-  Creating = "Creating",
-  /**
-   * ResolvingDNS.
-   */
-  ResolvingDNS = "ResolvingDNS",
-  /**
-   * Succeeded.
-   */
-  Succeeded = "Succeeded"
+  CREATING = 'Creating',
+  RESOLVING_DNS = 'ResolvingDNS',
+  SUCCEEDED = 'Succeeded',
 }
 
 /**
@@ -488,14 +458,8 @@ export enum ProvisioningState {
  * @enum {string}
  */
 export enum AccountStatus {
-  /**
-   * Available.
-   */
-  Available = "Available",
-  /**
-   * Unavailable.
-   */
-  Unavailable = "Unavailable"
+  AVAILABLE = 'Available',
+  UNAVAILABLE = 'Unavailable',
 }
 
 /**
@@ -505,14 +469,8 @@ export enum AccountStatus {
  * @enum {string}
  */
 export enum KeyName {
-  /**
-   * key1.
-   */
-  Key1 = "key1",
-  /**
-   * key2.
-   */
-  Key2 = "key2"
+  KEY1 = 'key1',
+  KEY2 = 'key2',
 }
 
 /**
@@ -523,28 +481,10 @@ export enum KeyName {
  * @enum {string}
  */
 export enum UsageUnit {
-  /**
-   * Count.
-   */
-  Count = "Count",
-  /**
-   * Bytes.
-   */
-  Bytes = "Bytes",
-  /**
-   * Seconds.
-   */
-  Seconds = "Seconds",
-  /**
-   * Percent.
-   */
-  Percent = "Percent",
-  /**
-   * CountsPerSecond.
-   */
-  CountsPerSecond = "CountsPerSecond",
-  /**
-   * BytesPerSecond.
-   */
-  BytesPerSecond = "BytesPerSecond"
+  COUNT = 'Count',
+  BYTES = 'Bytes',
+  SECONDS = 'Seconds',
+  PERCENT = 'Percent',
+  COUNTS_PER_SECOND = 'CountsPerSecond',
+  BYTES_PER_SECOND = 'BytesPerSecond',
 }

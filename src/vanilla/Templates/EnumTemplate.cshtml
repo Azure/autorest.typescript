@@ -1,9 +1,10 @@
-@using System.Linq
-@using AutoRest.TypeScript.Model
-@inherits AutoRest.Core.Template<EnumTypeTS>
+﻿@using AutoRest.Core
+@using AutoRest.Core.Model
+@using AutoRest.TypeScript
+@inherits AutoRest.Core.Template<EnumType>
 
 /**
- * Defines values for @(Model.EnumName).
+ * Defines values for @(Model.Name).
 @if (Model.ExtendedDocumentation != null)
 {
 @:@(WrapComment(" * ", Model.ExtendedDocumentation))
@@ -15,32 +16,17 @@
         "let param: " + Model.EnumName + " = <" + Model.EnumName + ">\"someUnknownValueThatWillStillBeValid\";"))
 }
  * @@readonly
- * @@enum {string}
+ * @@enum {@CodeNamer.Instance.CamelCase(Model.UnderlyingType.Name)}
  */
-export enum @(Model.EnumName) {
-@{var last = Model.Values.Last(); }
-@foreach (var value in Model.Values)
+export enum @(Model.Name) {
+@for (int i = 0; i < Model.Values.Count; i++)
 {
-if (value.Description != null)
-{
+    if (Model.Values[i].Description != null)
+    {
   @:/**
-  @: * @(value.Description).
+  @:@(WrapComment(" * ", Model.Values[i].Description))
   @: */
-}
-else
-{
-  @:/**
-  @: * @(value.SerializedName).
-  @: */
-}
-
-if (value == last)
-{
-  @:@(value.MemberName) = "@(value.SerializedName)"
-}
-else
-{
-  @:@(value.MemberName) = "@(value.SerializedName)",
-}
+    }
+  @:@(CodeNamer.Instance.GetEnumMemberName(Model.Values[i].MemberName)) = @(CodeNamerTS.GetEnumValueName(Model.Values[i].SerializedName, Model.UnderlyingType)),
 }
 }

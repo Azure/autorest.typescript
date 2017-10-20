@@ -118,8 +118,5 @@ export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams exte
  * @enum {string}
  */
 export enum EnumConst {
-  /**
-   * constant_string_as_enum.
-   */
-  ConstantStringAsEnum = "constant_string_as_enum"
+  CONSTANT_STRING_AS_ENUM = 'constant_string_as_enum',
 }

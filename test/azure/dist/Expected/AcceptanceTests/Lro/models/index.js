@@ -10,179 +10,66 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Defines values for PropertiesProvisioningStateValues.
+ * Defines values for ProvisioningStateValues.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: PropertiesProvisioningStateValues =
- * <PropertiesProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-var PropertiesProvisioningStateValues;
-(function (PropertiesProvisioningStateValues) {
-    /**
-     * Succeeded.
-     */
-    PropertiesProvisioningStateValues["Succeeded"] = "Succeeded";
-    /**
-     * Failed.
-     */
-    PropertiesProvisioningStateValues["Failed"] = "Failed";
-    /**
-     * canceled.
-     */
-    PropertiesProvisioningStateValues["Canceled"] = "canceled";
-    /**
-     * Accepted.
-     */
-    PropertiesProvisioningStateValues["Accepted"] = "Accepted";
-    /**
-     * Creating.
-     */
-    PropertiesProvisioningStateValues["Creating"] = "Creating";
-    /**
-     * Created.
-     */
-    PropertiesProvisioningStateValues["Created"] = "Created";
-    /**
-     * Updating.
-     */
-    PropertiesProvisioningStateValues["Updating"] = "Updating";
-    /**
-     * Updated.
-     */
-    PropertiesProvisioningStateValues["Updated"] = "Updated";
-    /**
-     * Deleting.
-     */
-    PropertiesProvisioningStateValues["Deleting"] = "Deleting";
-    /**
-     * Deleted.
-     */
-    PropertiesProvisioningStateValues["Deleted"] = "Deleted";
-    /**
-     * OK.
-     */
-    PropertiesProvisioningStateValues["OK"] = "OK";
-})(PropertiesProvisioningStateValues = exports.PropertiesProvisioningStateValues || (exports.PropertiesProvisioningStateValues = {}));
+var ProvisioningStateValues;
+(function (ProvisioningStateValues) {
+    ProvisioningStateValues["SUCCEEDED"] = "Succeeded";
+    ProvisioningStateValues["FAILED"] = "Failed";
+    ProvisioningStateValues["CANCELED"] = "canceled";
+    ProvisioningStateValues["ACCEPTED"] = "Accepted";
+    ProvisioningStateValues["CREATING"] = "Creating";
+    ProvisioningStateValues["CREATED"] = "Created";
+    ProvisioningStateValues["UPDATING"] = "Updating";
+    ProvisioningStateValues["UPDATED"] = "Updated";
+    ProvisioningStateValues["DELETING"] = "Deleting";
+    ProvisioningStateValues["DELETED"] = "Deleted";
+    ProvisioningStateValues["OK"] = "OK";
+})(ProvisioningStateValues = exports.ProvisioningStateValues || (exports.ProvisioningStateValues = {}));
 /**
- * Defines values for PropertiesProvisioningStateValues1.
+ * Defines values for ProvisioningStateValues1.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: PropertiesProvisioningStateValues1 =
- * <PropertiesProvisioningStateValues1>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-var PropertiesProvisioningStateValues1;
-(function (PropertiesProvisioningStateValues1) {
-    /**
-     * Succeeded.
-     */
-    PropertiesProvisioningStateValues1["Succeeded"] = "Succeeded";
-    /**
-     * Failed.
-     */
-    PropertiesProvisioningStateValues1["Failed"] = "Failed";
-    /**
-     * canceled.
-     */
-    PropertiesProvisioningStateValues1["Canceled"] = "canceled";
-    /**
-     * Accepted.
-     */
-    PropertiesProvisioningStateValues1["Accepted"] = "Accepted";
-    /**
-     * Creating.
-     */
-    PropertiesProvisioningStateValues1["Creating"] = "Creating";
-    /**
-     * Created.
-     */
-    PropertiesProvisioningStateValues1["Created"] = "Created";
-    /**
-     * Updating.
-     */
-    PropertiesProvisioningStateValues1["Updating"] = "Updating";
-    /**
-     * Updated.
-     */
-    PropertiesProvisioningStateValues1["Updated"] = "Updated";
-    /**
-     * Deleting.
-     */
-    PropertiesProvisioningStateValues1["Deleting"] = "Deleting";
-    /**
-     * Deleted.
-     */
-    PropertiesProvisioningStateValues1["Deleted"] = "Deleted";
-    /**
-     * OK.
-     */
-    PropertiesProvisioningStateValues1["OK"] = "OK";
-})(PropertiesProvisioningStateValues1 = exports.PropertiesProvisioningStateValues1 || (exports.PropertiesProvisioningStateValues1 = {}));
+var ProvisioningStateValues1;
+(function (ProvisioningStateValues1) {
+    ProvisioningStateValues1["SUCCEEDED"] = "Succeeded";
+    ProvisioningStateValues1["FAILED"] = "Failed";
+    ProvisioningStateValues1["CANCELED"] = "canceled";
+    ProvisioningStateValues1["ACCEPTED"] = "Accepted";
+    ProvisioningStateValues1["CREATING"] = "Creating";
+    ProvisioningStateValues1["CREATED"] = "Created";
+    ProvisioningStateValues1["UPDATING"] = "Updating";
+    ProvisioningStateValues1["UPDATED"] = "Updated";
+    ProvisioningStateValues1["DELETING"] = "Deleting";
+    ProvisioningStateValues1["DELETED"] = "Deleted";
+    ProvisioningStateValues1["OK"] = "OK";
+})(ProvisioningStateValues1 = exports.ProvisioningStateValues1 || (exports.ProvisioningStateValues1 = {}));
 /**
  * Defines values for Status.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Status = <Status>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
 var Status;
 (function (Status) {
-    /**
-     * Succeeded.
-     */
-    Status["Succeeded"] = "Succeeded";
-    /**
-     * Failed.
-     */
-    Status["Failed"] = "Failed";
-    /**
-     * canceled.
-     */
-    Status["Canceled"] = "canceled";
-    /**
-     * Accepted.
-     */
-    Status["Accepted"] = "Accepted";
-    /**
-     * Creating.
-     */
-    Status["Creating"] = "Creating";
-    /**
-     * Created.
-     */
-    Status["Created"] = "Created";
-    /**
-     * Updating.
-     */
-    Status["Updating"] = "Updating";
-    /**
-     * Updated.
-     */
-    Status["Updated"] = "Updated";
-    /**
-     * Deleting.
-     */
-    Status["Deleting"] = "Deleting";
-    /**
-     * Deleted.
-     */
-    Status["Deleted"] = "Deleted";
-    /**
-     * OK.
-     */
+    Status["SUCCEEDED"] = "Succeeded";
+    Status["FAILED"] = "Failed";
+    Status["CANCELED"] = "canceled";
+    Status["ACCEPTED"] = "Accepted";
+    Status["CREATING"] = "Creating";
+    Status["CREATED"] = "Created";
+    Status["UPDATING"] = "Updating";
+    Status["UPDATED"] = "Updated";
+    Status["DELETING"] = "Deleting";
+    Status["DELETED"] = "Deleted";
     Status["OK"] = "OK";
 })(Status = exports.Status || (exports.Status = {}));
 //# sourceMappingURL=index.js.map

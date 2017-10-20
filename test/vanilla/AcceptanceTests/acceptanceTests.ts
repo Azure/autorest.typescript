@@ -416,20 +416,20 @@ describe('typescript', function () {
       });
 
       it('should support valid MBC string value', function (done) {
-        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣, function (error, result) {
+        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣, function (error, result) {
           should.not.exist(error);
           testClient.string.getMbcs(function (error, result) {
-            result.should.equal('啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€');
+            result.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣);
             done();
           });
         });
       });
 
       it('should support whitespace string value', function (done) {
-        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3.Nowisthetimeforallgoodmentocometotheaidoftheircountry, function (error, result) {
+        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3._NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_, function (error, result) {
           should.not.exist(error);
           testClient.string.getWhitespace(function (error, result) {
-            result.should.equal('    Now is the time for all good men to come to the aid of their country    ');
+            result.should.equal(AutoRestSwaggerBATServiceModels.GetWhitespaceOKResponse._NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_);
             done();
           });
         });
@@ -446,8 +446,8 @@ describe('typescript', function () {
       it('should support valid enum valid value', function (done) {
         testClient.enumModel.getNotExpandable(function (error, result) {
           should.not.exist(error);
-          result.should.equal('red color');
-          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.Redcolor, function (error, result) {
+          result.should.equal(AutoRestSwaggerBATServiceModels.Colors.RED_COLOR);
+          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.RED_COLOR, function (error, result) {
             should.not.exist(error);
             done();
           });
@@ -1940,12 +1940,12 @@ describe('typescript', function () {
       });
 
       it('should work when path has enum', function (done) {
-        testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>"", function (error, result) {
+        testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>'', function (error, result) {
           should.exist(error);
           error.message.should.match(/.*cannot be null or undefined.*/ig);
-          testClient.paths.enumNull(null, function (error, result) {
+          testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
             should.exist(error);
-            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
+            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.GREEN_COLOR, function (error, result) {
               should.not.exist(error);
               done();
             });
@@ -2101,7 +2101,7 @@ describe('typescript', function () {
           should.exist(error);
           testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
             should.not.exist(error);
-            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
+            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.GREEN_COLOR }, function (error, result) {
               should.not.exist(error);
               done();
             });
