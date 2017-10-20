@@ -74,11 +74,11 @@ export interface FlattenedProduct extends Resource {
    */
   flattenedProductType?: string;
   /**
-   * @member {PropertiesProvisioningStateValues} [provisioningStateValues]
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
-   * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {ProvisioningStateValues} [provisioningStateValues] Possible
+   * values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
+   * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: PropertiesProvisioningStateValues;
+  readonly provisioningStateValues?: ProvisioningStateValues;
   /**
    * @member {string} [provisioningState]
    */
@@ -316,13 +316,13 @@ export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProduct
 }
 
 /**
- * Defines values for PropertiesProvisioningStateValues.
+ * Defines values for ProvisioningStateValues.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
  * @readonly
  * @enum {string}
  */
-export enum PropertiesProvisioningStateValues {
+export enum ProvisioningStateValues {
   SUCCEEDED = 'Succeeded',
   FAILED = 'Failed',
   CANCELED = 'canceled',

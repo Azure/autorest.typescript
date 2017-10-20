@@ -78,23 +78,23 @@ export enum Colors {
 }
 
 /**
- * Defines values for GetNullOKResponse.
- * Possible values include: ''
- * @readonly
- * @enum {string}
- */
-export enum GetNullOKResponse {
-  NULL = null,
-}
-
-/**
  * Defines values for StringBody.
  * Possible values include: ''
  * @readonly
  * @enum {string}
  */
 export enum StringBody {
-  NULL = null,
+  NULL = null as any,
+}
+
+/**
+ * Defines values for GetNullOKResponse.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+export enum GetNullOKResponse {
+  NULL = null as any,
 }
 
 /**
