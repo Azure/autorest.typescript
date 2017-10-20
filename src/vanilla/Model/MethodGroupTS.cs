@@ -36,7 +36,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public bool ContainsCompositeTypeInParametersOrReturnType()
+        public bool ContainsCompositeOrEnumTypeInParametersOrReturnType()
         {
             bool result = false;
             foreach(var method in MethodTemplateModels)
@@ -47,17 +47,13 @@ namespace AutoRest.TypeScript.Model
                     result = true;
                     break;
                 }
-                result = parametersToBeScanned.Any(p => p.ModelType is CompositeType ||
-                (p.ModelType is SequenceType && (p.ModelType as SequenceType).ElementType is CompositeType) ||
-                (p.ModelType is DictionaryType && (p.ModelType as DictionaryType).ValueType is CompositeType));
+                result = parametersToBeScanned.Any(p => p.ModelType.IsCompositeOrEnumType());
 
                 if (result)
                     break;
             }
             if (!result)
-                result = MethodTemplateModels.Any(m => m.ReturnType.Body is CompositeType ||
-                (m.ReturnType.Body is SequenceType && (m.ReturnType.Body as SequenceType).ElementType is CompositeType) ||
-                (m.ReturnType.Body is DictionaryType && (m.ReturnType.Body as DictionaryType).ValueType is CompositeType));
+                result = MethodTemplateModels.Any(m => m.ReturnType.Body.IsCompositeOrEnumType());
             return result;
         }
     }

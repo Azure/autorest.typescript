@@ -78,9 +78,13 @@ namespace AutoRest.TypeScript
         {
             if (valueName == null)
             {
-                return "null";
+                return "null as any";
             }
-
+            if (valueType == null)
+            {
+                // Since valueType is null we will default the EnumValue to be a string. Hence sending a quoted string back.
+                return Instance.QuoteValue(valueName, "'");
+            }
             return Instance.EscapeDefaultValue(valueName, valueType);
         }
 
