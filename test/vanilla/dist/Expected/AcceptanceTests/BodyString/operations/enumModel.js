@@ -128,7 +128,7 @@ class EnumModel {
      * Sends value 'red color' from enumeration of 'red color', 'green-color',
      * 'blue_color'
      *
-     * @param {string} stringBody Possible values include: 'red color',
+     * @param {Colors} stringBody Possible values include: 'red color',
      * 'green-color', 'blue_color'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -335,7 +335,7 @@ class EnumModel {
      * Sends value 'red color' from enumeration of 'red color', 'green-color',
      * 'blue_color'
      *
-     * @param {string} enumStringBody Possible values include: 'red color',
+     * @param {Colors} enumStringBody Possible values include: 'red color',
      * 'green-color', 'blue_color'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.

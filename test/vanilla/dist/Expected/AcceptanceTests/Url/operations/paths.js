@@ -1064,8 +1064,8 @@ class Paths {
     /**
      * Get using uri with 'green color' in path parameter
      *
-     * @param {string} enumPath send the value green. Possible values include: 'red
-     * color', 'green color', 'blue color'
+     * @param {UriColor} enumPath send the value green. Possible values include:
+     * 'red color', 'green color', 'blue color'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.
      *
@@ -1154,7 +1154,7 @@ class Paths {
     /**
      * Get null (should throw on the client before the request is sent on wire)
      *
-     * @param {string} enumPath send null should throw. Possible values include:
+     * @param {UriColor} enumPath send null should throw. Possible values include:
      * 'red color', 'green color', 'blue color'
      *
      * @param {RequestOptionsBase} [options] Optional Parameters.

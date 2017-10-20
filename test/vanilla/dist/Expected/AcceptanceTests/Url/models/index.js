@@ -9,4 +9,16 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for UriColor.
+ * Possible values include: 'red color', 'green color', 'blue color'
+ * @readonly
+ * @enum {string}
+ */
+var UriColor;
+(function (UriColor) {
+    UriColor["RED_COLOR"] = "red color";
+    UriColor["GREEN_COLOR"] = "green color";
+    UriColor["BLUE_COLOR"] = "blue color";
+})(UriColor = exports.UriColor || (exports.UriColor = {}));
 //# sourceMappingURL=index.js.map
