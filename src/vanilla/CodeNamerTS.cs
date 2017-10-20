@@ -48,7 +48,45 @@ namespace AutoRest.TypeScript
 
         public override string GetMethodName(string name) => CamelCase(GetEscapedReservedName(name, "Method"));
 
-        public override string GetEnumMemberName(string name) => CamelCase(name);
+        public override string GetEnumMemberName(string name)
+        {
+            if (name == null)
+            {
+                return "null";
+            }
+            else if (string.IsNullOrEmpty(name))
+            {
+                return "EMPTY_STRING";
+            }
+            string result = RemoveInvalidCharacters(new System.Text.RegularExpressions.Regex("[\\ -]+").Replace(name, "_"));
+            Func<char, bool> isUpper = new Func<char, bool>(c => c >= 'A' && c <= 'Z');
+            Func<char, bool> isLower = new Func<char, bool>(c => c >= 'a' && c <= 'z');
+            for (int i = 1; i < result.Length - 1; i++)
+            {
+                if (isUpper(result[i]))
+                {
+                    if (result[i - 1] != '_' && isLower(result[i - 1]))
+                    {
+                        result = result.Insert(i, "_");
+                    }
+                }
+            }
+            return result.ToUpperInvariant();
+        }
+
+        public static string GetEnumValueName(string valueName, PrimaryType valueType)
+        {
+            if (valueName == null)
+            {
+                return "null as any";
+            }
+            if (valueType == null)
+            {
+                // Since valueType is null we will default the EnumValue to be a string. Hence sending a quoted string back.
+                return Instance.QuoteValue(valueName, "'");
+            }
+            return Instance.EscapeDefaultValue(valueName, valueType);
+        }
 
         public override string IsNameLegal(string desiredName, IIdentifier whoIsAsking)
         {
@@ -122,11 +160,11 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.Date:
                     case KnownPrimaryType.DateTime:
                     case KnownPrimaryType.DateTimeRfc1123:
-                        return "new Date('" + defaultValue + "')";
+                        return $"new Date('{defaultValue}')";
                     case KnownPrimaryType.TimeSpan:
-                        return "moment.duration('" + defaultValue + "')";
+                        return $"moment.duration('{defaultValue}')";
                     case KnownPrimaryType.ByteArray:
-                        return "new Buffer('" + defaultValue + "')";
+                        return $"new Buffer('{defaultValue}')";
                 }
             }
             return defaultValue;

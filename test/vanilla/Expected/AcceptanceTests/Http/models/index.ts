@@ -658,3 +658,153 @@ export interface HttpRetryPatch504OptionalParams extends RequestOptionsBase {
    */
   booleanValue?: boolean;
 }
+
+/**
+ * Defines values for Location.
+ * Possible values include: '/http/success/head/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location {
+  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+}
+
+/**
+ * Defines values for Location1.
+ * Possible values include: '/http/success/get/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location1 {
+  HTTPSUCCESSGET200 = '/http/success/get/200',
+}
+
+/**
+ * Defines values for Location2.
+ * Possible values include: '/http/success/head/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location2 {
+  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+}
+
+/**
+ * Defines values for Location3.
+ * Possible values include: '/http/success/get/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location3 {
+  HTTPSUCCESSGET200 = '/http/success/get/200',
+}
+
+/**
+ * Defines values for Location4.
+ * Possible values include: '/http/failure/500'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location4 {
+  HTTPFAILURE500 = '/http/failure/500',
+}
+
+/**
+ * Defines values for Location5.
+ * Possible values include: '/http/success/head/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location5 {
+  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+}
+
+/**
+ * Defines values for Location6.
+ * Possible values include: '/http/success/get/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location6 {
+  HTTPSUCCESSGET200 = '/http/success/get/200',
+}
+
+/**
+ * Defines values for Location7.
+ * Possible values include: '/http/failure/500'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location7 {
+  HTTPFAILURE500 = '/http/failure/500',
+}
+
+/**
+ * Defines values for Location8.
+ * Possible values include: '/http/success/get/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location8 {
+  HTTPSUCCESSGET200 = '/http/success/get/200',
+}
+
+/**
+ * Defines values for Location9.
+ * Possible values include: '/http/success/head/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location9 {
+  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+}
+
+/**
+ * Defines values for Location10.
+ * Possible values include: '/http/success/get/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location10 {
+  HTTPSUCCESSGET200 = '/http/success/get/200',
+}
+
+/**
+ * Defines values for Location11.
+ * Possible values include: '/http/success/put/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location11 {
+  HTTPSUCCESSPUT200 = '/http/success/put/200',
+}
+
+/**
+ * Defines values for Location12.
+ * Possible values include: '/http/success/patch/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location12 {
+  HTTPSUCCESSPATCH200 = '/http/success/patch/200',
+}
+
+/**
+ * Defines values for Location13.
+ * Possible values include: '/http/success/post/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location13 {
+  HTTPSUCCESSPOST200 = '/http/success/post/200',
+}
+
+/**
+ * Defines values for Location14.
+ * Possible values include: '/http/success/delete/200'
+ * @readonly
+ * @enum {string}
+ */
+export enum Location14 {
+  HTTPSUCCESSDELETE200 = '/http/success/delete/200',
+}

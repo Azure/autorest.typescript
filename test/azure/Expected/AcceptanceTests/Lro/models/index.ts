@@ -68,11 +68,11 @@ export interface Product extends Resource {
    */
   provisioningState?: string;
   /**
-   * @member {string} [provisioningStateValues] Possible values include:
-   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {ProvisioningStateValues} [provisioningStateValues] Possible
+   * values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
+   * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: string;
+  readonly provisioningStateValues?: ProvisioningStateValues;
 }
 
 /**
@@ -98,11 +98,11 @@ export interface SubProduct extends SubResource {
    */
   provisioningState?: string;
   /**
-   * @member {string} [provisioningStateValues] Possible values include:
-   * 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+   * @member {ProvisioningStateValues1} [provisioningStateValues] Possible
+   * values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
+   * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  readonly provisioningStateValues?: string;
+  readonly provisioningStateValues?: ProvisioningStateValues1;
 }
 
 /**
@@ -126,11 +126,11 @@ export interface OperationResultError {
  */
 export interface OperationResult {
   /**
-   * @member {string} [status] The status of the request. Possible values
+   * @member {Status} [status] The status of the request. Possible values
    * include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
    * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
    */
-  status?: string;
+  status?: Status;
   /**
    * @member {OperationResultError} [error]
    */
@@ -1509,3 +1509,66 @@ export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams exte
   product?: Product;
 }
 
+
+/**
+ * Defines values for ProvisioningStateValues.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+export enum ProvisioningStateValues {
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
+}
+
+/**
+ * Defines values for ProvisioningStateValues1.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+export enum ProvisioningStateValues1 {
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
+}
+
+/**
+ * Defines values for Status.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+export enum Status {
+  SUCCEEDED = 'Succeeded',
+  FAILED = 'Failed',
+  CANCELED = 'canceled',
+  ACCEPTED = 'Accepted',
+  CREATING = 'Creating',
+  CREATED = 'Created',
+  UPDATING = 'Updating',
+  UPDATED = 'Updated',
+  DELETING = 'Deleting',
+  DELETED = 'Deleted',
+  OK = 'OK',
+}

@@ -8,7 +8,7 @@
  */
 @EmptyLine
 import * as msRest from "ms-rest-js";
-@if (Model.ContainsCompositeTypeInParametersOrReturnType())
+@if (Model.ContainsCompositeOrEnumTypeInParametersOrReturnType())
 {
 @:import * as Models from "../models";
 }

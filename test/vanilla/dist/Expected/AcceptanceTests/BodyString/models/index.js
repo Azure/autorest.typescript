@@ -9,4 +9,100 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for Colors.
+ * Possible values include: 'red color', 'green-color', 'blue_color'
+ * @readonly
+ * @enum {string}
+ */
+var Colors;
+(function (Colors) {
+    Colors["RED_COLOR"] = "red color";
+    Colors["GREEN_COLOR"] = "green-color";
+    Colors["BLUE_COLOR"] = "blue_color";
+})(Colors = exports.Colors || (exports.Colors = {}));
+/**
+ * Defines values for StringBody.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+var StringBody;
+(function (StringBody) {
+    StringBody[StringBody["NULL"] = null] = "NULL";
+})(StringBody = exports.StringBody || (exports.StringBody = {}));
+/**
+ * Defines values for GetNullOKResponse.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+var GetNullOKResponse;
+(function (GetNullOKResponse) {
+    GetNullOKResponse[GetNullOKResponse["NULL"] = null] = "NULL";
+})(GetNullOKResponse = exports.GetNullOKResponse || (exports.GetNullOKResponse = {}));
+/**
+ * Defines values for GetEmptyOKResponse.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+var GetEmptyOKResponse;
+(function (GetEmptyOKResponse) {
+    GetEmptyOKResponse["EMPTY_STRING"] = "";
+})(GetEmptyOKResponse = exports.GetEmptyOKResponse || (exports.GetEmptyOKResponse = {}));
+/**
+ * Defines values for StringBody1.
+ * Possible values include: ''
+ * @readonly
+ * @enum {string}
+ */
+var StringBody1;
+(function (StringBody1) {
+    StringBody1["EMPTY_STRING"] = "";
+})(StringBody1 = exports.StringBody1 || (exports.StringBody1 = {}));
+/**
+ * Defines values for GetMbcsOKResponse.
+ * Possible values include:
+ * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
+ * @readonly
+ * @enum {string}
+ */
+var GetMbcsOKResponse;
+(function (GetMbcsOKResponse) {
+    GetMbcsOKResponse["\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29\u02CA\u30FC\u3041\u3093\u30A1\u30F6\u0391\u0410\u042F\u0410\u042F\u0100\u0261\u3105\u3129\u2C6D\u0261\u4723"] = "\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29\u02CA\u301E\u3021\uFFE4\u2121\u3231\u2010\u30FC\uFE61\uFE62\uFE6B\u3001\u3013\u2170\u2179\u2488\u20AC\u3220\u3229\u2160\u216B\uFF01\uFFE3\u3041\u3093\u30A1\u30F6\u0391\uFE34\u0410\u042F\u0430\u044F\u0101\u0261\u3105\u3129\u2500\u254B\uFE35\uFE44\uFE3B\uFE31\uFE33\uFE34\u2170\u2179\u0251\uE7C7\u0261\u3007\u303E\u2FFB\u2E81\uE843\u4723\uE864\u20AC";
+})(GetMbcsOKResponse = exports.GetMbcsOKResponse || (exports.GetMbcsOKResponse = {}));
+/**
+ * Defines values for StringBody2.
+ * Possible values include:
+ * '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
+ * @readonly
+ * @enum {string}
+ */
+var StringBody2;
+(function (StringBody2) {
+    StringBody2["\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29\u02CA\u30FC\u3041\u3093\u30A1\u30F6\u0391\u0410\u042F\u0410\u042F\u0100\u0261\u3105\u3129\u2C6D\u0261\u4723"] = "\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29\u02CA\u301E\u3021\uFFE4\u2121\u3231\u2010\u30FC\uFE61\uFE62\uFE6B\u3001\u3013\u2170\u2179\u2488\u20AC\u3220\u3229\u2160\u216B\uFF01\uFFE3\u3041\u3093\u30A1\u30F6\u0391\uFE34\u0410\u042F\u0430\u044F\u0101\u0261\u3105\u3129\u2500\u254B\uFE35\uFE44\uFE3B\uFE31\uFE33\uFE34\u2170\u2179\u0251\uE7C7\u0261\u3007\u303E\u2FFB\u2E81\uE843\u4723\uE864\u20AC";
+})(StringBody2 = exports.StringBody2 || (exports.StringBody2 = {}));
+/**
+ * Defines values for GetWhitespaceOKResponse.
+ * Possible values include: '    Now is the time for all good men to come to
+ * the aid of their country    '
+ * @readonly
+ * @enum {string}
+ */
+var GetWhitespaceOKResponse;
+(function (GetWhitespaceOKResponse) {
+    GetWhitespaceOKResponse["_NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_"] = "    Now is the time for all good men to come to the aid of their country    ";
+})(GetWhitespaceOKResponse = exports.GetWhitespaceOKResponse || (exports.GetWhitespaceOKResponse = {}));
+/**
+ * Defines values for StringBody3.
+ * Possible values include: '    Now is the time for all good men to come to
+ * the aid of their country    '
+ * @readonly
+ * @enum {string}
+ */
+var StringBody3;
+(function (StringBody3) {
+    StringBody3["_NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_"] = "    Now is the time for all good men to come to the aid of their country    ";
+})(StringBody3 = exports.StringBody3 || (exports.StringBody3 = {}));
 //# sourceMappingURL=index.js.map

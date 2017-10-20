@@ -9,4 +9,25 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for ProvisioningStateValues.
+ * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
+ * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * @readonly
+ * @enum {string}
+ */
+var ProvisioningStateValues;
+(function (ProvisioningStateValues) {
+    ProvisioningStateValues["SUCCEEDED"] = "Succeeded";
+    ProvisioningStateValues["FAILED"] = "Failed";
+    ProvisioningStateValues["CANCELED"] = "canceled";
+    ProvisioningStateValues["ACCEPTED"] = "Accepted";
+    ProvisioningStateValues["CREATING"] = "Creating";
+    ProvisioningStateValues["CREATED"] = "Created";
+    ProvisioningStateValues["UPDATING"] = "Updating";
+    ProvisioningStateValues["UPDATED"] = "Updated";
+    ProvisioningStateValues["DELETING"] = "Deleting";
+    ProvisioningStateValues["DELETED"] = "Deleted";
+    ProvisioningStateValues["OK"] = "OK";
+})(ProvisioningStateValues = exports.ProvisioningStateValues || (exports.ProvisioningStateValues = {}));
 //# sourceMappingURL=index.js.map

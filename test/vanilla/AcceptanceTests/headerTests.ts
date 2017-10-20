@@ -9,7 +9,7 @@ import * as msRest from 'ms-rest-js';
 import moment = require('moment');
 var _ = require('underscore');
 
-import { AutoRestSwaggerBATHeaderService } from '../Expected/AcceptanceTests/Header/autoRestSwaggerBATHeaderService';
+import { AutoRestSwaggerBATHeaderService, AutoRestSwaggerBATHeaderServiceModels } from '../Expected/AcceptanceTests/Header/autoRestSwaggerBATHeaderService';
 
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
@@ -157,13 +157,13 @@ describe('typescript', function () {
         });
       });
       it('should send and receive enum type headers', function (done) {
-        testClient.header.paramEnum('valid', { value: 'GREY' }, function (error, result) {
+        testClient.header.paramEnum('valid', { value: AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY }, function (error, result) {
           should.not.exist(error);
           testClient.header.paramEnum('null', { value: null }, function (error, result) {
             should.not.exist(error);
             testClient.header.responseEnum('valid', function (error, result, request, response) {
               should.not.exist(error);
-              response.headers.get('value').should.be.exactly('GREY');
+              response.headers.get('value').should.be.exactly(AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY);
               testClient.header.responseEnum('null', function (error, result, request, response) {
                 should.not.exist(error);
                 response.headers.get('value').should.be.exactly('');

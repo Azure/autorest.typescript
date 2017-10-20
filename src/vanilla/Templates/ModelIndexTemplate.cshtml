@@ -1,5 +1,6 @@
 ﻿@using System.Linq
 @using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.TypeScript.Model
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 /*
 @Header(" * ")
@@ -19,3 +20,9 @@
 @EmptyLine
 @:@(Include(new ModelTemplate(), model))
 }
+@foreach (var model in Model.EnumTypes)
+{
+@EmptyLine
+@:@(Include(new EnumTemplate(), model))
+}
+

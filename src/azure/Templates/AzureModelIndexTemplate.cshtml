@@ -28,3 +28,8 @@ export { BaseResource, CloudError };
 @EmptyLine
 @:@(Include(new PageModelTemplate(), model))
 }
+@foreach (var model in Model.EnumTypes)
+{
+@EmptyLine
+@:@(Include(new EnumTemplate(), model))
+}

@@ -42,10 +42,10 @@ export interface Basic {
    */
   name?: string;
   /**
-   * @member {string} [color] Possible values include: 'cyan', 'Magenta',
+   * @member {CMYKColors} [color] Possible values include: 'cyan', 'Magenta',
    * 'YELLOW', 'blacK'
    */
-  color?: string;
+  color?: CMYKColors;
 }
 
 /**
@@ -502,4 +502,17 @@ export interface ReadonlypropertyPutValidOptionalParams extends RequestOptionsBa
    * @member {number} [size]
    */
   size?: number;
+}
+
+/**
+ * Defines values for CMYKColors.
+ * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+ * @readonly
+ * @enum {string}
+ */
+export enum CMYKColors {
+  CYAN = 'cyan',
+  MAGENTA = 'Magenta',
+  YELLOW = 'YELLOW',
+  BLACK = 'blacK',
 }

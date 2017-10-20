@@ -516,7 +516,12 @@ namespace AutoRest.TypeScript
             }
             else if (enumType != null)
             {
-                tsType = "string";
+                var enumName = enumType.Name;
+                tsType = "Models." + enumName;
+                if (inModelsModule || enumName.Contains('.'))
+                {
+                    tsType = enumName;
+                }
             }
             else if (composite != null)
             {
@@ -933,6 +938,26 @@ namespace AutoRest.TypeScript
 
             return parameter.Extensions.ContainsKey(SwaggerExtensions.SkipUrlEncodingExtension) &&
                    (bool)parameter.Extensions[SwaggerExtensions.SkipUrlEncodingExtension];
+        }
+
+        public static bool IsCompositeOrEnumType(this IModelType type)
+        {
+            if (type is CompositeType || type is EnumType)
+            {
+                return true;
+            }
+            else if (type is SequenceType)
+            {
+                return (type as SequenceType).ElementType.IsCompositeOrEnumType();
+            }
+            else if (type is DictionaryType)
+            {
+                return (type as DictionaryType).ValueType.IsCompositeOrEnumType();
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

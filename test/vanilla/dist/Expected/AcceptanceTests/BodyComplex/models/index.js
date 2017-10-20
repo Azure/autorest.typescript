@@ -9,4 +9,17 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for CMYKColors.
+ * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+ * @readonly
+ * @enum {string}
+ */
+var CMYKColors;
+(function (CMYKColors) {
+    CMYKColors["CYAN"] = "cyan";
+    CMYKColors["MAGENTA"] = "Magenta";
+    CMYKColors["YELLOW"] = "YELLOW";
+    CMYKColors["BLACK"] = "blacK";
+})(CMYKColors = exports.CMYKColors || (exports.CMYKColors = {}));
 //# sourceMappingURL=index.js.map

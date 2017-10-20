@@ -58,10 +58,10 @@ export interface Product {
    */
   child: ChildProduct;
   /**
-   * @member {string} [constStringAsEnum] Constant string as Enum. Possible
+   * @member {EnumConst} [constStringAsEnum] Constant string as Enum. Possible
    * values include: 'constant_string_as_enum'
    */
-  constStringAsEnum?: string;
+  constStringAsEnum?: EnumConst;
 }
 
 /**
@@ -109,4 +109,14 @@ export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams exte
    * @member {Product} [body]
    */
   body?: Product;
+}
+
+/**
+ * Defines values for EnumConst.
+ * Possible values include: 'constant_string_as_enum'
+ * @readonly
+ * @enum {string}
+ */
+export enum EnumConst {
+  CONSTANT_STRING_AS_ENUM = 'constant_string_as_enum',
 }

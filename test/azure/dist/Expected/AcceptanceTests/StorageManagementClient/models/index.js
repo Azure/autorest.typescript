@@ -9,4 +9,80 @@
  * regenerated.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Defines values for Reason.
+ * Possible values include: 'AccountNameInvalid', 'AlreadyExists'
+ * @readonly
+ * @enum {string}
+ */
+var Reason;
+(function (Reason) {
+    Reason["ACCOUNT_NAME_INVALID"] = "AccountNameInvalid";
+    Reason["ALREADY_EXISTS"] = "AlreadyExists";
+})(Reason = exports.Reason || (exports.Reason = {}));
+/**
+ * Defines values for AccountType.
+ * Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS',
+ * 'Standard_RAGRS', 'Premium_LRS'
+ * @readonly
+ * @enum {string}
+ */
+var AccountType;
+(function (AccountType) {
+    AccountType["STANDARD_LRS"] = "Standard_LRS";
+    AccountType["STANDARD_ZRS"] = "Standard_ZRS";
+    AccountType["STANDARD_GRS"] = "Standard_GRS";
+    AccountType["STANDARD_RAGRS"] = "Standard_RAGRS";
+    AccountType["PREMIUM_LRS"] = "Premium_LRS";
+})(AccountType = exports.AccountType || (exports.AccountType = {}));
+/**
+ * Defines values for ProvisioningState.
+ * Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'
+ * @readonly
+ * @enum {string}
+ */
+var ProvisioningState;
+(function (ProvisioningState) {
+    ProvisioningState["CREATING"] = "Creating";
+    ProvisioningState["RESOLVING_DNS"] = "ResolvingDNS";
+    ProvisioningState["SUCCEEDED"] = "Succeeded";
+})(ProvisioningState = exports.ProvisioningState || (exports.ProvisioningState = {}));
+/**
+ * Defines values for AccountStatus.
+ * Possible values include: 'Available', 'Unavailable'
+ * @readonly
+ * @enum {string}
+ */
+var AccountStatus;
+(function (AccountStatus) {
+    AccountStatus["AVAILABLE"] = "Available";
+    AccountStatus["UNAVAILABLE"] = "Unavailable";
+})(AccountStatus = exports.AccountStatus || (exports.AccountStatus = {}));
+/**
+ * Defines values for KeyName.
+ * Possible values include: 'key1', 'key2'
+ * @readonly
+ * @enum {string}
+ */
+var KeyName;
+(function (KeyName) {
+    KeyName["KEY1"] = "key1";
+    KeyName["KEY2"] = "key2";
+})(KeyName = exports.KeyName || (exports.KeyName = {}));
+/**
+ * Defines values for UsageUnit.
+ * Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent',
+ * 'CountsPerSecond', 'BytesPerSecond'
+ * @readonly
+ * @enum {string}
+ */
+var UsageUnit;
+(function (UsageUnit) {
+    UsageUnit["COUNT"] = "Count";
+    UsageUnit["BYTES"] = "Bytes";
+    UsageUnit["SECONDS"] = "Seconds";
+    UsageUnit["PERCENT"] = "Percent";
+    UsageUnit["COUNTS_PER_SECOND"] = "CountsPerSecond";
+    UsageUnit["BYTES_PER_SECOND"] = "BytesPerSecond";
+})(UsageUnit = exports.UsageUnit || (exports.UsageUnit = {}));
 //# sourceMappingURL=index.js.map
