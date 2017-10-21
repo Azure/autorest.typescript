@@ -82,6 +82,10 @@ namespace AutoRest.TypeScript.Azure
                 // .npmignore
                 var npmIgnore = new NpmIgnore { Model = codeModel };
                 await Write(npmIgnore, Path.Combine("../", ".npmignore"));
+
+                //README.md
+                var readme = new AzureReadmeTemplate { Model = codeModel };
+                await Write(readme, Path.Combine("../", "README.md"));
             }
         }
     }

@@ -1,0 +1,74 @@
+@using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Azure.Model
+@inherits AutoRest.Core.Template<CodeModelTSa>
+
+# Microsoft Azure SDK for isomorphic javascript - @(Model.Name)
+This project provides an isomorphic javascript package for accessing Azure. Right now it supports:
+- node.js version 6.x.x or higher
+- browser javascript
+@EmptyLine
+## How to Install
+@EmptyLine
+- nodejs
+```
+npm install @(Model.PackageName)
+```
+- browser
+```html
+@{ 
+@:<script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+}
+```
+@EmptyLine
+## How to use
+@EmptyLine
+### nodejs - Authentication, client creation and @(Model.GetSampleMethod()?.Name) @(Model.GetSampleMethodGroupName()) as an example written in TypeScript.
+@EmptyLine
+```javascript
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
+import * as msRestNodeAuth from "ms-rest-nodeauth";
+import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mappers } from "@(Model.PackageName)";
+const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
+@EmptyLine
+msRestNodeAuth.interactiveLogin().then((creds) => {
+  const client = new @(Model.Name)(creds, subscriptionId);
+  @(Model.GenerateSampleMethod())
+}).catch((err) => {
+  console.log('An error ocurred:');
+  console.dir(err, {depth: null, colors: true});
+});
+```
+@EmptyLine
+### browser - Authentication, client creation and @(Model.GetSampleMethod().Name) @(Model.GetSampleMethodGroupName()) as an example written in javascript.
+@EmptyLine
+- index.html
+```html
+@{
+@:<!DOCTYPE html>
+@:<html lang="en">
+@:  <head>
+@:    <title>My Todos</title>
+@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestBundle.js"></script>
+@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/ms-rest-js/master/msRestAzureBundle.js"></script>
+@:    <script type="text/javascript" src="https://raw.githubusercontent.com/Azure/azure-sdk-for-js/master/lib/services/@(Model.PackageName)/@(Model.Name.ToCamelCase())Bundle.js"></script>
+@:    <script type="text/javascript">
+@:      document.write('hello world');
+@:      const subscriptionId = "<Subscription_Id>";
+@:      const token = "<access_token>";
+@:      const creds = new msRest.TokenCredentials(token);
+@:      const client = new @(Model.Name)(creds, undefined, subscriptionId);
+@:      @(Model.GenerateSampleMethod(true)).catch((err) => {
+@:        console.log('An error ocurred:');
+@:        console.dir(err, { depth: null, colors: true});
+@:      });
+@:    </script>
+@:  </head>
+@:  <body>
+@:  </body>
+@:</html>
+}
+```
+@EmptyLine
+# Related projects
+ - [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)

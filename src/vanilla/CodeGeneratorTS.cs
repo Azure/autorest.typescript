@@ -3,7 +3,6 @@
 // 
 
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -86,6 +85,10 @@ namespace AutoRest.TypeScript
                 // .npmignore
                 var npmIgnore = new NpmIgnore { Model = codeModel };
                 await Write(npmIgnore, Path.Combine("../", ".npmignore"));
+
+                //README.md
+                var readme = new ReadmeTemplate { Model = codeModel };
+                await Write(readme, Path.Combine("../", "README.md"));
             }
         }
     }
