@@ -1,4 +1,45 @@
 
+# Installation
+```
+npm install -g autorest
+```
+
+# Usage
+- Basic Usage:
+```
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version>
+```
+- If you have a markdown config file then there is no need to use --input-file, simply provide the path to the markdown file:
+```
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION <path-to-readme.md> -package-name=<your-package-name> --package-version<your-package-version>
+```
+- If you want to generate metadata files (package.json, .npmignore, webpack.config.js, tsconfig.json), then provide `--generate-metadata=true`:
+
+**NOTE: This will generate all the files one level above the output-folder.**
+```
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true
+```
+
+- For generating a client for an azure service, provide `--typescript.azure-arm=true`:
+```
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true --typescript.azure-arm=true
+```
+
+# Development
+
+### Building the project
+After cloning the repo, execute:
+- `npm install`
+- `gulp build` (Make sure you have gulp installed globally too (`npm install -g gulp`))
+
+### Testing the developed changes
+- `gulp regenerate`
+- `gulp test`
+
+### Debugging using vscode
+Add the `--typescript.debugger` to the command line and then use the Attach to Debugger option from vscode. Attach to the dotnet.exe process id that is provided in the command line.
+We have the .vscode folder in the repo that has the config for attaching to the debugger.
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a

@@ -319,6 +319,11 @@ export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProduct
  * Defines values for ProvisioningStateValues.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: ProvisioningStateValues =
+ * <ProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */

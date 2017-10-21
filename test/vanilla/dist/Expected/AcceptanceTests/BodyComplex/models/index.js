@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Defines values for CMYKColors.
  * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: CMYKColors = <CMYKColors>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */

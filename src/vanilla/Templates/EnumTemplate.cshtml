@@ -9,6 +9,12 @@
 {
 @:@(WrapComment(" * ", Model.ExtendedDocumentation))
 }
+@if (Model.ModelAsString)
+{
+@:@(WrapComment(" * ", "There could be more values for this enum apart from the ones defined here." +
+        "If you want to set a value that is not from the known values then you can do the following:\n" +
+        "let param: " + Model.Name + " = <" + Model.Name + ">\"someUnknownValueThatWillStillBeValid\";"))
+}
  * @@readonly
  * @@enum {@CodeNamer.Instance.CamelCase(Model.UnderlyingType.Name)}
  */

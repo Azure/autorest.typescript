@@ -115,7 +115,7 @@ namespace AutoRest.TypeScript
                 throw new ArgumentNullException(nameof(type));
             }
 
-            return $"[ {string.Join(", ", type.Values.Select(p => $"'{p.Name}'"))} ]";
+            return $"[ {string.Join(", ", type.Values.Select(p => $"'{p.SerializedName}'"))} ]";
         }
 
         public static string EscapeSingleQuotes(this string valueReference)
@@ -516,7 +516,7 @@ namespace AutoRest.TypeScript
             }
             else if (enumType != null)
             {
-                var enumName = enumType.Name;
+                var enumName = enumType.Name.ToPascalCase();
                 tsType = "Models." + enumName;
                 if (inModelsModule || enumName.Contains('.'))
                 {

@@ -662,6 +662,10 @@ export interface HttpRetryPatch504OptionalParams extends RequestOptionsBase {
 /**
  * Defines values for Location.
  * Possible values include: '/http/success/head/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location = <Location>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -672,6 +676,10 @@ export enum Location {
 /**
  * Defines values for Location1.
  * Possible values include: '/http/success/get/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location1 = <Location1>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -682,6 +690,10 @@ export enum Location1 {
 /**
  * Defines values for Location2.
  * Possible values include: '/http/success/head/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location2 = <Location2>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -692,6 +704,10 @@ export enum Location2 {
 /**
  * Defines values for Location3.
  * Possible values include: '/http/success/get/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location3 = <Location3>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -702,6 +718,10 @@ export enum Location3 {
 /**
  * Defines values for Location4.
  * Possible values include: '/http/failure/500'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location4 = <Location4>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -712,6 +732,10 @@ export enum Location4 {
 /**
  * Defines values for Location5.
  * Possible values include: '/http/success/head/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location5 = <Location5>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -722,6 +746,10 @@ export enum Location5 {
 /**
  * Defines values for Location6.
  * Possible values include: '/http/success/get/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location6 = <Location6>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -732,6 +760,10 @@ export enum Location6 {
 /**
  * Defines values for Location7.
  * Possible values include: '/http/failure/500'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location7 = <Location7>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -742,6 +774,10 @@ export enum Location7 {
 /**
  * Defines values for Location8.
  * Possible values include: '/http/success/get/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location8 = <Location8>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -752,6 +788,10 @@ export enum Location8 {
 /**
  * Defines values for Location9.
  * Possible values include: '/http/success/head/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location9 = <Location9>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -762,6 +802,10 @@ export enum Location9 {
 /**
  * Defines values for Location10.
  * Possible values include: '/http/success/get/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location10 = <Location10>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -772,6 +816,10 @@ export enum Location10 {
 /**
  * Defines values for Location11.
  * Possible values include: '/http/success/put/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location11 = <Location11>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -782,6 +830,10 @@ export enum Location11 {
 /**
  * Defines values for Location12.
  * Possible values include: '/http/success/patch/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location12 = <Location12>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -792,6 +844,10 @@ export enum Location12 {
 /**
  * Defines values for Location13.
  * Possible values include: '/http/success/post/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location13 = <Location13>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
@@ -802,6 +858,10 @@ export enum Location13 {
 /**
  * Defines values for Location14.
  * Possible values include: '/http/success/delete/200'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: Location14 = <Location14>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
