@@ -17,3 +17,14 @@ yarn.lock
 
 *.log
 *.csproj
+
+.travis.yml
+.git*
+.git
+.vs/
+node_modules/
+.ntvs_analysis.*
+.nuget/
+packages/
+packages.config
+gulpfile.js

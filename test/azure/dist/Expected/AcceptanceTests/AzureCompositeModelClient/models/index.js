@@ -21,21 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var CMYKColors;
 (function (CMYKColors) {
-    /**
-     * cyan.
-     */
-    CMYKColors["Cyan"] = "cyan";
-    /**
-     * Magenta.
-     */
-    CMYKColors["Magenta"] = "Magenta";
-    /**
-     * YELLOW.
-     */
+    CMYKColors["CYAN"] = "cyan";
+    CMYKColors["MAGENTA"] = "Magenta";
     CMYKColors["YELLOW"] = "YELLOW";
-    /**
-     * blacK.
-     */
-    CMYKColors["BlacK"] = "blacK";
+    CMYKColors["BLACK"] = "blacK";
 })(CMYKColors = exports.CMYKColors || (exports.CMYKColors = {}));
 //# sourceMappingURL=index.js.map

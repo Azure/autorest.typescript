@@ -149,7 +149,7 @@ describe('typescript', function () {
                         should.not.exist(error);
                         testClient.header.responseEnum('valid', function (error, result, request, response) {
                             should.not.exist(error);
-                            response.headers.get('value').should.be.exactly('GREY');
+                            response.headers.get('value').should.be.exactly(autoRestSwaggerBATHeaderService_1.AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY);
                             testClient.header.responseEnum('null', function (error, result, request, response) {
                                 should.not.exist(error);
                                 response.headers.get('value').should.be.exactly('');

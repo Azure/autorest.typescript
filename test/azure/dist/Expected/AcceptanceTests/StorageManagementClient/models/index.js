@@ -17,14 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var Reason;
 (function (Reason) {
-    /**
-     * AccountNameInvalid.
-     */
-    Reason["AccountNameInvalid"] = "AccountNameInvalid";
-    /**
-     * AlreadyExists.
-     */
-    Reason["AlreadyExists"] = "AlreadyExists";
+    Reason["ACCOUNT_NAME_INVALID"] = "AccountNameInvalid";
+    Reason["ALREADY_EXISTS"] = "AlreadyExists";
 })(Reason = exports.Reason || (exports.Reason = {}));
 /**
  * Defines values for AccountType.
@@ -35,26 +29,11 @@ var Reason;
  */
 var AccountType;
 (function (AccountType) {
-    /**
-     * Standard_LRS.
-     */
-    AccountType["StandardLRS"] = "Standard_LRS";
-    /**
-     * Standard_ZRS.
-     */
-    AccountType["StandardZRS"] = "Standard_ZRS";
-    /**
-     * Standard_GRS.
-     */
-    AccountType["StandardGRS"] = "Standard_GRS";
-    /**
-     * Standard_RAGRS.
-     */
-    AccountType["StandardRAGRS"] = "Standard_RAGRS";
-    /**
-     * Premium_LRS.
-     */
-    AccountType["PremiumLRS"] = "Premium_LRS";
+    AccountType["STANDARD_LRS"] = "Standard_LRS";
+    AccountType["STANDARD_ZRS"] = "Standard_ZRS";
+    AccountType["STANDARD_GRS"] = "Standard_GRS";
+    AccountType["STANDARD_RAGRS"] = "Standard_RAGRS";
+    AccountType["PREMIUM_LRS"] = "Premium_LRS";
 })(AccountType = exports.AccountType || (exports.AccountType = {}));
 /**
  * Defines values for ProvisioningState.
@@ -64,18 +43,9 @@ var AccountType;
  */
 var ProvisioningState;
 (function (ProvisioningState) {
-    /**
-     * Creating.
-     */
-    ProvisioningState["Creating"] = "Creating";
-    /**
-     * ResolvingDNS.
-     */
-    ProvisioningState["ResolvingDNS"] = "ResolvingDNS";
-    /**
-     * Succeeded.
-     */
-    ProvisioningState["Succeeded"] = "Succeeded";
+    ProvisioningState["CREATING"] = "Creating";
+    ProvisioningState["RESOLVING_DNS"] = "ResolvingDNS";
+    ProvisioningState["SUCCEEDED"] = "Succeeded";
 })(ProvisioningState = exports.ProvisioningState || (exports.ProvisioningState = {}));
 /**
  * Defines values for AccountStatus.
@@ -85,14 +55,8 @@ var ProvisioningState;
  */
 var AccountStatus;
 (function (AccountStatus) {
-    /**
-     * Available.
-     */
-    AccountStatus["Available"] = "Available";
-    /**
-     * Unavailable.
-     */
-    AccountStatus["Unavailable"] = "Unavailable";
+    AccountStatus["AVAILABLE"] = "Available";
+    AccountStatus["UNAVAILABLE"] = "Unavailable";
 })(AccountStatus = exports.AccountStatus || (exports.AccountStatus = {}));
 /**
  * Defines values for KeyName.
@@ -102,14 +66,8 @@ var AccountStatus;
  */
 var KeyName;
 (function (KeyName) {
-    /**
-     * key1.
-     */
-    KeyName["Key1"] = "key1";
-    /**
-     * key2.
-     */
-    KeyName["Key2"] = "key2";
+    KeyName["KEY1"] = "key1";
+    KeyName["KEY2"] = "key2";
 })(KeyName = exports.KeyName || (exports.KeyName = {}));
 /**
  * Defines values for UsageUnit.
@@ -120,29 +78,11 @@ var KeyName;
  */
 var UsageUnit;
 (function (UsageUnit) {
-    /**
-     * Count.
-     */
-    UsageUnit["Count"] = "Count";
-    /**
-     * Bytes.
-     */
-    UsageUnit["Bytes"] = "Bytes";
-    /**
-     * Seconds.
-     */
-    UsageUnit["Seconds"] = "Seconds";
-    /**
-     * Percent.
-     */
-    UsageUnit["Percent"] = "Percent";
-    /**
-     * CountsPerSecond.
-     */
-    UsageUnit["CountsPerSecond"] = "CountsPerSecond";
-    /**
-     * BytesPerSecond.
-     */
-    UsageUnit["BytesPerSecond"] = "BytesPerSecond";
+    UsageUnit["COUNT"] = "Count";
+    UsageUnit["BYTES"] = "Bytes";
+    UsageUnit["SECONDS"] = "Seconds";
+    UsageUnit["PERCENT"] = "Percent";
+    UsageUnit["COUNTS_PER_SECOND"] = "CountsPerSecond";
+    UsageUnit["BYTES_PER_SECOND"] = "BytesPerSecond";
 })(UsageUnit = exports.UsageUnit || (exports.UsageUnit = {}));
 //# sourceMappingURL=index.js.map

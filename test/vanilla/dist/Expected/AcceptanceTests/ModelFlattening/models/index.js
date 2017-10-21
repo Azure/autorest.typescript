@@ -10,62 +10,29 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Defines values for PropertiesProvisioningStateValues.
+ * Defines values for ProvisioningStateValues.
  * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted',
  * 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
  * There could be more values for this enum apart from the ones defined here.If
  * you want to set a value that is not from the known values then you can do
  * the following:
- * let param: PropertiesProvisioningStateValues =
- * <PropertiesProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
+ * let param: ProvisioningStateValues =
+ * <ProvisioningStateValues>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-var PropertiesProvisioningStateValues;
-(function (PropertiesProvisioningStateValues) {
-    /**
-     * Succeeded.
-     */
-    PropertiesProvisioningStateValues["Succeeded"] = "Succeeded";
-    /**
-     * Failed.
-     */
-    PropertiesProvisioningStateValues["Failed"] = "Failed";
-    /**
-     * canceled.
-     */
-    PropertiesProvisioningStateValues["Canceled"] = "canceled";
-    /**
-     * Accepted.
-     */
-    PropertiesProvisioningStateValues["Accepted"] = "Accepted";
-    /**
-     * Creating.
-     */
-    PropertiesProvisioningStateValues["Creating"] = "Creating";
-    /**
-     * Created.
-     */
-    PropertiesProvisioningStateValues["Created"] = "Created";
-    /**
-     * Updating.
-     */
-    PropertiesProvisioningStateValues["Updating"] = "Updating";
-    /**
-     * Updated.
-     */
-    PropertiesProvisioningStateValues["Updated"] = "Updated";
-    /**
-     * Deleting.
-     */
-    PropertiesProvisioningStateValues["Deleting"] = "Deleting";
-    /**
-     * Deleted.
-     */
-    PropertiesProvisioningStateValues["Deleted"] = "Deleted";
-    /**
-     * OK.
-     */
-    PropertiesProvisioningStateValues["OK"] = "OK";
-})(PropertiesProvisioningStateValues = exports.PropertiesProvisioningStateValues || (exports.PropertiesProvisioningStateValues = {}));
+var ProvisioningStateValues;
+(function (ProvisioningStateValues) {
+    ProvisioningStateValues["SUCCEEDED"] = "Succeeded";
+    ProvisioningStateValues["FAILED"] = "Failed";
+    ProvisioningStateValues["CANCELED"] = "canceled";
+    ProvisioningStateValues["ACCEPTED"] = "Accepted";
+    ProvisioningStateValues["CREATING"] = "Creating";
+    ProvisioningStateValues["CREATED"] = "Created";
+    ProvisioningStateValues["UPDATING"] = "Updating";
+    ProvisioningStateValues["UPDATED"] = "Updated";
+    ProvisioningStateValues["DELETING"] = "Deleting";
+    ProvisioningStateValues["DELETED"] = "Deleted";
+    ProvisioningStateValues["OK"] = "OK";
+})(ProvisioningStateValues = exports.ProvisioningStateValues || (exports.ProvisioningStateValues = {}));
 //# sourceMappingURL=index.js.map

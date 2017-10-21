@@ -22,49 +22,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var Status;
 (function (Status) {
-    /**
-     * Succeeded.
-     */
-    Status["Succeeded"] = "Succeeded";
-    /**
-     * Failed.
-     */
-    Status["Failed"] = "Failed";
-    /**
-     * canceled.
-     */
-    Status["Canceled"] = "canceled";
-    /**
-     * Accepted.
-     */
-    Status["Accepted"] = "Accepted";
-    /**
-     * Creating.
-     */
-    Status["Creating"] = "Creating";
-    /**
-     * Created.
-     */
-    Status["Created"] = "Created";
-    /**
-     * Updating.
-     */
-    Status["Updating"] = "Updating";
-    /**
-     * Updated.
-     */
-    Status["Updated"] = "Updated";
-    /**
-     * Deleting.
-     */
-    Status["Deleting"] = "Deleting";
-    /**
-     * Deleted.
-     */
-    Status["Deleted"] = "Deleted";
-    /**
-     * OK.
-     */
+    Status["SUCCEEDED"] = "Succeeded";
+    Status["FAILED"] = "Failed";
+    Status["CANCELED"] = "canceled";
+    Status["ACCEPTED"] = "Accepted";
+    Status["CREATING"] = "Creating";
+    Status["CREATED"] = "Created";
+    Status["UPDATING"] = "Updating";
+    Status["UPDATED"] = "Updated";
+    Status["DELETING"] = "Deleting";
+    Status["DELETED"] = "Deleted";
     Status["OK"] = "OK";
 })(Status = exports.Status || (exports.Status = {}));
 //# sourceMappingURL=index.js.map
