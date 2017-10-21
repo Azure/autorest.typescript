@@ -13,9 +13,9 @@ autorest --typescript --output-folder=<path-to-the-output-folder(usually upto li
 ```
 autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION <path-to-readme.md> -package-name=<your-package-name> --package-version<your-package-version>
 ```
-- If you want to generate metadata files (package.json, .npmignore, webpack.config.js, tsconfig.json), then provide `--generate-metadata=true`:
+- If you want to generate metadata files **__(package.json, .npmignore, webpack.config.js, tsconfig.json, README.md(with a sample))__**, then provide `--generate-metadata=true`:
 
-**NOTE: This will generate all the _metadata_ files one level above the output-folder.**
+**NOTE: This will generate all the __metadata__ files one level above the output-folder.**
 ```
 autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true
 ```

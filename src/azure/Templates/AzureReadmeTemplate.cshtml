@@ -32,7 +32,7 @@ import { @(Model.Name), @(Model.ClientPrefix)Models, @(Model.ClientPrefix)Mapper
 const subscriptionId = process.env["AZURE_SUBSCRIPTION_ID"];
 @EmptyLine
 msRestNodeAuth.interactiveLogin().then((creds) => {
-  const client = new @(Model.Name)(creds, undefined, subscriptionId);
+  const client = new @(Model.Name)(creds, subscriptionId);
   @(Model.GenerateSampleMethod())
 }).catch((err) => {
   console.log('An error ocurred:');
