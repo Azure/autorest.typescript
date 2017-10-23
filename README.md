@@ -11,7 +11,7 @@ autorest --typescript --output-folder=<path-to-the-output-folder(usually upto li
 ```
 - If you have a markdown config file then there is no need to use --input-file, simply provide the path to the markdown file:
 ```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION <path-to-readme.md> -package-name=<your-package-name> --package-version<your-package-version>
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION <path-to-readme.md> --package-name=<your-package-name> --package-version<your-package-version>
 ```
 - If you want to generate metadata files **__(package.json, .npmignore, webpack.config.js, tsconfig.json, README.md(with a sample))__**, then provide `--generate-metadata=true`:
 
