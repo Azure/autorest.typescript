@@ -420,8 +420,8 @@ export interface StorageAccountListResult extends Array<StorageAccount> {
  * @enum {string}
  */
 export enum Reason {
-  ACCOUNT_NAME_INVALID = 'AccountNameInvalid',
-  ALREADY_EXISTS = 'AlreadyExists',
+  AccountNameInvalid = 'AccountNameInvalid',
+  AlreadyExists = 'AlreadyExists',
 }
 
 /**
@@ -432,11 +432,11 @@ export enum Reason {
  * @enum {string}
  */
 export enum AccountType {
-  STANDARD_LRS = 'Standard_LRS',
-  STANDARD_ZRS = 'Standard_ZRS',
-  STANDARD_GRS = 'Standard_GRS',
-  STANDARD_RAGRS = 'Standard_RAGRS',
-  PREMIUM_LRS = 'Premium_LRS',
+  StandardLRS = 'Standard_LRS',
+  StandardZRS = 'Standard_ZRS',
+  StandardGRS = 'Standard_GRS',
+  StandardRAGRS = 'Standard_RAGRS',
+  PremiumLRS = 'Premium_LRS',
 }
 
 /**
@@ -446,9 +446,9 @@ export enum AccountType {
  * @enum {string}
  */
 export enum ProvisioningState {
-  CREATING = 'Creating',
-  RESOLVING_DNS = 'ResolvingDNS',
-  SUCCEEDED = 'Succeeded',
+  Creating = 'Creating',
+  ResolvingDNS = 'ResolvingDNS',
+  Succeeded = 'Succeeded',
 }
 
 /**
@@ -458,8 +458,8 @@ export enum ProvisioningState {
  * @enum {string}
  */
 export enum AccountStatus {
-  AVAILABLE = 'Available',
-  UNAVAILABLE = 'Unavailable',
+  Available = 'Available',
+  Unavailable = 'Unavailable',
 }
 
 /**
@@ -469,8 +469,8 @@ export enum AccountStatus {
  * @enum {string}
  */
 export enum KeyName {
-  KEY1 = 'key1',
-  KEY2 = 'key2',
+  Key1 = 'key1',
+  Key2 = 'key2',
 }
 
 /**
@@ -481,10 +481,10 @@ export enum KeyName {
  * @enum {string}
  */
 export enum UsageUnit {
-  COUNT = 'Count',
-  BYTES = 'Bytes',
-  SECONDS = 'Seconds',
-  PERCENT = 'Percent',
-  COUNTS_PER_SECOND = 'CountsPerSecond',
-  BYTES_PER_SECOND = 'BytesPerSecond',
+  Count = 'Count',
+  Bytes = 'Bytes',
+  Seconds = 'Seconds',
+  Percent = 'Percent',
+  CountsPerSecond = 'CountsPerSecond',
+  BytesPerSecond = 'BytesPerSecond',
 }

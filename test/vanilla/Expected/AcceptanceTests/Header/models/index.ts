@@ -78,7 +78,7 @@ export interface HeaderParamEnumOptionalParams extends RequestOptionsBase {
  * @enum {string}
  */
 export enum GreyscaleColors {
-  WHITE = 'White',
-  BLACK = 'black',
+  White = 'White',
+  Black = 'black',
   GREY = 'GREY',
 }

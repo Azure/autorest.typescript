@@ -15,8 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import * as operations from "./operations";
 const WebResource = msRest.WebResource;
 
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 
 class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
