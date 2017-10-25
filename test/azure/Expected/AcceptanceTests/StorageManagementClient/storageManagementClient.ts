@@ -14,8 +14,8 @@ import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import * as operations from "./operations";
 
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 
 class StorageManagementClient extends msRestAzure.AzureServiceClient {
 

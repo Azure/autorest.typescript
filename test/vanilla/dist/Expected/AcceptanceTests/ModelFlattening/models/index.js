@@ -23,16 +23,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var ProvisioningStateValues;
 (function (ProvisioningStateValues) {
-    ProvisioningStateValues["SUCCEEDED"] = "Succeeded";
-    ProvisioningStateValues["FAILED"] = "Failed";
-    ProvisioningStateValues["CANCELED"] = "canceled";
-    ProvisioningStateValues["ACCEPTED"] = "Accepted";
-    ProvisioningStateValues["CREATING"] = "Creating";
-    ProvisioningStateValues["CREATED"] = "Created";
-    ProvisioningStateValues["UPDATING"] = "Updating";
-    ProvisioningStateValues["UPDATED"] = "Updated";
-    ProvisioningStateValues["DELETING"] = "Deleting";
-    ProvisioningStateValues["DELETED"] = "Deleted";
+    ProvisioningStateValues["Succeeded"] = "Succeeded";
+    ProvisioningStateValues["Failed"] = "Failed";
+    ProvisioningStateValues["Canceled"] = "canceled";
+    ProvisioningStateValues["Accepted"] = "Accepted";
+    ProvisioningStateValues["Creating"] = "Creating";
+    ProvisioningStateValues["Created"] = "Created";
+    ProvisioningStateValues["Updating"] = "Updating";
+    ProvisioningStateValues["Updated"] = "Updated";
+    ProvisioningStateValues["Deleting"] = "Deleting";
+    ProvisioningStateValues["Deleted"] = "Deleted";
     ProvisioningStateValues["OK"] = "OK";
 })(ProvisioningStateValues = exports.ProvisioningStateValues || (exports.ProvisioningStateValues = {}));
 //# sourceMappingURL=index.js.map

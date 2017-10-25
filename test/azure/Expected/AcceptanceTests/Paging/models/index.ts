@@ -305,15 +305,15 @@ export interface OdataProductResult extends Array<Product> {
  * @enum {string}
  */
 export enum Status {
-  SUCCEEDED = 'Succeeded',
-  FAILED = 'Failed',
-  CANCELED = 'canceled',
-  ACCEPTED = 'Accepted',
-  CREATING = 'Creating',
-  CREATED = 'Created',
-  UPDATING = 'Updating',
-  UPDATED = 'Updated',
-  DELETING = 'Deleting',
-  DELETED = 'Deleted',
+  Succeeded = 'Succeeded',
+  Failed = 'Failed',
+  Canceled = 'canceled',
+  Accepted = 'Accepted',
+  Creating = 'Creating',
+  Created = 'Created',
+  Updating = 'Updating',
+  Updated = 'Updated',
+  Deleting = 'Deleting',
+  Deleted = 'Deleted',
   OK = 'OK',
 }

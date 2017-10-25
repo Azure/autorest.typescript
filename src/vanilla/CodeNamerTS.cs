@@ -52,26 +52,13 @@ namespace AutoRest.TypeScript
         {
             if (name == null)
             {
-                return "null";
+                return "Null";
             }
             else if (string.IsNullOrEmpty(name))
             {
-                return "EMPTY_STRING";
+                return "EmptyString";
             }
-            string result = RemoveInvalidCharacters(new System.Text.RegularExpressions.Regex("[\\ -]+").Replace(name, "_"));
-            Func<char, bool> isUpper = new Func<char, bool>(c => c >= 'A' && c <= 'Z');
-            Func<char, bool> isLower = new Func<char, bool>(c => c >= 'a' && c <= 'z');
-            for (int i = 1; i < result.Length - 1; i++)
-            {
-                if (isUpper(result[i]))
-                {
-                    if (result[i - 1] != '_' && isLower(result[i - 1]))
-                    {
-                        result = result.Insert(i, "_");
-                    }
-                }
-            }
-            return result.ToUpperInvariant();
+            return base.GetEnumMemberName(name).ToPascalCase();
         }
 
         public static string GetEnumValueName(string valueName, PrimaryType valueType)

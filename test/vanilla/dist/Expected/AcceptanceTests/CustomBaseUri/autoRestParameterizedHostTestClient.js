@@ -15,8 +15,8 @@ exports.AutoRestParameterizedHostTestModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestParameterizedHostTestMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
     /**
      * @class

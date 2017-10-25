@@ -15,8 +15,8 @@ exports.AutoRestHttpInfrastructureTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestHttpInfrastructureTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
     /**
      * @class

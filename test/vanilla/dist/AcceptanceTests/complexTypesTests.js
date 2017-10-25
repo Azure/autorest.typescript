@@ -22,7 +22,7 @@ describe('typescript', function () {
                     result.id.should.equal(2);
                     result.name.should.equal('abc');
                     result.color.should.equal('YELLOW');
-                    testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: autoRestComplexTestService_1.AutoRestComplexTestServiceModels.CMYKColors.MAGENTA }, function (error, result) {
+                    testClient.basic.putValid({ 'id': 2, 'name': 'abc', color: autoRestComplexTestService_1.AutoRestComplexTestServiceModels.CMYKColors.Magenta }, function (error, result) {
                         should.not.exist(error);
                         done();
                     });

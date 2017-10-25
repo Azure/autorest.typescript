@@ -670,7 +670,7 @@ export interface HttpRetryPatch504OptionalParams extends RequestOptionsBase {
  * @enum {string}
  */
 export enum Location {
-  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+  Httpsuccesshead200 = '/http/success/head/200',
 }
 
 /**
@@ -684,7 +684,7 @@ export enum Location {
  * @enum {string}
  */
 export enum Location1 {
-  HTTPSUCCESSGET200 = '/http/success/get/200',
+  Httpsuccessget200 = '/http/success/get/200',
 }
 
 /**
@@ -698,7 +698,7 @@ export enum Location1 {
  * @enum {string}
  */
 export enum Location2 {
-  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+  Httpsuccesshead200 = '/http/success/head/200',
 }
 
 /**
@@ -712,7 +712,7 @@ export enum Location2 {
  * @enum {string}
  */
 export enum Location3 {
-  HTTPSUCCESSGET200 = '/http/success/get/200',
+  Httpsuccessget200 = '/http/success/get/200',
 }
 
 /**
@@ -726,7 +726,7 @@ export enum Location3 {
  * @enum {string}
  */
 export enum Location4 {
-  HTTPFAILURE500 = '/http/failure/500',
+  Httpfailure500 = '/http/failure/500',
 }
 
 /**
@@ -740,7 +740,7 @@ export enum Location4 {
  * @enum {string}
  */
 export enum Location5 {
-  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+  Httpsuccesshead200 = '/http/success/head/200',
 }
 
 /**
@@ -754,7 +754,7 @@ export enum Location5 {
  * @enum {string}
  */
 export enum Location6 {
-  HTTPSUCCESSGET200 = '/http/success/get/200',
+  Httpsuccessget200 = '/http/success/get/200',
 }
 
 /**
@@ -768,7 +768,7 @@ export enum Location6 {
  * @enum {string}
  */
 export enum Location7 {
-  HTTPFAILURE500 = '/http/failure/500',
+  Httpfailure500 = '/http/failure/500',
 }
 
 /**
@@ -782,7 +782,7 @@ export enum Location7 {
  * @enum {string}
  */
 export enum Location8 {
-  HTTPSUCCESSGET200 = '/http/success/get/200',
+  Httpsuccessget200 = '/http/success/get/200',
 }
 
 /**
@@ -796,7 +796,7 @@ export enum Location8 {
  * @enum {string}
  */
 export enum Location9 {
-  HTTPSUCCESSHEAD200 = '/http/success/head/200',
+  Httpsuccesshead200 = '/http/success/head/200',
 }
 
 /**
@@ -810,7 +810,7 @@ export enum Location9 {
  * @enum {string}
  */
 export enum Location10 {
-  HTTPSUCCESSGET200 = '/http/success/get/200',
+  Httpsuccessget200 = '/http/success/get/200',
 }
 
 /**
@@ -824,7 +824,7 @@ export enum Location10 {
  * @enum {string}
  */
 export enum Location11 {
-  HTTPSUCCESSPUT200 = '/http/success/put/200',
+  Httpsuccessput200 = '/http/success/put/200',
 }
 
 /**
@@ -838,7 +838,7 @@ export enum Location11 {
  * @enum {string}
  */
 export enum Location12 {
-  HTTPSUCCESSPATCH200 = '/http/success/patch/200',
+  Httpsuccesspatch200 = '/http/success/patch/200',
 }
 
 /**
@@ -852,7 +852,7 @@ export enum Location12 {
  * @enum {string}
  */
 export enum Location13 {
-  HTTPSUCCESSPOST200 = '/http/success/post/200',
+  Httpsuccesspost200 = '/http/success/post/200',
 }
 
 /**
@@ -866,5 +866,5 @@ export enum Location13 {
  * @enum {string}
  */
 export enum Location14 {
-  HTTPSUCCESSDELETE200 = '/http/success/delete/200',
+  Httpsuccessdelete200 = '/http/success/delete/200',
 }

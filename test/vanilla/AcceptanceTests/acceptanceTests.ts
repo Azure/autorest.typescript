@@ -398,7 +398,7 @@ describe('typescript', function () {
       it('should support valid null value', function (done) {
         testClient.string.getNull(function (error, result) {
           should.not.exist(result);
-          testClient.string.putNull({ stringBody: null }, function (error, result) {
+          testClient.string.putNull({ stringBody: AutoRestSwaggerBATServiceModels.StringBody.Null }, function (error, result) {
             should.not.exist(error);
             done();
           });
@@ -406,7 +406,7 @@ describe('typescript', function () {
       });
 
       it('should support valid empty string value', function (done) {
-        testClient.string.putEmpty(AutoRestSwaggerBATServiceModels.StringBody1.EMPTY_STRING, function (error, result) {
+        testClient.string.putEmpty(AutoRestSwaggerBATServiceModels.StringBody1.EmptyString, function (error, result) {
           should.not.exist(error);
           testClient.string.getEmpty(function (error, result) {
             result.should.equal('');
@@ -416,20 +416,20 @@ describe('typescript', function () {
       });
 
       it('should support valid MBC string value', function (done) {
-        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣, function (error, result) {
+        testClient.string.putMbcs(AutoRestSwaggerBATServiceModels.StringBody2.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣, function (error, result) {
           should.not.exist(error);
           testClient.string.getMbcs(function (error, result) {
-            result.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣);
+            result.should.equal(AutoRestSwaggerBATServiceModels.GetMbcsOKResponse.啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣);
             done();
           });
         });
       });
 
       it('should support whitespace string value', function (done) {
-        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3._NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_, function (error, result) {
+        testClient.string.putWhitespace(AutoRestSwaggerBATServiceModels.StringBody3.Nowisthetimeforallgoodmentocometotheaidoftheircountry, function (error, result) {
           should.not.exist(error);
           testClient.string.getWhitespace(function (error, result) {
-            result.should.equal(AutoRestSwaggerBATServiceModels.GetWhitespaceOKResponse._NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_);
+            result.should.equal(AutoRestSwaggerBATServiceModels.GetWhitespaceOKResponse.Nowisthetimeforallgoodmentocometotheaidoftheircountry);
             done();
           });
         });
@@ -446,8 +446,8 @@ describe('typescript', function () {
       it('should support valid enum valid value', function (done) {
         testClient.enumModel.getNotExpandable(function (error, result) {
           should.not.exist(error);
-          result.should.equal(AutoRestSwaggerBATServiceModels.Colors.RED_COLOR);
-          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.RED_COLOR, function (error, result) {
+          result.should.equal(AutoRestSwaggerBATServiceModels.Colors.Redcolor);
+          testClient.enumModel.putNotExpandable(AutoRestSwaggerBATServiceModels.Colors.Redcolor, function (error, result) {
             should.not.exist(error);
             done();
           });
@@ -1810,10 +1810,11 @@ describe('typescript', function () {
         testClient.files.getFile(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result as any, function (err, buff) {
-            should.not.exist(err);
-            assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
+          (result as any).buffer().then((buf) => {
+            assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
             done();
+          }).catch((err) => {
+            done(err);
           });
         });
       });
@@ -1822,10 +1823,11 @@ describe('typescript', function () {
         testClient.files.getEmptyFile(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result as any, function (err, buff) {
-            should.not.exist(err);
-            buff.length.should.equal(0);
+          result.text().then((txt) => {
+            assert.equal(txt.length, 0);
             done();
+          }).catch((err) => {
+            done(err);
           });
         });
       });
@@ -1834,7 +1836,7 @@ describe('typescript', function () {
         testClient.files.getFileLarge(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamCountBytes(result as any, function (err, byteCount) {
+          readStreamCountBytes(result.body as any, function (err, byteCount) {
             should.not.exist(err);
             byteCount.should.equal(3000 * 1024 * 1024);
             done();
@@ -1849,7 +1851,7 @@ describe('typescript', function () {
         testClient.formdata.uploadFile(fs.createReadStream(__dirname + '/sample.png') as any, 'sample.png', function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result, function (err, buff) {
+          readStreamToBuffer(result.body, function (err, buff) {
             should.not.exist(err);
             assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
             done();
@@ -1861,7 +1863,7 @@ describe('typescript', function () {
         testClient.formdata.uploadFileViaBody(fs.createReadStream(__dirname + '/sample.png') as any, function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result, function (err, buff) {
+          readStreamToBuffer(result.body, function (err, buff) {
             should.not.exist(err);
             assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
             done();
@@ -1945,7 +1947,7 @@ describe('typescript', function () {
           error.message.should.match(/.*cannot be null or undefined.*/ig);
           testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
             should.exist(error);
-            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.GREEN_COLOR, function (error, result) {
+            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
               should.not.exist(error);
               done();
             });
@@ -2101,7 +2103,7 @@ describe('typescript', function () {
           should.exist(error);
           testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
             should.not.exist(error);
-            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.GREEN_COLOR }, function (error, result) {
+            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
               should.not.exist(error);
               done();
             });

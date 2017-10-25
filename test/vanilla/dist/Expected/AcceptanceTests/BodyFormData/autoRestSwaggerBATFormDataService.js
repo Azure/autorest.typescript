@@ -15,8 +15,8 @@ exports.AutoRestSwaggerBATFormDataServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestSwaggerBATFormDataServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestSwaggerBATFormDataService extends msRest.ServiceClient {
     /**
      * @class

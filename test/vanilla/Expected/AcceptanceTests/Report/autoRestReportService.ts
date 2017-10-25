@@ -13,8 +13,8 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 const WebResource = msRest.WebResource;
 
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 
 class AutoRestReportService extends msRest.ServiceClient {
   baseUri: string;

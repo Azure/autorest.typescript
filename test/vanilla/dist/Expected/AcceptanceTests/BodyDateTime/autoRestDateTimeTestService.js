@@ -15,8 +15,8 @@ exports.AutoRestDateTimeTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestDateTimeTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestDateTimeTestService extends msRest.ServiceClient {
     /**
      * @class

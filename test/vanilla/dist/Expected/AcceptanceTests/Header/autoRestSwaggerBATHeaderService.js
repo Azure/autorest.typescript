@@ -15,8 +15,8 @@ exports.AutoRestSwaggerBATHeaderServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestSwaggerBATHeaderServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestSwaggerBATHeaderService extends msRest.ServiceClient {
     /**
      * @class

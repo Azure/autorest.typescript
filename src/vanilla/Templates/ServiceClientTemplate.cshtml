@@ -24,8 +24,8 @@ import * as Mappers from "./models/mappers";
 @:const WebResource = msRest.WebResource;
 }
 @EmptyLine
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "@Model.PackageName";
+const packageVersion = "@Model.PackageVersion";
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);}
 @EmptyLine

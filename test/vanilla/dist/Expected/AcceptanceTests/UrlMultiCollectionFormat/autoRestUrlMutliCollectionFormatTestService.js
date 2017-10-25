@@ -15,8 +15,8 @@ exports.AutoRestUrlMutliCollectionFormatTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestUrlMutliCollectionFormatTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestUrlMutliCollectionFormatTestService extends msRest.ServiceClient {
     /**
      * @class

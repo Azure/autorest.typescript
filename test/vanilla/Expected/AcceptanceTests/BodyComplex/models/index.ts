@@ -515,8 +515,8 @@ export interface ReadonlypropertyPutValidOptionalParams extends RequestOptionsBa
  * @enum {string}
  */
 export enum CMYKColors {
-  CYAN = 'cyan',
-  MAGENTA = 'Magenta',
+  Cyan = 'cyan',
+  Magenta = 'Magenta',
   YELLOW = 'YELLOW',
-  BLACK = 'blacK',
+  BlacK = 'blacK',
 }

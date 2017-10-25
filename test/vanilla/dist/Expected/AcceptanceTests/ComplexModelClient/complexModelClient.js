@@ -23,8 +23,8 @@ exports.ComplexModelModels = Models;
 const Mappers = require("./models/mappers");
 exports.ComplexModelMappers = Mappers;
 const WebResource = msRest.WebResource;
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class ComplexModelClient extends msRest.ServiceClient {
     /**
      * @class

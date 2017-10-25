@@ -17,6 +17,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var EnumConst;
 (function (EnumConst) {
-    EnumConst["CONSTANT_STRING_AS_ENUM"] = "constant_string_as_enum";
+    EnumConst["ConstantStringAsEnum"] = "constant_string_as_enum";
 })(EnumConst = exports.EnumConst || (exports.EnumConst = {}));
 //# sourceMappingURL=index.js.map

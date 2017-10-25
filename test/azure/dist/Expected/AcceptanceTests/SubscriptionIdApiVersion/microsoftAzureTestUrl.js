@@ -16,8 +16,8 @@ exports.MicrosoftAzureTestUrlMappers = Mappers;
 const msRest = require("ms-rest-js");
 const msRestAzure = require("ms-rest-azure-js");
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class MicrosoftAzureTestUrl extends msRestAzure.AzureServiceClient {
     /**
      * @class

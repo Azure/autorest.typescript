@@ -279,14 +279,20 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
+                string result = "void";
                 if (ReturnType.Body != null)
                 {
-                    return ReturnType.Body.TSType(false);
+                    result = ReturnType.Body.TSType(false);
+                    // We will return the actual response if the return type is stream.
+                    // That provides better user experience as customers can use 
+                    // .text(), .json(), etc. inbuilt methods of the response class
+                    // to read the stream.
+                    if (result.Contains("ReadableStream"))
+                    {
+                        result = "Response";
+                    }
                 }
-                else
-                {
-                    return "void";
-                }
+                return result;
             }
         }
 
@@ -917,9 +923,15 @@ namespace AutoRest.TypeScript.Model
                 throw new ArgumentNullException("resultReference");
             }
             var sb = new StringBuilder("");
-            string rType = "";
-            rType = ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream) ? "Stream" : "Json";
-            sb.AppendFormat("{0}.bodyAs{1} as {2}", resultReference, rType, ReturnTypeTSString);
+
+            if (ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream))
+            {
+                sb.AppendFormat("{0}.response", resultReference);
+            }
+            else
+            {
+                sb.AppendFormat("{0}.bodyAsJson as {1}", resultReference, ReturnTypeTSString);
+            }
             return sb.ToString();
         }
     }

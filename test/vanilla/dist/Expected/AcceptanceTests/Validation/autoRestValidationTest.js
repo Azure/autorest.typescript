@@ -23,8 +23,8 @@ exports.AutoRestValidationTestModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestValidationTestMappers = Mappers;
 const WebResource = msRest.WebResource;
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestValidationTest extends msRest.ServiceClient {
     /**
      * @class

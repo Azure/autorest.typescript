@@ -13,8 +13,8 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 
 class AutoRestSwaggerBATFileService extends msRest.ServiceClient {
   baseUri: string;

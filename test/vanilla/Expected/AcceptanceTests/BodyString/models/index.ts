@@ -72,9 +72,9 @@ export interface EnumModelPutReferencedConstantOptionalParams extends RequestOpt
  * @enum {string}
  */
 export enum Colors {
-  RED_COLOR = 'red color',
-  GREEN_COLOR = 'green-color',
-  BLUE_COLOR = 'blue_color',
+  Redcolor = 'red color',
+  GreenColor = 'green-color',
+  BlueColor = 'blue_color',
 }
 
 /**
@@ -88,7 +88,7 @@ export enum Colors {
  * @enum {string}
  */
 export enum StringBody {
-  NULL = null as any,
+  Null = null as any,
 }
 
 /**
@@ -103,7 +103,7 @@ export enum StringBody {
  * @enum {string}
  */
 export enum GetNullOKResponse {
-  NULL = null as any,
+  Null = null as any,
 }
 
 /**
@@ -118,7 +118,7 @@ export enum GetNullOKResponse {
  * @enum {string}
  */
 export enum GetEmptyOKResponse {
-  EMPTY_STRING = '',
+  EmptyString = '',
 }
 
 /**
@@ -133,7 +133,7 @@ export enum GetEmptyOKResponse {
  * @enum {string}
  */
 export enum StringBody1 {
-  EMPTY_STRING = '',
+  EmptyString = '',
 }
 
 /**
@@ -149,7 +149,7 @@ export enum StringBody1 {
  * @enum {string}
  */
 export enum GetMbcsOKResponse {
-  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
+  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
 }
 
 /**
@@ -165,7 +165,7 @@ export enum GetMbcsOKResponse {
  * @enum {string}
  */
 export enum StringBody2 {
-  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯАЯĀɡㄅㄩⱭɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
+  啊齄丂狛狜隣郎隣兀﨩ˊーぁんァヶΑАЯаяāɡㄅㄩɑɡ䜣 = '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€',
 }
 
 /**
@@ -181,7 +181,7 @@ export enum StringBody2 {
  * @enum {string}
  */
 export enum GetWhitespaceOKResponse {
-  _NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_ = '    Now is the time for all good men to come to the aid of their country    ',
+  Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
 }
 
 /**
@@ -197,5 +197,5 @@ export enum GetWhitespaceOKResponse {
  * @enum {string}
  */
 export enum StringBody3 {
-  _NOW_IS_THE_TIME_FOR_ALL_GOOD_MEN_TO_COME_TO_THE_AID_OF_THEIR_COUNTRY_ = '    Now is the time for all good men to come to the aid of their country    ',
+  Nowisthetimeforallgoodmentocometotheaidoftheircountry = '    Now is the time for all good men to come to the aid of their country    ',
 }
