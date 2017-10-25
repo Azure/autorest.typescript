@@ -1810,10 +1810,11 @@ describe('typescript', function () {
         testClient.files.getFile(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result as any, function (err, buff) {
-            should.not.exist(err);
-            assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
+          (result as any).buffer().then((buf) => {
+            assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
             done();
+          }).catch((err) => {
+            done(err);
           });
         });
       });
@@ -1822,10 +1823,11 @@ describe('typescript', function () {
         testClient.files.getEmptyFile(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result as any, function (err, buff) {
-            should.not.exist(err);
-            buff.length.should.equal(0);
+          result.text().then((txt) => {
+            assert.equal(txt.length, 0);
             done();
+          }).catch((err) => {
+            done(err);
           });
         });
       });
@@ -1834,7 +1836,7 @@ describe('typescript', function () {
         testClient.files.getFileLarge(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamCountBytes(result as any, function (err, byteCount) {
+          readStreamCountBytes(result.body as any, function (err, byteCount) {
             should.not.exist(err);
             byteCount.should.equal(3000 * 1024 * 1024);
             done();
@@ -1849,7 +1851,7 @@ describe('typescript', function () {
         testClient.formdata.uploadFile(fs.createReadStream(__dirname + '/sample.png') as any, 'sample.png', function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result, function (err, buff) {
+          readStreamToBuffer(result.body, function (err, buff) {
             should.not.exist(err);
             assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
             done();
@@ -1861,7 +1863,7 @@ describe('typescript', function () {
         testClient.formdata.uploadFileViaBody(fs.createReadStream(__dirname + '/sample.png') as any, function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamToBuffer(result, function (err, buff) {
+          readStreamToBuffer(result.body, function (err, buff) {
             should.not.exist(err);
             assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
             done();
