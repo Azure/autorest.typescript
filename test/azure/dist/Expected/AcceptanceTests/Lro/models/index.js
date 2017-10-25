@@ -23,16 +23,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var ProvisioningStateValues;
 (function (ProvisioningStateValues) {
-    ProvisioningStateValues["SUCCEEDED"] = "Succeeded";
-    ProvisioningStateValues["FAILED"] = "Failed";
-    ProvisioningStateValues["CANCELED"] = "canceled";
-    ProvisioningStateValues["ACCEPTED"] = "Accepted";
-    ProvisioningStateValues["CREATING"] = "Creating";
-    ProvisioningStateValues["CREATED"] = "Created";
-    ProvisioningStateValues["UPDATING"] = "Updating";
-    ProvisioningStateValues["UPDATED"] = "Updated";
-    ProvisioningStateValues["DELETING"] = "Deleting";
-    ProvisioningStateValues["DELETED"] = "Deleted";
+    ProvisioningStateValues["Succeeded"] = "Succeeded";
+    ProvisioningStateValues["Failed"] = "Failed";
+    ProvisioningStateValues["Canceled"] = "canceled";
+    ProvisioningStateValues["Accepted"] = "Accepted";
+    ProvisioningStateValues["Creating"] = "Creating";
+    ProvisioningStateValues["Created"] = "Created";
+    ProvisioningStateValues["Updating"] = "Updating";
+    ProvisioningStateValues["Updated"] = "Updated";
+    ProvisioningStateValues["Deleting"] = "Deleting";
+    ProvisioningStateValues["Deleted"] = "Deleted";
     ProvisioningStateValues["OK"] = "OK";
 })(ProvisioningStateValues = exports.ProvisioningStateValues || (exports.ProvisioningStateValues = {}));
 /**
@@ -49,16 +49,16 @@ var ProvisioningStateValues;
  */
 var ProvisioningStateValues1;
 (function (ProvisioningStateValues1) {
-    ProvisioningStateValues1["SUCCEEDED"] = "Succeeded";
-    ProvisioningStateValues1["FAILED"] = "Failed";
-    ProvisioningStateValues1["CANCELED"] = "canceled";
-    ProvisioningStateValues1["ACCEPTED"] = "Accepted";
-    ProvisioningStateValues1["CREATING"] = "Creating";
-    ProvisioningStateValues1["CREATED"] = "Created";
-    ProvisioningStateValues1["UPDATING"] = "Updating";
-    ProvisioningStateValues1["UPDATED"] = "Updated";
-    ProvisioningStateValues1["DELETING"] = "Deleting";
-    ProvisioningStateValues1["DELETED"] = "Deleted";
+    ProvisioningStateValues1["Succeeded"] = "Succeeded";
+    ProvisioningStateValues1["Failed"] = "Failed";
+    ProvisioningStateValues1["Canceled"] = "canceled";
+    ProvisioningStateValues1["Accepted"] = "Accepted";
+    ProvisioningStateValues1["Creating"] = "Creating";
+    ProvisioningStateValues1["Created"] = "Created";
+    ProvisioningStateValues1["Updating"] = "Updating";
+    ProvisioningStateValues1["Updated"] = "Updated";
+    ProvisioningStateValues1["Deleting"] = "Deleting";
+    ProvisioningStateValues1["Deleted"] = "Deleted";
     ProvisioningStateValues1["OK"] = "OK";
 })(ProvisioningStateValues1 = exports.ProvisioningStateValues1 || (exports.ProvisioningStateValues1 = {}));
 /**
@@ -74,16 +74,16 @@ var ProvisioningStateValues1;
  */
 var Status;
 (function (Status) {
-    Status["SUCCEEDED"] = "Succeeded";
-    Status["FAILED"] = "Failed";
-    Status["CANCELED"] = "canceled";
-    Status["ACCEPTED"] = "Accepted";
-    Status["CREATING"] = "Creating";
-    Status["CREATED"] = "Created";
-    Status["UPDATING"] = "Updating";
-    Status["UPDATED"] = "Updated";
-    Status["DELETING"] = "Deleting";
-    Status["DELETED"] = "Deleted";
+    Status["Succeeded"] = "Succeeded";
+    Status["Failed"] = "Failed";
+    Status["Canceled"] = "canceled";
+    Status["Accepted"] = "Accepted";
+    Status["Creating"] = "Creating";
+    Status["Created"] = "Created";
+    Status["Updating"] = "Updating";
+    Status["Updated"] = "Updated";
+    Status["Deleting"] = "Deleting";
+    Status["Deleted"] = "Deleted";
     Status["OK"] = "OK";
 })(Status = exports.Status || (exports.Status = {}));
 //# sourceMappingURL=index.js.map

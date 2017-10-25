@@ -17,8 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var UriColor;
 (function (UriColor) {
-    UriColor["RED_COLOR"] = "red color";
-    UriColor["GREEN_COLOR"] = "green color";
-    UriColor["BLUE_COLOR"] = "blue color";
+    UriColor["Redcolor"] = "red color";
+    UriColor["Greencolor"] = "green color";
+    UriColor["Bluecolor"] = "blue color";
 })(UriColor = exports.UriColor || (exports.UriColor = {}));
 //# sourceMappingURL=index.js.map

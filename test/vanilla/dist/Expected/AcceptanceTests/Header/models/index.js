@@ -17,8 +17,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var GreyscaleColors;
 (function (GreyscaleColors) {
-    GreyscaleColors["WHITE"] = "White";
-    GreyscaleColors["BLACK"] = "black";
+    GreyscaleColors["White"] = "White";
+    GreyscaleColors["Black"] = "black";
     GreyscaleColors["GREY"] = "GREY";
 })(GreyscaleColors = exports.GreyscaleColors || (exports.GreyscaleColors = {}));
 //# sourceMappingURL=index.js.map

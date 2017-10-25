@@ -15,8 +15,8 @@ exports.AutoRestRFC1123DateTimeTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestRFC1123DateTimeTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestRFC1123DateTimeTestService extends msRest.ServiceClient {
     /**
      * @class

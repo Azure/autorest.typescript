@@ -15,8 +15,8 @@ exports.AutoRestBoolTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestBoolTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestBoolTestService extends msRest.ServiceClient {
     /**
      * @class

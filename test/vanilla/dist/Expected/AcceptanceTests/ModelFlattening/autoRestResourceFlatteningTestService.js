@@ -23,8 +23,8 @@ exports.AutoRestResourceFlatteningTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestResourceFlatteningTestServiceMappers = Mappers;
 const WebResource = msRest.WebResource;
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     /**
      * @class

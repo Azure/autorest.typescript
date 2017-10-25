@@ -15,8 +15,8 @@ exports.AutoRestRequiredOptionalTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestRequiredOptionalTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
     /**
      * @class

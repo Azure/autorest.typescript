@@ -15,8 +15,8 @@ exports.AutoRestIntegerTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestIntegerTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestIntegerTestService extends msRest.ServiceClient {
     /**
      * @class

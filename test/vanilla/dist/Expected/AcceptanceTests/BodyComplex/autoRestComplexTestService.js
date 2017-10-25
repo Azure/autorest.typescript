@@ -15,8 +15,8 @@ exports.AutoRestComplexTestServiceModels = Models;
 const Mappers = require("./models/mappers");
 exports.AutoRestComplexTestServiceMappers = Mappers;
 const operations = require("./operations");
-const packageName = 'foo';
-const packageVersion = '3.0.0-preview';
+const packageName = "";
+const packageVersion = "";
 class AutoRestComplexTestService extends msRest.ServiceClient {
     /**
      * @class

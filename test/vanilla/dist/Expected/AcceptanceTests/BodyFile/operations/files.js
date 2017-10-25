@@ -253,7 +253,7 @@ class Files {
         let cb = callback;
         if (!callback) {
             return this.getFileWithHttpOperationResponse(options).then((operationRes) => {
-                return Promise.resolve(operationRes.bodyAsStream);
+                return Promise.resolve(operationRes.response);
             }).catch((err) => {
                 return Promise.reject(err);
             });
@@ -263,7 +263,7 @@ class Files {
                 if (err) {
                     return cb(err);
                 }
-                let result = data.bodyAsStream;
+                let result = data.response;
                 return cb(err, result, data.request, data.response);
             });
         }
@@ -276,7 +276,7 @@ class Files {
         let cb = callback;
         if (!callback) {
             return this.getFileLargeWithHttpOperationResponse(options).then((operationRes) => {
-                return Promise.resolve(operationRes.bodyAsStream);
+                return Promise.resolve(operationRes.response);
             }).catch((err) => {
                 return Promise.reject(err);
             });
@@ -286,7 +286,7 @@ class Files {
                 if (err) {
                     return cb(err);
                 }
-                let result = data.bodyAsStream;
+                let result = data.response;
                 return cb(err, result, data.request, data.response);
             });
         }
@@ -299,7 +299,7 @@ class Files {
         let cb = callback;
         if (!callback) {
             return this.getEmptyFileWithHttpOperationResponse(options).then((operationRes) => {
-                return Promise.resolve(operationRes.bodyAsStream);
+                return Promise.resolve(operationRes.response);
             }).catch((err) => {
                 return Promise.reject(err);
             });
@@ -309,7 +309,7 @@ class Files {
                 if (err) {
                     return cb(err);
                 }
-                let result = data.bodyAsStream;
+                let result = data.response;
                 return cb(err, result, data.request, data.response);
             });
         }
