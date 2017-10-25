@@ -15,7 +15,7 @@
     }
   ],
   "dependencies": {
-    "ms-rest-js": "^0.2.2"
+    "ms-rest-js": "^0.2.3"
   },
   "devDependencies": {
     "tslint": "^5.7.0",
