@@ -258,25 +258,25 @@ export class Files {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {ReadableStream} [result]   - The deserialized result object if an error did not occur.
+   *                      {Response} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getFile(): Promise<ReadableStream>;
-  getFile(options: msRest.RequestOptionsBase): Promise<ReadableStream>;
-  getFile(callback: msRest.ServiceCallback<ReadableStream>): void;
-  getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<ReadableStream>): void;
-  getFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<ReadableStream>): any {
+  getFile(): Promise<Response>;
+  getFile(options: msRest.RequestOptionsBase): Promise<Response>;
+  getFile(callback: msRest.ServiceCallback<Response>): void;
+  getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Response>): void;
+  getFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Response>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<ReadableStream>;
+    let cb = callback as msRest.ServiceCallback<Response>;
     if (!callback) {
       return this.getFileWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsStream as ReadableStream);
+        return Promise.resolve(operationRes.response);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -285,7 +285,7 @@ export class Files {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsStream as ReadableStream;
+        let result = data.response;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -302,25 +302,25 @@ export class Files {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {ReadableStream} [result]   - The deserialized result object if an error did not occur.
+   *                      {Response} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getFileLarge(): Promise<ReadableStream>;
-  getFileLarge(options: msRest.RequestOptionsBase): Promise<ReadableStream>;
-  getFileLarge(callback: msRest.ServiceCallback<ReadableStream>): void;
-  getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<ReadableStream>): void;
-  getFileLarge(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<ReadableStream>): any {
+  getFileLarge(): Promise<Response>;
+  getFileLarge(options: msRest.RequestOptionsBase): Promise<Response>;
+  getFileLarge(callback: msRest.ServiceCallback<Response>): void;
+  getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Response>): void;
+  getFileLarge(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Response>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<ReadableStream>;
+    let cb = callback as msRest.ServiceCallback<Response>;
     if (!callback) {
       return this.getFileLargeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsStream as ReadableStream);
+        return Promise.resolve(operationRes.response);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -329,7 +329,7 @@ export class Files {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsStream as ReadableStream;
+        let result = data.response;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -346,25 +346,25 @@ export class Files {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {ReadableStream} [result]   - The deserialized result object if an error did not occur.
+   *                      {Response} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEmptyFile(): Promise<ReadableStream>;
-  getEmptyFile(options: msRest.RequestOptionsBase): Promise<ReadableStream>;
-  getEmptyFile(callback: msRest.ServiceCallback<ReadableStream>): void;
-  getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<ReadableStream>): void;
-  getEmptyFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<ReadableStream>): any {
+  getEmptyFile(): Promise<Response>;
+  getEmptyFile(options: msRest.RequestOptionsBase): Promise<Response>;
+  getEmptyFile(callback: msRest.ServiceCallback<Response>): void;
+  getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Response>): void;
+  getEmptyFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Response>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<ReadableStream>;
+    let cb = callback as msRest.ServiceCallback<Response>;
     if (!callback) {
       return this.getEmptyFileWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsStream as ReadableStream);
+        return Promise.resolve(operationRes.response);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -373,7 +373,7 @@ export class Files {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsStream as ReadableStream;
+        let result = data.response;
         return cb(err, result, data.request, data.response);
       });
     }
