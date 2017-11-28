@@ -30,7 +30,8 @@ autorest --typescript --output-folder=<path-to-the-output-folder(usually upto li
 ### Building the project
 After cloning the repo, execute:
 - `npm install`
-- `gulp build` (Make sure you have gulp installed globally too (`npm install -g gulp`))
+- `npm install -g gulp` (gulp should be installed globally too)
+- `npm run build`
 
 ### Testing the developed changes
 - `gulp regenerate`
