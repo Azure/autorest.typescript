@@ -713,7 +713,7 @@ namespace AutoRest.TypeScript
                     var constraintValue = constraints[keys[j]];
                     if (keys[j] == Constraint.Pattern)
                     {
-                        constraintValue = $"'{constraintValue}'";
+                        constraintValue = $"'{constraintValue.EscapeSingleQuotes()}'";
                     }
                     if (j != keys.Count - 1)
                     {
