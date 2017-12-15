@@ -45,7 +45,7 @@ class AutoRestReportService extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost';
+      this.baseUri = 'http://localhost:3000';
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
@@ -56,7 +56,8 @@ class AutoRestReportService extends msRest.ServiceClient {
   /**
    * Get test coverage report
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param {AutoRestReportServiceGetReportOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -64,12 +65,28 @@ class AutoRestReportService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReportWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this;
+    let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
+    // Validate
+    try {
+      if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
+        throw new Error('qualifier must be of type string.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
 
     // Construct URL
     let baseUrl = this.baseUri;
     let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'report';
+    let queryParamsArray: Array<any> = [];
+    if (qualifier !== null && qualifier !== undefined) {
+      queryParamsArray.push('qualifier=' + encodeURIComponent(qualifier));
+    }
+    if (queryParamsArray.length > 0) {
+      requestUrl += '?' + queryParamsArray.join('&');
+    }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -155,7 +172,8 @@ class AutoRestReportService extends msRest.ServiceClient {
   /**
    * Get test coverage report
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param {AutoRestReportServiceGetReportOptionalParams} [options] Optional
+   * Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -170,10 +188,10 @@ class AutoRestReportService extends msRest.ServiceClient {
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
   getReport(): Promise<{ [propertyName: string]: number }>;
-  getReport(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getReport(options: Models.AutoRestReportServiceGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
+  getReport(options: Models.AutoRestReportServiceGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(options?: Models.AutoRestReportServiceGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

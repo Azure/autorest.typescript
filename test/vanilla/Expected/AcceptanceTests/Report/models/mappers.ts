@@ -33,3 +33,21 @@ export const ErrorModel = {
     }
   }
 };
+
+export const AutoRestReportServiceGetReportOptionalParams = {
+  required: false,
+  serializedName: 'GetReportOptions',
+  type: {
+    name: 'Composite',
+    className: 'AutoRestReportServiceGetReportOptionalParams',
+    modelProperties: {
+      qualifier: {
+        required: false,
+        serializedName: 'qualifier',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
