@@ -24,10 +24,6 @@ export interface ErrorModel {
    */
   status?: number;
   /**
-   * @member {number} [constantId]
-   */
-  constantId?: number;
-  /**
    * @member {string} [message]
    */
   message?: string;

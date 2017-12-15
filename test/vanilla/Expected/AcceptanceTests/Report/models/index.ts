@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import { RequestOptionsBase } from "ms-rest-js";
 
 
 /**
@@ -23,4 +24,21 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestReportServiceGetReportOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface AutoRestReportServiceGetReportOptionalParams extends RequestOptionsBase {
+  /**
+   * @member {string} [qualifier] If specified, qualifies the generated report
+   * further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that
+   * generators that run all tests several times, can distinguish the generated
+   * reports.
+   */
+  qualifier?: string;
 }
