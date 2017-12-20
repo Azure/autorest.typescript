@@ -7,7 +7,7 @@ npm install -g autorest
 # Usage
 - Basic Usage:
 ```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version>
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version>
 ```
 - If you have a markdown config file then there is no need to use --input-file, simply provide the path to the markdown file:
 ```
@@ -15,14 +15,16 @@ autorest --typescript --output-folder=<path-to-the-output-folder(usually upto li
 ```
 - If you want to generate metadata files **__(package.json, .npmignore, webpack.config.js, tsconfig.json, README.md(with a sample))__**, then provide `--generate-metadata=true`:
 
-**NOTE: This will generate all the __metadata__ files one level above the output-folder.**
+**NOTE:**
+- **This will generate all the __metadata__ files one level above the output-folder.**
+- **The output-folder must end in the lib folder for now. For example `--output-folder=D:\tmp\TSProject\lib`. This is required because the includes array in tsconfig.json and stuff inside webpack.config.js is hardwired to look for the generated stuff inside the lib folder.**
 ```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true
 ```
 
 - For generating a client for an azure service, provide `--typescript.azure-arm=true`:
 ```
-autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib or src folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true --typescript.azure-arm=true
+autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true --typescript.azure-arm=true
 ```
 
 # Development
