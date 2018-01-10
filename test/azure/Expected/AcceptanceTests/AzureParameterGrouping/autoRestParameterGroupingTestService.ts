@@ -71,7 +71,7 @@ class AutoRestParameterGroupingTestService extends msRestAzure.AzureServiceClien
     this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'https://localhost';
+      this.baseUri = 'http://localhost:3000';
     }
     this.credentials = credentials;
 

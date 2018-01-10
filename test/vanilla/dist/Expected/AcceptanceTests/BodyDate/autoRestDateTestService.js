@@ -41,7 +41,7 @@ class AutoRestDateTestService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'https://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.dateModel = new operations.DateModel(this);

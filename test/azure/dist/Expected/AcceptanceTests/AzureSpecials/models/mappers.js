@@ -27,8 +27,10 @@ exports.ErrorModel = {
                 }
             },
             constantId: {
-                required: false,
+                required: true,
+                isConstant: true,
                 serializedName: 'constantId',
+                defaultValue: 1,
                 type: {
                     name: 'Number'
                 }

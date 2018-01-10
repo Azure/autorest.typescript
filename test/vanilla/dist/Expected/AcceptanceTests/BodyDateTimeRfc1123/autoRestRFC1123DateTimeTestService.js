@@ -41,7 +41,7 @@ class AutoRestRFC1123DateTimeTestService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'https://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.datetimerfc1123 = new operations.Datetimerfc1123(this);

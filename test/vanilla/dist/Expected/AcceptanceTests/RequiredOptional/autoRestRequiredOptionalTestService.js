@@ -53,7 +53,7 @@ class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'http://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.requiredGlobalPath = requiredGlobalPath;
         this.requiredGlobalQuery = requiredGlobalQuery;

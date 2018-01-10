@@ -49,7 +49,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'http://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.serializer = new msRest.Serializer(Mappers);
@@ -58,7 +58,8 @@ class AutoRestReportService extends msRest.ServiceClient {
     /**
      * Get test coverage report
      *
-     * @param {RequestOptionsBase} [options] Optional Parameters.
+     * @param {AutoRestReportServiceGetReportOptionalParams} [options] Optional
+     * Parameters.
      *
      * @returns {Promise} A promise is returned
      *
@@ -69,9 +70,26 @@ class AutoRestReportService extends msRest.ServiceClient {
     getReportWithHttpOperationResponse(options) {
         return __awaiter(this, void 0, void 0, function* () {
             let client = this;
+            let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
+            // Validate
+            try {
+                if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
+                    throw new Error('qualifier must be of type string.');
+                }
+            }
+            catch (error) {
+                return Promise.reject(error);
+            }
             // Construct URL
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'report';
+            let queryParamsArray = [];
+            if (qualifier !== null && qualifier !== undefined) {
+                queryParamsArray.push('qualifier=' + encodeURIComponent(qualifier));
+            }
+            if (queryParamsArray.length > 0) {
+                requestUrl += '?' + queryParamsArray.join('&');
+            }
             // Create HTTP transport objects
             let httpRequest = new WebResource();
             httpRequest.method = 'GET';
