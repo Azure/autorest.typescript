@@ -299,15 +299,23 @@ namespace AutoRest.TypeScript
 
             var builder = new IndentedStringBuilder("  ");
             var allowedValues = scope.GetUniqueName("allowedValues");
+            var enumValue = scope.GetUniqueName("enumValue");
+            var updatedValue = valueReference;
 
             builder.AppendLine("if ({0}) {{", valueReference)
-                        .Indent()
-                            .AppendLine("let {0} = {1};", allowedValues, enumType.GetEnumValuesArray())
-                            .AppendLine("if (!{0}.some( function(item) {{ return item === {1}; }})) {{", allowedValues, valueReference)
-                            .Indent()
-                                .AppendLine("throw new Error({0} + ' is not a valid value. The valid values are: ' + {1});", valueReference, allowedValues)
-                            .Outdent()
-                            .AppendLine("}");
+                   .Indent()
+                   .AppendLine("let {0} = {1};", allowedValues, enumType.GetEnumValuesArray());
+
+            if (valueReference.StartsWith("this."))
+            {
+                builder.AppendLine("let {0} = {1};", enumValue, valueReference);
+                updatedValue = enumValue;
+            }
+            builder.AppendLine("if (!{0}.some( function(item) {{ return item === {1}; }})) {{", allowedValues, updatedValue)
+                   .Indent()
+                   .AppendLine("throw new Error({0} + ' is not a valid value. The valid values are: ' + {1});", updatedValue, allowedValues)
+                   .Outdent()
+                   .AppendLine("}");
             if (isRequired)
             {
                 var escapedValueReference = valueReference.EscapeSingleQuotes();
