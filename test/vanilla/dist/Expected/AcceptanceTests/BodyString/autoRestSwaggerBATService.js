@@ -41,7 +41,7 @@ class AutoRestSwaggerBATService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'http://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.string = new operations.String(this);

@@ -41,7 +41,7 @@ class AutoRestDurationTestService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'https://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.duration = new operations.Duration(this);
