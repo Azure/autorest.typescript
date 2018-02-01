@@ -88,7 +88,7 @@ class Header {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -201,7 +201,7 @@ class Header {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -300,7 +300,7 @@ class Header {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

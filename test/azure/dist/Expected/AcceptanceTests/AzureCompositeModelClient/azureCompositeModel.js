@@ -153,7 +153,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

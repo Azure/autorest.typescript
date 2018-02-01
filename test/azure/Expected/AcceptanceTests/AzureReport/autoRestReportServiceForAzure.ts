@@ -68,7 +68,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost';
+      this.baseUri = 'http://localhost:3000';
     }
     this.credentials = credentials;
 
@@ -89,7 +89,8 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
   /**
    * Get test coverage report
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options]
+   * Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -97,10 +98,14 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReportWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this;
+    let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
     // Validate
     try {
+      if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
+        throw new Error('qualifier must be of type string.');
+      }
       if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
         throw new Error('this.acceptLanguage must be of type string.');
       }
@@ -112,6 +117,9 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     let baseUrl = this.baseUri;
     let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'report/azure';
     let queryParamsArray: Array<any> = [];
+    if (qualifier !== null && qualifier !== undefined) {
+      queryParamsArray.push('qualifier=' + encodeURIComponent(qualifier));
+    }
     if (queryParamsArray.length > 0) {
       requestUrl += '?' + queryParamsArray.join('&');
     }
@@ -136,7 +144,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -206,7 +213,8 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
   /**
    * Get test coverage report
    *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
+   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options]
+   * Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -221,10 +229,10 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
   getReport(): Promise<{ [propertyName: string]: number }>;
-  getReport(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: number }>;
+  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
   getReport(callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
-  getReport(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
+  getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback: msRest.ServiceCallback<{ [propertyName: string]: number }>): void;
+  getReport(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams, callback?: msRest.ServiceCallback<{ [propertyName: string]: number }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

@@ -74,7 +74,7 @@ class AutoRestLongRunningOperationTestService extends msRestAzure.AzureServiceCl
     this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost';
+      this.baseUri = 'http://localhost:3000';
     }
     this.credentials = credentials;
 

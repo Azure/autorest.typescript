@@ -79,7 +79,6 @@ class ArrayModel {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -303,7 +302,6 @@ class ArrayModel {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -528,7 +526,6 @@ class ArrayModel {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

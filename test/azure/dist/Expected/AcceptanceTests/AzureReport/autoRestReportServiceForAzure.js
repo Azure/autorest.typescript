@@ -64,7 +64,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         this.generateClientRequestId = true;
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'http://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.credentials = credentials;
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
@@ -83,7 +83,8 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     /**
      * Get test coverage report
      *
-     * @param {RequestOptionsBase} [options] Optional Parameters.
+     * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options]
+     * Optional Parameters.
      *
      * @returns {Promise} A promise is returned
      *
@@ -94,8 +95,12 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     getReportWithHttpOperationResponse(options) {
         return __awaiter(this, void 0, void 0, function* () {
             let client = this;
+            let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
             // Validate
             try {
+                if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
+                    throw new Error('qualifier must be of type string.');
+                }
                 if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
                     throw new Error('this.acceptLanguage must be of type string.');
                 }
@@ -107,6 +112,9 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
             let baseUrl = this.baseUri;
             let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'report/azure';
             let queryParamsArray = [];
+            if (qualifier !== null && qualifier !== undefined) {
+                queryParamsArray.push('qualifier=' + encodeURIComponent(qualifier));
+            }
             if (queryParamsArray.length > 0) {
                 requestUrl += '?' + queryParamsArray.join('&');
             }
@@ -130,7 +138,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

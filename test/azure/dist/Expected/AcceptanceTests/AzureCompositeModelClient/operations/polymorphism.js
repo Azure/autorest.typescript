@@ -79,7 +79,6 @@ class Polymorphism {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -328,7 +327,6 @@ class Polymorphism {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

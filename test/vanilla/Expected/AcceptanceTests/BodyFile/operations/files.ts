@@ -57,7 +57,6 @@ export class Files {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
@@ -131,7 +130,6 @@ export class Files {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
@@ -205,7 +203,6 @@ export class Files {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;

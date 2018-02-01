@@ -104,7 +104,6 @@ class AutoRestReportService extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

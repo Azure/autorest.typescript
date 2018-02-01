@@ -9,6 +9,7 @@
  */
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
+import { RequestOptionsBase } from "ms-rest-js";
 
 export { BaseResource, CloudError };
 
@@ -26,5 +27,22 @@ export interface ErrorModel {
    * @member {string} [message]
    */
   message?: string;
+}
+
+/**
+ * @interface
+ * An interface representing AutoRestReportServiceForAzureGetReportOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface AutoRestReportServiceForAzureGetReportOptionalParams extends RequestOptionsBase {
+  /**
+   * @member {string} [qualifier] If specified, qualifies the generated report
+   * further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that
+   * generators that run all tests several times, can distinguish the generated
+   * reports.
+   */
+  qualifier?: string;
 }
 

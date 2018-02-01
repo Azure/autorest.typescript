@@ -79,7 +79,6 @@ class Polymorphicrecursive {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

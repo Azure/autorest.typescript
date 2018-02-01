@@ -647,7 +647,6 @@ class LRORetrys {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -772,7 +771,6 @@ class LRORetrys {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -865,7 +863,6 @@ class LRORetrys {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

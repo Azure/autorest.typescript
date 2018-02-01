@@ -79,7 +79,7 @@ export class ApiVersionDefault {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -172,7 +172,7 @@ export class ApiVersionDefault {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -265,7 +265,7 @@ export class ApiVersionDefault {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -358,7 +358,7 @@ export class ApiVersionDefault {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

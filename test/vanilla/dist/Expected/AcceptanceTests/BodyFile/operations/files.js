@@ -60,7 +60,6 @@ class Files {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             httpRequest.rawResponse = true;
             let operationRes;
@@ -132,7 +131,6 @@ class Files {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             httpRequest.rawResponse = true;
             let operationRes;
@@ -204,7 +202,6 @@ class Files {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             httpRequest.rawResponse = true;
             let operationRes;

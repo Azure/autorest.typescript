@@ -80,7 +80,7 @@ export class SubscriptionInCredentials {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -175,7 +175,7 @@ export class SubscriptionInCredentials {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -273,7 +273,7 @@ export class SubscriptionInCredentials {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -367,7 +367,7 @@ export class SubscriptionInCredentials {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -461,7 +461,7 @@ export class SubscriptionInCredentials {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

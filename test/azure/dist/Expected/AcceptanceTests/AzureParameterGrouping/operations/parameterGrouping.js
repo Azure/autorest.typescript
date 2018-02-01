@@ -264,7 +264,6 @@ class ParameterGrouping {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -402,7 +401,6 @@ class ParameterGrouping {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -519,7 +517,6 @@ class ParameterGrouping {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
