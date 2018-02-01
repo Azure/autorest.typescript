@@ -2,6 +2,12 @@ language: node_js
 sudo: false
 node_js:
   - "8"
-
+install:
+    # dotnet 2.0 prereq
+  - sudo apt-get install libunwind8
+    # Install npm
+  - npm install
+before_script:
+  - npm install -g gulp-cli
 script:
   - npm -s run-script testci
