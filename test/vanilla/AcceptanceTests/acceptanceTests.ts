@@ -1806,18 +1806,6 @@ describe('typescript', function () {
 
     describe('Files Client', function () {
       var testClient = new AutoRestSwaggerBATFileService(baseUri, clientOptions);
-      it('should correctly deserialize binary streams', function (done) {
-        testClient.files.getFile(function (error, result) {
-          should.not.exist(error);
-          should.exist(result);
-          (result as any).buffer().then((buf) => {
-            assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
-            done();
-          }).catch((err) => {
-            done(err);
-          });
-        });
-      });
 
       it('should correctly deserialize empty streams', function (done) {
         testClient.files.getEmptyFile(function (error, result) {
