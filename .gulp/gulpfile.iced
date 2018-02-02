@@ -45,5 +45,5 @@ task 'testci', "more", [], (done) ->
   # eval
   echo stderr
   echo stdout
-  throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
+  throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.trim().length + stderr.trim().length > 0
   done() 
