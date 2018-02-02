@@ -90,7 +90,7 @@ class Queries {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -191,7 +191,7 @@ class Queries {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -293,7 +293,7 @@ class Queries {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

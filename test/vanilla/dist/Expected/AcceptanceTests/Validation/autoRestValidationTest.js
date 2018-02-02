@@ -156,7 +156,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -407,7 +406,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

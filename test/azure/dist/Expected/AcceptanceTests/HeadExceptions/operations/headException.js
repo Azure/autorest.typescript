@@ -79,7 +79,6 @@ class HeadException {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -170,7 +169,6 @@ class HeadException {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -261,7 +259,6 @@ class HeadException {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

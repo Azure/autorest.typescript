@@ -60,7 +60,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -147,7 +147,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -234,7 +234,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -321,7 +321,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -409,7 +409,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -496,7 +496,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -600,7 +600,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -704,7 +704,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -807,7 +807,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -926,7 +926,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1045,7 +1045,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1165,7 +1165,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1284,7 +1284,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1355,7 +1355,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1427,7 +1427,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1498,7 +1498,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1565,7 +1565,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1632,7 +1632,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1699,7 +1699,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1766,7 +1766,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1850,7 +1850,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1934,7 +1934,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2018,7 +2018,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2102,7 +2102,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2169,7 +2169,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2236,7 +2236,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2303,7 +2303,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2371,7 +2371,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2454,7 +2454,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2537,7 +2537,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2621,7 +2621,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2704,7 +2704,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2787,7 +2787,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2870,7 +2870,7 @@ class MultipleResponses {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

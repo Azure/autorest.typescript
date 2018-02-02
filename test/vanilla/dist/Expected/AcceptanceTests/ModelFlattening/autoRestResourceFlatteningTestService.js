@@ -49,7 +49,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         super(undefined, options);
         this.baseUri = baseUri;
         if (!this.baseUri) {
-            this.baseUri = 'http://localhost';
+            this.baseUri = 'http://localhost:3000';
         }
         this.addUserAgentInfo(`${packageName}/${packageVersion}`);
         this.serializer = new msRest.Serializer(Mappers);
@@ -189,7 +189,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -396,7 +395,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -601,7 +599,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -793,7 +790,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

@@ -88,7 +88,6 @@ class UsageOperations {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

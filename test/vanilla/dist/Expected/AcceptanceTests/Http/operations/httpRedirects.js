@@ -60,7 +60,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -131,7 +131,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -231,7 +231,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -302,7 +302,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -477,7 +477,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -548,7 +548,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -826,7 +826,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -897,7 +897,7 @@ class HttpRedirects {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

@@ -58,7 +58,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -141,7 +141,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -676,7 +676,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -759,7 +759,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -842,7 +842,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1490,7 +1490,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1573,7 +1573,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1656,7 +1656,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2078,7 +2078,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2274,7 +2274,7 @@ export class HttpClientFailure {
         }
       }
     }
-    httpRequest.body = null;
+    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

@@ -142,12 +142,6 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   httpRequest.formData = formData;
   </text>      
   }
-  else
-  {
-  <text>
-  httpRequest.body = null;
-  </text>
-  }
 
   @if (Model.Responses.Any(r => r.Value.Body.IsPrimaryType(KnownPrimaryType.Stream)))
   {

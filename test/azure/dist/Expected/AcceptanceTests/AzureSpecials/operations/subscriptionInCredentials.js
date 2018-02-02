@@ -84,7 +84,6 @@ class SubscriptionInCredentials {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -180,7 +179,6 @@ class SubscriptionInCredentials {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -279,7 +277,6 @@ class SubscriptionInCredentials {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -374,7 +371,6 @@ class SubscriptionInCredentials {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -469,7 +465,6 @@ class SubscriptionInCredentials {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

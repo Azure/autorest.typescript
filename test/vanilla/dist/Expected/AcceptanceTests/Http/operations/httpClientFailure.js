@@ -60,7 +60,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -144,7 +144,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -692,7 +692,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -776,7 +776,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -860,7 +860,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1524,7 +1524,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1608,7 +1608,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -1692,7 +1692,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2124,7 +2124,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -2324,7 +2324,7 @@ class HttpClientFailure {
                     }
                 }
             }
-            httpRequest.body = null;
+            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

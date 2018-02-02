@@ -60,7 +60,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -153,7 +152,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -246,7 +244,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -339,7 +336,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -536,7 +532,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -629,7 +624,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -826,7 +820,6 @@ class Datetimerfc1123 {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

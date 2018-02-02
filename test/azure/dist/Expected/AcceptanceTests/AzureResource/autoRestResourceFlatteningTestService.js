@@ -252,7 +252,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -495,7 +494,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -725,7 +723,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

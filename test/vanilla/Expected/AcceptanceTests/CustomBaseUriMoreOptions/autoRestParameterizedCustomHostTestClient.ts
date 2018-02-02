@@ -18,7 +18,7 @@ const packageVersion = "";
 
 class AutoRestParameterizedCustomHostTestClient extends msRest.ServiceClient {
   subscriptionId: string;
-  dnsSuffix: string;
+  dnsSuffix?: string;
   baseUri: string;
 
   // Operation groups

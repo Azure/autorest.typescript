@@ -82,7 +82,6 @@ class ApiVersionLocal {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -181,7 +180,6 @@ class ApiVersionLocal {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -274,7 +272,6 @@ class ApiVersionLocal {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -367,7 +364,6 @@ class ApiVersionLocal {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

@@ -79,7 +79,6 @@ class HttpSuccess {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -171,7 +170,6 @@ class HttpSuccess {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -263,7 +261,6 @@ class HttpSuccess {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

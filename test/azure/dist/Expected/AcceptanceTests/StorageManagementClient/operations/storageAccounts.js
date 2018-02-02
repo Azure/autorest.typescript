@@ -302,7 +302,6 @@ class StorageAccounts {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -418,7 +417,6 @@ class StorageAccounts {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -706,7 +704,6 @@ class StorageAccounts {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -822,7 +819,6 @@ class StorageAccounts {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -946,7 +942,6 @@ class StorageAccounts {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {

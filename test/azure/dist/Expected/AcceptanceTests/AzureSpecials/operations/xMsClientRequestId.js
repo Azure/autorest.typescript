@@ -80,7 +80,6 @@ class XMsClientRequestId {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
@@ -181,7 +180,6 @@ class XMsClientRequestId {
                     }
                 }
             }
-            httpRequest.body = null;
             // Send Request
             let operationRes;
             try {
