@@ -59,7 +59,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -240,7 +239,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -421,7 +419,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -602,7 +599,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -784,7 +780,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -965,7 +960,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1146,7 +1140,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1327,7 +1320,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1509,7 +1501,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1691,7 +1682,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1876,7 +1866,6 @@ export class Primitive {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
