@@ -19,7 +19,7 @@ const packageVersion = "";
 class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
   requiredGlobalPath: string;
   requiredGlobalQuery: string;
-  optionalGlobalQuery: number;
+  optionalGlobalQuery?: number;
   baseUri: string;
 
   // Operation groups

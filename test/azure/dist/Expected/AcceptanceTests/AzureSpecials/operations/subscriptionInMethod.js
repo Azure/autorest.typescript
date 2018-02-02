@@ -87,7 +87,6 @@ class SubscriptionInMethod {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -185,7 +184,6 @@ class SubscriptionInMethod {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -283,7 +281,6 @@ class SubscriptionInMethod {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -381,7 +378,6 @@ class SubscriptionInMethod {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

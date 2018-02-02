@@ -101,7 +101,6 @@ class Odata {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

@@ -83,7 +83,6 @@ class ApiVersionDefault {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -177,7 +176,6 @@ class ApiVersionDefault {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -271,7 +269,6 @@ class ApiVersionDefault {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -365,7 +362,6 @@ class ApiVersionDefault {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

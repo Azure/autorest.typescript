@@ -17,7 +17,7 @@ const packageName = "";
 const packageVersion = "";
 
 class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
-  host: string;
+  host?: string;
   baseUri: string;
 
   // Operation groups

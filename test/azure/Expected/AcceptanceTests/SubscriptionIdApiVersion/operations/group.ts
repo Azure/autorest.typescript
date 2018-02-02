@@ -90,7 +90,6 @@ export class Group {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

@@ -86,7 +86,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -183,7 +182,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -275,7 +273,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -373,7 +370,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -471,7 +467,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -569,7 +564,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {
@@ -662,7 +656,6 @@ class SkipUrlEncoding {
                     }
                 }
             }
-            httpRequest.body = undefined;
             // Send Request
             let operationRes;
             try {

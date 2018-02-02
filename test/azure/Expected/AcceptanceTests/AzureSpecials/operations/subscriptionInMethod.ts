@@ -83,7 +83,6 @@ export class SubscriptionInMethod {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -180,7 +179,6 @@ export class SubscriptionInMethod {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -277,7 +275,6 @@ export class SubscriptionInMethod {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -374,7 +371,6 @@ export class SubscriptionInMethod {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
