@@ -1805,6 +1805,7 @@ describe('typescript', function () {
     });
 
     describe('Files Client', function () {
+      var testClient = new AutoRestSwaggerBATFileService(baseUri, clientOptions);
 
       it('should correctly deserialize empty streams', function (done) {
         testClient.files.getEmptyFile(function (error, result) {
