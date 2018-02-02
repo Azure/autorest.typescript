@@ -40,8 +40,8 @@ task 'testci', "more", [], (done) ->
   # regenerate
   await run "regenerate", defer _
   # diff ('add' first so 'diff' includes untracked files)
-  # await  execute "git add -A", defer code, stderr, stdout
-  # await  execute "git diff --staged -w", defer code, stderr, stdout
+  await  execute "git add -A", defer code, stderr, stdout
+  await  execute "git diff --staged -w --ignore-all-space", defer code, stderr, stdout
   # eval
   echo stderr
   echo stdout
