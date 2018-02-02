@@ -32,7 +32,14 @@ const packageVersion = "@Model.PackageVersion";
 class @(Model.Name) extends msRest.ServiceClient {
 @foreach (var property in Model.Properties)
 {
+    if (property.IsRequired)
+    {
   @:@(property.Name): @property.ModelType.TSType(false);
+    }
+    else
+    {
+  @:@(property.Name)?: @property.ModelType.TSType(false);
+    }
 }
   baseUri: string;
 @if (Model.MethodGroupModels.Any())
