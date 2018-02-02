@@ -1804,345 +1804,348 @@ describe('typescript', function () {
       });
     });
 
-    it('should correctly deserialize empty streams', function (done) {
-      testClient.files.getEmptyFile(function (error, result) {
-        should.not.exist(error);
-        should.exist(result);
-        result.text().then((txt) => {
-          assert.equal(txt.length, 0);
-          done();
-        }).catch((err) => {
-          done(err);
-        });
-      });
-    });
+    describe('Files Client', function () {
 
-    it('should correctly deserialize large streams', function (done) {
-      testClient.files.getFileLarge(function (error, result) {
-        should.not.exist(error);
-        should.exist(result);
-        readStreamCountBytes(result.body as any, function (err, byteCount) {
-          should.not.exist(err);
-          byteCount.should.equal(3000 * 1024 * 1024);
-          done();
-        });
-      });
-    });
-  });
-
-  describe('Form Data Client', function () {
-    var testClient = new AutoRestSwaggerBATFormDataService(baseUri, clientOptions);
-    it('should correctly accept file via form-data', function (done) {
-      testClient.formdata.uploadFile(fs.createReadStream(__dirname + '/sample.png') as any, 'sample.png', function (error, result) {
-        should.not.exist(error);
-        should.exist(result);
-        readStreamToBuffer(result.body, function (err, buff) {
-          should.not.exist(err);
-          assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
-          done();
-        });
-      });
-    });
-
-    it('should correctly accept file via body', function (done) {
-      testClient.formdata.uploadFileViaBody(fs.createReadStream(__dirname + '/sample.png') as any, function (error, result) {
-        should.not.exist(error);
-        should.exist(result);
-        readStreamToBuffer(result.body, function (err, buff) {
-          should.not.exist(err);
-          assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
-          done();
-        });
-      });
-    });
-  });
-
-  describe('Url Client', function () {
-    var testClient = new AutoRestUrlTestService('globalStringPath', baseUri, clientOptions);
-    testClient.globalStringQuery = 'globalStringQuery';
-    it('should work when path has null, empty, and multi-byte byte values', function (done) {
-      testClient.paths.byteNull(null, function (error, result) {
-        should.exist(error);
-        should.not.exist(result);
-        testClient.paths.byteEmpty(function (error, result) {
+      it('should correctly deserialize empty streams', function (done) {
+        testClient.files.getEmptyFile(function (error, result) {
           should.not.exist(error);
-          testClient.paths.byteMultiByte(new Buffer('啊齄丂狛狜隣郎隣兀﨩'), function (error, result) {
-            should.not.exist(error);
+          should.exist(result);
+          result.text().then((txt) => {
+            assert.equal(txt.length, 0);
+            done();
+          }).catch((err) => {
+            done(err);
+          });
+        });
+      });
+
+      it('should correctly deserialize large streams', function (done) {
+        testClient.files.getFileLarge(function (error, result) {
+          should.not.exist(error);
+          should.exist(result);
+          readStreamCountBytes(result.body as any, function (err, byteCount) {
+            should.not.exist(err);
+            byteCount.should.equal(3000 * 1024 * 1024);
             done();
           });
         });
       });
     });
 
-    it('should work when path has string', function (done) {
-      testClient.paths.stringEmpty(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.stringNull(null, function (error, result) {
+    describe('Form Data Client', function () {
+      var testClient = new AutoRestSwaggerBATFormDataService(baseUri, clientOptions);
+      it('should correctly accept file via form-data', function (done) {
+        testClient.formdata.uploadFile(fs.createReadStream(__dirname + '/sample.png') as any, 'sample.png', function (error, result) {
+          should.not.exist(error);
+          should.exist(result);
+          readStreamToBuffer(result.body, function (err, buff) {
+            should.not.exist(err);
+            assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
+            done();
+          });
+        });
+      });
+
+      it('should correctly accept file via body', function (done) {
+        testClient.formdata.uploadFileViaBody(fs.createReadStream(__dirname + '/sample.png') as any, function (error, result) {
+          should.not.exist(error);
+          should.exist(result);
+          readStreamToBuffer(result.body, function (err, buff) {
+            should.not.exist(err);
+            assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
+            done();
+          });
+        });
+      });
+    });
+
+    describe('Url Client', function () {
+      var testClient = new AutoRestUrlTestService('globalStringPath', baseUri, clientOptions);
+      testClient.globalStringQuery = 'globalStringQuery';
+      it('should work when path has null, empty, and multi-byte byte values', function (done) {
+        testClient.paths.byteNull(null, function (error, result) {
           should.exist(error);
-          testClient.paths.stringUrlEncoded(function (error, result) {
+          should.not.exist(result);
+          testClient.paths.byteEmpty(function (error, result) {
             should.not.exist(error);
-            done();
-          });
-        });
-      });
-    });
-
-    it('should work when path has base64url encoded string', function (done) {
-      testClient.paths.base64Url(new Buffer('lorem', 'utf8'), function (error, result) {
-        should.not.exist(error);
-        should.not.exist(result);
-        done();
-      });
-    });
-
-    it('should work when path has a paramaeter in UnixTime format', function (done) {
-      testClient.paths.unixTimeUrl(new Date('2016-04-13T00:00:00.000Z'), function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-
-    it('should work when path has datetime', function (done) {
-      testClient.paths.dateTimeValid(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.dateTimeNull(null, function (error, result) {
-          should.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when path has date', function (done) {
-      testClient.paths.dateValid(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-
-    it('should work when query has date', function (done) {
-      testClient.queries.dateValid(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-
-    it('should work when path has enum', function (done) {
-      testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>'', function (error, result) {
-        should.exist(error);
-        error.message.should.match(/.*cannot be null or undefined.*/ig);
-        testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
-          should.exist(error);
-          testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
-      });
-    });
-
-    it('should work when path has bool', function (done) {
-      testClient.paths.getBooleanTrue(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.getBooleanFalse(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when path has double decimal values', function (done) {
-      testClient.paths.doubleDecimalNegative(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.doubleDecimalPositive(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when path has float values', function (done) {
-      testClient.paths.floatScientificNegative(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.floatScientificPositive(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when path has integer values', function (done) {
-      testClient.paths.getIntNegativeOneMillion(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.getIntOneMillion(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when path has big integer values', function (done) {
-      testClient.paths.getNegativeTenBillion(function (error, result) {
-        should.not.exist(error);
-        testClient.paths.getTenBillion(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-
-    it('should work when use values in different portion of url', function (done) {
-      var optionalParams = { localStringQuery: 'localStringQuery', pathItemStringQuery: 'pathItemStringQuery' };
-      testClient.pathItems.getAllWithValues('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-    it('should work when use null values in different portion of url', function (done) {
-      testClient.globalStringQuery = null;
-      var optionalParams = { localStringQuery: <string>null, pathItemStringQuery: 'pathItemStringQuery' };
-      testClient.pathItems.getGlobalAndLocalQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
-        should.not.exist(error);
-        optionalParams = { localStringQuery: 'localStringQuery', pathItemStringQuery: 'pathItemStringQuery' };
-        testClient.pathItems.getGlobalQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
-          should.not.exist(error);
-          testClient.globalStringQuery = 'globalStringQuery';
-          optionalParams = { localStringQuery: null, pathItemStringQuery: null };
-          testClient.pathItems.getLocalPathItemQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
-      });
-    });
-    it('should work when query has bool', function (done) {
-      testClient.queries.getBooleanTrue(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.getBooleanFalse(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has double values', function (done) {
-      testClient.queries.doubleDecimalNegative(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.doubleDecimalPositive(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has float values', function (done) {
-      testClient.queries.floatScientificNegative(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.floatScientificPositive(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has int values', function (done) {
-      testClient.queries.getIntNegativeOneMillion(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.getIntOneMillion(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has billion values', function (done) {
-      testClient.queries.getNegativeTenBillion(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.getTenBillion(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has string values', function (done) {
-      testClient.queries.stringEmpty(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.stringUrlEncoded(function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has datetime', function (done) {
-      testClient.queries.dateTimeValid(function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-    it('should work when query has byte values', function (done) {
-      testClient.queries.byteEmpty(function (error, result) {
-        should.not.exist(error);
-        testClient.queries.byteMultiByte({ byteQuery: new Buffer('啊齄丂狛狜隣郎隣兀﨩') }, function (error, result) {
-          should.not.exist(error);
-          done();
-        });
-      });
-    });
-    it('should work when query has enum values', function (done) {
-      testClient.queries.enumValid({ enumQuery: <AutoRestUrlTestServiceModels.UriColor>'' }, function (error, result) {
-        should.exist(error);
-        testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
-          should.not.exist(error);
-          testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
-            should.not.exist(error);
-            done();
-          });
-        });
-      });
-    });
-    it('should work when query has string array values', function (done) {
-      var testArray = ['ArrayQuery1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
-      testClient.queries.arrayStringCsvEmpty({ arrayQuery: [] }, function (error, result) {
-        should.not.exist(error);
-        testClient.queries.arrayStringCsvValid({ arrayQuery: testArray }, function (error, result) {
-          should.not.exist(error);
-          testClient.queries.arrayStringPipesValid({ arrayQuery: testArray }, function (error, result) {
-            should.not.exist(error);
-            testClient.queries.arrayStringSsvValid({ arrayQuery: testArray }, function (error, result) {
+            testClient.paths.byteMultiByte(new Buffer('啊齄丂狛狜隣郎隣兀﨩'), function (error, result) {
               should.not.exist(error);
-              testClient.queries.arrayStringTsvValid({ arrayQuery: testArray }, function (error, result) {
+              done();
+            });
+          });
+        });
+      });
+
+      it('should work when path has string', function (done) {
+        testClient.paths.stringEmpty(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.stringNull(null, function (error, result) {
+            should.exist(error);
+            testClient.paths.stringUrlEncoded(function (error, result) {
+              should.not.exist(error);
+              done();
+            });
+          });
+        });
+      });
+
+      it('should work when path has base64url encoded string', function (done) {
+        testClient.paths.base64Url(new Buffer('lorem', 'utf8'), function (error, result) {
+          should.not.exist(error);
+          should.not.exist(result);
+          done();
+        });
+      });
+
+      it('should work when path has a paramaeter in UnixTime format', function (done) {
+        testClient.paths.unixTimeUrl(new Date('2016-04-13T00:00:00.000Z'), function (error, result) {
+          should.not.exist(error);
+          done();
+        });
+      });
+
+      it('should work when path has datetime', function (done) {
+        testClient.paths.dateTimeValid(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.dateTimeNull(null, function (error, result) {
+            should.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when path has date', function (done) {
+        testClient.paths.dateValid(function (error, result) {
+          should.not.exist(error);
+          done();
+        });
+      });
+
+      it('should work when query has date', function (done) {
+        testClient.queries.dateValid(function (error, result) {
+          should.not.exist(error);
+          done();
+        });
+      });
+
+      it('should work when path has enum', function (done) {
+        testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>'', function (error, result) {
+          should.exist(error);
+          error.message.should.match(/.*cannot be null or undefined.*/ig);
+          testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
+            should.exist(error);
+            testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
+              should.not.exist(error);
+              done();
+            });
+          });
+        });
+      });
+
+      it('should work when path has bool', function (done) {
+        testClient.paths.getBooleanTrue(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.getBooleanFalse(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when path has double decimal values', function (done) {
+        testClient.paths.doubleDecimalNegative(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.doubleDecimalPositive(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when path has float values', function (done) {
+        testClient.paths.floatScientificNegative(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.floatScientificPositive(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when path has integer values', function (done) {
+        testClient.paths.getIntNegativeOneMillion(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.getIntOneMillion(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when path has big integer values', function (done) {
+        testClient.paths.getNegativeTenBillion(function (error, result) {
+          should.not.exist(error);
+          testClient.paths.getTenBillion(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+
+      it('should work when use values in different portion of url', function (done) {
+        var optionalParams = { localStringQuery: 'localStringQuery', pathItemStringQuery: 'pathItemStringQuery' };
+        testClient.pathItems.getAllWithValues('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
+          should.not.exist(error);
+          done();
+        });
+      });
+      it('should work when use null values in different portion of url', function (done) {
+        testClient.globalStringQuery = null;
+        var optionalParams = { localStringQuery: <string>null, pathItemStringQuery: 'pathItemStringQuery' };
+        testClient.pathItems.getGlobalAndLocalQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
+          should.not.exist(error);
+          optionalParams = { localStringQuery: 'localStringQuery', pathItemStringQuery: 'pathItemStringQuery' };
+          testClient.pathItems.getGlobalQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
+            should.not.exist(error);
+            testClient.globalStringQuery = 'globalStringQuery';
+            optionalParams = { localStringQuery: null, pathItemStringQuery: null };
+            testClient.pathItems.getLocalPathItemQueryNull('localStringPath', 'pathItemStringPath', optionalParams, function (error, result) {
+              should.not.exist(error);
+              done();
+            });
+          });
+        });
+      });
+      it('should work when query has bool', function (done) {
+        testClient.queries.getBooleanTrue(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.getBooleanFalse(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has double values', function (done) {
+        testClient.queries.doubleDecimalNegative(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.doubleDecimalPositive(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has float values', function (done) {
+        testClient.queries.floatScientificNegative(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.floatScientificPositive(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has int values', function (done) {
+        testClient.queries.getIntNegativeOneMillion(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.getIntOneMillion(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has billion values', function (done) {
+        testClient.queries.getNegativeTenBillion(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.getTenBillion(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has string values', function (done) {
+        testClient.queries.stringEmpty(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.stringUrlEncoded(function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has datetime', function (done) {
+        testClient.queries.dateTimeValid(function (error, result) {
+          should.not.exist(error);
+          done();
+        });
+      });
+      it('should work when query has byte values', function (done) {
+        testClient.queries.byteEmpty(function (error, result) {
+          should.not.exist(error);
+          testClient.queries.byteMultiByte({ byteQuery: new Buffer('啊齄丂狛狜隣郎隣兀﨩') }, function (error, result) {
+            should.not.exist(error);
+            done();
+          });
+        });
+      });
+      it('should work when query has enum values', function (done) {
+        testClient.queries.enumValid({ enumQuery: <AutoRestUrlTestServiceModels.UriColor>'' }, function (error, result) {
+          should.exist(error);
+          testClient.queries.enumNull({ enumQuery: null }, function (error, result) {
+            should.not.exist(error);
+            testClient.queries.enumValid({ enumQuery: AutoRestUrlTestServiceModels.UriColor.Greencolor }, function (error, result) {
+              should.not.exist(error);
+              done();
+            });
+          });
+        });
+      });
+      it('should work when query has string array values', function (done) {
+        var testArray = ['ArrayQuery1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
+        testClient.queries.arrayStringCsvEmpty({ arrayQuery: [] }, function (error, result) {
+          should.not.exist(error);
+          testClient.queries.arrayStringCsvValid({ arrayQuery: testArray }, function (error, result) {
+            should.not.exist(error);
+            testClient.queries.arrayStringPipesValid({ arrayQuery: testArray }, function (error, result) {
+              should.not.exist(error);
+              testClient.queries.arrayStringSsvValid({ arrayQuery: testArray }, function (error, result) {
                 should.not.exist(error);
-                done();
+                testClient.queries.arrayStringTsvValid({ arrayQuery: testArray }, function (error, result) {
+                  should.not.exist(error);
+                  done();
+                });
               });
             });
           });
         });
       });
-    });
-    it('should work when path has string array values', function (done) {
-      var testArray = ['ArrayPath1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
-      testClient.paths.arrayCsvInPath(testArray, function (error, result) {
-        should.not.exist(error);
-        done();
-      });
-    });
-    it('should work when use null values in url query', function (done) {
-      testClient.queries.byteNull({ byteQuery: null }, function (error, result) {
-        should.not.exist(error);
-        testClient.queries.dateNull({ dateQuery: null }, function (error, result) {
+      it('should work when path has string array values', function (done) {
+        var testArray = ['ArrayPath1', 'begin!*\'();:@ &=+$,/?#[]end', null, ''];
+        testClient.paths.arrayCsvInPath(testArray, function (error, result) {
           should.not.exist(error);
-          testClient.queries.dateTimeNull({ dateTimeQuery: null }, function (error, result) {
+          done();
+        });
+      });
+      it('should work when use null values in url query', function (done) {
+        testClient.queries.byteNull({ byteQuery: null }, function (error, result) {
+          should.not.exist(error);
+          testClient.queries.dateNull({ dateQuery: null }, function (error, result) {
             should.not.exist(error);
-            testClient.queries.doubleNull({ doubleQuery: null }, function (error, result) {
+            testClient.queries.dateTimeNull({ dateTimeQuery: null }, function (error, result) {
               should.not.exist(error);
-              testClient.queries.floatNull({ floatQuery: null }, function (error, result) {
+              testClient.queries.doubleNull({ doubleQuery: null }, function (error, result) {
                 should.not.exist(error);
-                testClient.queries.getBooleanNull({ boolQuery: null }, function (error, result) {
+                testClient.queries.floatNull({ floatQuery: null }, function (error, result) {
                   should.not.exist(error);
-                  testClient.queries.getIntNull({ intQuery: null }, function (error, result) {
+                  testClient.queries.getBooleanNull({ boolQuery: null }, function (error, result) {
                     should.not.exist(error);
-                    testClient.queries.getLongNull({ longQuery: null }, function (error, result) {
+                    testClient.queries.getIntNull({ intQuery: null }, function (error, result) {
                       should.not.exist(error);
-                      testClient.queries.stringNull({ stringQuery: null }, function (error, result) {
+                      testClient.queries.getLongNull({ longQuery: null }, function (error, result) {
                         should.not.exist(error);
-                        testClient.queries.arrayStringCsvNull({ arrayQuery: null }, function (error, result) {
+                        testClient.queries.stringNull({ stringQuery: null }, function (error, result) {
                           should.not.exist(error);
-                          done();
+                          testClient.queries.arrayStringCsvNull({ arrayQuery: null }, function (error, result) {
+                            should.not.exist(error);
+                            done();
+                          });
                         });
                       });
                     });
@@ -2154,51 +2157,51 @@ describe('typescript', function () {
         });
       });
     });
-  });
-  describe('Http infrastructure Client', function () {
-    var testOptions = clientOptions;
-    //testOptions.requestOptions = { jar: true };
-    testOptions.filters = [new msRest.ExponentialRetryPolicyFilter(3, 0, 0, 0)];
-    testOptions.noRetryPolicy = true;
-    var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
-    it('should work for all http success status codes with different verbs', function (done) {
-      testClient.httpSuccess.head200(function (error, result) {
-        should.not.exist(error);
-        testClient.httpSuccess.get200(function (error, result) {
+    describe('Http infrastructure Client', function () {
+      var testOptions = clientOptions;
+      //testOptions.requestOptions = { jar: true };
+      testOptions.filters = [new msRest.ExponentialRetryPolicyFilter(3, 0, 0, 0)];
+      testOptions.noRetryPolicy = true;
+      var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
+      it('should work for all http success status codes with different verbs', function (done) {
+        testClient.httpSuccess.head200(function (error, result) {
           should.not.exist(error);
-          testClient.httpSuccess.put200({ booleanValue: true }, function (error, result) {
+          testClient.httpSuccess.get200(function (error, result) {
             should.not.exist(error);
-            testClient.httpSuccess.post200({ booleanValue: true }, function (error, result) {
+            testClient.httpSuccess.put200({ booleanValue: true }, function (error, result) {
               should.not.exist(error);
-              testClient.httpSuccess.patch200({ booleanValue: true }, function (error, result) {
+              testClient.httpSuccess.post200({ booleanValue: true }, function (error, result) {
                 should.not.exist(error);
-                testClient.httpSuccess.delete200({ booleanValue: true }, function (error, result) {
+                testClient.httpSuccess.patch200({ booleanValue: true }, function (error, result) {
                   should.not.exist(error);
-                  testClient.httpSuccess.put201({ booleanValue: true }, function (error, result) {
+                  testClient.httpSuccess.delete200({ booleanValue: true }, function (error, result) {
                     should.not.exist(error);
-                    testClient.httpSuccess.post201({ booleanValue: true }, function (error, result) {
+                    testClient.httpSuccess.put201({ booleanValue: true }, function (error, result) {
                       should.not.exist(error);
-                      testClient.httpSuccess.put202({ booleanValue: true }, function (error, result) {
+                      testClient.httpSuccess.post201({ booleanValue: true }, function (error, result) {
                         should.not.exist(error);
-                        testClient.httpSuccess.post202({ booleanValue: true }, function (error, result) {
+                        testClient.httpSuccess.put202({ booleanValue: true }, function (error, result) {
                           should.not.exist(error);
-                          testClient.httpSuccess.patch202({ booleanValue: true }, function (error, result) {
+                          testClient.httpSuccess.post202({ booleanValue: true }, function (error, result) {
                             should.not.exist(error);
-                            testClient.httpSuccess.delete202({ booleanValue: true }, function (error, result) {
+                            testClient.httpSuccess.patch202({ booleanValue: true }, function (error, result) {
                               should.not.exist(error);
-                              testClient.httpSuccess.head204(function (error, result) {
+                              testClient.httpSuccess.delete202({ booleanValue: true }, function (error, result) {
                                 should.not.exist(error);
-                                testClient.httpSuccess.put204({ booleanValue: true }, function (error, result) {
+                                testClient.httpSuccess.head204(function (error, result) {
                                   should.not.exist(error);
-                                  testClient.httpSuccess.post204({ booleanValue: true }, function (error, result) {
+                                  testClient.httpSuccess.put204({ booleanValue: true }, function (error, result) {
                                     should.not.exist(error);
-                                    testClient.httpSuccess.delete204({ booleanValue: true }, function (error, result) {
+                                    testClient.httpSuccess.post204({ booleanValue: true }, function (error, result) {
                                       should.not.exist(error);
-                                      testClient.httpSuccess.patch204({ booleanValue: true }, function (error, result) {
+                                      testClient.httpSuccess.delete204({ booleanValue: true }, function (error, result) {
                                         should.not.exist(error);
-                                        testClient.httpSuccess.head404(function (error, result) {
+                                        testClient.httpSuccess.patch204({ booleanValue: true }, function (error, result) {
                                           should.not.exist(error);
-                                          done();
+                                          testClient.httpSuccess.head404(function (error, result) {
+                                            should.not.exist(error);
+                                            done();
+                                          });
                                         });
                                       });
                                     });
@@ -2217,160 +2220,160 @@ describe('typescript', function () {
           });
         });
       });
-    });
-    it('should work for all http redirect status codes with different verbs', function (done) {
-      testClient.httpRedirects.head300(function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        testClient.httpRedirects.get300(function (error, result, request, response) {
+      it('should work for all http redirect status codes with different verbs', function (done) {
+        testClient.httpRedirects.head300(function (error, result, request, response) {
           should.not.exist(error);
           response.status.should.equal(200);
-          testClient.httpRedirects.head301(function (error, result, request, response) {
+          testClient.httpRedirects.get300(function (error, result, request, response) {
             should.not.exist(error);
             response.status.should.equal(200);
-            testClient.httpRedirects.get301(function (error, result, request, response) {
+            testClient.httpRedirects.head301(function (error, result, request, response) {
               should.not.exist(error);
               response.status.should.equal(200);
-              // Clients relying on newer version of the HTTP spec redirect a request that 
-              //received a 301 response if it contains a location header. Older clients did 
-              //not do that. Our test server is designed to conform to the old behavior 
-              //hence we are commenting this test.
-              //testClient.httpRedirects.put301({ booleanValue: true }, function (error, result, request, response) {
-              //  should.not.exist(error);
-              //  response.status.should.equal(301);
-              testClient.httpRedirects.head302(function (error, result, request, response) {
+              testClient.httpRedirects.get301(function (error, result, request, response) {
                 should.not.exist(error);
                 response.status.should.equal(200);
-                testClient.httpRedirects.get302(function (error, result, request, response) {
+                // Clients relying on newer version of the HTTP spec redirect a request that 
+                //received a 301 response if it contains a location header. Older clients did 
+                //not do that. Our test server is designed to conform to the old behavior 
+                //hence we are commenting this test.
+                //testClient.httpRedirects.put301({ booleanValue: true }, function (error, result, request, response) {
+                //  should.not.exist(error);
+                //  response.status.should.equal(301);
+                testClient.httpRedirects.head302(function (error, result, request, response) {
                   should.not.exist(error);
                   response.status.should.equal(200);
-                  // same as put 301
-                  //testClient.httpRedirects.patch302({ booleanValue: true }, function (error, result, request, response) {
-                  //  should.not.exist(error);
-                  //  response.status.should.equal(302);
-                  testClient.httpRedirects.post303({ booleanValue: true }, function (error, result, request, response) {
+                  testClient.httpRedirects.get302(function (error, result, request, response) {
                     should.not.exist(error);
                     response.status.should.equal(200);
-                    testClient.httpRedirects.head307(function (error, result, request, response) {
+                    // same as put 301
+                    //testClient.httpRedirects.patch302({ booleanValue: true }, function (error, result, request, response) {
+                    //  should.not.exist(error);
+                    //  response.status.should.equal(302);
+                    testClient.httpRedirects.post303({ booleanValue: true }, function (error, result, request, response) {
                       should.not.exist(error);
                       response.status.should.equal(200);
-                      testClient.httpRedirects.get307(function (error, result, request, response) {
+                      testClient.httpRedirects.head307(function (error, result, request, response) {
                         should.not.exist(error);
                         response.status.should.equal(200);
-                        //TODO, 4042586: Support options operations in swagger modeler
-                        //testClient.httpRedirects.options307(function (error, result, request, response) {
-                        //  should.not.exist(error);
-                        testClient.httpRedirects.put307({ booleanValue: true }, function (error, result, request, response) {
+                        testClient.httpRedirects.get307(function (error, result, request, response) {
                           should.not.exist(error);
                           response.status.should.equal(200);
-                          testClient.httpRedirects.post307({ booleanValue: true }, function (error, result, request, response) {
+                          //TODO, 4042586: Support options operations in swagger modeler
+                          //testClient.httpRedirects.options307(function (error, result, request, response) {
+                          //  should.not.exist(error);
+                          testClient.httpRedirects.put307({ booleanValue: true }, function (error, result, request, response) {
                             should.not.exist(error);
                             response.status.should.equal(200);
-                            testClient.httpRedirects.patch307({ booleanValue: true }, function (error, result, request, response) {
+                            testClient.httpRedirects.post307({ booleanValue: true }, function (error, result, request, response) {
                               should.not.exist(error);
                               response.status.should.equal(200);
-                              testClient.httpRedirects.delete307({ booleanValue: true }, function (error, result, request, response) {
+                              testClient.httpRedirects.patch307({ booleanValue: true }, function (error, result, request, response) {
                                 should.not.exist(error);
                                 response.status.should.equal(200);
-                                done();
+                                testClient.httpRedirects.delete307({ booleanValue: true }, function (error, result, request, response) {
+                                  should.not.exist(error);
+                                  response.status.should.equal(200);
+                                  done();
+                                });
                               });
                             });
                           });
                         });
+                        //});
                       });
-                      //});
                     });
+                    //});
                   });
-                  //});
                 });
+                //});
               });
-              //});
             });
           });
         });
       });
-    });
 
-    it('should work for all client failure status codes (4xx) with different verbs', function (done) {
-      testClient.httpClientFailure.head400(function (error, result) {
-        should.exist(error);
-        (<msRest.RestError>error).statusCode.should.equal(400);
-        testClient.httpClientFailure.get400(function (error, result) {
+      it('should work for all client failure status codes (4xx) with different verbs', function (done) {
+        testClient.httpClientFailure.head400(function (error, result) {
           should.exist(error);
           (<msRest.RestError>error).statusCode.should.equal(400);
-          testClient.httpClientFailure.put400({ booleanValue: true }, function (error, result) {
+          testClient.httpClientFailure.get400(function (error, result) {
             should.exist(error);
             (<msRest.RestError>error).statusCode.should.equal(400);
-            testClient.httpClientFailure.patch400({ booleanValue: true }, function (error, result) {
+            testClient.httpClientFailure.put400({ booleanValue: true }, function (error, result) {
               should.exist(error);
               (<msRest.RestError>error).statusCode.should.equal(400);
-              testClient.httpClientFailure.post400({ booleanValue: true }, function (error, result) {
+              testClient.httpClientFailure.patch400({ booleanValue: true }, function (error, result) {
                 should.exist(error);
                 (<msRest.RestError>error).statusCode.should.equal(400);
-                testClient.httpClientFailure.delete400({ booleanValue: true }, function (error, result) {
+                testClient.httpClientFailure.post400({ booleanValue: true }, function (error, result) {
                   should.exist(error);
                   (<msRest.RestError>error).statusCode.should.equal(400);
-                  testClient.httpClientFailure.head401(function (error, result) {
+                  testClient.httpClientFailure.delete400({ booleanValue: true }, function (error, result) {
                     should.exist(error);
-                    (<msRest.RestError>error).statusCode.should.equal(401);
-                    testClient.httpClientFailure.get402(function (error, result) {
+                    (<msRest.RestError>error).statusCode.should.equal(400);
+                    testClient.httpClientFailure.head401(function (error, result) {
                       should.exist(error);
-                      (<msRest.RestError>error).statusCode.should.equal(402);
-                      testClient.httpClientFailure.get403(function (error, result) {
+                      (<msRest.RestError>error).statusCode.should.equal(401);
+                      testClient.httpClientFailure.get402(function (error, result) {
                         should.exist(error);
-                        (<msRest.RestError>error).statusCode.should.equal(403);
-                        testClient.httpClientFailure.put404({ booleanValue: true }, function (error, result) {
+                        (<msRest.RestError>error).statusCode.should.equal(402);
+                        testClient.httpClientFailure.get403(function (error, result) {
                           should.exist(error);
-                          (<msRest.RestError>error).statusCode.should.equal(404);
-                          testClient.httpClientFailure.patch405({ booleanValue: true }, function (error, result) {
+                          (<msRest.RestError>error).statusCode.should.equal(403);
+                          testClient.httpClientFailure.put404({ booleanValue: true }, function (error, result) {
                             should.exist(error);
-                            (<msRest.RestError>error).statusCode.should.equal(405);
-                            testClient.httpClientFailure.post406({ booleanValue: true }, function (error, result) {
+                            (<msRest.RestError>error).statusCode.should.equal(404);
+                            testClient.httpClientFailure.patch405({ booleanValue: true }, function (error, result) {
                               should.exist(error);
-                              (<msRest.RestError>error).statusCode.should.equal(406);
-                              testClient.httpClientFailure.delete407({ booleanValue: true }, function (error, result) {
+                              (<msRest.RestError>error).statusCode.should.equal(405);
+                              testClient.httpClientFailure.post406({ booleanValue: true }, function (error, result) {
                                 should.exist(error);
-                                (<msRest.RestError>error).statusCode.should.equal(407);
-                                testClient.httpClientFailure.put409({ booleanValue: true }, function (error, result) {
+                                (<msRest.RestError>error).statusCode.should.equal(406);
+                                testClient.httpClientFailure.delete407({ booleanValue: true }, function (error, result) {
                                   should.exist(error);
-                                  (<msRest.RestError>error).statusCode.should.equal(409);
-                                  testClient.httpClientFailure.head410(function (error, result) {
+                                  (<msRest.RestError>error).statusCode.should.equal(407);
+                                  testClient.httpClientFailure.put409({ booleanValue: true }, function (error, result) {
                                     should.exist(error);
-                                    (<msRest.RestError>error).statusCode.should.equal(410);
-                                    testClient.httpClientFailure.get411(function (error, result) {
+                                    (<msRest.RestError>error).statusCode.should.equal(409);
+                                    testClient.httpClientFailure.head410(function (error, result) {
                                       should.exist(error);
-                                      (<msRest.RestError>error).statusCode.should.equal(411);
-                                      testClient.httpClientFailure.get412(function (error, result) {
+                                      (<msRest.RestError>error).statusCode.should.equal(410);
+                                      testClient.httpClientFailure.get411(function (error, result) {
                                         should.exist(error);
-                                        (<msRest.RestError>error).statusCode.should.equal(412);
-                                        testClient.httpClientFailure.put413({ booleanValue: true }, function (error, result) {
+                                        (<msRest.RestError>error).statusCode.should.equal(411);
+                                        testClient.httpClientFailure.get412(function (error, result) {
                                           should.exist(error);
-                                          (<msRest.RestError>error).statusCode.should.equal(413);
-                                          testClient.httpClientFailure.patch414({ booleanValue: true }, function (error, result) {
+                                          (<msRest.RestError>error).statusCode.should.equal(412);
+                                          testClient.httpClientFailure.put413({ booleanValue: true }, function (error, result) {
                                             should.exist(error);
-                                            (<msRest.RestError>error).statusCode.should.equal(414);
-                                            testClient.httpClientFailure.post415({ booleanValue: true }, function (error, result) {
+                                            (<msRest.RestError>error).statusCode.should.equal(413);
+                                            testClient.httpClientFailure.patch414({ booleanValue: true }, function (error, result) {
                                               should.exist(error);
-                                              (<msRest.RestError>error).statusCode.should.equal(415);
-                                              testClient.httpClientFailure.get416(function (error, result) {
+                                              (<msRest.RestError>error).statusCode.should.equal(414);
+                                              testClient.httpClientFailure.post415({ booleanValue: true }, function (error, result) {
                                                 should.exist(error);
-                                                (<msRest.RestError>error).statusCode.should.equal(416);
-                                                testClient.httpClientFailure.delete417({ booleanValue: true }, function (error, result) {
+                                                (<msRest.RestError>error).statusCode.should.equal(415);
+                                                testClient.httpClientFailure.get416(function (error, result) {
                                                   should.exist(error);
-                                                  (<msRest.RestError>error).statusCode.should.equal(417);
-                                                  testClient.httpClientFailure.head429(function (error, result) {
+                                                  (<msRest.RestError>error).statusCode.should.equal(416);
+                                                  testClient.httpClientFailure.delete417({ booleanValue: true }, function (error, result) {
                                                     should.exist(error);
-                                                    (<msRest.RestError>error).statusCode.should.equal(429);
-                                                    testClient.httpFailure.getEmptyError(function (error, result) {
+                                                    (<msRest.RestError>error).statusCode.should.equal(417);
+                                                    testClient.httpClientFailure.head429(function (error, result) {
                                                       should.exist(error);
-                                                      (<msRest.RestError>error).statusCode.should.equal(400);
-                                                      testClient.httpFailure.getNoModelError(function (error, result) {
+                                                      (<msRest.RestError>error).statusCode.should.equal(429);
+                                                      testClient.httpFailure.getEmptyError(function (error, result) {
                                                         should.exist(error);
                                                         (<msRest.RestError>error).statusCode.should.equal(400);
-                                                        should.exist(error.message);
-                                                        // TODO, 4213049: Better default error message
-                                                        //error.message.should.match(/.*unexpected status code: 400.*/);
-                                                        done();
+                                                        testClient.httpFailure.getNoModelError(function (error, result) {
+                                                          should.exist(error);
+                                                          (<msRest.RestError>error).statusCode.should.equal(400);
+                                                          should.exist(error.message);
+                                                          // TODO, 4213049: Better default error message
+                                                          //error.message.should.match(/.*unexpected status code: 400.*/);
+                                                          done();
+                                                        });
                                                       });
                                                     });
                                                   });
@@ -2396,54 +2399,54 @@ describe('typescript', function () {
           });
         });
       });
-    });
 
-    it('should work for all server failure status codes (5xx) with different verbs', function (done) {
-      testClient.httpServerFailure.head501(function (error, result) {
-        should.exist(error);
-        (<msRest.RestError>error).statusCode.should.equal(501);
-        testClient.httpServerFailure.get501(function (error, result) {
+      it('should work for all server failure status codes (5xx) with different verbs', function (done) {
+        testClient.httpServerFailure.head501(function (error, result) {
           should.exist(error);
           (<msRest.RestError>error).statusCode.should.equal(501);
-          testClient.httpServerFailure.post505({ booleanValue: true }, function (error, result) {
+          testClient.httpServerFailure.get501(function (error, result) {
             should.exist(error);
-            (<msRest.RestError>error).statusCode.should.equal(505);
-            testClient.httpServerFailure.delete505({ booleanValue: true }, function (error, result) {
+            (<msRest.RestError>error).statusCode.should.equal(501);
+            testClient.httpServerFailure.post505({ booleanValue: true }, function (error, result) {
               should.exist(error);
               (<msRest.RestError>error).statusCode.should.equal(505);
-              done();
+              testClient.httpServerFailure.delete505({ booleanValue: true }, function (error, result) {
+                should.exist(error);
+                (<msRest.RestError>error).statusCode.should.equal(505);
+                done();
+              });
             });
           });
         });
       });
-    });
 
-    it('should properly perform the Http retry', function (done) {
-      testClient.httpRetry.head408(function (error, result, request, response) {
-        should.not.exist(error);
-        response.status.should.equal(200);
-        testClient.httpRetry.get502(function (error, result, request, response) {
+      it('should properly perform the Http retry', function (done) {
+        testClient.httpRetry.head408(function (error, result, request, response) {
           should.not.exist(error);
           response.status.should.equal(200);
-          testClient.httpRetry.put500({ booleanValue: true }, function (error, result, request, response) {
+          testClient.httpRetry.get502(function (error, result, request, response) {
             should.not.exist(error);
             response.status.should.equal(200);
-            testClient.httpRetry.patch500({ booleanValue: true }, function (error, result, request, response) {
+            testClient.httpRetry.put500({ booleanValue: true }, function (error, result, request, response) {
               should.not.exist(error);
               response.status.should.equal(200);
-              testClient.httpRetry.post503({ booleanValue: true }, function (error, result, request, response) {
+              testClient.httpRetry.patch500({ booleanValue: true }, function (error, result, request, response) {
                 should.not.exist(error);
                 response.status.should.equal(200);
-                testClient.httpRetry.delete503({ booleanValue: true }, function (error, result, request, response) {
+                testClient.httpRetry.post503({ booleanValue: true }, function (error, result, request, response) {
                   should.not.exist(error);
                   response.status.should.equal(200);
-                  testClient.httpRetry.put504({ booleanValue: true }, function (error, result, request, response) {
+                  testClient.httpRetry.delete503({ booleanValue: true }, function (error, result, request, response) {
                     should.not.exist(error);
                     response.status.should.equal(200);
-                    testClient.httpRetry.patch504({ booleanValue: true }, function (error, result, request, response) {
+                    testClient.httpRetry.put504({ booleanValue: true }, function (error, result, request, response) {
                       should.not.exist(error);
                       response.status.should.equal(200);
-                      done();
+                      testClient.httpRetry.patch504({ booleanValue: true }, function (error, result, request, response) {
+                        should.not.exist(error);
+                        response.status.should.equal(200);
+                        done();
+                      });
                     });
                   });
                 });
@@ -2452,111 +2455,111 @@ describe('typescript', function () {
           });
         });
       });
-    });
 
-    it('should properly handle multiple responses with different verbs', function (done) {
-      testClient.multipleResponses.get200Model204NoModelDefaultError200Valid(function (error, result) {
-        should.not.exist(error);
-        result.statusCode.should.equal("200");
-        //should use models.Error to deserialize and set it as body of javascript Error object
-        testClient.multipleResponses.get200Model204NoModelDefaultError201Invalid(function (error, result) {
-          should.exist(error);
-          (<msRest.RestError>error).statusCode.should.equal(201);
-          testClient.multipleResponses.get200Model204NoModelDefaultError202None(function (error, result) {
+      it('should properly handle multiple responses with different verbs', function (done) {
+        testClient.multipleResponses.get200Model204NoModelDefaultError200Valid(function (error, result) {
+          should.not.exist(error);
+          result.statusCode.should.equal("200");
+          //should use models.Error to deserialize and set it as body of javascript Error object
+          testClient.multipleResponses.get200Model204NoModelDefaultError201Invalid(function (error, result) {
             should.exist(error);
-            (<msRest.RestError>error).statusCode.should.equal(202);
-            //should we set body property of msRest.HttpOperationResponse to {}.
-            //C3 does this Assert.Null(client.MultipleResponses.Get200Model204NoModelDefaultError204Valid());
-            testClient.multipleResponses.get200Model204NoModelDefaultError204Valid(function (error, result) {
-              should.not.exist(error);
-              should.not.exist(result);
-              //{"message":"client error","status":400} shouldn't we set this to error model defined in swagger?
-              testClient.multipleResponses.get200Model204NoModelDefaultError400Valid(function (error, result) {
-                should.exist(error);
-                (<msRest.RestError>error).statusCode.should.equal(400);
-                testClient.multipleResponses.get200Model201ModelDefaultError200Valid(function (error, result) {
-                  should.not.exist(error);
-                  result.statusCode.should.equal("200");
-                  testClient.multipleResponses.get200Model201ModelDefaultError201Valid(function (error, result) {
+            (<msRest.RestError>error).statusCode.should.equal(201);
+            testClient.multipleResponses.get200Model204NoModelDefaultError202None(function (error, result) {
+              should.exist(error);
+              (<msRest.RestError>error).statusCode.should.equal(202);
+              //should we set body property of msRest.HttpOperationResponse to {}.
+              //C3 does this Assert.Null(client.MultipleResponses.Get200Model204NoModelDefaultError204Valid());
+              testClient.multipleResponses.get200Model204NoModelDefaultError204Valid(function (error, result) {
+                should.not.exist(error);
+                should.not.exist(result);
+                //{"message":"client error","status":400} shouldn't we set this to error model defined in swagger?
+                testClient.multipleResponses.get200Model204NoModelDefaultError400Valid(function (error, result) {
+                  should.exist(error);
+                  (<msRest.RestError>error).statusCode.should.equal(400);
+                  testClient.multipleResponses.get200Model201ModelDefaultError200Valid(function (error, result) {
                     should.not.exist(error);
-                    should.exist(result);
-                    assert.deepEqual(result, { 'statusCode': '201', 'textStatusCode': 'Created' });
-                    testClient.multipleResponses.get200Model201ModelDefaultError400Valid(function (error, result) {
-                      should.exist(error);
-                      (<msRest.RestError>error).statusCode.should.equal(400);
-                      testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid(function (error, result) {
-                        should.not.exist(error);
-                        should.exist(result);
-                        result.statusCode.should.equal("200");
-                        testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid(function (error, result) {
+                    result.statusCode.should.equal("200");
+                    testClient.multipleResponses.get200Model201ModelDefaultError201Valid(function (error, result) {
+                      should.not.exist(error);
+                      should.exist(result);
+                      assert.deepEqual(result, { 'statusCode': '201', 'textStatusCode': 'Created' });
+                      testClient.multipleResponses.get200Model201ModelDefaultError400Valid(function (error, result) {
+                        should.exist(error);
+                        (<msRest.RestError>error).statusCode.should.equal(400);
+                        testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError200Valid(function (error, result) {
                           should.not.exist(error);
                           should.exist(result);
-                          result.httpCode.should.equal("201");
-                          testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid(function (error, result) {
+                          result.statusCode.should.equal("200");
+                          testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError201Valid(function (error, result) {
                             should.not.exist(error);
                             should.exist(result);
-                            result.httpStatusCode.should.equal("404");
-                            testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(function (error, result) {
-                              should.exist(error);
-                              (<msRest.RestError>error).statusCode.should.equal(400);
-                              testClient.multipleResponses.get202None204NoneDefaultError202None(function (error, result) {
-                                should.not.exist(error);
-                                testClient.multipleResponses.get202None204NoneDefaultError204None(function (error, result) {
+                            result.httpCode.should.equal("201");
+                            testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError404Valid(function (error, result) {
+                              should.not.exist(error);
+                              should.exist(result);
+                              result.httpStatusCode.should.equal("404");
+                              testClient.multipleResponses.get200ModelA201ModelC404ModelDDefaultError400Valid(function (error, result) {
+                                should.exist(error);
+                                (<msRest.RestError>error).statusCode.should.equal(400);
+                                testClient.multipleResponses.get202None204NoneDefaultError202None(function (error, result) {
                                   should.not.exist(error);
-                                  testClient.multipleResponses.get202None204NoneDefaultError400Valid(function (error, result) {
-                                    should.exist(error);
-                                    (<msRest.RestError>error).statusCode.should.equal(400);
-                                    testClient.multipleResponses.get202None204NoneDefaultNone202Invalid(function (error, result) {
-                                      should.not.exist(error);
-                                      testClient.multipleResponses.get202None204NoneDefaultNone204None(function (error, result) {
+                                  testClient.multipleResponses.get202None204NoneDefaultError204None(function (error, result) {
+                                    should.not.exist(error);
+                                    testClient.multipleResponses.get202None204NoneDefaultError400Valid(function (error, result) {
+                                      should.exist(error);
+                                      (<msRest.RestError>error).statusCode.should.equal(400);
+                                      testClient.multipleResponses.get202None204NoneDefaultNone202Invalid(function (error, result) {
                                         should.not.exist(error);
-                                        testClient.multipleResponses.get202None204NoneDefaultNone400None(function (error, result) {
-                                          should.exist(error);
-                                          (<msRest.RestError>error).statusCode.should.equal(400);
-                                          testClient.multipleResponses.get202None204NoneDefaultNone400Invalid(function (error, result) {
+                                        testClient.multipleResponses.get202None204NoneDefaultNone204None(function (error, result) {
+                                          should.not.exist(error);
+                                          testClient.multipleResponses.get202None204NoneDefaultNone400None(function (error, result) {
                                             should.exist(error);
                                             (<msRest.RestError>error).statusCode.should.equal(400);
-                                            testClient.multipleResponses.getDefaultModelA200Valid(function (error, result) {
-                                              should.not.exist(error);
-                                              //result.statusCode.should.equal("200");
-                                              testClient.multipleResponses.getDefaultModelA200None(function (error, result) {
+                                            testClient.multipleResponses.get202None204NoneDefaultNone400Invalid(function (error, result) {
+                                              should.exist(error);
+                                              (<msRest.RestError>error).statusCode.should.equal(400);
+                                              testClient.multipleResponses.getDefaultModelA200Valid(function (error, result) {
                                                 should.not.exist(error);
-                                                testClient.multipleResponses.getDefaultModelA400Valid(function (error, result) {
-                                                  should.exist(error);
-                                                  (<msRest.RestError>error).statusCode.should.equal(400);
-                                                  testClient.multipleResponses.getDefaultModelA400None(function (error, result) {
+                                                //result.statusCode.should.equal("200");
+                                                testClient.multipleResponses.getDefaultModelA200None(function (error, result) {
+                                                  should.not.exist(error);
+                                                  testClient.multipleResponses.getDefaultModelA400Valid(function (error, result) {
                                                     should.exist(error);
                                                     (<msRest.RestError>error).statusCode.should.equal(400);
-                                                    testClient.multipleResponses.getDefaultNone200Invalid(function (error, result) {
-                                                      should.not.exist(error);
-                                                      testClient.multipleResponses.getDefaultNone200None(function (error, result) {
+                                                    testClient.multipleResponses.getDefaultModelA400None(function (error, result) {
+                                                      should.exist(error);
+                                                      (<msRest.RestError>error).statusCode.should.equal(400);
+                                                      testClient.multipleResponses.getDefaultNone200Invalid(function (error, result) {
                                                         should.not.exist(error);
-                                                        testClient.multipleResponses.getDefaultNone400Invalid(function (error, result) {
-                                                          should.exist(error);
-                                                          (<msRest.RestError>error).statusCode.should.equal(400);
-                                                          testClient.multipleResponses.getDefaultNone400None(function (error, result) {
+                                                        testClient.multipleResponses.getDefaultNone200None(function (error, result) {
+                                                          should.not.exist(error);
+                                                          testClient.multipleResponses.getDefaultNone400Invalid(function (error, result) {
                                                             should.exist(error);
                                                             (<msRest.RestError>error).statusCode.should.equal(400);
-                                                            testClient.multipleResponses.get200ModelA200None(function (error, result) {
-                                                              should.not.exist(error);
-                                                              testClient.multipleResponses.get200ModelA200Valid(function (error, result) {
+                                                            testClient.multipleResponses.getDefaultNone400None(function (error, result) {
+                                                              should.exist(error);
+                                                              (<msRest.RestError>error).statusCode.should.equal(400);
+                                                              testClient.multipleResponses.get200ModelA200None(function (error, result) {
                                                                 should.not.exist(error);
-                                                                result.statusCode.should.equal("200");
-                                                                testClient.multipleResponses.get200ModelA200Invalid(function (error, result) {
+                                                                testClient.multipleResponses.get200ModelA200Valid(function (error, result) {
                                                                   should.not.exist(error);
-                                                                  testClient.multipleResponses.get200ModelA400None(function (error, result) {
-                                                                    should.exist(error);
-                                                                    (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                    testClient.multipleResponses.get200ModelA400Valid(function (error, result) {
+                                                                  result.statusCode.should.equal("200");
+                                                                  testClient.multipleResponses.get200ModelA200Invalid(function (error, result) {
+                                                                    should.not.exist(error);
+                                                                    testClient.multipleResponses.get200ModelA400None(function (error, result) {
                                                                       should.exist(error);
                                                                       (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                      testClient.multipleResponses.get200ModelA400Invalid(function (error, result) {
+                                                                      testClient.multipleResponses.get200ModelA400Valid(function (error, result) {
                                                                         should.exist(error);
                                                                         (<msRest.RestError>error).statusCode.should.equal(400);
-                                                                        testClient.multipleResponses.get200ModelA202Valid(function (error, result) {
+                                                                        testClient.multipleResponses.get200ModelA400Invalid(function (error, result) {
                                                                           should.exist(error);
-                                                                          (<msRest.RestError>error).statusCode.should.equal(202);
-                                                                          done();
+                                                                          (<msRest.RestError>error).statusCode.should.equal(400);
+                                                                          testClient.multipleResponses.get200ModelA202Valid(function (error, result) {
+                                                                            should.exist(error);
+                                                                            (<msRest.RestError>error).statusCode.should.equal(202);
+                                                                            done();
+                                                                          });
                                                                         });
                                                                       });
                                                                     });
@@ -2593,5 +2596,4 @@ describe('typescript', function () {
       });
     });
   });
-});
 });
