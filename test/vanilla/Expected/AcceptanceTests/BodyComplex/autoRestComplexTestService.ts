@@ -57,7 +57,7 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
     this.apiVersion = '2014-04-01-preview';
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost';
+      this.baseUri = 'http://localhost:3000';
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

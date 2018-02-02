@@ -58,7 +58,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -129,7 +128,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -228,7 +226,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -299,7 +296,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -472,7 +468,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -543,7 +538,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -817,7 +811,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -888,7 +881,6 @@ export class HttpRedirects {
         }
       }
     }
-    httpRequest.body = undefined;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
