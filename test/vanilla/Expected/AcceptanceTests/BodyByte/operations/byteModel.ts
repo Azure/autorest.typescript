@@ -57,7 +57,6 @@ export class ByteModel {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -149,7 +148,6 @@ export class ByteModel {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -241,7 +239,6 @@ export class ByteModel {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -435,7 +432,6 @@ export class ByteModel {
         }
       }
     }
-    httpRequest.body = null;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
