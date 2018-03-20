@@ -24,5 +24,6 @@
   },
   "files.associations": {
     "*.iced": "coffeescript"
-  }
+  },
+  "mocha.files.glob": "test/**/dist/AcceptanceTests/*.js"
 }
