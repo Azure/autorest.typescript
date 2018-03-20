@@ -25,5 +25,6 @@
   "files.associations": {
     "*.iced": "coffeescript"
   },
-  "mocha.files.glob": "test/**/dist/AcceptanceTests/*.js"
+  "mocha.files.glob": "test/**/dist/AcceptanceTests/*.js",
+  "mocha.logVerbose": true
 }
