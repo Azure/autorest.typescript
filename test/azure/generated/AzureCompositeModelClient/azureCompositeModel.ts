@@ -87,13 +87,13 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     this.credentials = credentials;
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if (options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
+    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }
-    if (options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
+    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
     }
-    if (options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
+    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
       this.generateClientRequestId = options.generateClientRequestId;
     }
     this.basic = new operations.BasicOperations(this);
@@ -159,13 +159,13 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.acceptLanguage !== undefined && this.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -196,7 +196,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -217,7 +217,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -286,13 +286,13 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.acceptLanguage !== undefined && this.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -309,7 +309,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-        `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
+          `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -338,7 +338,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -359,7 +359,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -428,13 +428,13 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.acceptLanguage !== undefined && this.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -451,7 +451,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-        `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
+          `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -480,7 +480,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -501,7 +501,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 

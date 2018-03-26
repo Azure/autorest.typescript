@@ -64,13 +64,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -100,7 +100,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -121,7 +121,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -157,13 +157,15 @@ export class Paging {
     let maxresults: any;
     let timeout: any;
     try {
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined) {
+      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
+      {
         maxresults = pagingGetMultiplePagesOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined) {
+      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
+      {
         timeout = pagingGetMultiplePagesOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -189,7 +191,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -203,8 +205,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -234,7 +236,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -255,7 +257,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -293,13 +295,15 @@ export class Paging {
     let maxresults: any;
     let timeout: any;
     try {
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined) {
+      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
+      {
         maxresults = pagingGetOdataMultiplePagesOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined) {
+      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
+      {
         timeout = pagingGetOdataMultiplePagesOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -325,7 +329,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -339,8 +343,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -370,7 +374,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -391,7 +395,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -435,19 +439,22 @@ export class Paging {
     let offset: any;
     let timeout: any;
     try {
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined) {
+      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
+      {
         maxresults = pagingGetMultiplePagesWithOffsetOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined) {
+      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
+      {
         offset = pagingGetMultiplePagesWithOffsetOptions.offset;
         if (offset === null || offset === undefined || typeof offset !== 'number') {
           throw new Error('offset cannot be null or undefined and it must be of type number.');
         }
       }
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined) {
+      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
+      {
         timeout = pagingGetMultiplePagesWithOffsetOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -474,7 +481,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -488,8 +495,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -519,7 +526,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -540,7 +547,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -586,13 +593,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -622,7 +629,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -643,7 +650,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -690,13 +697,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -726,7 +733,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -747,7 +754,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -792,13 +799,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -828,7 +835,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -849,7 +856,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -894,13 +901,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -930,7 +937,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -951,7 +958,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -996,13 +1003,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1032,7 +1039,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1053,7 +1060,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1110,13 +1117,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1146,7 +1153,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1167,7 +1174,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1205,13 +1212,15 @@ export class Paging {
     let apiVersion: any;
     let tenant: any;
     try {
-      if (customParameterGroup !== null && customParameterGroup !== undefined) {
+      if (customParameterGroup !== null && customParameterGroup !== undefined)
+      {
         apiVersion = customParameterGroup.apiVersion;
         if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
           throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
         }
       }
-      if (customParameterGroup !== null && customParameterGroup !== undefined) {
+      if (customParameterGroup !== null && customParameterGroup !== undefined)
+      {
         tenant = customParameterGroup.tenant;
         if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
           throw new Error('tenant cannot be null or undefined and it must be of type string.');
@@ -1239,13 +1248,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1275,7 +1284,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1296,7 +1305,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1359,13 +1368,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1395,7 +1404,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1416,7 +1425,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1458,13 +1467,15 @@ export class Paging {
     let apiVersion: any;
     let tenant: any;
     try {
-      if (customParameterGroup !== null && customParameterGroup !== undefined) {
+      if (customParameterGroup !== null && customParameterGroup !== undefined)
+      {
         apiVersion = customParameterGroup.apiVersion;
         if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
           throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
         }
       }
-      if (customParameterGroup !== null && customParameterGroup !== undefined) {
+      if (customParameterGroup !== null && customParameterGroup !== undefined)
+      {
         tenant = customParameterGroup.tenant;
         if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
           throw new Error('tenant cannot be null or undefined and it must be of type string.');
@@ -1493,13 +1504,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1529,7 +1540,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1550,7 +1561,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1597,13 +1608,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1633,7 +1644,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1654,7 +1665,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1697,13 +1708,15 @@ export class Paging {
     let maxresults: any;
     let timeout: any;
     try {
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined) {
+      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
+      {
         maxresults = pagingGetMultiplePagesOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined) {
+      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
+      {
         timeout = pagingGetMultiplePagesOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -1725,7 +1738,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -1739,8 +1752,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1770,7 +1783,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1791,7 +1804,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1835,13 +1848,15 @@ export class Paging {
     let maxresults: any;
     let timeout: any;
     try {
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined) {
+      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
+      {
         maxresults = pagingGetOdataMultiplePagesOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined) {
+      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
+      {
         timeout = pagingGetOdataMultiplePagesOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -1863,7 +1878,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -1877,8 +1892,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -1908,7 +1923,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1929,7 +1944,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -1972,13 +1987,15 @@ export class Paging {
     let maxresults: any;
     let timeout: any;
     try {
-      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined) {
+      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined)
+      {
         maxresults = pagingGetMultiplePagesWithOffsetNextOptions.maxresults;
         if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
           throw new Error('maxresults must be of type number.');
         }
       }
-      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined) {
+      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined)
+      {
         timeout = pagingGetMultiplePagesWithOffsetNextOptions.timeout;
         if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
           throw new Error('timeout must be of type number.');
@@ -2000,7 +2017,7 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (clientRequestId !== undefined && clientRequestId !== null) {
       httpRequest.headers['client-request-id'] = clientRequestId;
@@ -2014,8 +2031,8 @@ export class Paging {
     if (timeout !== undefined && timeout !== null) {
       httpRequest.headers['timeout'] = timeout.toString();
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2045,7 +2062,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2066,7 +2083,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -2114,13 +2131,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2150,7 +2167,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2171,7 +2188,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -2220,13 +2237,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2256,7 +2273,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2277,7 +2294,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -2324,13 +2341,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2360,7 +2377,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2381,7 +2398,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -2428,13 +2445,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2464,7 +2481,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2485,7 +2502,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
@@ -2532,13 +2549,13 @@ export class Paging {
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
     if (this.client.generateClientRequestId) {
-      httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
     if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
       httpRequest.headers['accept-language'] = this.client.acceptLanguage;
     }
-    if (options && options.customHeaders) {
-      for (let headerName in options.customHeaders) {
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
           httpRequest.headers[headerName] = options.customHeaders[headerName];
         }
@@ -2568,7 +2585,7 @@ export class Paging {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-            `- "${operationRes.bodyAsText}" for the default response.`;
+                           `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2589,7 +2606,7 @@ export class Paging {
         }
       }
 
-    } catch (err) {
+    } catch(err) {
       return Promise.reject(err);
     }
 
