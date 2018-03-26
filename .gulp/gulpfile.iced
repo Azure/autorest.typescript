@@ -1,7 +1,7 @@
 require './common.iced'
 
 # ==============================================================================
-# tasks required for this build 
+# tasks required for this build
 Tasks "dotnet"  # dotnet functions
 Tasks "regeneration"
 Tasks "publishing"
@@ -19,17 +19,23 @@ Import
 task 'init', "" ,(done)->
   Fail "YOU MUST HAVE NODEJS VERSION GREATER THAN 7.10.0" if semver.lt( process.versions.node , "7.10.0" )
   done()
-  
+
 # Run language-specific tests:
-task 'test', "", [], (done) ->
-  await execute "npm test", { cwd: './test/vanilla/' }, defer code, stderr, stdout
-  await execute "npm test", { cwd: './test/azure/' }, defer code, stderr, stdout
+task 'test', 'type check generated code', [], (done) ->
+  await execute "tsc -p ./test/tsconfig.generated.json", defer _
+  done();
+
+task 'test', 'run unit tests', [], (done) ->
+  await execute "mocha", defer _
   done();
 
 # CI job
 task 'testci', "more", [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
+
+  # ensure npm packages are installed so that typescript tests can run
+  await execute "npm install", defer _
 
   ## TEST SUITE
   global.verbose = true
@@ -46,4 +52,4 @@ task 'testci', "more", [], (done) ->
   echo stderr
   echo stdout
   throw "Potentially unnoticed regression (see diff above)! Run `npm run regenerate`, then review and commit the changes." if stdout.length + stderr.length > 0
-  done() 
+  done()

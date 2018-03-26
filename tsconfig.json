@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmit": true,
+    "target": "es6",
+    "lib": [
+      "dom",
+      "es2015"
+    ]
+  }
+}
