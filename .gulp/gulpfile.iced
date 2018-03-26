@@ -34,6 +34,9 @@ task 'testci', "more", [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
 
+  # ensure npm packages are installed so that typescript tests can run
+  await execute "npm install", defer _
+
   ## TEST SUITE
   global.verbose = true
   await run "test", defer _
