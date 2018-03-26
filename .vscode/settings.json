@@ -23,8 +23,13 @@
     "editor.detectIndentation": false
   },
   "files.associations": {
-    "*.iced": "coffeescript"
+    "*.iced": "coffeescript",
+    "tsconfig.*.json": "jsonc"
   },
-  "mocha.files.glob": "test/**/dist/AcceptanceTests/*.js",
-  "mocha.logVerbose": true
+  "mocha.files.glob": "test/**/*.ts",
+  "mocha.requires": ["ts-node/register"],
+  "mocha.logVerbose": true,
+  "mocha.options": {
+    "timeout": 50000
+  }
 }

@@ -1,6 +1,6 @@
 
 ###############################################
-# LEGACY 
+# LEGACY
 # Instead: have bunch of configuration files sitting in a well-known spot, discover them, feed them to AutoRest, done.
 
 regenExpected = (opts,done) ->
@@ -11,7 +11,7 @@ regenExpected = (opts,done) ->
   for kkey in keys
     optsMappingsValue = opts.mappings[kkey]
     key = kkey.trim();
-    
+
     swaggerFiles = (if optsMappingsValue instanceof Array then optsMappingsValue[0] else optsMappingsValue).split(";")
     args = [
       "--#{opts.language}",
@@ -32,10 +32,10 @@ regenExpected = (opts,done) ->
 
     if (opts.fluent)
       args.push("--#{opts.language}.fluent=true")
-    
+
     if (opts.syncMethods)
       args.push("--#{opts.language}.sync-methods=#{opts.syncMethods}")
-    
+
     if (opts.flatteningThreshold)
       args.push("--#{opts.language}.payload-flattening-threshold=#{opts.flatteningThreshold}")
 
@@ -54,63 +54,63 @@ regenExpected = (opts,done) ->
 
     autorest args,() =>
       instances--
-      return done() if instances is 0 
+      return done() if instances is 0
 
 defaultMappings = {
-  'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
-  'AcceptanceTests/BodyArray': 'body-array.json',
-  'AcceptanceTests/BodyBoolean': 'body-boolean.json',
-  'AcceptanceTests/BodyByte': 'body-byte.json',
-  'AcceptanceTests/BodyComplex': 'body-complex.json',
-  'AcceptanceTests/BodyDate': 'body-date.json',
-  'AcceptanceTests/BodyDateTime': 'body-datetime.json',
-  'AcceptanceTests/BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
-  'AcceptanceTests/BodyDuration': 'body-duration.json',
-  'AcceptanceTests/BodyDictionary': 'body-dictionary.json',
-  'AcceptanceTests/BodyFile': 'body-file.json',
-  'AcceptanceTests/BodyFormData': 'body-formdata.json',
-  'AcceptanceTests/BodyInteger': 'body-integer.json',
-  'AcceptanceTests/BodyNumber': 'body-number.json',
-  'AcceptanceTests/BodyString': 'body-string.json',
-  'AcceptanceTests/Header': 'header.json',
-  'AcceptanceTests/Http': 'httpInfrastructure.json',
-  'AcceptanceTests/Report': 'report.json',
-  'AcceptanceTests/RequiredOptional': 'required-optional.json',
-  'AcceptanceTests/Url': 'url.json',
-  'AcceptanceTests/Validation': 'validation.json',
-  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json',
-  'AcceptanceTests/CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
-  'AcceptanceTests/ModelFlattening': 'model-flattening.json',
-  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
+  'ParameterFlattening': 'parameter-flattening.json',
+  'BodyArray': 'body-array.json',
+  'BodyBoolean': 'body-boolean.json',
+  'BodyByte': 'body-byte.json',
+  'BodyComplex': 'body-complex.json',
+  'BodyDate': 'body-date.json',
+  'BodyDateTime': 'body-datetime.json',
+  'BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
+  'BodyDuration': 'body-duration.json',
+  'BodyDictionary': 'body-dictionary.json',
+  'BodyFile': 'body-file.json',
+  'BodyFormData': 'body-formdata.json',
+  'BodyInteger': 'body-integer.json',
+  'BodyNumber': 'body-number.json',
+  'BodyString': 'body-string.json',
+  'Header': 'header.json',
+  'Http': 'httpInfrastructure.json',
+  'Report': 'report.json',
+  'RequiredOptional': 'required-optional.json',
+  'Url': 'url.json',
+  'Validation': 'validation.json',
+  'CustomBaseUri': 'custom-baseUrl.json',
+  'CustomBaseUriMoreOptions': 'custom-baseUrl-more-options.json',
+  'ModelFlattening': 'model-flattening.json',
+  'UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
 }
 
 defaultAzureMappings = {
-  'AcceptanceTests/Lro': 'lro.json',
-  'AcceptanceTests/Paging': 'paging.json',
-  'AcceptanceTests/AzureReport': 'azure-report.json',
-  'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
-  'AcceptanceTests/AzureResource': 'azure-resource.json',
-  'AcceptanceTests/Head': 'head.json',
-  'AcceptanceTests/HeadExceptions': 'head-exceptions.json',
-  'AcceptanceTests/SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
-  'AcceptanceTests/AzureSpecials': 'azure-special-properties.json',
-  'AcceptanceTests/CustomBaseUri': 'custom-baseUrl.json'
+  'Lro': 'lro.json',
+  'Paging': 'paging.json',
+  'AzureReport': 'azure-report.json',
+  'AzureParameterGrouping': 'azure-parameter-grouping.json',
+  'AzureResource': 'azure-resource.json',
+  'Head': 'head.json',
+  'HeadExceptions': 'head-exceptions.json',
+  'SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
+  'AzureSpecials': 'azure-special-properties.json',
+  'CustomBaseUri': 'custom-baseUrl.json'
 }
 
 compositeMappings = {
-  'AcceptanceTests/CompositeBoolIntClient': 'body-boolean.json;body-integer.json'
+  'CompositeBoolIntClient': 'body-boolean.json;body-integer.json'
 }
 
 azureCompositeMappings = {
-  'AcceptanceTests/AzureCompositeModelClient': 'complex-model.json;body-complex.json'
+  'AzureCompositeModelClient': 'complex-model.json;body-complex.json'
 }
 
 tsAzureMappings = {
-  'AcceptanceTests/StorageManagementClient': 'storage.json'
+  'StorageManagementClient': 'storage.json'
 }
 
 tsMappings = {
-  'AcceptanceTests/ComplexModelClient': 'complex-model.json'
+  'ComplexModelClient': 'complex-model.json'
 }
 
 swaggerDir = "node_modules/@microsoft.azure/autorest.testserver/swagger"
@@ -121,7 +121,7 @@ task 'regenerate-tscomposite', '', (done) ->
     'inputBaseDir': swaggerDir,
     'mappings': compositeMappings,
     'modeler': 'CompositeSwagger',
-    'outputDir': 'Expected',
+    'outputDir': 'generated',
     'language': 'typescript',
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1',
@@ -136,7 +136,7 @@ task 'regenerate-tsazurecomposite', '', (done) ->
     'inputBaseDir': swaggerDir,
     'mappings': azureCompositeMappings,
     'modeler': 'CompositeSwagger',
-    'outputDir': 'Expected',
+    'outputDir': 'generated',
     'language': 'typescript',
     'azureArm': true,
     'nsPrefix': 'Fixtures',
@@ -154,7 +154,7 @@ task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite'], (done) ->
     'outputBaseDir': 'test/azure',
     'inputBaseDir': swaggerDir,
     'mappings': tsAzureMappings,
-    'outputDir': 'Expected',
+    'outputDir': 'generated',
     'language': 'typescript',
     'azureArm': true,
     'nsPrefix': 'Fixtures',
@@ -169,7 +169,7 @@ task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
     'outputBaseDir': 'test/vanilla',
     'inputBaseDir': swaggerDir,
     'mappings': tsMappings,
-    'outputDir': 'Expected',
+    'outputDir': 'generated',
     'language': 'typescript',
     'nsPrefix': 'Fixtures',
     'flatteningThreshold': '1'
