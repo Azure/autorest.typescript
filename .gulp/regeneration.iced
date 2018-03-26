@@ -97,6 +97,10 @@ defaultAzureMappings = {
   'CustomBaseUri': 'custom-baseUrl.json'
 }
 
+xmlMappings = {
+  'Xml': 'xml-service.json'
+}
+
 compositeMappings = {
   'CompositeBoolIntClient': 'body-boolean.json;body-integer.json'
 }
@@ -162,6 +166,17 @@ task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite'], (done) ->
   },done
   return null
 
+task 'regenerate-tsxml', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/xml'
+    'inputBaseDir': swaggerDir,
+    'mappings': xmlMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures'
+  },done
+  return null
+
 task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
@@ -176,5 +191,5 @@ task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
   },done
   return null
 
-task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsazure'], (done) ->
+task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsxml', 'regenerate-tsazure'], (done) ->
   done();
