@@ -5,13 +5,13 @@ import * as fs from 'fs';
 import * as child_process from 'child_process';
 import * as path from 'path';
 
-let child: child_process.ChildProcess | undefined;
+let child: child_process.ChildProcess;
 
 before(function (done) {
   var started = false;
   var out = fs.openSync(path.join(__dirname, 'server.log'), 'w');
   fs.writeSync(out, 'Test run started at ' + new Date().toISOString() + '\n');
-  child = child_process.spawn("npm", ['run', 'start-test-server']);
+  child = child_process.spawn('node', ['node_modules/@microsoft.azure/autorest.testserver']);
   child.on('error', console.warn);
 
   child.stdout.on('data', function (data: Buffer) {
