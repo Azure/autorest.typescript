@@ -11,39 +11,35 @@ before(function (done) {
   var started = false;
   var out = fs.openSync(path.join(__dirname, 'server.log'), 'w');
   fs.writeSync(out, 'Test run started at ' + new Date().toISOString() + '\n');
-  try {
-    child = child_process.spawn("npm", ['run', 'start-test-server']);
-    child.stdout.on('data', function (data: Buffer) {
-      fs.writeSync(out, data.toString('UTF-8'));
-      if (data.toString().indexOf('started') > 0) {
-        started = true;
-        done();
-      }
-    });
+  child = child_process.spawn("npm", ['run', 'start-test-server']);
+  child.on('error', console.warn);
 
-    child.stderr.on('data', (data) => {
-      const dataString = data.toString();
-      fs.writeSync(out, dataString);
-      if (!started) {
-        console.warn(dataString);
-        started = true;
-        done();
-      }
-    });
+  child.stdout.on('data', function (data: Buffer) {
+    fs.writeSync(out, data.toString('UTF-8'));
+    if (data.toString().indexOf('started') > 0) {
+      started = true;
+      done();
+    }
+  });
 
-    child.on("close", (code, signal) => {
-      fs.closeSync(out);
-      if (!started) {
-        done();
-      }
-    });
-  } catch (err) {
-    console.warn(err);
-  }
+  child.stderr.on('data', (data) => {
+    const dataString = data.toString();
+    fs.writeSync(out, dataString);
+    if (!started) {
+      console.warn(dataString);
+      started = true;
+      done();
+    }
+  });
+
+  child.on("close", (code, signal) => {
+    fs.closeSync(out);
+    if (!started) {
+      done();
+    }
+  });
 });
 
 after(async function () {
-  if (child) {
-    child.kill();
-  }
+  child.kill();
 });
