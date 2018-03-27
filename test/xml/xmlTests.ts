@@ -1,5 +1,5 @@
 import * as should from 'should';
-import { AutoRestSwaggerBATXMLService } from './generated/Xml/autoRestSwaggerBATXMLService';
+import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
 const baseUri = 'http://localhost:3000';
 const testClient = new AutoRestSwaggerBATXMLService(baseUri);
@@ -31,5 +31,27 @@ describe('typescript', function () {
     slideshow.slides[1].items[0].should.equal('Why WonderWidgets are great');
     slideshow.slides[1].items[1].should.equal('');
     slideshow.slides[1].items[2].should.equal('Who buys WonderWidgets');
+  });
+
+  it('should correctly serialize a simple XML document', async function() {
+    const slideshow: models.Slideshow = {
+      author: 'Yours Truly',
+      date: 'Date of publication',
+      title: 'Sample Slide Show',
+      slides: [
+        { type: 'all', title: 'Wake up to WonderWidgets!' },
+        {
+          type: 'all',
+          title: 'Overview',
+          items: [
+            'Why WonderWidgets are great',
+            '',
+            'Who buys WonderWidgets'
+          ]
+        }
+      ]
+    };
+
+    await testClient.xml.putSimple(slideshow);
   });
 });

@@ -114,7 +114,7 @@ export class Xml {
   /**
    * Put a simple XML document
    *
-   * @param {Slideshow} wrappedLists
+   * @param {Slideshow} slideshow
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -124,12 +124,12 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putSimpleWithHttpOperationResponse(wrappedLists: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
-      if (wrappedLists === null || wrappedLists === undefined) {
-        throw new Error('wrappedLists cannot be null or undefined.');
+      if (slideshow === null || slideshow === undefined) {
+        throw new Error('slideshow cannot be null or undefined.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -157,14 +157,14 @@ export class Xml {
     let requestContent = null;
     let requestModel = null;
     try {
-      if (wrappedLists !== null && wrappedLists !== undefined) {
+      if (slideshow !== null && slideshow !== undefined) {
         let requestModelMapper = Mappers.Slideshow;
-        requestModel = client.serializer.serialize(requestModelMapper, wrappedLists, 'wrappedLists');
-        requestContent = JSON.stringify(requestModel);
+        requestModel = client.serializer.serialize(requestModelMapper, slideshow, 'slideshow');
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'slideshow' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(wrappedLists, null, 2)}.`);
+          `payload - ${JSON.stringify(slideshow, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -336,7 +336,7 @@ export class Xml {
       if (wrappedLists !== null && wrappedLists !== undefined) {
         let requestModelMapper = Mappers.AppleBarrel;
         requestModel = client.serializer.serialize(requestModelMapper, wrappedLists, 'wrappedLists');
-        requestContent = JSON.stringify(requestModel);
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'AppleBarrel' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
@@ -761,7 +761,7 @@ export class Xml {
           }
         };
         requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
-        requestContent = JSON.stringify(requestModel);
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'bananas' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
@@ -954,7 +954,7 @@ export class Xml {
           }
         };
         requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
-        requestContent = JSON.stringify(requestModel);
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'bananas' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
@@ -1126,7 +1126,7 @@ export class Xml {
       if (banana !== null && banana !== undefined) {
         let requestModelMapper = Mappers.Banana;
         requestModel = client.serializer.serialize(requestModelMapper, banana, 'banana');
-        requestContent = JSON.stringify(requestModel);
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'banana' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
@@ -1216,7 +1216,7 @@ export class Xml {
   /**
    * Put a simple XML document
    *
-   * @param {Slideshow} wrappedLists
+   * @param {Slideshow} slideshow
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1232,24 +1232,24 @@ export class Xml {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putSimple(wrappedLists: Models.Slideshow): Promise<void>;
-  putSimple(wrappedLists: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
-  putSimple(wrappedLists: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
-  putSimple(wrappedLists: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putSimple(wrappedLists: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putSimple(slideshow: Models.Slideshow): Promise<void>;
+  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
+  putSimple(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putSimple(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putSimpleWithHttpOperationResponse(wrappedLists, options).then((operationRes: msRest.HttpOperationResponse) => {
+      return this.putSimpleWithHttpOperationResponse(slideshow, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putSimpleWithHttpOperationResponse(wrappedLists, options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.putSimpleWithHttpOperationResponse(slideshow, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
