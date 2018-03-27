@@ -49,7 +49,7 @@ class AutoRestReportService extends msRest.ServiceClient {
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
   // methods on the client.
 

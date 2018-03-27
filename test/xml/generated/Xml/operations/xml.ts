@@ -9,154 +9,25 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
+import * as Models from "../models";
+import * as Mappers from "../models/mappers";
+import { AutoRestSwaggerBATXMLService } from "../autoRestSwaggerBATXMLService";
+
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
-  baseUri: string;
-  serializer: msRest.Serializer;
-
+/** Class representing a Xml. */
+export class Xml {
+  private readonly client: AutoRestSwaggerBATXMLService;
   /**
-   * @class
-   * Initializes a new instance of the AutoRestResourceFlatteningTestService class.
-   * @constructor
-   *
-   * @param {string} [baseUri] - The base URI of the service.
-   *
-   * @param {object} [options] - The parameter options
-   *
-   * @param {Array} [options.filters] - Filters to be added to the request pipeline
-   *
-   * @param {object} [options.requestOptions] - The request options. Detailed info can be found at
-   * {@link https://github.github.io/fetch/#Request Options doc}
-   *
-   * @param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
-   *
+   * Create a Xml.
+   * @param {AutoRestSwaggerBATXMLService} client Reference to the service client.
    */
-  constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) options = {};
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
+  constructor(client: AutoRestSwaggerBATXMLService) {
+    this.client = client;
   }
-  // methods on the client.
 
   /**
-   * Put External Resource as an Array
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
-
-    // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/array';
-
-    // Create HTTP transport objects
-    let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
-    httpRequest.headers = {};
-    // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (resourceArray !== null && resourceArray !== undefined) {
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'ResourceArray',
-          type: {
-            name: 'Sequence',
-            element: {
-                required: false,
-                serializedName: 'ResourceElementType',
-                type: {
-                  name: 'Composite',
-                  className: 'Resource'
-                }
-            }
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceArray, 'resourceArray');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceArray, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
-    // Send Request
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.pipeline(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(operationRes);
-  }
-  // methods on the client.
-
-  /**
-   * Get External Resource as an Array
+   * Get a simple XML document
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -166,12 +37,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this;
+  async getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/array';
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/simple';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -179,7 +50,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -222,17 +93,598 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = Mappers.Slideshow;
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Put a simple XML document
+   *
+   * @param {Slideshow} wrappedLists
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putSimpleWithHttpOperationResponse(wrappedLists: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Validate
+    try {
+      if (wrappedLists === null || wrappedLists === undefined) {
+        throw new Error('wrappedLists cannot be null or undefined.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/simple';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (wrappedLists !== null && wrappedLists !== undefined) {
+        let requestModelMapper = Mappers.Slideshow;
+        requestModel = client.serializer.serialize(requestModelMapper, wrappedLists, 'wrappedLists');
+        requestContent = JSON.stringify(requestModel);
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(wrappedLists, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 201) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            let resultMapper = Mappers.ErrorModel;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get an XML document with multiple wrapped lists
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/wrapped-lists';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = Mappers.AppleBarrel;
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Put an XML document with multiple wrapped lists
+   *
+   * @param {AppleBarrel} wrappedLists
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Validate
+    try {
+      if (wrappedLists === null || wrappedLists === undefined) {
+        throw new Error('wrappedLists cannot be null or undefined.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/wrapped-lists';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (wrappedLists !== null && wrappedLists !== undefined) {
+        let requestModelMapper = Mappers.AppleBarrel;
+        requestModel = client.serializer.serialize(requestModelMapper, wrappedLists, 'wrappedLists');
+        requestContent = JSON.stringify(requestModel);
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(wrappedLists, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 201) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            let resultMapper = Mappers.ErrorModel;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get strongly-typed response headers.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/headers';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Get an empty list.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-list';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = Mappers.Slideshow;
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Gets some empty wrapped lists.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-wrapped-lists';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = Mappers.AppleBarrel;
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Gets a list as the root element.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/root-list';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
+              xmlElementName: 'bananas',
               required: false,
               serializedName: 'parsedResponse',
               type: {
                 name: 'Sequence',
                 element: {
                     required: false,
-                    serializedName: 'FlattenedProductElementType',
+                    serializedName: 'BananaElementType',
                     type: {
                       name: 'Composite',
-                      className: 'FlattenedProduct'
+                      className: 'Banana'
                     }
                 }
               }
@@ -253,14 +705,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     return Promise.resolve(operationRes);
   }
-  // methods on the client.
 
   /**
-   * No need to have a route in Express server for this operation. Used to verify
-   * the type flattened is not removed if it's referenced in an array
+   * Puts a list as the root element.
    *
-   * @param {AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams}
-   * [options] Optional Parameters.
+   * @param {Banana[]} bananas
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -268,13 +719,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putWrappedArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
+  async putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/wrappedarray';
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/root-list';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -282,7 +732,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -294,28 +744,28 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let requestContent = null;
     let requestModel = null;
     try {
-      if (resourceArray !== null && resourceArray !== undefined) {
+      if (bananas !== null && bananas !== undefined) {
         let requestModelMapper = {
-          required: false,
-          serializedName: 'ResourceArray',
+          required: true,
+          serializedName: 'bananas',
           type: {
             name: 'Sequence',
             element: {
                 required: false,
-                serializedName: 'WrappedProductElementType',
+                serializedName: 'BananaElementType',
                 type: {
                   name: 'Composite',
-                  className: 'WrappedProduct'
+                  className: 'Banana'
                 }
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceArray, 'resourceArray');
+        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
         requestContent = JSON.stringify(requestModel);
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceArray, null, 2)}.`);
+          `payload - ${JSON.stringify(bananas, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -325,7 +775,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.pipeline(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
-      if (statusCode !== 200) {
+      if (statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
@@ -337,10 +787,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
             error.code = internalError ? internalError.code : parsedErrorResponse.code;
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -356,11 +802,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     return Promise.resolve(operationRes);
   }
-  // methods on the client.
 
   /**
-   * No need to have a route in Express server for this operation. Used to verify
-   * the type flattened is not removed if it's referenced in an array
+   * Gets an empty list as the root element.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -370,12 +814,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getWrappedArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this;
+  async getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/wrappedarray';
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-root-list';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -383,7 +827,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -410,10 +854,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.code = internalError ? internalError.code : parsedErrorResponse.code;
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
                            `- "${operationRes.bodyAsText}" for the default response.`;
@@ -427,16 +867,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
+              xmlElementName: 'bananas',
               required: false,
               serializedName: 'parsedResponse',
               type: {
                 name: 'Sequence',
                 element: {
                     required: false,
-                    serializedName: 'ProductWrapperElementType',
+                    serializedName: 'BananaElementType',
                     type: {
                       name: 'Composite',
-                      className: 'ProductWrapper'
+                      className: 'Banana'
                     }
                 }
               }
@@ -457,13 +898,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     return Promise.resolve(operationRes);
   }
-  // methods on the client.
 
   /**
-   * Put External Resource as a Dictionary
+   * Puts an empty list as the root element.
    *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams}
-   * [options] Optional Parameters.
+   * @param {Banana[]} bananas
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
@@ -471,13 +912,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
+  async putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/dictionary';
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-root-list';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -485,7 +925,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -497,28 +937,28 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let requestContent = null;
     let requestModel = null;
     try {
-      if (resourceDictionary !== null && resourceDictionary !== undefined) {
+      if (bananas !== null && bananas !== undefined) {
         let requestModelMapper = {
-          required: false,
-          serializedName: 'ResourceDictionary',
+          required: true,
+          serializedName: 'bananas',
           type: {
-            name: 'Dictionary',
-            value: {
+            name: 'Sequence',
+            element: {
                 required: false,
-                serializedName: 'FlattenedProductElementType',
+                serializedName: 'BananaElementType',
                 type: {
                   name: 'Composite',
-                  className: 'FlattenedProduct'
+                  className: 'Banana'
                 }
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceDictionary, 'resourceDictionary');
+        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
         requestContent = JSON.stringify(requestModel);
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceDictionary, null, 2)}.`);
+          `payload - ${JSON.stringify(bananas, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -528,7 +968,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.pipeline(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
-      if (statusCode !== 200) {
+      if (statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
@@ -540,10 +980,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
             error.code = internalError ? internalError.code : parsedErrorResponse.code;
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -559,10 +995,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     return Promise.resolve(operationRes);
   }
-  // methods on the client.
 
   /**
-   * Get External Resource as a Dictionary
+   * Gets an XML document with an empty child element.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -572,12 +1007,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this;
+  async getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/dictionary';
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-child-element';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -585,7 +1020,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -612,10 +1047,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.code = internalError ? internalError.code : parsedErrorResponse.code;
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
                            `- "${operationRes.bodyAsText}" for the default response.`;
@@ -628,21 +1059,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'FlattenedProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'FlattenedProduct'
-                    }
-                }
-              }
-            };
+            let resultMapper = Mappers.Banana;
             operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
           }
         } catch (error) {
@@ -659,99 +1076,11 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     return Promise.resolve(operationRes);
   }
-  // methods on the client.
 
   /**
-   * Put External Resource as a ResourceCollection
+   * Puts a value with an empty child element.
    *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
-
-    // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/resourcecollection';
-
-    // Create HTTP transport objects
-    let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
-    httpRequest.headers = {};
-    // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (resourceComplexObject !== null && resourceComplexObject !== undefined) {
-        let requestModelMapper = Mappers.ResourceCollection;
-        requestModel = client.serializer.serialize(requestModelMapper, resourceComplexObject, 'resourceComplexObject');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceComplexObject, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
-    // Send Request
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.pipeline(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(operationRes);
-  }
-  // methods on the client.
-
-  /**
-   * Get External Resource as a ResourceCollection
+   * @param {Banana} banana
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -761,421 +1090,20 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-
-    // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/resourcecollection';
-
-    // Create HTTP transport objects
-    let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
-    httpRequest.headers = {};
-    // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
-    // Send Request
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.pipeline(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-      // Deserialize Response
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.ResourceCollection;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
-          return Promise.reject(deserializationError);
-        }
-      }
-
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(operationRes);
-  }
-  // methods on the client.
-
-  /**
-   * Put Simple Product with client flattening true on the model
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  async putSimpleProductWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let simpleBodyProduct = (options && options.simpleBodyProduct !== undefined) ? options.simpleBodyProduct : undefined;
-
-    // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening';
-
-    // Create HTTP transport objects
-    let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
-    httpRequest.headers = {};
-    // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
-        let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
-    // Send Request
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.pipeline(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-      // Deserialize Response
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
-          return Promise.reject(deserializationError);
-        }
-      }
-
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(operationRes);
-  }
-  // methods on the client.
-
-  /**
-   * Put Flattened Simple Product with client flattening true on the parameter
-   *
-   * @param {string} productId Unique identifier representing a specific product
-   * for a given latitude & longitude. For example, uberX in San Francisco will
-   * have a different product_id than uberX in Los Angeles.
-   *
-   * @param {string} maxProductDisplayName Display name of product.
-   *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  async postFlattenedSimpleProductWithHttpOperationResponse(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    let description = (options && options.description !== undefined) ? options.description : undefined;
-    let genericValue = (options && options.genericValue !== undefined) ? options.genericValue : undefined;
-    let odatavalue = (options && options.odatavalue !== undefined) ? options.odatavalue : undefined;
+  async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
     // Validate
     try {
-      if (productId === null || productId === undefined || typeof productId.valueOf() !== 'string') {
-        throw new Error('productId cannot be null or undefined and it must be of type string.');
-      }
-      if (description !== null && description !== undefined && typeof description.valueOf() !== 'string') {
-        throw new Error('description must be of type string.');
-      }
-      if (maxProductDisplayName === null || maxProductDisplayName === undefined || typeof maxProductDisplayName.valueOf() !== 'string') {
-        throw new Error('maxProductDisplayName cannot be null or undefined and it must be of type string.');
-      }
-      if (genericValue !== null && genericValue !== undefined && typeof genericValue.valueOf() !== 'string') {
-        throw new Error('genericValue must be of type string.');
-      }
-      if (odatavalue !== null && odatavalue !== undefined && typeof odatavalue.valueOf() !== 'string') {
-        throw new Error('odatavalue must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let simpleBodyProduct: any;
-    try {
-      if ((productId !== null && productId !== undefined) || (description !== null && description !== undefined) || (maxProductDisplayName !== null && maxProductDisplayName !== undefined) || (genericValue !== null && genericValue !== undefined) || (odatavalue !== null && odatavalue !== undefined))
-      {
-        simpleBodyProduct = {};
-        simpleBodyProduct.productId = productId;
-        simpleBodyProduct.description = description;
-        simpleBodyProduct.maxProductDisplayName = maxProductDisplayName;
-        simpleBodyProduct.genericValue = genericValue;
-        simpleBodyProduct.odatavalue = odatavalue;
+      if (banana === null || banana === undefined) {
+        throw new Error('banana cannot be null or undefined.');
       }
     } catch (error) {
       return Promise.reject(error);
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening';
-
-    // Create HTTP transport objects
-    let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
-    httpRequest.headers = {};
-    // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
-        let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
-    // Send Request
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.pipeline(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-      // Deserialize Response
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
-          return Promise.reject(deserializationError);
-        }
-      }
-
-    } catch(err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(operationRes);
-  }
-  // methods on the client.
-
-  /**
-   * Put Simple Product with client flattening true on the model
-   *
-   * @param {FlattenParameterGroup} flattenParameterGroup Additional parameters
-   * for the operation
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @returns {Promise} A promise is returned
-   *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
-   *
-   * @reject {Error|ServiceError} - The error object.
-   */
-  async putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this;
-    // Validate
-    try {
-      if (flattenParameterGroup === null || flattenParameterGroup === undefined) {
-        throw new Error('flattenParameterGroup cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let name: any;
-    let productId: any;
-    let description: any;
-    let maxProductDisplayName: any;
-    let genericValue: any;
-    let odatavalue: any;
-    let simpleBodyProduct: any;
-    try {
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        name = flattenParameterGroup.name;
-        if (name === null || name === undefined || typeof name.valueOf() !== 'string') {
-          throw new Error('name cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        productId = flattenParameterGroup.productId;
-        if (productId === null || productId === undefined || typeof productId.valueOf() !== 'string') {
-          throw new Error('productId cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        description = flattenParameterGroup.description;
-        if (description !== null && description !== undefined && typeof description.valueOf() !== 'string') {
-          throw new Error('description must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        maxProductDisplayName = flattenParameterGroup.maxProductDisplayName;
-        if (maxProductDisplayName === null || maxProductDisplayName === undefined || typeof maxProductDisplayName.valueOf() !== 'string') {
-          throw new Error('maxProductDisplayName cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        genericValue = flattenParameterGroup.genericValue;
-        if (genericValue !== null && genericValue !== undefined && typeof genericValue.valueOf() !== 'string') {
-          throw new Error('genericValue must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        odatavalue = flattenParameterGroup.odatavalue;
-        if (odatavalue !== null && odatavalue !== undefined && typeof odatavalue.valueOf() !== 'string') {
-          throw new Error('odatavalue must be of type string.');
-        }
-      }
-      if ((productId !== null && productId !== undefined) || (description !== null && description !== undefined) || (maxProductDisplayName !== null && maxProductDisplayName !== undefined) || (genericValue !== null && genericValue !== undefined) || (odatavalue !== null && odatavalue !== undefined))
-      {
-        simpleBodyProduct = {};
-        simpleBodyProduct.productId = productId;
-        simpleBodyProduct.description = description;
-        simpleBodyProduct.maxProductDisplayName = maxProductDisplayName;
-        simpleBodyProduct.genericValue = genericValue;
-        simpleBodyProduct.odatavalue = odatavalue;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-
-    // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening/parametergrouping/{name}/';
-    requestUrl = requestUrl.replace('{name}', encodeURIComponent(name));
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-child-element';
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
@@ -1183,7 +1111,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     httpRequest.url = requestUrl;
     httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
         if (options.customHeaders.hasOwnProperty(headerName)) {
@@ -1195,14 +1123,14 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let requestContent = null;
     let requestModel = null;
     try {
-      if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
-        let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
+      if (banana !== null && banana !== undefined) {
+        let requestModelMapper = Mappers.Banana;
+        requestModel = client.serializer.serialize(requestModelMapper, banana, 'banana');
         requestContent = JSON.stringify(requestModel);
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
+          `payload - ${JSON.stringify(banana, null, 2)}.`);
       return Promise.reject(serializationError);
     }
     httpRequest.body = requestContent;
@@ -1212,7 +1140,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.pipeline(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
-      if (statusCode !== 200) {
+      if (statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
@@ -1225,31 +1153,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.code = internalError ? internalError.code : parsedErrorResponse.code;
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
-      }
-      // Deserialize Response
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
-        try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
-          return Promise.reject(deserializationError);
-        }
       }
 
     } catch(err) {
@@ -1260,10 +1169,56 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   }
 
   /**
-   * Put External Resource as an Array
+   * Get a simple XML document
    *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams}
-   * [options] Optional Parameters.
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Slideshow} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Slideshow} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getSimple(): Promise<Models.Slideshow>;
+  getSimple(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
+  getSimple(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getSimple(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getSimple(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Slideshow>;
+    if (!callback) {
+      return this.getSimpleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Slideshow);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getSimpleWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.Slideshow;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Put a simple XML document
+   *
+   * @param {Slideshow} wrappedLists
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -1277,24 +1232,24 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putArray(): Promise<void>;
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<void>;
-  putArray(callback: msRest.ServiceCallback<void>): void;
-  putArray(options: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putArray(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+  putSimple(wrappedLists: Models.Slideshow): Promise<void>;
+  putSimple(wrappedLists: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
+  putSimple(wrappedLists: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putSimple(wrappedLists: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putSimple(wrappedLists: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+      return this.putSimpleWithHttpOperationResponse(wrappedLists, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.putSimpleWithHttpOperationResponse(wrappedLists, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -1305,7 +1260,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   }
 
   /**
-   * Get External Resource as an Array
+   * Get an XML document with multiple wrapped lists
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1315,45 +1270,46 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Models.FlattenedProduct[]} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.AppleBarrel} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.AppleBarrel} for more information.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getArray(): Promise<Models.FlattenedProduct[]>;
-  getArray(options: msRest.RequestOptionsBase): Promise<Models.FlattenedProduct[]>;
-  getArray(callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FlattenedProduct[]>): void;
-  getArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FlattenedProduct[]>): any {
+  getWrappedLists(): Promise<Models.AppleBarrel>;
+  getWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
+  getWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.FlattenedProduct[]>;
+    let cb = callback as msRest.ServiceCallback<Models.AppleBarrel>;
     if (!callback) {
-      return this.getArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.FlattenedProduct[]);
+      return this.getWrappedListsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.AppleBarrel);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.getArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getWrappedListsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.FlattenedProduct[];
+        let result = data.bodyAsJson as Models.AppleBarrel;
         return cb(err, result, data.request, data.response);
       });
     }
   }
 
   /**
-   * No need to have a route in Express server for this operation. Used to verify
-   * the type flattened is not removed if it's referenced in an array
+   * Put an XML document with multiple wrapped lists
    *
-   * @param {AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AppleBarrel} wrappedLists
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -1367,24 +1323,24 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putWrappedArray(): Promise<void>;
-  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams): Promise<void>;
-  putWrappedArray(callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(options: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putWrappedArray(options?: Models.AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+  putWrappedLists(wrappedLists: Models.AppleBarrel): Promise<void>;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putWrappedLists(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putWrappedArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+      return this.putWrappedListsWithHttpOperationResponse(wrappedLists, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putWrappedArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.putWrappedListsWithHttpOperationResponse(wrappedLists, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -1395,55 +1351,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   }
 
   /**
-   * No need to have a route in Express server for this operation. Used to verify
-   * the type flattened is not removed if it's referenced in an array
+   * Get strongly-typed response headers.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, response)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {Models.ProductWrapper[]} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getWrappedArray(): Promise<Models.ProductWrapper[]>;
-  getWrappedArray(options: msRest.RequestOptionsBase): Promise<Models.ProductWrapper[]>;
-  getWrappedArray(callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ProductWrapper[]>): void;
-  getWrappedArray(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ProductWrapper[]>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ProductWrapper[]>;
-    if (!callback) {
-      return this.getWrappedArrayWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductWrapper[]);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWrappedArrayWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.bodyAsJson as Models.ProductWrapper[];
-        return cb(err, result, data.request, data.response);
-      });
-    }
-  }
-
-  /**
-   * Put External Resource as a Dictionary
-   *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams}
-   * [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -1457,24 +1367,24 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putDictionary(): Promise<void>;
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<void>;
-  putDictionary(callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putDictionary(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+  getHeaders(): Promise<void>;
+  getHeaders(options: msRest.RequestOptionsBase): Promise<void>;
+  getHeaders(callback: msRest.ServiceCallback<void>): void;
+  getHeaders(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  getHeaders(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putDictionaryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+      return this.getHeadersWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putDictionaryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getHeadersWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -1485,7 +1395,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   }
 
   /**
-   * Get External Resource as a Dictionary
+   * Get an empty list.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1495,45 +1405,135 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {{ [propertyName: string]: Models.FlattenedProduct }} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.Slideshow} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Slideshow} for more information.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getDictionary(): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
-  getDictionary(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
-  getDictionary(callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): void;
-  getDictionary(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>): any {
+  getEmptyList(): Promise<Models.Slideshow>;
+  getEmptyList(options: msRest.RequestOptionsBase): Promise<Models.Slideshow>;
+  getEmptyList(callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Slideshow>): void;
+  getEmptyList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Slideshow>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.FlattenedProduct }>;
+    let cb = callback as msRest.ServiceCallback<Models.Slideshow>;
     if (!callback) {
-      return this.getDictionaryWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.FlattenedProduct });
+      return this.getEmptyListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Slideshow);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.getDictionaryWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getEmptyListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.FlattenedProduct };
+        let result = data.bodyAsJson as Models.Slideshow;
         return cb(err, result, data.request, data.response);
       });
     }
   }
 
   /**
-   * Put External Resource as a ResourceCollection
+   * Gets some empty wrapped lists.
    *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams}
-   * [options] Optional Parameters.
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.AppleBarrel} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.AppleBarrel} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getEmptyWrappedLists(): Promise<Models.AppleBarrel>;
+  getEmptyWrappedLists(options: msRest.RequestOptionsBase): Promise<Models.AppleBarrel>;
+  getEmptyWrappedLists(callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AppleBarrel>): void;
+  getEmptyWrappedLists(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AppleBarrel>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.AppleBarrel>;
+    if (!callback) {
+      return this.getEmptyWrappedListsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.AppleBarrel);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getEmptyWrappedListsWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.AppleBarrel;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Gets a list as the root element.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getRootList(): Promise<Models.Banana[]>;
+  getRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
+  getRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
+    if (!callback) {
+      return this.getRootListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Banana[]);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getRootListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.Banana[];
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Puts a list as the root element.
+   *
+   * @param {Banana[]} bananas
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
    *
@@ -1547,24 +1547,24 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putResourceCollection(): Promise<void>;
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<void>;
-  putResourceCollection(callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback: msRest.ServiceCallback<void>): void;
-  putResourceCollection(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams, callback?: msRest.ServiceCallback<void>): any {
+  putRootList(bananas: Models.Banana[]): Promise<void>;
+  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
+  putRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putResourceCollectionWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+      return this.putRootListWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putResourceCollectionWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.putRootListWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -1575,7 +1575,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   }
 
   /**
-   * Get External Resource as a ResourceCollection
+   * Gets an empty list as the root element.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1585,145 +1585,43 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Models.ResourceCollection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ResourceCollection} for more
-   *                      information.
+   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getResourceCollection(): Promise<Models.ResourceCollection>;
-  getResourceCollection(options: msRest.RequestOptionsBase): Promise<Models.ResourceCollection>;
-  getResourceCollection(callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ResourceCollection>): void;
-  getResourceCollection(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ResourceCollection>): any {
+  getEmptyRootList(): Promise<Models.Banana[]>;
+  getEmptyRootList(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
+  getEmptyRootList(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getEmptyRootList(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.ResourceCollection>;
+    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
     if (!callback) {
-      return this.getResourceCollectionWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ResourceCollection);
+      return this.getEmptyRootListWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Banana[]);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.getResourceCollectionWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getEmptyRootListWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ResourceCollection;
+        let result = data.bodyAsJson as Models.Banana[];
         return cb(err, result, data.request, data.response);
       });
     }
   }
 
   /**
-   * Put Simple Product with client flattening true on the model
+   * Puts an empty list as the root element.
    *
-   * @param {AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, response)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
-   */
-  putSimpleProduct(): Promise<Models.SimpleProduct>;
-  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
-  putSimpleProduct(callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(options: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProduct(options?: Models.AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
-    if (!callback) {
-      return this.putSimpleProductWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.SimpleProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.putSimpleProductWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.bodyAsJson as Models.SimpleProduct;
-        return cb(err, result, data.request, data.response);
-      });
-    }
-  }
-
-  /**
-   * Put Flattened Simple Product with client flattening true on the parameter
-   *
-   * @param {string} productId Unique identifier representing a specific product
-   * for a given latitude & longitude. For example, uberX in San Francisco will
-   * have a different product_id than uberX in Los Angeles.
-   *
-   * @param {string} maxProductDisplayName Display name of product.
-   *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams}
-   * [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, response)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
-   */
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string): Promise<Models.SimpleProduct>;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams): Promise<Models.SimpleProduct>;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  postFlattenedSimpleProduct(productId: string, maxProductDisplayName: string, options?: Models.AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
-    if (!callback) {
-      return this.postFlattenedSimpleProductWithHttpOperationResponse(productId, maxProductDisplayName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.SimpleProduct);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.postFlattenedSimpleProductWithHttpOperationResponse(productId, maxProductDisplayName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.bodyAsJson as Models.SimpleProduct;
-        return cb(err, result, data.request, data.response);
-      });
-    }
-  }
-
-  /**
-   * Put Simple Product with client flattening true on the model
-   *
-   * @param {FlattenParameterGroup} flattenParameterGroup Additional parameters
-   * for the operation
+   * @param {Banana[]} bananas
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1733,39 +1631,128 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Models.SimpleProduct} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SimpleProduct} for more information.
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup): Promise<Models.SimpleProduct>;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase): Promise<Models.SimpleProduct>;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SimpleProduct>): void;
-  putSimpleProductWithGrouping(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SimpleProduct>): any {
+  putEmptyRootList(bananas: Models.Banana[]): Promise<void>;
+  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
+  putEmptyRootList(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyRootList(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Models.SimpleProduct>;
+    let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.SimpleProduct);
+      return this.putEmptyRootListWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup, options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.putEmptyRootListWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.SimpleProduct;
+        let result = data.bodyAsJson as void;
         return cb(err, result, data.request, data.response);
       });
     }
   }
+
+  /**
+   * Gets an XML document with an empty child element.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Banana} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Banana} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getEmptyChildElement(): Promise<Models.Banana>;
+  getEmptyChildElement(options: msRest.RequestOptionsBase): Promise<Models.Banana>;
+  getEmptyChildElement(callback: msRest.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana>): void;
+  getEmptyChildElement(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Banana>;
+    if (!callback) {
+      return this.getEmptyChildElementWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Banana);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getEmptyChildElementWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.Banana;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Puts a value with an empty child element.
+   *
+   * @param {Banana} banana
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putEmptyChildElement(banana: Models.Banana): Promise<void>;
+  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase): Promise<void>;
+  putEmptyChildElement(banana: Models.Banana, callback: msRest.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyChildElement(banana: Models.Banana, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putEmptyChildElementWithHttpOperationResponse(banana, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putEmptyChildElementWithHttpOperationResponse(banana, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as void;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
 }
-
-export { AutoRestResourceFlatteningTestService, Models as AutoRestResourceFlatteningTestServiceModels, Mappers as AutoRestResourceFlatteningTestServiceMappers };

@@ -65,7 +65,7 @@ class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
     this.httpServerFailure = new operations.HttpServerFailure(this);
     this.httpRetry = new operations.HttpRetry(this);
     this.multipleResponses = new operations.MultipleResponses(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

@@ -63,7 +63,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     this.apiVersion = apiVersion;
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
   // methods on the client.
 

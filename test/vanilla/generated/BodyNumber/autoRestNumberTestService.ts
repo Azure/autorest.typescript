@@ -53,7 +53,7 @@ class AutoRestNumberTestService extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.number = new operations.Number(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

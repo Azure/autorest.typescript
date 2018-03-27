@@ -53,7 +53,7 @@ class AutoRestDateTimeTestService extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.datetime = new operations.Datetime(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

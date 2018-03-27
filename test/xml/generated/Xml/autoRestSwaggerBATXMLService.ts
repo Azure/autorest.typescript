@@ -16,16 +16,16 @@ import * as operations from "./operations";
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestSwaggerBATByteService extends msRest.ServiceClient {
+class AutoRestSwaggerBATXMLService extends msRest.ServiceClient {
   baseUri: string;
 
   // Operation groups
-  byteModel: operations.ByteModel;
+  xml: operations.Xml;
   serializer: msRest.Serializer;
 
   /**
    * @class
-   * Initializes a new instance of the AutoRestSwaggerBATByteService class.
+   * Initializes a new instance of the AutoRestSwaggerBATXMLService class.
    * @constructor
    *
    * @param {string} [baseUri] - The base URI of the service.
@@ -48,13 +48,13 @@ class AutoRestSwaggerBATByteService extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = 'http://localhost';
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.byteModel = new operations.ByteModel(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
+    this.xml = new operations.Xml(this);
+    this.serializer = new msRest.Serializer(Mappers, true);
   }
 }
 
-export { AutoRestSwaggerBATByteService, Models as AutoRestSwaggerBATByteServiceModels, Mappers as AutoRestSwaggerBATByteServiceMappers };
+export { AutoRestSwaggerBATXMLService, Models as AutoRestSwaggerBATXMLServiceModels, Mappers as AutoRestSwaggerBATXMLServiceMappers };

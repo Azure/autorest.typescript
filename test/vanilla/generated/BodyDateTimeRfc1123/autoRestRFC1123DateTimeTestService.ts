@@ -53,7 +53,7 @@ class AutoRestRFC1123DateTimeTestService extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.datetimerfc1123 = new operations.Datetimerfc1123(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

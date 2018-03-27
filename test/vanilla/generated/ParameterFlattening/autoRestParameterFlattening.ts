@@ -53,7 +53,7 @@ class AutoRestParameterFlattening extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.availabilitySets = new operations.AvailabilitySets(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

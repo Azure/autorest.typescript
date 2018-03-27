@@ -62,7 +62,7 @@ class AutoRestParameterizedCustomHostTestClient extends msRest.ServiceClient {
       this.dnsSuffix = options.dnsSuffix;
     }
     this.paths = new operations.Paths(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

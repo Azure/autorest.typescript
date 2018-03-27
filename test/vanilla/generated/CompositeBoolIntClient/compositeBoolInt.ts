@@ -55,7 +55,7 @@ class CompositeBoolInt extends msRest.ServiceClient {
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.bool = new operations.Bool(this);
     this.intModel = new operations.IntModel(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 
