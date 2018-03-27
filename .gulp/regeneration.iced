@@ -17,8 +17,7 @@ regenExpected = (opts,done) ->
       "--#{opts.language}",
       "--clear-output-folder",
       "--output-folder=#{outputDir}/#{key}",
-      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
-      "--enable-xml"
+      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}"
     ]
 
     for swaggerFile in swaggerFiles
@@ -38,6 +37,9 @@ regenExpected = (opts,done) ->
 
     if (opts.flatteningThreshold)
       args.push("--#{opts.language}.payload-flattening-threshold=#{opts.flatteningThreshold}")
+
+    if (opts.enableXML)
+      args.push("--enable-xml")
 
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
@@ -173,7 +175,8 @@ task 'regenerate-tsxml', '', [], (done) ->
     'mappings': xmlMappings,
     'outputDir': 'generated',
     'language': 'typescript',
-    'nsPrefix': 'Fixtures'
+    'nsPrefix': 'Fixtures',
+    'enableXML': true
   },done
   return null
 

@@ -14,6 +14,7 @@
       "type": "node",
       "request": "launch",
       "name": "Mocha Tests",
+      "args": ["-g", "typescript Azure Composite Client should get and put valid basic type properties"],
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "internalConsoleOptions": "openOnSessionStart"
     }
