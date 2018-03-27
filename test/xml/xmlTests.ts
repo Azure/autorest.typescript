@@ -33,7 +33,7 @@ describe('typescript', function () {
     slideshow.slides[1].items[2].should.equal('Who buys WonderWidgets');
   });
 
-  it('should correctly serialize a simple XML document', async function() {
+  it('should correctly serialize a simple XML document', async function () {
     const slideshow: models.Slideshow = {
       author: 'Yours Truly',
       date: 'Date of publication',
@@ -53,5 +53,27 @@ describe('typescript', function () {
     };
 
     await testClient.xml.putSimple(slideshow);
+  });
+
+  it('should correctly deserialize XML wrapped lists', async function () {
+    const appleBarrel = await testClient.xml.getWrappedLists();
+
+    should.exist(appleBarrel.goodApples);
+    appleBarrel.goodApples.length.should.equal(2);
+    appleBarrel.goodApples[0].should.equal('Fuji');
+    appleBarrel.goodApples[1].should.equal('Gala');
+
+    should.exist(appleBarrel.badApples);
+    appleBarrel.badApples.length.should.equal(1);
+    appleBarrel.badApples[0].should.equal('Red Delicious');
+  });
+
+  it('should correctly serialize XML wrapped lists', async function () {
+    const appleBarrel: models.AppleBarrel = {
+      goodApples: ['Fuji', 'Gala'],
+      badApples: ['Red Delicious']
+    };
+
+    await testClient.xml.putWrappedLists(appleBarrel);
   });
 });
