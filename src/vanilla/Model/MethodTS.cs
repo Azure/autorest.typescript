@@ -54,7 +54,7 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 return (Parameters.Where(
-                    p => p != null && !p.IsClientProperty && 
+                    p => p != null && !p.IsClientProperty &&
                     !string.IsNullOrWhiteSpace(p.Name) && !p.IsConstant && !p.IsRequired &&
                     p.ModelType is CompositeType &&
                     (p.ModelType.Name.EqualsIgnoreCase(Group + Name + "OptionalParams") || p.ModelType.Name.EqualsIgnoreCase("RequestOptionsBase"))).FirstOrDefault(op => op != null) as ParameterTS);
@@ -184,7 +184,7 @@ namespace AutoRest.TypeScript.Model
         {
             //var parameters = MethodParameterDeclarationTS(includeOptions);
             StringBuilder parameters = new StringBuilder();
-            
+
             if (!includeCallback)
             {
                 //Promise scenario no callback and options is optional
@@ -204,7 +204,7 @@ namespace AutoRest.TypeScript.Model
                     parameters.Append(MethodParameterDeclarationTS(includeOptions: false));
                 }
             }
-            
+
             if (includeCallback)
             {
                 if (parameters.Length > 0)
@@ -284,7 +284,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     result = ReturnType.Body.TSType(false);
                     // We will return the actual response if the return type is stream.
-                    // That provides better user experience as customers can use 
+                    // That provides better user experience as customers can use
                     // .text(), .json(), etc. inbuilt methods of the response class
                     // to read the stream.
                     if (result.Contains("ReadableStream"))
@@ -297,8 +297,8 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>
-        /// The Deserialization Error handling code block that provides a useful Error 
-        /// message when exceptions occur in deserialization along with the request 
+        /// The Deserialization Error handling code block that provides a useful Error
+        /// message when exceptions occur in deserialization along with the request
         /// and response object
         /// </summary>
         [JsonIgnore]
@@ -336,7 +336,7 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>
-        /// Provides the parameter name in the correct jsdoc notation depending on 
+        /// Provides the parameter name in the correct jsdoc notation depending on
         /// whether it is required or optional
         /// </summary>
         /// <param name="parameter">Parameter to be documented</param>
@@ -390,7 +390,7 @@ namespace AutoRest.TypeScript.Model
             }
             else
             {
-                builder.AppendLine("let resultMapper = {{{0}}};", type.ConstructMapper(responseVariable, null, false, false));
+                builder.AppendLine("let resultMapper = {{{0}}};", type.ConstructMapper(responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == false));
             }
             builder.AppendLine("{1} = client.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
             return builder.ToString();
@@ -525,7 +525,7 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>
-        /// Genrate code to build an array of query parameter strings in a variable named 'queryParamsArray'.  The 
+        /// Genrate code to build an array of query parameter strings in a variable named 'queryParamsArray'.  The
         /// array should contain one string element for each query parameter of the form 'key=value'
         /// </summary>
         /// <param name="builder">The stringbuilder for url construction</param>
@@ -599,7 +599,7 @@ namespace AutoRest.TypeScript.Model
         }
 
         /// <summary>
-        /// Gets the expression for default header setting. 
+        /// Gets the expression for default header setting.
         /// </summary>
         public virtual string SetDefaultHeaders
         {
@@ -622,7 +622,7 @@ namespace AutoRest.TypeScript.Model
                 else
                 {
                     builder.AppendLine("let requestModelMapper = {{{0}}};",
-                        RequestBody.ModelType.ConstructMapper(RequestBody.SerializedName, RequestBody, false, false));
+                        RequestBody.ModelType.ConstructMapper(RequestBody.SerializedName, RequestBody, isPageable: false, expandComposite: false, isXML: false));
                 }
                 return builder.ToString();
             }
@@ -860,7 +860,7 @@ namespace AutoRest.TypeScript.Model
         /// <summary>
         /// Generates documentation for every method on the client.
         /// </summary>
-        /// <param name="flavor">Describes the flavor of the method (Callback based, promise based, 
+        /// <param name="flavor">Describes the flavor of the method (Callback based, promise based,
         /// raw httpOperationResponse based) to be documented.</param>
         /// <returns></returns>
         public string GenerateMethodDocumentation(MethodFlavor flavor)
@@ -911,7 +911,7 @@ namespace AutoRest.TypeScript.Model
                     .AppendLine(template.WrapComment(" *                      ", ReturnTypeInfo)).AppendLine(" *")
                     .AppendLine(" *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.").AppendLine(" *")
                     .AppendLine(" *                      {Response} [response] - The HTTP Response stream if an error did not occur.");
-                    
+
             }
             return builder.AppendLine(" */").ToString();
         }

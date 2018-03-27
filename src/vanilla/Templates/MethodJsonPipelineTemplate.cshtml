@@ -28,7 +28,7 @@ try {
       }
   }
     } catch (defaultError) {
-      error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` + 
+      error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
                        `- "${operationRes.bodyAsText}" for the default response.`;
       return Promise.reject(error);
     }

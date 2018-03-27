@@ -40,7 +40,7 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
 }
 @if (Model.ReturnType.Body != null && Model.DefaultResponse.Body != null && !Model.Responses.Any())
 {
-    @:@(Model.DeserializeResponse(Model.DefaultResponse.Body, "operationRes.bodyAsJson"))
+    @:@(Model.DeserializeResponse(Model.DefaultResponse.Body, "operationRes.bodyAsJsonj"))
 }
 } catch (err) {
     return Promise.reject(err);

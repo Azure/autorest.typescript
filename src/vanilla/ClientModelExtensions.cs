@@ -218,7 +218,7 @@ namespace AutoRest.TypeScript
                 builder.AppendLine("if ({0} && !Buffer.isBuffer({0})) {{", valueReference, lowercaseTypeName);
                 return ConstructValidationCheck(builder, typeErrorMessage, valueReference, primary.Name).ToString();
             }
-            else if (primary.KnownPrimaryType == KnownPrimaryType.DateTime || primary.KnownPrimaryType == KnownPrimaryType.Date || 
+            else if (primary.KnownPrimaryType == KnownPrimaryType.DateTime || primary.KnownPrimaryType == KnownPrimaryType.Date ||
                 primary.KnownPrimaryType == KnownPrimaryType.DateTimeRfc1123 || primary.KnownPrimaryType == KnownPrimaryType.UnixTime)
             {
                 if (isRequired)
@@ -258,7 +258,7 @@ namespace AutoRest.TypeScript
         /// </summary>
         /// <param name="primary">primary.KnownPrimaryType to query</param>
         /// <returns>The TypeScript type correspoinding to this model primary.KnownPrimaryType</returns>
-        private static string PrimaryTSType(this PrimaryType primary) 
+        private static string PrimaryTSType(this PrimaryType primary)
         {
             if (primary == null)
             {
@@ -267,19 +267,19 @@ namespace AutoRest.TypeScript
 
             if (primary.KnownPrimaryType == KnownPrimaryType.Boolean)
                 return "boolean";
-            else if (primary.KnownPrimaryType == KnownPrimaryType.Double || primary.KnownPrimaryType == KnownPrimaryType.Decimal || 
+            else if (primary.KnownPrimaryType == KnownPrimaryType.Double || primary.KnownPrimaryType == KnownPrimaryType.Decimal ||
                 primary.KnownPrimaryType == KnownPrimaryType.Int || primary.KnownPrimaryType == KnownPrimaryType.Long)
                 return "number";
             else if (primary.KnownPrimaryType == KnownPrimaryType.String || primary.KnownPrimaryType == KnownPrimaryType.Uuid)
                 return "string";
-            else if (primary.KnownPrimaryType == KnownPrimaryType.Date || primary.KnownPrimaryType == KnownPrimaryType.DateTime || 
+            else if (primary.KnownPrimaryType == KnownPrimaryType.Date || primary.KnownPrimaryType == KnownPrimaryType.DateTime ||
                 primary.KnownPrimaryType == KnownPrimaryType.DateTimeRfc1123 || primary.KnownPrimaryType == KnownPrimaryType.UnixTime)
                 return "Date";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Object)
                 return "any";   // TODO: test this
-            else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)  
-                return "Buffer";  
-            else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)  
+            else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)
+                return "Buffer";
+            else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
                 return "ReadableStream";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "moment.Duration"; //TODO: test this, add include for it
@@ -329,7 +329,7 @@ namespace AutoRest.TypeScript
             {
                 builder.Outdent().AppendLine("}");
             }
-            
+
             return builder.ToString();
         }
 
@@ -490,9 +490,9 @@ namespace AutoRest.TypeScript
 
         public static bool IsSequenceContainingDateKind(this IModelType type)
         {
-            return type.IsSequenceContainingType(KnownPrimaryType.Date) || 
+            return type.IsSequenceContainingType(KnownPrimaryType.Date) ||
                    type.IsSequenceContainingType(KnownPrimaryType.DateTime) ||
-                   type.IsSequenceContainingType(KnownPrimaryType.DateTimeRfc1123) || 
+                   type.IsSequenceContainingType(KnownPrimaryType.DateTimeRfc1123) ||
                    type.IsSequenceContainingType(KnownPrimaryType.UnixTime);
         }
 
@@ -564,7 +564,7 @@ namespace AutoRest.TypeScript
             return tsType;
         }
 
-        public static IndentedStringBuilder AppendConstraintValidations(this IModelType type, string valueReference, Dictionary<Constraint, string> constraints, 
+        public static IndentedStringBuilder AppendConstraintValidations(this IModelType type, string valueReference, Dictionary<Constraint, string> constraints,
             IndentedStringBuilder builder)
         {
             if (valueReference == null)
@@ -658,7 +658,7 @@ namespace AutoRest.TypeScript
             return builder;
         }
 
-        public static string ConstructMapper(this IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite)
+        public static string ConstructMapper(this IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML)
         {
             var builder = new IndentedStringBuilder("  ");
             string defaultValue = null;
@@ -674,20 +674,55 @@ namespace AutoRest.TypeScript
                 isConstant = parameter.IsConstant;
                 constraints = parameter.Constraints;
             }
+
+            builder.AppendLine("").Indent();
+
             if (property != null)
             {
                 isReadOnly = property.IsReadOnly;
+
+                if (isXML)
+                {
+                    if (property.XmlIsAttribute)
+                    {
+                        builder.AppendLine("xmlIsAttribute: true,");
+                    }
+
+                    if (property.XmlIsWrapped)
+                    {
+                        builder.AppendLine("xmlIsWrapped: true,");
+                    }
+
+                    if (!string.IsNullOrEmpty(property.XmlName))
+                    {
+                        builder.AppendLine($"xmlName: '{property.XmlName}',");
+                    }
+                }
             }
+
             CompositeType composite = type as CompositeType;
             if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
             {
                 defaultValue = "{}";
             }
+
             SequenceType sequence = type as SequenceType;
+            if (sequence != null && isXML)
+            {
+                if (sequence.ElementXmlIsWrapped)
+                {
+                    builder.AppendLine("xmlElementIsWrapped: true,");
+                }
+
+                if (!string.IsNullOrEmpty(sequence.ElementXmlName))
+                {
+                    builder.AppendLine($"xmlElementName: '{sequence.ElementXmlName}',");
+                }
+            }
+
             DictionaryType dictionary = type as DictionaryType;
             PrimaryType primary = type as PrimaryType;
             EnumType enumType = type as EnumType;
-            builder.AppendLine("").Indent();
             if (isRequired)
             {
                 builder.AppendLine("required: true,");
@@ -696,22 +731,27 @@ namespace AutoRest.TypeScript
             {
                 builder.AppendLine("required: false,");
             }
+
             if (isReadOnly)
             {
                 builder.AppendLine("readOnly: true,");
             }
+
             if (isConstant)
             {
                 builder.AppendLine("isConstant: true,");
             }
+
             if (serializedName != null)
             {
                 builder.AppendLine("serializedName: '{0}',", serializedName);
             }
+
             if (defaultValue != null)
             {
                 builder.AppendLine("defaultValue: {0},", defaultValue);
             }
+
             if (constraints != null && constraints.Count > 0)
             {
                 builder.AppendLine("constraints: {").Indent();
@@ -734,7 +774,8 @@ namespace AutoRest.TypeScript
                 }
                 builder.Outdent().AppendLine("},");
             }
-            // Add type information 
+
+            // Add type information
             if (primary != null)
             {
                 switch (primary.KnownPrimaryType)
@@ -755,7 +796,7 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.Uuid:
                        builder.AppendLine("type: {").Indent().AppendLine("name: 'String'").Outdent().AppendLine("}");
                         break;
-                  
+
                     // case KnownPrimaryType.Uuid:
                        //  builder.AppendLine("type: {").Indent().AppendLine("name: 'Uuid'").Outdent().AppendLine("}");
                         //break;
@@ -813,7 +854,7 @@ namespace AutoRest.TypeScript
                          .AppendLine("name: 'Sequence',")
                          .AppendLine("element: {")
                            .Indent()
-                           .AppendLine("{0}", sequence.ElementType.ConstructMapper(sequence.ElementType.DeclarationName + "ElementType", null, false, false))
+                           .AppendLine("{0}", sequence.ElementType.ConstructMapper(sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML))
                          .Outdent().AppendLine("}").Outdent().AppendLine("}");
             }
             else if (dictionary != null)
@@ -823,7 +864,7 @@ namespace AutoRest.TypeScript
                          .AppendLine("name: 'Dictionary',")
                          .AppendLine("value: {")
                            .Indent()
-                           .AppendLine("{0}", dictionary.ValueType.ConstructMapper(dictionary.ValueType.DeclarationName + "ElementType", null, false, false))
+                           .AppendLine("{0}", dictionary.ValueType.ConstructMapper(dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML))
                          .Outdent().AppendLine("}").Outdent().AppendLine("}");
             }
             else if (composite != null)
@@ -870,25 +911,25 @@ namespace AutoRest.TypeScript
                         {
                             if (!isPageable)
                             {
-                                builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false));
+                                builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
                             }
                             else
                             {
                                 // if pageable and nextlink is also present then we need a comma as nextLink would be the next one to be added
                                 if (nextLinkNameValue != null)
                                 {
-                                    builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false));
+                                    builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
                                 }
                                 else
                                 {
-                                    builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false));
+                                    builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
                                 }
-                                    
-                            }   
+
+                            }
                         }
                         else
                         {
-                            builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false));
+                            builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
                         }
                     }
                     // end of modelProperties and type
@@ -899,6 +940,7 @@ namespace AutoRest.TypeScript
             {
                 throw new NotImplementedException($"{type} is not a supported Type.");
             }
+
             return builder.ToString();
         }
 
@@ -912,11 +954,11 @@ namespace AutoRest.TypeScript
             {
                 throw new ArgumentNullException("builder");
             }
-            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for 
-            // it's serializedName, the way it is done for other properties. This makes it easy to find the 
-            // discriminator property from the responseBody during deserialization. Please, do not get confused  
-            // between the definition of the discriminator and the definition of the property that is  
-            // marked as the discriminator. 
+            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
+            // it's serializedName, the way it is done for other properties. This makes it easy to find the
+            // discriminator property from the responseBody during deserialization. Please, do not get confused
+            // between the definition of the discriminator and the definition of the property that is
+            // marked as the discriminator.
             builder.AppendLine("polymorphicDiscriminator: {")
                      .Indent()
                      .AppendLine("serializedName: '{0}',", composite.PolymorphicDiscriminator)

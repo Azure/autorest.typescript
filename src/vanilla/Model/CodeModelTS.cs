@@ -41,8 +41,8 @@ namespace AutoRest.TypeScript.Model
         public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where(each => !each.IsCodeModelMethodGroup);
 
         /// <summary>
-        /// Provides an ordered ModelTemplateModel list such that the parent 
-        /// type comes before in the list than its child. This helps when 
+        /// Provides an ordered ModelTemplateModel list such that the parent
+        /// type comes before in the list than its child. This helps when
         /// requiring models in index.js
         /// </summary>
         [JsonIgnore]
@@ -96,7 +96,7 @@ namespace AutoRest.TypeScript.Model
                 throw new ArgumentNullException(nameof(model));
             }
 
-            // BaseResource and CloudError are specified in the ClientRuntime. 
+            // BaseResource and CloudError are specified in the ClientRuntime.
             // They are required explicitly in a different way. Hence, they
             // are not included in the ordered list.
             if (model.BaseModelType == null ||
