@@ -871,7 +871,7 @@ export class Xml {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse['banana'], 'operationRes.bodyAsJson');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1064,7 +1064,7 @@ export class Xml {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse['banana'], 'operationRes.bodyAsJson');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

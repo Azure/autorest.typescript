@@ -392,7 +392,15 @@ namespace AutoRest.TypeScript.Model
             {
                 builder.AppendLine("let resultMapper = {{{0}}};", type.ConstructMapper(responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == true));
             }
-            builder.AppendLine("{1} = client.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
+
+            if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
+            {
+                builder.AppendLine("{2} = client.serializer.deserialize(resultMapper, {0}['{1}'], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
+            }
+            else
+            {
+                builder.AppendLine("{1} = client.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
+            }
             return builder.ToString();
         }
 

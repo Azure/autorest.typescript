@@ -117,5 +117,51 @@ describe('typescript', function () {
       };
       await testClient.xml.putEmptyWrappedLists(wrappedLists);
     });
+
+    it('should correctly deserialize a root XML list', async function () {
+      const rootList = await testClient.xml.getRootList();
+
+      should.exist(rootList);
+      rootList.length.should.equal(2);
+
+      rootList[0].name.should.equal('Cavendish');
+      rootList[0].flavor.should.equal('Sweet');
+
+      rootList[0].expiration.getUTCFullYear().should.equal(2018);
+      rootList[0].expiration.getUTCMonth().should.equal(1);
+      rootList[0].expiration.getUTCDate().should.equal(28);
+      rootList[0].expiration.getUTCHours().should.equal(0);
+      rootList[0].expiration.getUTCMinutes().should.equal(40);
+      rootList[0].expiration.getUTCSeconds().should.equal(0);
+      rootList[0].expiration.getUTCMilliseconds().should.equal(0);
+
+      rootList[1].name.should.equal('Plantain');
+      rootList[1].flavor.should.equal('Savory');
+
+      rootList[1].expiration.getUTCFullYear().should.equal(2018);
+      rootList[1].expiration.getUTCMonth().should.equal(1);
+      rootList[1].expiration.getUTCDate().should.equal(28);
+      rootList[1].expiration.getUTCHours().should.equal(0);
+      rootList[1].expiration.getUTCMinutes().should.equal(40);
+      rootList[1].expiration.getUTCSeconds().should.equal(0);
+      rootList[1].expiration.getUTCMilliseconds().should.equal(0);
+    });
+
+    it('should correctly serialize a root XML list', async function () {
+      const rootList: models.Banana[] = [
+        {
+          name: 'Cavendish',
+          flavor: 'Sweet',
+          expiration: new Date('2018-02-28T00:40:00Z')
+        },
+        {
+          name: 'Plantain',
+          flavor: 'Savory',
+          expiration: new Date('2018-02-28T00:40:00Z')
+        }
+      ];
+
+      await testClient.xml.putRootList(rootList);
+    });
   });
 });
