@@ -530,6 +530,97 @@ export class Xml {
   }
 
   /**
+   * Puts an empty list.
+   *
+   * @param {Slideshow} slideshow
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Validate
+    try {
+      if (slideshow === null || slideshow === undefined) {
+        throw new Error('slideshow cannot be null or undefined.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-list';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (slideshow !== null && slideshow !== undefined) {
+        let requestModelMapper = Mappers.Slideshow;
+        requestModel = client.serializer.serialize(requestModelMapper, slideshow, 'slideshow');
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'slideshow' });
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(slideshow, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 201) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Gets some empty wrapped lists.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -1434,6 +1525,52 @@ export class Xml {
           return cb(err);
         }
         let result = data.bodyAsJson as Models.Slideshow;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Puts an empty list.
+   *
+   * @param {Slideshow} slideshow
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putEmptyList(slideshow: Models.Slideshow): Promise<void>;
+  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase): Promise<void>;
+  putEmptyList(slideshow: Models.Slideshow, callback: msRest.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyList(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putEmptyListWithHttpOperationResponse(slideshow, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putEmptyListWithHttpOperationResponse(slideshow, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as void;
         return cb(err, result, data.request, data.response);
       });
     }

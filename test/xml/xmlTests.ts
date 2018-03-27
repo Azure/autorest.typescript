@@ -76,4 +76,27 @@ describe('typescript', function () {
 
     await testClient.xml.putWrappedLists(appleBarrel);
   });
+
+  it('should correctly deserialize an empty XML list', async function () {
+    const emptyList = await testClient.xml.getEmptyList();
+    should.exist(emptyList);
+    should.not.exist(emptyList.author);
+    should.not.exist(emptyList.date);
+    should.not.exist(emptyList.title);
+
+    this.skip();
+    // TODO: list properties should always be present even if there are no list elements
+    should.exist(emptyList.slides);
+    emptyList.slides.length.should.equal(0);
+  });
+
+  it('should correctly serialize an empty XML list', async function () {
+    const emptyObject: models.Slideshow = {};
+    await testClient.xml.putEmptyList(emptyObject);
+
+    const emptyList: models.Slideshow = { slides: [] };
+    await testClient.xml.putEmptyList(emptyList);
+
+
+  });
 });
