@@ -702,6 +702,97 @@ export class Xml {
   }
 
   /**
+   * Puts some empty wrapped lists.
+   *
+   * @param {AppleBarrel} appleBarrel
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Validate
+    try {
+      if (appleBarrel === null || appleBarrel === undefined) {
+        throw new Error('appleBarrel cannot be null or undefined.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/empty-wrapped-lists';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (appleBarrel !== null && appleBarrel !== undefined) {
+        let requestModelMapper = Mappers.AppleBarrel;
+        requestModel = client.serializer.serialize(requestModelMapper, appleBarrel, 'appleBarrel');
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'AppleBarrel' });
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(appleBarrel, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 201) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Gets a list as the root element.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -1616,6 +1707,52 @@ export class Xml {
           return cb(err);
         }
         let result = data.bodyAsJson as Models.AppleBarrel;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Puts some empty wrapped lists.
+   *
+   * @param {AppleBarrel} appleBarrel
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel): Promise<void>;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase): Promise<void>;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, callback: msRest.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putEmptyWrappedLists(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putEmptyWrappedListsWithHttpOperationResponse(appleBarrel, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putEmptyWrappedListsWithHttpOperationResponse(appleBarrel, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as void;
         return cb(err, result, data.request, data.response);
       });
     }

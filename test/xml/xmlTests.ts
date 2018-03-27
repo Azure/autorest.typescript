@@ -5,6 +5,7 @@ const baseUri = 'http://localhost:3000';
 const testClient = new AutoRestSwaggerBATXMLService(baseUri);
 
 describe('typescript', function () {
+  describe('XML client', function() {
   it('should correctly deserialize a simple XML document', async function () {
     const slideshow = await testClient.xml.getSimple();
     should.exist(slideshow);
@@ -96,7 +97,25 @@ describe('typescript', function () {
 
     const emptyList: models.Slideshow = { slides: [] };
     await testClient.xml.putEmptyList(emptyList);
+    });
 
+    it('should correctly deserialize empty wrapped XML lists', async function () {
+      const wrappedLists = await testClient.xml.getEmptyWrappedLists();
+      should.exist(wrappedLists);
 
+      should.exist(wrappedLists.goodApples);
+      wrappedLists.goodApples.length.should.equal(0);
+
+      should.exist(wrappedLists.badApples);
+      wrappedLists.badApples.length.should.equal(0);
+    });
+
+    it('should correctly serialize empty wrapped XML lists', async function () {
+      const wrappedLists: models.AppleBarrel = {
+        goodApples: [],
+        badApples: []
+      };
+      await testClient.xml.putEmptyWrappedLists(wrappedLists);
+    });
   });
 });
