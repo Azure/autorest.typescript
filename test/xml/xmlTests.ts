@@ -126,25 +126,11 @@ describe('typescript', function () {
 
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
-
-      rootList[0].expiration.getUTCFullYear().should.equal(2018);
-      rootList[0].expiration.getUTCMonth().should.equal(1);
-      rootList[0].expiration.getUTCDate().should.equal(28);
-      rootList[0].expiration.getUTCHours().should.equal(0);
-      rootList[0].expiration.getUTCMinutes().should.equal(40);
-      rootList[0].expiration.getUTCSeconds().should.equal(0);
-      rootList[0].expiration.getUTCMilliseconds().should.equal(0);
+      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
 
       rootList[1].name.should.equal('Plantain');
       rootList[1].flavor.should.equal('Savory');
-
-      rootList[1].expiration.getUTCFullYear().should.equal(2018);
-      rootList[1].expiration.getUTCMonth().should.equal(1);
-      rootList[1].expiration.getUTCDate().should.equal(28);
-      rootList[1].expiration.getUTCHours().should.equal(0);
-      rootList[1].expiration.getUTCMinutes().should.equal(40);
-      rootList[1].expiration.getUTCSeconds().should.equal(0);
-      rootList[1].expiration.getUTCMilliseconds().should.equal(0);
+      rootList[1].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
     });
 
     it('should correctly serialize a root XML list', async function () {
@@ -173,13 +159,7 @@ describe('typescript', function () {
       rootList[0].name.should.equal('Cavendish');
       rootList[0].flavor.should.equal('Sweet');
 
-      rootList[0].expiration.getUTCFullYear().should.equal(2018);
-      rootList[0].expiration.getUTCMonth().should.equal(1);
-      rootList[0].expiration.getUTCDate().should.equal(28);
-      rootList[0].expiration.getUTCHours().should.equal(0);
-      rootList[0].expiration.getUTCMinutes().should.equal(40);
-      rootList[0].expiration.getUTCSeconds().should.equal(0);
-      rootList[0].expiration.getUTCMilliseconds().should.equal(0);
+      rootList[0].expiration.valueOf().should.equal(new Date('2018-02-28T00:40:00Z').valueOf());
     });
 
     it('should correctly serialize a root XML list of one element', async function () {
@@ -209,14 +189,7 @@ describe('typescript', function () {
       should.exist(banana);
       banana.name.should.equal('Unknown Banana');
       banana.flavor.should.equal('');
-
-      banana.expiration.getUTCFullYear().should.equal(2012);
-      banana.expiration.getUTCMonth().should.equal(1);
-      banana.expiration.getUTCDate().should.equal(24);
-      banana.expiration.getUTCHours().should.equal(0);
-      banana.expiration.getUTCMinutes().should.equal(53);
-      banana.expiration.getUTCSeconds().should.equal(52);
-      banana.expiration.getUTCMilliseconds().should.equal(780);
+      banana.expiration.valueOf().should.equal(new Date('2012-02-24T00:53:52.780Z').valueOf());
     });
 
     it('should correctly serialize an XML document with an empty child element', async function () {
@@ -226,6 +199,59 @@ describe('typescript', function () {
         expiration: new Date('2012-02-24T00:53:52.780Z')
       }
       await testClient.xml.putEmptyChildElement(banana);
+    });
+
+    it('should list containers in a storage account', async function () {
+      const listContainersResponse = await testClient.xml.listContainers();
+      should.exist(listContainersResponse);
+      listContainersResponse.serviceEndpoint.should.equal('https://myaccount.blob.core.windows.net/');
+      listContainersResponse.maxResults.should.equal(3);
+      should.not.exist(listContainersResponse.marker);
+      listContainersResponse.nextMarker.should.equal('video');
+      should.not.exist(listContainersResponse.prefix);
+
+      should.exist(listContainersResponse.containers);
+      listContainersResponse.containers.length.should.equal(3);
+
+      listContainersResponse.containers[0].name.should.equal('audio');
+      listContainersResponse.containers[0].properties.etag.should.equal('0x8CACB9BD7C6B1B2');
+      listContainersResponse.containers[0].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
+      listContainersResponse.containers[0].properties.publicAccess.should.equal('container');
+
+      listContainersResponse.containers[1].name.should.equal('images');
+      listContainersResponse.containers[1].properties.etag.should.equal('0x8CACB9BD7C1EEEC');
+      listContainersResponse.containers[1].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
+      should.not.exist(listContainersResponse.containers[1].properties.publicAccess)
+
+      listContainersResponse.containers[2].name.should.equal('textfiles');
+      listContainersResponse.containers[2].properties.etag.should.equal('0x8CACB9BD7BACAC3');
+      listContainersResponse.containers[2].properties.lastModified.valueOf().should.equal(new Date('Wed, 26 Oct 2016 20:39:39 GMT').valueOf());
+      should.not.exist(listContainersResponse.containers[2].properties.publicAccess)
+    });
+
+    it('should get service properties in a storage account', async function () {
+      const serviceProperties = await testClient.xml.getServiceProperties();
+      should.exist(serviceProperties);
+
+      serviceProperties.logging.version.should.equal('1.0');
+      serviceProperties.logging.deleteProperty.should.equal(true);
+      serviceProperties.logging.read.should.equal(false);
+      serviceProperties.logging.write.should.equal(true);
+      serviceProperties.logging.retentionPolicy.enabled.should.equal(true);
+      serviceProperties.logging.retentionPolicy.days.should.equal(7);
+
+      serviceProperties.hourMetrics.version.should.equal('1.0');
+      serviceProperties.hourMetrics.enabled.should.equal(true);
+      serviceProperties.hourMetrics.includeAPIs.should.equal(false);
+      serviceProperties.hourMetrics.retentionPolicy.enabled.should.equal(true);
+      serviceProperties.hourMetrics.retentionPolicy.days.should.equal(7);
+
+
+      serviceProperties.minuteMetrics.version.should.equal('1.0');
+      serviceProperties.minuteMetrics.enabled.should.equal(true);
+      serviceProperties.minuteMetrics.includeAPIs.should.equal(true);
+      serviceProperties.minuteMetrics.retentionPolicy.enabled.should.equal(true);
+      serviceProperties.minuteMetrics.retentionPolicy.days.should.equal(7);
     });
   });
 });
