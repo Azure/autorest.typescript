@@ -395,7 +395,7 @@ namespace AutoRest.TypeScript.Model
 
             if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
             {
-                builder.AppendLine("{2} = client.serializer.deserialize(resultMapper, {0}['{1}'], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
+                builder.AppendLine("{2} = client.serializer.deserialize(resultMapper, typeof {0} === 'object' ? {0}['{1}'] : [], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
             }
             else
             {

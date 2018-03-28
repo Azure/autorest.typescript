@@ -111,7 +111,15 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
       requestModel = client.serializer.serialize(requestModelMapper, @(Model.RequestBody.Name), '@(Model.RequestBody.Name)');
       @if (Model.CodeModel.ShouldGenerateXmlSerialization)
       {
+        if (Model.RequestBody.ModelType is SequenceType sequenceType)
+        {
+@:      requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, '@(sequenceType.ElementXmlName)'), { rootName: '@(Model.RequestBody.ModelType.XmlName)' });
+        }
+        else
+        {
 @:      requestContent = msRest.stringifyXML(requestModel, { rootName: '@(Model.RequestBody.ModelType.XmlName)' });
+        }
+
       }
       else
       {
