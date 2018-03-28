@@ -629,8 +629,13 @@ namespace AutoRest.TypeScript.Model
                 }
                 else
                 {
-                    builder.AppendLine("let requestModelMapper = {{{0}}};",
-                        RequestBody.ModelType.ConstructMapper(RequestBody.SerializedName, RequestBody, isPageable: false, expandComposite: false, isXML: false));
+                    var mapper = RequestBody.ModelType.ConstructMapper(
+                        RequestBody.SerializedName,
+                        RequestBody,
+                        isPageable: false,
+                        expandComposite: false,
+                        isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
+                    builder.AppendLine(@"let requestModelMapper = {{{0}}};", mapper);
                 }
                 return builder.ToString();
             }
