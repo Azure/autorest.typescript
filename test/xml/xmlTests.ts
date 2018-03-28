@@ -163,5 +163,45 @@ describe('typescript', function () {
 
       await testClient.xml.putRootList(rootList);
     });
+
+    it('should correctly deserialize a root XML list of one element', async function () {
+      const rootList = await testClient.xml.getRootListSingleItem();
+
+      should.exist(rootList);
+      rootList.length.should.equal(1);
+
+      rootList[0].name.should.equal('Cavendish');
+      rootList[0].flavor.should.equal('Sweet');
+
+      rootList[0].expiration.getUTCFullYear().should.equal(2018);
+      rootList[0].expiration.getUTCMonth().should.equal(1);
+      rootList[0].expiration.getUTCDate().should.equal(28);
+      rootList[0].expiration.getUTCHours().should.equal(0);
+      rootList[0].expiration.getUTCMinutes().should.equal(40);
+      rootList[0].expiration.getUTCSeconds().should.equal(0);
+      rootList[0].expiration.getUTCMilliseconds().should.equal(0);
+    });
+
+    it('should correctly serialize a root XML list of one element', async function () {
+      const rootList: models.Banana[] = [
+        {
+          name: 'Cavendish',
+          flavor: 'Sweet',
+          expiration: new Date('2018-02-28T00:40:00Z')
+        }
+      ];
+
+      await testClient.xml.putRootListSingleItem(rootList);
+    });
+
+    it('should correctly deserialize an empty root XML list', async function () {
+      const rootList = await testClient.xml.getEmptyRootList();
+      should.exist(rootList);
+      rootList.length.should.equal(0);
+    });
+
+    it('should correctly serialize an empty root XML list', async function () {
+      await testClient.xml.putEmptyRootList([]);
+    });
   });
 });

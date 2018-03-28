@@ -928,6 +928,201 @@ export class Xml {
     try {
       if (bananas !== null && bananas !== undefined) {
         let requestModelMapper = {
+          xmlElementName: 'banana',
+          required: true,
+          serializedName: 'bananas',
+          type: {
+            name: 'Sequence',
+            element: {
+                required: false,
+                serializedName: 'BananaElementType',
+                type: {
+                  name: 'Composite',
+                  className: 'Banana'
+                }
+            }
+          }
+        };
+        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
+        requestContent = msRest.stringifyXML(requestModel, { rootName: 'bananas' });
+      }
+    } catch (error) {
+      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
+          `payload - ${JSON.stringify(bananas, null, 2)}.`);
+      return Promise.reject(serializationError);
+    }
+    httpRequest.body = requestContent;
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 201) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Gets a list with a single item.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/root-list-single-item';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'GET';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Send Request
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.pipeline(httpRequest);
+      let response = operationRes.response;
+      let statusCode = response.status;
+      if (statusCode !== 200) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = response.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(response);
+        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            let internalError = null;
+            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
+            error.code = internalError ? internalError.code : parsedErrorResponse.code;
+            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            let resultMapper = {
+              xmlElementName: 'bananas',
+              required: false,
+              serializedName: 'parsedResponse',
+              type: {
+                name: 'Sequence',
+                element: {
+                    required: false,
+                    serializedName: 'BananaElementType',
+                    type: {
+                      name: 'Composite',
+                      className: 'Banana'
+                    }
+                }
+              }
+            };
+            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse['banana'], 'operationRes.bodyAsJson');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(response);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Puts a list with a single item.
+   *
+   * @param {Banana[]} bananas
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+
+    // Construct URL
+    let baseUrl = this.client.baseUri;
+    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'xml/root-list-single-item';
+
+    // Create HTTP transport objects
+    let httpRequest = new WebResource();
+    httpRequest.method = 'PUT';
+    httpRequest.url = requestUrl;
+    httpRequest.headers = {};
+    // Set Headers
+    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    if(options && options.customHeaders) {
+      for(let headerName in options.customHeaders) {
+        if (options.customHeaders.hasOwnProperty(headerName)) {
+          httpRequest.headers[headerName] = options.customHeaders[headerName];
+        }
+      }
+    }
+    // Serialize Request
+    let requestContent = null;
+    let requestModel = null;
+    try {
+      if (bananas !== null && bananas !== undefined) {
+        let requestModelMapper = {
+          xmlElementName: 'banana',
           required: true,
           serializedName: 'bananas',
           type: {
@@ -1121,6 +1316,7 @@ export class Xml {
     try {
       if (bananas !== null && bananas !== undefined) {
         let requestModelMapper = {
+          xmlElementName: 'banana',
           required: true,
           serializedName: 'bananas',
           type: {
@@ -1839,6 +2035,96 @@ export class Xml {
       });
     } else {
       msRest.promiseToCallback(this.putRootListWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as void;
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Gets a list with a single item.
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Banana[]} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getRootListSingleItem(): Promise<Models.Banana[]>;
+  getRootListSingleItem(options: msRest.RequestOptionsBase): Promise<Models.Banana[]>;
+  getRootListSingleItem(callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Banana[]>): void;
+  getRootListSingleItem(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Banana[]>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Banana[]>;
+    if (!callback) {
+      return this.getRootListSingleItemWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as Models.Banana[]);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getRootListSingleItemWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.bodyAsJson as Models.Banana[];
+        return cb(err, result, data.request, data.response);
+      });
+    }
+  }
+
+  /**
+   * Puts a list with a single item.
+   *
+   * @param {Banana[]} bananas
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, response)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   */
+  putRootListSingleItem(bananas: Models.Banana[]): Promise<void>;
+  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase): Promise<void>;
+  putRootListSingleItem(bananas: Models.Banana[], callback: msRest.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putRootListSingleItem(bananas: Models.Banana[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<void>;
+    if (!callback) {
+      return this.putRootListSingleItemWithHttpOperationResponse(bananas, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.bodyAsJson as void);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.putRootListSingleItemWithHttpOperationResponse(bananas, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
