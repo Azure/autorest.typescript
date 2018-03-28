@@ -203,5 +203,29 @@ describe('typescript', function () {
     it('should correctly serialize an empty root XML list', async function () {
       await testClient.xml.putEmptyRootList([]);
     });
+
+    it('should correctly deserialize an XML document with an empty child element', async function () {
+      const banana = await testClient.xml.getEmptyChildElement();
+      should.exist(banana);
+      banana.name.should.equal('Unknown Banana');
+      banana.flavor.should.equal('');
+
+      banana.expiration.getUTCFullYear().should.equal(2012);
+      banana.expiration.getUTCMonth().should.equal(1);
+      banana.expiration.getUTCDate().should.equal(24);
+      banana.expiration.getUTCHours().should.equal(0);
+      banana.expiration.getUTCMinutes().should.equal(53);
+      banana.expiration.getUTCSeconds().should.equal(52);
+      banana.expiration.getUTCMilliseconds().should.equal(780);
+    });
+
+    it('should correctly serialize an XML document with an empty child element', async function () {
+      const banana: models.Banana = {
+        name: 'Unknown Banana',
+        flavor: '',
+        expiration: new Date('2012-02-24T00:53:52.780Z')
+      }
+      await testClient.xml.putEmptyChildElement(banana);
+    });
   });
 });
