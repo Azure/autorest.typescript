@@ -253,5 +253,91 @@ describe('typescript', function () {
       serviceProperties.minuteMetrics.retentionPolicy.enabled.should.equal(true);
       serviceProperties.minuteMetrics.retentionPolicy.days.should.equal(7);
     });
+
+    it('should put service properties in a storage account', async function () {
+      const serviceProperties: models.StorageServiceProperties = {
+        logging: {
+          version: '1.0',
+          deleteProperty: true,
+          read: false,
+          write: true,
+          retentionPolicy: {
+            enabled: true,
+            days: 7
+          }
+        },
+        hourMetrics: {
+          version: '1.0',
+          enabled: true,
+          includeAPIs: false,
+          retentionPolicy: {
+            enabled: true,
+            days: 7
+          }
+        },
+        minuteMetrics: {
+          version: '1.0',
+          enabled: true,
+          includeAPIs: true,
+          retentionPolicy: {
+            enabled: true,
+            days: 7
+          }
+        }
+      };
+
+      await testClient.xml.putServiceProperties(serviceProperties);
+    });
+
+    it('should get storage ACLs for a container', async function () {
+      const acls = await testClient.xml.getAcls();
+      should.exist(acls);
+      acls.length.should.equal(1);
+      acls[0].id.should.equal('MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=');
+      acls[0].accessPolicy.permission.should.equal('rwd');
+      acls[0].accessPolicy.start.valueOf().should.equal(new Date('2009-09-28T08:49:37.0000000Z').valueOf());
+      acls[0].accessPolicy.expiry.valueOf().should.equal(new Date('2009-09-29T08:49:37.0000000Z').valueOf());
+    });
+
+    it('should put storage ACLs for a container', async function () {
+      const acls: models.SignedIdentifier[] = [
+        {
+          id: 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',
+          accessPolicy: {
+            permission: 'rwd',
+            start: new Date('2009-09-28T08:49:37.0000000Z'),
+            expiry: new Date('2009-09-29T08:49:37.0000000Z')
+          }
+        }
+      ];
+
+      await testClient.xml.putAcls(acls);
+    });
+
+    it('should list blobs in a container', async function () {
+      const listBlobsResponse = await testClient.xml.listBlobs();
+      should.exist(listBlobsResponse);
+      listBlobsResponse.containerName.should.equal('https://myaccount.blob.core.windows.net/mycontainer');
+      listBlobsResponse.nextMarker.should.equal('');
+      should.not.exist(listBlobsResponse.maxResults);
+      should.not.exist(listBlobsResponse.delimiter);
+      should.not.exist(listBlobsResponse.marker);
+      should.not.exist(listBlobsResponse.prefix);
+      should.not.exist(listBlobsResponse.serviceEndpoint);
+
+      listBlobsResponse.blobs.blob.length.should.equal(5);
+
+      listBlobsResponse.blobs.blob[0].name.should.equal('blob1.txt');
+      should.not.exist(listBlobsResponse.blobs.blob[0].deleted);
+      should.not.exist(listBlobsResponse.blobs.blob[0].snapshot);
+      listBlobsResponse.blobs.blob[0].metadata.Color.should.equal('blue');
+      listBlobsResponse.blobs.blob[0].metadata.BlobNumber.should.equal('01');
+      listBlobsResponse.blobs.blob[0].metadata.SomeMetadataName.should.equal('SomeMetadataValue');
+      listBlobsResponse.blobs.blob[0].properties.lastModified.valueOf().should.equal(new Date('2009-09-09T09:20:02.000Z').valueOf());
+      listBlobsResponse.blobs.blob[0].properties.contentLength.should.equal(100);
+      listBlobsResponse.blobs.blob[0].properties.etag.should.equal('0x8CBFF45D8A29A19');
+
+      // We could test every last bit of the blob list, but it's a lot of repetitive, slightly variant code.
+    });
   });
 });
