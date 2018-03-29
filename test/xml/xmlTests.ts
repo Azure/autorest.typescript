@@ -24,7 +24,7 @@ describe('typescript', function () {
 
     slideshow.slides[0].title.should.equal('Wake up to WonderWidgets!');
     slideshow.slides[0].type.should.equal('all');
-    should.not.exist(slideshow.slides[0].items);
+    slideshow.slides[0].items.length.should.equal(0);
 
     slideshow.slides[1].title.should.equal('Overview');
     slideshow.slides[1].type.should.equal('all');
@@ -85,8 +85,6 @@ describe('typescript', function () {
     should.not.exist(emptyList.date);
     should.not.exist(emptyList.title);
 
-    this.skip();
-    // TODO: list properties should always be present even if there are no list elements
     should.exist(emptyList.slides);
     emptyList.slides.length.should.equal(0);
   });
