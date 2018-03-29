@@ -335,6 +335,8 @@ describe('typescript', function () {
       listBlobsResponse.blobs.blob[0].properties.contentLength.should.equal(100);
       listBlobsResponse.blobs.blob[0].properties.etag.should.equal('0x8CBFF45D8A29A19');
 
+      listBlobsResponse.blobs.blob[1].snapshot.should.equal('2009-09-09T09:20:03.0427659Z');
+
       // We could test every last bit of the blob list, but it's a lot of repetitive, slightly variant code.
     });
   });
