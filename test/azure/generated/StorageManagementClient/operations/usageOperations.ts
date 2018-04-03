@@ -96,7 +96,7 @@ export class UsageOperations {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -116,11 +116,11 @@ export class UsageOperations {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.UsageListResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -169,7 +169,7 @@ export class UsageOperations {
     let cb = callback as msRest.ServiceCallback<Models.UsageListResult>;
     if (!callback) {
       return this.listWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.UsageListResult);
+        return Promise.resolve(operationRes.parsedBody as Models.UsageListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -178,7 +178,7 @@ export class UsageOperations {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.UsageListResult;
+        let result = data.parsedBody as Models.UsageListResult;
         return cb(err, result, data.request, data.response);
       });
     }

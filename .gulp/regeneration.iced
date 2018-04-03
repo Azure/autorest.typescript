@@ -17,8 +17,7 @@ regenExpected = (opts,done) ->
       "--#{opts.language}",
       "--clear-output-folder",
       "--output-folder=#{outputDir}/#{key}",
-      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}",
-      "--enable-xml"
+      "--license-header=#{if !!opts.header then opts.header else 'MICROSOFT_MIT_NO_VERSION'}"
     ]
 
     for swaggerFile in swaggerFiles
@@ -38,6 +37,9 @@ regenExpected = (opts,done) ->
 
     if (opts.flatteningThreshold)
       args.push("--#{opts.language}.payload-flattening-threshold=#{opts.flatteningThreshold}")
+
+    if (opts.enableXML)
+      args.push("--enable-xml")
 
     if (!!opts.nsPrefix)
       if (optsMappingsValue instanceof Array && optsMappingsValue[1] != undefined)
@@ -95,6 +97,10 @@ defaultAzureMappings = {
   'SubscriptionIdApiVersion': 'subscriptionId-apiVersion.json',
   'AzureSpecials': 'azure-special-properties.json',
   'CustomBaseUri': 'custom-baseUrl.json'
+}
+
+xmlMappings = {
+  'Xml': 'xml-service.json'
 }
 
 compositeMappings = {
@@ -162,6 +168,18 @@ task 'regenerate-tsazure', '', ['regenerate-tsazurecomposite'], (done) ->
   },done
   return null
 
+task 'regenerate-tsxml', '', [], (done) ->
+  regenExpected {
+    'outputBaseDir': 'test/xml'
+    'inputBaseDir': swaggerDir,
+    'mappings': xmlMappings,
+    'outputDir': 'generated',
+    'language': 'typescript',
+    'nsPrefix': 'Fixtures',
+    'enableXML': true
+  },done
+  return null
+
 task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
   for p of defaultMappings
     tsMappings[p] = defaultMappings[p]
@@ -176,5 +194,5 @@ task 'regenerate-ts', '', ['regenerate-tscomposite'], (done) ->
   },done
   return null
 
-task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsazure'], (done) ->
+task 'regenerate', "regenerate expected code for tests", ['regenerate-ts', 'regenerate-tsxml', 'regenerate-tsazure'], (done) ->
   done();

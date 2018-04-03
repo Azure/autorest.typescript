@@ -53,7 +53,7 @@ class AutoRestSwaggerBATdictionaryService extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.dictionary = new operations.Dictionary(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

@@ -75,7 +75,7 @@ class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
     }
     this.implicit = new operations.Implicit(this);
     this.explicit = new operations.Explicit(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

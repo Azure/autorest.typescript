@@ -68,7 +68,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -89,7 +89,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -99,7 +99,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -159,7 +159,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -180,7 +180,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -190,7 +190,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -250,7 +250,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -271,7 +271,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -281,7 +281,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -341,7 +341,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -362,7 +362,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -372,7 +372,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -464,7 +464,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -534,7 +534,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -555,7 +555,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -565,7 +565,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -625,7 +625,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -646,7 +646,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -656,7 +656,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -748,7 +748,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -818,7 +818,7 @@ export class Datetimerfc1123 {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -839,7 +839,7 @@ export class Datetimerfc1123 {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -849,7 +849,7 @@ export class Datetimerfc1123 {
                 name: 'DateTimeRfc1123'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -895,7 +895,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -904,7 +904,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -939,7 +939,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -948,7 +948,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -983,7 +983,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getOverflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -992,7 +992,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1027,7 +1027,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getUnderflowWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1036,7 +1036,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1073,7 +1073,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1082,7 +1082,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1117,7 +1117,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getUtcLowercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1126,7 +1126,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1161,7 +1161,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getUtcUppercaseMaxDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1170,7 +1170,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1207,7 +1207,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putUtcMinDateTimeWithHttpOperationResponse(datetimeBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1216,7 +1216,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1251,7 +1251,7 @@ export class Datetimerfc1123 {
     let cb = callback as msRest.ServiceCallback<Date>;
     if (!callback) {
       return this.getUtcMinDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Date);
+        return Promise.resolve(operationRes.parsedBody as Date);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1260,7 +1260,7 @@ export class Datetimerfc1123 {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Date;
+        let result = data.parsedBody as Date;
         return cb(err, result, data.request, data.response);
       });
     }

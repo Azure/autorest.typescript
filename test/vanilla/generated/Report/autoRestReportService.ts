@@ -49,7 +49,7 @@ class AutoRestReportService extends msRest.ServiceClient {
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
   // methods on the client.
 
@@ -113,7 +113,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -134,7 +134,7 @@ class AutoRestReportService extends msRest.ServiceClient {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -151,7 +151,7 @@ class AutoRestReportService extends msRest.ServiceClient {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -198,7 +198,7 @@ class AutoRestReportService extends msRest.ServiceClient {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getReportWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -207,7 +207,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }

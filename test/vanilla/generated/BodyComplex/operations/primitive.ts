@@ -70,7 +70,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -91,11 +91,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.IntWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -180,7 +180,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -250,7 +250,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -271,11 +271,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.LongWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -360,7 +360,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -430,7 +430,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -451,11 +451,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.FloatWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -540,7 +540,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -610,7 +610,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -631,11 +631,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.DoubleWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -721,7 +721,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -791,7 +791,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -812,11 +812,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.BooleanWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -901,7 +901,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -971,7 +971,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -992,11 +992,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StringWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1081,7 +1081,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1151,7 +1151,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1172,11 +1172,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.DateWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1261,7 +1261,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1331,7 +1331,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1352,11 +1352,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.DatetimeWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1442,7 +1442,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1512,7 +1512,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1533,11 +1533,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Datetimerfc1123Wrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1623,7 +1623,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1693,7 +1693,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1714,11 +1714,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.DurationWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1807,7 +1807,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1877,7 +1877,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1898,11 +1898,11 @@ export class Primitive {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ByteWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1991,7 +1991,7 @@ export class Primitive {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2048,7 +2048,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.IntWrapper>;
     if (!callback) {
       return this.getIntWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.IntWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.IntWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2057,7 +2057,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.IntWrapper;
+        let result = data.parsedBody as Models.IntWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2094,7 +2094,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putIntWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2103,7 +2103,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2139,7 +2139,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.LongWrapper>;
     if (!callback) {
       return this.getLongWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.LongWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.LongWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2148,7 +2148,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.LongWrapper;
+        let result = data.parsedBody as Models.LongWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2185,7 +2185,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putLongWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2194,7 +2194,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2230,7 +2230,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.FloatWrapper>;
     if (!callback) {
       return this.getFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.FloatWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.FloatWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2239,7 +2239,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.FloatWrapper;
+        let result = data.parsedBody as Models.FloatWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2276,7 +2276,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putFloatWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2285,7 +2285,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2321,7 +2321,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.DoubleWrapper>;
     if (!callback) {
       return this.getDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.DoubleWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.DoubleWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2330,7 +2330,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.DoubleWrapper;
+        let result = data.parsedBody as Models.DoubleWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2368,7 +2368,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDoubleWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2377,7 +2377,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2413,7 +2413,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.BooleanWrapper>;
     if (!callback) {
       return this.getBoolWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.BooleanWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.BooleanWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2422,7 +2422,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.BooleanWrapper;
+        let result = data.parsedBody as Models.BooleanWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2459,7 +2459,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBoolWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2468,7 +2468,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2504,7 +2504,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.StringWrapper>;
     if (!callback) {
       return this.getStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StringWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.StringWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2513,7 +2513,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StringWrapper;
+        let result = data.parsedBody as Models.StringWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2550,7 +2550,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putStringWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2559,7 +2559,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2595,7 +2595,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.DateWrapper>;
     if (!callback) {
       return this.getDateWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.DateWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.DateWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2604,7 +2604,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.DateWrapper;
+        let result = data.parsedBody as Models.DateWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2641,7 +2641,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2650,7 +2650,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2687,7 +2687,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.DatetimeWrapper>;
     if (!callback) {
       return this.getDateTimeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.DatetimeWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.DatetimeWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2696,7 +2696,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.DatetimeWrapper;
+        let result = data.parsedBody as Models.DatetimeWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2734,7 +2734,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateTimeWithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2743,7 +2743,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2780,7 +2780,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.Datetimerfc1123Wrapper>;
     if (!callback) {
       return this.getDateTimeRfc1123WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Datetimerfc1123Wrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.Datetimerfc1123Wrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2789,7 +2789,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Datetimerfc1123Wrapper;
+        let result = data.parsedBody as Models.Datetimerfc1123Wrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2827,7 +2827,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateTimeRfc1123WithHttpOperationResponse(complexBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2836,7 +2836,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2873,7 +2873,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.DurationWrapper>;
     if (!callback) {
       return this.getDurationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.DurationWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.DurationWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2882,7 +2882,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.DurationWrapper;
+        let result = data.parsedBody as Models.DurationWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2917,7 +2917,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDurationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2926,7 +2926,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2962,7 +2962,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<Models.ByteWrapper>;
     if (!callback) {
       return this.getByteWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ByteWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.ByteWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2971,7 +2971,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ByteWrapper;
+        let result = data.parsedBody as Models.ByteWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3006,7 +3006,7 @@ export class Primitive {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putByteWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3015,7 +3015,7 @@ export class Primitive {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

@@ -70,7 +70,7 @@ class AutoRestUrlTestService extends msRest.ServiceClient {
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

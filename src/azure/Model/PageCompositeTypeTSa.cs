@@ -11,7 +11,7 @@ namespace AutoRest.TypeScript.Azure.Model
 {
     public class PageCompositeTypeTSa : CompositeTypeTS
     {
-        public PageCompositeTypeTSa(string nextLinkName, string itemName) 
+        public PageCompositeTypeTSa(string nextLinkName, string itemName)
         {
             NextLinkName = nextLinkName;
             ItemName = itemName;
@@ -21,8 +21,8 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public string ItemName { get; private set; }
 
-        public IModelType ItemType { 
-            get 
+        public IModelType ItemType {
+            get
             {
                 if (Properties == null)
                 {
@@ -49,7 +49,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string ConstructModelMapper()
         {
-            var modelMapper = this.ConstructMapper(SerializedName, null, true, true);
+            var modelMapper = this.ConstructMapper(SerializedName, null, isPageable: true, expandComposite: true, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
             var builder = new IndentedStringBuilder("  ");
             builder.AppendLine("export const {0} = {{{1}}};", Name, modelMapper);
             return builder.ToString();

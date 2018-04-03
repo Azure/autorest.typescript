@@ -68,7 +68,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -89,7 +89,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -99,7 +99,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -159,7 +159,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -180,7 +180,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -190,7 +190,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -250,7 +250,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -271,7 +271,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -281,7 +281,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -341,7 +341,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -362,7 +362,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -372,7 +372,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -463,7 +463,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -533,7 +533,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -554,7 +554,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -564,7 +564,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -655,7 +655,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -725,7 +725,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -746,7 +746,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -756,7 +756,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -847,7 +847,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -917,7 +917,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -938,7 +938,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -948,7 +948,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1039,7 +1039,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1109,7 +1109,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1130,7 +1130,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1140,7 +1140,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1231,7 +1231,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1301,7 +1301,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1322,7 +1322,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1332,7 +1332,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1423,7 +1423,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1493,7 +1493,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1514,7 +1514,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1524,7 +1524,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1615,7 +1615,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1685,7 +1685,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1706,7 +1706,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1716,7 +1716,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1807,7 +1807,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1877,7 +1877,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1898,7 +1898,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1908,7 +1908,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1999,7 +1999,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2069,7 +2069,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2090,7 +2090,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2100,7 +2100,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2191,7 +2191,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2261,7 +2261,7 @@ export class Number {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2282,7 +2282,7 @@ export class Number {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2292,7 +2292,7 @@ export class Number {
                 name: 'Number'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2338,7 +2338,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2347,7 +2347,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2382,7 +2382,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getInvalidFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2391,7 +2391,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2426,7 +2426,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getInvalidDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2435,7 +2435,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2470,7 +2470,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getInvalidDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2479,7 +2479,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2516,7 +2516,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigFloatWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2525,7 +2525,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2560,7 +2560,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2569,7 +2569,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2606,7 +2606,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDoubleWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2615,7 +2615,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2650,7 +2650,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2659,7 +2659,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2696,7 +2696,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2705,7 +2705,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2740,7 +2740,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDoublePositiveDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2749,7 +2749,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2786,7 +2786,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2795,7 +2795,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2830,7 +2830,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDoubleNegativeDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2839,7 +2839,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2876,7 +2876,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2885,7 +2885,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2920,7 +2920,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2929,7 +2929,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2966,7 +2966,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2975,7 +2975,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3010,7 +3010,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDecimalPositiveDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3019,7 +3019,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3056,7 +3056,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3065,7 +3065,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3100,7 +3100,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getBigDecimalNegativeDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3109,7 +3109,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3146,7 +3146,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putSmallFloatWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3155,7 +3155,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3190,7 +3190,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getSmallFloatWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3199,7 +3199,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3236,7 +3236,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putSmallDoubleWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3245,7 +3245,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3280,7 +3280,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getSmallDoubleWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3289,7 +3289,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3326,7 +3326,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putSmallDecimalWithHttpOperationResponse(numberBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3335,7 +3335,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3370,7 +3370,7 @@ export class Number {
     let cb = callback as msRest.ServiceCallback<number>;
     if (!callback) {
       return this.getSmallDecimalWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as number);
+        return Promise.resolve(operationRes.parsedBody as number);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3379,7 +3379,7 @@ export class Number {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as number;
+        let result = data.parsedBody as number;
         return cb(err, result, data.request, data.response);
       });
     }

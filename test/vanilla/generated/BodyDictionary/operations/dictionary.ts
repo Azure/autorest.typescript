@@ -70,7 +70,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -91,7 +91,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -108,7 +108,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -168,7 +168,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -189,7 +189,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -206,7 +206,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -309,7 +309,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -379,7 +379,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -400,7 +400,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -417,7 +417,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -477,7 +477,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -498,7 +498,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -515,7 +515,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -575,7 +575,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -596,7 +596,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -613,7 +613,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -673,7 +673,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -694,7 +694,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -711,7 +711,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -771,7 +771,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -792,7 +792,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -809,7 +809,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -912,7 +912,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -982,7 +982,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1003,7 +1003,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1020,7 +1020,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1080,7 +1080,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1101,7 +1101,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1118,7 +1118,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1178,7 +1178,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1199,7 +1199,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1216,7 +1216,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1319,7 +1319,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1389,7 +1389,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1410,7 +1410,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1427,7 +1427,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1487,7 +1487,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1508,7 +1508,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1525,7 +1525,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1585,7 +1585,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1606,7 +1606,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1623,7 +1623,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1726,7 +1726,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1796,7 +1796,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1817,7 +1817,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1834,7 +1834,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1894,7 +1894,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -1915,7 +1915,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -1932,7 +1932,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1992,7 +1992,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2013,7 +2013,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2030,7 +2030,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2133,7 +2133,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2203,7 +2203,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2224,7 +2224,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2241,7 +2241,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2301,7 +2301,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2322,7 +2322,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2339,7 +2339,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2399,7 +2399,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2420,7 +2420,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2437,7 +2437,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2540,7 +2540,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2610,7 +2610,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2631,7 +2631,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2648,7 +2648,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2708,7 +2708,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2729,7 +2729,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2746,7 +2746,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2806,7 +2806,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -2827,7 +2827,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -2844,7 +2844,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2947,7 +2947,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3017,7 +3017,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3038,7 +3038,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3055,7 +3055,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3115,7 +3115,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3136,7 +3136,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3153,7 +3153,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3214,7 +3214,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3235,7 +3235,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3252,7 +3252,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3357,7 +3357,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3427,7 +3427,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3448,7 +3448,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3465,7 +3465,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3525,7 +3525,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3546,7 +3546,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3563,7 +3563,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3624,7 +3624,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3645,7 +3645,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3662,7 +3662,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3767,7 +3767,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3837,7 +3837,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3858,7 +3858,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3875,7 +3875,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3935,7 +3935,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -3956,7 +3956,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -3973,7 +3973,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4035,7 +4035,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4056,7 +4056,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4073,7 +4073,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4178,7 +4178,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4249,7 +4249,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4270,7 +4270,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4287,7 +4287,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4390,7 +4390,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4461,7 +4461,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4482,7 +4482,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4499,7 +4499,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4603,7 +4603,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4674,7 +4674,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4695,7 +4695,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4712,7 +4712,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4773,7 +4773,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4794,7 +4794,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4811,7 +4811,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4871,7 +4871,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4892,7 +4892,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -4910,7 +4910,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -4970,7 +4970,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -4991,7 +4991,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5009,7 +5009,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5070,7 +5070,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5091,7 +5091,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5109,7 +5109,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5170,7 +5170,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5191,7 +5191,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5209,7 +5209,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5270,7 +5270,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5291,7 +5291,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5309,7 +5309,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5402,7 +5402,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5472,7 +5472,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5493,7 +5493,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5517,7 +5517,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5577,7 +5577,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5598,7 +5598,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5622,7 +5622,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5683,7 +5683,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5704,7 +5704,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5728,7 +5728,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5789,7 +5789,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5810,7 +5810,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5834,7 +5834,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -5895,7 +5895,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -5916,7 +5916,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -5940,7 +5940,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6055,7 +6055,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6125,7 +6125,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6146,7 +6146,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -6170,7 +6170,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6230,7 +6230,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6251,7 +6251,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -6275,7 +6275,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6337,7 +6337,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6358,7 +6358,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -6382,7 +6382,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6444,7 +6444,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6465,7 +6465,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -6489,7 +6489,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6551,7 +6551,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6572,7 +6572,7 @@ export class Dictionary {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -6596,7 +6596,7 @@ export class Dictionary {
                 }
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -6713,7 +6713,7 @@ export class Dictionary {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -6769,7 +6769,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6778,7 +6778,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6813,7 +6813,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6822,7 +6822,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6859,7 +6859,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putEmptyWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6868,7 +6868,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6903,7 +6903,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getNullValueWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6912,7 +6912,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6947,7 +6947,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getNullKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6956,7 +6956,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6991,7 +6991,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getEmptyStringKeyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7000,7 +7000,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7035,7 +7035,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7044,7 +7044,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7079,7 +7079,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
     if (!callback) {
       return this.getBooleanTfftWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: boolean });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7088,7 +7088,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: boolean };
+        let result = data.parsedBody as { [propertyName: string]: boolean };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7125,7 +7125,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putBooleanTfftWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7134,7 +7134,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7169,7 +7169,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
     if (!callback) {
       return this.getBooleanInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: boolean });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7178,7 +7178,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: boolean };
+        let result = data.parsedBody as { [propertyName: string]: boolean };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7213,7 +7213,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: boolean }>;
     if (!callback) {
       return this.getBooleanInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: boolean });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: boolean });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7222,7 +7222,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: boolean };
+        let result = data.parsedBody as { [propertyName: string]: boolean };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7257,7 +7257,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getIntegerValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7266,7 +7266,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7303,7 +7303,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putIntegerValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7312,7 +7312,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7347,7 +7347,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getIntInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7356,7 +7356,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7391,7 +7391,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getIntInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7400,7 +7400,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7435,7 +7435,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getLongValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7444,7 +7444,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7481,7 +7481,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putLongValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7490,7 +7490,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7525,7 +7525,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getLongInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7534,7 +7534,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7569,7 +7569,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getLongInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7578,7 +7578,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7613,7 +7613,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getFloatValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7622,7 +7622,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7659,7 +7659,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putFloatValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7668,7 +7668,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7703,7 +7703,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getFloatInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7712,7 +7712,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7747,7 +7747,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getFloatInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7756,7 +7756,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7791,7 +7791,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getDoubleValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7800,7 +7800,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7837,7 +7837,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDoubleValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7846,7 +7846,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7881,7 +7881,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getDoubleInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7890,7 +7890,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7925,7 +7925,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: number }>;
     if (!callback) {
       return this.getDoubleInvalidStringWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: number });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: number });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7934,7 +7934,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: number };
+        let result = data.parsedBody as { [propertyName: string]: number };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -7969,7 +7969,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getStringValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7978,7 +7978,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8015,7 +8015,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putStringValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8024,7 +8024,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8059,7 +8059,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getStringWithNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8068,7 +8068,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8103,7 +8103,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getStringWithInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8112,7 +8112,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8148,7 +8148,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8157,7 +8157,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8195,7 +8195,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8204,7 +8204,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8239,7 +8239,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8248,7 +8248,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8283,7 +8283,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8292,7 +8292,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8328,7 +8328,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateTimeValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8337,7 +8337,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8375,7 +8375,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateTimeValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8384,7 +8384,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8419,7 +8419,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateTimeInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8428,7 +8428,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8463,7 +8463,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateTimeInvalidCharsWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8472,7 +8472,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8509,7 +8509,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Date } | { [propertyName: string]: string }>;
     if (!callback) {
       return this.getDateTimeRfc1123ValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8518,7 +8518,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Date } | { [propertyName: string]: string };
+        let result = data.parsedBody as { [propertyName: string]: Date } | { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8556,7 +8556,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8565,7 +8565,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8601,7 +8601,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: moment.Duration }>;
     if (!callback) {
       return this.getDurationValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: moment.Duration });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: moment.Duration });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8610,7 +8610,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: moment.Duration };
+        let result = data.parsedBody as { [propertyName: string]: moment.Duration };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8647,7 +8647,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDurationValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8656,7 +8656,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8692,7 +8692,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
     if (!callback) {
       return this.getByteValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8701,7 +8701,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Buffer };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8739,7 +8739,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putByteValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8748,7 +8748,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8784,7 +8784,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
     if (!callback) {
       return this.getByteInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8793,7 +8793,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Buffer };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8829,7 +8829,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
     if (!callback) {
       return this.getBase64UrlWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8838,7 +8838,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Buffer };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8873,7 +8873,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
     if (!callback) {
       return this.getComplexNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.Widget });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8882,7 +8882,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.Widget };
+        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8917,7 +8917,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
     if (!callback) {
       return this.getComplexEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.Widget });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8926,7 +8926,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.Widget };
+        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8962,7 +8962,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
     if (!callback) {
       return this.getComplexItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.Widget });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8971,7 +8971,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.Widget };
+        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9007,7 +9007,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
     if (!callback) {
       return this.getComplexItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.Widget });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9016,7 +9016,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.Widget };
+        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9052,7 +9052,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Models.Widget }>;
     if (!callback) {
       return this.getComplexValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: Models.Widget });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Models.Widget });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9061,7 +9061,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: Models.Widget };
+        let result = data.parsedBody as { [propertyName: string]: Models.Widget };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9100,7 +9100,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putComplexValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9109,7 +9109,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9144,7 +9144,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
     if (!callback) {
       return this.getArrayNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string[] });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9153,7 +9153,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string[] };
+        let result = data.parsedBody as { [propertyName: string]: string[] };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9188,7 +9188,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
     if (!callback) {
       return this.getArrayEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string[] });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9197,7 +9197,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string[] };
+        let result = data.parsedBody as { [propertyName: string]: string[] };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9233,7 +9233,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
     if (!callback) {
       return this.getArrayItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string[] });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9242,7 +9242,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string[] };
+        let result = data.parsedBody as { [propertyName: string]: string[] };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9278,7 +9278,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
     if (!callback) {
       return this.getArrayItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string[] });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9287,7 +9287,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string[] };
+        let result = data.parsedBody as { [propertyName: string]: string[] };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9323,7 +9323,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string[] }>;
     if (!callback) {
       return this.getArrayValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: string[] });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string[] });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9332,7 +9332,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: string[] };
+        let result = data.parsedBody as { [propertyName: string]: string[] };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9370,7 +9370,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putArrayValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9379,7 +9379,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9414,7 +9414,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
     if (!callback) {
       return this.getDictionaryNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9423,7 +9423,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } };
+        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9458,7 +9458,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
     if (!callback) {
       return this.getDictionaryEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9467,7 +9467,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } };
+        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9504,7 +9504,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
     if (!callback) {
       return this.getDictionaryItemNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9513,7 +9513,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } };
+        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9550,7 +9550,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
     if (!callback) {
       return this.getDictionaryItemEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9559,7 +9559,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } };
+        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9596,7 +9596,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: { [propertyName: string]: string } }>;
     if (!callback) {
       return this.getDictionaryValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: { [propertyName: string]: string } });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9605,7 +9605,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as { [propertyName: string]: { [propertyName: string]: string } };
+        let result = data.parsedBody as { [propertyName: string]: { [propertyName: string]: string } };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -9645,7 +9645,7 @@ export class Dictionary {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putDictionaryValidWithHttpOperationResponse(arrayBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -9654,7 +9654,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

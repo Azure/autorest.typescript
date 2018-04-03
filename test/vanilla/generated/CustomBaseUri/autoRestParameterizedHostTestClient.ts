@@ -55,7 +55,7 @@ class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
       this.host = options.host;
     }
     this.paths = new operations.Paths(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

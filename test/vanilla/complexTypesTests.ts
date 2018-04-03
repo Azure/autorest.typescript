@@ -417,6 +417,7 @@ describe('typescript', function () {
           <AutoRestComplexTestServiceModels.Goblinshark>{
             "species": "scary",
             "length": 30,
+            "color": "pinkish-gray" as AutoRestComplexTestServiceModels.GoblinSharkColor,
             "fishtype": "goblin",
             "age": 1,
             "birthday": new Date("2015-08-08T00:00:00.000Z"),

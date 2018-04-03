@@ -87,7 +87,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -107,11 +107,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -223,7 +223,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -243,11 +243,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -361,7 +361,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -381,11 +381,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -513,7 +513,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -533,11 +533,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -616,7 +616,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -636,11 +636,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -720,7 +720,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -740,11 +740,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -822,7 +822,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -842,11 +842,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -924,7 +924,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -944,11 +944,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1026,7 +1026,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1046,11 +1046,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1140,7 +1140,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1160,11 +1160,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1271,7 +1271,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1291,11 +1291,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1391,7 +1391,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1411,11 +1411,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1527,7 +1527,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1547,11 +1547,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1631,7 +1631,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1651,11 +1651,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1770,7 +1770,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1790,11 +1790,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1910,7 +1910,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1930,11 +1930,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.OdataProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2049,7 +2049,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2069,11 +2069,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2154,7 +2154,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2174,11 +2174,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2260,7 +2260,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2280,11 +2280,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2364,7 +2364,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2384,11 +2384,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2468,7 +2468,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2488,11 +2488,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2572,7 +2572,7 @@ export class Paging {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2592,11 +2592,11 @@ export class Paging {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ProductResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2643,7 +2643,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getSinglePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2652,7 +2652,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2688,7 +2688,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2697,7 +2697,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2736,7 +2736,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.getOdataMultiplePagesWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2745,7 +2745,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2786,7 +2786,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2795,7 +2795,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2832,7 +2832,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesRetryFirstWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2841,7 +2841,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2879,7 +2879,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesRetrySecondWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2888,7 +2888,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2924,7 +2924,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getSinglePagesFailureWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2933,7 +2933,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -2969,7 +2969,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesFailureWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -2978,7 +2978,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3014,7 +3014,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesFailureUriWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3023,7 +3023,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3064,7 +3064,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion, tenant, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3073,7 +3073,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3114,7 +3114,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3123,7 +3123,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3166,7 +3166,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.nextFragmentWithHttpOperationResponse(apiVersion, tenant, nextLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3175,7 +3175,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3217,7 +3217,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.nextFragmentWithGroupingWithHttpOperationResponse(nextLink, customParameterGroup, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3226,7 +3226,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3265,7 +3265,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getSinglePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3274,7 +3274,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3314,7 +3314,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3323,7 +3323,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3365,7 +3365,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.OdataProductResult>;
     if (!callback) {
       return this.getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.OdataProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.OdataProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3374,7 +3374,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.OdataProductResult;
+        let result = data.parsedBody as Models.OdataProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3414,7 +3414,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3423,7 +3423,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3463,7 +3463,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3472,7 +3472,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3513,7 +3513,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3522,7 +3522,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3561,7 +3561,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3570,7 +3570,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3609,7 +3609,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3618,7 +3618,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3657,7 +3657,7 @@ export class Paging {
     let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
     if (!callback) {
       return this.getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ProductResult);
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3666,7 +3666,7 @@ export class Paging {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ProductResult;
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data.response);
       });
     }

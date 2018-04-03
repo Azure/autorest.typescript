@@ -69,7 +69,7 @@ export class ArrayModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -90,11 +90,11 @@ export class ArrayModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ArrayWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -187,7 +187,7 @@ export class ArrayModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -257,7 +257,7 @@ export class ArrayModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -278,11 +278,11 @@ export class ArrayModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ArrayWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -375,7 +375,7 @@ export class ArrayModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -446,7 +446,7 @@ export class ArrayModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -467,11 +467,11 @@ export class ArrayModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.ArrayWrapper;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -518,7 +518,7 @@ export class ArrayModel {
     let cb = callback as msRest.ServiceCallback<Models.ArrayWrapper>;
     if (!callback) {
       return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ArrayWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.ArrayWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -527,7 +527,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ArrayWrapper;
+        let result = data.parsedBody as Models.ArrayWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -562,7 +562,7 @@ export class ArrayModel {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -571,7 +571,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -607,7 +607,7 @@ export class ArrayModel {
     let cb = callback as msRest.ServiceCallback<Models.ArrayWrapper>;
     if (!callback) {
       return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ArrayWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.ArrayWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -616,7 +616,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ArrayWrapper;
+        let result = data.parsedBody as Models.ArrayWrapper;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -651,7 +651,7 @@ export class ArrayModel {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -660,7 +660,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -697,7 +697,7 @@ export class ArrayModel {
     let cb = callback as msRest.ServiceCallback<Models.ArrayWrapper>;
     if (!callback) {
       return this.getNotProvidedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ArrayWrapper);
+        return Promise.resolve(operationRes.parsedBody as Models.ArrayWrapper);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -706,7 +706,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ArrayWrapper;
+        let result = data.parsedBody as Models.ArrayWrapper;
         return cb(err, result, data.request, data.response);
       });
     }

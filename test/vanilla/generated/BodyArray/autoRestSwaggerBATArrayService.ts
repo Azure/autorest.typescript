@@ -53,7 +53,7 @@ class AutoRestSwaggerBATArrayService extends msRest.ServiceClient {
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.arrayModel = new operations.ArrayModel(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

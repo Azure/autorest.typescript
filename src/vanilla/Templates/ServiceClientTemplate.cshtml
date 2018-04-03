@@ -64,7 +64,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
    @:*
 }
 @if(!Model.IsCustomBaseUri)
-{ 
+{
    @:* @@param {string} [baseUri] - The base URI of the service.
    @:*
 }
@@ -72,7 +72,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
    *
    * @@param {Array} [options.filters] - Filters to be added to the request pipeline
    *
-   * @@param {object} [options.requestOptions] - The request options. Detailed info can be found at 
+   * @@param {object} [options.requestOptions] - The request options. Detailed info can be found at
    * {@@link https://github.github.io/fetch/#Request Options doc}
    *
    * @@param {boolean} [options.noRetryPolicy] - If set to true, turn off default retry policy
@@ -100,7 +100,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
 {
     @:this.@(property.Name) = @(property.DefaultValue);
 }
-  
+
 @if(!Model.IsCustomBaseUri)
 {
     @:this.baseUri = baseUri as string;
@@ -121,8 +121,8 @@ else
   @EmptyLine
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   @foreach (var property in optionalParameters)
-  { 
-    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) { 
+  {
+    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
     @:  this.@(property.Name) = options.@(property.Name);
     @:}
   }
@@ -131,7 +131,7 @@ else
   {
     @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
   }
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()));
   }
 @foreach (var method in Model.MethodTemplateModels)
 {

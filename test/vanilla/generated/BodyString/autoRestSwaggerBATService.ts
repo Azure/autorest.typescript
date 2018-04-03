@@ -55,7 +55,7 @@ class AutoRestSwaggerBATService extends msRest.ServiceClient {
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     this.string = new operations.String(this);
     this.enumModel = new operations.EnumModel(this);
-    this.serializer = new msRest.Serializer(Mappers);
+    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

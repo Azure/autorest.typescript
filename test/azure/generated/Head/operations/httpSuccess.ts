@@ -86,7 +86,7 @@ export class HttpSuccess {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -104,7 +104,7 @@ export class HttpSuccess {
         }
         return Promise.reject(error);
       }
-      operationRes.bodyAsJson = (statusCode === 200);
+      operationRes.parsedBody = (statusCode === 200);
 
     } catch(err) {
       return Promise.reject(err);
@@ -174,7 +174,7 @@ export class HttpSuccess {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -192,7 +192,7 @@ export class HttpSuccess {
         }
         return Promise.reject(error);
       }
-      operationRes.bodyAsJson = (statusCode === 204);
+      operationRes.parsedBody = (statusCode === 204);
 
     } catch(err) {
       return Promise.reject(err);
@@ -262,7 +262,7 @@ export class HttpSuccess {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -280,7 +280,7 @@ export class HttpSuccess {
         }
         return Promise.reject(error);
       }
-      operationRes.bodyAsJson = (statusCode === 204);
+      operationRes.parsedBody = (statusCode === 204);
 
     } catch(err) {
       return Promise.reject(err);
@@ -318,7 +318,7 @@ export class HttpSuccess {
     let cb = callback as msRest.ServiceCallback<boolean>;
     if (!callback) {
       return this.head200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as boolean);
+        return Promise.resolve(operationRes.parsedBody as boolean);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -327,7 +327,7 @@ export class HttpSuccess {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as boolean;
+        let result = data.parsedBody as boolean;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -362,7 +362,7 @@ export class HttpSuccess {
     let cb = callback as msRest.ServiceCallback<boolean>;
     if (!callback) {
       return this.head204WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as boolean);
+        return Promise.resolve(operationRes.parsedBody as boolean);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -371,7 +371,7 @@ export class HttpSuccess {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as boolean;
+        let result = data.parsedBody as boolean;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -406,7 +406,7 @@ export class HttpSuccess {
     let cb = callback as msRest.ServiceCallback<boolean>;
     if (!callback) {
       return this.head404WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as boolean);
+        return Promise.resolve(operationRes.parsedBody as boolean);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -415,7 +415,7 @@ export class HttpSuccess {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as boolean;
+        let result = data.parsedBody as boolean;
         return cb(err, result, data.request, data.response);
       });
     }

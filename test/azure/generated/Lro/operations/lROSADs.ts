@@ -54,11 +54,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -102,11 +102,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -150,11 +150,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -199,11 +199,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -445,11 +445,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -494,11 +494,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -543,11 +543,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -727,11 +727,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -776,11 +776,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -825,11 +825,11 @@ export class LROSADs {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1125,7 +1125,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1145,11 +1145,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1160,11 +1160,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 201) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1260,7 +1260,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1280,11 +1280,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1295,11 +1295,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 201) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1395,7 +1395,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1415,11 +1415,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1430,11 +1430,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 201) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1531,7 +1531,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1551,11 +1551,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1633,7 +1633,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1720,7 +1720,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1809,7 +1809,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1913,7 +1913,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2017,7 +2017,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2123,7 +2123,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2228,7 +2228,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2248,11 +2248,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2263,11 +2263,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 201) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2364,7 +2364,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2384,11 +2384,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2485,7 +2485,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2505,11 +2505,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -2588,7 +2588,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2677,7 +2677,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2782,7 +2782,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2888,7 +2888,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -2993,7 +2993,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3013,11 +3013,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3114,7 +3114,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3134,11 +3134,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3235,7 +3235,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3255,11 +3255,11 @@ export class LROSADs {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -3338,7 +3338,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3426,7 +3426,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3515,7 +3515,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3620,7 +3620,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3726,7 +3726,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3832,7 +3832,7 @@ export class LROSADs {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -3888,7 +3888,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3897,7 +3897,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3935,7 +3935,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putNonRetry201Creating400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3944,7 +3944,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -3982,7 +3982,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -3991,7 +3991,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4030,7 +4030,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4039,7 +4039,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4074,7 +4074,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4083,7 +4083,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4118,7 +4118,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.delete202NonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4127,7 +4127,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4164,7 +4164,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4173,7 +4173,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4208,7 +4208,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4217,7 +4217,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4253,7 +4253,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.post202NonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4262,7 +4262,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4300,7 +4300,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4309,7 +4309,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4347,7 +4347,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putError201NoProvisioningStatePayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4356,7 +4356,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4395,7 +4395,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetryNoStatusWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4404,7 +4404,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4443,7 +4443,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4452,7 +4452,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4488,7 +4488,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.delete204SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4497,7 +4497,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4534,7 +4534,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4543,7 +4543,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4580,7 +4580,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.post202NoLocationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4589,7 +4589,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4627,7 +4627,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4636,7 +4636,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4674,7 +4674,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.put200InvalidJsonWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4683,7 +4683,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4722,7 +4722,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4731,7 +4731,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4770,7 +4770,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4779,7 +4779,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4815,7 +4815,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.delete202RetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4824,7 +4824,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4860,7 +4860,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4869,7 +4869,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4906,7 +4906,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4915,7 +4915,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4952,7 +4952,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.post202RetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -4961,7 +4961,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -4999,7 +4999,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5008,7 +5008,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5046,7 +5046,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5055,7 +5055,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5092,7 +5092,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5101,7 +5101,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5139,7 +5139,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutNonRetry201Creating400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5148,7 +5148,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5186,7 +5186,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5195,7 +5195,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5234,7 +5234,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5243,7 +5243,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5278,7 +5278,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5287,7 +5287,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5322,7 +5322,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDelete202NonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5331,7 +5331,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5368,7 +5368,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5377,7 +5377,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5413,7 +5413,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostNonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5422,7 +5422,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5458,7 +5458,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPost202NonRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5467,7 +5467,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5505,7 +5505,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostAsyncRelativeRetry400WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5514,7 +5514,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5552,7 +5552,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5561,7 +5561,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5600,7 +5600,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5609,7 +5609,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5648,7 +5648,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5657,7 +5657,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5693,7 +5693,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDelete204SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5702,7 +5702,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5739,7 +5739,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5748,7 +5748,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5785,7 +5785,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPost202NoLocationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5794,7 +5794,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5832,7 +5832,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5841,7 +5841,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5879,7 +5879,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPut200InvalidJsonWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5888,7 +5888,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5927,7 +5927,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5936,7 +5936,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -5975,7 +5975,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -5984,7 +5984,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6020,7 +6020,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6029,7 +6029,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6065,7 +6065,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6074,7 +6074,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6111,7 +6111,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6120,7 +6120,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6157,7 +6157,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPost202RetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6166,7 +6166,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6204,7 +6204,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6213,7 +6213,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -6251,7 +6251,7 @@ export class LROSADs {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -6260,7 +6260,7 @@ export class LROSADs {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

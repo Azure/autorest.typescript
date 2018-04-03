@@ -70,7 +70,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -91,7 +91,7 @@ export class EnumModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -102,7 +102,7 @@ export class EnumModel {
                 allowedValues: [ 'red color', 'green-color', 'blue_color' ]
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -201,7 +201,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -272,7 +272,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -293,7 +293,7 @@ export class EnumModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -304,7 +304,7 @@ export class EnumModel {
                 allowedValues: [ 'red color', 'green-color', 'blue_color' ]
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -403,7 +403,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -473,7 +473,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -494,11 +494,11 @@ export class EnumModel {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.RefColorConstant;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -592,7 +592,7 @@ export class EnumModel {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -651,7 +651,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<Models.Colors>;
     if (!callback) {
       return this.getNotExpandableWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Colors);
+        return Promise.resolve(operationRes.parsedBody as Models.Colors);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -660,7 +660,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Colors;
+        let result = data.parsedBody as Models.Colors;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -699,7 +699,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putNotExpandableWithHttpOperationResponse(stringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -708,7 +708,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -746,7 +746,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<Models.Colors>;
     if (!callback) {
       return this.getReferencedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Colors);
+        return Promise.resolve(operationRes.parsedBody as Models.Colors);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -755,7 +755,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Colors;
+        let result = data.parsedBody as Models.Colors;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -794,7 +794,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putReferencedWithHttpOperationResponse(enumStringBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -803,7 +803,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -840,7 +840,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<Models.RefColorConstant>;
     if (!callback) {
       return this.getReferencedConstantWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.RefColorConstant);
+        return Promise.resolve(operationRes.parsedBody as Models.RefColorConstant);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -849,7 +849,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.RefColorConstant;
+        let result = data.parsedBody as Models.RefColorConstant;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -885,7 +885,7 @@ export class EnumModel {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putReferencedConstantWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -894,7 +894,7 @@ export class EnumModel {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
