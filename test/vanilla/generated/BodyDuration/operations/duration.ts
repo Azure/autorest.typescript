@@ -69,7 +69,7 @@ export class Duration {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -90,7 +90,7 @@ export class Duration {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -100,7 +100,7 @@ export class Duration {
                 name: 'TimeSpan'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -191,7 +191,7 @@ export class Duration {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -261,7 +261,7 @@ export class Duration {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -282,7 +282,7 @@ export class Duration {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -292,7 +292,7 @@ export class Duration {
                 name: 'TimeSpan'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -352,7 +352,7 @@ export class Duration {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -373,7 +373,7 @@ export class Duration {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
@@ -383,7 +383,7 @@ export class Duration {
                 name: 'TimeSpan'
               }
             };
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -429,7 +429,7 @@ export class Duration {
     let cb = callback as msRest.ServiceCallback<moment.Duration>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as moment.Duration);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -438,7 +438,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as moment.Duration;
+        let result = data.parsedBody as moment.Duration;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -475,7 +475,7 @@ export class Duration {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.putPositiveDurationWithHttpOperationResponse(durationBody, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -484,7 +484,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -519,7 +519,7 @@ export class Duration {
     let cb = callback as msRest.ServiceCallback<moment.Duration>;
     if (!callback) {
       return this.getPositiveDurationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as moment.Duration);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -528,7 +528,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as moment.Duration;
+        let result = data.parsedBody as moment.Duration;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -563,7 +563,7 @@ export class Duration {
     let cb = callback as msRest.ServiceCallback<moment.Duration>;
     if (!callback) {
       return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as moment.Duration);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -572,7 +572,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as moment.Duration;
+        let result = data.parsedBody as moment.Duration;
         return cb(err, result, data.request, data.response);
       });
     }

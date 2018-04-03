@@ -69,7 +69,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -169,7 +169,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -269,7 +269,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -339,7 +339,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -439,7 +439,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -539,7 +539,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -639,7 +639,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -739,7 +739,7 @@ export class HttpRetry {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -795,7 +795,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.head408WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -804,7 +804,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -839,7 +839,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.put500WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -848,7 +848,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -883,7 +883,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.patch500WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -892,7 +892,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -927,7 +927,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.get502WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -936,7 +936,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -971,7 +971,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.post503WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -980,7 +980,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1015,7 +1015,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.delete503WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1024,7 +1024,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1059,7 +1059,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.put504WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1068,7 +1068,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1103,7 +1103,7 @@ export class HttpRetry {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.patch504WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1112,7 +1112,7 @@ export class HttpRetry {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

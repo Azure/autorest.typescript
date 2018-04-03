@@ -118,7 +118,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -138,11 +138,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.CheckNameAvailabilityResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -201,11 +201,11 @@ export class StorageAccounts {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.StorageAccount;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -303,7 +303,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -415,7 +415,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -435,11 +435,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccount;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -570,7 +570,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -590,11 +590,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccount;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -693,7 +693,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -713,11 +713,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccountKeys;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -804,7 +804,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -824,11 +824,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccountListResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -923,7 +923,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -943,11 +943,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccountListResult;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1076,7 +1076,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1096,11 +1096,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccountKeys;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1226,7 +1226,7 @@ export class StorageAccounts {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1246,11 +1246,11 @@ export class StorageAccounts {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.StorageAccount;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -1303,7 +1303,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.CheckNameAvailabilityResult>;
     if (!callback) {
       return this.checkNameAvailabilityWithHttpOperationResponse(accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.CheckNameAvailabilityResult);
+        return Promise.resolve(operationRes.parsedBody as Models.CheckNameAvailabilityResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1312,7 +1312,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.CheckNameAvailabilityResult;
+        let result = data.parsedBody as Models.CheckNameAvailabilityResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1362,7 +1362,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccount>;
     if (!callback) {
       return this.createWithHttpOperationResponse(resourceGroupName, accountName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccount);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccount);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1371,7 +1371,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccount;
+        let result = data.parsedBody as Models.StorageAccount;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1413,7 +1413,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteMethodWithHttpOperationResponse(resourceGroupName, accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1422,7 +1422,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1467,7 +1467,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccount>;
     if (!callback) {
       return this.getPropertiesWithHttpOperationResponse(resourceGroupName, accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccount);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccount);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1476,7 +1476,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccount;
+        let result = data.parsedBody as Models.StorageAccount;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1531,7 +1531,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccount>;
     if (!callback) {
       return this.updateWithHttpOperationResponse(resourceGroupName, accountName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccount);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccount);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1540,7 +1540,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccount;
+        let result = data.parsedBody as Models.StorageAccount;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1582,7 +1582,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccountKeys>;
     if (!callback) {
       return this.listKeysWithHttpOperationResponse(resourceGroupName, accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccountKeys);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccountKeys);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1591,7 +1591,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccountKeys;
+        let result = data.parsedBody as Models.StorageAccountKeys;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1629,7 +1629,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccountListResult>;
     if (!callback) {
       return this.listWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccountListResult);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccountListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1638,7 +1638,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccountListResult;
+        let result = data.parsedBody as Models.StorageAccountListResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1680,7 +1680,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccountListResult>;
     if (!callback) {
       return this.listByResourceGroupWithHttpOperationResponse(resourceGroupName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccountListResult);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccountListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1689,7 +1689,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccountListResult;
+        let result = data.parsedBody as Models.StorageAccountListResult;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1734,7 +1734,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccountKeys>;
     if (!callback) {
       return this.regenerateKeyWithHttpOperationResponse(resourceGroupName, accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccountKeys);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccountKeys);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1743,7 +1743,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccountKeys;
+        let result = data.parsedBody as Models.StorageAccountKeys;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1793,7 +1793,7 @@ export class StorageAccounts {
     let cb = callback as msRest.ServiceCallback<Models.StorageAccount>;
     if (!callback) {
       return this.beginCreateWithHttpOperationResponse(resourceGroupName, accountName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.StorageAccount);
+        return Promise.resolve(operationRes.parsedBody as Models.StorageAccount);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1802,7 +1802,7 @@ export class StorageAccounts {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.StorageAccount;
+        let result = data.parsedBody as Models.StorageAccount;
         return cb(err, result, data.request, data.response);
       });
     }

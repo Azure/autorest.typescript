@@ -94,7 +94,7 @@ export class SubscriptionInMethod {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -190,7 +190,7 @@ export class SubscriptionInMethod {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -286,7 +286,7 @@ export class SubscriptionInMethod {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -382,7 +382,7 @@ export class SubscriptionInMethod {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -442,7 +442,7 @@ export class SubscriptionInMethod {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postMethodLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -451,7 +451,7 @@ export class SubscriptionInMethod {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -490,7 +490,7 @@ export class SubscriptionInMethod {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postMethodLocalNullWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -499,7 +499,7 @@ export class SubscriptionInMethod {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -538,7 +538,7 @@ export class SubscriptionInMethod {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postPathLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -547,7 +547,7 @@ export class SubscriptionInMethod {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -586,7 +586,7 @@ export class SubscriptionInMethod {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postSwaggerLocalValidWithHttpOperationResponse(subscriptionId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -595,7 +595,7 @@ export class SubscriptionInMethod {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

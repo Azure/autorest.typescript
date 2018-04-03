@@ -96,7 +96,7 @@ export class Header {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -207,7 +207,7 @@ export class Header {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -304,7 +304,7 @@ export class Header {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -323,7 +323,7 @@ export class Header {
         }
         return Promise.reject(error);
       }
-      operationRes.bodyAsJson = (statusCode === 200);
+      operationRes.parsedBody = (statusCode === 200);
 
     } catch(err) {
       return Promise.reject(err);
@@ -364,7 +364,7 @@ export class Header {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.customNamedRequestIdWithHttpOperationResponse(fooClientRequestId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -373,7 +373,7 @@ export class Header {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -413,7 +413,7 @@ export class Header {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -422,7 +422,7 @@ export class Header {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -460,7 +460,7 @@ export class Header {
     let cb = callback as msRest.ServiceCallback<boolean>;
     if (!callback) {
       return this.customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as boolean);
+        return Promise.resolve(operationRes.parsedBody as boolean);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -469,7 +469,7 @@ export class Header {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as boolean;
+        let result = data.parsedBody as boolean;
         return cb(err, result, data.request, data.response);
       });
     }

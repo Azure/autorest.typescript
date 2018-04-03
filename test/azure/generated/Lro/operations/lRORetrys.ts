@@ -58,11 +58,11 @@ export class LRORetrys {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -107,11 +107,11 @@ export class LRORetrys {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -156,11 +156,11 @@ export class LRORetrys {
       let response = operationRes.response;
 
       // Deserialize Response
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.Product;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -393,7 +393,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -413,11 +413,11 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -428,11 +428,11 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 201) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -529,7 +529,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -549,11 +549,11 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -634,7 +634,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -654,11 +654,11 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -669,11 +669,11 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 202) {
-        let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = Mappers.Product;
-            operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -753,7 +753,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -842,7 +842,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -948,7 +948,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1054,7 +1054,7 @@ export class LRORetrys {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
@@ -1114,7 +1114,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.put201CreatingSucceeded200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1123,7 +1123,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1162,7 +1162,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.putAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1171,7 +1171,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1210,7 +1210,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.deleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1219,7 +1219,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1256,7 +1256,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.delete202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1265,7 +1265,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1302,7 +1302,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.deleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1311,7 +1311,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1349,7 +1349,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.post202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1358,7 +1358,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1396,7 +1396,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.postAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1405,7 +1405,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1445,7 +1445,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPut201CreatingSucceeded200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1454,7 +1454,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1493,7 +1493,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1502,7 +1502,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1541,7 +1541,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<Models.Product>;
     if (!callback) {
       return this.beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.Product);
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1550,7 +1550,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.Product;
+        let result = data.parsedBody as Models.Product;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1587,7 +1587,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDelete202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1596,7 +1596,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1633,7 +1633,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1642,7 +1642,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1680,7 +1680,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPost202Retry200WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1689,7 +1689,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -1727,7 +1727,7 @@ export class LRORetrys {
     let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
       return this.beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as void);
+        return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1736,7 +1736,7 @@ export class LRORetrys {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as void;
+        let result = data.parsedBody as void;
         return cb(err, result, data.request, data.response);
       });
     }

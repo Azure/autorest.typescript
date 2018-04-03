@@ -69,7 +69,7 @@ export class HttpServerFailure {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -88,11 +88,11 @@ export class HttpServerFailure {
         }
         return Promise.reject(error);
       }
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.ErrorModel;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -151,7 +151,7 @@ export class HttpServerFailure {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -170,11 +170,11 @@ export class HttpServerFailure {
         }
         return Promise.reject(error);
       }
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.ErrorModel;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -264,7 +264,7 @@ export class HttpServerFailure {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -283,11 +283,11 @@ export class HttpServerFailure {
         }
         return Promise.reject(error);
       }
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.ErrorModel;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -377,7 +377,7 @@ export class HttpServerFailure {
         error.statusCode = response.status;
         error.request = msRest.stripRequest(httpRequest);
         error.response = msRest.stripResponse(response);
-        let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
             let internalError = null;
@@ -396,11 +396,11 @@ export class HttpServerFailure {
         }
         return Promise.reject(error);
       }
-      let parsedResponse = operationRes.bodyAsJson as { [key: string]: any };
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           let resultMapper = Mappers.ErrorModel;
-          operationRes.bodyAsJson = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.bodyAsJson');
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -446,7 +446,7 @@ export class HttpServerFailure {
     let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
     if (!callback) {
       return this.head501WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ErrorModel);
+        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -455,7 +455,7 @@ export class HttpServerFailure {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ErrorModel;
+        let result = data.parsedBody as Models.ErrorModel;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -491,7 +491,7 @@ export class HttpServerFailure {
     let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
     if (!callback) {
       return this.get501WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ErrorModel);
+        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -500,7 +500,7 @@ export class HttpServerFailure {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ErrorModel;
+        let result = data.parsedBody as Models.ErrorModel;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -537,7 +537,7 @@ export class HttpServerFailure {
     let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
     if (!callback) {
       return this.post505WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ErrorModel);
+        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -546,7 +546,7 @@ export class HttpServerFailure {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ErrorModel;
+        let result = data.parsedBody as Models.ErrorModel;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -583,7 +583,7 @@ export class HttpServerFailure {
     let cb = callback as msRest.ServiceCallback<Models.ErrorModel>;
     if (!callback) {
       return this.delete505WithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.bodyAsJson as Models.ErrorModel);
+        return Promise.resolve(operationRes.parsedBody as Models.ErrorModel);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -592,7 +592,7 @@ export class HttpServerFailure {
         if (err) {
           return cb(err);
         }
-        let result = data.bodyAsJson as Models.ErrorModel;
+        let result = data.parsedBody as Models.ErrorModel;
         return cb(err, result, data.request, data.response);
       });
     }
