@@ -13,7 +13,7 @@ try {
     error.statusCode = response.status;
     error.request = msRest.stripRequest(httpRequest);
     error.response = msRest.stripResponse(response);
-    let parsedErrorResponse = operationRes.bodyAsJson as { [key: string]: any };
+    let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
     try {
       if (parsedErrorResponse) {
         @(Model.PopulateErrorCodeAndMessage())
@@ -29,7 +29,7 @@ try {
       }
   }
     } catch (defaultError) {
-      error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` + 
+      error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
                        `- "${operationRes.bodyAsText}" for the default response.`;
       return Promise.reject(error);
     }

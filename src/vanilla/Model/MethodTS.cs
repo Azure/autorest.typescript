@@ -943,7 +943,7 @@ namespace AutoRest.TypeScript.Model
             }
             else
             {
-                sb.AppendFormat("{0}.bodyAsJson as {1}", resultReference, ReturnTypeTSString);
+                sb.AppendFormat("{0}.parsedBody as {1}", resultReference, ReturnTypeTSString);
             }
             return sb.ToString();
         }

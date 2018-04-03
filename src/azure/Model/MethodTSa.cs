@@ -51,7 +51,7 @@ namespace AutoRest.TypeScript.Azure.Model
                     this.ReturnType.Body != null)
                 {
                     HttpStatusCode code = this.Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
-                    sb.AppendFormat("operationRes.bodyAsJson = (statusCode === {0});", (int)code).AppendLine();
+                    sb.AppendFormat("operationRes.parsedBody = (statusCode === {0});", (int)code).AppendLine();
                 }
 
                 return sb.ToString();
