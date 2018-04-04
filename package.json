@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.typescript/blob/master/README.md",
   "devDependencies": {
-    "@microsoft.azure/autorest.testserver": "^2.5.3",
+    "@microsoft.azure/autorest.testserver": "^2.5.6",
     "@types/assert": "0.0.31",
     "@types/mocha": "^2.2.48",
     "@types/node": "^8.0.28",
