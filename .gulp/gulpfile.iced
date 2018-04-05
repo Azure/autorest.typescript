@@ -6,6 +6,8 @@ Tasks "dotnet"  # dotnet functions
 Tasks "regeneration"
 Tasks "publishing"
 
+Install "child_process"
+
 # ==============================================================================
 # Settings
 Import
@@ -21,12 +23,26 @@ task 'init', "" ,(done)->
   done()
 
 # Run language-specific tests:
-task 'test', 'type check generated code', [], (done) ->
+task 'test', '', ['typecheck', 'nodejs-unit', 'chrome-unit'], (done) ->
+  done();
+
+task 'typecheck', 'type check generated code', [], (done) ->
   await execute "tsc -p ./test/tsconfig.generated.json", defer _
   done();
 
-task 'test', 'run unit tests', [], (done) ->
+task 'nodejs-unit', 'run nodejs unit tests', [], (done) ->
   await execute "mocha", defer _
+  done();
+
+task 'chrome-unit', 'run browser unit tests', [], (done) ->
+  webpackDevServer = child_process.spawn("./node_modules/.bin/webpack-dev-server", [], {})
+  testServer = child_process.spawn("node", ["app.js"], { cwd: "./node_modules/@microsoft.azure/autorest.testserver" })
+
+  await execute "./node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
+
+  testServer.kill();
+  webpackDevServer.kill();
+
   done();
 
 # CI job
