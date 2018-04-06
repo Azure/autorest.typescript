@@ -16,13 +16,6 @@
     <PackageProjectUrl>https://github.com/Azure/AutoRest</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Microsoft/dotnet/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    
-    <!--
-    <DelaySign Condition="$(Configuration) == 'Release'">true</DelaySign>
-    <AssemblyOriginatorKeyFile Condition="$(Configuration) == 'Release'">$(SolutionDir)/tools/MSSharedLibKey.snk</AssemblyOriginatorKeyFile>
-    <SignAssembly Condition="$(Configuration) == 'Release'">true</SignAssembly>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet;portable-net45+win8;netstandard1.3</PackageTargetFallback>
-    -->
  
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
