@@ -35,6 +35,7 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
+  # Wait for both servers to write to stdout, indicating they are ready to communicate
   count = 2;
   testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "./node_modules/@microsoft.azure/autorest.testserver" })
   webpackDevServer = child_process.spawn("./node_modules/.bin/webpack-dev-server", [], {})
