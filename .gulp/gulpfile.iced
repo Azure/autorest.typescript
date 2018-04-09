@@ -23,27 +23,33 @@ task 'init', "" ,(done)->
   done()
 
 # Run language-specific tests:
-task 'test', '', ['typecheck', 'nodejs-unit', 'chrome-unit'], (done) ->
+task 'test', '', ['test/typecheck', 'test/nodejs-unit', 'test/chrome-unit'], (done) ->
   done();
 
-task 'typecheck', 'type check generated code', [], (done) ->
+task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "tsc -p ./test/tsconfig.generated.json", defer _
   done();
 
-task 'nodejs-unit', 'run nodejs unit tests', [], (done) ->
+task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   await execute "mocha", defer _
   done();
 
-task 'chrome-unit', 'run browser unit tests', [], (done) ->
+task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
+  count = 2;
+  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "./node_modules/@microsoft.azure/autorest.testserver" })
   webpackDevServer = child_process.spawn("./node_modules/.bin/webpack-dev-server", [], {})
-  testServer = child_process.spawn("node", ["app.js"], { cwd: "./node_modules/@microsoft.azure/autorest.testserver" })
+  onData = (data) ->
+    count--
+    if count == 0
+      runMochaChrome(testServer, webpackDevServer, done)
 
-  await execute "./node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
+  runMochaChrome = () ->
+    await execute "./node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
+    testServer.kill();
+    webpackDevServer.kill();
 
-  testServer.kill();
-  webpackDevServer.kill();
-
-  done();
+  testServer.stdout.on('data', onData)
+  webpackDevServer.stdout.on('data', onData)
 
 # CI job
 task 'testci', "more", [], (done) ->
