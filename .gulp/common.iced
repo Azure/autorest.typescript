@@ -459,9 +459,6 @@ task 'default','', ->
 ## available switches  
   *--force*          specify when you want to force an action (restore, etc)
   *--configuration*  'debug' or 'release'
-  *--release*        same as --configuration=release
-  *--nightly*        generate label for package as 'YYYYMMDD-0000-nightly'
-  *--preview*        generate label for package as 'YYYYMMDD-HHmm-preview'
   *--verbose*        enable verbose output
   *--threshold=nn*   set parallelism threshold (default = 10)
 
@@ -474,6 +471,28 @@ task 'fix-line-endings', 'Fixes line endings to file-type appropriate values.', 
   source "**/*.iced"
     .pipe eol {eolc: 'LF', encoding:'utf8'}
     .pipe destination '.'
+
+task 'get-tag', '!', (done)->
+  if argv.tag
+    # take the argument if they specified it.
+    global.tag = argv.tag
+    done()
+  else
+    # pick up the tag from the pkg.json version entry
+    global.tag = semver.parse((package_json.version).trim()).prerelease.join(".")
+    if( global.tag )
+      return done()
+
+    # if branch is provided by environment
+    if( env.BUILD_SOURCEBRANCHNAME )
+      global.tag = if ( env.BUILD_SOURCEBRANCHNAME == "master" || env.BUILD_SOURCEBRANCHNAME =="HEAD" ) then "preview" else env.BUILD_SOURCEBRANCHNAME
+      return done();
+
+    # grab the git branch name.
+    execute "git rev-parse --abbrev-ref HEAD" , {silent:true}, (c,o,e)->
+      o = "preview" if( o == undefined || o == null || o == "" || o.trim() == 'master' || o.trim() == 'HEAD')
+      global.tag = o.trim()
+      done();
 
 task 'version-number', '!', (done)->
   if argv.version
