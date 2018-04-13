@@ -29,6 +29,7 @@ import { AutoRestSwaggerBATFormDataService } from './generated/BodyFormData/auto
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBaseUriMoreOptions/autoRestParameterizedCustomHostTestClient';
 import { fail } from "assert";
+import { timeoutPromise } from '../util/util';
 
 // TODO: Check types
 var readStreamToBuffer = function (strm: stream.Readable, callback: (err: Error, result: Buffer) => void) {
@@ -55,47 +56,7 @@ var readStreamCountBytes = function (stream: stream.Readable, callback: (err: Er
 var clientOptions: msRest.ServiceClientOptions = {};
 var baseUri = 'http://localhost:3000';
 describe('typescript', function () {
-
   describe('Swagger BAT', function () {
-    describe('Custom BaseUri Client', function () {
-      var customOptions = {
-        host: 'host:3000'
-      };
-      var testClient = new AutoRestParameterizedHostTestClient(customOptions);
-      it('should return 200', function (done) {
-        testClient.paths.getEmpty('local', function (error, result, request, response) {
-          should.not.exist(error);
-          response.status.should.equal(200);
-          done();
-        });
-      });
-
-      it('should throw due to bad "host", bad "account" and missing account', async function () {
-        testClient.host = 'nonexistent';
-        try {
-          await testClient.paths.getEmpty('local');
-          fail('');
-        } catch (error) {
-          should.exist(error);
-        }
-
-        testClient.host = 'host:3000';
-        try {
-          await testClient.paths.getEmpty('bad');
-          fail('');
-        } catch (error) {
-          should.exist(error);
-        }
-
-        try {
-          await testClient.paths.getEmpty(null);
-          fail('');
-        } catch (error) {
-          should.exist(error);
-        }
-      });
-    });
-
     describe('Custom BaseUri Client with more options', function () {
       var customOptions = {
         dnsSuffix: 'host:3000'

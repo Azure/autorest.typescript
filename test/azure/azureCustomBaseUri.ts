@@ -9,6 +9,7 @@ import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
+import { timeoutPromise } from '../util/util';
 var dummySubscriptionId = '1234-5678-9012-3456';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
@@ -26,22 +27,27 @@ describe('typescript', function () {
         done();
       });
     });
-    it('should throw due to bad "host", bad "account" and missing account', function (done) {
+    it('should throw due to bad "host", bad "account" and missing account', async function () {
       testClient.host = 'nonexistent';
-      testClient.paths.getEmpty('local', function (error, result, request, response) {
+      try {
+        await Promise.race([testClient.paths.getEmpty('local'), timeoutPromise(1000)]);
+        assert.fail('');
+      } catch (error) {
         should.exist(error);
-        should.not.exist(result);
-        testClient.host = 'host:3000';
-        testClient.paths.getEmpty('bad', function (error, result, request, response) {
-          should.exist(error);
-          should.not.exist(result);
-          testClient.paths.getEmpty(null, function (error, result, request, response) {
-            should.exist(error);
-            should.not.exist(result);
-            done();
-          });
-        });
-      });
+      }
+      testClient.host = 'host:3000';
+      try {
+        await Promise.race([testClient.paths.getEmpty('bad'), timeoutPromise(1000)]);
+        assert.fail('');
+      } catch (error) {
+        should.exist(error);
+      }
+
+      try {
+        await Promise.race([testClient.paths.getEmpty(null), timeoutPromise(1000)]);
+      } catch (error) {
+        should.exist(error);
+      }
     });
   });
 });
