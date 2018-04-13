@@ -27,30 +27,43 @@ task 'test', '', ['test/typecheck', 'test/nodejs-unit', 'test/chrome-unit'], (do
   done();
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
-  await execute "tsc -p ./test/tsconfig.generated.json", defer _
+  await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
 
 task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
-  await execute "mocha", defer _
+  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
-  # Wait for both servers to write to stdout, indicating they are ready to communicate
-  count = 2;
-  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "./node_modules/@microsoft.azure/autorest.testserver" })
-  webpackDevServer = child_process.spawn("./node_modules/.bin/webpack-dev-server", [], {})
-  onData = (data) ->
-    count--
-    if count == 0
+  testServer = child_process.spawn("node", ["#{basefolder}/startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
+  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/webpack-dev-server", ['--port', '8080'], { shell: true })
+
+  mochaChromeRunning = false
+  runMochaChrome = () ->
+    if !mochaChromeRunning
+      mochaChromeRunning = true
+      await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
+      testServer.kill();
+      webpackDevServer.kill();
+
+  testServerStarted = false
+  webpackServerStarted = false
+
+  testServerHandler = (data) ->
+    testServerStarted = true
+    if webpackServerStarted
       runMochaChrome()
 
-  runMochaChrome = () ->
-    await execute "./node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
-    testServer.kill();
-    webpackDevServer.kill();
+  testServer.stdout.on 'data', testServerHandler
+  testServer.on 'exit', testServerHandler
 
-  testServer.stdout.on('data', onData)
-  webpackDevServer.stdout.on('data', onData)
+  webpackDevServerHandler = (data) ->
+    webpackServerStarted = true
+    if testServerStarted
+      runMochaChrome()
+
+  webpackDevServer.stdout.on 'data', webpackDevServerHandler
+  webpackDevServer.on 'exit', webpackDevServerHandler
 
 # CI job
 task 'testci', "more", [], (done) ->
