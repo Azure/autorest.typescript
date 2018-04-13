@@ -42,7 +42,7 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
   onData = (data) ->
     count--
     if count == 0
-      runMochaChrome(testServer, webpackDevServer, done)
+      runMochaChrome()
 
   runMochaChrome = () ->
     await execute "./node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
