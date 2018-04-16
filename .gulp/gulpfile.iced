@@ -35,7 +35,7 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
-  testServer = child_process.spawn("node", ["#{basefolder}/startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
+  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
   webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/webpack-dev-server", ['--port', '8080'], { shell: true })
 
   mochaChromeRunning = false
@@ -45,6 +45,7 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
       await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
       testServer.kill();
       webpackDevServer.kill();
+      done();
 
   testServerStarted = false
   webpackServerStarted = false
