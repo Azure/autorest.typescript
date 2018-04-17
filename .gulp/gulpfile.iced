@@ -23,7 +23,7 @@ task 'init', "" ,(done)->
   done()
 
 # Run language-specific tests:
-task 'test', '', ['test/typecheck', 'test/nodejs-unit', 'test/chrome-unit'], (done) ->
+task 'test', '', ['test/typecheck', 'test/nodejs-unit'], (done) ->
   done();
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
