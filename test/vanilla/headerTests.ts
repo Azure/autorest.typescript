@@ -23,7 +23,11 @@ describe('typescript', function () {
 
     describe('Basic Header Operations', function () {
       var testClient = new AutoRestSwaggerBATHeaderService(baseUri, clientOptions);
-      it('should override existing headers', function (done) {
+      it('should override existing headers (nodejs only)', function (done) {
+        if (!msRest.isNode) {
+          this.skip();
+        }
+
         testClient.header.paramExistingKey('overwrite', function (error, result, request, response) {
           should.not.exist(error);
           testClient.header.responseExistingKey(function (error, result, request, response) {

@@ -3,7 +3,6 @@
 
 'use strict';
 
-import 'mocha';
 import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
 import * as moment from 'moment';

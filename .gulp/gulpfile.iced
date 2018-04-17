@@ -6,6 +6,8 @@ Tasks "dotnet"  # dotnet functions
 Tasks "regeneration"
 Tasks "publishing"
 
+Install "child_process"
+
 # ==============================================================================
 # Settings
 Import
@@ -21,13 +23,48 @@ task 'init', "" ,(done)->
   done()
 
 # Run language-specific tests:
-task 'test', 'type check generated code', [], (done) ->
-  await execute "tsc -p ./test/tsconfig.generated.json", defer _
+task 'test', '', ['test/typecheck', 'test/nodejs-unit'], (done) ->
   done();
 
-task 'test', 'run unit tests', [], (done) ->
-  await execute "mocha", defer _
+task 'test/typecheck', 'type check generated code', [], (done) ->
+  await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
+
+task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
+  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
+  done();
+
+task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
+  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
+  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/webpack-dev-server", ['--port', '8080'], { shell: true })
+
+  mochaChromeRunning = false
+  runMochaChrome = () ->
+    if !mochaChromeRunning
+      mochaChromeRunning = true
+      await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
+      testServer.kill();
+      webpackDevServer.kill();
+      done();
+
+  testServerStarted = false
+  webpackServerStarted = false
+
+  testServerHandler = (data) ->
+    testServerStarted = true
+    if webpackServerStarted
+      runMochaChrome()
+
+  testServer.stdout.on 'data', testServerHandler
+  testServer.on 'exit', testServerHandler
+
+  webpackDevServerHandler = (data) ->
+    webpackServerStarted = true
+    if testServerStarted
+      runMochaChrome()
+
+  webpackDevServer.stdout.on 'data', webpackDevServerHandler
+  webpackDevServer.on 'exit', webpackDevServerHandler
 
 # CI job
 task 'testci', "more", [], (done) ->
