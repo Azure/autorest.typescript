@@ -3,6 +3,7 @@
 // 
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,6 +53,8 @@ namespace AutoRest.TypeScript
                 await Write(modelIndexTemplate, Path.Combine("models", "index.ts"));
                 var mapperIndexTemplate = new MapperIndexTemplate {Model = codeModel};
                 await Write(mapperIndexTemplate, Path.Combine("models", "mappers.ts"));
+
+                await WriteTSFile(TypeSpecIndexGenerator.Generate(codeModel));
             }
 
             //MethodGroups
@@ -91,5 +94,11 @@ namespace AutoRest.TypeScript
                 await Write(readme, Path.Combine("../", "README.md"));
             }
         }
+
+        /// <summary>
+        /// Write the provided TSFile to disk.
+        /// </summary>
+        /// <param name="tsFile">The TSFile to write to disk.</param>
+        protected Task WriteTSFile(TSFile tsFile) => Write(tsFile.ToString(), tsFile.FilePath);
     }
 }

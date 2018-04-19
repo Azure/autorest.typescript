@@ -50,6 +50,10 @@ namespace AutoRest.TypeScript.Azure
             await Write(modelIndexTemplate, Path.Combine("models", "index.ts"));
             var mapperIndexTemplate = new AzureMapperIndexTemplate { Model = codeModel };
             await Write(mapperIndexTemplate, Path.Combine("models", "mappers.ts"));
+            if (codeModel.ModelTypes.Any())
+            {
+                await WriteTSFile(TypeSpecIndexGenerator.Generate(codeModel));
+            }
 
             //MethodGroups
             if (codeModel.MethodGroupModels.Any())
