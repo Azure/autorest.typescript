@@ -8,25 +8,31 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const AutoRestReportServiceForAzureGetReportOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestReportServiceForAzureGetReportOptionalParams", {
-  /**
-   * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The
-   * only effect is, that generators that run all tests several times, can distinguish the
-   * generated reports.
-   */
-  qualifier: {
-    valueSpec: stringSpec
+export const AutoRestReportServiceForAzureGetReportOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestReportServiceForAzureGetReportOptionalParams",
+  propertySpecs: {
+    /**
+     * If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python).
+     * The only effect is, that generators that run all tests several times, can distinguish the
+     * generated reports.
+     */
+    qualifier: {
+      valueSpec: stringSpec
+    }
   }
 });

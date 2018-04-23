@@ -8,92 +8,110 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ProductProperties: CompositeTypeSpec = compositeSpec("ProductProperties", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
+export const ProductProperties: CompositeTypeSpec = compositeSpec({
+  typeName: "ProductProperties",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  properties: {
-    valueSpec: ProductProperties
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    properties: {
+      valueSpec: ProductProperties
+    }
   }
 });
 
-export const OperationResult: CompositeTypeSpec = compositeSpec("OperationResult", {
-  /**
-   * The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled',
-   * 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   */
-  status: {
-    valueSpec: stringSpec
+export const OperationResult: CompositeTypeSpec = compositeSpec({
+  typeName: "OperationResult",
+  propertySpecs: {
+    /**
+     * The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled',
+     * 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+     */
+    status: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Additional parameters for getMultiplePages operation.
  */
-export const PagingGetMultiplePagesOptions: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesOptions", {
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The
-   * default is 30 seconds.
-   */
-  timeout: {
-    valueSpec: numberSpec
+export const PagingGetMultiplePagesOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesOptions",
+  propertySpecs: {
+    /**
+     * Sets the maximum number of items to return in the response.
+     */
+    maxresults: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Sets the maximum time that the server can spend processing the request, in seconds. The
+     * default is 30 seconds.
+     */
+    timeout: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Additional parameters for getOdataMultiplePages operation.
  */
-export const PagingGetOdataMultiplePagesOptions: CompositeTypeSpec = compositeSpec("PagingGetOdataMultiplePagesOptions", {
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The
-   * default is 30 seconds.
-   */
-  timeout: {
-    valueSpec: numberSpec
+export const PagingGetOdataMultiplePagesOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetOdataMultiplePagesOptions",
+  propertySpecs: {
+    /**
+     * Sets the maximum number of items to return in the response.
+     */
+    maxresults: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Sets the maximum time that the server can spend processing the request, in seconds. The
+     * default is 30 seconds.
+     */
+    timeout: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Additional parameters for getMultiplePagesWithOffset operation.
  */
-export const PagingGetMultiplePagesWithOffsetOptions: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesWithOffsetOptions", {
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Offset of return value
-   */
-  offset: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The
-   * default is 30 seconds.
-   */
-  timeout: {
-    valueSpec: numberSpec
+export const PagingGetMultiplePagesWithOffsetOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesWithOffsetOptions",
+  propertySpecs: {
+    /**
+     * Sets the maximum number of items to return in the response.
+     */
+    maxresults: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Offset of return value
+     */
+    offset: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    /**
+     * Sets the maximum time that the server can spend processing the request, in seconds. The
+     * default is 30 seconds.
+     */
+    timeout: {
+      valueSpec: numberSpec
+    }
   }
 });
 
@@ -101,128 +119,152 @@ export const PagingGetMultiplePagesWithOffsetOptions: CompositeTypeSpec = compos
  * Additional parameters for a set of operations, such as:
  * Paging_getMultiplePagesFragmentWithGroupingNextLink, Paging_nextFragmentWithGrouping.
  */
-export const CustomParameterGroup: CompositeTypeSpec = compositeSpec("CustomParameterGroup", {
-  /**
-   * Sets the api version to use.
-   */
-  apiVersion: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  /**
-   * Sets the tenant to use.
-   */
-  tenant: {
-    required: true,
-    valueSpec: stringSpec
+export const CustomParameterGroup: CompositeTypeSpec = compositeSpec({
+  typeName: "CustomParameterGroup",
+  propertySpecs: {
+    /**
+     * Sets the api version to use.
+     */
+    apiVersion: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    /**
+     * Sets the tenant to use.
+     */
+    tenant: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Additional parameters for getMultiplePagesWithOffsetNext operation.
  */
-export const PagingGetMultiplePagesWithOffsetNextOptions: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesWithOffsetNextOptions", {
-  /**
-   * Sets the maximum number of items to return in the response.
-   */
-  maxresults: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Sets the maximum time that the server can spend processing the request, in seconds. The
-   * default is 30 seconds.
-   */
-  timeout: {
-    valueSpec: numberSpec
+export const PagingGetMultiplePagesWithOffsetNextOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesWithOffsetNextOptions",
+  propertySpecs: {
+    /**
+     * Sets the maximum number of items to return in the response.
+     */
+    maxresults: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Sets the maximum time that the server can spend processing the request, in seconds. The
+     * default is 30 seconds.
+     */
+    timeout: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetMultiplePagesOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetMultiplePagesOptions: {
-    valueSpec: PagingGetMultiplePagesOptions
+export const PagingGetMultiplePagesOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    pagingGetMultiplePagesOptions: {
+      valueSpec: PagingGetMultiplePagesOptions
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetOdataMultiplePagesOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetOdataMultiplePagesOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetOdataMultiplePagesOptions: {
-    valueSpec: PagingGetOdataMultiplePagesOptions
+export const PagingGetOdataMultiplePagesOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetOdataMultiplePagesOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    pagingGetOdataMultiplePagesOptions: {
+      valueSpec: PagingGetOdataMultiplePagesOptions
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetMultiplePagesWithOffsetOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesWithOffsetOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
+export const PagingGetMultiplePagesWithOffsetOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesWithOffsetOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetMultiplePagesNextOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesNextOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetMultiplePagesOptions: {
-    valueSpec: PagingGetMultiplePagesOptions
+export const PagingGetMultiplePagesNextOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesNextOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    pagingGetMultiplePagesOptions: {
+      valueSpec: PagingGetMultiplePagesOptions
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetOdataMultiplePagesNextOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetOdataMultiplePagesNextOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetOdataMultiplePagesOptions: {
-    valueSpec: PagingGetOdataMultiplePagesOptions
+export const PagingGetOdataMultiplePagesNextOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetOdataMultiplePagesNextOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    pagingGetOdataMultiplePagesOptions: {
+      valueSpec: PagingGetOdataMultiplePagesOptions
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PagingGetMultiplePagesWithOffsetNextOptionalParams: CompositeTypeSpec = compositeSpec("PagingGetMultiplePagesWithOffsetNextOptionalParams", {
-  clientRequestId: {
-    serializedName: "client-request-id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  pagingGetMultiplePagesWithOffsetNextOptions: {
-    valueSpec: PagingGetMultiplePagesWithOffsetNextOptions
+export const PagingGetMultiplePagesWithOffsetNextOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PagingGetMultiplePagesWithOffsetNextOptionalParams",
+  propertySpecs: {
+    clientRequestId: {
+      serializedName: "client-request-id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    pagingGetMultiplePagesWithOffsetNextOptions: {
+      valueSpec: PagingGetMultiplePagesWithOffsetNextOptions
+    }
   }
 });

@@ -8,20 +8,26 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const AutoRestParameterizedHostTestClientOptions: CompositeTypeSpec = compositeSpec("AutoRestParameterizedHostTestClientOptions", {
-  /**
-   * A string value that is used as a global part of the parameterized host
-   */
-  host: {
-    valueSpec: stringSpec
+export const AutoRestParameterizedHostTestClientOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestParameterizedHostTestClientOptions",
+  propertySpecs: {
+    /**
+     * A string value that is used as a global part of the parameterized host
+     */
+    host: {
+      valueSpec: stringSpec
+    }
   }
 });

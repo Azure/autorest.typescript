@@ -8,48 +8,60 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, sequenceSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringMultiNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringMultiNullOptionalParams", {
-  /**
-   * a null array of string using the multi-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringMultiNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringMultiNullOptionalParams",
+  propertySpecs: {
+    /**
+     * a null array of string using the multi-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringMultiEmptyOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringMultiEmptyOptionalParams", {
-  /**
-   * an empty array [] of string using the multi-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringMultiEmptyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringMultiEmptyOptionalParams",
+  propertySpecs: {
+    /**
+     * an empty array [] of string using the multi-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringMultiValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringMultiValidOptionalParams", {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * mult-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringMultiValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringMultiValidOptionalParams",
+  propertySpecs: {
+    /**
+     * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+     * mult-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });

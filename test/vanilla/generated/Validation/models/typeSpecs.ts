@@ -11,121 +11,139 @@ import { compositeSpec, CompositeTypeSpec, enumSpec, numberSpec, sequenceSpec, s
 /**
  * The product documentation.
  */
-export const ChildProduct: CompositeTypeSpec = compositeSpec("ChildProduct", {
-  /**
-   * Constant string
-   */
-  constProperty: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  /**
-   * Count
-   */
-  count: {
-    valueSpec: numberSpec
+export const ChildProduct: CompositeTypeSpec = compositeSpec({
+  typeName: "ChildProduct",
+  propertySpecs: {
+    /**
+     * Constant string
+     */
+    constProperty: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    /**
+     * Count
+     */
+    count: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * The product documentation.
  */
-export const ConstantProduct: CompositeTypeSpec = compositeSpec("ConstantProduct", {
-  /**
-   * Constant string
-   */
-  constProperty: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  /**
-   * Constant string2
-   */
-  constProperty2: {
-    required: true,
-    valueSpec: stringSpec
+export const ConstantProduct: CompositeTypeSpec = compositeSpec({
+  typeName: "ConstantProduct",
+  propertySpecs: {
+    /**
+     * Constant string
+     */
+    constProperty: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    /**
+     * Constant string2
+     */
+    constProperty2: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * The product documentation.
  */
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  /**
-   * Non required array of unique items from 0 to 6 elements.
-   */
-  displayNames: {
-    serializedName: "display_names",
-    valueSpec: sequenceSpec(stringSpec)
-  },
-  /**
-   * Non required int betwen 0 and 100 exclusive.
-   */
-  capacity: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Image URL representing the product.
-   */
-  image: {
-    valueSpec: stringSpec
-  },
-  child: {
-    required: true,
-    valueSpec: ChildProduct
-  },
-  constChild: {
-    required: true,
-    valueSpec: ConstantProduct
-  },
-  /**
-   * Constant int
-   */
-  constInt: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  /**
-   * Constant string
-   */
-  constString: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  /**
-   * Constant string as Enum. Possible values include: 'constant_string_as_enum'
-   */
-  constStringAsEnum: {
-    valueSpec: enumSpec("EnumConst", [ 'constant_string_as_enum' ])
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    /**
+     * Non required array of unique items from 0 to 6 elements.
+     */
+    displayNames: {
+      serializedName: "display_names",
+      valueSpec: sequenceSpec(stringSpec)
+    },
+    /**
+     * Non required int betwen 0 and 100 exclusive.
+     */
+    capacity: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Image URL representing the product.
+     */
+    image: {
+      valueSpec: stringSpec
+    },
+    child: {
+      required: true,
+      valueSpec: ChildProduct
+    },
+    constChild: {
+      required: true,
+      valueSpec: ConstantProduct
+    },
+    /**
+     * Constant int
+     */
+    constInt: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    /**
+     * Constant string
+     */
+    constString: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    /**
+     * Constant string as Enum. Possible values include: 'constant_string_as_enum'
+     */
+    constStringAsEnum: {
+      valueSpec: enumSpec("EnumConst", [ 'constant_string_as_enum' ])
+    }
   }
 });
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  code: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
-  },
-  fields: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    code: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    },
+    fields: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const AutoRestValidationTestValidationOfBodyOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestValidationTestValidationOfBodyOptionalParams", {
-  body: {
-    valueSpec: Product
+export const AutoRestValidationTestValidationOfBodyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestValidationTestValidationOfBodyOptionalParams",
+  propertySpecs: {
+    body: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const AutoRestValidationTestPostWithConstantInBodyOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestValidationTestPostWithConstantInBodyOptionalParams", {
-  body: {
-    valueSpec: Product
+export const AutoRestValidationTestPostWithConstantInBodyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestValidationTestPostWithConstantInBodyOptionalParams",
+  propertySpecs: {
+    body: {
+      valueSpec: Product
+    }
   }
 });

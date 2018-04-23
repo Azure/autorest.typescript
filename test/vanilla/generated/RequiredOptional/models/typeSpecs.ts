@@ -8,209 +8,284 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, sequenceSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const IntWrapper: CompositeTypeSpec = compositeSpec("IntWrapper", {
-  value: {
-    required: true,
-    valueSpec: numberSpec
+export const IntWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "IntWrapper",
+  propertySpecs: {
+    value: {
+      required: true,
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const IntOptionalWrapper: CompositeTypeSpec = compositeSpec("IntOptionalWrapper", {
-  value: {
-    valueSpec: numberSpec
+export const IntOptionalWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "IntOptionalWrapper",
+  propertySpecs: {
+    value: {
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const StringWrapper: CompositeTypeSpec = compositeSpec("StringWrapper", {
-  value: {
-    required: true,
-    valueSpec: stringSpec
+export const StringWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "StringWrapper",
+  propertySpecs: {
+    value: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const StringOptionalWrapper: CompositeTypeSpec = compositeSpec("StringOptionalWrapper", {
-  value: {
-    valueSpec: stringSpec
+export const StringOptionalWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "StringOptionalWrapper",
+  propertySpecs: {
+    value: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const ArrayWrapper: CompositeTypeSpec = compositeSpec("ArrayWrapper", {
-  value: {
-    required: true,
-    valueSpec: sequenceSpec(stringSpec)
+export const ArrayWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ArrayWrapper",
+  propertySpecs: {
+    value: {
+      required: true,
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
-export const ArrayOptionalWrapper: CompositeTypeSpec = compositeSpec("ArrayOptionalWrapper", {
-  value: {
-    valueSpec: sequenceSpec(stringSpec)
+export const ArrayOptionalWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ArrayOptionalWrapper",
+  propertySpecs: {
+    value: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  id: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    id: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const ClassWrapper: CompositeTypeSpec = compositeSpec("ClassWrapper", {
-  value: {
-    required: true,
-    valueSpec: Product
+export const ClassWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ClassWrapper",
+  propertySpecs: {
+    value: {
+      required: true,
+      valueSpec: Product
+    }
   }
 });
 
-export const ClassOptionalWrapper: CompositeTypeSpec = compositeSpec("ClassOptionalWrapper", {
-  value: {
-    valueSpec: Product
+export const ClassOptionalWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ClassOptionalWrapper",
+  propertySpecs: {
+    value: {
+      valueSpec: Product
+    }
   }
 });
 
-export const AutoRestRequiredOptionalTestServiceOptions: CompositeTypeSpec = compositeSpec("AutoRestRequiredOptionalTestServiceOptions", {
-  /**
-   * number of items to skip
-   */
-  optionalGlobalQuery: {
-    serializedName: "optional-global-query",
-    valueSpec: numberSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const ImplicitPutOptionalQueryOptionalParams: CompositeTypeSpec = compositeSpec("ImplicitPutOptionalQueryOptionalParams", {
-  queryParameter: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const ImplicitPutOptionalHeaderOptionalParams: CompositeTypeSpec = compositeSpec("ImplicitPutOptionalHeaderOptionalParams", {
-  queryParameter: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const ImplicitPutOptionalBodyOptionalParams: CompositeTypeSpec = compositeSpec("ImplicitPutOptionalBodyOptionalParams", {
-  bodyParameter: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const ExplicitPostOptionalIntegerParameterOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalIntegerParameterOptionalParams", {
-  bodyParameter: {
-    valueSpec: numberSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const ExplicitPostOptionalIntegerPropertyOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalIntegerPropertyOptionalParams", {
-  value: {
-    valueSpec: numberSpec
+export const AutoRestRequiredOptionalTestServiceOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestRequiredOptionalTestServiceOptions",
+  propertySpecs: {
+    /**
+     * number of items to skip
+     */
+    optionalGlobalQuery: {
+      serializedName: "optional-global-query",
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalIntegerHeaderOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalIntegerHeaderOptionalParams", {
-  headerParameter: {
-    valueSpec: numberSpec
+export const ImplicitPutOptionalQueryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ImplicitPutOptionalQueryOptionalParams",
+  propertySpecs: {
+    queryParameter: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalStringParameterOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalStringParameterOptionalParams", {
-  bodyParameter: {
-    valueSpec: stringSpec
+export const ImplicitPutOptionalHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ImplicitPutOptionalHeaderOptionalParams",
+  propertySpecs: {
+    queryParameter: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalStringPropertyOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalStringPropertyOptionalParams", {
-  value: {
-    valueSpec: stringSpec
+export const ImplicitPutOptionalBodyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ImplicitPutOptionalBodyOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalStringHeaderOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalStringHeaderOptionalParams", {
-  bodyParameter: {
-    valueSpec: stringSpec
+export const ExplicitPostOptionalIntegerParameterOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalIntegerParameterOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalClassParameterOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalClassParameterOptionalParams", {
-  bodyParameter: {
-    valueSpec: Product
+export const ExplicitPostOptionalIntegerPropertyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalIntegerPropertyOptionalParams",
+  propertySpecs: {
+    value: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalClassPropertyOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalClassPropertyOptionalParams", {
-  value: {
-    valueSpec: Product
+export const ExplicitPostOptionalIntegerHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalIntegerHeaderOptionalParams",
+  propertySpecs: {
+    headerParameter: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalArrayParameterOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalArrayParameterOptionalParams", {
-  bodyParameter: {
-    valueSpec: sequenceSpec(stringSpec)
+export const ExplicitPostOptionalStringParameterOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalStringParameterOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalArrayPropertyOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalArrayPropertyOptionalParams", {
-  value: {
-    valueSpec: sequenceSpec(stringSpec)
+export const ExplicitPostOptionalStringPropertyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalStringPropertyOptionalParams",
+  propertySpecs: {
+    value: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ExplicitPostOptionalArrayHeaderOptionalParams: CompositeTypeSpec = compositeSpec("ExplicitPostOptionalArrayHeaderOptionalParams", {
-  headerParameter: {
-    valueSpec: sequenceSpec(stringSpec)
+export const ExplicitPostOptionalStringHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalStringHeaderOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const ExplicitPostOptionalClassParameterOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalClassParameterOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: Product
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const ExplicitPostOptionalClassPropertyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalClassPropertyOptionalParams",
+  propertySpecs: {
+    value: {
+      valueSpec: Product
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const ExplicitPostOptionalArrayParameterOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalArrayParameterOptionalParams",
+  propertySpecs: {
+    bodyParameter: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const ExplicitPostOptionalArrayPropertyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalArrayPropertyOptionalParams",
+  propertySpecs: {
+    value: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const ExplicitPostOptionalArrayHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ExplicitPostOptionalArrayHeaderOptionalParams",
+  propertySpecs: {
+    headerParameter: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });

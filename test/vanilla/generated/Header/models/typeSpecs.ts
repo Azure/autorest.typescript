@@ -8,50 +8,62 @@
 
 import { compositeSpec, CompositeTypeSpec, dateTimeRfc1123Spec, enumSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HeaderParamStringOptionalParams: CompositeTypeSpec = compositeSpec("HeaderParamStringOptionalParams", {
-  /**
-   * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null
-   * or ""
-   */
-  value: {
-    valueSpec: stringSpec
+export const HeaderParamStringOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HeaderParamStringOptionalParams",
+  propertySpecs: {
+    /**
+     * Send a post request with header values "The quick brown fox jumps over the lazy dog" or null
+     * or ""
+     */
+    value: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HeaderParamDatetimeRfc1123OptionalParams: CompositeTypeSpec = compositeSpec("HeaderParamDatetimeRfc1123OptionalParams", {
-  /**
-   * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001
-   * 00:00:00 GMT"
-   */
-  value: {
-    valueSpec: dateTimeRfc1123Spec
+export const HeaderParamDatetimeRfc1123OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HeaderParamDatetimeRfc1123OptionalParams",
+  propertySpecs: {
+    /**
+     * Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001
+     * 00:00:00 GMT"
+     */
+    value: {
+      valueSpec: dateTimeRfc1123Spec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HeaderParamEnumOptionalParams: CompositeTypeSpec = compositeSpec("HeaderParamEnumOptionalParams", {
-  /**
-   * Send a post request with header values 'GREY'. Possible values include: 'White', 'black',
-   * 'GREY'
-   */
-  value: {
-    valueSpec: enumSpec("GreyscaleColors", [ 'White', 'black', 'GREY' ])
+export const HeaderParamEnumOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HeaderParamEnumOptionalParams",
+  propertySpecs: {
+    /**
+     * Send a post request with header values 'GREY'. Possible values include: 'White', 'black',
+     * 'GREY'
+     */
+    value: {
+      valueSpec: enumSpec("GreyscaleColors", [ 'White', 'black', 'GREY' ])
+    }
   }
 });

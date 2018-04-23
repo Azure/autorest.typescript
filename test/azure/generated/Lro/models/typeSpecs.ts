@@ -8,1309 +8,1624 @@
 
 import { compositeSpec, CompositeTypeSpec, dictionarySpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const Resource: CompositeTypeSpec = compositeSpec("Resource", {
-  /**
-   * Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Type
-   */
-  type: {
-    valueSpec: stringSpec
-  },
-  tags: {
-    valueSpec: dictionarySpec(stringSpec)
-  },
-  /**
-   * Resource Location
-   */
-  location: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Name
-   */
-  name: {
-    valueSpec: stringSpec
-  }
-});
-
-export const Sku: CompositeTypeSpec = compositeSpec("Sku", {
-  name: {
-    valueSpec: stringSpec
-  },
-  id: {
-    valueSpec: stringSpec
-  }
-});
-
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  /**
-   * Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Type
-   */
-  type: {
-    valueSpec: stringSpec
-  },
-  tags: {
-    valueSpec: dictionarySpec(stringSpec)
-  },
-  /**
-   * Resource Location
-   */
-  location: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Name
-   */
-  name: {
-    valueSpec: stringSpec
-  },
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
-  },
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   */
-  provisioningStateValues: {
-    serializedName: "properties.provisioningStateValues",
-    valueSpec: stringSpec
-  }
-});
-
-export const SubResource: CompositeTypeSpec = compositeSpec("SubResource", {
-  /**
-   * Sub Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  }
-});
-
-export const SubProduct: CompositeTypeSpec = compositeSpec("SubProduct", {
-  /**
-   * Sub Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  },
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
-  },
-  /**
-   * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created',
-   * 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   */
-  provisioningStateValues: {
-    serializedName: "properties.provisioningStateValues",
-    valueSpec: stringSpec
+export const Resource: CompositeTypeSpec = compositeSpec({
+  typeName: "Resource",
+  propertySpecs: {
+    /**
+     * Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Type
+     */
+    type: {
+      valueSpec: stringSpec
+    },
+    tags: {
+      valueSpec: dictionarySpec(stringSpec)
+    },
+    /**
+     * Resource Location
+     */
+    location: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Name
+     */
+    name: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+export const Sku: CompositeTypeSpec = compositeSpec({
+  typeName: "Sku",
+  propertySpecs: {
+    name: {
+      valueSpec: stringSpec
+    },
+    id: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    /**
+     * Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Type
+     */
+    type: {
+      valueSpec: stringSpec
+    },
+    tags: {
+      valueSpec: dictionarySpec(stringSpec)
+    },
+    /**
+     * Resource Location
+     */
+    location: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Name
+     */
+    name: {
+      valueSpec: stringSpec
+    },
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    },
+    /**
+     * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
+     * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+     */
+    provisioningStateValues: {
+      serializedName: "properties.provisioningStateValues",
+      valueSpec: stringSpec
+    }
+  }
+});
+
+export const SubResource: CompositeTypeSpec = compositeSpec({
+  typeName: "SubResource",
+  propertySpecs: {
+    /**
+     * Sub Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+export const SubProduct: CompositeTypeSpec = compositeSpec({
+  typeName: "SubProduct",
+  propertySpecs: {
+    /**
+     * Sub Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    },
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    },
+    /**
+     * Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating',
+     * 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+     */
+    provisioningStateValues: {
+      serializedName: "properties.provisioningStateValues",
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const OperationResultError: CompositeTypeSpec = compositeSpec("OperationResultError", {
-  /**
-   * The error code for an operation failure
-   */
-  code: {
-    valueSpec: numberSpec
-  },
-  /**
-   * The detailed arror message
-   */
-  message: {
-    valueSpec: stringSpec
+export const OperationResultError: CompositeTypeSpec = compositeSpec({
+  typeName: "OperationResultError",
+  propertySpecs: {
+    /**
+     * The error code for an operation failure
+     */
+    code: {
+      valueSpec: numberSpec
+    },
+    /**
+     * The detailed arror message
+     */
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const OperationResult: CompositeTypeSpec = compositeSpec("OperationResult", {
-  /**
-   * The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled',
-   * 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
-   */
-  status: {
-    valueSpec: stringSpec
-  },
-  error: {
-    valueSpec: OperationResultError
+export const OperationResult: CompositeTypeSpec = compositeSpec({
+  typeName: "OperationResult",
+  propertySpecs: {
+    /**
+     * The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled',
+     * 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'
+     */
+    status: {
+      valueSpec: stringSpec
+    },
+    error: {
+      valueSpec: OperationResultError
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut200SucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsPut200SucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut200SucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut200SucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut200SucceededNoStateOptionalParams: CompositeTypeSpec = compositeSpec("LROsPut200SucceededNoStateOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut200SucceededNoStateOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut200SucceededNoStateOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsPut202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LROsPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut200UpdatingSucceeded204OptionalParams: CompositeTypeSpec = compositeSpec("LROsPut200UpdatingSucceeded204OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut200UpdatingSucceeded204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut200UpdatingSucceeded204OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut201CreatingFailed200OptionalParams: CompositeTypeSpec = compositeSpec("LROsPut201CreatingFailed200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut201CreatingFailed200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut201CreatingFailed200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPut200Acceptedcanceled200OptionalParams: CompositeTypeSpec = compositeSpec("LROsPut200Acceptedcanceled200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPut200Acceptedcanceled200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPut200Acceptedcanceled200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutNoHeaderInRetryOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutNoHeaderInRetryOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncNoRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncNoRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncRetryFailedOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncRetryFailedOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncNoRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncNoRetrycanceledOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutAsyncNoRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncNoRetrycanceledOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncNoHeaderInRetryOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPutAsyncNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncNoHeaderInRetryOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutNonResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutNonResourceOptionalParams", {
-  /**
-   * sku to put
-   */
-  sku: {
-    valueSpec: Sku
+export const LROsPutNonResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutNonResourceOptionalParams",
+  propertySpecs: {
+    /**
+     * sku to put
+     */
+    sku: {
+      valueSpec: Sku
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncNonResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncNonResourceOptionalParams", {
-  /**
-   * Sku to put
-   */
-  sku: {
-    valueSpec: Sku
+export const LROsPutAsyncNonResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncNonResourceOptionalParams",
+  propertySpecs: {
+    /**
+     * Sku to put
+     */
+    sku: {
+      valueSpec: Sku
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutSubResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutSubResourceOptionalParams", {
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
+export const LROsPutSubResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutSubResourceOptionalParams",
+  propertySpecs: {
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPutAsyncSubResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsPutAsyncSubResourceOptionalParams", {
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
+export const LROsPutAsyncSubResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPutAsyncSubResourceOptionalParams",
+  propertySpecs: {
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPost202NoRetry204OptionalParams: CompositeTypeSpec = compositeSpec("LROsPost202NoRetry204OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPost202NoRetry204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPost202NoRetry204OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsPostAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPostAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPostAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsPostAsyncNoRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPostAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPostAsyncNoRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPostAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec("LROsPostAsyncRetryFailedOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPostAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPostAsyncRetryFailedOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsPostAsyncRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec("LROsPostAsyncRetrycanceledOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsPostAsyncRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsPostAsyncRetrycanceledOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut200SucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut200SucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut200SucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut200SucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut200SucceededNoStateOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut200SucceededNoStateOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut200SucceededNoStateOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut200SucceededNoStateOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut200UpdatingSucceeded204OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut200UpdatingSucceeded204OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut200UpdatingSucceeded204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut200UpdatingSucceeded204OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut201CreatingFailed200OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut201CreatingFailed200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut201CreatingFailed200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut201CreatingFailed200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPut200Acceptedcanceled200OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPut200Acceptedcanceled200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPut200Acceptedcanceled200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPut200Acceptedcanceled200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutNoHeaderInRetryOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutNoHeaderInRetryOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncNoRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncNoRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncRetryFailedOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncRetryFailedOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncNoRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncNoRetrycanceledOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutAsyncNoRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncNoRetrycanceledOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncNoHeaderInRetryOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncNoHeaderInRetryOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutNonResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutNonResourceOptionalParams", {
-  /**
-   * sku to put
-   */
-  sku: {
-    valueSpec: Sku
+export const LROsBeginPutNonResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutNonResourceOptionalParams",
+  propertySpecs: {
+    /**
+     * sku to put
+     */
+    sku: {
+      valueSpec: Sku
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncNonResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncNonResourceOptionalParams", {
-  /**
-   * Sku to put
-   */
-  sku: {
-    valueSpec: Sku
+export const LROsBeginPutAsyncNonResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncNonResourceOptionalParams",
+  propertySpecs: {
+    /**
+     * Sku to put
+     */
+    sku: {
+      valueSpec: Sku
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutSubResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutSubResourceOptionalParams", {
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
+export const LROsBeginPutSubResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutSubResourceOptionalParams",
+  propertySpecs: {
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPutAsyncSubResourceOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPutAsyncSubResourceOptionalParams", {
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
+export const LROsBeginPutAsyncSubResourceOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPutAsyncSubResourceOptionalParams",
+  propertySpecs: {
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPost202NoRetry204OptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPost202NoRetry204OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPost202NoRetry204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPost202NoRetry204OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPostAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPostAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPostAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPostAsyncNoRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPostAsyncNoRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPostAsyncNoRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPostAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPostAsyncRetryFailedOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPostAsyncRetryFailedOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPostAsyncRetryFailedOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsBeginPostAsyncRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec("LROsBeginPostAsyncRetrycanceledOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsBeginPostAsyncRetrycanceledOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsBeginPostAsyncRetrycanceledOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysPutAsyncRelativeRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysPutAsyncRelativeRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysPostAsyncRelativeRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysPostAsyncRelativeRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysBeginPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysBeginPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysBeginPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysBeginPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutNonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutNonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutNonRetry201Creating400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutNonRetry201Creating400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutNonRetry201Creating400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutNonRetry201Creating400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutAsyncRelativeRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutAsyncRelativeRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPostNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPostNonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPostNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPostNonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPost202NonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPost202NonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPost202NonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPost202NonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPostAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPostAsyncRelativeRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPostAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPostAsyncRelativeRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutError201NoProvisioningStatePayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutError201NoProvisioningStatePayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutAsyncRelativeRetryNoStatusOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutAsyncRelativeRetryNoStatusOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPost202NoLocationOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPost202NoLocationOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPost202NoLocationOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPost202NoLocationOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPut200InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPut200InvalidJsonOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPut200InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPut200InvalidJsonOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPost202RetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPost202RetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPost202RetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPost202RetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutNonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutNonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutNonRetry201Creating400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutNonRetry201Creating400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutNonRetry201Creating400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutNonRetry201Creating400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutAsyncRelativeRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutAsyncRelativeRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPostNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPostNonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPostNonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPostNonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPost202NonRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPost202NonRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPost202NonRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPost202NonRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPostAsyncRelativeRetry400OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPostAsyncRelativeRetry400OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPost202NoLocationOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPost202NoLocationOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPost202NoLocationOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPost202NoLocationOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPut200InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPut200InvalidJsonOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPut200InvalidJsonOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPut200InvalidJsonOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPost202RetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPost202RetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec("LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderPutAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderPutAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderPostAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderPostAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderBeginPost202Retry200OptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderBeginPost202Retry200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderBeginPost202Retry200OptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec("LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams", {
-  /**
-   * Product to put
-   */
-  product: {
-    valueSpec: Product
+export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams",
+  propertySpecs: {
+    /**
+     * Product to put
+     */
+    product: {
+      valueSpec: Product
+    }
   }
 });

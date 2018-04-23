@@ -8,52 +8,64 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const RefColorConstant: CompositeTypeSpec = compositeSpec("RefColorConstant", {
-  /**
-   * Referenced Color Constant Description.
-   */
-  colorConstant: {
-    required: true,
-    serializedName: "ColorConstant",
-    valueSpec: stringSpec
-  },
-  /**
-   * Sample string.
-   */
-  field1: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const StringPutNullOptionalParams: CompositeTypeSpec = compositeSpec("StringPutNullOptionalParams", {
-  /**
-   * Possible values include: ''
-   */
-  stringBody: {
-    valueSpec: stringSpec
+export const RefColorConstant: CompositeTypeSpec = compositeSpec({
+  typeName: "RefColorConstant",
+  propertySpecs: {
+    /**
+     * Referenced Color Constant Description.
+     */
+    colorConstant: {
+      required: true,
+      serializedName: "ColorConstant",
+      valueSpec: stringSpec
+    },
+    /**
+     * Sample string.
+     */
+    field1: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const EnumModelPutReferencedConstantOptionalParams: CompositeTypeSpec = compositeSpec("EnumModelPutReferencedConstantOptionalParams", {
-  /**
-   * Sample string.
-   */
-  field1: {
-    valueSpec: stringSpec
+export const StringPutNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "StringPutNullOptionalParams",
+  propertySpecs: {
+    /**
+     * Possible values include: ''
+     */
+    stringBody: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const EnumModelPutReferencedConstantOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "EnumModelPutReferencedConstantOptionalParams",
+  propertySpecs: {
+    /**
+     * Sample string.
+     */
+    field1: {
+      valueSpec: stringSpec
+    }
   }
 });

@@ -8,20 +8,26 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  integer: {
-    valueSpec: numberSpec
-  },
-  string: {
-    valueSpec: stringSpec
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    integer: {
+      valueSpec: numberSpec
+    },
+    string: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });

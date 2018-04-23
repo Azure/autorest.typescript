@@ -204,50 +204,53 @@ namespace AutoRest.TypeScript
                 {
                     tsValue.FunctionCall("compositeSpec", argumentList =>
                     {
-                        argumentList.QuotedString(compositeType.Name);
-                        argumentList.Object(propertySpecs =>
+                        argumentList.Object(compositeSpecProperties =>
                         {
-                            foreach (Property property in compositeType.ComposedProperties)
+                            compositeSpecProperties.Property("typeName", $"\"{compositeType.Name}\"");
+                            compositeSpecProperties.Property("propertySpecs", propertySpecs =>
                             {
-                                propertySpecs.DocumentationComment(property.Summary, property.Documentation);
-                                propertySpecs.Property(property.Name, (TSObject propertySpec) =>
+                                foreach (Property property in compositeType.ComposedProperties)
                                 {
-                                    if (property.IsRequired)
+                                    propertySpecs.DocumentationComment(property.Summary, property.Documentation);
+                                    propertySpecs.Property(property.Name, (TSObject propertySpec) =>
                                     {
-                                        propertySpec.Property("required", true);
-                                    }
-
-                                    if (isXML)
-                                    {
-                                        if (property.XmlIsAttribute)
+                                        if (property.IsRequired)
                                         {
-                                            propertySpec.Property("xmlIsAttribute", true);
+                                            propertySpec.Property("required", true);
                                         }
 
-                                        if (property.XmlIsWrapped)
+                                        if (isXML)
                                         {
-                                            propertySpec.Property("xmlIsWrapped", true);
+                                            if (property.XmlIsAttribute)
+                                            {
+                                                propertySpec.Property("xmlIsAttribute", true);
+                                            }
+
+                                            if (property.XmlIsWrapped)
+                                            {
+                                                propertySpec.Property("xmlIsWrapped", true);
+                                            }
+
+                                            if (!string.IsNullOrEmpty(property.XmlName) && property.Name != property.XmlName)
+                                            {
+                                                propertySpec.Property("xmlName", $"\"{property.XmlName}\"");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (!string.IsNullOrEmpty(property.SerializedName) && property.Name != property.SerializedName)
+                                            {
+                                                propertySpec.Property("serializedName", $"\"{property.SerializedName}\"");
+                                            }
                                         }
 
-                                        if (!string.IsNullOrEmpty(property.XmlName) && property.Name != property.XmlName)
+                                        propertySpec.Property("valueSpec", propertyValue =>
                                         {
-                                            propertySpec.Property("xmlName", $"\"{property.XmlName}\"");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (!string.IsNullOrEmpty(property.SerializedName) && property.Name != property.SerializedName)
-                                        {
-                                            propertySpec.Property("serializedName", $"\"{property.SerializedName}\"");
-                                        }
-                                    }
-
-                                    propertySpec.Property("valueSpec", propertyValue =>
-                                    {
-                                        GenerateTypeSpec(propertyValue, property.ModelType, generatedCompositeTypes, isXML);
+                                            GenerateTypeSpec(propertyValue, property.ModelType, generatedCompositeTypes, isXML);
+                                        });
                                     });
-                                });
-                            }
+                                }
+                            });
                         });
                     });
                 }

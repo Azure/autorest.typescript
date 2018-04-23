@@ -8,137 +8,158 @@
 
 import { compositeSpec, CompositeTypeSpec, dictionarySpec, numberSpec, sequenceSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Some resource
  */
-export const Resource: CompositeTypeSpec = compositeSpec("Resource", {
-  /**
-   * Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Type
-   */
-  type: {
-    valueSpec: stringSpec
-  },
-  tags: {
-    valueSpec: dictionarySpec(stringSpec)
-  },
-  /**
-   * Resource Location
-   */
-  location: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Name
-   */
-  name: {
-    valueSpec: stringSpec
+export const Resource: CompositeTypeSpec = compositeSpec({
+  typeName: "Resource",
+  propertySpecs: {
+    /**
+     * Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Type
+     */
+    type: {
+      valueSpec: stringSpec
+    },
+    tags: {
+      valueSpec: dictionarySpec(stringSpec)
+    },
+    /**
+     * Resource Location
+     */
+    location: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Name
+     */
+    name: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const FlattenedProduct: CompositeTypeSpec = compositeSpec("FlattenedProduct", {
-  /**
-   * Resource Id
-   */
-  id: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Type
-   */
-  type: {
-    valueSpec: stringSpec
-  },
-  tags: {
-    valueSpec: dictionarySpec(stringSpec)
-  },
-  /**
-   * Resource Location
-   */
-  location: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Resource Name
-   */
-  name: {
-    valueSpec: stringSpec
-  },
-  pname: {
-    serializedName: "properties.pname",
-    valueSpec: stringSpec
-  },
-  lsize: {
-    serializedName: "properties.lsize",
-    valueSpec: numberSpec
-  },
-  provisioningState: {
-    serializedName: "properties.provisioningState",
-    valueSpec: stringSpec
+export const FlattenedProduct: CompositeTypeSpec = compositeSpec({
+  typeName: "FlattenedProduct",
+  propertySpecs: {
+    /**
+     * Resource Id
+     */
+    id: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Type
+     */
+    type: {
+      valueSpec: stringSpec
+    },
+    tags: {
+      valueSpec: dictionarySpec(stringSpec)
+    },
+    /**
+     * Resource Location
+     */
+    location: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Resource Name
+     */
+    name: {
+      valueSpec: stringSpec
+    },
+    pname: {
+      serializedName: "properties.pname",
+      valueSpec: stringSpec
+    },
+    lsize: {
+      serializedName: "properties.lsize",
+      valueSpec: numberSpec
+    },
+    provisioningState: {
+      serializedName: "properties.provisioningState",
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const ResourceCollection: CompositeTypeSpec = compositeSpec("ResourceCollection", {
-  productresource: {
-    valueSpec: FlattenedProduct
-  },
-  arrayofresources: {
-    valueSpec: sequenceSpec(FlattenedProduct)
-  },
-  dictionaryofresources: {
-    valueSpec: dictionarySpec(FlattenedProduct)
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestResourceFlatteningTestServicePutArrayOptionalParams", {
-  /**
-   * External Resource as an Array to put
-   */
-  resourceArray: {
-    serializedName: "ResourceArray",
-    valueSpec: sequenceSpec(Resource)
+export const ResourceCollection: CompositeTypeSpec = compositeSpec({
+  typeName: "ResourceCollection",
+  propertySpecs: {
+    productresource: {
+      valueSpec: FlattenedProduct
+    },
+    arrayofresources: {
+      valueSpec: sequenceSpec(FlattenedProduct)
+    },
+    dictionaryofresources: {
+      valueSpec: dictionarySpec(FlattenedProduct)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams", {
-  /**
-   * External Resource as a Dictionary to put
-   */
-  resourceDictionary: {
-    serializedName: "ResourceDictionary",
-    valueSpec: dictionarySpec(FlattenedProduct)
+export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestResourceFlatteningTestServicePutArrayOptionalParams",
+  propertySpecs: {
+    /**
+     * External Resource as an Array to put
+     */
+    resourceArray: {
+      serializedName: "ResourceArray",
+      valueSpec: sequenceSpec(Resource)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams: CompositeTypeSpec = compositeSpec("AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams", {
-  /**
-   * External Resource as a ResourceCollection to put
-   */
-  resourceComplexObject: {
-    serializedName: "ResourceComplexObject",
-    valueSpec: ResourceCollection
+export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams",
+  propertySpecs: {
+    /**
+     * External Resource as a Dictionary to put
+     */
+    resourceDictionary: {
+      serializedName: "ResourceDictionary",
+      valueSpec: dictionarySpec(FlattenedProduct)
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams",
+  propertySpecs: {
+    /**
+     * External Resource as a ResourceCollection to put
+     */
+    resourceComplexObject: {
+      serializedName: "ResourceComplexObject",
+      valueSpec: ResourceCollection
+    }
   }
 });

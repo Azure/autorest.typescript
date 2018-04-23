@@ -8,90 +8,108 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  constantId: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    constantId: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const OdataFilter: CompositeTypeSpec = compositeSpec("OdataFilter", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
+export const OdataFilter: CompositeTypeSpec = compositeSpec({
+  typeName: "OdataFilter",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Additional parameters for customNamedRequestIdParamGrouping operation.
  */
-export const HeaderCustomNamedRequestIdParamGroupingParameters: CompositeTypeSpec = compositeSpec("HeaderCustomNamedRequestIdParamGroupingParameters", {
-  /**
-   * The fooRequestId
-   */
-  fooClientRequestId: {
-    required: true,
-    valueSpec: stringSpec
+export const HeaderCustomNamedRequestIdParamGroupingParameters: CompositeTypeSpec = compositeSpec({
+  typeName: "HeaderCustomNamedRequestIdParamGroupingParameters",
+  propertySpecs: {
+    /**
+     * The fooRequestId
+     */
+    fooClientRequestId: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ApiVersionLocalGetMethodLocalNullOptionalParams: CompositeTypeSpec = compositeSpec("ApiVersionLocalGetMethodLocalNullOptionalParams", {
-  /**
-   * This should appear as a method parameter, use value null, this should result in no serialized
-   * parameter
-   */
-  apiVersion: {
-    serializedName: "api-version",
-    valueSpec: stringSpec
+export const ApiVersionLocalGetMethodLocalNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ApiVersionLocalGetMethodLocalNullOptionalParams",
+  propertySpecs: {
+    /**
+     * This should appear as a method parameter, use value null, this should result in no
+     * serialized parameter
+     */
+    apiVersion: {
+      serializedName: "api-version",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const SkipUrlEncodingGetMethodQueryNullOptionalParams: CompositeTypeSpec = compositeSpec("SkipUrlEncodingGetMethodQueryNullOptionalParams", {
-  /**
-   * Unencoded query parameter with value null
-   */
-  q1: {
-    valueSpec: stringSpec
+export const SkipUrlEncodingGetMethodQueryNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "SkipUrlEncodingGetMethodQueryNullOptionalParams",
+  propertySpecs: {
+    /**
+     * Unencoded query parameter with value null
+     */
+    q1: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const OdataGetWithFilterOptionalParams: CompositeTypeSpec = compositeSpec("OdataGetWithFilterOptionalParams", {
-  /**
-   * The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
-   */
-  filter: {
-    serializedName: "$filter",
-    valueSpec: stringSpec
-  },
-  /**
-   * The top parameter with value 10.
-   */
-  top: {
-    serializedName: "$top",
-    valueSpec: numberSpec
-  },
-  /**
-   * The orderby parameter with value id.
-   */
-  orderby: {
-    serializedName: "$orderby",
-    valueSpec: stringSpec
+export const OdataGetWithFilterOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "OdataGetWithFilterOptionalParams",
+  propertySpecs: {
+    /**
+     * The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
+     */
+    filter: {
+      serializedName: "$filter",
+      valueSpec: stringSpec
+    },
+    /**
+     * The top parameter with value 10.
+     */
+    top: {
+      serializedName: "$top",
+      valueSpec: numberSpec
+    },
+    /**
+     * The orderby parameter with value id.
+     */
+    orderby: {
+      serializedName: "$orderby",
+      valueSpec: stringSpec
+    }
   }
 });

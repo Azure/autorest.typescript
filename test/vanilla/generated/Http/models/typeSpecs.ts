@@ -8,542 +8,683 @@
 
 import { booleanSpec, compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const A: CompositeTypeSpec = compositeSpec("A", {
-  statusCode: {
-    valueSpec: stringSpec
+export const A: CompositeTypeSpec = compositeSpec({
+  typeName: "A",
+  propertySpecs: {
+    statusCode: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const B: CompositeTypeSpec = compositeSpec("B", {
-  statusCode: {
-    valueSpec: stringSpec
-  },
-  textStatusCode: {
-    valueSpec: stringSpec
+export const B: CompositeTypeSpec = compositeSpec({
+  typeName: "B",
+  propertySpecs: {
+    statusCode: {
+      valueSpec: stringSpec
+    },
+    textStatusCode: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const C: CompositeTypeSpec = compositeSpec("C", {
-  httpCode: {
-    valueSpec: stringSpec
+export const C: CompositeTypeSpec = compositeSpec({
+  typeName: "C",
+  propertySpecs: {
+    httpCode: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const D: CompositeTypeSpec = compositeSpec("D", {
-  httpStatusCode: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const HttpSuccessPut200OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPut200OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const HttpSuccessPatch200OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPatch200OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const D: CompositeTypeSpec = compositeSpec({
+  typeName: "D",
+  propertySpecs: {
+    httpStatusCode: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPost200OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPost200OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPut200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPut200OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessDelete200OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessDelete200OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPatch200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPatch200OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPut201OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPut201OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPost200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPost200OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPost201OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPost201OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessDelete200OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessDelete200OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPut202OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPut202OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPut201OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPut201OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPatch202OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPatch202OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPost201OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPost201OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPost202OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPost202OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPut202OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPut202OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessDelete202OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessDelete202OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPatch202OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPatch202OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPut204OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPut204OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPost202OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPost202OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPatch204OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPatch204OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessDelete202OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessDelete202OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessPost204OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessPost204OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPut204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPut204OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpSuccessDelete204OptionalParams: CompositeTypeSpec = compositeSpec("HttpSuccessDelete204OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPatch204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPatch204OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPut301OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPut301OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessPost204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessPost204OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPatch302OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPatch302OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpSuccessDelete204OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpSuccessDelete204OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPost303OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPost303OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPut301OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPut301OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPut307OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPut307OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPatch302OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPatch302OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPatch307OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPatch307OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPost303OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPost303OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsPost307OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsPost307OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPut307OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPut307OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRedirectsDelete307OptionalParams: CompositeTypeSpec = compositeSpec("HttpRedirectsDelete307OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPatch307OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPatch307OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePut400OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePut400OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsPost307OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsPost307OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePatch400OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePatch400OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRedirectsDelete307OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRedirectsDelete307OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePost400OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePost400OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePut400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePut400OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailureDelete400OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailureDelete400OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePatch400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePatch400OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePut404OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePut404OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePost400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePost400OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePatch405OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePatch405OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailureDelete400OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailureDelete400OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePost406OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePost406OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePut404OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePut404OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailureDelete407OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailureDelete407OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePatch405OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePatch405OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePut409OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePut409OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePost406OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePost406OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePut413OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePut413OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailureDelete407OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailureDelete407OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePatch414OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePatch414OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePut409OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePut409OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailurePost415OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailurePost415OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePut413OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePut413OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpClientFailureDelete417OptionalParams: CompositeTypeSpec = compositeSpec("HttpClientFailureDelete417OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePatch414OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePatch414OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpServerFailurePost505OptionalParams: CompositeTypeSpec = compositeSpec("HttpServerFailurePost505OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailurePost415OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailurePost415OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpServerFailureDelete505OptionalParams: CompositeTypeSpec = compositeSpec("HttpServerFailureDelete505OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpClientFailureDelete417OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpClientFailureDelete417OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryPut500OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryPut500OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpServerFailurePost505OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpServerFailurePost505OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryPatch500OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryPatch500OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpServerFailureDelete505OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpServerFailureDelete505OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryPost503OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryPost503OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRetryPut500OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryPut500OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryDelete503OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryDelete503OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRetryPatch500OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryPatch500OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryPut504OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryPut504OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRetryPost503OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryPost503OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const HttpRetryPatch504OptionalParams: CompositeTypeSpec = compositeSpec("HttpRetryPatch504OptionalParams", {
-  /**
-   * Simple boolean value true
-   */
-  booleanValue: {
-    valueSpec: booleanSpec
+export const HttpRetryDelete503OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryDelete503OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const HttpRetryPut504OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryPut504OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const HttpRetryPatch504OptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "HttpRetryPatch504OptionalParams",
+  propertySpecs: {
+    /**
+     * Simple boolean value true
+     */
+    booleanValue: {
+      valueSpec: booleanSpec
+    }
   }
 });

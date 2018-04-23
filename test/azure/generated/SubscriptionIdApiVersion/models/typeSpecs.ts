@@ -8,26 +8,32 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const SampleResourceGroup: CompositeTypeSpec = compositeSpec("SampleResourceGroup", {
-  /**
-   * resource group name 'testgroup101'
-   */
-  name: {
-    valueSpec: stringSpec
-  },
-  /**
-   * resource group location 'West US'
-   */
-  location: {
-    valueSpec: stringSpec
+export const SampleResourceGroup: CompositeTypeSpec = compositeSpec({
+  typeName: "SampleResourceGroup",
+  propertySpecs: {
+    /**
+     * resource group name 'testgroup101'
+     */
+    name: {
+      valueSpec: stringSpec
+    },
+    /**
+     * resource group location 'West US'
+     */
+    location: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  code: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    code: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });

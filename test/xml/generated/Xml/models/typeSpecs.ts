@@ -8,183 +8,207 @@
 
 import { booleanSpec, compositeSpec, CompositeTypeSpec, dateTimeRfc1123Spec, dateTimeSpec, dictionarySpec, enumSpec, numberSpec, sequenceSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * A slide in a slideshow
  */
-export const Slide: CompositeTypeSpec = compositeSpec("Slide", {
-  type: {
-    xmlIsAttribute: true,
-    valueSpec: stringSpec
-  },
-  title: {
-    valueSpec: stringSpec
-  },
-  items: {
-    valueSpec: sequenceSpec(stringSpec)
+export const Slide: CompositeTypeSpec = compositeSpec({
+  typeName: "Slide",
+  propertySpecs: {
+    type: {
+      xmlIsAttribute: true,
+      valueSpec: stringSpec
+    },
+    title: {
+      valueSpec: stringSpec
+    },
+    items: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Data about a slideshow
  */
-export const Slideshow: CompositeTypeSpec = compositeSpec("Slideshow", {
-  title: {
-    xmlIsAttribute: true,
-    valueSpec: stringSpec
-  },
-  date: {
-    xmlIsAttribute: true,
-    valueSpec: stringSpec
-  },
-  author: {
-    xmlIsAttribute: true,
-    valueSpec: stringSpec
-  },
-  slides: {
-    valueSpec: sequenceSpec(Slide)
+export const Slideshow: CompositeTypeSpec = compositeSpec({
+  typeName: "Slideshow",
+  propertySpecs: {
+    title: {
+      xmlIsAttribute: true,
+      valueSpec: stringSpec
+    },
+    date: {
+      xmlIsAttribute: true,
+      valueSpec: stringSpec
+    },
+    author: {
+      xmlIsAttribute: true,
+      valueSpec: stringSpec
+    },
+    slides: {
+      valueSpec: sequenceSpec(Slide)
+    }
   }
 });
 
 /**
  * A barrel of apples.
  */
-export const AppleBarrel: CompositeTypeSpec = compositeSpec("AppleBarrel", {
-  goodApples: {
-    xmlIsWrapped: true,
-    xmlName: "GoodApples",
-    valueSpec: sequenceSpec(stringSpec)
-  },
-  badApples: {
-    xmlIsWrapped: true,
-    xmlName: "BadApples",
-    valueSpec: sequenceSpec(stringSpec)
+export const AppleBarrel: CompositeTypeSpec = compositeSpec({
+  typeName: "AppleBarrel",
+  propertySpecs: {
+    goodApples: {
+      xmlIsWrapped: true,
+      xmlName: "GoodApples",
+      valueSpec: sequenceSpec(stringSpec)
+    },
+    badApples: {
+      xmlIsWrapped: true,
+      xmlName: "BadApples",
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * A banana.
  */
-export const Banana: CompositeTypeSpec = compositeSpec("Banana", {
-  name: {
-    valueSpec: stringSpec
-  },
-  flavor: {
-    valueSpec: stringSpec
-  },
-  /**
-   * The time at which you should reconsider eating this banana
-   */
-  expiration: {
-    valueSpec: dateTimeSpec
+export const Banana: CompositeTypeSpec = compositeSpec({
+  typeName: "Banana",
+  propertySpecs: {
+    name: {
+      valueSpec: stringSpec
+    },
+    flavor: {
+      valueSpec: stringSpec
+    },
+    /**
+     * The time at which you should reconsider eating this banana
+     */
+    expiration: {
+      valueSpec: dateTimeSpec
+    }
   }
 });
 
 /**
  * Properties of a container
  */
-export const ContainerProperties: CompositeTypeSpec = compositeSpec("ContainerProperties", {
-  lastModified: {
-    required: true,
-    xmlName: "Last-Modified",
-    valueSpec: dateTimeRfc1123Spec
-  },
-  etag: {
-    required: true,
-    xmlName: "Etag",
-    valueSpec: stringSpec
-  },
-  /**
-   * Possible values include: 'locked', 'unlocked'
-   */
-  leaseStatus: {
-    xmlName: "LeaseStatus",
-    valueSpec: enumSpec("LeaseStatusType", [ 'locked', 'unlocked' ])
-  },
-  /**
-   * Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'
-   */
-  leaseState: {
-    xmlName: "LeaseState",
-    valueSpec: enumSpec("LeaseStateType", [ 'available', 'leased', 'expired', 'breaking', 'broken' ])
-  },
-  /**
-   * Possible values include: 'infinite', 'fixed'
-   */
-  leaseDuration: {
-    xmlName: "LeaseDuration",
-    valueSpec: enumSpec("LeaseDurationType", [ 'infinite', 'fixed' ])
-  },
-  /**
-   * Possible values include: 'container', 'blob'
-   */
-  publicAccess: {
-    xmlName: "PublicAccess",
-    valueSpec: stringSpec
+export const ContainerProperties: CompositeTypeSpec = compositeSpec({
+  typeName: "ContainerProperties",
+  propertySpecs: {
+    lastModified: {
+      required: true,
+      xmlName: "Last-Modified",
+      valueSpec: dateTimeRfc1123Spec
+    },
+    etag: {
+      required: true,
+      xmlName: "Etag",
+      valueSpec: stringSpec
+    },
+    /**
+     * Possible values include: 'locked', 'unlocked'
+     */
+    leaseStatus: {
+      xmlName: "LeaseStatus",
+      valueSpec: enumSpec("LeaseStatusType", [ 'locked', 'unlocked' ])
+    },
+    /**
+     * Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'
+     */
+    leaseState: {
+      xmlName: "LeaseState",
+      valueSpec: enumSpec("LeaseStateType", [ 'available', 'leased', 'expired', 'breaking', 'broken' ])
+    },
+    /**
+     * Possible values include: 'infinite', 'fixed'
+     */
+    leaseDuration: {
+      xmlName: "LeaseDuration",
+      valueSpec: enumSpec("LeaseDurationType", [ 'infinite', 'fixed' ])
+    },
+    /**
+     * Possible values include: 'container', 'blob'
+     */
+    publicAccess: {
+      xmlName: "PublicAccess",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * An Azure Storage container
  */
-export const Container: CompositeTypeSpec = compositeSpec("Container", {
-  name: {
-    required: true,
-    xmlName: "Name",
-    valueSpec: stringSpec
-  },
-  properties: {
-    required: true,
-    xmlName: "Properties",
-    valueSpec: ContainerProperties
-  },
-  metadata: {
-    xmlName: "Metadata",
-    valueSpec: dictionarySpec(stringSpec)
+export const Container: CompositeTypeSpec = compositeSpec({
+  typeName: "Container",
+  propertySpecs: {
+    name: {
+      required: true,
+      xmlName: "Name",
+      valueSpec: stringSpec
+    },
+    properties: {
+      required: true,
+      xmlName: "Properties",
+      valueSpec: ContainerProperties
+    },
+    metadata: {
+      xmlName: "Metadata",
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });
 
 /**
  * An enumeration of containers
  */
-export const ListContainersResponse: CompositeTypeSpec = compositeSpec("ListContainersResponse", {
-  serviceEndpoint: {
-    required: true,
-    xmlIsAttribute: true,
-    xmlName: "ServiceEndpoint",
-    valueSpec: stringSpec
-  },
-  prefix: {
-    required: true,
-    xmlName: "Prefix",
-    valueSpec: stringSpec
-  },
-  marker: {
-    xmlName: "Marker",
-    valueSpec: stringSpec
-  },
-  maxResults: {
-    required: true,
-    xmlName: "MaxResults",
-    valueSpec: numberSpec
-  },
-  containers: {
-    xmlIsWrapped: true,
-    xmlName: "Containers",
-    valueSpec: sequenceSpec(Container)
-  },
-  nextMarker: {
-    required: true,
-    xmlName: "NextMarker",
-    valueSpec: stringSpec
+export const ListContainersResponse: CompositeTypeSpec = compositeSpec({
+  typeName: "ListContainersResponse",
+  propertySpecs: {
+    serviceEndpoint: {
+      required: true,
+      xmlIsAttribute: true,
+      xmlName: "ServiceEndpoint",
+      valueSpec: stringSpec
+    },
+    prefix: {
+      required: true,
+      xmlName: "Prefix",
+      valueSpec: stringSpec
+    },
+    marker: {
+      xmlName: "Marker",
+      valueSpec: stringSpec
+    },
+    maxResults: {
+      required: true,
+      xmlName: "MaxResults",
+      valueSpec: numberSpec
+    },
+    containers: {
+      xmlIsWrapped: true,
+      xmlName: "Containers",
+      valueSpec: sequenceSpec(Container)
+    },
+    nextMarker: {
+      required: true,
+      xmlName: "NextMarker",
+      valueSpec: stringSpec
+    }
   }
 });
 
@@ -194,488 +218,525 @@ export const ListContainersResponse: CompositeTypeSpec = compositeSpec("ListCont
  * policy that prevents a web page from calling APIs in a different domain; CORS provides a secure
  * way to allow one domain (the origin domain) to call APIs in another domain
  */
-export const CorsRule: CompositeTypeSpec = compositeSpec("CorsRule", {
-  /**
-   * The origin domains that are permitted to make a request against the storage service via CORS.
-   * The origin domain is the domain from which the request originates. Note that the origin must
-   * be an exact case-sensitive match with the origin that the user age sends to the service. You
-   * can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
-   */
-  allowedOrigins: {
-    required: true,
-    xmlName: "AllowedOrigins",
-    valueSpec: stringSpec
-  },
-  /**
-   * The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma
-   * separated)
-   */
-  allowedMethods: {
-    required: true,
-    xmlName: "AllowedMethods",
-    valueSpec: stringSpec
-  },
-  /**
-   * the request headers that the origin domain may specify on the CORS request.
-   */
-  allowedHeaders: {
-    required: true,
-    xmlName: "AllowedHeaders",
-    valueSpec: stringSpec
-  },
-  /**
-   * The response headers that may be sent in the response to the CORS request and exposed by the
-   * browser to the request issuer
-   */
-  exposedHeaders: {
-    required: true,
-    xmlName: "ExposedHeaders",
-    valueSpec: stringSpec
-  },
-  /**
-   * The maximum amount time that a browser should cache the preflight OPTIONS request.
-   */
-  maxAgeInSeconds: {
-    required: true,
-    xmlName: "MaxAgeInSeconds",
-    valueSpec: numberSpec
+export const CorsRule: CompositeTypeSpec = compositeSpec({
+  typeName: "CorsRule",
+  propertySpecs: {
+    /**
+     * The origin domains that are permitted to make a request against the storage service via
+     * CORS. The origin domain is the domain from which the request originates. Note that the
+     * origin must be an exact case-sensitive match with the origin that the user age sends to the
+     * service. You can also use the wildcard character '*' to allow all origin domains to make
+     * requests via CORS.
+     */
+    allowedOrigins: {
+      required: true,
+      xmlName: "AllowedOrigins",
+      valueSpec: stringSpec
+    },
+    /**
+     * The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma
+     * separated)
+     */
+    allowedMethods: {
+      required: true,
+      xmlName: "AllowedMethods",
+      valueSpec: stringSpec
+    },
+    /**
+     * the request headers that the origin domain may specify on the CORS request.
+     */
+    allowedHeaders: {
+      required: true,
+      xmlName: "AllowedHeaders",
+      valueSpec: stringSpec
+    },
+    /**
+     * The response headers that may be sent in the response to the CORS request and exposed by the
+     * browser to the request issuer
+     */
+    exposedHeaders: {
+      required: true,
+      xmlName: "ExposedHeaders",
+      valueSpec: stringSpec
+    },
+    /**
+     * The maximum amount time that a browser should cache the preflight OPTIONS request.
+     */
+    maxAgeInSeconds: {
+      required: true,
+      xmlName: "MaxAgeInSeconds",
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Properties of a blob
  */
-export const BlobProperties: CompositeTypeSpec = compositeSpec("BlobProperties", {
-  lastModified: {
-    required: true,
-    xmlName: "Last-Modified",
-    valueSpec: dateTimeRfc1123Spec
-  },
-  etag: {
-    required: true,
-    xmlName: "Etag",
-    valueSpec: stringSpec
-  },
-  /**
-   * Size in bytes
-   */
-  contentLength: {
-    xmlName: "Content-Length",
-    valueSpec: numberSpec
-  },
-  contentType: {
-    xmlName: "Content-Type",
-    valueSpec: stringSpec
-  },
-  contentEncoding: {
-    xmlName: "Content-Encoding",
-    valueSpec: stringSpec
-  },
-  contentLanguage: {
-    xmlName: "Content-Language",
-    valueSpec: stringSpec
-  },
-  contentMD5: {
-    xmlName: "Content-MD5",
-    valueSpec: stringSpec
-  },
-  contentDisposition: {
-    xmlName: "Content-Disposition",
-    valueSpec: stringSpec
-  },
-  cacheControl: {
-    xmlName: "Cache-Control",
-    valueSpec: stringSpec
-  },
-  blobSequenceNumber: {
-    xmlName: "x-ms-blob-sequence-number",
-    valueSpec: numberSpec
-  },
-  /**
-   * Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'
-   */
-  blobType: {
-    xmlName: "BlobType",
-    valueSpec: enumSpec("BlobType", [ 'BlockBlob', 'PageBlob', 'AppendBlob' ])
-  },
-  /**
-   * Possible values include: 'locked', 'unlocked'
-   */
-  leaseStatus: {
-    xmlName: "LeaseStatus",
-    valueSpec: enumSpec("LeaseStatusType", [ 'locked', 'unlocked' ])
-  },
-  /**
-   * Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'
-   */
-  leaseState: {
-    xmlName: "LeaseState",
-    valueSpec: enumSpec("LeaseStateType", [ 'available', 'leased', 'expired', 'breaking', 'broken' ])
-  },
-  /**
-   * Possible values include: 'infinite', 'fixed'
-   */
-  leaseDuration: {
-    xmlName: "LeaseDuration",
-    valueSpec: enumSpec("LeaseDurationType", [ 'infinite', 'fixed' ])
-  },
-  copyId: {
-    xmlName: "CopyId",
-    valueSpec: stringSpec
-  },
-  /**
-   * Possible values include: 'pending', 'success', 'aborted', 'failed'
-   */
-  copyStatus: {
-    xmlName: "CopyStatus",
-    valueSpec: enumSpec("CopyStatusType", [ 'pending', 'success', 'aborted', 'failed' ])
-  },
-  copySource: {
-    xmlName: "CopySource",
-    valueSpec: stringSpec
-  },
-  copyProgress: {
-    xmlName: "CopyProgress",
-    valueSpec: stringSpec
-  },
-  copyCompletionTime: {
-    xmlName: "CopyCompletionTime",
-    valueSpec: dateTimeRfc1123Spec
-  },
-  copyStatusDescription: {
-    xmlName: "CopyStatusDescription",
-    valueSpec: stringSpec
-  },
-  serverEncrypted: {
-    xmlName: "ServerEncrypted",
-    valueSpec: booleanSpec
-  },
-  incrementalCopy: {
-    xmlName: "IncrementalCopy",
-    valueSpec: booleanSpec
-  },
-  destinationSnapshot: {
-    xmlName: "DestinationSnapshot",
-    valueSpec: stringSpec
-  },
-  deletedTime: {
-    xmlName: "DeletedTime",
-    valueSpec: dateTimeRfc1123Spec
-  },
-  remainingRetentionDays: {
-    xmlName: "RemainingRetentionDays",
-    valueSpec: numberSpec
-  },
-  /**
-   * Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50', 'Hot', 'Cool',
-   * 'Archive'
-   */
-  accessTier: {
-    xmlName: "AccessTier",
-    valueSpec: stringSpec
-  },
-  accessTierInferred: {
-    xmlName: "AccessTierInferred",
-    valueSpec: booleanSpec
-  },
-  /**
-   * Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-pending-to-cool'
-   */
-  archiveStatus: {
-    xmlName: "ArchiveStatus",
-    valueSpec: stringSpec
+export const BlobProperties: CompositeTypeSpec = compositeSpec({
+  typeName: "BlobProperties",
+  propertySpecs: {
+    lastModified: {
+      required: true,
+      xmlName: "Last-Modified",
+      valueSpec: dateTimeRfc1123Spec
+    },
+    etag: {
+      required: true,
+      xmlName: "Etag",
+      valueSpec: stringSpec
+    },
+    /**
+     * Size in bytes
+     */
+    contentLength: {
+      xmlName: "Content-Length",
+      valueSpec: numberSpec
+    },
+    contentType: {
+      xmlName: "Content-Type",
+      valueSpec: stringSpec
+    },
+    contentEncoding: {
+      xmlName: "Content-Encoding",
+      valueSpec: stringSpec
+    },
+    contentLanguage: {
+      xmlName: "Content-Language",
+      valueSpec: stringSpec
+    },
+    contentMD5: {
+      xmlName: "Content-MD5",
+      valueSpec: stringSpec
+    },
+    contentDisposition: {
+      xmlName: "Content-Disposition",
+      valueSpec: stringSpec
+    },
+    cacheControl: {
+      xmlName: "Cache-Control",
+      valueSpec: stringSpec
+    },
+    blobSequenceNumber: {
+      xmlName: "x-ms-blob-sequence-number",
+      valueSpec: numberSpec
+    },
+    /**
+     * Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'
+     */
+    blobType: {
+      xmlName: "BlobType",
+      valueSpec: enumSpec("BlobType", [ 'BlockBlob', 'PageBlob', 'AppendBlob' ])
+    },
+    /**
+     * Possible values include: 'locked', 'unlocked'
+     */
+    leaseStatus: {
+      xmlName: "LeaseStatus",
+      valueSpec: enumSpec("LeaseStatusType", [ 'locked', 'unlocked' ])
+    },
+    /**
+     * Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'
+     */
+    leaseState: {
+      xmlName: "LeaseState",
+      valueSpec: enumSpec("LeaseStateType", [ 'available', 'leased', 'expired', 'breaking', 'broken' ])
+    },
+    /**
+     * Possible values include: 'infinite', 'fixed'
+     */
+    leaseDuration: {
+      xmlName: "LeaseDuration",
+      valueSpec: enumSpec("LeaseDurationType", [ 'infinite', 'fixed' ])
+    },
+    copyId: {
+      xmlName: "CopyId",
+      valueSpec: stringSpec
+    },
+    /**
+     * Possible values include: 'pending', 'success', 'aborted', 'failed'
+     */
+    copyStatus: {
+      xmlName: "CopyStatus",
+      valueSpec: enumSpec("CopyStatusType", [ 'pending', 'success', 'aborted', 'failed' ])
+    },
+    copySource: {
+      xmlName: "CopySource",
+      valueSpec: stringSpec
+    },
+    copyProgress: {
+      xmlName: "CopyProgress",
+      valueSpec: stringSpec
+    },
+    copyCompletionTime: {
+      xmlName: "CopyCompletionTime",
+      valueSpec: dateTimeRfc1123Spec
+    },
+    copyStatusDescription: {
+      xmlName: "CopyStatusDescription",
+      valueSpec: stringSpec
+    },
+    serverEncrypted: {
+      xmlName: "ServerEncrypted",
+      valueSpec: booleanSpec
+    },
+    incrementalCopy: {
+      xmlName: "IncrementalCopy",
+      valueSpec: booleanSpec
+    },
+    destinationSnapshot: {
+      xmlName: "DestinationSnapshot",
+      valueSpec: stringSpec
+    },
+    deletedTime: {
+      xmlName: "DeletedTime",
+      valueSpec: dateTimeRfc1123Spec
+    },
+    remainingRetentionDays: {
+      xmlName: "RemainingRetentionDays",
+      valueSpec: numberSpec
+    },
+    /**
+     * Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50', 'Hot', 'Cool',
+     * 'Archive'
+     */
+    accessTier: {
+      xmlName: "AccessTier",
+      valueSpec: stringSpec
+    },
+    accessTierInferred: {
+      xmlName: "AccessTierInferred",
+      valueSpec: booleanSpec
+    },
+    /**
+     * Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-pending-to-cool'
+     */
+    archiveStatus: {
+      xmlName: "ArchiveStatus",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * An Azure Storage blob
  */
-export const Blob: CompositeTypeSpec = compositeSpec("Blob", {
-  name: {
-    required: true,
-    xmlName: "Name",
-    valueSpec: stringSpec
-  },
-  deleted: {
-    required: true,
-    xmlName: "Deleted",
-    valueSpec: booleanSpec
-  },
-  snapshot: {
-    required: true,
-    xmlName: "Snapshot",
-    valueSpec: stringSpec
-  },
-  properties: {
-    required: true,
-    xmlName: "Properties",
-    valueSpec: BlobProperties
-  },
-  metadata: {
-    xmlName: "Metadata",
-    valueSpec: dictionarySpec(stringSpec)
+export const Blob: CompositeTypeSpec = compositeSpec({
+  typeName: "Blob",
+  propertySpecs: {
+    name: {
+      required: true,
+      xmlName: "Name",
+      valueSpec: stringSpec
+    },
+    deleted: {
+      required: true,
+      xmlName: "Deleted",
+      valueSpec: booleanSpec
+    },
+    snapshot: {
+      required: true,
+      xmlName: "Snapshot",
+      valueSpec: stringSpec
+    },
+    properties: {
+      required: true,
+      xmlName: "Properties",
+      valueSpec: BlobProperties
+    },
+    metadata: {
+      xmlName: "Metadata",
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });
 
 /**
  * the retention policy
  */
-export const RetentionPolicy: CompositeTypeSpec = compositeSpec("RetentionPolicy", {
-  /**
-   * Indicates whether a retention policy is enabled for the storage service
-   */
-  enabled: {
-    required: true,
-    xmlName: "Enabled",
-    valueSpec: booleanSpec
-  },
-  /**
-   * Indicates the number of days that metrics or logging or soft-deleted data should be retained.
-   * All data older than this value will be deleted
-   */
-  days: {
-    xmlName: "Days",
-    valueSpec: numberSpec
+export const RetentionPolicy: CompositeTypeSpec = compositeSpec({
+  typeName: "RetentionPolicy",
+  propertySpecs: {
+    /**
+     * Indicates whether a retention policy is enabled for the storage service
+     */
+    enabled: {
+      required: true,
+      xmlName: "Enabled",
+      valueSpec: booleanSpec
+    },
+    /**
+     * Indicates the number of days that metrics or logging or soft-deleted data should be
+     * retained. All data older than this value will be deleted
+     */
+    days: {
+      xmlName: "Days",
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Azure Analytics Logging settings.
  */
-export const Logging: CompositeTypeSpec = compositeSpec("Logging", {
-  /**
-   * The version of Storage Analytics to configure.
-   */
-  version: {
-    required: true,
-    xmlName: "Version",
-    valueSpec: stringSpec
-  },
-  /**
-   * Indicates whether all delete requests should be logged.
-   */
-  deleteProperty: {
-    required: true,
-    xmlName: "Delete",
-    valueSpec: booleanSpec
-  },
-  /**
-   * Indicates whether all read requests should be logged.
-   */
-  read: {
-    required: true,
-    xmlName: "Read",
-    valueSpec: booleanSpec
-  },
-  /**
-   * Indicates whether all write requests should be logged.
-   */
-  write: {
-    required: true,
-    xmlName: "Write",
-    valueSpec: booleanSpec
-  },
-  retentionPolicy: {
-    required: true,
-    xmlName: "RetentionPolicy",
-    valueSpec: RetentionPolicy
+export const Logging: CompositeTypeSpec = compositeSpec({
+  typeName: "Logging",
+  propertySpecs: {
+    /**
+     * The version of Storage Analytics to configure.
+     */
+    version: {
+      required: true,
+      xmlName: "Version",
+      valueSpec: stringSpec
+    },
+    /**
+     * Indicates whether all delete requests should be logged.
+     */
+    deleteProperty: {
+      required: true,
+      xmlName: "Delete",
+      valueSpec: booleanSpec
+    },
+    /**
+     * Indicates whether all read requests should be logged.
+     */
+    read: {
+      required: true,
+      xmlName: "Read",
+      valueSpec: booleanSpec
+    },
+    /**
+     * Indicates whether all write requests should be logged.
+     */
+    write: {
+      required: true,
+      xmlName: "Write",
+      valueSpec: booleanSpec
+    },
+    retentionPolicy: {
+      required: true,
+      xmlName: "RetentionPolicy",
+      valueSpec: RetentionPolicy
+    }
   }
 });
 
-export const Metrics: CompositeTypeSpec = compositeSpec("Metrics", {
-  /**
-   * The version of Storage Analytics to configure.
-   */
-  version: {
-    xmlName: "Version",
-    valueSpec: stringSpec
-  },
-  /**
-   * Indicates whether metrics are enabled for the Blob service.
-   */
-  enabled: {
-    required: true,
-    xmlName: "Enabled",
-    valueSpec: booleanSpec
-  },
-  /**
-   * Indicates whether metrics should generate summary statistics for called API operations.
-   */
-  includeAPIs: {
-    xmlName: "IncludeAPIs",
-    valueSpec: booleanSpec
-  },
-  retentionPolicy: {
-    xmlName: "RetentionPolicy",
-    valueSpec: RetentionPolicy
+export const Metrics: CompositeTypeSpec = compositeSpec({
+  typeName: "Metrics",
+  propertySpecs: {
+    /**
+     * The version of Storage Analytics to configure.
+     */
+    version: {
+      xmlName: "Version",
+      valueSpec: stringSpec
+    },
+    /**
+     * Indicates whether metrics are enabled for the Blob service.
+     */
+    enabled: {
+      required: true,
+      xmlName: "Enabled",
+      valueSpec: booleanSpec
+    },
+    /**
+     * Indicates whether metrics should generate summary statistics for called API operations.
+     */
+    includeAPIs: {
+      xmlName: "IncludeAPIs",
+      valueSpec: booleanSpec
+    },
+    retentionPolicy: {
+      xmlName: "RetentionPolicy",
+      valueSpec: RetentionPolicy
+    }
   }
 });
 
-export const BlobPrefix: CompositeTypeSpec = compositeSpec("BlobPrefix", {
-  name: {
-    required: true,
-    xmlName: "Name",
-    valueSpec: stringSpec
+export const BlobPrefix: CompositeTypeSpec = compositeSpec({
+  typeName: "BlobPrefix",
+  propertySpecs: {
+    name: {
+      required: true,
+      xmlName: "Name",
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Blobs: CompositeTypeSpec = compositeSpec("Blobs", {
-  blobPrefix: {
-    xmlName: "BlobPrefix",
-    valueSpec: sequenceSpec(BlobPrefix)
-  },
-  blob: {
-    xmlName: "Blob",
-    valueSpec: sequenceSpec(Blob)
+export const Blobs: CompositeTypeSpec = compositeSpec({
+  typeName: "Blobs",
+  propertySpecs: {
+    blobPrefix: {
+      xmlName: "BlobPrefix",
+      valueSpec: sequenceSpec(BlobPrefix)
+    },
+    blob: {
+      xmlName: "Blob",
+      valueSpec: sequenceSpec(Blob)
+    }
   }
 });
 
 /**
  * An enumeration of blobs
  */
-export const ListBlobsResponse: CompositeTypeSpec = compositeSpec("ListBlobsResponse", {
-  serviceEndpoint: {
-    required: true,
-    xmlIsAttribute: true,
-    xmlName: "ServiceEndpoint",
-    valueSpec: stringSpec
-  },
-  containerName: {
-    required: true,
-    xmlIsAttribute: true,
-    xmlName: "ContainerName",
-    valueSpec: stringSpec
-  },
-  prefix: {
-    required: true,
-    xmlName: "Prefix",
-    valueSpec: stringSpec
-  },
-  marker: {
-    required: true,
-    xmlName: "Marker",
-    valueSpec: stringSpec
-  },
-  maxResults: {
-    required: true,
-    xmlName: "MaxResults",
-    valueSpec: numberSpec
-  },
-  delimiter: {
-    required: true,
-    xmlName: "Delimiter",
-    valueSpec: stringSpec
-  },
-  blobs: {
-    required: true,
-    xmlName: "Blobs",
-    valueSpec: Blobs
-  },
-  nextMarker: {
-    required: true,
-    xmlName: "NextMarker",
-    valueSpec: stringSpec
+export const ListBlobsResponse: CompositeTypeSpec = compositeSpec({
+  typeName: "ListBlobsResponse",
+  propertySpecs: {
+    serviceEndpoint: {
+      required: true,
+      xmlIsAttribute: true,
+      xmlName: "ServiceEndpoint",
+      valueSpec: stringSpec
+    },
+    containerName: {
+      required: true,
+      xmlIsAttribute: true,
+      xmlName: "ContainerName",
+      valueSpec: stringSpec
+    },
+    prefix: {
+      required: true,
+      xmlName: "Prefix",
+      valueSpec: stringSpec
+    },
+    marker: {
+      required: true,
+      xmlName: "Marker",
+      valueSpec: stringSpec
+    },
+    maxResults: {
+      required: true,
+      xmlName: "MaxResults",
+      valueSpec: numberSpec
+    },
+    delimiter: {
+      required: true,
+      xmlName: "Delimiter",
+      valueSpec: stringSpec
+    },
+    blobs: {
+      required: true,
+      xmlName: "Blobs",
+      valueSpec: Blobs
+    },
+    nextMarker: {
+      required: true,
+      xmlName: "NextMarker",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * An Access policy
  */
-export const AccessPolicy: CompositeTypeSpec = compositeSpec("AccessPolicy", {
-  /**
-   * the date-time the policy is active
-   */
-  start: {
-    required: true,
-    xmlName: "Start",
-    valueSpec: dateTimeSpec
-  },
-  /**
-   * the date-time the policy expires
-   */
-  expiry: {
-    required: true,
-    xmlName: "Expiry",
-    valueSpec: dateTimeSpec
-  },
-  /**
-   * the permissions for the acl policy
-   */
-  permission: {
-    required: true,
-    xmlName: "Permission",
-    valueSpec: stringSpec
+export const AccessPolicy: CompositeTypeSpec = compositeSpec({
+  typeName: "AccessPolicy",
+  propertySpecs: {
+    /**
+     * the date-time the policy is active
+     */
+    start: {
+      required: true,
+      xmlName: "Start",
+      valueSpec: dateTimeSpec
+    },
+    /**
+     * the date-time the policy expires
+     */
+    expiry: {
+      required: true,
+      xmlName: "Expiry",
+      valueSpec: dateTimeSpec
+    },
+    /**
+     * the permissions for the acl policy
+     */
+    permission: {
+      required: true,
+      xmlName: "Permission",
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * signed identifier
  */
-export const SignedIdentifier: CompositeTypeSpec = compositeSpec("SignedIdentifier", {
-  /**
-   * a unique id
-   */
-  id: {
-    required: true,
-    xmlName: "Id",
-    valueSpec: stringSpec
-  },
-  /**
-   * The access policy
-   */
-  accessPolicy: {
-    required: true,
-    xmlName: "AccessPolicy",
-    valueSpec: AccessPolicy
+export const SignedIdentifier: CompositeTypeSpec = compositeSpec({
+  typeName: "SignedIdentifier",
+  propertySpecs: {
+    /**
+     * a unique id
+     */
+    id: {
+      required: true,
+      xmlName: "Id",
+      valueSpec: stringSpec
+    },
+    /**
+     * The access policy
+     */
+    accessPolicy: {
+      required: true,
+      xmlName: "AccessPolicy",
+      valueSpec: AccessPolicy
+    }
   }
 });
 
 /**
  * Storage Service Properties.
  */
-export const StorageServiceProperties: CompositeTypeSpec = compositeSpec("StorageServiceProperties", {
-  /**
-   * Azure Analytics Logging settings
-   */
-  logging: {
-    xmlName: "Logging",
-    valueSpec: Logging
-  },
-  /**
-   * A summary of request statistics grouped by API in hourly aggregates for blobs
-   */
-  hourMetrics: {
-    xmlName: "HourMetrics",
-    valueSpec: Metrics
-  },
-  /**
-   * a summary of request statistics grouped by API in minute aggregates for blobs
-   */
-  minuteMetrics: {
-    xmlName: "MinuteMetrics",
-    valueSpec: Metrics
-  },
-  /**
-   * The set of CORS rules.
-   */
-  cors: {
-    xmlIsWrapped: true,
-    xmlName: "Cors",
-    valueSpec: sequenceSpec(CorsRule)
-  },
-  /**
-   * The default version to use for requests to the Blob service if an incoming request's version
-   * is not specified. Possible values include version 2008-10-27 and all more recent versions
-   */
-  defaultServiceVersion: {
-    xmlName: "DefaultServiceVersion",
-    valueSpec: stringSpec
-  },
-  /**
-   * The Delete Retention Policy for the service
-   */
-  deleteRetentionPolicy: {
-    xmlName: "DeleteRetentionPolicy",
-    valueSpec: RetentionPolicy
+export const StorageServiceProperties: CompositeTypeSpec = compositeSpec({
+  typeName: "StorageServiceProperties",
+  propertySpecs: {
+    /**
+     * Azure Analytics Logging settings
+     */
+    logging: {
+      xmlName: "Logging",
+      valueSpec: Logging
+    },
+    /**
+     * A summary of request statistics grouped by API in hourly aggregates for blobs
+     */
+    hourMetrics: {
+      xmlName: "HourMetrics",
+      valueSpec: Metrics
+    },
+    /**
+     * a summary of request statistics grouped by API in minute aggregates for blobs
+     */
+    minuteMetrics: {
+      xmlName: "MinuteMetrics",
+      valueSpec: Metrics
+    },
+    /**
+     * The set of CORS rules.
+     */
+    cors: {
+      xmlIsWrapped: true,
+      xmlName: "Cors",
+      valueSpec: sequenceSpec(CorsRule)
+    },
+    /**
+     * The default version to use for requests to the Blob service if an incoming request's version
+     * is not specified. Possible values include version 2008-10-27 and all more recent versions
+     */
+    defaultServiceVersion: {
+      xmlName: "DefaultServiceVersion",
+      valueSpec: stringSpec
+    },
+    /**
+     * The Delete Retention Policy for the service
+     */
+    deleteRetentionPolicy: {
+      xmlName: "DeleteRetentionPolicy",
+      valueSpec: RetentionPolicy
+    }
   }
 });

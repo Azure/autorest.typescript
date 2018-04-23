@@ -8,32 +8,42 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const AutoRestParameterizedCustomHostTestClientOptions: CompositeTypeSpec = compositeSpec("AutoRestParameterizedCustomHostTestClientOptions", {
-  /**
-   * A string value that is used as a global part of the parameterized host. Default value 'host'.
-   */
-  dnsSuffix: {
-    valueSpec: stringSpec
+export const AutoRestParameterizedCustomHostTestClientOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestParameterizedCustomHostTestClientOptions",
+  propertySpecs: {
+    /**
+     * A string value that is used as a global part of the parameterized host. Default value
+     * 'host'.
+     */
+    dnsSuffix: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PathsGetEmptyOptionalParams: CompositeTypeSpec = compositeSpec("PathsGetEmptyOptionalParams", {
-  /**
-   * The key version. Default value 'v1'.
-   */
-  keyVersion: {
-    valueSpec: stringSpec
+export const PathsGetEmptyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PathsGetEmptyOptionalParams",
+  propertySpecs: {
+    /**
+     * The key version. Default value 'v1'.
+     */
+    keyVersion: {
+      valueSpec: stringSpec
+    }
   }
 });

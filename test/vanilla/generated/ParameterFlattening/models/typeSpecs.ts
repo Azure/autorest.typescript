@@ -8,13 +8,16 @@
 
 import { compositeSpec, CompositeTypeSpec, dictionarySpec, stringSpec } from "ms-rest-js";
 
-export const AvailabilitySetUpdateParameters: CompositeTypeSpec = compositeSpec("AvailabilitySetUpdateParameters", {
-  /**
-   * A set of tags.
-   * A description about the set of tags.
-   */
-  tags: {
-    required: true,
-    valueSpec: dictionarySpec(stringSpec)
+export const AvailabilitySetUpdateParameters: CompositeTypeSpec = compositeSpec({
+  typeName: "AvailabilitySetUpdateParameters",
+  propertySpecs: {
+    /**
+     * A set of tags.
+     * A description about the set of tags.
+     */
+    tags: {
+      required: true,
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });

@@ -8,476 +8,578 @@
 
 import { booleanSpec, byteArraySpec, compositeSpec, CompositeTypeSpec, dateSpec, dateTimeRfc1123Spec, dateTimeSpec, dictionarySpec, numberSpec, objectSpec, sequenceSpec, stringSpec, timeSpanSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Basic: CompositeTypeSpec = compositeSpec("Basic", {
-  /**
-   * Basic Id
-   */
-  id: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Name property with a very long description that does not fit on a single line and a line
-   * break.
-   */
-  name: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
-   */
-  color: {
-    valueSpec: stringSpec
+export const Basic: CompositeTypeSpec = compositeSpec({
+  typeName: "Basic",
+  propertySpecs: {
+    /**
+     * Basic Id
+     */
+    id: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Name property with a very long description that does not fit on a single line and a line
+     * break.
+     */
+    name: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'
+     */
+    color: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Pet: CompositeTypeSpec = compositeSpec("Pet", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
+export const Pet: CompositeTypeSpec = compositeSpec({
+  typeName: "Pet",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Dog: CompositeTypeSpec = compositeSpec("Dog", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
-  },
-  food: {
-    valueSpec: stringSpec
+export const Dog: CompositeTypeSpec = compositeSpec({
+  typeName: "Dog",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    },
+    food: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Cat: CompositeTypeSpec = compositeSpec("Cat", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
-  },
-  color: {
-    valueSpec: stringSpec
-  },
-  hates: {
-    valueSpec: sequenceSpec(Dog)
+export const Cat: CompositeTypeSpec = compositeSpec({
+  typeName: "Cat",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    },
+    color: {
+      valueSpec: stringSpec
+    },
+    hates: {
+      valueSpec: sequenceSpec(Dog)
+    }
   }
 });
 
-export const Siamese: CompositeTypeSpec = compositeSpec("Siamese", {
-  id: {
-    valueSpec: numberSpec
-  },
-  name: {
-    valueSpec: stringSpec
-  },
-  color: {
-    valueSpec: stringSpec
-  },
-  hates: {
-    valueSpec: sequenceSpec(Dog)
-  },
-  breed: {
-    valueSpec: stringSpec
+export const Siamese: CompositeTypeSpec = compositeSpec({
+  typeName: "Siamese",
+  propertySpecs: {
+    id: {
+      valueSpec: numberSpec
+    },
+    name: {
+      valueSpec: stringSpec
+    },
+    color: {
+      valueSpec: stringSpec
+    },
+    hates: {
+      valueSpec: sequenceSpec(Dog)
+    },
+    breed: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Fish: CompositeTypeSpec = compositeSpec("Fish", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec("Fish")
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
+export const Fish: CompositeTypeSpec = compositeSpec({
+  typeName: "Fish",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec("Fish")
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Salmon: CompositeTypeSpec = compositeSpec("Salmon", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  location: {
-    valueSpec: stringSpec
-  },
-  iswild: {
-    valueSpec: booleanSpec
+export const Salmon: CompositeTypeSpec = compositeSpec({
+  typeName: "Salmon",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    location: {
+      valueSpec: stringSpec
+    },
+    iswild: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
-export const SmartSalmon: CompositeTypeSpec = compositeSpec("SmartSalmon", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  location: {
-    valueSpec: stringSpec
-  },
-  iswild: {
-    valueSpec: booleanSpec
-  },
-  /**
-   * Unmatched properties from the message are deserialized this collection
-   */
-  additionalProperties: {
-    valueSpec: dictionarySpec(objectSpec)
-  },
-  collegeDegree: {
-    serializedName: "college_degree",
-    valueSpec: stringSpec
+export const SmartSalmon: CompositeTypeSpec = compositeSpec({
+  typeName: "SmartSalmon",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    location: {
+      valueSpec: stringSpec
+    },
+    iswild: {
+      valueSpec: booleanSpec
+    },
+    /**
+     * Unmatched properties from the message are deserialized this collection
+     */
+    additionalProperties: {
+      valueSpec: dictionarySpec(objectSpec)
+    },
+    collegeDegree: {
+      serializedName: "college_degree",
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Shark: CompositeTypeSpec = compositeSpec("Shark", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  age: {
-    valueSpec: numberSpec
-  },
-  birthday: {
-    required: true,
-    valueSpec: dateTimeSpec
+export const Shark: CompositeTypeSpec = compositeSpec({
+  typeName: "Shark",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    age: {
+      valueSpec: numberSpec
+    },
+    birthday: {
+      required: true,
+      valueSpec: dateTimeSpec
+    }
   }
 });
 
-export const Sawshark: CompositeTypeSpec = compositeSpec("Sawshark", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  age: {
-    valueSpec: numberSpec
-  },
-  birthday: {
-    required: true,
-    valueSpec: dateTimeSpec
-  },
-  picture: {
-    valueSpec: byteArraySpec
+export const Sawshark: CompositeTypeSpec = compositeSpec({
+  typeName: "Sawshark",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    age: {
+      valueSpec: numberSpec
+    },
+    birthday: {
+      required: true,
+      valueSpec: dateTimeSpec
+    },
+    picture: {
+      valueSpec: byteArraySpec
+    }
   }
 });
 
-export const Goblinshark: CompositeTypeSpec = compositeSpec("Goblinshark", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  age: {
-    valueSpec: numberSpec
-  },
-  birthday: {
-    required: true,
-    valueSpec: dateTimeSpec
-  },
-  jawsize: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Colors possible. Possible values include: 'pink', 'gray', 'brown'
-   */
-  color: {
-    valueSpec: stringSpec
+export const Goblinshark: CompositeTypeSpec = compositeSpec({
+  typeName: "Goblinshark",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    age: {
+      valueSpec: numberSpec
+    },
+    birthday: {
+      required: true,
+      valueSpec: dateTimeSpec
+    },
+    jawsize: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Colors possible. Possible values include: 'pink', 'gray', 'brown'
+     */
+    color: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const Cookiecuttershark: CompositeTypeSpec = compositeSpec("Cookiecuttershark", {
-  species: {
-    valueSpec: stringSpec
-  },
-  length: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  siblings: {
-    valueSpec: sequenceSpec(Fish)
-  },
-  /**
-   * Polymorphic Discriminator
-   */
-  fishtype: {
-    required: true,
-    valueSpec: stringSpec
-  },
-  age: {
-    valueSpec: numberSpec
-  },
-  birthday: {
-    required: true,
-    valueSpec: dateTimeSpec
+export const Cookiecuttershark: CompositeTypeSpec = compositeSpec({
+  typeName: "Cookiecuttershark",
+  propertySpecs: {
+    species: {
+      valueSpec: stringSpec
+    },
+    length: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    siblings: {
+      valueSpec: sequenceSpec(Fish)
+    },
+    /**
+     * Polymorphic Discriminator
+     */
+    fishtype: {
+      required: true,
+      valueSpec: stringSpec
+    },
+    age: {
+      valueSpec: numberSpec
+    },
+    birthday: {
+      required: true,
+      valueSpec: dateTimeSpec
+    }
   }
 });
 
-export const IntWrapper: CompositeTypeSpec = compositeSpec("IntWrapper", {
-  field1: {
-    valueSpec: numberSpec
-  },
-  field2: {
-    valueSpec: numberSpec
+export const IntWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "IntWrapper",
+  propertySpecs: {
+    field1: {
+      valueSpec: numberSpec
+    },
+    field2: {
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const LongWrapper: CompositeTypeSpec = compositeSpec("LongWrapper", {
-  field1: {
-    valueSpec: numberSpec
-  },
-  field2: {
-    valueSpec: numberSpec
+export const LongWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "LongWrapper",
+  propertySpecs: {
+    field1: {
+      valueSpec: numberSpec
+    },
+    field2: {
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const FloatWrapper: CompositeTypeSpec = compositeSpec("FloatWrapper", {
-  field1: {
-    valueSpec: numberSpec
-  },
-  field2: {
-    valueSpec: numberSpec
+export const FloatWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "FloatWrapper",
+  propertySpecs: {
+    field1: {
+      valueSpec: numberSpec
+    },
+    field2: {
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const DoubleWrapper: CompositeTypeSpec = compositeSpec("DoubleWrapper", {
-  field1: {
-    valueSpec: numberSpec
-  },
-  field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: {
-    serializedName: "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
-    valueSpec: numberSpec
+export const DoubleWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "DoubleWrapper",
+  propertySpecs: {
+    field1: {
+      valueSpec: numberSpec
+    },
+    field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: {
+      serializedName: "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
+      valueSpec: numberSpec
+    }
   }
 });
 
-export const BooleanWrapper: CompositeTypeSpec = compositeSpec("BooleanWrapper", {
-  fieldTrue: {
-    serializedName: "field_true",
-    valueSpec: booleanSpec
-  },
-  fieldFalse: {
-    serializedName: "field_false",
-    valueSpec: booleanSpec
+export const BooleanWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "BooleanWrapper",
+  propertySpecs: {
+    fieldTrue: {
+      serializedName: "field_true",
+      valueSpec: booleanSpec
+    },
+    fieldFalse: {
+      serializedName: "field_false",
+      valueSpec: booleanSpec
+    }
   }
 });
 
-export const StringWrapper: CompositeTypeSpec = compositeSpec("StringWrapper", {
-  field: {
-    valueSpec: stringSpec
-  },
-  empty: {
-    valueSpec: stringSpec
-  },
-  nullProperty: {
-    serializedName: "null",
-    valueSpec: stringSpec
+export const StringWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "StringWrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: stringSpec
+    },
+    empty: {
+      valueSpec: stringSpec
+    },
+    nullProperty: {
+      serializedName: "null",
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const DateWrapper: CompositeTypeSpec = compositeSpec("DateWrapper", {
-  field: {
-    valueSpec: dateSpec
-  },
-  leap: {
-    valueSpec: dateSpec
+export const DateWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "DateWrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: dateSpec
+    },
+    leap: {
+      valueSpec: dateSpec
+    }
   }
 });
 
-export const DatetimeWrapper: CompositeTypeSpec = compositeSpec("DatetimeWrapper", {
-  field: {
-    valueSpec: dateTimeSpec
-  },
-  now: {
-    valueSpec: dateTimeSpec
+export const DatetimeWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "DatetimeWrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: dateTimeSpec
+    },
+    now: {
+      valueSpec: dateTimeSpec
+    }
   }
 });
 
-export const Datetimerfc1123Wrapper: CompositeTypeSpec = compositeSpec("Datetimerfc1123Wrapper", {
-  field: {
-    valueSpec: dateTimeRfc1123Spec
-  },
-  now: {
-    valueSpec: dateTimeRfc1123Spec
+export const Datetimerfc1123Wrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "Datetimerfc1123Wrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: dateTimeRfc1123Spec
+    },
+    now: {
+      valueSpec: dateTimeRfc1123Spec
+    }
   }
 });
 
-export const DurationWrapper: CompositeTypeSpec = compositeSpec("DurationWrapper", {
-  field: {
-    valueSpec: timeSpanSpec
+export const DurationWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "DurationWrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: timeSpanSpec
+    }
   }
 });
 
-export const ByteWrapper: CompositeTypeSpec = compositeSpec("ByteWrapper", {
-  field: {
-    valueSpec: byteArraySpec
+export const ByteWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ByteWrapper",
+  propertySpecs: {
+    field: {
+      valueSpec: byteArraySpec
+    }
   }
 });
 
-export const ArrayWrapper: CompositeTypeSpec = compositeSpec("ArrayWrapper", {
-  arrayProperty: {
-    serializedName: "array",
-    valueSpec: sequenceSpec(stringSpec)
+export const ArrayWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "ArrayWrapper",
+  propertySpecs: {
+    arrayProperty: {
+      serializedName: "array",
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
-export const DictionaryWrapper: CompositeTypeSpec = compositeSpec("DictionaryWrapper", {
-  defaultProgram: {
-    valueSpec: dictionarySpec(stringSpec)
+export const DictionaryWrapper: CompositeTypeSpec = compositeSpec({
+  typeName: "DictionaryWrapper",
+  propertySpecs: {
+    defaultProgram: {
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });
 
-export const ReadonlyObj: CompositeTypeSpec = compositeSpec("ReadonlyObj", {
-  id: {
-    valueSpec: stringSpec
-  },
-  size: {
-    valueSpec: numberSpec
+export const ReadonlyObj: CompositeTypeSpec = compositeSpec({
+  typeName: "ReadonlyObj",
+  propertySpecs: {
+    id: {
+      valueSpec: stringSpec
+    },
+    size: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PrimitivePutDurationOptionalParams: CompositeTypeSpec = compositeSpec("PrimitivePutDurationOptionalParams", {
-  field: {
-    valueSpec: timeSpanSpec
+export const PrimitivePutDurationOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PrimitivePutDurationOptionalParams",
+  propertySpecs: {
+    field: {
+      valueSpec: timeSpanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PrimitivePutByteOptionalParams: CompositeTypeSpec = compositeSpec("PrimitivePutByteOptionalParams", {
-  field: {
-    valueSpec: byteArraySpec
+export const PrimitivePutByteOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PrimitivePutByteOptionalParams",
+  propertySpecs: {
+    field: {
+      valueSpec: byteArraySpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ArrayModelPutValidOptionalParams: CompositeTypeSpec = compositeSpec("ArrayModelPutValidOptionalParams", {
-  arrayProperty: {
-    serializedName: "array",
-    valueSpec: sequenceSpec(stringSpec)
+export const ArrayModelPutValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ArrayModelPutValidOptionalParams",
+  propertySpecs: {
+    arrayProperty: {
+      serializedName: "array",
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ArrayModelPutEmptyOptionalParams: CompositeTypeSpec = compositeSpec("ArrayModelPutEmptyOptionalParams", {
-  arrayProperty: {
-    serializedName: "array",
-    valueSpec: sequenceSpec(stringSpec)
+export const ArrayModelPutEmptyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ArrayModelPutEmptyOptionalParams",
+  propertySpecs: {
+    arrayProperty: {
+      serializedName: "array",
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const DictionaryPutValidOptionalParams: CompositeTypeSpec = compositeSpec("DictionaryPutValidOptionalParams", {
-  defaultProgram: {
-    valueSpec: dictionarySpec(stringSpec)
+export const DictionaryPutValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "DictionaryPutValidOptionalParams",
+  propertySpecs: {
+    defaultProgram: {
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const DictionaryPutEmptyOptionalParams: CompositeTypeSpec = compositeSpec("DictionaryPutEmptyOptionalParams", {
-  defaultProgram: {
-    valueSpec: dictionarySpec(stringSpec)
+export const DictionaryPutEmptyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "DictionaryPutEmptyOptionalParams",
+  propertySpecs: {
+    defaultProgram: {
+      valueSpec: dictionarySpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ReadonlypropertyPutValidOptionalParams: CompositeTypeSpec = compositeSpec("ReadonlypropertyPutValidOptionalParams", {
-  size: {
-    valueSpec: numberSpec
+export const ReadonlypropertyPutValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ReadonlypropertyPutValidOptionalParams",
+  propertySpecs: {
+    size: {
+      valueSpec: numberSpec
+    }
   }
 });

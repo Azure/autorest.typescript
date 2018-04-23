@@ -11,107 +11,131 @@ import { compositeSpec, CompositeTypeSpec, dictionarySpec, numberSpec, sequenceS
 /**
  * The product documentation.
  */
-export const Product: CompositeTypeSpec = compositeSpec("Product", {
-  /**
-   * Unique identifier representing a specific product for a given latitude & longitude. For
-   * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-   */
-  productId: {
-    serializedName: "product_id",
-    valueSpec: stringSpec
-  },
-  /**
-   * Description of product.
-   */
-  description: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Display name of product.
-   */
-  displayName: {
-    serializedName: "display_name",
-    valueSpec: stringSpec
-  },
-  /**
-   * Capacity of product. For example, 4 people.
-   */
-  capacity: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Image URL representing the product.
-   */
-  image: {
-    valueSpec: stringSpec
+export const Product: CompositeTypeSpec = compositeSpec({
+  typeName: "Product",
+  propertySpecs: {
+    /**
+     * Unique identifier representing a specific product for a given latitude & longitude. For
+     * example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+     */
+    productId: {
+      serializedName: "product_id",
+      valueSpec: stringSpec
+    },
+    /**
+     * Description of product.
+     */
+    description: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Display name of product.
+     */
+    displayName: {
+      serializedName: "display_name",
+      valueSpec: stringSpec
+    },
+    /**
+     * Capacity of product. For example, 4 people.
+     */
+    capacity: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Image URL representing the product.
+     */
+    image: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const CatalogDictionary: CompositeTypeSpec = compositeSpec("CatalogDictionary", {
-  /**
-   * Dictionary of products
-   */
-  productDictionary: {
-    valueSpec: dictionarySpec(Product)
+export const CatalogDictionary: CompositeTypeSpec = compositeSpec({
+  typeName: "CatalogDictionary",
+  propertySpecs: {
+    /**
+     * Dictionary of products
+     */
+    productDictionary: {
+      valueSpec: dictionarySpec(Product)
+    }
   }
 });
 
-export const CatalogArray: CompositeTypeSpec = compositeSpec("CatalogArray", {
-  /**
-   * Array of products
-   */
-  productArray: {
-    valueSpec: sequenceSpec(Product)
+export const CatalogArray: CompositeTypeSpec = compositeSpec({
+  typeName: "CatalogArray",
+  propertySpecs: {
+    /**
+     * Array of products
+     */
+    productArray: {
+      valueSpec: sequenceSpec(Product)
+    }
   }
 });
 
-export const CatalogArrayOfDictionary: CompositeTypeSpec = compositeSpec("CatalogArrayOfDictionary", {
-  /**
-   * Array of dictionary of products
-   */
-  productArrayOfDictionary: {
-    valueSpec: sequenceSpec(dictionarySpec(Product))
+export const CatalogArrayOfDictionary: CompositeTypeSpec = compositeSpec({
+  typeName: "CatalogArrayOfDictionary",
+  propertySpecs: {
+    /**
+     * Array of dictionary of products
+     */
+    productArrayOfDictionary: {
+      valueSpec: sequenceSpec(dictionarySpec(Product))
+    }
   }
 });
 
-export const CatalogDictionaryOfArray: CompositeTypeSpec = compositeSpec("CatalogDictionaryOfArray", {
-  /**
-   * Dictionary of Array of product
-   */
-  productDictionaryOfArray: {
-    valueSpec: dictionarySpec(sequenceSpec(Product))
+export const CatalogDictionaryOfArray: CompositeTypeSpec = compositeSpec({
+  typeName: "CatalogDictionaryOfArray",
+  propertySpecs: {
+    /**
+     * Dictionary of Array of product
+     */
+    productDictionaryOfArray: {
+      valueSpec: dictionarySpec(sequenceSpec(Product))
+    }
   }
 });
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ComplexModelClientCreateOptionalParams: CompositeTypeSpec = compositeSpec("ComplexModelClientCreateOptionalParams", {
-  /**
-   * Dictionary of Array of product
-   */
-  productDictionaryOfArray: {
-    valueSpec: dictionarySpec(sequenceSpec(Product))
+export const ComplexModelClientCreateOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ComplexModelClientCreateOptionalParams",
+  propertySpecs: {
+    /**
+     * Dictionary of Array of product
+     */
+    productDictionaryOfArray: {
+      valueSpec: dictionarySpec(sequenceSpec(Product))
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ComplexModelClientUpdateOptionalParams: CompositeTypeSpec = compositeSpec("ComplexModelClientUpdateOptionalParams", {
-  /**
-   * Array of dictionary of products
-   */
-  productArrayOfDictionary: {
-    valueSpec: sequenceSpec(dictionarySpec(Product))
+export const ComplexModelClientUpdateOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ComplexModelClientUpdateOptionalParams",
+  propertySpecs: {
+    /**
+     * Array of dictionary of products
+     */
+    productArrayOfDictionary: {
+      valueSpec: sequenceSpec(dictionarySpec(Product))
+    }
   }
 });

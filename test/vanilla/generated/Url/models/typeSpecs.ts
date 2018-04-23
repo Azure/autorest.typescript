@@ -8,312 +8,384 @@
 
 import { booleanSpec, byteArraySpec, compositeSpec, CompositeTypeSpec, dateSpec, dateTimeSpec, enumSpec, numberSpec, sequenceSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
-export const AutoRestUrlTestServiceOptions: CompositeTypeSpec = compositeSpec("AutoRestUrlTestServiceOptions", {
-  /**
-   * should contain value null
-   */
-  globalStringQuery: {
-    valueSpec: stringSpec
-  }
-});
-
-/**
- * Optional Parameters.
- */
-export const QueriesGetBooleanNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesGetBooleanNullOptionalParams", {
-  /**
-   * null boolean value
-   */
-  boolQuery: {
-    valueSpec: booleanSpec
+export const AutoRestUrlTestServiceOptions: CompositeTypeSpec = compositeSpec({
+  typeName: "AutoRestUrlTestServiceOptions",
+  propertySpecs: {
+    /**
+     * should contain value null
+     */
+    globalStringQuery: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesGetIntNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesGetIntNullOptionalParams", {
-  /**
-   * null integer value
-   */
-  intQuery: {
-    valueSpec: numberSpec
+export const QueriesGetBooleanNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesGetBooleanNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null boolean value
+     */
+    boolQuery: {
+      valueSpec: booleanSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesGetLongNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesGetLongNullOptionalParams", {
-  /**
-   * null 64 bit integer value
-   */
-  longQuery: {
-    valueSpec: numberSpec
+export const QueriesGetIntNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesGetIntNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null integer value
+     */
+    intQuery: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesFloatNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesFloatNullOptionalParams", {
-  /**
-   * null numeric value
-   */
-  floatQuery: {
-    valueSpec: numberSpec
+export const QueriesGetLongNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesGetLongNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null 64 bit integer value
+     */
+    longQuery: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesDoubleNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesDoubleNullOptionalParams", {
-  /**
-   * null numeric value
-   */
-  doubleQuery: {
-    valueSpec: numberSpec
+export const QueriesFloatNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesFloatNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null numeric value
+     */
+    floatQuery: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesStringNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesStringNullOptionalParams", {
-  /**
-   * null string value
-   */
-  stringQuery: {
-    valueSpec: stringSpec
+export const QueriesDoubleNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesDoubleNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null numeric value
+     */
+    doubleQuery: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesEnumValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesEnumValidOptionalParams", {
-  /**
-   * 'green color' enum value. Possible values include: 'red color', 'green color', 'blue color'
-   */
-  enumQuery: {
-    valueSpec: enumSpec("UriColor", [ 'red color', 'green color', 'blue color' ])
+export const QueriesStringNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesStringNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null string value
+     */
+    stringQuery: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesEnumNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesEnumNullOptionalParams", {
-  /**
-   * null string value. Possible values include: 'red color', 'green color', 'blue color'
-   */
-  enumQuery: {
-    valueSpec: enumSpec("UriColor", [ 'red color', 'green color', 'blue color' ])
+export const QueriesEnumValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesEnumValidOptionalParams",
+  propertySpecs: {
+    /**
+     * 'green color' enum value. Possible values include: 'red color', 'green color', 'blue color'
+     */
+    enumQuery: {
+      valueSpec: enumSpec("UriColor", [ 'red color', 'green color', 'blue color' ])
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesByteMultiByteOptionalParams: CompositeTypeSpec = compositeSpec("QueriesByteMultiByteOptionalParams", {
-  /**
-   * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
-   */
-  byteQuery: {
-    valueSpec: byteArraySpec
+export const QueriesEnumNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesEnumNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null string value. Possible values include: 'red color', 'green color', 'blue color'
+     */
+    enumQuery: {
+      valueSpec: enumSpec("UriColor", [ 'red color', 'green color', 'blue color' ])
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesByteNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesByteNullOptionalParams", {
-  /**
-   * null as byte array (no query parameters in uri)
-   */
-  byteQuery: {
-    valueSpec: byteArraySpec
+export const QueriesByteMultiByteOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesByteMultiByteOptionalParams",
+  propertySpecs: {
+    /**
+     * '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+     */
+    byteQuery: {
+      valueSpec: byteArraySpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesDateNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesDateNullOptionalParams", {
-  /**
-   * null as date (no query parameters in uri)
-   */
-  dateQuery: {
-    valueSpec: dateSpec
+export const QueriesByteNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesByteNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null as byte array (no query parameters in uri)
+     */
+    byteQuery: {
+      valueSpec: byteArraySpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesDateTimeNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesDateTimeNullOptionalParams", {
-  /**
-   * null as date-time (no query parameters)
-   */
-  dateTimeQuery: {
-    valueSpec: dateTimeSpec
+export const QueriesDateNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesDateNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null as date (no query parameters in uri)
+     */
+    dateQuery: {
+      valueSpec: dateSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringCsvValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringCsvValidOptionalParams", {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * csv-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesDateTimeNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesDateTimeNullOptionalParams",
+  propertySpecs: {
+    /**
+     * null as date-time (no query parameters)
+     */
+    dateTimeQuery: {
+      valueSpec: dateTimeSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringCsvNullOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringCsvNullOptionalParams", {
-  /**
-   * a null array of string using the csv-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringCsvValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringCsvValidOptionalParams",
+  propertySpecs: {
+    /**
+     * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+     * csv-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringCsvEmptyOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringCsvEmptyOptionalParams", {
-  /**
-   * an empty array [] of string using the csv-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringCsvNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringCsvNullOptionalParams",
+  propertySpecs: {
+    /**
+     * a null array of string using the csv-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringSsvValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringSsvValidOptionalParams", {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * ssv-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringCsvEmptyOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringCsvEmptyOptionalParams",
+  propertySpecs: {
+    /**
+     * an empty array [] of string using the csv-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringTsvValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringTsvValidOptionalParams", {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * tsv-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringSsvValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringSsvValidOptionalParams",
+  propertySpecs: {
+    /**
+     * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+     * ssv-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const QueriesArrayStringPipesValidOptionalParams: CompositeTypeSpec = compositeSpec("QueriesArrayStringPipesValidOptionalParams", {
-  /**
-   * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-   * pipes-array format
-   */
-  arrayQuery: {
-    valueSpec: sequenceSpec(stringSpec)
+export const QueriesArrayStringTsvValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringTsvValidOptionalParams",
+  propertySpecs: {
+    /**
+     * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+     * tsv-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PathItemsGetAllWithValuesOptionalParams: CompositeTypeSpec = compositeSpec("PathItemsGetAllWithValuesOptionalParams", {
-  /**
-   * should contain value 'localStringQuery'
-   */
-  localStringQuery: {
-    valueSpec: stringSpec
-  },
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
-  pathItemStringQuery: {
-    valueSpec: stringSpec
+export const QueriesArrayStringPipesValidOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "QueriesArrayStringPipesValidOptionalParams",
+  propertySpecs: {
+    /**
+     * an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+     * pipes-array format
+     */
+    arrayQuery: {
+      valueSpec: sequenceSpec(stringSpec)
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PathItemsGetGlobalQueryNullOptionalParams: CompositeTypeSpec = compositeSpec("PathItemsGetGlobalQueryNullOptionalParams", {
-  /**
-   * should contain value 'localStringQuery'
-   */
-  localStringQuery: {
-    valueSpec: stringSpec
-  },
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
-  pathItemStringQuery: {
-    valueSpec: stringSpec
+export const PathItemsGetAllWithValuesOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PathItemsGetAllWithValuesOptionalParams",
+  propertySpecs: {
+    /**
+     * should contain value 'localStringQuery'
+     */
+    localStringQuery: {
+      valueSpec: stringSpec
+    },
+    /**
+     * A string value 'pathItemStringQuery' that appears as a query parameter
+     */
+    pathItemStringQuery: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PathItemsGetGlobalAndLocalQueryNullOptionalParams: CompositeTypeSpec = compositeSpec("PathItemsGetGlobalAndLocalQueryNullOptionalParams", {
-  /**
-   * should contain null value
-   */
-  localStringQuery: {
-    valueSpec: stringSpec
-  },
-  /**
-   * A string value 'pathItemStringQuery' that appears as a query parameter
-   */
-  pathItemStringQuery: {
-    valueSpec: stringSpec
+export const PathItemsGetGlobalQueryNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PathItemsGetGlobalQueryNullOptionalParams",
+  propertySpecs: {
+    /**
+     * should contain value 'localStringQuery'
+     */
+    localStringQuery: {
+      valueSpec: stringSpec
+    },
+    /**
+     * A string value 'pathItemStringQuery' that appears as a query parameter
+     */
+    pathItemStringQuery: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const PathItemsGetLocalPathItemQueryNullOptionalParams: CompositeTypeSpec = compositeSpec("PathItemsGetLocalPathItemQueryNullOptionalParams", {
-  /**
-   * should contain value null
-   */
-  localStringQuery: {
-    valueSpec: stringSpec
-  },
-  /**
-   * should contain value null
-   */
-  pathItemStringQuery: {
-    valueSpec: stringSpec
+export const PathItemsGetGlobalAndLocalQueryNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PathItemsGetGlobalAndLocalQueryNullOptionalParams",
+  propertySpecs: {
+    /**
+     * should contain null value
+     */
+    localStringQuery: {
+      valueSpec: stringSpec
+    },
+    /**
+     * A string value 'pathItemStringQuery' that appears as a query parameter
+     */
+    pathItemStringQuery: {
+      valueSpec: stringSpec
+    }
+  }
+});
+
+/**
+ * Optional Parameters.
+ */
+export const PathItemsGetLocalPathItemQueryNullOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "PathItemsGetLocalPathItemQueryNullOptionalParams",
+  propertySpecs: {
+    /**
+     * should contain value null
+     */
+    localStringQuery: {
+      valueSpec: stringSpec
+    },
+    /**
+     * should contain value null
+     */
+    pathItemStringQuery: {
+      valueSpec: stringSpec
+    }
   }
 });

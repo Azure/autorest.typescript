@@ -8,53 +8,62 @@
 
 import { compositeSpec, CompositeTypeSpec, numberSpec, stringSpec } from "ms-rest-js";
 
-export const ErrorModel: CompositeTypeSpec = compositeSpec("ErrorModel", {
-  status: {
-    valueSpec: numberSpec
-  },
-  message: {
-    valueSpec: stringSpec
+export const ErrorModel: CompositeTypeSpec = compositeSpec({
+  typeName: "ErrorModel",
+  propertySpecs: {
+    status: {
+      valueSpec: numberSpec
+    },
+    message: {
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Additional parameters for postRequired operation.
  */
-export const ParameterGroupingPostRequiredParameters: CompositeTypeSpec = compositeSpec("ParameterGroupingPostRequiredParameters", {
-  body: {
-    required: true,
-    valueSpec: numberSpec
-  },
-  customHeader: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Query parameter with default
-   */
-  query: {
-    valueSpec: numberSpec
-  },
-  /**
-   * Path parameter
-   */
-  path: {
-    required: true,
-    valueSpec: stringSpec
+export const ParameterGroupingPostRequiredParameters: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostRequiredParameters",
+  propertySpecs: {
+    body: {
+      required: true,
+      valueSpec: numberSpec
+    },
+    customHeader: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Query parameter with default
+     */
+    query: {
+      valueSpec: numberSpec
+    },
+    /**
+     * Path parameter
+     */
+    path: {
+      required: true,
+      valueSpec: stringSpec
+    }
   }
 });
 
 /**
  * Additional parameters for postOptional operation.
  */
-export const ParameterGroupingPostOptionalParameters: CompositeTypeSpec = compositeSpec("ParameterGroupingPostOptionalParameters", {
-  customHeader: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Query parameter with default
-   */
-  query: {
-    valueSpec: numberSpec
+export const ParameterGroupingPostOptionalParameters: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostOptionalParameters",
+  propertySpecs: {
+    customHeader: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Query parameter with default
+     */
+    query: {
+      valueSpec: numberSpec
+    }
   }
 });
 
@@ -62,71 +71,86 @@ export const ParameterGroupingPostOptionalParameters: CompositeTypeSpec = compos
  * Additional parameters for a set of operations, such as: ParameterGrouping_postMultiParamGroups,
  * ParameterGrouping_postSharedParameterGroupObject.
  */
-export const FirstParameterGroup: CompositeTypeSpec = compositeSpec("FirstParameterGroup", {
-  headerOne: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Query parameter with default
-   */
-  queryOne: {
-    valueSpec: numberSpec
+export const FirstParameterGroup: CompositeTypeSpec = compositeSpec({
+  typeName: "FirstParameterGroup",
+  propertySpecs: {
+    headerOne: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Query parameter with default
+     */
+    queryOne: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Additional parameters for postMultiParamGroups operation.
  */
-export const ParameterGroupingPostMultiParamGroupsSecondParamGroup: CompositeTypeSpec = compositeSpec("ParameterGroupingPostMultiParamGroupsSecondParamGroup", {
-  headerTwo: {
-    valueSpec: stringSpec
-  },
-  /**
-   * Query parameter with default
-   */
-  queryTwo: {
-    valueSpec: numberSpec
+export const ParameterGroupingPostMultiParamGroupsSecondParamGroup: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostMultiParamGroupsSecondParamGroup",
+  propertySpecs: {
+    headerTwo: {
+      valueSpec: stringSpec
+    },
+    /**
+     * Query parameter with default
+     */
+    queryTwo: {
+      valueSpec: numberSpec
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ParameterGroupingPostOptionalOptionalParams: CompositeTypeSpec = compositeSpec("ParameterGroupingPostOptionalOptionalParams", {
-  /**
-   * Additional parameters for the operation
-   */
-  parameterGroupingPostOptionalParameters: {
-    valueSpec: ParameterGroupingPostOptionalParameters
+export const ParameterGroupingPostOptionalOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostOptionalOptionalParams",
+  propertySpecs: {
+    /**
+     * Additional parameters for the operation
+     */
+    parameterGroupingPostOptionalParameters: {
+      valueSpec: ParameterGroupingPostOptionalParameters
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ParameterGroupingPostMultiParamGroupsOptionalParams: CompositeTypeSpec = compositeSpec("ParameterGroupingPostMultiParamGroupsOptionalParams", {
-  /**
-   * Additional parameters for the operation
-   */
-  firstParameterGroup: {
-    valueSpec: FirstParameterGroup
-  },
-  /**
-   * Additional parameters for the operation
-   */
-  parameterGroupingPostMultiParamGroupsSecondParamGroup: {
-    valueSpec: ParameterGroupingPostMultiParamGroupsSecondParamGroup
+export const ParameterGroupingPostMultiParamGroupsOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostMultiParamGroupsOptionalParams",
+  propertySpecs: {
+    /**
+     * Additional parameters for the operation
+     */
+    firstParameterGroup: {
+      valueSpec: FirstParameterGroup
+    },
+    /**
+     * Additional parameters for the operation
+     */
+    parameterGroupingPostMultiParamGroupsSecondParamGroup: {
+      valueSpec: ParameterGroupingPostMultiParamGroupsSecondParamGroup
+    }
   }
 });
 
 /**
  * Optional Parameters.
  */
-export const ParameterGroupingPostSharedParameterGroupObjectOptionalParams: CompositeTypeSpec = compositeSpec("ParameterGroupingPostSharedParameterGroupObjectOptionalParams", {
-  /**
-   * Additional parameters for the operation
-   */
-  firstParameterGroup: {
-    valueSpec: FirstParameterGroup
+export const ParameterGroupingPostSharedParameterGroupObjectOptionalParams: CompositeTypeSpec = compositeSpec({
+  typeName: "ParameterGroupingPostSharedParameterGroupObjectOptionalParams",
+  propertySpecs: {
+    /**
+     * Additional parameters for the operation
+     */
+    firstParameterGroup: {
+      valueSpec: FirstParameterGroup
+    }
   }
 });
