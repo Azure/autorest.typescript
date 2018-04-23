@@ -113,6 +113,16 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
+        /// Add a property to this TSObject with the provided name. The provided action will be invoked to populate the array value of this property.
+        /// </summary>
+        /// <param name="propertyName">The name of the new property.</param>
+        /// <param name="propertyValueAction">The action to invoke to add the property's array value.</param>
+        public void Property(string propertyName, Action<TSArray> propertyValueAction)
+        {
+            Property(propertyName, (TSValue tsValue) => tsValue.Array(propertyValueAction));
+        }
+
+        /// <summary>
         /// Add a property to this TSObject with the provided name. The provided action will be invoked to populate the object value of this property.
         /// </summary>
         /// <param name="propertyName">The name of the new property.</param>

@@ -52,6 +52,15 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
+        /// Add a JSON array to this TSValue.
+        /// </summary>
+        /// <param name="arrayAction">The action that will be invoked to produce the elements of the JSON array.</param>
+        public virtual void Array(Action<TSArray> arrayAction)
+        {
+            builder.Array(arrayAction);
+        }
+
+        /// <summary>
         /// Add a JSON object to this TSValue.
         /// </summary>
         /// <param name="objectAction">The action that will be invoked to produce the properties of the JSON object.</param>

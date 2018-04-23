@@ -294,6 +294,23 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
+        /// Add a JSON array to this TSBuilder that uses the provided action to add the array's elements.
+        /// </summary>
+        /// <param name="action">The action that will be invoked to add the array's elements.</param>
+        public void Array(Action<TSArray> action)
+        {
+            Text("[");
+            Indent(() =>
+            {
+                using (TSArray tsArray = new TSArray(this))
+                {
+                    action.Invoke(tsArray);
+                }
+            });
+            Text("]");
+        }
+
+        /// <summary>
         /// Add a JSON object to this TSBuilder that uses the provided action to add the object's properties.
         /// </summary>
         /// <param name="action">The action that will be invoked to add the object's properties.</param>

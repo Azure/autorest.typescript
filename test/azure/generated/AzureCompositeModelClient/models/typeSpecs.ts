@@ -203,6 +203,14 @@ export const Siamese: CompositeTypeSpec = compositeSpec({
 
 export const Fish: CompositeTypeSpec = compositeSpec({
   typeName: "Fish",
+  polymorphism: {
+    inheritedBy: [
+      "Salmon",
+      "Shark"
+    ],
+    discriminatorPropertyName: "fishtype",
+    discriminatorPropertyValue: "Fish"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -226,6 +234,13 @@ export const Fish: CompositeTypeSpec = compositeSpec({
 
 export const Salmon: CompositeTypeSpec = compositeSpec({
   typeName: "Salmon",
+  polymorphism: {
+    inheritsFrom: Fish,
+    inheritedBy: [
+      "SmartSalmon"
+    ],
+    discriminatorPropertyValue: "salmon"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -255,6 +270,10 @@ export const Salmon: CompositeTypeSpec = compositeSpec({
 
 export const SmartSalmon: CompositeTypeSpec = compositeSpec({
   typeName: "SmartSalmon",
+  polymorphism: {
+    inheritsFrom: Salmon,
+    discriminatorPropertyValue: "smart_salmon"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -294,6 +313,15 @@ export const SmartSalmon: CompositeTypeSpec = compositeSpec({
 
 export const Shark: CompositeTypeSpec = compositeSpec({
   typeName: "Shark",
+  polymorphism: {
+    inheritsFrom: Fish,
+    inheritedBy: [
+      "Sawshark",
+      "Goblinshark",
+      "Cookiecuttershark"
+    ],
+    discriminatorPropertyValue: "shark"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -324,6 +352,10 @@ export const Shark: CompositeTypeSpec = compositeSpec({
 
 export const Sawshark: CompositeTypeSpec = compositeSpec({
   typeName: "Sawshark",
+  polymorphism: {
+    inheritsFrom: Shark,
+    discriminatorPropertyValue: "sawshark"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -357,6 +389,10 @@ export const Sawshark: CompositeTypeSpec = compositeSpec({
 
 export const Goblinshark: CompositeTypeSpec = compositeSpec({
   typeName: "Goblinshark",
+  polymorphism: {
+    inheritsFrom: Shark,
+    discriminatorPropertyValue: "goblin"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
@@ -396,6 +432,10 @@ export const Goblinshark: CompositeTypeSpec = compositeSpec({
 
 export const Cookiecuttershark: CompositeTypeSpec = compositeSpec({
   typeName: "Cookiecuttershark",
+  polymorphism: {
+    inheritsFrom: Shark,
+    discriminatorPropertyValue: "cookiecuttershark"
+  },
   propertySpecs: {
     species: {
       valueSpec: stringSpec
