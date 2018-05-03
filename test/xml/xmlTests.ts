@@ -5,7 +5,7 @@ const baseUri = 'http://localhost:3000';
 const testClient = new AutoRestSwaggerBATXMLService(baseUri);
 
 describe('typescript', function () {
-  describe('XML client', function() {
+  describe('XML client', function () {
     it('should correctly deserialize a simple XML document', async function () {
       const slideshow = await testClient.xml.getSimple();
       should.exist(slideshow);
@@ -297,7 +297,7 @@ describe('typescript', function () {
       acls[0].accessPolicy.expiry.valueOf().should.equal(new Date('2009-09-29T08:49:37.0000000Z').valueOf());
     });
 
-    it('should put storage ACLs for a container', async function () {
+    it.skip('should put storage ACLs for a container', async function () {
       const acls: models.SignedIdentifier[] = [
         {
           id: 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=',

@@ -1893,7 +1893,7 @@ export class Xml {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             let resultMapper = {
-              xmlElementName: 'SignedIdentifier',
+              xmlElementName: 'SignedIdentifiers',
               required: false,
               serializedName: 'parsedResponse',
               type: {
@@ -1973,7 +1973,7 @@ export class Xml {
     try {
       if (properties !== null && properties !== undefined) {
         let requestModelMapper = {
-          xmlElementName: 'SignedIdentifier',
+          xmlElementName: 'SignedIdentifiers',
           required: true,
           serializedName: 'properties',
           type: {
@@ -1989,7 +1989,7 @@ export class Xml {
           }
         };
         requestModel = client.serializer.serialize(requestModelMapper, properties, 'properties');
-        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'SignedIdentifier'), { rootName: 'SignedIdentifiers' });
+        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'SignedIdentifiers'), { rootName: 'SignedIdentifiers' });
       }
     } catch (error) {
       let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
