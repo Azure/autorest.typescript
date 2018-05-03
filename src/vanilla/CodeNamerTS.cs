@@ -149,7 +149,7 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.DateTimeRfc1123:
                         return $"new Date('{defaultValue}')";
                     case KnownPrimaryType.TimeSpan:
-                        return $"'{defaultValue}";
+                        return $"'{defaultValue}'";
                     case KnownPrimaryType.ByteArray:
                         return $"new Buffer('{defaultValue}')";
                 }
