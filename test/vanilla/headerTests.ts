@@ -6,7 +6,6 @@
 import should = require('should');
 import assert = require('assert');
 import * as msRest from 'ms-rest-js';
-import moment = require('moment');
 var _ = require('underscore');
 
 import { AutoRestSwaggerBATHeaderService, AutoRestSwaggerBATHeaderServiceModels } from './generated/Header/autoRestSwaggerBATHeaderService';
@@ -229,7 +228,7 @@ describe('typescript', function () {
         });
       });
       it('should send and receive duration type headers', function (done) {
-        var duration = moment.duration({ days: 123, hours: 22, minutes: 14, seconds: 12, milliseconds: 11 });
+        var duration = 'P123DT22H14M12.011S';
         testClient.header.paramDuration('valid', duration, function (error, result) {
           should.not.exist(error);
           testClient.header.responseDuration('valid', function (error, result, request, response) {

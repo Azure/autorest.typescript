@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AutoRestSwaggerBATdictionaryService } from "../autoRestSwaggerBATdictionaryService";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -4280,7 +4279,7 @@ export class Dictionary {
                 name: 'Dictionary',
                 value: {
                     required: false,
-                    serializedName: 'moment.DurationElementType',
+                    serializedName: 'stringElementType',
                     type: {
                       name: 'TimeSpan'
                     }
@@ -4307,7 +4306,7 @@ export class Dictionary {
   /**
    * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    *
-   * @param {{ [propertyName: string]: moment.Duration }} arrayBody
+   * @param {{ [propertyName: string]: string }} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -4317,7 +4316,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: moment.Duration }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4325,8 +4324,8 @@ export class Dictionary {
         throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
       }
       for(let valueElement in arrayBody) {
-        if(arrayBody[valueElement] && !moment.isDuration(arrayBody[valueElement])) {
-          throw new Error('arrayBody[valueElement] must be of type moment.duration.');
+        if(arrayBody[valueElement] && !msRest.isDuration(arrayBody[valueElement])) {
+          throw new Error('arrayBody[valueElement] must be of type string.');
         }
       }
     } catch (error) {
@@ -4363,7 +4362,7 @@ export class Dictionary {
             name: 'Dictionary',
             value: {
                 required: false,
-                serializedName: 'moment.DurationElementType',
+                serializedName: 'stringElementType',
                 type: {
                   name: 'TimeSpan'
                 }
@@ -8583,25 +8582,25 @@ export class Dictionary {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {{ [propertyName: string]: moment.Duration }} [result]   - The deserialized result object if an error did not occur.
+   *                      {{ [propertyName: string]: string }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getDurationValid(): Promise<{ [propertyName: string]: moment.Duration }>;
-  getDurationValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: moment.Duration }>;
-  getDurationValid(callback: msRest.ServiceCallback<{ [propertyName: string]: moment.Duration }>): void;
-  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: moment.Duration }>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: moment.Duration }>): any {
+  getDurationValid(): Promise<{ [propertyName: string]: string }>;
+  getDurationValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: string }>;
+  getDurationValid(callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: string }>): void;
+  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: string }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: moment.Duration }>;
+    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: string }>;
     if (!callback) {
       return this.getDurationValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: moment.Duration });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: string });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8610,7 +8609,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as { [propertyName: string]: moment.Duration };
+        let result = data.parsedBody as { [propertyName: string]: string };
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8619,7 +8618,7 @@ export class Dictionary {
   /**
    * Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    *
-   * @param {{ [propertyName: string]: moment.Duration }} arrayBody
+   * @param {{ [propertyName: string]: string }} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -8635,11 +8634,11 @@ export class Dictionary {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putDurationValid(arrayBody: { [propertyName: string]: moment.Duration }): Promise<void>;
-  putDurationValid(arrayBody: { [propertyName: string]: moment.Duration }, options: msRest.RequestOptionsBase): Promise<void>;
-  putDurationValid(arrayBody: { [propertyName: string]: moment.Duration }, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: { [propertyName: string]: moment.Duration }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: { [propertyName: string]: moment.Duration }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putDurationValid(arrayBody: { [propertyName: string]: string }): Promise<void>;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase): Promise<void>;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

@@ -7,13 +7,13 @@
  */
 @EmptyLine
 @Model.ConstructRuntimeImportForModelIndex()
-@if (Model.ContainsDurationPropertyInModels())
+@if (Model.ContainsDurationPropertyInModels() || Model.IsAnyModelInheritingFromRequestOptionsBase())
 {
-@:import * as moment from "moment";
+@:import * as msRest from "ms-rest-js";
 }
 @if (Model.IsAnyModelInheritingFromRequestOptionsBase())
 {
-@:import { RequestOptionsBase } from "ms-rest-js";
+@:type RequestOptionsBase = msRest.RequestOptionsBase;
 }
 @EmptyLine
 @foreach (var model in Model.OrderedModelTemplateModels) {

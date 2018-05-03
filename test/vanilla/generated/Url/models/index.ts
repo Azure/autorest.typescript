@@ -9,7 +9,8 @@
  */
 
 import { ServiceClientOptions } from "ms-rest-js";
-import { RequestOptionsBase } from "ms-rest-js";
+import * as msRest from "ms-rest-js";
+type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using AutoRest.Core.Model;
@@ -52,7 +52,7 @@ namespace AutoRest.TypeScript.Model
                         return "string";
 
                     case KnownPrimaryType.TimeSpan:
-                        return "moment.Duration";
+                        return "string";
 
                     case KnownPrimaryType.Object:
                         return "Object";

@@ -8,8 +8,8 @@
  * regenerated.
  */
 
-import * as moment from "moment";
-import { RequestOptionsBase } from "ms-rest-js";
+import * as msRest from "ms-rest-js";
+type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -358,9 +358,9 @@ export interface Datetimerfc1123Wrapper {
  */
 export interface DurationWrapper {
   /**
-   * @member {moment.Duration} [field]
+   * @member {string} [field]
    */
-  field?: moment.Duration;
+  field?: string;
 }
 
 /**
@@ -420,9 +420,9 @@ export interface ReadonlyObj {
  */
 export interface PrimitivePutDurationOptionalParams extends RequestOptionsBase {
   /**
-   * @member {moment.Duration} [field]
+   * @member {string} [field]
    */
-  field?: moment.Duration;
+  field?: string;
 }
 
 /**

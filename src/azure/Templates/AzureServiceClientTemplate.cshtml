@@ -16,11 +16,6 @@ import * as msRestAzure from "ms-rest-azure-js";
 @if (Model.MethodGroupModels.Any()) {
 @:import * as operations from "./operations";
 }
-@if (Model.ContainsDurationProperty())
-{
-@:import * as moment from "moment";
-@EmptyLine
-}
 @if (Model.MethodTemplateModels.Any())
 {
 @:const WebResource = msRest.WebResource;
@@ -97,7 +92,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
 {
     @:this.@(property.Name) = @(property.DefaultValue);
 }
-  
+
 @if(!Model.IsCustomBaseUri)
 {
     @:this.baseUri = baseUri as string;
@@ -117,8 +112,8 @@ else
   @EmptyLine
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
   @foreach (var property in optionalParameters)
-  { 
-    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) { 
+  {
+    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
     @:  this.@(property.Name) = options.@(property.Name);
     @:}
   }

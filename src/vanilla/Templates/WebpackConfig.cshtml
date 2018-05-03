@@ -17,9 +17,6 @@ module.exports = {
     libraryTarget: 'var',
     library: '@(Model.Name.ToCamelCase())'
   },
-  plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
-  ],
   module: {
     rules: [
       {

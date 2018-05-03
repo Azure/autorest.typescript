@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AutoRestSwaggerBATHeaderService } from "../autoRestSwaggerBATHeaderService";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -1944,7 +1943,7 @@ export class Header {
    * @param {string} scenario Send a post request with header values "scenario":
    * "valid"
    *
-   * @param {moment.Duration} value Send a post request with header values
+   * @param {string} value Send a post request with header values
    * "P123DT22H14M12.011S"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -1955,15 +1954,15 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDurationWithHttpOperationResponse(scenario: string, value: moment.Duration, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
       if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
         throw new Error('scenario cannot be null or undefined and it must be of type string.');
       }
-      if(!value || !moment.isDuration(value)) {
-        throw new Error('value cannot be null or undefined and it must be of type moment.duration.');
+      if(!value || !msRest.isDuration(value)) {
+        throw new Error('value cannot be null or undefined and it must be of type string.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -1984,7 +1983,7 @@ export class Header {
       httpRequest.headers['scenario'] = scenario;
     }
     if (value !== undefined && value !== null) {
-      httpRequest.headers['value'] = value.toISOString();
+      httpRequest.headers['value'] = value;
     }
     if(options && options.customHeaders) {
       for(let headerName in options.customHeaders) {
@@ -3608,7 +3607,7 @@ export class Header {
    * @param {string} scenario Send a post request with header values "scenario":
    * "valid"
    *
-   * @param {moment.Duration} value Send a post request with header values
+   * @param {string} value Send a post request with header values
    * "P123DT22H14M12.011S"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
@@ -3625,11 +3624,11 @@ export class Header {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  paramDuration(scenario: string, value: moment.Duration): Promise<void>;
-  paramDuration(scenario: string, value: moment.Duration, options: msRest.RequestOptionsBase): Promise<void>;
-  paramDuration(scenario: string, value: moment.Duration, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: moment.Duration, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramDuration(scenario: string, value: moment.Duration, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  paramDuration(scenario: string, value: string): Promise<void>;
+  paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase): Promise<void>;
+  paramDuration(scenario: string, value: string, callback: msRest.ServiceCallback<void>): void;
+  paramDuration(scenario: string, value: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  paramDuration(scenario: string, value: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

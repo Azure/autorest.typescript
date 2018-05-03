@@ -11,7 +11,6 @@
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
 import { AutoRestDurationTestService } from "../autoRestDurationTestService";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -120,7 +119,7 @@ export class Duration {
   /**
    * Put a positive duration value
    *
-   * @param {moment.Duration} durationBody
+   * @param {string} durationBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -130,12 +129,12 @@ export class Duration {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putPositiveDurationWithHttpOperationResponse(durationBody: moment.Duration, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
-      if(!durationBody || !moment.isDuration(durationBody)) {
-        throw new Error('durationBody cannot be null or undefined and it must be of type moment.duration.');
+      if(!durationBody || !msRest.isDuration(durationBody)) {
+        throw new Error('durationBody cannot be null or undefined and it must be of type string.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -411,25 +410,25 @@ export class Duration {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {moment.Duration} [result]   - The deserialized result object if an error did not occur.
+   *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNull(): Promise<moment.Duration>;
-  getNull(options: msRest.RequestOptionsBase): Promise<moment.Duration>;
-  getNull(callback: msRest.ServiceCallback<moment.Duration>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<moment.Duration>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<moment.Duration>): any {
+  getNull(): Promise<string>;
+  getNull(options: msRest.RequestOptionsBase): Promise<string>;
+  getNull(callback: msRest.ServiceCallback<string>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<moment.Duration>;
+    let cb = callback as msRest.ServiceCallback<string>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as string);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -438,7 +437,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as moment.Duration;
+        let result = data.parsedBody as string;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -447,7 +446,7 @@ export class Duration {
   /**
    * Put a positive duration value
    *
-   * @param {moment.Duration} durationBody
+   * @param {string} durationBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -463,11 +462,11 @@ export class Duration {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putPositiveDuration(durationBody: moment.Duration): Promise<void>;
-  putPositiveDuration(durationBody: moment.Duration, options: msRest.RequestOptionsBase): Promise<void>;
-  putPositiveDuration(durationBody: moment.Duration, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(durationBody: moment.Duration, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putPositiveDuration(durationBody: moment.Duration, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putPositiveDuration(durationBody: string): Promise<void>;
+  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase): Promise<void>;
+  putPositiveDuration(durationBody: string, callback: msRest.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putPositiveDuration(durationBody: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -501,25 +500,25 @@ export class Duration {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {moment.Duration} [result]   - The deserialized result object if an error did not occur.
+   *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getPositiveDuration(): Promise<moment.Duration>;
-  getPositiveDuration(options: msRest.RequestOptionsBase): Promise<moment.Duration>;
-  getPositiveDuration(callback: msRest.ServiceCallback<moment.Duration>): void;
-  getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<moment.Duration>): void;
-  getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<moment.Duration>): any {
+  getPositiveDuration(): Promise<string>;
+  getPositiveDuration(options: msRest.RequestOptionsBase): Promise<string>;
+  getPositiveDuration(callback: msRest.ServiceCallback<string>): void;
+  getPositiveDuration(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getPositiveDuration(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<moment.Duration>;
+    let cb = callback as msRest.ServiceCallback<string>;
     if (!callback) {
       return this.getPositiveDurationWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as string);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -528,7 +527,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as moment.Duration;
+        let result = data.parsedBody as string;
         return cb(err, result, data.request, data.response);
       });
     }
@@ -545,25 +544,25 @@ export class Duration {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {moment.Duration} [result]   - The deserialized result object if an error did not occur.
+   *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getInvalid(): Promise<moment.Duration>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<moment.Duration>;
-  getInvalid(callback: msRest.ServiceCallback<moment.Duration>): void;
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<moment.Duration>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<moment.Duration>): any {
+  getInvalid(): Promise<string>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<string>;
+  getInvalid(callback: msRest.ServiceCallback<string>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<moment.Duration>;
+    let cb = callback as msRest.ServiceCallback<string>;
     if (!callback) {
       return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as moment.Duration);
+        return Promise.resolve(operationRes.parsedBody as string);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -572,7 +571,7 @@ export class Duration {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as moment.Duration;
+        let result = data.parsedBody as string;
         return cb(err, result, data.request, data.response);
       });
     }

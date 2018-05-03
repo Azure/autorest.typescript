@@ -189,8 +189,8 @@ describe('typescript', function () {
       it('should get and put valid duration properties', async function () {
         const durationString = 'P123DT22H14M12.011S';
         const result = await testClient.primitive.getDuration();
-        assert.equal(result.field.toISOString(), durationString);
-        await testClient.primitive.putDuration({ field: moment.duration(durationString) });
+        assert.equal(result.field, durationString);
+        await testClient.primitive.putDuration({ field: durationString });
       });
 
       it('should get and put valid byte properties', function (done) {
