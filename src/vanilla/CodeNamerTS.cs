@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.Collections.Generic;
@@ -97,7 +97,7 @@ namespace AutoRest.TypeScript
         }
 
         /// <summary>
-        /// Returns true when the name comparison is a special case and should not 
+        /// Returns true when the name comparison is a special case and should not
         /// be used to determine name conflicts.
         ///  </summary>
         /// <param name="whoIsAsking">the identifier that is checking to see if there is a conflict</param>
@@ -149,7 +149,7 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.DateTimeRfc1123:
                         return $"new Date('{defaultValue}')";
                     case KnownPrimaryType.TimeSpan:
-                        return $"moment.duration('{defaultValue}')";
+                        return $"'{defaultValue}";
                     case KnownPrimaryType.ByteArray:
                         return $"new Buffer('{defaultValue}')";
                 }
