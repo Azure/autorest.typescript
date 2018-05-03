@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AzureCompositeModel } from "../azureCompositeModel";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -2048,8 +2047,8 @@ export class Primitive {
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
     try {
-      if(field && !moment.isDuration(field)) {
-        throw new Error('field must be of type moment.duration.');
+      if(field && !msRest.isDuration(field)) {
+        throw new Error('field must be of type string.');
       }
       if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
         throw new Error('this.client.acceptLanguage must be of type string.');

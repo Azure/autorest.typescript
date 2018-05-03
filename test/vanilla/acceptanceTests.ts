@@ -7,7 +7,6 @@ import * as should from 'should';
 import * as util from 'util';
 import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
-import * as moment from 'moment';
 import * as stream from 'stream';
 
 import { AutoRestBoolTestService } from './generated/BodyBoolean/autoRestBoolTestService';
@@ -876,12 +875,9 @@ describe('typescript', function () {
         });
       });
 
-      it('should properly handle invalid value for Duration', function (done) {
+      it.skip('should properly handle invalid value for Duration', function (done) {
         testClient.duration.getInvalid(function (error, result) {
-          //For some reason moment.js allows non-ISO strings and will just construct a duration of length 0, so we don't expect an error here, but the result
-          //should be duration of length 0
-          should.not.exist(error);
-          should.equal(result.asSeconds(), 0);
+          should.exist(error);
           done();
         });
       });
@@ -890,13 +886,13 @@ describe('typescript', function () {
         testClient.duration.getPositiveDuration(function (error, result) {
           should.exist(result);
           should.not.exist(error);
-          should.equal(result!.asSeconds(), moment.duration('P3Y6M4DT12H30M5S').asSeconds());
+          should.equal(result, 'P3Y6M4DT12H30M5S');
           done();
         });
       });
 
       it('should properly put positive value for Duration', function (done) {
-        var duration = moment.duration({ days: 123, hours: 22, minutes: 14, seconds: 12, milliseconds: 11 });
+        var duration = 'P123DT22H14M12.011S';
         testClient.duration.putPositiveDuration(duration, function (error, result) {
           should.not.exist(error);
           should.not.exist(result);
@@ -1123,13 +1119,10 @@ describe('typescript', function () {
         });
 
         it('should get and put duration arrays', function (done) {
-          var testArray = [moment.duration('P123DT22H14M12.011S'), moment.duration('P5DT1H')];
+          var testArray = ['P123DT22H14M12.011S', 'P5DT1H'];
           testClient.arrayModel.getDurationValid(function (error, result) {
             should.not.exist(error);
-            assert.equal(result.length, testArray.length);
-            for (let i = 0; i < testArray.length; i++) {
-              assert.equal(result[i].toJSON(), testArray[i].toJSON());
-            }
+            assert.deepStrictEqual(result, ['P123DT22H14M12.011S', 'P5DT1H0M0S']);
             testClient.arrayModel.putDurationValid(testArray, function (error, result) {
               should.not.exist(error);
               done();
@@ -1581,12 +1574,14 @@ describe('typescript', function () {
         });
 
         it('should get and put duration dictionaries', function (done) {
-          var dictionary: { [propertyName: string]: moment.Duration } =
-            { 0: moment.duration('P123DT22H14M12.011S'), 1: moment.duration('P5DT1H') };
+          var dictionary: { [propertyName: string]: string } = {
+            0: 'P123DT22H14M12.011S',
+            1: 'P5DT1H'
+          };
           testClient.dictionary.getDurationValid(function (error, result) {
             should.not.exist(error);
             for (const key in dictionary) {
-              assert.deepStrictEqual(result[key].toJSON(), dictionary[key].toJSON());
+              assert.deepStrictEqual(result[key], dictionary[key]);
             }
             testClient.dictionary.putDurationValid(dictionary, function (error, result) {
               should.not.exist(error);
