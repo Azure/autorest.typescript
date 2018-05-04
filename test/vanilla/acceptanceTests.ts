@@ -2134,7 +2134,10 @@ describe('typescript', function () {
     describe('Http infrastructure Client', function () {
       var testOptions: msRest.ServiceClientOptions = clientOptions;
       //testOptions.requestOptions = { jar: true };
-      testOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
+      testOptions.requestPolicyCreators = [
+        msRest.redirectPolicy(),
+        msRest.exponentialRetryPolicy(3, 0, 0, 0)
+      ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
       it('should work for all http success status codes with different verbs', function (done) {
