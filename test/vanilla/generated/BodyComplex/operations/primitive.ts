@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AutoRestComplexTestService } from "../autoRestComplexTestService";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -1751,8 +1750,8 @@ export class Primitive {
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
     try {
-      if(field && !moment.isDuration(field)) {
-        throw new Error('field must be of type moment.duration.');
+      if(field && !msRest.isDuration(field)) {
+        throw new Error('field must be of type string.');
       }
     } catch (error) {
       return Promise.reject(error);

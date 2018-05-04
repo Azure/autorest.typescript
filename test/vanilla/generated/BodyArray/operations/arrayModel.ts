@@ -12,7 +12,6 @@ import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
 import { AutoRestSwaggerBATArrayService } from "../autoRestSwaggerBATArrayService";
-import * as moment from "moment";
 
 const WebResource = msRest.WebResource;
 
@@ -4295,7 +4294,7 @@ export class ArrayModel {
                 name: 'Sequence',
                 element: {
                     required: false,
-                    serializedName: 'moment.DurationElementType',
+                    serializedName: 'stringElementType',
                     type: {
                       name: 'TimeSpan'
                     }
@@ -4322,7 +4321,7 @@ export class ArrayModel {
   /**
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    *
-   * @param {moment.Duration[]} arrayBody
+   * @param {string[]} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -4332,7 +4331,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDurationValidWithHttpOperationResponse(arrayBody: moment.Duration[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4340,8 +4339,8 @@ export class ArrayModel {
         throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
       }
       for (let i = 0; i < arrayBody.length; i++) {
-        if(arrayBody[i] && !moment.isDuration(arrayBody[i])) {
-          throw new Error('arrayBody[i] must be of type moment.duration.');
+        if(arrayBody[i] && !msRest.isDuration(arrayBody[i])) {
+          throw new Error('arrayBody[i] must be of type string.');
         }
       }
     } catch (error) {
@@ -4378,7 +4377,7 @@ export class ArrayModel {
             name: 'Sequence',
             element: {
                 required: false,
-                serializedName: 'moment.DurationElementType',
+                serializedName: 'stringElementType',
                 type: {
                   name: 'TimeSpan'
                 }
@@ -8596,25 +8595,25 @@ export class ArrayModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {moment.Duration[]} [result]   - The deserialized result object if an error did not occur.
+   *                      {string[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  getDurationValid(): Promise<moment.Duration[]>;
-  getDurationValid(options: msRest.RequestOptionsBase): Promise<moment.Duration[]>;
-  getDurationValid(callback: msRest.ServiceCallback<moment.Duration[]>): void;
-  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<moment.Duration[]>): void;
-  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<moment.Duration[]>): any {
+  getDurationValid(): Promise<string[]>;
+  getDurationValid(options: msRest.RequestOptionsBase): Promise<string[]>;
+  getDurationValid(callback: msRest.ServiceCallback<string[]>): void;
+  getDurationValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string[]>): void;
+  getDurationValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string[]>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<moment.Duration[]>;
+    let cb = callback as msRest.ServiceCallback<string[]>;
     if (!callback) {
       return this.getDurationValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as moment.Duration[]);
+        return Promise.resolve(operationRes.parsedBody as string[]);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -8623,7 +8622,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as moment.Duration[];
+        let result = data.parsedBody as string[];
         return cb(err, result, data.request, data.response);
       });
     }
@@ -8632,7 +8631,7 @@ export class ArrayModel {
   /**
    * Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S']
    *
-   * @param {moment.Duration[]} arrayBody
+   * @param {string[]} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -8648,11 +8647,11 @@ export class ArrayModel {
    *
    *                      {Response} [response] - The HTTP Response stream if an error did not occur.
    */
-  putDurationValid(arrayBody: moment.Duration[]): Promise<void>;
-  putDurationValid(arrayBody: moment.Duration[], options: msRest.RequestOptionsBase): Promise<void>;
-  putDurationValid(arrayBody: moment.Duration[], callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: moment.Duration[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putDurationValid(arrayBody: moment.Duration[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putDurationValid(arrayBody: string[]): Promise<void>;
+  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase): Promise<void>;
+  putDurationValid(arrayBody: string[], callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: string[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putDurationValid(arrayBody: string[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

@@ -92,7 +92,7 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.ByteArray:
                         return $"msRest.serializeObject({reference})";
                     case KnownPrimaryType.TimeSpan:
-                        return $"{reference}.toISOString()";
+                        return $"{reference}";
                     case KnownPrimaryType.Base64Url:
                         return $"client.serializer.serialize({{required: true, serializedName: '{reference}', type: {{name: 'Base64Url'}}}}, {reference}, '{reference}')";
                     case KnownPrimaryType.UnixTime:
@@ -240,11 +240,11 @@ namespace AutoRest.TypeScript
             {
                 if (isRequired)
                 {
-                    builder.AppendLine("if(!{0} || !moment.isDuration({0})) {{", valueReference);
+                    builder.AppendLine("if(!{0} || !msRest.isDuration({0})) {{", valueReference);
                     return ConstructValidationCheck(builder, requiredTypeErrorMessage, valueReference, primary.Name).ToString();
                 }
 
-                builder.AppendLine("if({0} && !moment.isDuration({0})) {{", valueReference);
+                builder.AppendLine("if({0} && !msRest.isDuration({0})) {{", valueReference);
                 return ConstructValidationCheck(builder, typeErrorMessage, valueReference, primary.Name).ToString();
             }
             else
@@ -282,7 +282,7 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
                 return "ReadableStream";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
-                return "moment.Duration"; //TODO: test this, add include for it
+                return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)
                 return "msRest.ServiceClientCredentials"; //TODO: test this, add include for it
             else {
