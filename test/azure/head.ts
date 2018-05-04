@@ -15,7 +15,7 @@ var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = {};
+var clientOptions: msRestAzure.AzureServiceClientOptions = {};
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
@@ -23,9 +23,9 @@ describe('typescript', function () {
   describe('Swagger Head BAT', function () {
 
     describe('Head Operations', function () {
-      var testOptions = clientOptions;
-      testOptions.requestOptions = { jar: true };
-      testOptions.filters = [new msRest.ExponentialRetryPolicyFilter(3, 0, 0, 0)];
+      var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
+      testOptions.requestOptions = { jar: true } as any;
+      testOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadTestService(credentials, baseUri, clientOptions);
 
@@ -55,9 +55,9 @@ describe('typescript', function () {
     });
 
     describe('Head Exception Operations', function () {
-      var testOptions: any = clientOptions;
-      testOptions.requestOptions = { jar: true };
-      testOptions.filters = [new msRest.ExponentialRetryPolicyFilter(3, 0, 0, 0)];
+      var testOptions: msRestAzure.AzureServiceClientOptions = clientOptions;
+      testOptions.requestOptions = { jar: true } as any;
+      testOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHeadExceptionTestService(credentials, baseUri, clientOptions);
 
