@@ -61,7 +61,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -146,7 +146,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -231,7 +231,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -316,7 +316,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -402,7 +402,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -487,7 +487,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -588,7 +588,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -689,7 +689,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -789,7 +789,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -904,7 +904,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1019,7 +1019,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1135,7 +1135,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1250,7 +1250,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1320,7 +1320,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1391,7 +1391,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1461,7 +1461,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1527,7 +1527,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1593,7 +1593,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1659,7 +1659,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1725,7 +1725,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1807,7 +1807,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1889,7 +1889,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1971,7 +1971,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2053,7 +2053,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2119,7 +2119,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2185,7 +2185,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2251,7 +2251,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2318,7 +2318,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2399,7 +2399,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2480,7 +2480,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2562,7 +2562,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2643,7 +2643,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2724,7 +2724,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -2805,7 +2805,7 @@ export class MultipleResponses {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {

@@ -61,7 +61,7 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
 
@@ -134,7 +134,7 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
 
@@ -207,7 +207,7 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
 
