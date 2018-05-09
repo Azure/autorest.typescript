@@ -86,7 +86,7 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
 
@@ -172,7 +172,7 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
 

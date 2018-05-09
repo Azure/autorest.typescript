@@ -14,7 +14,7 @@ var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: any = {};
+var clientOptions: msRestAzure.AzureServiceClientOptions = {};
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
@@ -22,8 +22,8 @@ describe('typescript', function () {
   describe('Swagger Pageable BAT', function () {
 
     describe('Pageable Operations', function () {
-      clientOptions.requestOptions = { jar: true };
-      clientOptions.filters = [new msRest.ExponentialRetryPolicyFilter(3, 0, 0, 0)];
+      clientOptions.requestOptions = { jar: true } as any;
+      clientOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
       clientOptions.noRetryPolicy = true;
       var testClient = new AutoRestPagingTestService(credentials, baseUri, clientOptions);
 

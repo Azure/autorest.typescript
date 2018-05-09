@@ -60,7 +60,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -151,7 +151,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -242,7 +242,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -333,7 +333,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -456,7 +456,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -526,7 +526,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -617,7 +617,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -740,7 +740,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -810,7 +810,7 @@ export class Datetimerfc1123 {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.pipeline(httpRequest);
+      operationRes = await client.sendRequest(httpRequest);
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
