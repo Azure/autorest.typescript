@@ -41,13 +41,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/null';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/null");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -141,13 +141,13 @@ export class String {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/null';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/null");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -232,13 +232,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/empty';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/empty");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -333,13 +333,13 @@ export class String {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/empty';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/empty");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -425,13 +425,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/mbcs';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/mbcs");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -528,13 +528,13 @@ export class String {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/mbcs';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/mbcs");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -621,13 +621,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/whitespace';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/whitespace");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -725,13 +725,13 @@ export class String {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/whitespace';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/whitespace");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -816,13 +816,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/notProvided';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/notProvided");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -907,13 +907,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/base64Encoding';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/base64Encoding");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -998,13 +998,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/base64UrlEncoding';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/base64UrlEncoding");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1099,13 +1099,13 @@ export class String {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/base64UrlEncoding';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/base64UrlEncoding");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1190,13 +1190,13 @@ export class String {
     let client = this.client;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'string/nullBase64UrlEncoding';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/string/nullBase64UrlEncoding");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

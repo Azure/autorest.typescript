@@ -86,20 +86,16 @@ class ComplexModelClient extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -203,20 +199,16 @@ class ComplexModelClient extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -335,20 +327,16 @@ class ComplexModelClient extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(subscriptionId));
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

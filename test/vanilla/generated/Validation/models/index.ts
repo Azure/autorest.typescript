@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -91,7 +90,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestValidationTestValidationOfBodyOptionalParams extends RequestOptionsBase {
+export interface AutoRestValidationTestValidationOfBodyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [body]
    */
@@ -105,7 +104,7 @@ export interface AutoRestValidationTestValidationOfBodyOptionalParams extends Re
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams extends RequestOptionsBase {
+export interface AutoRestValidationTestPostWithConstantInBodyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [body]
    */

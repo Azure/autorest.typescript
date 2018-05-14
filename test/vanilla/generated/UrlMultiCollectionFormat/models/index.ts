@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -34,7 +33,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringMultiNullOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringMultiNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] a null array of string using the
    * multi-array format
@@ -49,7 +48,7 @@ export interface QueriesArrayStringMultiNullOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringMultiEmptyOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringMultiEmptyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an empty array [] of string using the
    * multi-array format
@@ -64,7 +63,7 @@ export interface QueriesArrayStringMultiEmptyOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringMultiValidOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringMultiValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an array of string ['ArrayQuery1',
    * 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format

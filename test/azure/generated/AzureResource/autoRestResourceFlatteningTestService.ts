@@ -111,17 +111,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/array';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/array");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -229,17 +225,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/array';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/array");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -349,17 +341,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/dictionary';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/dictionary");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -467,17 +455,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/dictionary';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/dictionary");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -588,17 +572,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/resourcecollection';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/resourcecollection");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -692,17 +672,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azure/resource-flatten/resourcecollection';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/azure/resource-flatten/resourcecollection");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

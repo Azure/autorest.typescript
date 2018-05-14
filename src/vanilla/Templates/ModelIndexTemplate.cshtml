@@ -1,6 +1,4 @@
-﻿@using System.Linq
-@using AutoRest.TypeScript.vanilla.Templates
-@using AutoRest.TypeScript.Model
+﻿@using AutoRest.TypeScript.vanilla.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 /*
 @Header(" * ")
@@ -10,10 +8,6 @@
 @if (Model.ContainsDurationPropertyInModels() || Model.IsAnyModelInheritingFromRequestOptionsBase())
 {
 @:import * as msRest from "ms-rest-js";
-}
-@if (Model.IsAnyModelInheritingFromRequestOptionsBase())
-{
-@:type RequestOptionsBase = msRest.RequestOptionsBase;
 }
 @EmptyLine
 @foreach (var model in Model.OrderedModelTemplateModels) {

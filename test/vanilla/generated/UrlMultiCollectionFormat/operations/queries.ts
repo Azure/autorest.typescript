@@ -55,27 +55,22 @@ export class Queries {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'queries/array/multi/string/null';
-    let queryParamsArray: Array<any> = [];
-    if (arrayQuery !== null && arrayQuery !== undefined) {
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/queries/array/multi/string/null");
+    if (arrayQuery != undefined) {
       if (arrayQuery.length == 0) {
-        queryParamsArray.push('arrayQuery=' + encodeURIComponent(''));
+        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
       } else {
-        for (let item of arrayQuery) {
-          item = (item === null || item === undefined) ? '' : item;
-          queryParamsArray.push('arrayQuery=' + encodeURIComponent('' + item));
+        for (const item of arrayQuery) {
+          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
         }
       }
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -153,27 +148,22 @@ export class Queries {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'queries/array/multi/string/empty';
-    let queryParamsArray: Array<any> = [];
-    if (arrayQuery !== null && arrayQuery !== undefined) {
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/queries/array/multi/string/empty");
+    if (arrayQuery != undefined) {
       if (arrayQuery.length == 0) {
-        queryParamsArray.push('arrayQuery=' + encodeURIComponent(''));
+        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
       } else {
-        for (let item of arrayQuery) {
-          item = (item === null || item === undefined) ? '' : item;
-          queryParamsArray.push('arrayQuery=' + encodeURIComponent('' + item));
+        for (const item of arrayQuery) {
+          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
         }
       }
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -252,27 +242,22 @@ export class Queries {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'queries/array/multi/string/valid';
-    let queryParamsArray: Array<any> = [];
-    if (arrayQuery !== null && arrayQuery !== undefined) {
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/queries/array/multi/string/valid");
+    if (arrayQuery != undefined) {
       if (arrayQuery.length == 0) {
-        queryParamsArray.push('arrayQuery=' + encodeURIComponent(''));
+        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
       } else {
-        for (let item of arrayQuery) {
-          item = (item === null || item === undefined) ? '' : item;
-          queryParamsArray.push('arrayQuery=' + encodeURIComponent('' + item));
+        for (const item of arrayQuery) {
+          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
         }
       }
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

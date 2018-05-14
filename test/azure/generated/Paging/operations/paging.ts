@@ -49,17 +49,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/single';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/single");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -176,17 +172,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -314,17 +306,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/odata';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/odata");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -465,18 +453,14 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/withpath/{offset}';
-    requestUrl = requestUrl.replace('{offset}', encodeURIComponent(offset.toString()));
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/withpath/{offset}");
+    requestUrl.replaceAll("{offset}", encodeURIComponent(offset.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -578,17 +562,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/retryfirst';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/retryfirst");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -682,17 +662,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/retrysecond';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/retrysecond");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -784,17 +760,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/single/failure';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/single/failure");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -886,17 +858,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/failure';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/failure");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -988,17 +956,13 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/failureuri';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/failureuri");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1100,19 +1064,15 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragment/{tenant}';
-    requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/fragment/{tenant}");
+    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
+    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1231,19 +1191,15 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragmentwithgrouping/{tenant}';
-    requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/fragmentwithgrouping/{tenant}");
+    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
+    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1350,20 +1306,16 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragment/{tenant}/{nextLink}';
-    requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-    requestUrl = requestUrl.replace('{nextLink}', nextLink);
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/fragment/{tenant}/{nextLink}");
+    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
+    requestUrl.replaceAll("{nextLink}", nextLink);
+    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1486,20 +1438,16 @@ export class Paging {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextLink);
-    requestUrl = requestUrl.replace('{tenant}', encodeURIComponent(tenant));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api_version=' + encodeURIComponent(apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += (requestUrl.indexOf('?') !== -1 ? '&' : '?') + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextLink);
+    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
+    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1597,13 +1545,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1727,13 +1675,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1867,13 +1815,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2006,13 +1954,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2120,13 +2068,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2226,13 +2174,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2330,13 +2278,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2434,13 +2382,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -2538,13 +2486,13 @@ export class Paging {
     }
 
     // Construct URL
-    let requestUrl = '{nextLink}';
-    requestUrl = requestUrl.replace('{nextLink}', nextPageLink);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
+    requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

@@ -340,17 +340,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/put/201/creating/succeeded/200';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/put/201/creating/succeeded/200");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -476,17 +472,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/putasync/retry/succeeded';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/putasync/retry/succeeded");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -596,17 +588,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/delete/provisioning/202/accepted/200/succeeded';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/delete/provisioning/202/accepted/200/succeeded");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'DELETE';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -715,17 +703,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/delete/202/retry/200';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/delete/202/retry/200");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'DELETE';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -804,17 +788,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/deleteasync/retry/succeeded';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/deleteasync/retry/succeeded");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'DELETE';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -895,17 +875,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/post/202/retry/200';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/post/202/retry/200");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1001,17 +977,13 @@ export class LRORetrys {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'lro/retryerror/postasync/retry/succeeded';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/lro/retryerror/postasync/retry/succeeded");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

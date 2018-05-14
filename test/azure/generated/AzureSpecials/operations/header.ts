@@ -55,17 +55,13 @@ export class Header {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/customNamedRequestId';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/azurespecials/customNamedRequestId");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -166,17 +162,13 @@ export class Header {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/customNamedRequestIdParamGrouping';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/azurespecials/customNamedRequestIdParamGrouping");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -263,17 +255,13 @@ export class Header {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/customNamedRequestIdHead';
-    let queryParamsArray: Array<any> = [];
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/azurespecials/customNamedRequestIdHead");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'HEAD';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

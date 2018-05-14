@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -117,7 +116,7 @@ export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
  *
  * @extends RequestOptionsBase
  */
-export interface ParameterGroupingPostOptionalOptionalParams extends RequestOptionsBase {
+export interface ParameterGroupingPostOptionalOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {ParameterGroupingPostOptionalParameters}
    * [parameterGroupingPostOptionalParameters] Additional parameters for the
@@ -133,7 +132,7 @@ export interface ParameterGroupingPostOptionalOptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends RequestOptionsBase {
+export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {FirstParameterGroup} [firstParameterGroup] Additional parameters
    * for the operation
@@ -154,7 +153,7 @@ export interface ParameterGroupingPostMultiParamGroupsOptionalParams extends Req
  *
  * @extends RequestOptionsBase
  */
-export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams extends RequestOptionsBase {
+export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {FirstParameterGroup} [firstParameterGroup] Additional parameters
    * for the operation

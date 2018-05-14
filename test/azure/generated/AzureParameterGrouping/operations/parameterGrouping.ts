@@ -92,21 +92,17 @@ export class ParameterGrouping {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postRequired/{path}';
-    requestUrl = requestUrl.replace('{path}', encodeURIComponent(path));
-    let queryParamsArray: Array<any> = [];
-    if (query !== null && query !== undefined) {
-      queryParamsArray.push('query=' + encodeURIComponent(query.toString()));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/parameterGrouping/postRequired/{path}");
+    requestUrl.replaceAll("{path}", encodeURIComponent(path));
+    if (query != undefined) {
+      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -230,20 +226,16 @@ export class ParameterGrouping {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postOptional';
-    let queryParamsArray: Array<any> = [];
-    if (query !== null && query !== undefined) {
-      queryParamsArray.push('query=' + encodeURIComponent(query.toString()));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/parameterGrouping/postOptional");
+    if (query != undefined) {
+      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -363,23 +355,19 @@ export class ParameterGrouping {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/postMultipleParameterGroups';
-    let queryParamsArray: Array<any> = [];
-    if (queryOne !== null && queryOne !== undefined) {
-      queryParamsArray.push('query-one=' + encodeURIComponent(queryOne.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/parameterGrouping/postMultipleParameterGroups");
+    if (queryOne != undefined) {
+      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
     }
-    if (queryTwo !== null && queryTwo !== undefined) {
-      queryParamsArray.push('query-two=' + encodeURIComponent(queryTwo.toString()));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (queryTwo != undefined) {
+      requestUrl.setQueryParameter("query-two", encodeURIComponent(queryTwo.toString()));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -485,20 +473,16 @@ export class ParameterGrouping {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterGrouping/sharedParameterGroupObject';
-    let queryParamsArray: Array<any> = [];
-    if (queryOne !== null && queryOne !== undefined) {
-      queryParamsArray.push('query-one=' + encodeURIComponent(queryOne.toString()));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/parameterGrouping/sharedParameterGroupObject");
+    if (queryOne != undefined) {
+      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

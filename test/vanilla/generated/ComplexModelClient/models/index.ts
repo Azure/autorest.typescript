@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -113,7 +112,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface ComplexModelClientCreateOptionalParams extends RequestOptionsBase {
+export interface ComplexModelClientCreateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: Product[] }} [productDictionaryOfArray]
    * Dictionary of Array of product
@@ -128,7 +127,7 @@ export interface ComplexModelClientCreateOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface ComplexModelClientUpdateOptionalParams extends RequestOptionsBase {
+export interface ComplexModelClientUpdateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: Product }[]} [productArrayOfDictionary]
    * Array of dictionary of products

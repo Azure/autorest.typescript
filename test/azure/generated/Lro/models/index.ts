@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -145,7 +144,7 @@ export interface OperationResult {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut200SucceededOptionalParams extends RequestOptionsBase {
+export interface LROsPut200SucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -159,7 +158,7 @@ export interface LROsPut200SucceededOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut200SucceededNoStateOptionalParams extends RequestOptionsBase {
+export interface LROsPut200SucceededNoStateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -173,7 +172,7 @@ export interface LROsPut200SucceededNoStateOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsPut202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -187,7 +186,7 @@ export interface LROsPut202Retry200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LROsPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -201,7 +200,7 @@ export interface LROsPut201CreatingSucceeded200OptionalParams extends RequestOpt
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut200UpdatingSucceeded204OptionalParams extends RequestOptionsBase {
+export interface LROsPut200UpdatingSucceeded204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -215,7 +214,7 @@ export interface LROsPut200UpdatingSucceeded204OptionalParams extends RequestOpt
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut201CreatingFailed200OptionalParams extends RequestOptionsBase {
+export interface LROsPut201CreatingFailed200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -229,7 +228,7 @@ export interface LROsPut201CreatingFailed200OptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPut200Acceptedcanceled200OptionalParams extends RequestOptionsBase {
+export interface LROsPut200Acceptedcanceled200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -243,7 +242,7 @@ export interface LROsPut200Acceptedcanceled200OptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutNoHeaderInRetryOptionalParams extends RequestOptionsBase {
+export interface LROsPutNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -257,7 +256,7 @@ export interface LROsPutNoHeaderInRetryOptionalParams extends RequestOptionsBase
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -271,7 +270,7 @@ export interface LROsPutAsyncRetrySucceededOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncNoRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -285,7 +284,7 @@ export interface LROsPutAsyncNoRetrySucceededOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncRetryFailedOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -299,7 +298,7 @@ export interface LROsPutAsyncRetryFailedOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncNoRetrycanceledOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncNoRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -313,7 +312,7 @@ export interface LROsPutAsyncNoRetrycanceledOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -327,7 +326,7 @@ export interface LROsPutAsyncNoHeaderInRetryOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutNonResourceOptionalParams extends RequestOptionsBase {
+export interface LROsPutNonResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Sku} [sku] sku to put
    */
@@ -341,7 +340,7 @@ export interface LROsPutNonResourceOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncNonResourceOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncNonResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Sku} [sku] Sku to put
    */
@@ -355,7 +354,7 @@ export interface LROsPutAsyncNonResourceOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutSubResourceOptionalParams extends RequestOptionsBase {
+export interface LROsPutSubResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [provisioningState]
    */
@@ -369,7 +368,7 @@ export interface LROsPutSubResourceOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPutAsyncSubResourceOptionalParams extends RequestOptionsBase {
+export interface LROsPutAsyncSubResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [provisioningState]
    */
@@ -383,7 +382,7 @@ export interface LROsPutAsyncSubResourceOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -397,7 +396,7 @@ export interface LROsPost202Retry200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPost202NoRetry204OptionalParams extends RequestOptionsBase {
+export interface LROsPost202NoRetry204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -411,7 +410,7 @@ export interface LROsPost202NoRetry204OptionalParams extends RequestOptionsBase 
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPostAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -425,7 +424,7 @@ export interface LROsPostAsyncRetrySucceededOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPostAsyncNoRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsPostAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -439,7 +438,7 @@ export interface LROsPostAsyncNoRetrySucceededOptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPostAsyncRetryFailedOptionalParams extends RequestOptionsBase {
+export interface LROsPostAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -453,7 +452,7 @@ export interface LROsPostAsyncRetryFailedOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LROsPostAsyncRetrycanceledOptionalParams extends RequestOptionsBase {
+export interface LROsPostAsyncRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -467,7 +466,7 @@ export interface LROsPostAsyncRetrycanceledOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut200SucceededOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut200SucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -481,7 +480,7 @@ export interface LROsBeginPut200SucceededOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut200SucceededNoStateOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut200SucceededNoStateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -495,7 +494,7 @@ export interface LROsBeginPut200SucceededNoStateOptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -509,7 +508,7 @@ export interface LROsBeginPut202Retry200OptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -523,7 +522,7 @@ export interface LROsBeginPut201CreatingSucceeded200OptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut200UpdatingSucceeded204OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut200UpdatingSucceeded204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -537,7 +536,7 @@ export interface LROsBeginPut200UpdatingSucceeded204OptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut201CreatingFailed200OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut201CreatingFailed200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -551,7 +550,7 @@ export interface LROsBeginPut201CreatingFailed200OptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPut200Acceptedcanceled200OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPut200Acceptedcanceled200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -565,7 +564,7 @@ export interface LROsBeginPut200Acceptedcanceled200OptionalParams extends Reques
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutNoHeaderInRetryOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -579,7 +578,7 @@ export interface LROsBeginPutNoHeaderInRetryOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -593,7 +592,7 @@ export interface LROsBeginPutAsyncRetrySucceededOptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncNoRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -607,7 +606,7 @@ export interface LROsBeginPutAsyncNoRetrySucceededOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncRetryFailedOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -621,7 +620,7 @@ export interface LROsBeginPutAsyncRetryFailedOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncNoRetrycanceledOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncNoRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -635,7 +634,7 @@ export interface LROsBeginPutAsyncNoRetrycanceledOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncNoHeaderInRetryOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncNoHeaderInRetryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -649,7 +648,7 @@ export interface LROsBeginPutAsyncNoHeaderInRetryOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutNonResourceOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutNonResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Sku} [sku] sku to put
    */
@@ -663,7 +662,7 @@ export interface LROsBeginPutNonResourceOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncNonResourceOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncNonResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Sku} [sku] Sku to put
    */
@@ -677,7 +676,7 @@ export interface LROsBeginPutAsyncNonResourceOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutSubResourceOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutSubResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [provisioningState]
    */
@@ -691,7 +690,7 @@ export interface LROsBeginPutSubResourceOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPutAsyncSubResourceOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPutAsyncSubResourceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [provisioningState]
    */
@@ -705,7 +704,7 @@ export interface LROsBeginPutAsyncSubResourceOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -719,7 +718,7 @@ export interface LROsBeginPost202Retry200OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPost202NoRetry204OptionalParams extends RequestOptionsBase {
+export interface LROsBeginPost202NoRetry204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -733,7 +732,7 @@ export interface LROsBeginPost202NoRetry204OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -747,7 +746,7 @@ export interface LROsBeginPostAsyncRetrySucceededOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -761,7 +760,7 @@ export interface LROsBeginPostAsyncNoRetrySucceededOptionalParams extends Reques
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPostAsyncRetryFailedOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPostAsyncRetryFailedOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -775,7 +774,7 @@ export interface LROsBeginPostAsyncRetryFailedOptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends RequestOptionsBase {
+export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -789,7 +788,7 @@ export interface LROsBeginPostAsyncRetrycanceledOptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -803,7 +802,7 @@ export interface LRORetrysPut201CreatingSucceeded200OptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -817,7 +816,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams extends R
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LRORetrysPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -831,7 +830,7 @@ export interface LRORetrysPost202Retry200OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -845,7 +844,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams extends 
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -859,7 +858,7 @@ export interface LRORetrysBeginPut201CreatingSucceeded200OptionalParams extends 
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -873,7 +872,7 @@ export interface LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams exte
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysBeginPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LRORetrysBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -887,7 +886,7 @@ export interface LRORetrysBeginPost202Retry200OptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -901,7 +900,7 @@ export interface LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams ext
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutNonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPutNonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -915,7 +914,7 @@ export interface LROSADsPutNonRetry400OptionalParams extends RequestOptionsBase 
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutNonRetry201Creating400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPutNonRetry201Creating400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -929,7 +928,7 @@ export interface LROSADsPutNonRetry201Creating400OptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -943,7 +942,7 @@ export interface LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams exten
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -957,7 +956,7 @@ export interface LROSADsPutAsyncRelativeRetry400OptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPostNonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPostNonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -971,7 +970,7 @@ export interface LROSADsPostNonRetry400OptionalParams extends RequestOptionsBase
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPost202NonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPost202NonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -985,7 +984,7 @@ export interface LROSADsPost202NonRetry400OptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -999,7 +998,7 @@ export interface LROSADsPostAsyncRelativeRetry400OptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1013,7 +1012,7 @@ export interface LROSADsPutError201NoProvisioningStatePayloadOptionalParams exte
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1027,7 +1026,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusOptionalParams extends Requ
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1041,7 +1040,7 @@ export interface LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams exten
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPost202NoLocationOptionalParams extends RequestOptionsBase {
+export interface LROSADsPost202NoLocationOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1055,7 +1054,7 @@ export interface LROSADsPost202NoLocationOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1069,7 +1068,7 @@ export interface LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams extends Re
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPut200InvalidJsonOptionalParams extends RequestOptionsBase {
+export interface LROSADsPut200InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1083,7 +1082,7 @@ export interface LROSADsPut200InvalidJsonOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1097,7 +1096,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams extends
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends RequestOptionsBase {
+export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1111,7 +1110,7 @@ export interface LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams ex
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1125,7 +1124,7 @@ export interface LROSADsPost202RetryInvalidHeaderOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1139,7 +1138,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams extend
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends RequestOptionsBase {
+export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1153,7 +1152,7 @@ export interface LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams e
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutNonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1167,7 +1166,7 @@ export interface LROSADsBeginPutNonRetry400OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1181,7 +1180,7 @@ export interface LROSADsBeginPutNonRetry201Creating400OptionalParams extends Req
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1195,7 +1194,7 @@ export interface LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams 
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1209,7 +1208,7 @@ export interface LROSADsBeginPutAsyncRelativeRetry400OptionalParams extends Requ
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPostNonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPostNonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1223,7 +1222,7 @@ export interface LROSADsBeginPostNonRetry400OptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPost202NonRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPost202NonRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1237,7 +1236,7 @@ export interface LROSADsBeginPost202NonRetry400OptionalParams extends RequestOpt
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1251,7 +1250,7 @@ export interface LROSADsBeginPostAsyncRelativeRetry400OptionalParams extends Req
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1265,7 +1264,7 @@ export interface LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1279,7 +1278,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams extends
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1293,7 +1292,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams 
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPost202NoLocationOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPost202NoLocationOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1307,7 +1306,7 @@ export interface LROSADsBeginPost202NoLocationOptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1321,7 +1320,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams exten
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPut200InvalidJsonOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPut200InvalidJsonOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1335,7 +1334,7 @@ export interface LROSADsBeginPut200InvalidJsonOptionalParams extends RequestOpti
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1349,7 +1348,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams ex
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1363,7 +1362,7 @@ export interface LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalPara
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1377,7 +1376,7 @@ export interface LROSADsBeginPost202RetryInvalidHeaderOptionalParams extends Req
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1391,7 +1390,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams e
  *
  * @extends RequestOptionsBase
  */
-export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends RequestOptionsBase {
+export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1405,7 +1404,7 @@ export interface LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalPar
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1419,7 +1418,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams extends Re
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1433,7 +1432,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams extend
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1447,7 +1446,7 @@ export interface LROsCustomHeaderPost202Retry200OptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1461,7 +1460,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams extends R
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1475,7 +1474,7 @@ export interface LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams exten
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1489,7 +1488,7 @@ export interface LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams e
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */
@@ -1503,7 +1502,7 @@ export interface LROsCustomHeaderBeginPost202Retry200OptionalParams extends Requ
  *
  * @extends RequestOptionsBase
  */
-export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams extends RequestOptionsBase {
+export interface LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [product] Product to put
    */

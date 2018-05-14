@@ -42,14 +42,14 @@ export class Paths {
     let boolPath = true;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/bool/true/{boolPath}';
-    requestUrl = requestUrl.replace('{boolPath}', encodeURIComponent(boolPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/bool/true/{boolPath}");
+    requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -114,14 +114,14 @@ export class Paths {
     let boolPath = false;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/bool/false/{boolPath}';
-    requestUrl = requestUrl.replace('{boolPath}', encodeURIComponent(boolPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/bool/false/{boolPath}");
+    requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -186,14 +186,14 @@ export class Paths {
     let intPath = 1000000;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/int/1000000/{intPath}';
-    requestUrl = requestUrl.replace('{intPath}', encodeURIComponent(intPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/int/1000000/{intPath}");
+    requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -258,14 +258,14 @@ export class Paths {
     let intPath = -1000000;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/int/-1000000/{intPath}';
-    requestUrl = requestUrl.replace('{intPath}', encodeURIComponent(intPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/int/-1000000/{intPath}");
+    requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -330,14 +330,14 @@ export class Paths {
     let longPath = 10000000000;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/long/10000000000/{longPath}';
-    requestUrl = requestUrl.replace('{longPath}', encodeURIComponent(longPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/long/10000000000/{longPath}");
+    requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -402,14 +402,14 @@ export class Paths {
     let longPath = -10000000000;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/long/-10000000000/{longPath}';
-    requestUrl = requestUrl.replace('{longPath}', encodeURIComponent(longPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/long/-10000000000/{longPath}");
+    requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -474,14 +474,14 @@ export class Paths {
     let floatPath = 103400000000000000000;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/float/1.034E+20/{floatPath}';
-    requestUrl = requestUrl.replace('{floatPath}', encodeURIComponent(floatPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/float/1.034E+20/{floatPath}");
+    requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -546,14 +546,14 @@ export class Paths {
     let floatPath = -1.034e-20;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/float/-1.034E-20/{floatPath}';
-    requestUrl = requestUrl.replace('{floatPath}', encodeURIComponent(floatPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/float/-1.034E-20/{floatPath}");
+    requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -618,14 +618,14 @@ export class Paths {
     let doublePath = 9999999.999;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/double/9999999.999/{doublePath}';
-    requestUrl = requestUrl.replace('{doublePath}', encodeURIComponent(doublePath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/double/9999999.999/{doublePath}");
+    requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -690,14 +690,14 @@ export class Paths {
     let doublePath = -9999999.999;
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/double/-9999999.999/{doublePath}';
-    requestUrl = requestUrl.replace('{doublePath}', encodeURIComponent(doublePath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/double/-9999999.999/{doublePath}");
+    requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -762,14 +762,14 @@ export class Paths {
     let stringPath = '啊齄丂狛狜隣郎隣兀﨩';
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/unicode/{stringPath}';
-    requestUrl = requestUrl.replace('{stringPath}', encodeURIComponent(stringPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/unicode/{stringPath}");
+    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -834,14 +834,14 @@ export class Paths {
     let stringPath = 'begin!*\'();:@ &=+$,/?#[]end';
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}';
-    requestUrl = requestUrl.replace('{stringPath}', encodeURIComponent(stringPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}");
+    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -906,14 +906,14 @@ export class Paths {
     let stringPath = '';
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/empty/{stringPath}';
-    requestUrl = requestUrl.replace('{stringPath}', encodeURIComponent(stringPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/empty/{stringPath}");
+    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -987,14 +987,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/null/{stringPath}';
-    requestUrl = requestUrl.replace('{stringPath}', encodeURIComponent(stringPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/null/{stringPath}");
+    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1074,14 +1074,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/enum/green%20color/{enumPath}';
-    requestUrl = requestUrl.replace('{enumPath}', encodeURIComponent(enumPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/enum/green%20color/{enumPath}");
+    requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1161,14 +1161,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/null/{enumPath}';
-    requestUrl = requestUrl.replace('{enumPath}', encodeURIComponent(enumPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/null/{enumPath}");
+    requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1243,14 +1243,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/byte/multibyte/{bytePath}';
-    requestUrl = requestUrl.replace('{bytePath}', encodeURIComponent(msRest.serializeObject(bytePath)));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/byte/multibyte/{bytePath}");
+    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1315,14 +1315,14 @@ export class Paths {
     let bytePath = new Buffer('');
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/byte/empty/{bytePath}';
-    requestUrl = requestUrl.replace('{bytePath}', encodeURIComponent(msRest.serializeObject(bytePath)));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/byte/empty/{bytePath}");
+    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1396,14 +1396,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/byte/null/{bytePath}';
-    requestUrl = requestUrl.replace('{bytePath}', encodeURIComponent(msRest.serializeObject(bytePath)));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/byte/null/{bytePath}");
+    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1468,14 +1468,14 @@ export class Paths {
     let datePath = new Date('2012-01-01');
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/date/2012-01-01/{datePath}';
-    requestUrl = requestUrl.replace('{datePath}', encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/date/2012-01-01/{datePath}");
+    requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1551,14 +1551,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/date/null/{datePath}';
-    requestUrl = requestUrl.replace('{datePath}', encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/date/null/{datePath}");
+    requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1623,14 +1623,14 @@ export class Paths {
     let dateTimePath = new Date('2012-01-01T01:01:01Z');
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}';
-    requestUrl = requestUrl.replace('{dateTimePath}', encodeURIComponent(msRest.serializeObject(dateTimePath)));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}");
+    requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1706,14 +1706,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/datetime/null/{dateTimePath}';
-    requestUrl = requestUrl.replace('{dateTimePath}', encodeURIComponent(msRest.serializeObject(dateTimePath)));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/datetime/null/{dateTimePath}");
+    requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1787,14 +1787,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/string/bG9yZW0/{base64UrlPath}';
-    requestUrl = requestUrl.replace('{base64UrlPath}', encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'base64UrlPath', type: {name: 'Base64Url'}}, base64UrlPath, 'base64UrlPath')));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/string/bG9yZW0/{base64UrlPath}");
+    requestUrl.replaceAll("{base64UrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'base64UrlPath', type: {name: 'Base64Url'}}, base64UrlPath, 'base64UrlPath')));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1875,14 +1875,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}';
-    requestUrl = requestUrl.replace('{arrayPath}', encodeURIComponent(arrayPath.toString()));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}");
+    requestUrl.replaceAll("{arrayPath}", encodeURIComponent(arrayPath.toString()));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1957,14 +1957,14 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'paths/int/1460505600/{unixTimeUrlPath}';
-    requestUrl = requestUrl.replace('{unixTimeUrlPath}', encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'unixTimeUrlPath', type: {name: 'UnixTime'}}, unixTimeUrlPath, 'unixTimeUrlPath')));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/paths/int/1460505600/{unixTimeUrlPath}");
+    requestUrl.replaceAll("{unixTimeUrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'unixTimeUrlPath', type: {name: 'UnixTime'}}, unixTimeUrlPath, 'unixTimeUrlPath')));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

@@ -63,19 +63,15 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -261,21 +257,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'DELETE';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -373,21 +365,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -513,21 +501,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PATCH';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -651,21 +635,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -764,19 +744,15 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -882,20 +858,16 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1019,21 +991,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1169,21 +1137,17 @@ export class StorageAccounts {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{accountName}', encodeURIComponent(accountName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('api-version=' + encodeURIComponent(this.client.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

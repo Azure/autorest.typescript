@@ -53,15 +53,15 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'customuri';
-    requestUrl = requestUrl.replace('{accountName}', accountName);
-    requestUrl = requestUrl.replace('{host}', this.client.host);
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/customuri");
+    requestUrl.replaceAll("{accountName}", accountName);
+    requestUrl.replaceAll("{host}", this.client.host);
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

@@ -10,7 +10,6 @@
 
 import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -48,7 +47,7 @@ export interface AutoRestParameterizedCustomHostTestClientOptions extends Servic
  *
  * @extends RequestOptionsBase
  */
-export interface PathsGetEmptyOptionalParams extends RequestOptionsBase {
+export interface PathsGetEmptyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [keyVersion] The key version. Default value 'v1'. Default
    * value: 'v1' .

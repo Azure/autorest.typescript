@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -390,7 +389,7 @@ export interface SubResource extends BaseResource {
  *
  * @extends RequestOptionsBase
  */
-export interface StorageAccountsRegenerateKeyOptionalParams extends RequestOptionsBase {
+export interface StorageAccountsRegenerateKeyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {KeyName} [keyName] Possible values include: 'key1', 'key2'
    */

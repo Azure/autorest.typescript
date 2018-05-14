@@ -57,19 +57,23 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   // Construct URL
   @if (Model.IsAbsoluteUrl)
   {
-  @:let requestUrl = '@(((string)Model.Url).EscapeSingleQuotes())';
+  <text>
+  const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("@(Model.Url)");
+  </text>
   }
   else
   {
-  @:let baseUrl = @(Model.ClientReference).baseUri;
-  @:let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + '@((Model.Url.StartsWith("/") ? Model.Url.TrimStart('/') : (string)Model.Url).EscapeSingleQuotes())';
+  <text>
+  const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(@(Model.ClientReference).baseUri);
+  requestUrl.setPath("@(Model.Url)");
+  </text>
   }
-  @(Model.BuildUrl("requestUrl"))
+@(Model.BuildUrl("requestUrl"))
   @EmptyLine
   // Create HTTP transport objects
   let httpRequest = new WebResource();
   httpRequest.method = '@(Model.HttpMethod.ToString().ToUpper())';
-  httpRequest.url = requestUrl;
+  httpRequest.url = requestUrl.toString();
   httpRequest.headers = {};
 
   // Set Headers

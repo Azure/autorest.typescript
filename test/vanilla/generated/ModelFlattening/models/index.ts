@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -228,7 +227,7 @@ export interface FlattenParameterGroup {
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Resource[]} [resourceArray] External Resource as an Array to put
    */
@@ -242,7 +241,7 @@ export interface AutoRestResourceFlatteningTestServicePutArrayOptionalParams ext
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {WrappedProduct[]} [resourceArray] External Resource as an Array
    * to put
@@ -257,7 +256,7 @@ export interface AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalPar
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: FlattenedProduct }}
    * [resourceDictionary] External Resource as a Dictionary to put
@@ -272,7 +271,7 @@ export interface AutoRestResourceFlatteningTestServicePutDictionaryOptionalParam
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {ResourceCollection} [resourceComplexObject] External Resource as
    * a ResourceCollection to put
@@ -287,7 +286,7 @@ export interface AutoRestResourceFlatteningTestServicePutResourceCollectionOptio
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {SimpleProduct} [simpleBodyProduct] Simple body product to put
    */
@@ -301,7 +300,7 @@ export interface AutoRestResourceFlatteningTestServicePutSimpleProductOptionalPa
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams extends RequestOptionsBase {
+export interface AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [description] Description of product.
    */

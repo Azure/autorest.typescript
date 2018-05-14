@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -65,7 +64,7 @@ export interface HeaderCustomNamedRequestIdParamGroupingParameters {
  *
  * @extends RequestOptionsBase
  */
-export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends RequestOptionsBase {
+export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [apiVersion] This should appear as a method parameter,
    * use value null, this should result in no serialized parameter
@@ -80,7 +79,7 @@ export interface ApiVersionLocalGetMethodLocalNullOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends RequestOptionsBase {
+export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [q1] Unencoded query parameter with value null
    */
@@ -94,7 +93,7 @@ export interface SkipUrlEncodingGetMethodQueryNullOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface OdataGetWithFilterOptionalParams extends RequestOptionsBase {
+export interface OdataGetWithFilterOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [filter] The filter parameter with value '$filter=id gt 5
    * and name eq 'foo''.

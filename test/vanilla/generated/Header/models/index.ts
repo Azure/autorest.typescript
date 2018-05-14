@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -34,7 +33,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface HeaderParamStringOptionalParams extends RequestOptionsBase {
+export interface HeaderParamStringOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [value] Send a post request with header values "The quick
    * brown fox jumps over the lazy dog" or null or ""
@@ -49,7 +48,7 @@ export interface HeaderParamStringOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HeaderParamDatetimeRfc1123OptionalParams extends RequestOptionsBase {
+export interface HeaderParamDatetimeRfc1123OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Date} [value] Send a post request with header values "Wed, 01 Jan
    * 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
@@ -64,7 +63,7 @@ export interface HeaderParamDatetimeRfc1123OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface HeaderParamEnumOptionalParams extends RequestOptionsBase {
+export interface HeaderParamEnumOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {GreyscaleColors} [value] Send a post request with header values
    * 'GREY'. Possible values include: 'White', 'black', 'GREY'
