@@ -51,7 +51,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -63,7 +62,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -99,7 +98,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -111,7 +109,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -147,7 +145,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -159,7 +156,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -196,7 +193,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -208,7 +204,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -442,7 +438,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -454,7 +449,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -491,7 +486,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -503,7 +497,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -540,7 +534,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -552,7 +545,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -724,7 +717,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -736,7 +728,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -773,7 +765,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -785,7 +776,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -822,7 +813,6 @@ export class LROSADs {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -834,7 +824,7 @@ export class LROSADs {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -1114,13 +1104,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1150,7 +1139,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1165,7 +1154,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -1245,13 +1234,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1281,7 +1269,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1296,7 +1284,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -1376,13 +1364,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1412,7 +1399,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1427,7 +1414,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -1508,13 +1495,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1544,7 +1530,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1606,13 +1592,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1689,13 +1674,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1774,13 +1758,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1874,13 +1857,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1974,13 +1956,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2076,13 +2057,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2177,13 +2157,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2213,7 +2192,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2228,7 +2207,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -2309,13 +2288,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2345,7 +2323,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2426,13 +2404,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2462,7 +2439,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2525,13 +2502,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2610,13 +2586,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2711,13 +2686,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2813,13 +2787,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2914,13 +2887,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2950,7 +2922,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -3031,13 +3003,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3067,7 +3038,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -3148,13 +3119,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3184,7 +3154,7 @@ export class LROSADs {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -3247,13 +3217,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3331,13 +3300,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3416,13 +3384,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3517,13 +3484,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3619,13 +3585,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3721,13 +3686,12 @@ export class LROSADs {
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendRequest(httpRequest);
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -3761,7 +3725,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3770,7 +3734,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry400(): Promise<Models.Product>;
   putNonRetry400(options: Models.LROSADsPutNonRetry400OptionalParams): Promise<Models.Product>;
@@ -3794,7 +3758,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3808,7 +3772,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3817,7 +3781,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry201Creating400(): Promise<Models.Product>;
   putNonRetry201Creating400(options: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<Models.Product>;
@@ -3841,7 +3805,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3855,7 +3819,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3864,7 +3828,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry201Creating400InvalidJson(): Promise<Models.Product>;
   putNonRetry201Creating400InvalidJson(options: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.Product>;
@@ -3888,7 +3852,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3903,7 +3867,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3912,7 +3876,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetry400(): Promise<Models.Product>;
   putAsyncRelativeRetry400(options: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<Models.Product>;
@@ -3936,7 +3900,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3948,7 +3912,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3956,7 +3920,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteNonRetry400(): Promise<void>;
   deleteNonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -3980,7 +3944,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3992,7 +3956,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4000,7 +3964,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202NonRetry400(): Promise<void>;
   delete202NonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4024,7 +3988,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4038,7 +4002,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4046,7 +4010,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetry400(): Promise<void>;
   deleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4070,7 +4034,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4082,7 +4046,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4090,7 +4054,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postNonRetry400(): Promise<void>;
   postNonRetry400(options: Models.LROSADsPostNonRetry400OptionalParams): Promise<void>;
@@ -4114,7 +4078,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4127,7 +4091,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4135,7 +4099,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202NonRetry400(): Promise<void>;
   post202NonRetry400(options: Models.LROSADsPost202NonRetry400OptionalParams): Promise<void>;
@@ -4159,7 +4123,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4174,7 +4138,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4182,7 +4146,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetry400(): Promise<void>;
   postAsyncRelativeRetry400(options: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<void>;
@@ -4206,7 +4170,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4220,7 +4184,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4229,7 +4193,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putError201NoProvisioningStatePayload(): Promise<Models.Product>;
   putError201NoProvisioningStatePayload(options: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.Product>;
@@ -4253,7 +4217,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4268,7 +4232,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4277,7 +4241,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryNoStatus(): Promise<Models.Product>;
   putAsyncRelativeRetryNoStatus(options: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.Product>;
@@ -4301,7 +4265,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4316,7 +4280,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4325,7 +4289,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryNoStatusPayload(): Promise<Models.Product>;
   putAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.Product>;
@@ -4349,7 +4313,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4362,7 +4326,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4370,7 +4334,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete204Succeeded(): Promise<void>;
   delete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4394,7 +4358,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4408,7 +4372,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4416,7 +4380,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryNoStatus(): Promise<void>;
   deleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4440,7 +4404,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4454,7 +4418,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4462,7 +4426,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202NoLocation(): Promise<void>;
   post202NoLocation(options: Models.LROSADsPost202NoLocationOptionalParams): Promise<void>;
@@ -4486,7 +4450,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4501,7 +4465,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4509,7 +4473,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryNoPayload(): Promise<void>;
   postAsyncRelativeRetryNoPayload(options: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<void>;
@@ -4533,7 +4497,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4547,7 +4511,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4556,7 +4520,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put200InvalidJson(): Promise<Models.Product>;
   put200InvalidJson(options: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<Models.Product>;
@@ -4580,7 +4544,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4595,7 +4559,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4604,7 +4568,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryInvalidHeader(): Promise<Models.Product>;
   putAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.Product>;
@@ -4628,7 +4592,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4643,7 +4607,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4652,7 +4616,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryInvalidJsonPolling(): Promise<Models.Product>;
   putAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.Product>;
@@ -4676,7 +4640,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4689,7 +4653,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4697,7 +4661,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202RetryInvalidHeader(): Promise<void>;
   delete202RetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4721,7 +4685,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4734,7 +4698,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4742,7 +4706,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryInvalidHeader(): Promise<void>;
   deleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4766,7 +4730,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4780,7 +4744,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4788,7 +4752,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
   deleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase): Promise<void>;
@@ -4812,7 +4776,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4826,7 +4790,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4834,7 +4798,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202RetryInvalidHeader(): Promise<void>;
   post202RetryInvalidHeader(options: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<void>;
@@ -4858,7 +4822,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4873,7 +4837,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4881,7 +4845,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryInvalidHeader(): Promise<void>;
   postAsyncRelativeRetryInvalidHeader(options: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<void>;
@@ -4905,7 +4869,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4920,7 +4884,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4928,7 +4892,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
   postAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<void>;
@@ -4952,7 +4916,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -4965,7 +4929,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -4974,7 +4938,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry400(): Promise<Models.Product>;
   beginPutNonRetry400(options: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<Models.Product>;
@@ -4998,7 +4962,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5012,7 +4976,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5021,7 +4985,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry201Creating400(): Promise<Models.Product>;
   beginPutNonRetry201Creating400(options: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<Models.Product>;
@@ -5045,7 +5009,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5059,7 +5023,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5068,7 +5032,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry201Creating400InvalidJson(): Promise<Models.Product>;
   beginPutNonRetry201Creating400InvalidJson(options: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<Models.Product>;
@@ -5092,7 +5056,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5107,7 +5071,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5116,7 +5080,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetry400(): Promise<Models.Product>;
   beginPutAsyncRelativeRetry400(options: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.Product>;
@@ -5140,7 +5104,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5152,7 +5116,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5160,7 +5124,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteNonRetry400(): Promise<void>;
   beginDeleteNonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5184,7 +5148,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5196,7 +5160,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5204,7 +5168,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete202NonRetry400(): Promise<void>;
   beginDelete202NonRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5228,7 +5192,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5242,7 +5206,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5250,7 +5214,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetry400(): Promise<void>;
   beginDeleteAsyncRelativeRetry400(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5274,7 +5238,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5287,7 +5251,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5295,7 +5259,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostNonRetry400(): Promise<void>;
   beginPostNonRetry400(options: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<void>;
@@ -5319,7 +5283,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5332,7 +5296,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5340,7 +5304,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202NonRetry400(): Promise<void>;
   beginPost202NonRetry400(options: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<void>;
@@ -5364,7 +5328,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5379,7 +5343,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5387,7 +5351,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetry400(): Promise<void>;
   beginPostAsyncRelativeRetry400(options: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<void>;
@@ -5411,7 +5375,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5425,7 +5389,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5434,7 +5398,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutError201NoProvisioningStatePayload(): Promise<Models.Product>;
   beginPutError201NoProvisioningStatePayload(options: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<Models.Product>;
@@ -5458,7 +5422,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5473,7 +5437,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5482,7 +5446,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryNoStatus(): Promise<Models.Product>;
   beginPutAsyncRelativeRetryNoStatus(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.Product>;
@@ -5506,7 +5470,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5521,7 +5485,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5530,7 +5494,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryNoStatusPayload(): Promise<Models.Product>;
   beginPutAsyncRelativeRetryNoStatusPayload(options: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.Product>;
@@ -5554,7 +5518,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5567,7 +5531,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5575,7 +5539,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete204Succeeded(): Promise<void>;
   beginDelete204Succeeded(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5599,7 +5563,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5613,7 +5577,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5621,7 +5585,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryNoStatus(): Promise<void>;
   beginDeleteAsyncRelativeRetryNoStatus(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5645,7 +5609,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5659,7 +5623,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5667,7 +5631,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202NoLocation(): Promise<void>;
   beginPost202NoLocation(options: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<void>;
@@ -5691,7 +5655,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5706,7 +5670,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5714,7 +5678,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryNoPayload(): Promise<void>;
   beginPostAsyncRelativeRetryNoPayload(options: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<void>;
@@ -5738,7 +5702,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5752,7 +5716,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5761,7 +5725,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPut200InvalidJson(): Promise<Models.Product>;
   beginPut200InvalidJson(options: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<Models.Product>;
@@ -5785,7 +5749,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5800,7 +5764,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5809,7 +5773,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryInvalidHeader(): Promise<Models.Product>;
   beginPutAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.Product>;
@@ -5833,7 +5797,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5848,7 +5812,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5857,7 +5821,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryInvalidJsonPolling(): Promise<Models.Product>;
   beginPutAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.Product>;
@@ -5881,7 +5845,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5894,7 +5858,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5902,7 +5866,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete202RetryInvalidHeader(): Promise<void>;
   beginDelete202RetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5926,7 +5890,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5939,7 +5903,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5947,7 +5911,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryInvalidHeader(): Promise<void>;
   beginDeleteAsyncRelativeRetryInvalidHeader(options: msRest.RequestOptionsBase): Promise<void>;
@@ -5971,7 +5935,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -5985,7 +5949,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -5993,7 +5957,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(options: msRest.RequestOptionsBase): Promise<void>;
@@ -6017,7 +5981,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -6031,7 +5995,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -6039,7 +6003,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202RetryInvalidHeader(): Promise<void>;
   beginPost202RetryInvalidHeader(options: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<void>;
@@ -6063,7 +6027,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -6078,7 +6042,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -6086,7 +6050,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryInvalidHeader(): Promise<void>;
   beginPostAsyncRelativeRetryInvalidHeader(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<void>;
@@ -6110,7 +6074,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -6125,7 +6089,7 @@ export class LROSADs {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -6133,7 +6097,7 @@ export class LROSADs {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
   beginPostAsyncRelativeRetryInvalidJsonPolling(options: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<void>;
@@ -6157,7 +6121,7 @@ export class LROSADs {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

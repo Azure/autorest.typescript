@@ -1778,24 +1778,21 @@ describe('typescript', function () {
       });
 
       it('should correctly deserialize empty streams', function (done) {
-        testClient.files.getEmptyFile(function (error, result) {
-          should.not.exist(error);
-          should.exist(result);
-          result.text().then((txt) => {
-            assert.equal(txt.length, 0);
+        testClient.files.getEmptyFile().then(result => {
+          readStreamCountBytes(result.readableStreamBody as any, function (err, byteCount) {
+            should.not.exist(err);
+            byteCount.should.equal(0);
             done();
-          }).catch((err) => {
-            done(err);
           });
-        });
+        }).catch(err => done(err));
       });
 
       it('should correctly deserialize large streams', function (done) {
-        this.skip(); // FIXME
+        // this.skip(); // FIXME
         testClient.files.getFileLarge(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          readStreamCountBytes(result.body as any, function (err, byteCount) {
+          readStreamCountBytes(result.readableStreamBody as any, function (err, byteCount) {
             should.not.exist(err);
             byteCount.should.equal(3000 * 1024 * 1024);
             done();
