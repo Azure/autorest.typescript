@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -79,7 +78,7 @@ export interface D {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPut200OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPut200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -93,7 +92,7 @@ export interface HttpSuccessPut200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPatch200OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPatch200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -107,7 +106,7 @@ export interface HttpSuccessPatch200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPost200OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPost200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -121,7 +120,7 @@ export interface HttpSuccessPost200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessDelete200OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessDelete200OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -135,7 +134,7 @@ export interface HttpSuccessDelete200OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPut201OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPut201OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -149,7 +148,7 @@ export interface HttpSuccessPut201OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPost201OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPost201OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -163,7 +162,7 @@ export interface HttpSuccessPost201OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPut202OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPut202OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -177,7 +176,7 @@ export interface HttpSuccessPut202OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPatch202OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPatch202OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -191,7 +190,7 @@ export interface HttpSuccessPatch202OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPost202OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPost202OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -205,7 +204,7 @@ export interface HttpSuccessPost202OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessDelete202OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessDelete202OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -219,7 +218,7 @@ export interface HttpSuccessDelete202OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPut204OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPut204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -233,7 +232,7 @@ export interface HttpSuccessPut204OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPatch204OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPatch204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -247,7 +246,7 @@ export interface HttpSuccessPatch204OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessPost204OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessPost204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -261,7 +260,7 @@ export interface HttpSuccessPost204OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpSuccessDelete204OptionalParams extends RequestOptionsBase {
+export interface HttpSuccessDelete204OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -275,7 +274,7 @@ export interface HttpSuccessDelete204OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPut301OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPut301OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -289,7 +288,7 @@ export interface HttpRedirectsPut301OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPatch302OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPatch302OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -303,7 +302,7 @@ export interface HttpRedirectsPatch302OptionalParams extends RequestOptionsBase 
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPost303OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPost303OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -317,7 +316,7 @@ export interface HttpRedirectsPost303OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPut307OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPut307OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -331,7 +330,7 @@ export interface HttpRedirectsPut307OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPatch307OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPatch307OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -345,7 +344,7 @@ export interface HttpRedirectsPatch307OptionalParams extends RequestOptionsBase 
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsPost307OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsPost307OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -359,7 +358,7 @@ export interface HttpRedirectsPost307OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRedirectsDelete307OptionalParams extends RequestOptionsBase {
+export interface HttpRedirectsDelete307OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -373,7 +372,7 @@ export interface HttpRedirectsDelete307OptionalParams extends RequestOptionsBase
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePut400OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePut400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -387,7 +386,7 @@ export interface HttpClientFailurePut400OptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePatch400OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePatch400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -401,7 +400,7 @@ export interface HttpClientFailurePatch400OptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePost400OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePost400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -415,7 +414,7 @@ export interface HttpClientFailurePost400OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailureDelete400OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailureDelete400OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -429,7 +428,7 @@ export interface HttpClientFailureDelete400OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePut404OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePut404OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -443,7 +442,7 @@ export interface HttpClientFailurePut404OptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePatch405OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePatch405OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -457,7 +456,7 @@ export interface HttpClientFailurePatch405OptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePost406OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePost406OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -471,7 +470,7 @@ export interface HttpClientFailurePost406OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailureDelete407OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailureDelete407OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -485,7 +484,7 @@ export interface HttpClientFailureDelete407OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePut409OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePut409OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -499,7 +498,7 @@ export interface HttpClientFailurePut409OptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePut413OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePut413OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -513,7 +512,7 @@ export interface HttpClientFailurePut413OptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePatch414OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePatch414OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -527,7 +526,7 @@ export interface HttpClientFailurePatch414OptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailurePost415OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailurePost415OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -541,7 +540,7 @@ export interface HttpClientFailurePost415OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface HttpClientFailureDelete417OptionalParams extends RequestOptionsBase {
+export interface HttpClientFailureDelete417OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -555,7 +554,7 @@ export interface HttpClientFailureDelete417OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface HttpServerFailurePost505OptionalParams extends RequestOptionsBase {
+export interface HttpServerFailurePost505OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -569,7 +568,7 @@ export interface HttpServerFailurePost505OptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface HttpServerFailureDelete505OptionalParams extends RequestOptionsBase {
+export interface HttpServerFailureDelete505OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -583,7 +582,7 @@ export interface HttpServerFailureDelete505OptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryPut500OptionalParams extends RequestOptionsBase {
+export interface HttpRetryPut500OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -597,7 +596,7 @@ export interface HttpRetryPut500OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryPatch500OptionalParams extends RequestOptionsBase {
+export interface HttpRetryPatch500OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -611,7 +610,7 @@ export interface HttpRetryPatch500OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryPost503OptionalParams extends RequestOptionsBase {
+export interface HttpRetryPost503OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -625,7 +624,7 @@ export interface HttpRetryPost503OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryDelete503OptionalParams extends RequestOptionsBase {
+export interface HttpRetryDelete503OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -639,7 +638,7 @@ export interface HttpRetryDelete503OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryPut504OptionalParams extends RequestOptionsBase {
+export interface HttpRetryPut504OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */
@@ -653,7 +652,7 @@ export interface HttpRetryPut504OptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface HttpRetryPatch504OptionalParams extends RequestOptionsBase {
+export interface HttpRetryPatch504OptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [booleanValue] Simple boolean value true
    */

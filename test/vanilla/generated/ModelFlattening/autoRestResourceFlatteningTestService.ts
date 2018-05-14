@@ -70,13 +70,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/array';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/array");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -170,13 +170,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/array';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/array");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -273,13 +273,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/wrappedarray';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/wrappedarray");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -374,13 +374,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/wrappedarray';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/wrappedarray");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -476,13 +476,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/dictionary';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/dictionary");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -576,13 +576,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/dictionary';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/dictionary");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -679,13 +679,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/resourcecollection';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/resourcecollection");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -765,13 +765,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/resourcecollection';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/resourcecollection");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -853,13 +853,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let simpleBodyProduct = (options && options.simpleBodyProduct !== undefined) ? options.simpleBodyProduct : undefined;
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/customFlattening");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -999,13 +999,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/customFlattening");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -1173,14 +1173,14 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'model-flatten/customFlattening/parametergrouping/{name}/';
-    requestUrl = requestUrl.replace('{name}', encodeURIComponent(name));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/model-flatten/customFlattening/parametergrouping/{name}/");
+    requestUrl.replaceAll("{name}", encodeURIComponent(name));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

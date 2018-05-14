@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -37,7 +36,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestReportServiceForAzureGetReportOptionalParams extends RequestOptionsBase {
+export interface AutoRestReportServiceForAzureGetReportOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [qualifier] If specified, qualifies the generated report
    * further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that

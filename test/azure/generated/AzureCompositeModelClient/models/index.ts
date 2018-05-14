@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -500,7 +499,7 @@ export interface ReadonlyObj {
  *
  * @extends RequestOptionsBase
  */
-export interface AzureCompositeModelCreateOptionalParams extends RequestOptionsBase {
+export interface AzureCompositeModelCreateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: Product[] }} [productDictionaryOfArray]
    * Dictionary of Array of product
@@ -515,7 +514,7 @@ export interface AzureCompositeModelCreateOptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface AzureCompositeModelUpdateOptionalParams extends RequestOptionsBase {
+export interface AzureCompositeModelUpdateOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: Product }[]} [productArrayOfDictionary]
    * Array of dictionary of products
@@ -530,7 +529,7 @@ export interface AzureCompositeModelUpdateOptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface PrimitivePutDurationOptionalParams extends RequestOptionsBase {
+export interface PrimitivePutDurationOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [field]
    */
@@ -544,7 +543,7 @@ export interface PrimitivePutDurationOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface PrimitivePutByteOptionalParams extends RequestOptionsBase {
+export interface PrimitivePutByteOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Buffer} [field]
    */
@@ -558,7 +557,7 @@ export interface PrimitivePutByteOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface ArrayModelPutValidOptionalParams extends RequestOptionsBase {
+export interface ArrayModelPutValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayProperty]
    */
@@ -572,7 +571,7 @@ export interface ArrayModelPutValidOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface ArrayModelPutEmptyOptionalParams extends RequestOptionsBase {
+export interface ArrayModelPutEmptyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayProperty]
    */
@@ -586,7 +585,7 @@ export interface ArrayModelPutEmptyOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface DictionaryPutValidOptionalParams extends RequestOptionsBase {
+export interface DictionaryPutValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: string }} [defaultProgram]
    */
@@ -600,7 +599,7 @@ export interface DictionaryPutValidOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface DictionaryPutEmptyOptionalParams extends RequestOptionsBase {
+export interface DictionaryPutEmptyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {{ [propertyName: string]: string }} [defaultProgram]
    */
@@ -614,7 +613,7 @@ export interface DictionaryPutEmptyOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface ReadonlypropertyPutValidOptionalParams extends RequestOptionsBase {
+export interface ReadonlypropertyPutValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [size]
    */

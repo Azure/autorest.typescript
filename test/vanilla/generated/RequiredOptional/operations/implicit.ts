@@ -51,14 +51,14 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/implicit/required/path/{pathParameter}';
-    requestUrl = requestUrl.replace('{pathParameter}', encodeURIComponent(pathParameter));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/implicit/required/path/{pathParameter}");
+    requestUrl.replaceAll("{pathParameter}", encodeURIComponent(pathParameter));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -144,20 +144,16 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/implicit/optional/query';
-    let queryParamsArray: Array<any> = [];
-    if (queryParameter !== null && queryParameter !== undefined) {
-      queryParamsArray.push('queryParameter=' + encodeURIComponent(queryParameter));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/implicit/optional/query");
+    if (queryParameter != undefined) {
+      requestUrl.setQueryParameter("queryParameter", encodeURIComponent(queryParameter));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -231,13 +227,13 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/implicit/optional/header';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/implicit/optional/header");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -314,13 +310,13 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/implicit/optional/body';
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/implicit/optional/body");
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -413,14 +409,14 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/global/required/path/{required-global-path}';
-    requestUrl = requestUrl.replace('{required-global-path}', encodeURIComponent(this.client.requiredGlobalPath));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/global/required/path/{required-global-path}");
+    requestUrl.replaceAll("{required-global-path}", encodeURIComponent(this.client.requiredGlobalPath));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -504,18 +500,14 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/global/required/query';
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('required-global-query=' + encodeURIComponent(this.client.requiredGlobalQuery));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/global/required/query");
+    requestUrl.setQueryParameter("required-global-query", encodeURIComponent(this.client.requiredGlobalQuery));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -599,20 +591,16 @@ export class Implicit {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'reqopt/global/optional/query';
-    let queryParamsArray: Array<any> = [];
-    if (this.client.optionalGlobalQuery !== null && this.client.optionalGlobalQuery !== undefined) {
-      queryParamsArray.push('optional-global-query=' + encodeURIComponent(this.client.optionalGlobalQuery.toString()));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/reqopt/global/optional/query");
+    if (this.client.optionalGlobalQuery != undefined) {
+      requestUrl.setQueryParameter("optional-global-query", encodeURIComponent(this.client.optionalGlobalQuery.toString()));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

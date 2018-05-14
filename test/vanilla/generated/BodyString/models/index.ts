@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -45,7 +44,7 @@ export interface RefColorConstant {
  *
  * @extends RequestOptionsBase
  */
-export interface StringPutNullOptionalParams extends RequestOptionsBase {
+export interface StringPutNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {StringBody} [stringBody] Possible values include: ''
    */
@@ -59,7 +58,7 @@ export interface StringPutNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface EnumModelPutReferencedConstantOptionalParams extends RequestOptionsBase {
+export interface EnumModelPutReferencedConstantOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [field1] Sample string.
    */

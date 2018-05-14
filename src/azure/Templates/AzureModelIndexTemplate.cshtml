@@ -1,6 +1,5 @@
-﻿@using System.Linq
+﻿@using AutoRest.TypeScript.azure.Templates
 @using AutoRest.TypeScript.vanilla.Templates
-@using AutoRest.TypeScript.azure.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Azure.Model.CodeModelTSa>
 /*
 @Header(" * ")
@@ -10,10 +9,6 @@
 @if (Model.ContainsDurationPropertyInModels() || Model.IsAnyModelInheritingFromRequestOptionsBase())
 {
 @:import * as msRest from "ms-rest-js";
-}
-@if (Model.IsAnyModelInheritingFromRequestOptionsBase())
-{
-@:type RequestOptionsBase = msRest.RequestOptionsBase;
 }
 @EmptyLine
 export { BaseResource, CloudError };

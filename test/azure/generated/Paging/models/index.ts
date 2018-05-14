@@ -10,7 +10,6 @@
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 export { BaseResource, CloudError };
 
@@ -164,7 +163,7 @@ export interface PagingGetMultiplePagesWithOffsetNextOptions {
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetMultiplePagesOptionalParams extends RequestOptionsBase {
+export interface PagingGetMultiplePagesOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */
@@ -183,7 +182,7 @@ export interface PagingGetMultiplePagesOptionalParams extends RequestOptionsBase
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetOdataMultiplePagesOptionalParams extends RequestOptionsBase {
+export interface PagingGetOdataMultiplePagesOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */
@@ -203,7 +202,7 @@ export interface PagingGetOdataMultiplePagesOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetMultiplePagesWithOffsetOptionalParams extends RequestOptionsBase {
+export interface PagingGetMultiplePagesWithOffsetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */
@@ -217,7 +216,7 @@ export interface PagingGetMultiplePagesWithOffsetOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetMultiplePagesNextOptionalParams extends RequestOptionsBase {
+export interface PagingGetMultiplePagesNextOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */
@@ -236,7 +235,7 @@ export interface PagingGetMultiplePagesNextOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetOdataMultiplePagesNextOptionalParams extends RequestOptionsBase {
+export interface PagingGetOdataMultiplePagesNextOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */
@@ -256,7 +255,7 @@ export interface PagingGetOdataMultiplePagesNextOptionalParams extends RequestOp
  *
  * @extends RequestOptionsBase
  */
-export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends RequestOptionsBase {
+export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [clientRequestId]
    */

@@ -489,38 +489,15 @@ namespace AutoRest.TypeScript.Model
         /// </summary>
         /// <param name="variableName">The variable to store the url in.</param>
         /// <returns></returns>
-        public virtual string BuildUrl(string variableName)
+        public string BuildUrl(string variableName)
         {
             var builder = new IndentedStringBuilder("  ");
             BuildPathParameters(variableName, builder);
             if (HasQueryParameters())
             {
-                BuildQueryParameterArray(builder);
-                AddQueryParametersToUrl(variableName, builder);
+                BuildQueryParameters(variableName, builder);
             }
-
             return builder.ToString();
-        }
-
-        /// <summary>
-        /// Generate code to construct the query string from an array of query parameter strings containing 'key=value'
-        /// </summary>
-        /// <param name="variableName">The variable reference for the url</param>
-        /// <param name="builder">The string builder for url construction</param>
-        private void AddQueryParametersToUrl(string variableName, IndentedStringBuilder builder)
-        {
-            builder.AppendLine("if (queryParamsArray.length > 0) {")
-                .Indent();
-            if (this.Extensions.ContainsKey("nextLinkMethod") && (bool)this.Extensions["nextLinkMethod"])
-            {
-                builder.AppendLine("{0} += ({0}.indexOf('?') !== -1 ? '&' : '?') + queryParamsArray.join('&');", variableName);
-            }
-            else
-            {
-                builder.AppendLine("{0} += '?' + queryParamsArray.join('&');", variableName);
-            }
-
-            builder.Outdent().AppendLine("}");
         }
 
         /// <summary>
@@ -536,45 +513,50 @@ namespace AutoRest.TypeScript.Model
         /// Genrate code to build an array of query parameter strings in a variable named 'queryParamsArray'.  The
         /// array should contain one string element for each query parameter of the form 'key=value'
         /// </summary>
+        /// <param name="variableName">The variable name for the url to be constructed</param>
         /// <param name="builder">The stringbuilder for url construction</param>
-        protected virtual void BuildQueryParameterArray(IndentedStringBuilder builder)
+        protected virtual void BuildQueryParameters(string variableName, IndentedStringBuilder builder)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.AppendLine("let queryParamsArray: Array<any> = [];");
-            foreach (var queryParameter in LogicalParameters.Where(p => p.Location == ParameterLocation.Query))
+            foreach (Parameter queryParameter in LogicalParameters.Where(p => p.Location == ParameterLocation.Query))
             {
-                var queryAddFormat = "queryParamsArray.push('{0}=' + encodeURIComponent({1}));";
+                string parameterName = queryParameter.Name;
+                string parameterSerializedName = queryParameter.SerializedName;
+
+                string queryAddFormat = variableName + ".setQueryParameter(\"{0}\", encodeURIComponent({1}));";
                 if (queryParameter.SkipUrlEncoding())
                 {
-                    queryAddFormat = "queryParamsArray.push('{0}=' + {1});";
+                    queryAddFormat = variableName + ".setQueryParameter(\"{0}\", {1});";
                 }
 
-                if (!queryParameter.IsRequired)
+                bool parameterIsOptional = !queryParameter.IsRequired;
+                if (parameterIsOptional)
                 {
-                    builder.AppendLine("if ({0} !== null && {0} !== undefined) {{", queryParameter.Name)
+                    builder.AppendLine("if ({0} != undefined) {{", parameterName)
                         .Indent();
                 }
+
                 if (queryParameter.CollectionFormat == CollectionFormat.Multi)
                 {
-                    builder.AppendLine("if ({0}.length == 0) {{", queryParameter.Name).Indent()
-                           .AppendLine(queryAddFormat, queryParameter.SerializedName, "''").Outdent()
+                    builder.AppendLine("if ({0}.length == 0) {{", parameterName).Indent()
+                           .AppendLine(queryAddFormat, parameterSerializedName, "''").Outdent()
                            .AppendLine("} else {").Indent()
-                           .AppendLine("for (let item of {0}) {{", queryParameter.Name).Indent()
-                           .AppendLine("item = (item === null || item === undefined) ? '' : item;")
-                           .AppendLine(queryAddFormat, queryParameter.SerializedName, "'' + item").Outdent()
+                           .AppendLine("for (const item of {0}) {{", parameterName).Indent()
+                           .AppendLine(queryAddFormat, parameterSerializedName, "item == undefined ? \"\" : \"\" + item").Outdent()
                            .AppendLine("}").Outdent()
                            .AppendLine("}").Outdent();
                 }
                 else
                 {
                     builder.AppendLine(queryAddFormat,
-                        queryParameter.SerializedName, queryParameter.GetFormattedReferenceValue());
+                        parameterSerializedName, queryParameter.GetFormattedReferenceValue());
                 }
-                if (!queryParameter.IsRequired)
+
+                if (parameterIsOptional)
                 {
                     builder.Outdent().AppendLine("}");
                 }
@@ -593,16 +575,17 @@ namespace AutoRest.TypeScript.Model
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            foreach (var pathParameter in LogicalParameters.Where(p => p.Location == ParameterLocation.Path))
+            foreach (Parameter pathParameter in LogicalParameters.Where(p => p.Location == ParameterLocation.Path))
             {
-                var pathReplaceFormat = "{0} = {0}.replace('{{{1}}}', encodeURIComponent({2}));";
-                if (pathParameter.SkipUrlEncoding())
+                string parameterSerializedName = pathParameter.SerializedName;
+
+                string parameterValue = pathParameter.ModelType.ToString(pathParameter.Name);
+                if (!pathParameter.SkipUrlEncoding())
                 {
-                    pathReplaceFormat = "{0} = {0}.replace('{{{1}}}', {2});";
+                    parameterValue = $"encodeURIComponent({parameterValue})";
                 }
 
-                builder.AppendLine(pathReplaceFormat, variableName, pathParameter.SerializedName,
-                    pathParameter.ModelType.ToString(pathParameter.Name));
+                builder.AppendLine($"{variableName}.replaceAll(\"{{{parameterSerializedName}}}\", {parameterValue});");
             }
         }
 

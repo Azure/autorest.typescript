@@ -76,7 +76,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string PackageDependencies()
         {
-            return "\"ms-rest-azure-js\": \"^0.2.0\"";
+            return "\"ms-rest-azure-js\": \"Azure/ms-rest-azure-js#GitHubReference\"";
         }
     }
 }

@@ -62,26 +62,22 @@ export class Odata {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'azurespecials/odata/filter';
-    let queryParamsArray: Array<any> = [];
-    if (filter !== null && filter !== undefined) {
-      queryParamsArray.push('$filter=' + encodeURIComponent(filter));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/azurespecials/odata/filter");
+    if (filter != undefined) {
+      requestUrl.setQueryParameter("$filter", encodeURIComponent(filter));
     }
-    if (top !== null && top !== undefined) {
-      queryParamsArray.push('$top=' + encodeURIComponent(top.toString()));
+    if (top != undefined) {
+      requestUrl.setQueryParameter("$top", encodeURIComponent(top.toString()));
     }
-    if (orderby !== null && orderby !== undefined) {
-      queryParamsArray.push('$orderby=' + encodeURIComponent(orderby));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (orderby != undefined) {
+      requestUrl.setQueryParameter("$orderby", encodeURIComponent(orderby));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

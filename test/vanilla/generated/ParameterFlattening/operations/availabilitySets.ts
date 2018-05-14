@@ -77,15 +77,15 @@ export class AvailabilitySets {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'parameterFlattening/{resourceGroupName}/{availabilitySetName}';
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{availabilitySetName}', encodeURIComponent(avset));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/parameterFlattening/{resourceGroupName}/{availabilitySetName}");
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{availabilitySetName}", encodeURIComponent(avset));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PATCH';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

@@ -138,21 +138,17 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'fakepath/{subscriptionId}/{resourceGroupName}/{id}';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{id}', encodeURIComponent(id.toString()));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('apiVersion=' + encodeURIComponent(this.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
+    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -290,21 +286,17 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     }
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'fakepath/{subscriptionId}/{resourceGroupName}/{id}';
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.subscriptionId));
-    requestUrl = requestUrl.replace('{resourceGroupName}', encodeURIComponent(resourceGroupName));
-    requestUrl = requestUrl.replace('{id}', encodeURIComponent(id.toString()));
-    let queryParamsArray: Array<any> = [];
-    queryParamsArray.push('apiVersion=' + encodeURIComponent(this.apiVersion));
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
-    }
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
+    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
+    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
+    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'PUT';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -398,14 +390,14 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let constantParam = 'constant';
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'validation/constantsInPath/{constantParam}/value';
-    requestUrl = requestUrl.replace('{constantParam}', encodeURIComponent(constantParam));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
+    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -467,14 +459,14 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let constantParam = 'constant';
 
     // Construct URL
-    let baseUrl = this.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'validation/constantsInPath/{constantParam}/value';
-    requestUrl = requestUrl.replace('{constantParam}', encodeURIComponent(constantParam));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
+    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
+    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'POST';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

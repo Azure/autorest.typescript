@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -34,7 +33,7 @@ export interface ErrorModel {
  *
  * @extends RequestOptionsBase
  */
-export interface AutoRestReportServiceGetReportOptionalParams extends RequestOptionsBase {
+export interface AutoRestReportServiceGetReportOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [qualifier] If specified, qualifies the generated report
    * further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that

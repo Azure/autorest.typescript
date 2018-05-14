@@ -76,29 +76,25 @@ export class PathItems {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery';
-    requestUrl = requestUrl.replace('{localStringPath}', encodeURIComponent(localStringPath));
-    requestUrl = requestUrl.replace('{pathItemStringPath}', encodeURIComponent(pathItemStringPath));
-    requestUrl = requestUrl.replace('{globalStringPath}', encodeURIComponent(this.client.globalStringPath));
-    let queryParamsArray: Array<any> = [];
-    if (localStringQuery !== null && localStringQuery !== undefined) {
-      queryParamsArray.push('localStringQuery=' + encodeURIComponent(localStringQuery));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery");
+    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
+    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
+    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
+    if (localStringQuery != undefined) {
+      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
     }
-    if (pathItemStringQuery !== null && pathItemStringQuery !== undefined) {
-      queryParamsArray.push('pathItemStringQuery=' + encodeURIComponent(pathItemStringQuery));
+    if (pathItemStringQuery != undefined) {
+      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
     }
-    if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined) {
-      queryParamsArray.push('globalStringQuery=' + encodeURIComponent(this.client.globalStringQuery));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (this.client.globalStringQuery != undefined) {
+      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -196,29 +192,25 @@ export class PathItems {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery';
-    requestUrl = requestUrl.replace('{localStringPath}', encodeURIComponent(localStringPath));
-    requestUrl = requestUrl.replace('{pathItemStringPath}', encodeURIComponent(pathItemStringPath));
-    requestUrl = requestUrl.replace('{globalStringPath}', encodeURIComponent(this.client.globalStringPath));
-    let queryParamsArray: Array<any> = [];
-    if (localStringQuery !== null && localStringQuery !== undefined) {
-      queryParamsArray.push('localStringQuery=' + encodeURIComponent(localStringQuery));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery");
+    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
+    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
+    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
+    if (localStringQuery != undefined) {
+      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
     }
-    if (pathItemStringQuery !== null && pathItemStringQuery !== undefined) {
-      queryParamsArray.push('pathItemStringQuery=' + encodeURIComponent(pathItemStringQuery));
+    if (pathItemStringQuery != undefined) {
+      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
     }
-    if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined) {
-      queryParamsArray.push('globalStringQuery=' + encodeURIComponent(this.client.globalStringQuery));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (this.client.globalStringQuery != undefined) {
+      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -316,29 +308,25 @@ export class PathItems {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null';
-    requestUrl = requestUrl.replace('{localStringPath}', encodeURIComponent(localStringPath));
-    requestUrl = requestUrl.replace('{pathItemStringPath}', encodeURIComponent(pathItemStringPath));
-    requestUrl = requestUrl.replace('{globalStringPath}', encodeURIComponent(this.client.globalStringPath));
-    let queryParamsArray: Array<any> = [];
-    if (localStringQuery !== null && localStringQuery !== undefined) {
-      queryParamsArray.push('localStringQuery=' + encodeURIComponent(localStringQuery));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null");
+    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
+    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
+    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
+    if (localStringQuery != undefined) {
+      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
     }
-    if (pathItemStringQuery !== null && pathItemStringQuery !== undefined) {
-      queryParamsArray.push('pathItemStringQuery=' + encodeURIComponent(pathItemStringQuery));
+    if (pathItemStringQuery != undefined) {
+      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
     }
-    if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined) {
-      queryParamsArray.push('globalStringQuery=' + encodeURIComponent(this.client.globalStringQuery));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (this.client.globalStringQuery != undefined) {
+      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
@@ -436,29 +424,25 @@ export class PathItems {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null';
-    requestUrl = requestUrl.replace('{localStringPath}', encodeURIComponent(localStringPath));
-    requestUrl = requestUrl.replace('{pathItemStringPath}', encodeURIComponent(pathItemStringPath));
-    requestUrl = requestUrl.replace('{globalStringPath}', encodeURIComponent(this.client.globalStringPath));
-    let queryParamsArray: Array<any> = [];
-    if (localStringQuery !== null && localStringQuery !== undefined) {
-      queryParamsArray.push('localStringQuery=' + encodeURIComponent(localStringQuery));
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null");
+    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
+    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
+    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
+    if (localStringQuery != undefined) {
+      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
     }
-    if (pathItemStringQuery !== null && pathItemStringQuery !== undefined) {
-      queryParamsArray.push('pathItemStringQuery=' + encodeURIComponent(pathItemStringQuery));
+    if (pathItemStringQuery != undefined) {
+      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
     }
-    if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined) {
-      queryParamsArray.push('globalStringQuery=' + encodeURIComponent(this.client.globalStringQuery));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    if (this.client.globalStringQuery != undefined) {
+      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

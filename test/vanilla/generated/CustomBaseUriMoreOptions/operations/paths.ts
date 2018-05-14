@@ -71,25 +71,21 @@ export class Paths {
     }
 
     // Construct URL
-    let baseUrl = this.client.baseUri;
-    let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'customuri/{subscriptionId}/{keyName}';
-    requestUrl = requestUrl.replace('{vault}', vault);
-    requestUrl = requestUrl.replace('{secret}', secret);
-    requestUrl = requestUrl.replace('{dnsSuffix}', this.client.dnsSuffix);
-    requestUrl = requestUrl.replace('{keyName}', encodeURIComponent(keyName));
-    requestUrl = requestUrl.replace('{subscriptionId}', encodeURIComponent(this.client.subscriptionId));
-    let queryParamsArray: Array<any> = [];
-    if (keyVersion !== null && keyVersion !== undefined) {
-      queryParamsArray.push('keyVersion=' + encodeURIComponent(keyVersion));
-    }
-    if (queryParamsArray.length > 0) {
-      requestUrl += '?' + queryParamsArray.join('&');
+    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
+    requestUrl.setPath("/customuri/{subscriptionId}/{keyName}");
+    requestUrl.replaceAll("{vault}", vault);
+    requestUrl.replaceAll("{secret}", secret);
+    requestUrl.replaceAll("{dnsSuffix}", this.client.dnsSuffix);
+    requestUrl.replaceAll("{keyName}", encodeURIComponent(keyName));
+    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
+    if (keyVersion != undefined) {
+      requestUrl.setQueryParameter("keyVersion", encodeURIComponent(keyVersion));
     }
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
     httpRequest.method = 'GET';
-    httpRequest.url = requestUrl;
+    httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';

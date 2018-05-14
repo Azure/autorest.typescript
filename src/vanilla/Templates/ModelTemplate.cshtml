@@ -24,7 +24,7 @@
     {
 @: * @@extends @(Model.BaseModelType.Name)
 @: */
-@:export interface @(Model.Name) extends @(Model.BaseModelType.Name) {
+@:export interface @(Model.Name) extends @(Model.BaseModelType.Name == "RequestOptionsBase" ? "msRest.RequestOptionsBase" : Model.BaseModelType.Name.ToString()) {
     }
     else
     {

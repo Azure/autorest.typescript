@@ -10,7 +10,6 @@
 
 import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -47,7 +46,7 @@ export interface AutoRestUrlTestServiceOptions extends ServiceClientOptions {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesGetBooleanNullOptionalParams extends RequestOptionsBase {
+export interface QueriesGetBooleanNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {boolean} [boolQuery] null boolean value
    */
@@ -61,7 +60,7 @@ export interface QueriesGetBooleanNullOptionalParams extends RequestOptionsBase 
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesGetIntNullOptionalParams extends RequestOptionsBase {
+export interface QueriesGetIntNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [intQuery] null integer value
    */
@@ -75,7 +74,7 @@ export interface QueriesGetIntNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesGetLongNullOptionalParams extends RequestOptionsBase {
+export interface QueriesGetLongNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [longQuery] null 64 bit integer value
    */
@@ -89,7 +88,7 @@ export interface QueriesGetLongNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesFloatNullOptionalParams extends RequestOptionsBase {
+export interface QueriesFloatNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [floatQuery] null numeric value
    */
@@ -103,7 +102,7 @@ export interface QueriesFloatNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesDoubleNullOptionalParams extends RequestOptionsBase {
+export interface QueriesDoubleNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [doubleQuery] null numeric value
    */
@@ -117,7 +116,7 @@ export interface QueriesDoubleNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesStringNullOptionalParams extends RequestOptionsBase {
+export interface QueriesStringNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [stringQuery] null string value
    */
@@ -131,7 +130,7 @@ export interface QueriesStringNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesEnumValidOptionalParams extends RequestOptionsBase {
+export interface QueriesEnumValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {UriColor} [enumQuery] 'green color' enum value. Possible values
    * include: 'red color', 'green color', 'blue color'
@@ -146,7 +145,7 @@ export interface QueriesEnumValidOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesEnumNullOptionalParams extends RequestOptionsBase {
+export interface QueriesEnumNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {UriColor} [enumQuery] null string value. Possible values include:
    * 'red color', 'green color', 'blue color'
@@ -161,7 +160,7 @@ export interface QueriesEnumNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesByteMultiByteOptionalParams extends RequestOptionsBase {
+export interface QueriesByteMultiByteOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Buffer} [byteQuery] '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
    * byte array
@@ -176,7 +175,7 @@ export interface QueriesByteMultiByteOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesByteNullOptionalParams extends RequestOptionsBase {
+export interface QueriesByteNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Buffer} [byteQuery] null as byte array (no query parameters in
    * uri)
@@ -191,7 +190,7 @@ export interface QueriesByteNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesDateNullOptionalParams extends RequestOptionsBase {
+export interface QueriesDateNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Date} [dateQuery] null as date (no query parameters in uri)
    */
@@ -205,7 +204,7 @@ export interface QueriesDateNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesDateTimeNullOptionalParams extends RequestOptionsBase {
+export interface QueriesDateTimeNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Date} [dateTimeQuery] null as date-time (no query parameters)
    */
@@ -219,7 +218,7 @@ export interface QueriesDateTimeNullOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringCsvValidOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringCsvValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an array of string ['ArrayQuery1',
    * 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
@@ -234,7 +233,7 @@ export interface QueriesArrayStringCsvValidOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringCsvNullOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringCsvNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] a null array of string using the csv-array
    * format
@@ -249,7 +248,7 @@ export interface QueriesArrayStringCsvNullOptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringCsvEmptyOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringCsvEmptyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an empty array [] of string using the
    * csv-array format
@@ -264,7 +263,7 @@ export interface QueriesArrayStringCsvEmptyOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringSsvValidOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringSsvValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an array of string ['ArrayQuery1',
    * 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
@@ -279,7 +278,7 @@ export interface QueriesArrayStringSsvValidOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringTsvValidOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringTsvValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an array of string ['ArrayQuery1',
    * 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
@@ -294,7 +293,7 @@ export interface QueriesArrayStringTsvValidOptionalParams extends RequestOptions
  *
  * @extends RequestOptionsBase
  */
-export interface QueriesArrayStringPipesValidOptionalParams extends RequestOptionsBase {
+export interface QueriesArrayStringPipesValidOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [arrayQuery] an array of string ['ArrayQuery1',
    * 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
@@ -309,7 +308,7 @@ export interface QueriesArrayStringPipesValidOptionalParams extends RequestOptio
  *
  * @extends RequestOptionsBase
  */
-export interface PathItemsGetAllWithValuesOptionalParams extends RequestOptionsBase {
+export interface PathItemsGetAllWithValuesOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [localStringQuery] should contain value
    * 'localStringQuery'
@@ -329,7 +328,7 @@ export interface PathItemsGetAllWithValuesOptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface PathItemsGetGlobalQueryNullOptionalParams extends RequestOptionsBase {
+export interface PathItemsGetGlobalQueryNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [localStringQuery] should contain value
    * 'localStringQuery'
@@ -349,7 +348,7 @@ export interface PathItemsGetGlobalQueryNullOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams extends RequestOptionsBase {
+export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [localStringQuery] should contain null value
    */
@@ -368,7 +367,7 @@ export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface PathItemsGetLocalPathItemQueryNullOptionalParams extends RequestOptionsBase {
+export interface PathItemsGetLocalPathItemQueryNullOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [localStringQuery] should contain value null
    */

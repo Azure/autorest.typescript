@@ -10,7 +10,6 @@
 
 import { ServiceClientOptions } from "ms-rest-js";
 import * as msRest from "ms-rest-js";
-type RequestOptionsBase = msRest.RequestOptionsBase;
 
 
 /**
@@ -150,7 +149,7 @@ export interface AutoRestRequiredOptionalTestServiceOptions extends ServiceClien
  *
  * @extends RequestOptionsBase
  */
-export interface ImplicitPutOptionalQueryOptionalParams extends RequestOptionsBase {
+export interface ImplicitPutOptionalQueryOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [queryParameter]
    */
@@ -164,7 +163,7 @@ export interface ImplicitPutOptionalQueryOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface ImplicitPutOptionalHeaderOptionalParams extends RequestOptionsBase {
+export interface ImplicitPutOptionalHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [queryParameter]
    */
@@ -178,7 +177,7 @@ export interface ImplicitPutOptionalHeaderOptionalParams extends RequestOptionsB
  *
  * @extends RequestOptionsBase
  */
-export interface ImplicitPutOptionalBodyOptionalParams extends RequestOptionsBase {
+export interface ImplicitPutOptionalBodyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [bodyParameter]
    */
@@ -192,7 +191,7 @@ export interface ImplicitPutOptionalBodyOptionalParams extends RequestOptionsBas
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalIntegerParameterOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerParameterOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [bodyParameter]
    */
@@ -206,7 +205,7 @@ export interface ExplicitPostOptionalIntegerParameterOptionalParams extends Requ
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalIntegerPropertyOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerPropertyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [value]
    */
@@ -220,7 +219,7 @@ export interface ExplicitPostOptionalIntegerPropertyOptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalIntegerHeaderOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalIntegerHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {number} [headerParameter]
    */
@@ -234,7 +233,7 @@ export interface ExplicitPostOptionalIntegerHeaderOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalStringParameterOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalStringParameterOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [bodyParameter]
    */
@@ -248,7 +247,7 @@ export interface ExplicitPostOptionalStringParameterOptionalParams extends Reque
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalStringPropertyOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalStringPropertyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [value]
    */
@@ -262,7 +261,7 @@ export interface ExplicitPostOptionalStringPropertyOptionalParams extends Reques
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalStringHeaderOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalStringHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [bodyParameter]
    */
@@ -276,7 +275,7 @@ export interface ExplicitPostOptionalStringHeaderOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalClassParameterOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalClassParameterOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [bodyParameter]
    */
@@ -290,7 +289,7 @@ export interface ExplicitPostOptionalClassParameterOptionalParams extends Reques
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalClassPropertyOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalClassPropertyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {Product} [value]
    */
@@ -304,7 +303,7 @@ export interface ExplicitPostOptionalClassPropertyOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalArrayParameterOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalArrayParameterOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [bodyParameter]
    */
@@ -318,7 +317,7 @@ export interface ExplicitPostOptionalArrayParameterOptionalParams extends Reques
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalArrayPropertyOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalArrayPropertyOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [value]
    */
@@ -332,7 +331,7 @@ export interface ExplicitPostOptionalArrayPropertyOptionalParams extends Request
  *
  * @extends RequestOptionsBase
  */
-export interface ExplicitPostOptionalArrayHeaderOptionalParams extends RequestOptionsBase {
+export interface ExplicitPostOptionalArrayHeaderOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string[]} [headerParameter]
    */
