@@ -289,7 +289,7 @@ namespace AutoRest.TypeScript.Model
                     // to read the stream.
                     if (result.Contains("ReadableStream"))
                     {
-                        result = "Response";
+                        result = "msRest.HttpOperationResponse";
                     }
                 }
                 return result;
@@ -311,7 +311,7 @@ namespace AutoRest.TypeScript.Model
                 return builder.AppendLine("let {0} = new msRest.RestError(`Error ${{error}} occurred in " +
                     "deserializing the responseBody - ${{operationRes.bodyAsText}}`);", errorVariable)
                     .AppendLine("{0}.request = msRest.stripRequest(httpRequest);", errorVariable)
-                    .AppendLine("{0}.response = msRest.stripResponse(response);", errorVariable)
+                    .AppendLine("{0}.response = msRest.stripResponse(operationRes);", errorVariable)
                     .AppendLine("return Promise.reject({0});", errorVariable).ToString();
             }
         }
@@ -890,7 +890,7 @@ namespace AutoRest.TypeScript.Model
                 if (flavor == MethodFlavor.Callback)
                 {
                     builder.AppendLine(template.WrapComment(" * ", " @param {ServiceCallback} callback - The callback.")).AppendLine(" *")
-                        .AppendLine(template.WrapComment(" * ", " @returns {ServiceCallback} callback(err, result, request, response)")).AppendLine(" *");
+                        .AppendLine(template.WrapComment(" * ", " @returns {ServiceCallback} callback(err, result, request, operationRes)")).AppendLine(" *");
                 }
                 else if (flavor == MethodFlavor.Promise)
                 {
@@ -900,13 +900,13 @@ namespace AutoRest.TypeScript.Model
                         .AppendLine(" * {Promise} A promise is returned.").AppendLine(" *")
                         .AppendLine(" *                      @resolve {{{0}}} - The deserialized result object.", ReturnTypeTSString).AppendLine(" *")
                         .AppendLine(" *                      @reject {Error|ServiceError} - The error object.").AppendLine(" *")
-                        .AppendLine(template.WrapComment(" * ", "{ServiceCallback} optionalCallback(err, result, request, response)")).AppendLine(" *");
+                        .AppendLine(template.WrapComment(" * ", "{ServiceCallback} optionalCallback(err, result, request, operationRes)")).AppendLine(" *");
                 }
                 builder.AppendLine(" *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.").AppendLine(" *")
                     .AppendLine(" *                      {{{0}}} [result]   - The deserialized result object if an error did not occur.", ReturnTypeTSString)
                     .AppendLine(template.WrapComment(" *                      ", ReturnTypeInfo)).AppendLine(" *")
                     .AppendLine(" *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.").AppendLine(" *")
-                    .AppendLine(" *                      {Response} [response] - The HTTP Response stream if an error did not occur.");
+                    .AppendLine(" *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.");
 
             }
             return builder.AppendLine(" */").ToString();
@@ -922,7 +922,7 @@ namespace AutoRest.TypeScript.Model
 
             if (ReturnType.Body.IsPrimaryType(KnownPrimaryType.Stream))
             {
-                sb.AppendFormat("{0}.response", resultReference);
+                sb.AppendFormat("{0}", resultReference);
             }
             else
             {
