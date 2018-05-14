@@ -35,33 +35,19 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
-  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
-  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/webpack-dev-server", ['--port', '8080'], { shell: true })
-
+  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["testserver"], { shell: true })
   mochaChromeRunning = false
-  runMochaChrome = () ->
+  webpackDevServerHandler = (data) ->
+    console.log(data && data.toString())
     if !mochaChromeRunning
       mochaChromeRunning = true
-      await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
-      testServer.kill();
-      webpackDevServer.kill();
-      done();
-
-  testServerStarted = false
-  webpackServerStarted = false
-
-  testServerHandler = (data) ->
-    testServerStarted = true
-    if webpackServerStarted
-      runMochaChrome()
-
-  testServer.stdout.on 'data', testServerHandler
-  testServer.on 'exit', testServerHandler
-
-  webpackDevServerHandler = (data) ->
-    webpackServerStarted = true
-    if testServerStarted
-      runMochaChrome()
+      try
+        await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:3000", defer _;
+        done()
+      catch err
+        done(err)
+      finally
+        webpackDevServer.kill()
 
   webpackDevServer.stdout.on 'data', webpackDevServerHandler
   webpackDevServer.on 'exit', webpackDevServerHandler

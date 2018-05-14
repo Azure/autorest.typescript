@@ -1,6 +1,7 @@
 import * as webpack from 'webpack';
 import * as glob from 'glob';
 import * as path from 'path';
+import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const config: webpack.Configuration = {
   entry: glob.sync('test/*/*.ts', { absolute: true }),
@@ -11,7 +12,7 @@ const config: webpack.Configuration = {
     path: __dirname
   },
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new ForkTsCheckerWebpackPlugin({ silent: true })
   ],
   devServer: {
     contentBase: './'
@@ -21,7 +22,11 @@ const config: webpack.Configuration = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /(node_modules)|(startServer\.ts)/
+        exclude: /(node_modules)|(startServer\.ts)/,
+        options: {
+          // speed up build times and get type checking through the forked checker plugin
+          transpileOnly: true
+        }
       }
     ]
   },
@@ -38,7 +43,7 @@ const config: webpack.Configuration = {
     }
   },
   node: {
-    fs: false,
+    fs: "empty",
     net: false,
     path: false,
     dns: false,
@@ -50,4 +55,4 @@ const config: webpack.Configuration = {
   }
 };
 
-export default config;
+export = config;
