@@ -35,34 +35,22 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
-  testServer = child_process.spawn("node", ["./startup/www.js"], { cwd: "#{basefolder}/node_modules/@microsoft.azure/autorest.testserver" })
-  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/webpack-dev-server", ['--port', '8080'], { shell: true })
-
+  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
+  process.on("exit", () -> webpackDevServer.kill())
   mochaChromeRunning = false
-  runMochaChrome = () ->
+  webpackDevServerHandler = (data) ->
     if !mochaChromeRunning
       mochaChromeRunning = true
-      await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:8080", defer _;
-      testServer.kill();
-      webpackDevServer.kill();
-      done();
+      try
+        await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:3000", defer _;
+        # would just use a finally block but they appear to be broken in iced-coffee-script
+        webpackDevServer.kill()
+        done()
+      catch err
+        webpackDevServer.kill()
+        done(err)
 
-  testServerStarted = false
-  webpackServerStarted = false
-
-  testServerHandler = (data) ->
-    testServerStarted = true
-    if webpackServerStarted
-      runMochaChrome()
-
-  testServer.stdout.on 'data', testServerHandler
-  testServer.on 'exit', testServerHandler
-
-  webpackDevServerHandler = (data) ->
-    webpackServerStarted = true
-    if testServerStarted
-      runMochaChrome()
-
+  webpackDevServer.stderr.on 'data', (data) -> console.error(data.toString())
   webpackDevServer.stdout.on 'data', webpackDevServerHandler
   webpackDevServer.on 'exit', webpackDevServerHandler
 
