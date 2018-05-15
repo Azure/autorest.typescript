@@ -4,7 +4,9 @@
 // Send Request
 let operationRes: msRest.HttpOperationResponse;
 try {
-  operationRes = await client.sendRequest(httpRequest);
+  operationRes = await client.sendOperationRequest(httpRequest, {
+    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
+  });
   let response = operationRes.response;
   let statusCode = response.status;
   if (@(Model.FailureStatusCodePredicate)) {

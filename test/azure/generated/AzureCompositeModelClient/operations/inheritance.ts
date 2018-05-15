@@ -54,7 +54,6 @@ export class Inheritance {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -75,7 +74,9 @@ export class Inheritance {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -161,7 +162,6 @@ export class Inheritance {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -197,7 +197,9 @@ export class Inheritance {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {

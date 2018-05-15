@@ -84,7 +84,6 @@ export class AvailabilitySets {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PATCH';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -114,7 +113,9 @@ export class AvailabilitySets {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PATCH"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {

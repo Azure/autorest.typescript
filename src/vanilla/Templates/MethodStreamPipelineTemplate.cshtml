@@ -1,10 +1,11 @@
-﻿@using System.Linq;
-@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
+﻿@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
 // Send Request
 httpRequest.rawResponse = true;
 let operationRes: msRest.HttpOperationResponse;
 try {
-  operationRes = await client.sendRequest(httpRequest);
+  operationRes = await client.sendOperationRequest(httpRequest, {
+    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
+  });
   let response = operationRes.response;
   let statusCode = response.status;
   @EmptyLine

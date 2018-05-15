@@ -61,7 +61,6 @@ export class SubscriptionInMethod {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -82,7 +81,9 @@ export class SubscriptionInMethod {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -153,7 +154,6 @@ export class SubscriptionInMethod {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -174,7 +174,9 @@ export class SubscriptionInMethod {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -245,7 +247,6 @@ export class SubscriptionInMethod {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -266,7 +267,9 @@ export class SubscriptionInMethod {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -337,7 +340,6 @@ export class SubscriptionInMethod {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -358,7 +360,9 @@ export class SubscriptionInMethod {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {

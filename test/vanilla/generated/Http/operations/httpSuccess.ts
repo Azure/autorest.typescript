@@ -46,7 +46,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'HEAD';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -61,7 +60,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "HEAD"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -116,7 +117,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -131,7 +131,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -216,7 +218,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -252,7 +253,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -316,7 +319,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PATCH';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -352,7 +354,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PATCH"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -416,7 +420,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -452,7 +455,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -516,7 +521,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'DELETE';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -552,7 +556,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "DELETE"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 200) {
@@ -616,7 +622,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -652,7 +657,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 201) {
@@ -716,7 +723,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -752,7 +758,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 201) {
@@ -816,7 +824,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -852,7 +859,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202) {
@@ -916,7 +925,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PATCH';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -952,7 +960,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PATCH"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202) {
@@ -1016,7 +1026,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1052,7 +1061,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202) {
@@ -1116,7 +1127,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'DELETE';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1152,7 +1162,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "DELETE"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 202) {
@@ -1207,7 +1219,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'HEAD';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1222,7 +1233,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "HEAD"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204) {
@@ -1286,7 +1299,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1322,7 +1334,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204) {
@@ -1386,7 +1400,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PATCH';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1422,7 +1435,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PATCH"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204) {
@@ -1486,7 +1501,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1522,7 +1536,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204) {
@@ -1586,7 +1602,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'DELETE';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1622,7 +1637,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "DELETE"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204) {
@@ -1677,7 +1694,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'HEAD';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1692,7 +1708,9 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "HEAD"
+      });
       let response = operationRes.response;
       let statusCode = response.status;
       if (statusCode !== 204 && statusCode !== 404) {
