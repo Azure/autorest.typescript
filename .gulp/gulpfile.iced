@@ -35,20 +35,22 @@ task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
-  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["testserver"], { shell: true })
+  webpackDevServer = child_process.spawn("#{basefolder}/node_modules/.bin/ts-node", ["#{basefolder}/testserver"], { shell: true })
+  process.on("exit", () -> webpackDevServer.kill())
   mochaChromeRunning = false
   webpackDevServerHandler = (data) ->
-    console.log(data && data.toString())
     if !mochaChromeRunning
       mochaChromeRunning = true
       try
         await execute "#{basefolder}/node_modules/.bin/mocha-chrome http://localhost:3000", defer _;
+        # would just use a finally block but they appear to be broken in iced-coffee-script
+        webpackDevServer.kill()
         done()
       catch err
-        done(err)
-      finally
         webpackDevServer.kill()
+        done(err)
 
+  webpackDevServer.stderr.on 'data', (data) -> console.error(data.toString())
   webpackDevServer.stdout.on 'data', webpackDevServerHandler
   webpackDevServer.on 'exit', webpackDevServerHandler
 
