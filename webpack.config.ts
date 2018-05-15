@@ -12,7 +12,7 @@ const config: webpack.Configuration = {
     path: __dirname
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({ silent: true })
+    new ForkTsCheckerWebpackPlugin()
   ],
   devServer: {
     contentBase: './'
