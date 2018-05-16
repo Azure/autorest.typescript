@@ -1,5 +1,13 @@
 {
-	"devDependencies": {
-		"lerna": "^2.11.0"
-	}
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  },
+  "scripts": {
+    "test": "lerna exec npm test",
+    "testci": "lerna exec npm run testci",
+    "build": "lerna exec npm run build",
+    "prepare": "lerna bootstrap",
+    "publish-preview": "npm --prefix generator run publish-preview",
+    "regenerate": "npm --prefix generator run regenerate"
+  }
 }

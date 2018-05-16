@@ -60,6 +60,7 @@
     "watch:node": "tsc -w",
     "watch:browser": "webpack -w",
     "test": "run-p test:tslint test:unit",
+    "testci": "npm test",
     "test:unit": "mocha",
     "test:tslint": "tslint -p . -c tslint.json --exclude test/**/*.ts",
     "prepare": "npm run build"
