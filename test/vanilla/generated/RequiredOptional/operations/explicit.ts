@@ -57,7 +57,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -93,7 +92,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -169,7 +170,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -205,7 +205,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -276,7 +278,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -306,7 +307,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -388,7 +391,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -418,7 +420,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -483,7 +487,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -501,7 +504,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -578,7 +583,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -596,7 +600,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -661,7 +667,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -697,7 +702,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -773,7 +780,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -809,7 +815,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -880,7 +888,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -910,7 +917,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -992,7 +1001,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1022,7 +1030,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1087,7 +1097,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1105,7 +1114,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1182,7 +1193,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1200,7 +1210,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1265,7 +1277,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1295,7 +1306,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1363,7 +1376,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1393,7 +1405,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1464,7 +1478,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1494,7 +1507,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1568,7 +1583,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1598,7 +1612,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1668,7 +1684,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1711,7 +1726,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1791,7 +1808,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1834,7 +1850,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1910,7 +1928,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1940,7 +1957,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2026,7 +2045,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2056,7 +2074,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2126,7 +2146,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2144,7 +2163,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2225,7 +2246,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2243,7 +2263,9 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

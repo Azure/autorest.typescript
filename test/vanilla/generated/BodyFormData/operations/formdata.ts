@@ -61,7 +61,6 @@ export class Formdata {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -86,7 +85,9 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
@@ -152,7 +153,6 @@ export class Formdata {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -171,7 +171,9 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {

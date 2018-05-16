@@ -45,7 +45,6 @@ export class Files {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -61,7 +60,9 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
@@ -117,7 +118,6 @@ export class Files {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -133,7 +133,9 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
@@ -189,7 +191,6 @@ export class Files {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -205,7 +206,9 @@ export class Files {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {

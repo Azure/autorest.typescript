@@ -72,7 +72,6 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   @EmptyLine
   // Create HTTP transport objects
   let httpRequest = new WebResource();
-  httpRequest.method = '@(Model.HttpMethod.ToString().ToUpper())';
   httpRequest.url = requestUrl.toString();
   httpRequest.headers = {};
 

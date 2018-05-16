@@ -75,7 +75,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -119,7 +118,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -174,7 +175,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -189,7 +189,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -276,7 +278,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -320,7 +321,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -376,7 +379,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -391,7 +393,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -477,7 +481,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -521,7 +524,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -576,7 +581,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -591,7 +595,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -678,7 +684,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -708,7 +713,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -763,7 +770,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'GET';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -778,7 +784,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "GET"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -850,7 +858,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -880,7 +887,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -995,7 +1004,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'POST';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1025,7 +1033,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "POST"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1169,7 +1179,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     let httpRequest = new WebResource();
-    httpRequest.method = 'PUT';
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1199,7 +1208,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendRequest(httpRequest);
+      operationRes = await client.sendOperationRequest(httpRequest, {
+        httpMethod: "PUT"
+      });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
