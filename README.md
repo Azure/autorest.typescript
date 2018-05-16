@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/Azure/autorest.typescript.svg?branch=master)](https://travis-ci.org/Azure/autorest.typescript)
 [![npm version](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript.svg)](https://badge.fury.io/js/%40microsoft.azure%2Fautorest.typescript)
 
+testing...
+
 # Installation
 ```
 npm install -g autorest
