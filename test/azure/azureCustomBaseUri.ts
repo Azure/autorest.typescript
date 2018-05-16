@@ -33,20 +33,20 @@ describe('typescript', function () {
         await Promise.race([testClient.paths.getEmpty('local'), timeoutPromise(1000)]);
         assert.fail('');
       } catch (error) {
-        should.exist(error);
+        should(error).not.be.instanceof(assert.AssertionError);
       }
       testClient.host = 'host:3000';
       try {
         await Promise.race([testClient.paths.getEmpty('bad'), timeoutPromise(1000)]);
         assert.fail('');
       } catch (error) {
-        should.exist(error);
+        should(error).not.be.instanceof(assert.AssertionError);
       }
 
       try {
         await Promise.race([testClient.paths.getEmpty(null), timeoutPromise(1000)]);
       } catch (error) {
-        should.exist(error);
+        should(error).not.be.instanceof(assert.AssertionError);
       }
     });
   });
