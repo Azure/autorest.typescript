@@ -59,9 +59,6 @@ task 'testci', "more", [], (done) ->
   # install latest AutoRest
   await autorest ["--latest"], defer code, stderr, stdout
 
-  # ensure npm packages are installed so that typescript tests can run
-  await execute "npm install", defer _
-
   ## TEST SUITE
   global.verbose = true
   await run "test", defer _
@@ -71,8 +68,8 @@ task 'testci', "more", [], (done) ->
   # regenerate
   await run "regenerate", defer _
   # diff ('add' first so 'diff' includes untracked files)
-  await  execute "git add -A", defer code, stderr, stdout
-  await  execute "git diff --staged -w", defer code, stderr, stdout
+  await execute "git add -A", defer code, stderr, stdout
+  await execute "git diff --staged -w", defer code, stderr, stdout
   # eval
   echo stderr
   echo stdout

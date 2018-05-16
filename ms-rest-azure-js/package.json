@@ -1,0 +1,68 @@
+{
+  "name": "ms-rest-azure-js",
+  "author": {
+    "name": "Microsoft Corporation",
+    "email": "azsdkteam@microsoft.com",
+    "url": "https://github.com/Azure/ms-rest-azure-js"
+  },
+  "version": "0.5.0",
+  "description": "Isomorphic Azure client runtime for Typescript/node.js/browser javascript client libraries generated using AutoRest",
+  "tags": [
+    "isomorphic",
+    "browser",
+    "javascript",
+    "node",
+    "microsoft",
+    "autorest",
+    "clientruntime"
+  ],
+  "keywords": [
+    "isomorphic",
+    "browser",
+    "javascript",
+    "node",
+    "microsoft",
+    "autorest",
+    "clientruntime"
+  ],
+  "main": "./dist/lib/msRestAzure.js",
+  "types": "./typings/lib/msRestAzure.d.ts",
+  "license": "MIT",
+  "dependencies": {
+    "ms-rest-js": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^10.1.0",
+    "@types/should": "^8.1.30",
+    "mocha": "^3.5.3",
+    "npm-run-all": "^4.1.2",
+    "should": "5.2.0",
+    "ts-loader": "^2.3.7",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2",
+    "uglify-es": "^3.1.0",
+    "webpack": "^3.6.0"
+  },
+  "homepage": "https://github.com/Azure/ms-rest-azure-js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Azure/ms-rest-azure-js.git"
+  },
+  "bugs": {
+    "url": "http://github.com/Azure/ms-rest-azure-js/issues"
+  },
+  "scripts": {
+    "build": "run-p build:node build:browser",
+    "build:node": "tsc",
+    "build:browser": "webpack && node node_modules/uglify-es/bin/uglifyjs --source-map -c -m -o msRestAzureBundle.min.js msRestAzureBundle.js",
+    "watch:node": "tsc -w",
+    "watch:browser": "webpack -w",
+    "test": "run-p test:tslint test:unit",
+    "testci": "npm test",
+    "test:unit": "mocha",
+    "test:tslint": "tslint -p . -c tslint.json --exclude test/**/*.ts",
+    "prepare": "npm run build"
+  }
+}
