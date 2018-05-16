@@ -6,14 +6,13 @@ try {
   operationRes = await client.sendOperationRequest(httpRequest, {
     httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
   });
-  let response = operationRes.response;
-  let statusCode = response.status;
+  let statusCode = operationRes.status;
   @EmptyLine
   if (@(Model.FailureStatusCodePredicate)) {
     let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
-    error.statusCode = response.status;
+    error.statusCode = operationRes.status;
     error.request = msRest.stripRequest(httpRequest);
-    error.response = msRest.stripResponse(response);
+    error.response = msRest.stripResponse(operationRes);
     let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
     try {
       if (parsedErrorResponse) {

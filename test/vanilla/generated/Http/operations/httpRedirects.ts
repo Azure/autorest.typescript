@@ -63,13 +63,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "HEAD"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -134,13 +133,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -184,7 +182,7 @@ export class HttpRedirects {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -233,13 +231,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "HEAD"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -304,13 +301,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -407,13 +403,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 301) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -478,13 +473,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "HEAD"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -549,13 +543,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -652,13 +645,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 302) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -754,13 +746,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 303) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -825,13 +816,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "HEAD"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -896,13 +886,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -997,13 +986,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1098,13 +1086,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1199,13 +1186,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1300,13 +1286,12 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1341,7 +1326,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1349,7 +1334,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head300(): Promise<void>;
   head300(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1373,7 +1358,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1385,7 +1370,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1393,7 +1378,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get300(): Promise<string[]>;
   get300(options: msRest.RequestOptionsBase): Promise<string[]>;
@@ -1417,7 +1402,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as string[];
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1429,7 +1414,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1437,7 +1422,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head301(): Promise<void>;
   head301(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1461,7 +1446,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1473,7 +1458,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1481,7 +1466,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get301(): Promise<void>;
   get301(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1505,7 +1490,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1519,7 +1504,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1527,7 +1512,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put301(): Promise<void>;
   put301(options: Models.HttpRedirectsPut301OptionalParams): Promise<void>;
@@ -1551,7 +1536,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1563,7 +1548,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1571,7 +1556,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head302(): Promise<void>;
   head302(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1595,7 +1580,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1607,7 +1592,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1615,7 +1600,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get302(): Promise<void>;
   get302(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1639,7 +1624,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1653,7 +1638,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1661,7 +1646,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   patch302(): Promise<void>;
   patch302(options: Models.HttpRedirectsPatch302OptionalParams): Promise<void>;
@@ -1685,7 +1670,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1698,7 +1683,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1706,7 +1691,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post303(): Promise<void>;
   post303(options: Models.HttpRedirectsPost303OptionalParams): Promise<void>;
@@ -1730,7 +1715,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1742,7 +1727,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1750,7 +1735,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head307(): Promise<void>;
   head307(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1774,7 +1759,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1786,7 +1771,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1794,7 +1779,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get307(): Promise<void>;
   get307(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1818,7 +1803,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1830,7 +1815,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1838,7 +1823,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put307(): Promise<void>;
   put307(options: Models.HttpRedirectsPut307OptionalParams): Promise<void>;
@@ -1862,7 +1847,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1874,7 +1859,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1882,7 +1867,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   patch307(): Promise<void>;
   patch307(options: Models.HttpRedirectsPatch307OptionalParams): Promise<void>;
@@ -1906,7 +1891,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1918,7 +1903,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1926,7 +1911,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post307(): Promise<void>;
   post307(options: Models.HttpRedirectsPost307OptionalParams): Promise<void>;
@@ -1950,7 +1935,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1962,7 +1947,7 @@ export class HttpRedirects {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1970,7 +1955,7 @@ export class HttpRedirects {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete307(): Promise<void>;
   delete307(options: Models.HttpRedirectsDelete307OptionalParams): Promise<void>;
@@ -1994,7 +1979,7 @@ export class HttpRedirects {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

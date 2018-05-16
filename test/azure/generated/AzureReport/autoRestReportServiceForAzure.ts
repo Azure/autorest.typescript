@@ -145,13 +145,12 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -195,7 +194,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -215,7 +214,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -223,7 +222,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getReport(): Promise<{ [propertyName: string]: number }>;
   getReport(options: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<{ [propertyName: string]: number }>;
@@ -247,7 +246,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
           return cb(err);
         }
         let result = data.parsedBody as { [propertyName: string]: number };
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

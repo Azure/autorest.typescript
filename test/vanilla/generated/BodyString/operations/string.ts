@@ -63,13 +63,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -106,7 +105,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -185,13 +184,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -256,13 +254,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -299,7 +296,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -379,13 +376,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -451,13 +447,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -494,7 +489,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -576,13 +571,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -649,13 +643,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -692,7 +685,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -775,13 +768,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -846,13 +838,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -889,7 +880,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -938,13 +929,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -981,7 +971,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1030,13 +1020,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1073,7 +1062,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1153,13 +1142,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1224,13 +1212,12 @@ export class String {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1267,7 +1254,7 @@ export class String {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1286,7 +1273,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1294,7 +1281,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNull(): Promise<Models.GetNullOKResponse>;
   getNull(options: msRest.RequestOptionsBase): Promise<Models.GetNullOKResponse>;
@@ -1318,7 +1305,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Models.GetNullOKResponse;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1330,7 +1317,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1338,7 +1325,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNull(): Promise<void>;
   putNull(options: Models.StringPutNullOptionalParams): Promise<void>;
@@ -1362,7 +1349,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1374,7 +1361,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1382,7 +1369,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getEmpty(): Promise<Models.GetEmptyOKResponse>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Models.GetEmptyOKResponse>;
@@ -1406,7 +1393,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Models.GetEmptyOKResponse;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1420,7 +1407,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1428,7 +1415,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putEmpty(stringBody: Models.StringBody1): Promise<void>;
   putEmpty(stringBody: Models.StringBody1, options: msRest.RequestOptionsBase): Promise<void>;
@@ -1452,7 +1439,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1465,7 +1452,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1473,7 +1460,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMbcs(): Promise<Models.GetMbcsOKResponse>;
   getMbcs(options: msRest.RequestOptionsBase): Promise<Models.GetMbcsOKResponse>;
@@ -1497,7 +1484,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Models.GetMbcsOKResponse;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1513,7 +1500,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1521,7 +1508,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMbcs(stringBody: Models.StringBody2): Promise<void>;
   putMbcs(stringBody: Models.StringBody2, options: msRest.RequestOptionsBase): Promise<void>;
@@ -1545,7 +1532,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1559,7 +1546,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1567,7 +1554,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getWhitespace(): Promise<Models.GetWhitespaceOKResponse>;
   getWhitespace(options: msRest.RequestOptionsBase): Promise<Models.GetWhitespaceOKResponse>;
@@ -1591,7 +1578,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Models.GetWhitespaceOKResponse;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1608,7 +1595,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1616,7 +1603,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putWhitespace(stringBody: Models.StringBody3): Promise<void>;
   putWhitespace(stringBody: Models.StringBody3, options: msRest.RequestOptionsBase): Promise<void>;
@@ -1640,7 +1627,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1652,7 +1639,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1660,7 +1647,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNotProvided(): Promise<string>;
   getNotProvided(options: msRest.RequestOptionsBase): Promise<string>;
@@ -1684,7 +1671,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as string;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1696,7 +1683,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1704,7 +1691,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBase64Encoded(): Promise<Buffer>;
   getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -1728,7 +1715,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1740,7 +1727,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1748,7 +1735,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBase64UrlEncoded(): Promise<Buffer>;
   getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -1772,7 +1759,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1786,7 +1773,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1794,7 +1781,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putBase64UrlEncoded(stringBody: Buffer): Promise<void>;
   putBase64UrlEncoded(stringBody: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
@@ -1818,7 +1805,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1830,7 +1817,7 @@ export class String {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1838,7 +1825,7 @@ export class String {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNullBase64UrlEncoded(): Promise<Buffer>;
   getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -1862,7 +1849,7 @@ export class String {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

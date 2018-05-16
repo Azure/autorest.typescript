@@ -62,13 +62,12 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -105,7 +104,7 @@ export class ByteModel {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -154,13 +153,12 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -197,7 +195,7 @@ export class ByteModel {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -246,13 +244,12 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -289,7 +286,7 @@ export class ByteModel {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -370,13 +367,12 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -441,13 +437,12 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -484,7 +479,7 @@ export class ByteModel {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -503,7 +498,7 @@ export class ByteModel {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -511,7 +506,7 @@ export class ByteModel {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNull(): Promise<Buffer>;
   getNull(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -535,7 +530,7 @@ export class ByteModel {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -547,7 +542,7 @@ export class ByteModel {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -555,7 +550,7 @@ export class ByteModel {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getEmpty(): Promise<Buffer>;
   getEmpty(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -579,7 +574,7 @@ export class ByteModel {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -591,7 +586,7 @@ export class ByteModel {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -599,7 +594,7 @@ export class ByteModel {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNonAscii(): Promise<Buffer>;
   getNonAscii(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -623,7 +618,7 @@ export class ByteModel {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -638,7 +633,7 @@ export class ByteModel {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -646,7 +641,7 @@ export class ByteModel {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonAscii(byteBody: Buffer): Promise<void>;
   putNonAscii(byteBody: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
@@ -670,7 +665,7 @@ export class ByteModel {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -682,7 +677,7 @@ export class ByteModel {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -690,7 +685,7 @@ export class ByteModel {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getInvalid(): Promise<Buffer>;
   getInvalid(options: msRest.RequestOptionsBase): Promise<Buffer>;
@@ -714,7 +709,7 @@ export class ByteModel {
           return cb(err);
         }
         let result = data.parsedBody as Buffer;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

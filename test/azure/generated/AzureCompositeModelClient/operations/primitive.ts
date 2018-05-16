@@ -77,13 +77,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -114,7 +113,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -197,13 +196,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -282,13 +280,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -319,7 +316,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -402,13 +399,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -487,13 +483,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -524,7 +519,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -607,13 +602,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -692,13 +686,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -729,7 +722,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -813,13 +806,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -898,13 +890,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -935,7 +926,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1018,13 +1009,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1103,13 +1093,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1140,7 +1129,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1223,13 +1212,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1308,13 +1296,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1345,7 +1332,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1428,13 +1415,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1513,13 +1499,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1550,7 +1535,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1634,13 +1619,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1719,13 +1703,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1756,7 +1739,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1840,13 +1823,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1925,13 +1907,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1962,7 +1943,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2049,13 +2030,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2134,13 +2114,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "GET"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2171,7 +2150,7 @@ export class Primitive {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2258,13 +2237,12 @@ export class Primitive {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2299,7 +2277,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2308,7 +2286,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getInt(): Promise<Models.IntWrapper>;
   getInt(options: msRest.RequestOptionsBase): Promise<Models.IntWrapper>;
@@ -2332,7 +2310,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.IntWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2346,7 +2324,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2354,7 +2332,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putInt(complexBody: Models.IntWrapper): Promise<void>;
   putInt(complexBody: Models.IntWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2378,7 +2356,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2390,7 +2368,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2399,7 +2377,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getLong(): Promise<Models.LongWrapper>;
   getLong(options: msRest.RequestOptionsBase): Promise<Models.LongWrapper>;
@@ -2423,7 +2401,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.LongWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2437,7 +2415,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2445,7 +2423,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putLong(complexBody: Models.LongWrapper): Promise<void>;
   putLong(complexBody: Models.LongWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2469,7 +2447,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2481,7 +2459,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2490,7 +2468,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getFloat(): Promise<Models.FloatWrapper>;
   getFloat(options: msRest.RequestOptionsBase): Promise<Models.FloatWrapper>;
@@ -2514,7 +2492,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.FloatWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2528,7 +2506,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2536,7 +2514,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putFloat(complexBody: Models.FloatWrapper): Promise<void>;
   putFloat(complexBody: Models.FloatWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2560,7 +2538,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2572,7 +2550,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2581,7 +2559,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDouble(): Promise<Models.DoubleWrapper>;
   getDouble(options: msRest.RequestOptionsBase): Promise<Models.DoubleWrapper>;
@@ -2605,7 +2583,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.DoubleWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2620,7 +2598,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2628,7 +2606,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDouble(complexBody: Models.DoubleWrapper): Promise<void>;
   putDouble(complexBody: Models.DoubleWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2652,7 +2630,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2664,7 +2642,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2673,7 +2651,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBool(): Promise<Models.BooleanWrapper>;
   getBool(options: msRest.RequestOptionsBase): Promise<Models.BooleanWrapper>;
@@ -2697,7 +2675,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.BooleanWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2711,7 +2689,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2719,7 +2697,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putBool(complexBody: Models.BooleanWrapper): Promise<void>;
   putBool(complexBody: Models.BooleanWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2743,7 +2721,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2755,7 +2733,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2764,7 +2742,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getString(): Promise<Models.StringWrapper>;
   getString(options: msRest.RequestOptionsBase): Promise<Models.StringWrapper>;
@@ -2788,7 +2766,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.StringWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2802,7 +2780,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2810,7 +2788,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putString(complexBody: Models.StringWrapper): Promise<void>;
   putString(complexBody: Models.StringWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2834,7 +2812,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2846,7 +2824,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2855,7 +2833,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDate(): Promise<Models.DateWrapper>;
   getDate(options: msRest.RequestOptionsBase): Promise<Models.DateWrapper>;
@@ -2879,7 +2857,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.DateWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2893,7 +2871,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2901,7 +2879,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDate(complexBody: Models.DateWrapper): Promise<void>;
   putDate(complexBody: Models.DateWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -2925,7 +2903,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2937,7 +2915,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2947,7 +2925,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDateTime(): Promise<Models.DatetimeWrapper>;
   getDateTime(options: msRest.RequestOptionsBase): Promise<Models.DatetimeWrapper>;
@@ -2971,7 +2949,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.DatetimeWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -2986,7 +2964,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -2994,7 +2972,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDateTime(complexBody: Models.DatetimeWrapper): Promise<void>;
   putDateTime(complexBody: Models.DatetimeWrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -3018,7 +2996,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3030,7 +3008,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3040,7 +3018,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDateTimeRfc1123(): Promise<Models.Datetimerfc1123Wrapper>;
   getDateTimeRfc1123(options: msRest.RequestOptionsBase): Promise<Models.Datetimerfc1123Wrapper>;
@@ -3064,7 +3042,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.Datetimerfc1123Wrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3079,7 +3057,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3087,7 +3065,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper): Promise<void>;
   putDateTimeRfc1123(complexBody: Models.Datetimerfc1123Wrapper, options: msRest.RequestOptionsBase): Promise<void>;
@@ -3111,7 +3089,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3123,7 +3101,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3133,7 +3111,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDuration(): Promise<Models.DurationWrapper>;
   getDuration(options: msRest.RequestOptionsBase): Promise<Models.DurationWrapper>;
@@ -3157,7 +3135,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.DurationWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3169,7 +3147,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3177,7 +3155,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDuration(): Promise<void>;
   putDuration(options: Models.PrimitivePutDurationOptionalParams): Promise<void>;
@@ -3201,7 +3179,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3213,7 +3191,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3222,7 +3200,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getByte(): Promise<Models.ByteWrapper>;
   getByte(options: msRest.RequestOptionsBase): Promise<Models.ByteWrapper>;
@@ -3246,7 +3224,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as Models.ByteWrapper;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -3258,7 +3236,7 @@ export class Primitive {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -3266,7 +3244,7 @@ export class Primitive {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putByte(): Promise<void>;
   putByte(options: Models.PrimitivePutByteOptionalParams): Promise<void>;
@@ -3290,7 +3268,7 @@ export class Primitive {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

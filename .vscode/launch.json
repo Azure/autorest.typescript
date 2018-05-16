@@ -17,6 +17,15 @@
       "args": [],
       "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "autorest.typescript testserver",
+      "runtimeArgs": [
+        "-r", "ts-node/register"
+      ],
+      "args": ["${workspaceRoot}/testserver/index.ts"]
     }
   ]
 }

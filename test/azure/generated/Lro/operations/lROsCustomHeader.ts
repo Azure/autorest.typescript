@@ -56,7 +56,6 @@ export class LROsCustomHeader {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -68,7 +67,7 @@ export class LROsCustomHeader {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -107,7 +106,6 @@ export class LROsCustomHeader {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -119,7 +117,7 @@ export class LROsCustomHeader {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -273,13 +271,12 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -309,7 +306,7 @@ export class LROsCustomHeader {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -393,13 +390,12 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -429,7 +425,7 @@ export class LROsCustomHeader {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -444,7 +440,7 @@ export class LROsCustomHeader {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -527,13 +523,12 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -632,13 +627,12 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -677,7 +671,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -686,7 +680,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRetrySucceeded(): Promise<Models.Product>;
   putAsyncRetrySucceeded(options: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
@@ -710,7 +704,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -727,7 +721,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -736,7 +730,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put201CreatingSucceeded200(): Promise<Models.Product>;
   put201CreatingSucceeded200(options: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
@@ -760,7 +754,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -776,7 +770,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -784,7 +778,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202Retry200(): Promise<void>;
   post202Retry200(options: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<void>;
@@ -808,7 +802,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -825,7 +819,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -833,7 +827,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRetrySucceeded(): Promise<void>;
   postAsyncRetrySucceeded(options: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<void>;
@@ -857,7 +851,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -874,7 +868,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -883,7 +877,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRetrySucceeded(): Promise<Models.Product>;
   beginPutAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.Product>;
@@ -907,7 +901,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -924,7 +918,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -933,7 +927,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPut201CreatingSucceeded200(): Promise<Models.Product>;
   beginPut201CreatingSucceeded200(options: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
@@ -957,7 +951,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -973,7 +967,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -981,7 +975,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202Retry200(): Promise<void>;
   beginPost202Retry200(options: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<void>;
@@ -1005,7 +999,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1022,7 +1016,7 @@ export class LROsCustomHeader {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1030,7 +1024,7 @@ export class LROsCustomHeader {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRetrySucceeded(): Promise<void>;
   beginPostAsyncRetrySucceeded(options: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<void>;
@@ -1054,7 +1048,7 @@ export class LROsCustomHeader {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

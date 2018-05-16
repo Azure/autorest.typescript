@@ -30,7 +30,6 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
 @if (Model.ReturnType.Body != null)
 {
     @:let httpRequest = operationRes.request;
-    @:let response = operationRes.response;
 }
     @EmptyLine
     // Deserialize Response

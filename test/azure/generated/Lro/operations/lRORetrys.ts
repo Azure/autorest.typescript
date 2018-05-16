@@ -55,7 +55,6 @@ export class LRORetrys {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -67,7 +66,7 @@ export class LRORetrys {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -104,7 +103,6 @@ export class LRORetrys {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -116,7 +114,7 @@ export class LRORetrys {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -153,7 +151,6 @@ export class LRORetrys {
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
-      let response = operationRes.response;
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
@@ -165,7 +162,7 @@ export class LRORetrys {
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
         deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(response);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -383,13 +380,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -419,7 +415,7 @@ export class LRORetrys {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -434,7 +430,7 @@ export class LRORetrys {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -516,13 +512,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -552,7 +547,7 @@ export class LRORetrys {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -618,13 +613,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -654,7 +648,7 @@ export class LRORetrys {
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(response);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -669,7 +663,7 @@ export class LRORetrys {
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
           deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(response);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -734,13 +728,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -820,13 +813,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -923,13 +915,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1026,13 +1017,12 @@ export class LRORetrys {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1070,7 +1060,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1079,7 +1069,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put201CreatingSucceeded200(): Promise<Models.Product>;
   put201CreatingSucceeded200(options: Models.LRORetrysPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
@@ -1103,7 +1093,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1118,7 +1108,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1127,7 +1117,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetrySucceeded(): Promise<Models.Product>;
   putAsyncRelativeRetrySucceeded(options: Models.LRORetrysPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.Product>;
@@ -1151,7 +1141,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1166,7 +1156,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1175,7 +1165,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteProvisioning202Accepted200Succeeded(): Promise<Models.Product>;
   deleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
@@ -1199,7 +1189,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1213,7 +1203,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1221,7 +1211,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202Retry200(): Promise<void>;
   delete202Retry200(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1245,7 +1235,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1259,7 +1249,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1267,7 +1257,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetrySucceeded(): Promise<void>;
   deleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1291,7 +1281,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1306,7 +1296,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1314,7 +1304,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202Retry200(): Promise<void>;
   post202Retry200(options: Models.LRORetrysPost202Retry200OptionalParams): Promise<void>;
@@ -1338,7 +1328,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1353,7 +1343,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1361,7 +1351,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetrySucceeded(): Promise<void>;
   postAsyncRelativeRetrySucceeded(options: Models.LRORetrysPostAsyncRelativeRetrySucceededOptionalParams): Promise<void>;
@@ -1385,7 +1375,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1401,7 +1391,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1410,7 +1400,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPut201CreatingSucceeded200(): Promise<Models.Product>;
   beginPut201CreatingSucceeded200(options: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<Models.Product>;
@@ -1434,7 +1424,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1449,7 +1439,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1458,7 +1448,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetrySucceeded(): Promise<Models.Product>;
   beginPutAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.Product>;
@@ -1482,7 +1472,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1497,7 +1487,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1506,7 +1496,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteProvisioning202Accepted200Succeeded(): Promise<Models.Product>;
   beginDeleteProvisioning202Accepted200Succeeded(options: msRest.RequestOptionsBase): Promise<Models.Product>;
@@ -1530,7 +1520,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as Models.Product;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1544,7 +1534,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1552,7 +1542,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete202Retry200(): Promise<void>;
   beginDelete202Retry200(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1576,7 +1566,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1590,7 +1580,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1598,7 +1588,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetrySucceeded(): Promise<void>;
   beginDeleteAsyncRelativeRetrySucceeded(options: msRest.RequestOptionsBase): Promise<void>;
@@ -1622,7 +1612,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1637,7 +1627,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1645,7 +1635,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202Retry200(): Promise<void>;
   beginPost202Retry200(options: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<void>;
@@ -1669,7 +1659,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -1684,7 +1674,7 @@ export class LRORetrys {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
@@ -1692,7 +1682,7 @@ export class LRORetrys {
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetrySucceeded(): Promise<void>;
   beginPostAsyncRelativeRetrySucceeded(options: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<void>;
@@ -1716,7 +1706,7 @@ export class LRORetrys {
           return cb(err);
         }
         let result = data.parsedBody as void;
-        return cb(err, result, data.request, data.response);
+        return cb(err, result, data.request, data);
       });
     }
   }

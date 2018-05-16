@@ -88,14 +88,13 @@ export class Formdata {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -175,14 +174,13 @@ export class Formdata {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT"
       });
-      let response = operationRes.response;
-      let statusCode = response.status;
+      let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
-        error.statusCode = response.status;
+        error.statusCode = operationRes.status;
         error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(response);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -223,29 +221,29 @@ export class Formdata {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Response} [result]   - The deserialized result object if an error did not occur.
+   *                      {msRest.HttpOperationResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  uploadFile(fileContent: ReadableStream, fileName: string): Promise<Response>;
-  uploadFile(fileContent: ReadableStream, fileName: string, options: msRest.RequestOptionsBase): Promise<Response>;
-  uploadFile(fileContent: ReadableStream, fileName: string, callback: msRest.ServiceCallback<Response>): void;
-  uploadFile(fileContent: ReadableStream, fileName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Response>): void;
-  uploadFile(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Response>): any {
+  uploadFile(fileContent: ReadableStream, fileName: string): Promise<msRest.HttpOperationResponse>;
+  uploadFile(fileContent: ReadableStream, fileName: string, options: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse>;
+  uploadFile(fileContent: ReadableStream, fileName: string, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
+  uploadFile(fileContent: ReadableStream, fileName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
+  uploadFile(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<msRest.HttpOperationResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Response>;
+    let cb = callback as msRest.ServiceCallback<msRest.HttpOperationResponse>;
     if (!callback) {
       return this.uploadFileWithHttpOperationResponse(fileContent, fileName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.response);
+        return Promise.resolve(operationRes);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -254,8 +252,8 @@ export class Formdata {
         if (err) {
           return cb(err);
         }
-        let result = data.response;
-        return cb(err, result, data.request, data.response);
+        let result = data;
+        return cb(err, result, data.request, data);
       });
     }
   }
@@ -269,29 +267,29 @@ export class Formdata {
    *
    * @param {ServiceCallback} callback - The callback.
    *
-   * @returns {ServiceCallback} callback(err, result, request, response)
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Response} [result]   - The deserialized result object if an error did not occur.
+   *                      {msRest.HttpOperationResponse} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
-   *                      {Response} [response] - The HTTP Response stream if an error did not occur.
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  uploadFileViaBody(fileContent: ReadableStream): Promise<Response>;
-  uploadFileViaBody(fileContent: ReadableStream, options: msRest.RequestOptionsBase): Promise<Response>;
-  uploadFileViaBody(fileContent: ReadableStream, callback: msRest.ServiceCallback<Response>): void;
-  uploadFileViaBody(fileContent: ReadableStream, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Response>): void;
-  uploadFileViaBody(fileContent: ReadableStream, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Response>): any {
+  uploadFileViaBody(fileContent: ReadableStream): Promise<msRest.HttpOperationResponse>;
+  uploadFileViaBody(fileContent: ReadableStream, options: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse>;
+  uploadFileViaBody(fileContent: ReadableStream, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
+  uploadFileViaBody(fileContent: ReadableStream, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
+  uploadFileViaBody(fileContent: ReadableStream, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<msRest.HttpOperationResponse>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Response>;
+    let cb = callback as msRest.ServiceCallback<msRest.HttpOperationResponse>;
     if (!callback) {
       return this.uploadFileViaBodyWithHttpOperationResponse(fileContent, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.response);
+        return Promise.resolve(operationRes);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -300,8 +298,8 @@ export class Formdata {
         if (err) {
           return cb(err);
         }
-        let result = data.response;
-        return cb(err, result, data.request, data.response);
+        let result = data;
+        return cb(err, result, data.request, data);
       });
     }
   }
