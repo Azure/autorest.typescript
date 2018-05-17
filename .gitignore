@@ -297,3 +297,7 @@ package/
 *.tgz
 src/obj/
 *.log
+
+*.js
+*.js.map
+!.scripts/*.js
