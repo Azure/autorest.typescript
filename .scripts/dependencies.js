@@ -125,7 +125,7 @@ function updatePackageJsonDependency(dependencyName, dependencyVersion) {
     console.log(`"${dependencyName}" is already set to "${dependencyVersion}" in "${packageJsonFilePath}".`);
   } else {
     console.log(`Changing "${dependencyName}" to "${dependencyVersion}" in "${packageJsonFilePath}"`)
-    packageJson.dependencies[dependencyName] = dependencyVersion;
+    packageJson.devDependencies[dependencyName] = dependencyVersion;
 
     fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  "));
 
