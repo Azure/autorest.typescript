@@ -14,4 +14,3 @@ for (const localDependency of localDependencies) {
 if (refreshNodeModules) {
   dependencies.refreshNodeModules();
 }
-dependencies.updatePackageJsonMain("./dist/lib/msRestAzure.js");

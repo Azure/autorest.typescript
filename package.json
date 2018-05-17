@@ -61,7 +61,7 @@
     "mocha": "^5.0.4",
     "mocha-chrome": "^1.0.3",
     "moment": "~2.21.0",
-    "ms-rest-azure-js": "^0.3.47",
+    "ms-rest-azure-js": "^0.3.50",
     "ms-rest-js": "^0.5.149",
     "run-sequence": "*",
     "should": "5.2.0",
@@ -80,6 +80,5 @@
   },
   "dependencies": {
     "dotnet-2.0.0": "^1.4.4"
-  },
-  "main": "./dist/lib/msRestAzure.js"
+  }
 }
