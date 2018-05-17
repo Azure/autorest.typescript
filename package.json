@@ -14,7 +14,10 @@
     "publish-preview": "gulp publish-preview",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
-    "nuke": "git clean -xdf"
+    "nuke": "git clean -xdf",
+    "local": "node ./.scripts/local.js",
+    "preview": "node ./.scripts/preview.js",
+    "latest": "node ./.scripts/latest.js"
   },
   "repository": {
     "type": "git",
@@ -58,8 +61,8 @@
     "mocha": "^5.0.4",
     "mocha-chrome": "^1.0.3",
     "moment": "~2.21.0",
-    "ms-rest-azure-js": "^0.3.42",
-    "ms-rest-js": "^0.5.143",
+    "ms-rest-azure-js": "^0.3.50",
+    "ms-rest-js": "^0.5.149",
     "run-sequence": "*",
     "should": "5.2.0",
     "shx": "^0.2.2",
