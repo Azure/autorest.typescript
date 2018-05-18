@@ -37,6 +37,7 @@ export const ErrorModel = {
 };
 
 export const Slide = {
+  xmlName: 'slide',
   required: false,
   serializedName: 'Slide',
   type: {
@@ -81,6 +82,7 @@ export const Slide = {
 };
 
 export const Slideshow = {
+  xmlName: 'slideshow',
   required: false,
   serializedName: 'Slideshow',
   type: {
@@ -181,6 +183,7 @@ export const AppleBarrel = {
 };
 
 export const Banana = {
+  xmlName: 'banana',
   required: false,
   serializedName: 'Banana',
   type: {
@@ -321,6 +324,7 @@ export const Container = {
 };
 
 export const ListContainersResponse = {
+  xmlName: 'EnumerationResults',
   required: false,
   serializedName: 'ListContainersResponse',
   type: {
@@ -934,6 +938,7 @@ export const Blobs = {
 };
 
 export const ListBlobsResponse = {
+  xmlName: 'EnumerationResults',
   required: false,
   serializedName: 'ListBlobsResponse',
   type: {
