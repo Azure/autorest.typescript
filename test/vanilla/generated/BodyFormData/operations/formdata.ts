@@ -164,9 +164,8 @@ export class Formdata {
         }
       }
     }
-    // Serialize Request
-    let requestContent = fileContent;
-    httpRequest.body = requestContent;
+    // SerializedRequest
+    httpRequest.unserializedBody = fileContent;
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;

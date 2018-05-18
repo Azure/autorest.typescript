@@ -121,11 +121,10 @@ export class ParameterGrouping {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (body !== null && body !== undefined) {
+        httpRequest.unserializedBody = body;
         let requestModelMapper = {
           required: true,
           serializedName: 'body',
@@ -133,15 +132,12 @@ export class ParameterGrouping {
             name: 'Number'
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, body, 'body');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'body');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(body, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

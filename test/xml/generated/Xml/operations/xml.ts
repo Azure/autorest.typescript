@@ -152,21 +152,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (slideshow !== null && slideshow !== undefined) {
+        httpRequest.unserializedBody = slideshow;
         let requestModelMapper = Mappers.Slideshow;
-        requestModel = client.serializer.serialize(requestModelMapper, slideshow, 'slideshow');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'slideshow' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'slideshow');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'slideshow' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(slideshow, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -328,21 +324,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (wrappedLists !== null && wrappedLists !== undefined) {
+        httpRequest.unserializedBody = wrappedLists;
         let requestModelMapper = Mappers.AppleBarrel;
-        requestModel = client.serializer.serialize(requestModelMapper, wrappedLists, 'wrappedLists');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'AppleBarrel' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'wrappedLists');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'AppleBarrel' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(wrappedLists, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -570,21 +562,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (slideshow !== null && slideshow !== undefined) {
+        httpRequest.unserializedBody = slideshow;
         let requestModelMapper = Mappers.Slideshow;
-        requestModel = client.serializer.serialize(requestModelMapper, slideshow, 'slideshow');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'slideshow' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'slideshow');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'slideshow' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(slideshow, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -742,21 +730,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (appleBarrel !== null && appleBarrel !== undefined) {
+        httpRequest.unserializedBody = appleBarrel;
         let requestModelMapper = Mappers.AppleBarrel;
-        requestModel = client.serializer.serialize(requestModelMapper, appleBarrel, 'appleBarrel');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'AppleBarrel' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'appleBarrel');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'AppleBarrel' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(appleBarrel, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -921,11 +905,10 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (bananas !== null && bananas !== undefined) {
+        httpRequest.unserializedBody = bananas;
         let requestModelMapper = {
           xmlElementName: 'banana',
           required: true,
@@ -942,15 +925,12 @@ export class Xml {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
-        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'banana'), { rootName: 'bananas' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bananas');
+        httpRequest.body = msRest.stringifyXML(msRest.prepareXMLRootList(httpRequest.body, 'banana'), { rootName: 'bananas' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(bananas, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1115,11 +1095,10 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (bananas !== null && bananas !== undefined) {
+        httpRequest.unserializedBody = bananas;
         let requestModelMapper = {
           xmlElementName: 'banana',
           required: true,
@@ -1136,15 +1115,12 @@ export class Xml {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
-        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'banana'), { rootName: 'bananas' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bananas');
+        httpRequest.body = msRest.stringifyXML(msRest.prepareXMLRootList(httpRequest.body, 'banana'), { rootName: 'bananas' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(bananas, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1309,11 +1285,10 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (bananas !== null && bananas !== undefined) {
+        httpRequest.unserializedBody = bananas;
         let requestModelMapper = {
           xmlElementName: 'banana',
           required: true,
@@ -1330,15 +1305,12 @@ export class Xml {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, bananas, 'bananas');
-        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'banana'), { rootName: 'bananas' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bananas');
+        httpRequest.body = msRest.stringifyXML(msRest.prepareXMLRootList(httpRequest.body, 'banana'), { rootName: 'bananas' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(bananas, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1496,21 +1468,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (banana !== null && banana !== undefined) {
+        httpRequest.unserializedBody = banana;
         let requestModelMapper = Mappers.Banana;
-        requestModel = client.serializer.serialize(requestModelMapper, banana, 'banana');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'banana' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'banana');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'banana' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(banana, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1759,21 +1727,17 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (properties !== null && properties !== undefined) {
+        httpRequest.unserializedBody = properties;
         let requestModelMapper = Mappers.StorageServiceProperties;
-        requestModel = client.serializer.serialize(requestModelMapper, properties, 'properties');
-        requestContent = msRest.stringifyXML(requestModel, { rootName: 'StorageServiceProperties' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'properties');
+        httpRequest.body = msRest.stringifyXML(httpRequest.body, { rootName: 'StorageServiceProperties' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(properties, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1946,11 +1910,10 @@ export class Xml {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (properties !== null && properties !== undefined) {
+        httpRequest.unserializedBody = properties;
         let requestModelMapper = {
           xmlElementName: 'SignedIdentifiers',
           required: true,
@@ -1967,15 +1930,12 @@ export class Xml {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, properties, 'properties');
-        requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, 'SignedIdentifiers'), { rootName: 'SignedIdentifiers' });
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'properties');
+        httpRequest.body = msRest.stringifyXML(msRest.prepareXMLRootList(httpRequest.body, 'SignedIdentifiers'), { rootName: 'SignedIdentifiers' });
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(properties, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

@@ -157,11 +157,10 @@ export class Duration {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (durationBody !== null && durationBody !== undefined) {
+        httpRequest.unserializedBody = durationBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'durationBody',
@@ -169,15 +168,12 @@ export class Duration {
             name: 'TimeSpan'
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, durationBody, 'durationBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'durationBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(durationBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

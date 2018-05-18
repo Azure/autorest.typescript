@@ -86,11 +86,10 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (resourceArray !== null && resourceArray !== undefined) {
+        httpRequest.unserializedBody = resourceArray;
         let requestModelMapper = {
           required: false,
           serializedName: 'ResourceArray',
@@ -106,15 +105,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceArray, 'resourceArray');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceArray');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceArray, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -289,11 +285,10 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (resourceArray !== null && resourceArray !== undefined) {
+        httpRequest.unserializedBody = resourceArray;
         let requestModelMapper = {
           required: false,
           serializedName: 'ResourceArray',
@@ -309,15 +304,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceArray, 'resourceArray');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceArray');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceArray, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -492,11 +484,10 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (resourceDictionary !== null && resourceDictionary !== undefined) {
+        httpRequest.unserializedBody = resourceDictionary;
         let requestModelMapper = {
           required: false,
           serializedName: 'ResourceDictionary',
@@ -512,15 +503,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, resourceDictionary, 'resourceDictionary');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceDictionary');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceDictionary, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -695,21 +683,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (resourceComplexObject !== null && resourceComplexObject !== undefined) {
+        httpRequest.unserializedBody = resourceComplexObject;
         let requestModelMapper = Mappers.ResourceCollection;
-        requestModel = client.serializer.serialize(requestModelMapper, resourceComplexObject, 'resourceComplexObject');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceComplexObject');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(resourceComplexObject, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -869,21 +853,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
+        httpRequest.unserializedBody = simpleBodyProduct;
         let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'simpleBodyProduct');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1015,21 +995,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
+        httpRequest.unserializedBody = simpleBodyProduct;
         let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'simpleBodyProduct');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1190,21 +1166,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (simpleBodyProduct !== null && simpleBodyProduct !== undefined) {
+        httpRequest.unserializedBody = simpleBodyProduct;
         let requestModelMapper = Mappers.SimpleProduct;
-        requestModel = client.serializer.serialize(requestModelMapper, simpleBodyProduct, 'simpleBodyProduct');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'simpleBodyProduct');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(simpleBodyProduct, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

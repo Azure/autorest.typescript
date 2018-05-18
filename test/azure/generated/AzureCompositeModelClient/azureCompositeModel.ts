@@ -289,21 +289,17 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (bodyParameter !== null && bodyParameter !== undefined) {
+        httpRequest.unserializedBody = bodyParameter;
         let requestModelMapper = Mappers.CatalogDictionaryOfArray;
-        requestModel = client.serializer.serialize(requestModelMapper, bodyParameter, 'bodyParameter');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -427,21 +423,17 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (bodyParameter !== null && bodyParameter !== undefined) {
+        httpRequest.unserializedBody = bodyParameter;
         let requestModelMapper = Mappers.CatalogArrayOfDictionary;
-        requestModel = client.serializer.serialize(requestModelMapper, bodyParameter, 'bodyParameter');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(bodyParameter, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

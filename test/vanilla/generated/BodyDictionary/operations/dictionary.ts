@@ -268,11 +268,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -287,15 +286,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -871,11 +867,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -890,15 +885,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1278,11 +1270,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -1297,15 +1288,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1685,11 +1673,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -1704,15 +1691,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2092,11 +2076,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -2111,15 +2094,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2499,11 +2479,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -2518,15 +2497,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2906,11 +2882,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -2925,15 +2900,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3316,11 +3288,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -3335,15 +3306,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3726,11 +3694,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -3745,15 +3712,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4137,11 +4101,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -4156,15 +4119,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4349,11 +4309,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -4368,15 +4327,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4562,11 +4518,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -4581,15 +4536,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -5360,11 +5312,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -5380,15 +5331,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -6007,11 +5955,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -6033,15 +5980,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -6665,11 +6609,10 @@ export class Dictionary {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
+    // SerializedRequest
     try {
       if (arrayBody !== null && arrayBody !== undefined) {
+        httpRequest.unserializedBody = arrayBody;
         let requestModelMapper = {
           required: true,
           serializedName: 'arrayBody',
@@ -6691,15 +6634,12 @@ export class Dictionary {
             }
           }
         };
-        requestModel = client.serializer.serialize(requestModelMapper, arrayBody, 'arrayBody');
-        requestContent = JSON.stringify(requestModel);
+        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'arrayBody');
+        httpRequest.body = JSON.stringify(httpRequest.body);
       }
     } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(arrayBody, null, 2)}.`);
-      return Promise.reject(serializationError);
+      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
     }
-    httpRequest.body = requestContent;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
