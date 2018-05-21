@@ -121,32 +121,21 @@ export class ParameterGrouping {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (body !== null && body !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'body',
-          type: {
-            name: 'Number'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, body, 'body');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(body, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'body',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "body"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

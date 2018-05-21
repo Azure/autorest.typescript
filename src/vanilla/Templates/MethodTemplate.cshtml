@@ -94,50 +94,9 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
 
   @if (Model.RequestBody != null)
   {
-      if (Model.RequestBody.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
-      {
   <text>
-  // Serialize Request
-  let requestContent = @(Model.RequestBody.Name);
-  httpRequest.body = requestContent;
+  httpRequest.body = @(Model.RequestBody.Name);
   </text>
-      }
-      else
-      {
-  <text>
-  // Serialize Request
-  let requestContent = null;
-  let requestModel = null;
-  try {
-    if (@(Model.RequestBody.Name) !== null && @(Model.RequestBody.Name) !== undefined) {
-      @(Model.ConstructRequestBodyMapper)
-      requestModel = client.serializer.serialize(requestModelMapper, @(Model.RequestBody.Name), '@(Model.RequestBody.Name)');
-      @if (Model.CodeModel.ShouldGenerateXmlSerialization)
-      {
-        if (Model.RequestBody.ModelType is SequenceType sequenceType)
-        {
-@:      requestContent = msRest.stringifyXML(msRest.prepareXMLRootList(requestModel, '@(sequenceType.ElementXmlName)'), { rootName: '@(Model.RequestBody.ModelType.XmlName)' });
-        }
-        else
-        {
-@:      requestContent = msRest.stringifyXML(requestModel, { rootName: '@(Model.RequestBody.ModelType.XmlName)' });
-        }
-
-      }
-      else
-      {
-@:      requestContent = JSON.stringify(requestModel);
-      }
-    }
-  } catch (error) {
-    let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-        `payload - ${JSON.stringify(@(Model.RequestBody.Name), null, 2)}.`);
-    return Promise.reject(serializationError);
-  }
-
-  httpRequest.body = requestContent;
-  </text>
-      }
   }
   else if (Model.LogicalParameters.Where(p => p.Location == ParameterLocation.FormData).Any())
   {

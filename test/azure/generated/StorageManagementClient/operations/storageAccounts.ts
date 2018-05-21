@@ -87,26 +87,15 @@ export class StorageAccounts {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (accountName !== null && accountName !== undefined) {
-        let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
-        requestModel = client.serializer.serialize(requestModelMapper, accountName, 'accountName');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(accountName, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = accountName;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "accountName"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -526,26 +515,15 @@ export class StorageAccounts {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (parameters !== null && parameters !== undefined) {
-        let requestModelMapper = Mappers.StorageAccountUpdateParameters;
-        requestModel = client.serializer.serialize(requestModelMapper, parameters, 'parameters');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(parameters, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StorageAccountUpdateParameters;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH"
+        httpMethod: "PATCH",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "parameters"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1016,26 +994,15 @@ export class StorageAccounts {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (regenerateKeyParameter !== null && regenerateKeyParameter !== undefined) {
-        let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
-        requestModel = client.serializer.serialize(requestModelMapper, regenerateKeyParameter, 'regenerateKeyParameter');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(regenerateKeyParameter, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = regenerateKeyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "regenerateKeyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1162,26 +1129,15 @@ export class StorageAccounts {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (parameters !== null && parameters !== undefined) {
-        let requestModelMapper = Mappers.StorageAccountCreateParameters;
-        requestModel = client.serializer.serialize(requestModelMapper, parameters, 'parameters');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(parameters, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StorageAccountCreateParameters;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "parameters"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {

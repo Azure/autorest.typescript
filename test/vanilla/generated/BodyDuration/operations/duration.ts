@@ -157,32 +157,21 @@ export class Duration {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (durationBody !== null && durationBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'durationBody',
-          type: {
-            name: 'TimeSpan'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, durationBody, 'durationBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(durationBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = durationBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'durationBody',
+        type: {
+          name: 'TimeSpan'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "durationBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

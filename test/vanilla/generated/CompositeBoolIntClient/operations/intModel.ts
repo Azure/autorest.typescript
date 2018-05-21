@@ -612,32 +612,21 @@ export class IntModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (intBody !== null && intBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'intBody',
-          type: {
-            name: 'Number'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, intBody, 'intBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(intBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'intBody',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "intBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -713,32 +702,21 @@ export class IntModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (intBody !== null && intBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'intBody',
-          type: {
-            name: 'Number'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, intBody, 'intBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(intBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'intBody',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "intBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -814,32 +792,21 @@ export class IntModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (intBody !== null && intBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'intBody',
-          type: {
-            name: 'Number'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, intBody, 'intBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(intBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'intBody',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "intBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -915,32 +882,21 @@ export class IntModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (intBody !== null && intBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'intBody',
-          type: {
-            name: 'Number'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, intBody, 'intBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(intBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'intBody',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "intBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1108,32 +1064,21 @@ export class IntModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (intBody !== null && intBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'intBody',
-          type: {
-            name: 'UnixTime'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, intBody, 'intBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(intBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'intBody',
+        type: {
+          name: 'UnixTime'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "intBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

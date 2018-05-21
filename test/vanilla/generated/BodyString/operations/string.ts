@@ -157,32 +157,21 @@ export class String {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (stringBody !== null && stringBody !== undefined) {
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'stringBody',
-          type: {
-            name: 'String'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, stringBody, 'stringBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(stringBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'stringBody',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -349,32 +338,21 @@ export class String {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (stringBody !== null && stringBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'stringBody',
-          type: {
-            name: 'String'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, stringBody, 'stringBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(stringBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'stringBody',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -544,32 +522,21 @@ export class String {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (stringBody !== null && stringBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'stringBody',
-          type: {
-            name: 'String'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, stringBody, 'stringBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(stringBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'stringBody',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -741,32 +708,21 @@ export class String {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (stringBody !== null && stringBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'stringBody',
-          type: {
-            name: 'String'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, stringBody, 'stringBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(stringBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'stringBody',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1115,32 +1071,21 @@ export class String {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (stringBody !== null && stringBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'stringBody',
-          type: {
-            name: 'Base64Url'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, stringBody, 'stringBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(stringBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'stringBody',
+        type: {
+          name: 'Base64Url'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

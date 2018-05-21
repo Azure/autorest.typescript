@@ -340,32 +340,21 @@ export class ByteModel {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (byteBody !== null && byteBody !== undefined) {
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'byteBody',
-          type: {
-            name: 'ByteArray'
-          }
-        };
-        requestModel = client.serializer.serialize(requestModelMapper, byteBody, 'byteBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(byteBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = byteBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'byteBody',
+        type: {
+          name: 'ByteArray'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "byteBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

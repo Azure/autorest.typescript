@@ -175,26 +175,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.IntWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.IntWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -378,26 +367,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.LongWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.LongWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -581,26 +559,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.FloatWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.FloatWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -785,26 +752,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.DoubleWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.DoubleWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -988,26 +944,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.BooleanWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.BooleanWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1191,26 +1136,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.StringWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StringWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1394,26 +1328,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.DateWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.DateWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1598,26 +1521,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.DatetimeWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.DatetimeWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1802,26 +1714,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.Datetimerfc1123Wrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Datetimerfc1123Wrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2009,26 +1910,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.DurationWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.DurationWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2216,26 +2106,15 @@ export class Primitive {
         }
       }
     }
-    // Serialize Request
-    let requestContent = null;
-    let requestModel = null;
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        let requestModelMapper = Mappers.ByteWrapper;
-        requestModel = client.serializer.serialize(requestModelMapper, complexBody, 'complexBody');
-        requestContent = JSON.stringify(requestModel);
-      }
-    } catch (error) {
-      let serializationError = new Error(`Error "${error.message}" occurred in serializing the ` +
-          `payload - ${JSON.stringify(complexBody, null, 2)}.`);
-      return Promise.reject(serializationError);
-    }
-    httpRequest.body = requestContent;
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ByteWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
