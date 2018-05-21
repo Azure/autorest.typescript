@@ -305,8 +305,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -433,8 +432,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

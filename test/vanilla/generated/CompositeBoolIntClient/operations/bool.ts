@@ -171,8 +171,7 @@ export class Bool {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "boolBody",
-        isXML: false
+        requestBodyName: "boolBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -353,8 +352,7 @@ export class Bool {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "boolBody",
-        isXML: false
+        requestBodyName: "boolBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

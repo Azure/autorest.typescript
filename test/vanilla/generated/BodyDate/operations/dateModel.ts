@@ -445,8 +445,7 @@ export class DateModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "dateBody",
-        isXML: false
+        requestBodyName: "dateBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -628,8 +627,7 @@ export class DateModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "dateBody",
-        isXML: false
+        requestBodyName: "dateBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

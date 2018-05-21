@@ -322,8 +322,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "body",
-        isXML: false
+        requestBodyName: "body"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -482,8 +481,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "body",
-        isXML: false
+        requestBodyName: "body"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

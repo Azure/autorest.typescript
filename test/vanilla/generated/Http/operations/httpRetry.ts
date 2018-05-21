@@ -150,8 +150,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -240,8 +239,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -400,8 +398,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -490,8 +487,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -580,8 +576,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -670,8 +665,7 @@ export class HttpRetry {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

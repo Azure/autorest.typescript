@@ -95,8 +95,7 @@ export class StorageAccounts {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "accountName",
-        isXML: false
+        requestBodyName: "accountName"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -524,8 +523,7 @@ export class StorageAccounts {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "parameters",
-        isXML: false
+        requestBodyName: "parameters"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1004,8 +1002,7 @@ export class StorageAccounts {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "regenerateKeyParameter",
-        isXML: false
+        requestBodyName: "regenerateKeyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1140,8 +1137,7 @@ export class StorageAccounts {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "parameters",
-        isXML: false
+        requestBodyName: "parameters"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {

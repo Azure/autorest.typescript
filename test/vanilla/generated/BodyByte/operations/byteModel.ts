@@ -354,8 +354,7 @@ export class ByteModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "byteBody",
-        isXML: false
+        requestBodyName: "byteBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

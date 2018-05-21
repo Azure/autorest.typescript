@@ -135,8 +135,7 @@ export class ParameterGrouping {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "body",
-        isXML: false
+        requestBodyName: "body"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

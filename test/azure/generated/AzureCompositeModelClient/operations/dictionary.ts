@@ -191,8 +191,7 @@ export class Dictionary {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "complexBody",
-        isXML: false
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -392,8 +391,7 @@ export class Dictionary {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "complexBody",
-        isXML: false
+        requestBodyName: "complexBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

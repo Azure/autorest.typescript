@@ -387,8 +387,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -588,8 +587,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -985,8 +983,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1382,8 +1379,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1779,8 +1775,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2176,8 +2171,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2573,8 +2567,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2974,8 +2967,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3274,8 +3266,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3674,8 +3665,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4074,8 +4064,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4275,8 +4264,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4478,8 +4466,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5266,8 +5253,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5907,8 +5893,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6554,8 +6539,7 @@ export class ArrayModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "arrayBody",
-        isXML: false
+        requestBodyName: "arrayBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

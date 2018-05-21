@@ -22,9 +22,20 @@ else
 <text>
     httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
     requestBodyMapper: requestModelMapper,
-    requestBodyName: "@(Model.RequestBody.Name)",
-    isXML: @(Model.CodeModel.ShouldGenerateXmlSerialization.ToString().ToLower())
 </text>
+@if (!Model.CodeModel.ShouldGenerateXmlSerialization)
+{
+<text>
+    requestBodyName: "@(Model.RequestBody.Name)"
+</text>
+}
+else
+{
+<text>
+    requestBodyName: "@(Model.RequestBody.Name)",
+    isXML: true
+</text>
+}
 }
   });
   let statusCode = operationRes.status;

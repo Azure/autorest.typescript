@@ -445,8 +445,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -720,8 +719,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -997,8 +995,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1273,8 +1270,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1456,8 +1452,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1639,8 +1634,7 @@ export class Datetime {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody",
-        isXML: false
+        requestBodyName: "datetimeBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

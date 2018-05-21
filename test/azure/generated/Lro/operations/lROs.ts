@@ -1650,8 +1650,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -1756,8 +1755,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1863,8 +1861,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1970,8 +1967,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2092,8 +2088,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2199,8 +2194,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2321,8 +2315,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2428,8 +2421,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2535,8 +2527,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2642,8 +2633,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2749,8 +2739,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2856,8 +2845,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2963,8 +2951,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -3068,8 +3055,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "sku",
-        isXML: false
+        requestBodyName: "sku"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3173,8 +3159,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "sku",
-        isXML: false
+        requestBodyName: "sku"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3291,8 +3276,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3409,8 +3393,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -4772,8 +4755,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -4863,8 +4845,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -4970,8 +4951,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 200) {
@@ -5077,8 +5057,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 200) {
@@ -5184,8 +5163,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -5276,8 +5254,7 @@ export class LROs {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {

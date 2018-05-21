@@ -234,8 +234,7 @@ class ComplexModelClient extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -352,8 +351,7 @@ class ComplexModelClient extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

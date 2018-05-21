@@ -444,8 +444,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -626,8 +625,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -808,8 +806,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -990,8 +987,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1172,8 +1168,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1354,8 +1349,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1536,8 +1530,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1718,8 +1711,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1900,8 +1892,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2082,8 +2073,7 @@ export class Number {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "numberBody",
-        isXML: false
+        requestBodyName: "numberBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

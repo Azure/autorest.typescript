@@ -82,8 +82,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -185,8 +184,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -277,8 +275,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -380,8 +377,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -652,8 +648,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -755,8 +750,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -847,8 +841,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -950,8 +943,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1216,8 +1208,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1305,8 +1296,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1397,8 +1387,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1492,8 +1481,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1596,8 +1584,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1710,8 +1697,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1807,8 +1793,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1914,8 +1899,7 @@ export class Explicit {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "bodyParameter",
-        isXML: false
+        requestBodyName: "bodyParameter"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

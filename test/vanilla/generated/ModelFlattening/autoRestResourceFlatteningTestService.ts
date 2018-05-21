@@ -116,8 +116,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "resourceArray",
-        isXML: false
+        requestBodyName: "resourceArray"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -309,8 +308,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "resourceArray",
-        isXML: false
+        requestBodyName: "resourceArray"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -502,8 +500,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "resourceDictionary",
-        isXML: false
+        requestBodyName: "resourceDictionary"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -681,8 +678,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "resourceComplexObject",
-        isXML: false
+        requestBodyName: "resourceComplexObject"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -845,8 +841,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "simpleBodyProduct",
-        isXML: false
+        requestBodyName: "simpleBodyProduct"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -981,8 +976,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "simpleBodyProduct",
-        isXML: false
+        requestBodyName: "simpleBodyProduct"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1146,8 +1140,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "simpleBodyProduct",
-        isXML: false
+        requestBodyName: "simpleBodyProduct"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

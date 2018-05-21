@@ -258,8 +258,7 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -367,8 +366,7 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -490,8 +488,7 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -584,8 +581,7 @@ export class LROsCustomHeader {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "product",
-        isXML: false
+        requestBodyName: "product"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {

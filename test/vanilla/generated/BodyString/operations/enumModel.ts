@@ -182,8 +182,7 @@ export class EnumModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "stringBody",
-        isXML: false
+        requestBodyName: "stringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -374,8 +373,7 @@ export class EnumModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "enumStringBody",
-        isXML: false
+        requestBodyName: "enumStringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -553,8 +551,7 @@ export class EnumModel {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "enumStringBody",
-        isXML: false
+        requestBodyName: "enumStringBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

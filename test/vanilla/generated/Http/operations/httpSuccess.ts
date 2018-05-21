@@ -241,8 +241,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -331,8 +330,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -421,8 +419,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -511,8 +508,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -601,8 +597,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -691,8 +686,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -781,8 +775,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -871,8 +864,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -961,8 +953,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1051,8 +1042,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1211,8 +1201,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1301,8 +1290,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1391,8 +1379,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1481,8 +1468,7 @@ export class HttpSuccess {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {

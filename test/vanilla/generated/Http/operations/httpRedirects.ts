@@ -390,8 +390,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 301) {
@@ -622,8 +621,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 302) {
@@ -713,8 +711,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 303) {
@@ -943,8 +940,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1033,8 +1029,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1123,8 +1118,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1213,8 +1207,7 @@ export class HttpRedirects {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {

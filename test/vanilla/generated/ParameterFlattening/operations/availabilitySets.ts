@@ -103,8 +103,7 @@ export class AvailabilitySets {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "tags1",
-        isXML: false
+        requestBodyName: "tags1"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

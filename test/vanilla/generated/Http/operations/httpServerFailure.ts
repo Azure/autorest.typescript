@@ -245,8 +245,7 @@ export class HttpServerFailure {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -348,8 +347,7 @@ export class HttpServerFailure {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue",
-        isXML: false
+        requestBodyName: "booleanValue"
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

@@ -171,8 +171,7 @@ export class Duration {
       operationRes = await client.sendOperationRequest(httpRequest, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
-        requestBodyName: "durationBody",
-        isXML: false
+        requestBodyName: "durationBody"
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
