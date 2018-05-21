@@ -177,22 +177,16 @@ export class BasicOperations {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (complexBody !== null && complexBody !== undefined) {
-        httpRequest.unserializedBody = complexBody;
-        let requestModelMapper = Mappers.Basic;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'complexBody');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Basic;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "complexBody",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

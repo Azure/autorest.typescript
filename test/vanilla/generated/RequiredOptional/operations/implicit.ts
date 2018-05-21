@@ -326,28 +326,22 @@ export class Implicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'String'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

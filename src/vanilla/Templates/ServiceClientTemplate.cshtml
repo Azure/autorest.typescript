@@ -40,14 +40,18 @@ class @(Model.Name) extends msRest.ServiceClient {
 @if (Model.MethodGroupModels.Any())
 {
   @EmptyLine
-  @:// Operation groups
-foreach (var methodGroup in Model.MethodGroupModels)
+<text>
+  // Operation groups
+@foreach (var methodGroup in Model.MethodGroupModels)
 {
-  @:@(methodGroup.NameForProperty): operations.@(methodGroup.TypeName);
+<text>
+  @(methodGroup.NameForProperty): operations.@(methodGroup.TypeName);
+</text>
 }
+</text>
 }
   serializer: msRest.Serializer;
-  @EmptyLine
+@EmptyLine
   /**
    * @@class
    * Initializes a new instance of the @Model.Name class.
@@ -55,13 +59,17 @@ foreach (var methodGroup in Model.MethodGroupModels)
    *
 @foreach (var param in requiredParameters)
 {
-   @:* @@param {@param.ModelType.Name.ToCamelCase()} @param.Name - @param.Documentation
-   @:*
+<text>
+   * @@param {@param.ModelType.Name.ToCamelCase()} @param.Name - @param.Documentation
+   *
+</text>
 }
-@if(!Model.IsCustomBaseUri)
+@if (!Model.IsCustomBaseUri)
 {
-   @:* @@param {string} [baseUri] - The base URI of the service.
-   @:*
+<text>
+   * @@param {string} [baseUri] - The base URI of the service.
+   *
+</text>
 }
    * @@param {object} [options] - The parameter options
    *
@@ -74,70 +82,98 @@ foreach (var methodGroup in Model.MethodGroupModels)
    *
 @foreach (var param in optionalParameters)
 {
-   @:* @@param {@param.ModelType.Name.ToCamelCase()} [options.@param.Name] - @param.Documentation
-   @:*
+<text>
+   * @@param {@param.ModelType.Name.ToCamelCase()} [options.@param.Name] - @param.Documentation
+   *
+</text>
 }
    */
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
-  constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", ": "")options?: @clientOptionType) {
+  constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
 @foreach (var param in requiredParameters)
 {
-  @:  if (@(param.Name) === null || @(param.Name) === undefined) {
-  @:    throw new Error('\'@(param.Name)\' cannot be null.');
-  @:  }
+<text>
+    if (@(param.Name) === null || @(param.Name) === undefined) {
+      throw new Error('\'@(param.Name)\' cannot be null.');
+    }
+</text>
 }
 @EmptyLine
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()))
+      };
+    }
 @EmptyLine
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
 @foreach (var property in Model.Properties.Where(p => p.DefaultValue != null))
 {
-    @:this.@(property.Name) = @(property.DefaultValue);
+<text>
+    this.@(property.Name) = @(property.DefaultValue);
+</text>
 }
 
-@if(!Model.IsCustomBaseUri)
+@if (!Model.IsCustomBaseUri)
 {
-    @:this.baseUri = baseUri as string;
+<text>
+    this.baseUri = baseUri as string;
 
-    @:if (!this.baseUri) {
-      @:this.baseUri = '@Model.BaseUrl';
-    @:}
+    if (!this.baseUri) {
+      this.baseUri = '@Model.BaseUrl';
+    }
+</text>
 }
 else
 {
-    @:this.baseUri = '@Model.BaseUrl';
+<text>
+    this.baseUri = '@Model.BaseUrl';
+</text>
 }
 
 @foreach (var param in requiredParameters)
 {
-  @:  this.@(param.Name) = @(param.Name);
+<text>
+    this.@(param.Name) = @(param.Name);
+</text>
 }
-  @EmptyLine
+@EmptyLine
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-  @foreach (var property in optionalParameters)
-  {
-    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
-    @:  this.@(property.Name) = options.@(property.Name);
-    @:}
-  }
+@foreach (var property in optionalParameters)
+{
+<text>
+    if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
+      this.@(property.Name) = options.@(property.Name);
+    }
+</text>
+}
 
-  @foreach (var methodGroup in Model.MethodGroupModels)
-  {
-    @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
-  }
+@foreach (var methodGroup in Model.MethodGroupModels)
+{
+<text>
+    this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
+</text>
+}
     this.serializer = new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()));
   }
 @foreach (var method in Model.MethodTemplateModels)
 {
-  @:// methods on the client.
-  @EmptyLine
-  @:@(Include(new MethodTemplate(), method))
+<text>
+  // methods on the client.
+@EmptyLine
+  @(Include(new MethodTemplate(), method))
+</text>
 }
 @foreach (var method in Model.MethodTemplateModels)
 {
-  @EmptyLine
-  @:@(Include(new MethodCallbackWrapperTemplate(), method))
+<text>
+@EmptyLine
+  @(Include(new MethodCallbackWrapperTemplate(), method))
+</text>
 }
 }
 @EmptyLine

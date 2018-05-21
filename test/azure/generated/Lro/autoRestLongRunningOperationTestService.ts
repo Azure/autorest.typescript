@@ -65,7 +65,15 @@ class AutoRestLongRunningOperationTestService extends msRestAzure.AzureServiceCl
       throw new Error('\'credentials\' cannot be null.');
     }
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(credentials, options);
 

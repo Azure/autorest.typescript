@@ -9,24 +9,30 @@ import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
+import * as Mappers from "./generated/Lro/models/mappers";
 
 var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-var clientOptions: msRestAzure.AzureServiceClientOptions = {};
+const serializer = new msRest.Serializer(Mappers, false);
+var clientOptions: msRestAzure.AzureServiceClientOptions = {
+  requestOptions: { jar: true } as any,
+  requestPolicyCreators: [
+    msRest.exponentialRetryPolicy(3, 0, 0, 0),
+    msRest.serializationPolicy(serializer)
+  ],
+  noRetryPolicy: true,
+  longRunningOperationRetryTimeout: 0
+};
 var baseUri = 'http://localhost:3000';
 
 describe('typescript', function () {
 
   describe('Swagger LRO Happy BAT', function () {
-    clientOptions.requestOptions = { jar: true } as any;
-    clientOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
-    clientOptions.noRetryPolicy = true;
-    clientOptions.longRunningOperationRetryTimeout = 0;
-
     var testClient = new AutoRestLongRunningOperationTestService(credentials, baseUri, clientOptions);
     var product: AutoRestLongRunningOperationTestServiceModels.Product = { location: 'West US' };
+
     it('should work with Put201CreatingSucceeded200', function (done) {
       testClient.lROs.put201CreatingSucceeded200({ product: product }, function (error, result) {
         should.not.exist(error);
@@ -391,10 +397,6 @@ describe('typescript', function () {
   });
 
   describe('Swagger LRO Sad BAT', function () {
-    clientOptions.requestOptions = { jar: true } as any;
-    clientOptions.requestPolicyCreators = [msRest.exponentialRetryPolicy(3, 0, 0, 0)];
-    clientOptions.noRetryPolicy = true;
-
     var testClient = new AutoRestLongRunningOperationTestService(credentials, baseUri, clientOptions);
     testClient.longRunningOperationRetryTimeout = 0;
     var product = { location: 'West US' };

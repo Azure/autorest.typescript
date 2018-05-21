@@ -51,7 +51,15 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       throw new Error('\'apiVersion\' cannot be null.');
     }
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(undefined, options);
 
@@ -306,22 +314,16 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (body !== null && body !== undefined) {
-        httpRequest.unserializedBody = body;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'body');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "body",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -472,22 +474,16 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (body !== null && body !== undefined) {
-        httpRequest.unserializedBody = body;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'body');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "body",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

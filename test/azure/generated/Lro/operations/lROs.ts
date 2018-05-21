@@ -1642,22 +1642,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -1754,22 +1748,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1867,22 +1855,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1980,22 +1962,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2108,22 +2084,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2221,22 +2191,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2349,22 +2313,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2462,22 +2420,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2575,22 +2527,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2688,22 +2634,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2801,22 +2741,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2914,22 +2848,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3027,22 +2955,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -3138,22 +3060,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (sku !== null && sku !== undefined) {
-        httpRequest.unserializedBody = sku;
-        let requestModelMapper = Mappers.Sku;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'sku');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Sku;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "sku",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3249,22 +3165,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (sku !== null && sku !== undefined) {
-        httpRequest.unserializedBody = sku;
-        let requestModelMapper = Mappers.Sku;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'sku');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Sku;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "sku",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3373,22 +3283,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.SubProduct;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.SubProduct;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3497,22 +3401,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.SubProduct;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.SubProduct;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -4866,22 +4764,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -4963,22 +4855,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -5076,22 +4962,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 200) {
@@ -5189,22 +5069,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 200) {
@@ -5302,22 +5176,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -5400,22 +5268,16 @@ export class LROs {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (product !== null && product !== undefined) {
-        httpRequest.unserializedBody = product;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'product');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "product",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {

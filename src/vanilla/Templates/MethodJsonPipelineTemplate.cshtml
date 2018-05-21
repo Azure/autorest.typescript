@@ -4,8 +4,28 @@
 // Send Request
 let operationRes: msRest.HttpOperationResponse;
 try {
+@if (Model.RequestBody != null)
+{
+<text>
+  @(Model.ConstructRequestBodyMapper)
+</text>
+}
   operationRes = await client.sendOperationRequest(httpRequest, {
+@if (Model.RequestBody == null)
+{
+<text>
     httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
+</text>
+}
+else
+{
+<text>
+    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
+    requestBodyMapper: requestModelMapper,
+    requestBodyName: "@(Model.RequestBody.Name)",
+    isXML: @(Model.CodeModel.ShouldGenerateXmlSerialization.ToString().ToLower())
+</text>
+}
   });
   let statusCode = operationRes.status;
   if (@(Model.FailureStatusCodePredicate)) {

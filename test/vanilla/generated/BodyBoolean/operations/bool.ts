@@ -157,28 +157,22 @@ export class Bool {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (boolBody !== null && boolBody !== undefined) {
-        httpRequest.unserializedBody = boolBody;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'boolBody',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'boolBody');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'boolBody',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "boolBody",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -345,28 +339,22 @@ export class Bool {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (boolBody !== null && boolBody !== undefined) {
-        httpRequest.unserializedBody = boolBody;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'boolBody',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'boolBody');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'boolBody',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "boolBody",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

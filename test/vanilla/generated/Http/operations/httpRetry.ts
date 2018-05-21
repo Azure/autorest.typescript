@@ -136,28 +136,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -232,28 +226,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH"
+        httpMethod: "PATCH",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -398,28 +386,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -494,28 +476,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
+        httpMethod: "DELETE",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -590,28 +566,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -686,28 +656,22 @@ export class HttpRetry {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (booleanValue !== null && booleanValue !== undefined) {
-        httpRequest.unserializedBody = booleanValue;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'booleanValue',
-          type: {
-            name: 'Boolean'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'booleanValue');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'booleanValue',
+        type: {
+          name: 'Boolean'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH"
+        httpMethod: "PATCH",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "booleanValue",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -95,22 +95,16 @@ export class AvailabilitySets {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (tags1 !== null && tags1 !== undefined) {
-        httpRequest.unserializedBody = tags1;
-        let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'tags1');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = tags1;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH"
+        httpMethod: "PATCH",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "tags1",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

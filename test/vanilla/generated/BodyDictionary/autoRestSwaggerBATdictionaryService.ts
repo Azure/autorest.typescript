@@ -42,7 +42,15 @@ class AutoRestSwaggerBATdictionaryService extends msRest.ServiceClient {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(undefined, options);
 

@@ -72,7 +72,15 @@ class StorageManagementClient extends msRestAzure.AzureServiceClient {
       throw new Error('\'subscriptionId\' cannot be null.');
     }
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(credentials, options);
 

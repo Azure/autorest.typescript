@@ -431,28 +431,22 @@ export class Datetimerfc1123 {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (datetimeBody !== null && datetimeBody !== undefined) {
-        httpRequest.unserializedBody = datetimeBody;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'datetimeBody',
-          type: {
-            name: 'DateTimeRfc1123'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'datetimeBody');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'datetimeBody',
+        type: {
+          name: 'DateTimeRfc1123'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "datetimeBody",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -711,28 +705,22 @@ export class Datetimerfc1123 {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (datetimeBody !== null && datetimeBody !== undefined) {
-        httpRequest.unserializedBody = datetimeBody;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'datetimeBody',
-          type: {
-            name: 'DateTimeRfc1123'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'datetimeBody');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'datetimeBody',
+        type: {
+          name: 'DateTimeRfc1123'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "datetimeBody",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

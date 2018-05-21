@@ -68,28 +68,22 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'Number'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -177,28 +171,22 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'Number'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'Number'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -281,22 +269,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.IntWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.IntWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -390,22 +372,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.IntOptionalWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.IntOptionalWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -662,28 +638,22 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'String'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -771,28 +741,22 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'String'
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'String'
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -875,22 +839,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.StringWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StringWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -984,22 +942,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.StringOptionalWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.StringOptionalWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1256,22 +1208,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1351,22 +1297,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.Product;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1449,22 +1389,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.ClassWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ClassWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1550,22 +1484,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.ClassOptionalWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ClassOptionalWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1647,35 +1575,29 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: true,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'Sequence',
-            element: {
-                required: false,
-                serializedName: 'stringElementType',
-                type: {
-                  name: 'String'
-                }
-            }
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'Sequence',
+          element: {
+              required: false,
+              serializedName: 'stringElementType',
+              type: {
+                name: 'String'
+              }
+          }
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1767,35 +1689,29 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'bodyParameter',
-          type: {
-            name: 'Sequence',
-            element: {
-                required: false,
-                serializedName: 'stringElementType',
-                type: {
-                  name: 'String'
-                }
-            }
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'bodyParameter',
+        type: {
+          name: 'Sequence',
+          element: {
+              required: false,
+              serializedName: 'stringElementType',
+              type: {
+                name: 'String'
+              }
+          }
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1883,22 +1799,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.ArrayWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ArrayWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1996,22 +1906,16 @@ export class Explicit {
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined) {
-        httpRequest.unserializedBody = bodyParameter;
-        let requestModelMapper = Mappers.ArrayOptionalWrapper;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'bodyParameter');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ArrayOptionalWrapper;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
+        httpMethod: "POST",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "bodyParameter",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

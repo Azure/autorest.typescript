@@ -58,7 +58,15 @@ class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
       throw new Error('\'requiredGlobalQuery\' cannot be null.');
     }
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(undefined, options);
 

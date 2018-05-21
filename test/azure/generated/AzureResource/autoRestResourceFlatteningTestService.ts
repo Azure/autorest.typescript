@@ -59,7 +59,15 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       throw new Error('\'credentials\' cannot be null.');
     }
 
-    if (!options) options = {};
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, false)
+      };
+    }
 
     super(credentials, options);
 
@@ -133,36 +141,30 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (resourceArray !== null && resourceArray !== undefined) {
-        httpRequest.unserializedBody = resourceArray;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'ResourceArray',
-          type: {
-            name: 'Sequence',
-            element: {
-                required: false,
-                serializedName: 'ResourceElementType',
-                type: {
-                  name: 'Composite',
-                  className: 'Resource'
-                }
-            }
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceArray');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'ResourceArray',
+        type: {
+          name: 'Sequence',
+          element: {
+              required: false,
+              serializedName: 'ResourceElementType',
+              type: {
+                name: 'Composite',
+                className: 'Resource'
+              }
+          }
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "resourceArray",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -359,36 +361,30 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (resourceDictionary !== null && resourceDictionary !== undefined) {
-        httpRequest.unserializedBody = resourceDictionary;
-        let requestModelMapper = {
-          required: false,
-          serializedName: 'ResourceDictionary',
-          type: {
-            name: 'Dictionary',
-            value: {
-                required: false,
-                serializedName: 'FlattenedProductElementType',
-                type: {
-                  name: 'Composite',
-                  className: 'FlattenedProduct'
-                }
-            }
-          }
-        };
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceDictionary');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: false,
+        serializedName: 'ResourceDictionary',
+        type: {
+          name: 'Dictionary',
+          value: {
+              required: false,
+              serializedName: 'FlattenedProductElementType',
+              type: {
+                name: 'Composite',
+                className: 'FlattenedProduct'
+              }
+          }
+        }
+      };
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "resourceDictionary",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -586,22 +582,16 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         }
       }
     }
-    // SerializedRequest
-    try {
-      if (resourceComplexObject !== null && resourceComplexObject !== undefined) {
-        httpRequest.unserializedBody = resourceComplexObject;
-        let requestModelMapper = Mappers.ResourceCollection;
-        httpRequest.body = client.serializer.serialize(requestModelMapper, httpRequest.unserializedBody, 'resourceComplexObject');
-        httpRequest.body = JSON.stringify(httpRequest.body);
-      }
-    } catch (error) {
-      return Promise.reject(new Error(`Error "${error.message}" occurred in serializing the payload - ${JSON.stringify(httpRequest.unserializedBody, null, 2)}.`));
-    }
+    httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = Mappers.ResourceCollection;
       operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT"
+        httpMethod: "PUT",
+        requestBodyMapper: requestModelMapper,
+        requestBodyName: "resourceComplexObject",
+        isXML: false
       });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
