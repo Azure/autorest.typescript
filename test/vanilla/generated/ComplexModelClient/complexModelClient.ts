@@ -116,7 +116,7 @@ class ComplexModelClient extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -231,7 +231,7 @@ class ComplexModelClient extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogDictionaryOfArray;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -348,7 +348,7 @@ class ComplexModelClient extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogArrayOfDictionary;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"

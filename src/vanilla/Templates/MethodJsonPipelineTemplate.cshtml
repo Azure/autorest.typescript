@@ -10,7 +10,7 @@ try {
   @(Model.ConstructRequestBodyMapper)
 </text>
 }
-  operationRes = await client.sendOperationRequest(httpRequest, {
+  operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
 @if (Model.RequestBody == null)
 {
 <text>

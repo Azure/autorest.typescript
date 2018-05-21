@@ -60,7 +60,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -158,7 +158,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -286,7 +286,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -358,7 +358,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -456,7 +456,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -554,7 +554,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -652,7 +652,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -750,7 +750,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -878,7 +878,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -950,7 +950,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1048,7 +1048,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1146,7 +1146,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1274,7 +1274,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -1346,7 +1346,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1444,7 +1444,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1542,7 +1542,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1670,7 +1670,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -1742,7 +1742,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1840,7 +1840,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1938,7 +1938,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2066,7 +2066,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -2138,7 +2138,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2236,7 +2236,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2334,7 +2334,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2462,7 +2462,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -2534,7 +2534,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2632,7 +2632,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2730,7 +2730,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2858,7 +2858,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -2930,7 +2930,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3028,7 +3028,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3127,7 +3127,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3257,7 +3257,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -3329,7 +3329,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3427,7 +3427,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3526,7 +3526,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3656,7 +3656,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -3728,7 +3728,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3826,7 +3826,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3926,7 +3926,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4056,7 +4056,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4129,7 +4129,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4257,7 +4257,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4330,7 +4330,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4459,7 +4459,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4532,7 +4532,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4631,7 +4631,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4729,7 +4729,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4828,7 +4828,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4928,7 +4928,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5028,7 +5028,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5128,7 +5128,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5247,7 +5247,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -5319,7 +5319,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5424,7 +5424,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5530,7 +5530,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5636,7 +5636,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5742,7 +5742,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5889,7 +5889,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -5961,7 +5961,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6066,7 +6066,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6173,7 +6173,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6280,7 +6280,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6387,7 +6387,7 @@ export class Dictionary {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6536,7 +6536,7 @@ export class Dictionary {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"

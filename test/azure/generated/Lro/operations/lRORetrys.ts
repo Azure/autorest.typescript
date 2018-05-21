@@ -364,7 +364,7 @@ export class LRORetrys {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "product"
@@ -485,7 +485,7 @@ export class LRORetrys {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "product"
@@ -588,7 +588,7 @@ export class LRORetrys {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE"
       });
       let statusCode = operationRes.status;
@@ -703,7 +703,7 @@ export class LRORetrys {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE"
       });
       let statusCode = operationRes.status;
@@ -788,7 +788,7 @@ export class LRORetrys {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE"
       });
       let statusCode = operationRes.status;
@@ -877,7 +877,7 @@ export class LRORetrys {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "product"
@@ -968,7 +968,7 @@ export class LRORetrys {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "product"

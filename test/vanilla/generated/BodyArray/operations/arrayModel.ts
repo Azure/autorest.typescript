@@ -60,7 +60,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -158,7 +158,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -256,7 +256,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -384,7 +384,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -456,7 +456,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -584,7 +584,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -656,7 +656,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -754,7 +754,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -852,7 +852,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -980,7 +980,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -1052,7 +1052,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1150,7 +1150,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1248,7 +1248,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1376,7 +1376,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -1448,7 +1448,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1546,7 +1546,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1644,7 +1644,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1772,7 +1772,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -1844,7 +1844,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1942,7 +1942,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2040,7 +2040,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2168,7 +2168,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -2240,7 +2240,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2338,7 +2338,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2436,7 +2436,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2564,7 +2564,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -2636,7 +2636,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2734,7 +2734,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2834,7 +2834,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2964,7 +2964,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -3036,7 +3036,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3134,7 +3134,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3263,7 +3263,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -3335,7 +3335,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3433,7 +3433,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3532,7 +3532,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3662,7 +3662,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -3734,7 +3734,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3832,7 +3832,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -3931,7 +3931,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4061,7 +4061,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4133,7 +4133,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4261,7 +4261,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4334,7 +4334,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4463,7 +4463,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -4536,7 +4536,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4635,7 +4635,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4733,7 +4733,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4832,7 +4832,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -4932,7 +4932,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5032,7 +5032,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5132,7 +5132,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5250,7 +5250,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -5322,7 +5322,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5427,7 +5427,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5532,7 +5532,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5637,7 +5637,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5743,7 +5743,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -5890,7 +5890,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"
@@ -5962,7 +5962,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6067,7 +6067,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6174,7 +6174,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6281,7 +6281,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6388,7 +6388,7 @@ export class ArrayModel {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -6536,7 +6536,7 @@ export class ArrayModel {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "arrayBody"

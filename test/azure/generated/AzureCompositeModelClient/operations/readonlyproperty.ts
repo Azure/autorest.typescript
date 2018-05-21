@@ -74,7 +74,7 @@ export class Readonlyproperty {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -189,7 +189,7 @@ export class Readonlyproperty {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ReadonlyObj;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"

@@ -79,7 +79,7 @@ export class Explicit {
           name: 'Number'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -181,7 +181,7 @@ export class Explicit {
           name: 'Number'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -272,7 +272,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.IntWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -374,7 +374,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.IntOptionalWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -460,7 +460,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -556,7 +556,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -645,7 +645,7 @@ export class Explicit {
           name: 'String'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -747,7 +747,7 @@ export class Explicit {
           name: 'String'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -838,7 +838,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StringWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -940,7 +940,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StringOptionalWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1026,7 +1026,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -1122,7 +1122,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -1205,7 +1205,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1293,7 +1293,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1384,7 +1384,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ClassWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1478,7 +1478,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ClassOptionalWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1581,7 +1581,7 @@ export class Explicit {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1694,7 +1694,7 @@ export class Explicit {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1790,7 +1790,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1896,7 +1896,7 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayOptionalWrapper;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "bodyParameter"
@@ -1987,7 +1987,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -2087,7 +2087,7 @@ export class Explicit {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;

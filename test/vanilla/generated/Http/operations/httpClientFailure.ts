@@ -60,7 +60,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;
@@ -142,7 +142,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -242,7 +242,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -344,7 +344,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -446,7 +446,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -548,7 +548,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -632,7 +632,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;
@@ -714,7 +714,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -796,7 +796,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -896,7 +896,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -998,7 +998,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1100,7 +1100,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1202,7 +1202,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1304,7 +1304,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1388,7 +1388,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;
@@ -1470,7 +1470,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1552,7 +1552,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -1652,7 +1652,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1754,7 +1754,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1856,7 +1856,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -1940,7 +1940,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -2040,7 +2040,7 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "booleanValue"
@@ -2124,7 +2124,7 @@ export class HttpClientFailure {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;

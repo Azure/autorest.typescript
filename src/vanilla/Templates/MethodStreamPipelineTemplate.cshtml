@@ -3,7 +3,7 @@
 httpRequest.rawResponse = true;
 let operationRes: msRest.HttpOperationResponse;
 try {
-  operationRes = await client.sendOperationRequest(httpRequest, {
+  operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
     httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
   });
   let statusCode = operationRes.status;

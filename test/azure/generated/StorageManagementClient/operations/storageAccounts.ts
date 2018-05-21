@@ -92,7 +92,7 @@ export class StorageAccounts {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "accountName"
@@ -274,7 +274,7 @@ export class StorageAccounts {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "DELETE"
       });
       let statusCode = operationRes.status;
@@ -382,7 +382,7 @@ export class StorageAccounts {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -520,7 +520,7 @@ export class StorageAccounts {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountUpdateParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "parameters"
@@ -641,7 +641,7 @@ export class StorageAccounts {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST"
       });
       let statusCode = operationRes.status;
@@ -748,7 +748,7 @@ export class StorageAccounts {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -863,7 +863,7 @@ export class StorageAccounts {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -999,7 +999,7 @@ export class StorageAccounts {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "regenerateKeyParameter"
@@ -1134,7 +1134,7 @@ export class StorageAccounts {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountCreateParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "parameters"

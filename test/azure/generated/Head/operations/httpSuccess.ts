@@ -73,7 +73,7 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;
@@ -157,7 +157,7 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;
@@ -241,7 +241,7 @@ export class HttpSuccess {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "HEAD"
       });
       let statusCode = operationRes.status;

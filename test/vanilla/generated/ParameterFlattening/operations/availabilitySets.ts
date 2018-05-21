@@ -100,7 +100,7 @@ export class AvailabilitySets {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PATCH",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "tags1"

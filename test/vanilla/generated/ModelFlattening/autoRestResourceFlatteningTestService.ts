@@ -113,7 +113,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "resourceArray"
@@ -186,7 +186,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -305,7 +305,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "resourceArray"
@@ -379,7 +379,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -497,7 +497,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           }
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "resourceDictionary"
@@ -570,7 +570,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -675,7 +675,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ResourceCollection;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "resourceComplexObject"
@@ -748,7 +748,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -838,7 +838,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "simpleBodyProduct"
@@ -973,7 +973,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "POST",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "simpleBodyProduct"
@@ -1137,7 +1137,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "simpleBodyProduct"

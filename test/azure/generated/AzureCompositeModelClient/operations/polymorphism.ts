@@ -74,7 +74,7 @@ export class Polymorphism {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -212,7 +212,7 @@ export class Polymorphism {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Fish;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"
@@ -299,7 +299,7 @@ export class Polymorphism {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -406,7 +406,7 @@ export class Polymorphism {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Salmon;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"
@@ -499,7 +499,7 @@ export class Polymorphism {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Salmon;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"
@@ -634,7 +634,7 @@ export class Polymorphism {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Fish;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"

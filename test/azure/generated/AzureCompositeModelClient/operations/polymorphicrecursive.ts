@@ -74,7 +74,7 @@ export class Polymorphicrecursive {
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "GET"
       });
       let statusCode = operationRes.status;
@@ -232,7 +232,7 @@ export class Polymorphicrecursive {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Fish;
-      operationRes = await client.sendOperationRequest(httpRequest, {
+      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
         httpMethod: "PUT",
         requestBodyMapper: requestModelMapper,
         requestBodyName: "complexBody"
