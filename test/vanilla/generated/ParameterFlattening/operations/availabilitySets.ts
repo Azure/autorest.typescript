@@ -83,28 +83,28 @@ export class AvailabilitySets {
     requestUrl.replaceAll("{availabilitySetName}", encodeURIComponent(avset));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = tags1;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
-      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
-        httpMethod: "PATCH",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "tags1"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PATCH",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "tags1",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

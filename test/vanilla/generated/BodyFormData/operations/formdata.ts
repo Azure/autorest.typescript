@@ -60,18 +60,11 @@ export class Formdata {
     requestUrl.setPath("/formdata/stream/uploadfile");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'multipart/form-data';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Serialize Request
     let formData: any = {};
     if (fileContent !== undefined && fileContent !== null) {
@@ -85,9 +78,16 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
-        httpMethod: "POST"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST"
+        });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {
@@ -152,26 +152,26 @@ export class Formdata {
     requestUrl.setPath("/formdata/stream/uploadfile");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
     httpRequest.headers['Content-Type'] = 'application/octet-stream';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = fileContent;
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
-        httpMethod: "PUT"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT"
+        });
       let statusCode = operationRes.status;
 
       if (statusCode !== 200) {

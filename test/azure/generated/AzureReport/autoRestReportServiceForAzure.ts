@@ -129,7 +129,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     }
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -137,22 +137,27 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     if (this.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.acceptLanguage !== undefined && this.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.acceptLanguage": this.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

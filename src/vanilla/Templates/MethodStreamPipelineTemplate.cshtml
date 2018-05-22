@@ -1,11 +1,54 @@
-﻿@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
+﻿@using System.Linq;
+@using AutoRest.Core.Model
+@using AutoRest.TypeScript.Model
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
 // Send Request
 httpRequest.rawResponse = true;
 let operationRes: msRest.HttpOperationResponse;
 try {
-  operationRes = await client.sendOperationRequest(httpRequest, { arguments: {} }, {
-    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
-  });
+  operationRes = await client.sendOperationRequest(
+    httpRequest,
+    {
+      arguments: {
+@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
+{
+<text>
+        "@(parameter.Name)": @(parameter.Name),
+</text>
+}
+      },
+      customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+    },
+    {
+      httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
+@if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Header))
+{
+<text>
+      headerParameters: [
+@foreach (ParameterTS parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
+{
+<text>
+        {
+          parameterName: "@(parameter.Name)",
+@if (parameter.Name != parameter.SerializedName)
+{
+<text>
+          headerName: "@(parameter.SerializedName)",
+</text>
+}
+@if (parameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(parameter.OperationType),
+</text>    
+}
+        },
+</text>
+}
+      ],
+</text>
+}
+    });
   let statusCode = operationRes.status;
   @EmptyLine
   if (@(Model.FailureStatusCodePredicate)) {
