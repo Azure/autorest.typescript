@@ -18,7 +18,7 @@ const {
 const commentIndicatorBundlesize = "<!--AUTO-GENERATED TYPESCRIPT BUNDLESIZE COMMENT-->\n";
 
 async function getBundleSize() {
-    await exec(join(__dirname, "../node_modules/.bin/webpack"));
+    await exec(join(__dirname, "../node_modules/.bin/webpack -p"));
     const status = await stat(join(__dirname, "../testBundle.js"));
     return status.size;
 }
@@ -27,10 +27,10 @@ async function main(repo, pr, token) {
     const ghClient = new GitHubCiClient(repo, token);
 
     const prData = await ghClient.getPR(pr);
-    await exec("git checkout " + prData.base.sha);
+    await exec("git reset --hard " + prData.base.sha);
     const baseSize = await getBundleSize();
 
-    await exec("git checkout " + pr.head.sha);
+    await exec("git reset --hard " + prData.head.sha);
     const headSize = await getBundleSize();
 
     const change = (headSize / baseSize) - 1;
