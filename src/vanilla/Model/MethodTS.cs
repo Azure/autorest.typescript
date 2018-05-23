@@ -43,7 +43,7 @@ namespace AutoRest.TypeScript.Model
             {
                 if (ReturnType.Headers == null)
                 {
-                    return $"msRest.HttpOperationResponse<void, {ReturnTypeTSString}>";
+                    return $"msRest.HttpOperationResponse<{ReturnTypeTSString}>";
                 }
                 else
                 {
