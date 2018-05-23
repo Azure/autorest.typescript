@@ -76,8 +76,7 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
 
   // Set Headers
   httpRequest.headers.set("Content-Type", "@(Model.RequestContentType)");
-  @(Model.SetDefaultHeaders)
-
+  
   @if (Model.RequestBody != null)
   {
   <text>

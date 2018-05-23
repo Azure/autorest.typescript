@@ -58,24 +58,6 @@ namespace AutoRest.TypeScript.Azure.Model
             }
         }
 
-        /// <summary>
-        /// Gets the expression for default header setting.
-        /// </summary>
-        [JsonIgnore]
-        public override string SetDefaultHeaders
-        {
-            get
-            {
-                var sb = new IndentedStringBuilder();
-                sb.AppendLine("if ({0}.generateClientRequestId) {{", this.ClientReference).Indent()
-                    .AppendLine("httpRequest.headers.set('{0}', msRest.generateUuid());",
-                        this.ClientRequestIdString, this.ClientReference).Outdent()
-                  .AppendLine("}")
-                  .AppendLine(base.SetDefaultHeaders);
-                return sb.ToString();
-            }
-        }
-
         [JsonIgnore]
         public string LongRunningOperationMethodNameInRuntime
         {

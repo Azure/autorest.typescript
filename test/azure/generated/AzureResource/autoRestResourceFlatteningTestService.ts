@@ -24,8 +24,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
   serializer: msRest.Serializer;
 
@@ -73,7 +71,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
@@ -86,9 +83,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.serializer = new msRest.Serializer(Mappers);
   }
@@ -127,9 +121,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -234,9 +225,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -354,9 +342,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -461,9 +446,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -582,9 +564,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -675,9 +654,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

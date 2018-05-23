@@ -104,9 +104,6 @@ export class ParameterGrouping {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -232,9 +229,6 @@ export class ParameterGrouping {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -370,9 +364,6 @@ export class ParameterGrouping {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -495,9 +486,6 @@ export class ParameterGrouping {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

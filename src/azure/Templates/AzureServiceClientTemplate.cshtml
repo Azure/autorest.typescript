@@ -28,7 +28,7 @@ const packageVersion = "@Model.PackageVersion";
 @EmptyLine
 class @(Model.Name) extends msRestAzure.AzureServiceClient {
 
-@foreach (var property in Model.Properties)
+@foreach (var property in Model.Properties.Where(p => p.Name != "generateClientRequestId"))
 {
   @EmptyLine
   @:@(property.Name): @(property.ModelType.TSType(false));
@@ -96,7 +96,7 @@ foreach (var methodGroup in Model.MethodGroupModels)
     @EmptyLine
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
-@foreach (var property in Model.Properties.Where(p => p.DefaultValue != null))
+@foreach (var property in Model.Properties.Where(p => p.DefaultValue != null && p.Name != "generateClientRequestId"))
 {
     @:this.@(property.Name) = @(property.DefaultValue);
 }
@@ -119,7 +119,7 @@ else
 }
   @EmptyLine
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-  @foreach (var property in optionalParameters)
+  @foreach (var property in optionalParameters.Where(p => p.Name != "generateClientRequestId"))
   {
     @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
     @:  this.@(property.Name) = options.@(property.Name);

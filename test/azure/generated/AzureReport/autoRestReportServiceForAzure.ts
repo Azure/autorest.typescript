@@ -24,8 +24,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
   serializer: msRest.Serializer;
 
@@ -73,7 +71,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
 
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
@@ -86,9 +83,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.serializer = new msRest.Serializer(Mappers);
   }
@@ -133,9 +127,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

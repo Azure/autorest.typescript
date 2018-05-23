@@ -1628,9 +1628,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1737,9 +1734,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1847,9 +1841,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1957,9 +1948,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2082,9 +2070,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2192,9 +2177,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2317,9 +2299,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2427,9 +2406,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2537,9 +2513,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2647,9 +2620,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2757,9 +2727,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2867,9 +2834,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2977,9 +2941,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3085,9 +3046,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3193,9 +3151,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3314,9 +3269,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3435,9 +3387,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3544,9 +3493,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3664,9 +3610,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3784,9 +3727,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3901,9 +3841,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3990,9 +3927,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4094,9 +4028,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4198,9 +4129,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4287,9 +4215,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4376,9 +4301,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4465,9 +4387,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4554,9 +4473,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4643,9 +4559,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4732,9 +4645,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4853,9 +4763,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -4947,9 +4854,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -5057,9 +4961,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -5167,9 +5068,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -5277,9 +5175,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -5372,9 +5267,6 @@ export class LROs {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.client.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
