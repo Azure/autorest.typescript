@@ -91,7 +91,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this;
     // Validate
     try {
@@ -237,7 +237,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this;
     let body = (options && options.body !== undefined) ? options.body : undefined;
     // Validate
@@ -380,7 +380,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let constantParam = 'constant';
 
@@ -447,7 +447,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this;
     let body = (options && options.body !== undefined) ? options.body : undefined;
     let constantParam = 'constant';

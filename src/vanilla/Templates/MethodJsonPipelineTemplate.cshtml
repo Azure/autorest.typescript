@@ -96,12 +96,17 @@ try {
     return Promise.reject(error);
   }
   @Model.InitializeResult
-  @foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null))
+  @foreach (var responsePair in Model.Responses.Where(r => r.Value.Body != null || r.Value.Headers != null))
   {
       <text>
   // Deserialize Response
   if (statusCode === @MethodTS.GetStatusCodeReference(responsePair.Key)) {
-    @(Model.DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"))
+@if (responsePair.Value.Body != null) {
+@:    @(Model.DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"))
+}
+@if (responsePair.Value.Headers != null) {
+@:    operationRes.parsedHeaders = client.serializer.deserialize(Mappers.@(responsePair.Value.Headers.Name), operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+}
   }
       </text>
   }

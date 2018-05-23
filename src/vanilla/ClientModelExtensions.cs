@@ -658,7 +658,7 @@ namespace AutoRest.TypeScript
             return builder;
         }
 
-        public static string ConstructMapper(this IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, string xmlName = null)
+        public static string ConstructMapper(this IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
         {
             var builder = new IndentedStringBuilder("  ");
             string defaultValue = null;
@@ -681,6 +681,11 @@ namespace AutoRest.TypeScript
             if (wroteXmlName)
             {
                 builder.AppendLine($"xmlName: '{xmlName}',");
+            }
+
+            if (!isCaseSensitive)
+            {
+                serializedName = serializedName.ToLower();
             }
 
             if (property != null)
@@ -860,7 +865,7 @@ namespace AutoRest.TypeScript
                          .AppendLine("name: 'Sequence',")
                          .AppendLine("element: {")
                            .Indent()
-                           .AppendLine("{0}", sequence.ElementType.ConstructMapper(sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML))
+                           .AppendLine("{0}", sequence.ElementType.ConstructMapper(sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive))
                          .Outdent().AppendLine("}").Outdent().AppendLine("}");
             }
             else if (dictionary != null)
@@ -870,7 +875,7 @@ namespace AutoRest.TypeScript
                          .AppendLine("name: 'Dictionary',")
                          .AppendLine("value: {")
                            .Indent()
-                           .AppendLine("{0}", dictionary.ValueType.ConstructMapper(dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML))
+                           .AppendLine("{0}", dictionary.ValueType.ConstructMapper(dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive))
                          .Outdent().AppendLine("}").Outdent().AppendLine("}");
             }
             else if (composite != null)
@@ -917,25 +922,25 @@ namespace AutoRest.TypeScript
                         {
                             if (!isPageable)
                             {
-                                builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
+                                builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
                             }
                             else
                             {
                                 // if pageable and nextlink is also present then we need a comma as nextLink would be the next one to be added
                                 if (nextLinkNameValue != null)
                                 {
-                                    builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
+                                    builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
                                 }
                                 else
                                 {
-                                    builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
+                                    builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
                                 }
 
                             }
                         }
                         else
                         {
-                            builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML));
+                            builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
                         }
                     }
                     // end of modelProperties and type

@@ -2126,3 +2126,1471 @@ export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams = {
     }
   }
 };
+
+export const LROsPutNoHeaderInRetryHeaders = {
+  required: false,
+  serializedName: 'lros-putnoheaderinretry-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutNoHeaderInRetryHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPutAsyncRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-putasyncretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutAsyncRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPutAsyncNoRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-putasyncnoretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutAsyncNoRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPutAsyncRetryFailedHeaders = {
+  required: false,
+  serializedName: 'lros-putasyncretryfailed-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutAsyncRetryFailedHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPutAsyncNoRetrycanceledHeaders = {
+  required: false,
+  serializedName: 'lros-putasyncnoretrycanceled-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutAsyncNoRetrycanceledHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPutAsyncNoHeaderInRetryHeaders = {
+  required: false,
+  serializedName: 'lros-putasyncnoheaderinretry-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPutAsyncNoHeaderInRetryHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteProvisioning202Accepted200SucceededHeaders = {
+  required: false,
+  serializedName: 'lros-deleteprovisioning202accepted200succeeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteProvisioning202Accepted200SucceededHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteProvisioning202DeletingFailed200Headers = {
+  required: false,
+  serializedName: 'lros-deleteprovisioning202deletingfailed200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteProvisioning202DeletingFailed200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteProvisioning202Deletingcanceled200Headers = {
+  required: false,
+  serializedName: 'lros-deleteprovisioning202deletingcanceled200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteProvisioning202Deletingcanceled200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDelete202Retry200Headers = {
+  required: false,
+  serializedName: 'lros-delete202retry200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDelete202Retry200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDelete202NoRetry204Headers = {
+  required: false,
+  serializedName: 'lros-delete202noretry204-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDelete202NoRetry204Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteNoHeaderInRetryHeaders = {
+  required: false,
+  serializedName: 'lros-deletenoheaderinretry-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteNoHeaderInRetryHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteAsyncNoHeaderInRetryHeaders = {
+  required: false,
+  serializedName: 'lros-deleteasyncnoheaderinretry-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteAsyncNoHeaderInRetryHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteAsyncRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-deleteasyncretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteAsyncRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteAsyncNoRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-deleteasyncnoretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteAsyncNoRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteAsyncRetryFailedHeaders = {
+  required: false,
+  serializedName: 'lros-deleteasyncretryfailed-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteAsyncRetryFailedHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsDeleteAsyncRetrycanceledHeaders = {
+  required: false,
+  serializedName: 'lros-deleteasyncretrycanceled-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsDeleteAsyncRetrycanceledHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPost202Retry200Headers = {
+  required: false,
+  serializedName: 'lros-post202retry200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPost202Retry200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPost202NoRetry204Headers = {
+  required: false,
+  serializedName: 'lros-post202noretry204-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPost202NoRetry204Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPostAsyncRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-postasyncretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPostAsyncRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPostAsyncNoRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lros-postasyncnoretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPostAsyncNoRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPostAsyncRetryFailedHeaders = {
+  required: false,
+  serializedName: 'lros-postasyncretryfailed-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPostAsyncRetryFailedHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsPostAsyncRetrycanceledHeaders = {
+  required: false,
+  serializedName: 'lros-postasyncretrycanceled-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsPostAsyncRetrycanceledHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysPutAsyncRelativeRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lroretrys-putasyncrelativeretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysPutAsyncRelativeRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders = {
+  required: false,
+  serializedName: 'lroretrys-deleteprovisioning202accepted200succeeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysDeleteProvisioning202Accepted200SucceededHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysDelete202Retry200Headers = {
+  required: false,
+  serializedName: 'lroretrys-delete202retry200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysDelete202Retry200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lroretrys-deleteasyncrelativeretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysDeleteAsyncRelativeRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysPost202Retry200Headers = {
+  required: false,
+  serializedName: 'lroretrys-post202retry200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysPost202Retry200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LRORetrysPostAsyncRelativeRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lroretrys-postasyncrelativeretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LRORetrysPostAsyncRelativeRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPutAsyncRelativeRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-putasyncrelativeretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPutAsyncRelativeRetry400Headers',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDeleteNonRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-deletenonretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDeleteNonRetry400Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDelete202NonRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-delete202nonretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDelete202NonRetry400Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDeleteAsyncRelativeRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-deleteasyncrelativeretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDeleteAsyncRelativeRetry400Headers',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPostNonRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-postnonretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPostNonRetry400Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPost202NonRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-post202nonretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPost202NonRetry400Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPostAsyncRelativeRetry400Headers = {
+  required: false,
+  serializedName: 'lrosads-postasyncrelativeretry400-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPostAsyncRelativeRetry400Headers',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPutAsyncRelativeRetryNoStatusHeaders = {
+  required: false,
+  serializedName: 'lrosads-putasyncrelativeretrynostatus-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPutAsyncRelativeRetryNoStatusHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders = {
+  required: false,
+  serializedName: 'lrosads-putasyncrelativeretrynostatuspayload-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders = {
+  required: false,
+  serializedName: 'lrosads-deleteasyncrelativeretrynostatus-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDeleteAsyncRelativeRetryNoStatusHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPost202NoLocationHeaders = {
+  required: false,
+  serializedName: 'lrosads-post202nolocation-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPost202NoLocationHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders = {
+  required: false,
+  serializedName: 'lrosads-postasyncrelativeretrynopayload-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPostAsyncRelativeRetryNoPayloadHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders = {
+  required: false,
+  serializedName: 'lrosads-putasyncrelativeretryinvalidheader-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders = {
+  required: false,
+  serializedName: 'lrosads-putasyncrelativeretryinvalidjsonpolling-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDelete202RetryInvalidHeaderHeaders = {
+  required: false,
+  serializedName: 'lrosads-delete202retryinvalidheader-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDelete202RetryInvalidHeaderHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders = {
+  required: false,
+  serializedName: 'lrosads-deleteasyncrelativeretryinvalidheader-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders = {
+  required: false,
+  serializedName: 'lrosads-deleteasyncrelativeretryinvalidjsonpolling-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPost202RetryInvalidHeaderHeaders = {
+  required: false,
+  serializedName: 'lrosads-post202retryinvalidheader-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPost202RetryInvalidHeaderHeaders',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders = {
+  required: false,
+  serializedName: 'lrosads-postasyncrelativeretryinvalidheader-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders = {
+  required: false,
+  serializedName: 'lrosads-postasyncrelativeretryinvalidjsonpolling-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsCustomHeaderPutAsyncRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lroscustomheader-putasyncretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsCustomHeaderPutAsyncRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsCustomHeaderPost202Retry200Headers = {
+  required: false,
+  serializedName: 'lroscustomheader-post202retry200-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsCustomHeaderPost202Retry200Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};
+
+export const LROsCustomHeaderPostAsyncRetrySucceededHeaders = {
+  required: false,
+  serializedName: 'lroscustomheader-postasyncretrysucceeded-headers',
+  type: {
+    name: 'Composite',
+    className: 'LROsCustomHeaderPostAsyncRetrySucceededHeaders',
+    modelProperties: {
+      azureAsyncOperation: {
+        required: false,
+        serializedName: 'azure-asyncoperation',
+        type: {
+          name: 'String'
+        }
+      },
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      },
+      retryAfter: {
+        required: false,
+        serializedName: 'retry-after',
+        type: {
+          name: 'Number'
+        }
+      }
+    }
+  }
+};

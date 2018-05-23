@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 
 
 /**
@@ -623,6 +624,19 @@ export interface StorageServiceProperties {
 }
 
 /**
+ * @interface
+ * An interface representing XmlGetHeadersHeaders.
+ * Defines headers for getHeaders operation.
+ *
+ */
+export interface XmlGetHeadersHeaders {
+  /**
+   * @member {string} [customHeader] A custom response header.
+   */
+  customHeader?: string;
+}
+
+/**
  * Defines values for LeaseStatusType.
  * Possible values include: 'locked', 'unlocked'
  * @readonly
@@ -740,3 +754,8 @@ export enum ArchiveStatus {
   RehydratePendingToHot = 'rehydrate-pending-to-hot',
   RehydratePendingToCool = 'rehydrate-pending-to-cool',
 }
+
+/**
+ * Contains response data for the getHeaders operation.
+ */
+export interface XmlGetHeadersResponse extends msRest.HttpOperationResponse<void, XmlGetHeadersHeaders> {};

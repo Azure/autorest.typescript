@@ -40,7 +40,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -132,7 +132,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -221,7 +221,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let unencodedPathParam = 'path1/path2/path3';
     // Validate
@@ -312,7 +312,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -402,7 +402,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let q1 = (options && options.q1 !== undefined) ? options.q1 : undefined;
     // Validate
@@ -498,7 +498,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -588,7 +588,7 @@ export class SkipUrlEncoding {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let q1 = 'value1&q2=value2&q3=value3';
     // Validate

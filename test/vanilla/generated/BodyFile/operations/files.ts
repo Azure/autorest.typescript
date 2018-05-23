@@ -36,7 +36,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
 
     // Construct URL
@@ -108,7 +108,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
 
     // Construct URL
@@ -180,7 +180,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
 
     // Construct URL

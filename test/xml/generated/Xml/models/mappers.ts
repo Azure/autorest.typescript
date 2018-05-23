@@ -1151,3 +1151,22 @@ export const StorageServiceProperties = {
     }
   }
 };
+
+export const XmlGetHeadersHeaders = {
+  required: false,
+  serializedName: 'xml-getheaders-headers',
+  type: {
+    name: 'Composite',
+    className: 'XmlGetHeadersHeaders',
+    modelProperties: {
+      customHeader: {
+        xmlName: 'Custom-Header',
+        required: false,
+        serializedName: 'custom-header',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};

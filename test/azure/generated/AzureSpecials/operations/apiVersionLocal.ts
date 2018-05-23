@@ -38,7 +38,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate
@@ -127,7 +127,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = (options && options.apiVersion !== undefined) ? options.apiVersion : undefined;
     // Validate
@@ -220,7 +220,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate
@@ -308,7 +308,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate

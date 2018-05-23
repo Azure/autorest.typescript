@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using Newtonsoft.Json;
@@ -34,6 +35,21 @@ namespace AutoRest.TypeScript.Model
             Callback,
             Promise,
             HttpOperationResponse
+        }
+
+        public string HttpOperationResponseName
+        {
+            get
+            {
+                if (ReturnType.Headers == null)
+                {
+                    return $"msRest.HttpOperationResponse<{ReturnTypeTSString}>";
+                }
+                else
+                {
+                    return $"Models.{Regex.Replace(ReturnType.Headers.Name, "Headers$", "Response")}";
+                }
+            }
         }
 
         public override Parameter Add(Parameter item)

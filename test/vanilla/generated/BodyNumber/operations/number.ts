@@ -36,7 +36,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -126,7 +126,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -216,7 +216,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -306,7 +306,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -398,7 +398,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -485,7 +485,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -577,7 +577,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -664,7 +664,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -756,7 +756,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -843,7 +843,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDoublePositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -935,7 +935,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1022,7 +1022,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDoubleNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -1114,7 +1114,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1201,7 +1201,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -1293,7 +1293,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1380,7 +1380,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDecimalPositiveDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -1472,7 +1472,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1559,7 +1559,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBigDecimalNegativeDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -1651,7 +1651,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1738,7 +1738,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSmallFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -1830,7 +1830,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1917,7 +1917,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSmallDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL
@@ -2009,7 +2009,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2096,7 +2096,7 @@ export class Number {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSmallDecimalWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
     let client = this.client;
 
     // Construct URL

@@ -1,11 +1,15 @@
-﻿@using AutoRest.TypeScript.vanilla.Templates
+﻿@using System.Linq
+@using System.Text.RegularExpressions
+@using AutoRest.TypeScript.vanilla.Templates
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.CodeModelTS>
 /*
 @Header(" * ")
  */
 @EmptyLine
 @Model.ConstructRuntimeImportForModelIndex()
-@if (Model.ContainsDurationPropertyInModels() || Model.IsAnyModelInheritingFromRequestOptionsBase())
+@if (Model.ContainsDurationPropertyInModels() ||
+    Model.IsAnyModelInheritingFromRequestOptionsBase() ||
+    Model.MethodsWithHeaders.Any())
 {
 @:import * as msRest from "ms-rest-js";
 }
@@ -18,4 +22,14 @@
 {
 @EmptyLine
 @:@(Include(new EnumTemplate(), model))
+}
+
+@foreach (var method in Model.MethodsWithHeaders) {
+@EmptyLine
+<text>
+/**
+@WrapComment(" * ", $"Contains response data for the {method.Name} operation.")
+ */
+export interface @(Regex.Replace(method.ReturnType.Headers.Name, "Headers$", "Response")) extends msRest.HttpOperationResponse<@(method.ReturnType.Body?.TSType(inModelsModule: true) ?? "void"), @(method.ReturnType.Headers.Name)> {};
+</text>
 }
