@@ -17,7 +17,8 @@
     "nuke": "git clean -xdf",
     "local": "node ./.scripts/local.js",
     "preview": "node ./.scripts/preview.js",
-    "latest": "node ./.scripts/latest.js"
+    "latest": "node ./.scripts/latest.js",
+    "bundle-size": "node ./.scripts/bundlesize.js"
   },
   "repository": {
     "type": "git",
