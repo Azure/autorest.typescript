@@ -37,7 +37,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -134,7 +134,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -231,7 +231,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -330,7 +330,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -429,7 +429,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBooleanTfftWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBooleanTfftWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
     let client = this.client;
 
     // Construct URL
@@ -528,7 +528,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBooleanTfftWithHttpOperationResponse(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBooleanTfftWithHttpOperationResponse(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -627,7 +627,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBooleanInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBooleanInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
     let client = this.client;
 
     // Construct URL
@@ -724,7 +724,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBooleanInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBooleanInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean[]>> {
     let client = this.client;
 
     // Construct URL
@@ -821,7 +821,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getIntegerValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getIntegerValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -920,7 +920,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putIntegerValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putIntegerValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1019,7 +1019,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getIntInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getIntInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1116,7 +1116,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getIntInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getIntInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1213,7 +1213,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getLongValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getLongValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1312,7 +1312,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putLongValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putLongValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1411,7 +1411,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getLongInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getLongInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1508,7 +1508,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getLongInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getLongInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1605,7 +1605,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFloatValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFloatValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1704,7 +1704,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putFloatValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putFloatValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1803,7 +1803,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFloatInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFloatInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1900,7 +1900,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFloatInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFloatInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1997,7 +1997,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDoubleValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDoubleValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2096,7 +2096,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDoubleValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDoubleValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2195,7 +2195,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDoubleInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDoubleInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2292,7 +2292,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDoubleInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDoubleInvalidStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2389,7 +2389,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getStringValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getStringValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2488,7 +2488,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putStringValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putStringValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2587,7 +2587,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getStringWithNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getStringWithNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2684,7 +2684,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getStringWithInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getStringWithInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2783,7 +2783,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getUuidValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getUuidValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -2884,7 +2884,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putUuidValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putUuidValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2983,7 +2983,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getUuidInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getUuidInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3080,7 +3080,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3179,7 +3179,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -3279,7 +3279,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3376,7 +3376,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3474,7 +3474,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3574,7 +3574,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateTimeValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateTimeValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -3674,7 +3674,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3771,7 +3771,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeInvalidCharsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3869,7 +3869,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeRfc1123ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeRfc1123ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date[] | string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -3969,7 +3969,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -4069,7 +4069,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDurationValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDurationValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4168,7 +4168,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -4268,7 +4268,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4368,7 +4368,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putByteValidWithHttpOperationResponse(arrayBody: Buffer[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putByteValidWithHttpOperationResponse(arrayBody: Buffer[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -4468,7 +4468,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4566,7 +4566,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4663,7 +4663,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getComplexNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getComplexNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4761,7 +4761,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getComplexEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getComplexEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4860,7 +4860,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getComplexItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getComplexItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
     let client = this.client;
 
     // Construct URL
@@ -4959,7 +4959,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getComplexItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getComplexItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
     let client = this.client;
 
     // Construct URL
@@ -5058,7 +5058,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getComplexValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getComplexValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product[]>> {
     let client = this.client;
 
     // Construct URL
@@ -5159,7 +5159,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putComplexValidWithHttpOperationResponse(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putComplexValidWithHttpOperationResponse(arrayBody: Models.Product[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -5246,7 +5246,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
     let client = this.client;
 
     // Construct URL
@@ -5350,7 +5350,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
     let client = this.client;
 
     // Construct URL
@@ -5454,7 +5454,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
     let client = this.client;
 
     // Construct URL
@@ -5558,7 +5558,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
     let client = this.client;
 
     // Construct URL
@@ -5663,7 +5663,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string[][]>> {
     let client = this.client;
 
     // Construct URL
@@ -5770,7 +5770,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putArrayValidWithHttpOperationResponse(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putArrayValidWithHttpOperationResponse(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -5880,7 +5880,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
     let client = this.client;
 
     // Construct URL
@@ -5984,7 +5984,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
     let client = this.client;
 
     // Construct URL
@@ -6090,7 +6090,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryItemNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
     let client = this.client;
 
     // Construct URL
@@ -6196,7 +6196,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryItemEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
     let client = this.client;
 
     // Construct URL
@@ -6302,7 +6302,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: string }[]>> {
     let client = this.client;
 
     // Construct URL
@@ -6410,7 +6410,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {

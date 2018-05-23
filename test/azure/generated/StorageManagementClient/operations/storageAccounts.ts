@@ -42,7 +42,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CheckNameAvailabilityResult>> {
     let client = this.client;
     // Validate
     try {
@@ -225,7 +225,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -337,7 +337,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
     // Validate
     try {
@@ -474,7 +474,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
     // Validate
     try {
@@ -604,7 +604,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
     let client = this.client;
     // Validate
     try {
@@ -723,7 +723,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
     let client = this.client;
     // Validate
     try {
@@ -838,7 +838,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
     let client = this.client;
     // Validate
     try {
@@ -960,7 +960,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
     let client = this.client;
     let keyName = (options && options.keyName !== undefined) ? options.keyName : undefined;
     // Validate
@@ -1108,7 +1108,7 @@ export class StorageAccounts {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
     // Validate
     try {

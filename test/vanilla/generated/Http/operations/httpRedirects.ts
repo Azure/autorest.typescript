@@ -37,7 +37,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead300Response> {
     let client = this.client;
 
     // Construct URL
@@ -87,6 +87,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 300) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -106,7 +114,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get300WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet300Response> {
     let client = this.client;
 
     // Construct URL
@@ -157,6 +165,10 @@ export class HttpRedirects {
         return Promise.reject(error);
       }
       // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
       if (statusCode === 300) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
@@ -183,6 +195,7 @@ export class HttpRedirects {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -203,7 +216,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead301Response> {
     let client = this.client;
 
     // Construct URL
@@ -253,6 +266,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 301) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -272,7 +293,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get301WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet301Response> {
     let client = this.client;
 
     // Construct URL
@@ -322,6 +343,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 301) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -343,7 +372,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -412,6 +441,10 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 301) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPut301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -431,7 +464,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead302Response> {
     let client = this.client;
 
     // Construct URL
@@ -481,6 +514,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 302) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -500,7 +541,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get302WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet302Response> {
     let client = this.client;
 
     // Construct URL
@@ -550,6 +591,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 302) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -571,7 +620,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -640,6 +689,10 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 302) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPatch302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -660,7 +713,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -729,6 +782,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPost303Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 303) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPost303Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -748,7 +809,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsHead307Response> {
     let client = this.client;
 
     // Construct URL
@@ -798,6 +859,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsHead307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -817,7 +886,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get307WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HttpRedirectsGet307Response> {
     let client = this.client;
 
     // Construct URL
@@ -867,6 +936,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsGet307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -886,7 +963,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -955,6 +1032,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPut307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPut307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -974,7 +1059,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1043,6 +1128,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPatch307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPatch307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1062,7 +1155,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1131,6 +1224,14 @@ export class HttpRedirects {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPost307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsPost307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1150,7 +1251,7 @@ export class HttpRedirects {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1218,6 +1319,14 @@ export class HttpRedirects {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsDelete307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 307) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HttpRedirectsDelete307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {

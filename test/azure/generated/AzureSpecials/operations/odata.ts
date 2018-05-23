@@ -38,7 +38,7 @@ export class Odata {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let filter = (options && options.filter !== undefined) ? options.filter : undefined;
     let top = (options && options.top !== undefined) ? options.top : undefined;

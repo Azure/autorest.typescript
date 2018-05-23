@@ -38,7 +38,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {

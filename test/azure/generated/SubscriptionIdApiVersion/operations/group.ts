@@ -39,7 +39,7 @@ export class Group {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SampleResourceGroup>> {
     let client = this.client;
     // Validate
     try {

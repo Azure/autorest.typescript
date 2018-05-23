@@ -37,7 +37,7 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ReadonlyObj>> {
     let client = this.client;
 
     // Construct URL
@@ -122,7 +122,7 @@ export class Readonlyproperty {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let size = (options && options.size !== undefined) ? options.size : undefined;
     // Validate

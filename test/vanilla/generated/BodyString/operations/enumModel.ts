@@ -38,7 +38,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
     let client = this.client;
 
     // Construct URL
@@ -133,7 +133,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -227,7 +227,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
     let client = this.client;
 
     // Construct URL
@@ -322,7 +322,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -415,7 +415,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RefColorConstant>> {
     let client = this.client;
 
     // Construct URL
@@ -500,7 +500,7 @@ export class EnumModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field1 = (options && options.field1 !== undefined) ? options.field1 : undefined;
     // Validate

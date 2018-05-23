@@ -106,7 +106,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
     // Validate

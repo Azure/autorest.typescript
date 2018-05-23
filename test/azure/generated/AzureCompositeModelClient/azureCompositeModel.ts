@@ -133,7 +133,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let apiVersion = '2014-04-01-preview';
     // Validate
@@ -251,7 +251,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
     let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
     let apiVersion = '2014-04-01-preview';
@@ -382,7 +382,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
     let apiVersion = '2014-04-01-preview';

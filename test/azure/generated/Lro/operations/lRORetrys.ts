@@ -324,7 +324,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -449,7 +449,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -536,6 +536,7 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -559,7 +560,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     let client = this.client;
     // Validate
     try {
@@ -641,6 +642,7 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 202) {
@@ -656,6 +658,7 @@ export class LRORetrys {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -678,7 +681,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
     let client = this.client;
     // Validate
     try {
@@ -746,6 +749,10 @@ export class LRORetrys {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -767,7 +774,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
     // Validate
     try {
@@ -835,6 +842,10 @@ export class LRORetrys {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -857,7 +868,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -930,6 +941,10 @@ export class LRORetrys {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -952,7 +967,7 @@ export class LRORetrys {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1024,6 +1039,10 @@ export class LRORetrys {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {

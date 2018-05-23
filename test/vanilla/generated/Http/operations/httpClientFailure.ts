@@ -37,7 +37,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -118,7 +118,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -200,7 +200,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -301,7 +301,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -402,7 +402,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -503,7 +503,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -603,7 +603,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head401WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -684,7 +684,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get402WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -765,7 +765,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get403WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -847,7 +847,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -948,7 +948,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1049,7 +1049,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1150,7 +1150,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1251,7 +1251,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1351,7 +1351,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head410WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -1432,7 +1432,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get411WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -1513,7 +1513,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get412WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -1595,7 +1595,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1696,7 +1696,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1797,7 +1797,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -1897,7 +1897,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get416WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -1979,7 +1979,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -2079,7 +2079,7 @@ export class HttpClientFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head429WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
