@@ -47,9 +47,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -142,9 +141,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = slideshow;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -217,9 +215,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -308,9 +305,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = wrappedLists;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -383,9 +379,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -449,9 +444,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -540,9 +534,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = slideshow;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -611,9 +604,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -702,9 +694,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = appleBarrel;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -773,9 +764,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -871,9 +861,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -957,9 +946,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1055,9 +1043,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1141,9 +1128,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1239,9 +1225,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1325,9 +1310,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1416,9 +1400,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = banana;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1489,9 +1472,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1574,9 +1556,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1669,9 +1650,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = properties;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1744,9 +1724,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1846,9 +1825,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = properties;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1936,9 +1914,8 @@ export class Xml {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/xml; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

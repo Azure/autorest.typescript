@@ -68,7 +68,7 @@ namespace AutoRest.TypeScript.Azure.Model
             {
                 var sb = new IndentedStringBuilder();
                 sb.AppendLine("if ({0}.generateClientRequestId) {{", this.ClientReference).Indent()
-                    .AppendLine("httpRequest.headers['{0}'] = msRest.generateUuid();",
+                    .AppendLine("httpRequest.headers.set('{0}', msRest.generateUuid());",
                         this.ClientRequestIdString, this.ClientReference).Outdent()
                   .AppendLine("}")
                   .AppendLine(base.SetDefaultHeaders);
