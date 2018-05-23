@@ -1066,7 +1066,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/put/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1074,26 +1074,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1186,7 +1191,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/put/201/creating/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1194,26 +1199,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1306,7 +1316,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/put/201/creating/400/invalidjson");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1314,26 +1324,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1427,7 +1442,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/putasync/retry/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1435,26 +1450,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1529,7 +1549,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/delete/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1537,22 +1557,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1612,7 +1637,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/delete/202/retry/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1620,22 +1645,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1697,7 +1727,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/deleteasync/retry/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1705,22 +1735,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1782,7 +1817,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/post/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1790,26 +1825,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1871,7 +1911,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/post/202/retry/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1879,26 +1919,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1962,7 +2007,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/nonretryerror/postasync/retry/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1970,26 +2015,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2052,7 +2102,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/put/201/noprovisioningstatepayload");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2060,26 +2110,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2173,7 +2228,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/putasync/retry/nostatus");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2181,26 +2236,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2279,7 +2339,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/putasync/retry/nostatuspayload");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2287,26 +2347,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2382,7 +2447,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/delete/204/nolocation");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2390,22 +2455,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2467,7 +2537,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/deleteasync/retry/nostatus");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2475,22 +2545,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2553,7 +2628,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/post/202/nolocation");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2561,26 +2636,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2644,7 +2724,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/postasync/retry/nopayload");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2652,26 +2732,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2734,7 +2819,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/put/200/invalidjson");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2742,26 +2827,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2840,7 +2930,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/putasync/retry/invalidheader");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2848,26 +2938,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2946,7 +3041,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/putasync/retry/invalidjsonpolling");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2954,26 +3049,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3049,7 +3149,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/delete/202/retry/invalidheader");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3057,22 +3157,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3133,7 +3238,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/deleteasync/retry/invalidheader");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3141,22 +3246,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3218,7 +3328,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/deleteasync/retry/invalidjsonpolling");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3226,22 +3336,27 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3304,7 +3419,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/post/202/retry/invalidheader");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3312,26 +3427,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3395,7 +3515,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/postasync/retry/invalidheader");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3403,26 +3523,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -3486,7 +3611,7 @@ export class LROSADs {
     requestUrl.setPath("/lro/error/postasync/retry/invalidjsonpolling");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -3494,26 +3619,31 @@ export class LROSADs {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "product"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "product",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

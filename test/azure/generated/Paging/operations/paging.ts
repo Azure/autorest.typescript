@@ -53,7 +53,7 @@ export class Paging {
     requestUrl.setPath("/paging/single");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -61,22 +61,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -176,7 +181,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -184,31 +189,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -310,7 +327,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple/odata");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -318,31 +335,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -458,7 +487,7 @@ export class Paging {
     requestUrl.replaceAll("{offset}", encodeURIComponent(offset.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -466,31 +495,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -566,7 +607,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple/retryfirst");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -574,22 +615,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -666,7 +712,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple/retrysecond");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -674,22 +720,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -764,7 +815,7 @@ export class Paging {
     requestUrl.setPath("/paging/single/failure");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -772,22 +823,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -862,7 +918,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple/failure");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -870,22 +926,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -960,7 +1021,7 @@ export class Paging {
     requestUrl.setPath("/paging/multiple/failureuri");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -968,22 +1029,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1070,7 +1136,7 @@ export class Paging {
     requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1078,22 +1144,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1197,7 +1268,7 @@ export class Paging {
     requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1205,22 +1276,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1313,7 +1389,7 @@ export class Paging {
     requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1321,22 +1397,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1445,7 +1526,7 @@ export class Paging {
     requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1453,22 +1534,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1549,7 +1635,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1557,22 +1643,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1679,7 +1770,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1687,31 +1778,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1819,7 +1922,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1827,31 +1930,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1958,7 +2073,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -1966,31 +2081,43 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (clientRequestId !== undefined && clientRequestId !== null) {
-      httpRequest.headers['client-request-id'] = clientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (maxresults !== undefined && maxresults !== null) {
-      httpRequest.headers['maxresults'] = maxresults.toString();
-    }
-    if (timeout !== undefined && timeout !== null) {
-      httpRequest.headers['timeout'] = timeout.toString();
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "clientRequestId": clientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "maxresults": maxresults,
+            "timeout": timeout,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              headerName: "client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "maxresults",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "timeout",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2072,7 +2199,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2080,22 +2207,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2178,7 +2310,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2186,22 +2318,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2282,7 +2419,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2290,22 +2427,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2386,7 +2528,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2394,22 +2536,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2490,7 +2637,7 @@ export class Paging {
     requestUrl.replaceAll("{nextLink}", nextPageLink);
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
     httpRequest.headers = {};
     // Set Headers
@@ -2498,22 +2645,27 @@ export class Paging {
     if (this.client.generateClientRequestId) {
         httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
     }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

@@ -1,4 +1,5 @@
 ﻿@using System.Linq;
+@using AutoRest.Core.Model
 @using AutoRest.TypeScript.Model
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
 // Send Request
@@ -10,34 +11,62 @@ try {
   @(Model.ConstructRequestBodyMapper)
 </text>
 }
-  operationRes = await client.sendOperationRequest(httpRequest, {
-@if (Model.RequestBody == null)
+  operationRes = await client.sendOperationRequest(
+    httpRequest,
+    {
+      arguments: {
+@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
 {
 <text>
-    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())"
+        "@(parameter.Name)": @(parameter.Name),
 </text>
 }
-else
+      },
+      customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+    },
+    {
+      httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
+@if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Header))
 {
 <text>
-    httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
-    requestBodyMapper: requestModelMapper,
-</text>
-@if (!Model.CodeModel.ShouldGenerateXmlSerialization)
+      headerParameters: [
+@foreach (ParameterTS parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
 {
 <text>
-    requestBodyName: "@(Model.RequestBody.Name)"
-</text>
-}
-else
+        {
+          parameterName: "@(parameter.Name)",
+@if (parameter.Name != parameter.SerializedName)
 {
 <text>
-    requestBodyName: "@(Model.RequestBody.Name)",
-    isXML: true
+          headerName: "@(parameter.SerializedName)",
+</text>
+}
+@if (parameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(parameter.OperationType),
+</text>    
+}
+        },
+</text>
+}
+      ],
+</text>
+}
+@if (Model.RequestBody != null)
+{
+<text>
+      requestBodyMapper: requestModelMapper,
+      requestBodyName: "@(Model.RequestBody.Name)",
+</text>
+@if (Model.CodeModel.ShouldGenerateXmlSerialization)
+{
+<text>
+      isXML: true,
 </text>
 }
 }
-  });
+    });
   let statusCode = operationRes.status;
   if (@(Model.FailureStatusCodePredicate)) {
     let error = new msRest.RestError(operationRes.bodyAsText as string);
