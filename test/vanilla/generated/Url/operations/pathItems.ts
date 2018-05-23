@@ -47,7 +47,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
@@ -94,9 +94,8 @@ export class PathItems {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -163,7 +162,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
@@ -210,9 +209,8 @@ export class PathItems {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -279,7 +277,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
@@ -326,9 +324,8 @@ export class PathItems {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -395,7 +392,7 @@ export class PathItems {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
@@ -442,9 +439,8 @@ export class PathItems {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

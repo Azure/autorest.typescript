@@ -1049,7 +1049,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1068,11 +1068,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1174,7 +1173,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1193,11 +1192,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1299,7 +1297,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1318,11 +1316,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1425,7 +1422,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1444,11 +1441,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1513,6 +1509,7 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -1533,7 +1530,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
     let client = this.client;
     // Validate
     try {
@@ -1551,11 +1548,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1601,6 +1597,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDeleteNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -1621,7 +1621,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
     let client = this.client;
     // Validate
     try {
@@ -1639,11 +1639,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1689,6 +1688,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDelete202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -1711,7 +1714,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
     let client = this.client;
     // Validate
     try {
@@ -1729,11 +1732,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1780,6 +1782,10 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1800,7 +1806,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1819,11 +1825,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1873,6 +1878,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPostNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -1894,7 +1903,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1913,11 +1922,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -1967,6 +1975,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPost202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -1990,7 +2002,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2009,11 +2021,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2064,6 +2075,10 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2085,7 +2100,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2104,11 +2119,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2211,7 +2225,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2230,11 +2244,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2299,6 +2312,7 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2322,7 +2336,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2341,11 +2355,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2410,6 +2423,7 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2431,7 +2445,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2449,11 +2463,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2521,7 +2534,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
     let client = this.client;
     // Validate
     try {
@@ -2539,11 +2552,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2590,6 +2602,10 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2611,7 +2627,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202NoLocationWithHttpOperationResponse(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202NoLocationWithHttpOperationResponse(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2630,11 +2646,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2684,6 +2699,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPost202NoLocationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2707,7 +2726,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2726,11 +2745,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2781,6 +2799,10 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2802,7 +2824,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2821,11 +2843,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -2913,7 +2934,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2932,11 +2953,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -3001,6 +3021,7 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3024,7 +3045,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -3043,11 +3064,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -3112,6 +3132,7 @@ export class LROSADs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3133,7 +3154,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
     let client = this.client;
     // Validate
     try {
@@ -3151,11 +3172,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3201,6 +3221,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDelete202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3222,7 +3246,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
     // Validate
     try {
@@ -3240,11 +3264,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3290,6 +3313,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3312,7 +3339,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
     // Validate
     try {
@@ -3330,11 +3357,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3381,6 +3407,10 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -3402,7 +3432,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -3421,11 +3451,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -3475,6 +3504,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPost202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3498,7 +3531,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -3517,11 +3550,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -3571,6 +3603,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3594,7 +3630,7 @@ export class LROSADs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -3613,11 +3649,10 @@ export class LROSADs {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = product;
     // Send Request
@@ -3667,6 +3702,10 @@ export class LROSADs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {

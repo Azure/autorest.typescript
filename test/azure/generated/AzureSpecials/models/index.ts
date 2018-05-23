@@ -109,3 +109,57 @@ export interface OdataGetWithFilterOptionalParams extends msRest.RequestOptionsB
   orderby?: string;
 }
 
+/**
+ * @interface
+ * An interface representing HeaderCustomNamedRequestIdHeaders.
+ * Defines headers for customNamedRequestId operation.
+ *
+ */
+export interface HeaderCustomNamedRequestIdHeaders {
+  /**
+   * @member {string} [fooRequestId] Gets the foo-request-id.
+   */
+  fooRequestId?: string;
+}
+
+/**
+ * @interface
+ * An interface representing HeaderCustomNamedRequestIdParamGroupingHeaders.
+ * Defines headers for customNamedRequestIdParamGrouping operation.
+ *
+ */
+export interface HeaderCustomNamedRequestIdParamGroupingHeaders {
+  /**
+   * @member {string} [fooRequestId] Gets the foo-request-id.
+   */
+  fooRequestId?: string;
+}
+
+/**
+ * @interface
+ * An interface representing HeaderCustomNamedRequestIdHeadHeaders.
+ * Defines headers for customNamedRequestIdHead operation.
+ *
+ */
+export interface HeaderCustomNamedRequestIdHeadHeaders {
+  /**
+   * @member {string} [fooRequestId] Gets the foo-request-id.
+   */
+  fooRequestId?: string;
+}
+
+
+/**
+ * Contains response data for the customNamedRequestId operation.
+ */
+export interface HeaderCustomNamedRequestIdResponse extends msRest.HttpOperationResponse<void, HeaderCustomNamedRequestIdHeaders> {};
+
+/**
+ * Contains response data for the customNamedRequestIdParamGrouping operation.
+ */
+export interface HeaderCustomNamedRequestIdParamGroupingResponse extends msRest.HttpOperationResponse<void, HeaderCustomNamedRequestIdParamGroupingHeaders> {};
+
+/**
+ * Contains response data for the customNamedRequestIdHead operation.
+ */
+export interface HeaderCustomNamedRequestIdHeadResponse extends msRest.HttpOperationResponse<boolean, HeaderCustomNamedRequestIdHeadHeaders> {};

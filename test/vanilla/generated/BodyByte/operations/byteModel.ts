@@ -36,7 +36,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
     let client = this.client;
 
     // Construct URL
@@ -46,9 +46,8 @@ export class ByteModel {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -127,7 +126,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
     let client = this.client;
 
     // Construct URL
@@ -137,9 +136,8 @@ export class ByteModel {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -218,7 +216,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
     let client = this.client;
 
     // Construct URL
@@ -228,9 +226,8 @@ export class ByteModel {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -312,7 +309,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putNonAsciiWithHttpOperationResponse(byteBody: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putNonAsciiWithHttpOperationResponse(byteBody: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -330,9 +327,8 @@ export class ByteModel {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = byteBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -400,7 +396,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
     let client = this.client;
 
     // Construct URL
@@ -410,9 +406,8 @@ export class ByteModel {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

@@ -37,7 +37,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getIntWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getIntWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.IntWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -47,9 +47,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -124,7 +123,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -142,9 +141,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -206,7 +204,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getLongWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getLongWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LongWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -216,9 +214,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -293,7 +290,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -311,9 +308,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -375,7 +371,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FloatWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -385,9 +381,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -462,7 +457,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -480,9 +475,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -544,7 +538,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DoubleWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -554,9 +548,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -632,7 +625,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -650,9 +643,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -714,7 +706,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBoolWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getBoolWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BooleanWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -724,9 +716,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -801,7 +792,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -819,9 +810,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -883,7 +873,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StringWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -893,9 +883,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -970,7 +959,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -988,9 +977,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1052,7 +1040,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DateWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -1062,9 +1050,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1139,7 +1126,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1157,9 +1144,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1221,7 +1207,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DatetimeWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -1231,9 +1217,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1309,7 +1294,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1327,9 +1312,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1391,7 +1375,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDateTimeRfc1123WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDateTimeRfc1123WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Datetimerfc1123Wrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -1401,9 +1385,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1479,7 +1462,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1497,9 +1480,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1561,7 +1543,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DurationWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -1571,9 +1553,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1646,7 +1627,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
@@ -1670,9 +1651,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1734,7 +1714,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getByteWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ByteWrapper>> {
     let client = this.client;
 
     // Construct URL
@@ -1744,9 +1724,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1819,7 +1798,7 @@ export class Primitive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
@@ -1843,9 +1822,8 @@ export class Primitive {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

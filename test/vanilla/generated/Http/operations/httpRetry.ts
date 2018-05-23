@@ -37,7 +37,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -47,9 +47,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -107,7 +106,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -126,9 +125,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -196,7 +194,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -215,9 +213,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -285,7 +282,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -295,9 +292,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -355,7 +351,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -374,9 +370,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -444,7 +439,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -463,9 +458,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -533,7 +527,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -552,9 +546,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -622,7 +615,7 @@ export class HttpRetry {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -641,9 +634,8 @@ export class HttpRetry {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

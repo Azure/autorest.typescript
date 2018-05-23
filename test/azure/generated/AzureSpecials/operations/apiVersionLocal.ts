@@ -38,7 +38,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate
@@ -58,11 +58,10 @@ export class ApiVersionLocal {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -131,7 +130,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = (options && options.apiVersion !== undefined) ? options.apiVersion : undefined;
     // Validate
@@ -156,11 +155,10 @@ export class ApiVersionLocal {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -228,7 +226,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate
@@ -248,11 +246,10 @@ export class ApiVersionLocal {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -320,7 +317,7 @@ export class ApiVersionLocal {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
     // Validate
@@ -340,11 +337,10 @@ export class ApiVersionLocal {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

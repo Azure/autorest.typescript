@@ -41,7 +41,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -102,11 +102,10 @@ export class ParameterGrouping {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = body;
     // Send Request
@@ -189,7 +188,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let parameterGroupingPostOptionalParameters = (options && options.parameterGroupingPostOptionalParameters !== undefined) ? options.parameterGroupingPostOptionalParameters : undefined;
     // Validate
@@ -231,11 +230,10 @@ export class ParameterGrouping {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -308,7 +306,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
     let parameterGroupingPostMultiParamGroupsSecondParamGroup = (options && options.parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined) ? options.parameterGroupingPostMultiParamGroupsSecondParamGroup : undefined;
@@ -370,11 +368,10 @@ export class ParameterGrouping {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -454,7 +451,7 @@ export class ParameterGrouping {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
     // Validate
@@ -496,11 +493,10 @@ export class ParameterGrouping {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

@@ -36,7 +36,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
 
     // Construct URL
@@ -46,9 +46,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -129,7 +128,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putTrueWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putTrueWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -147,9 +146,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -217,7 +215,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
 
     // Construct URL
@@ -227,9 +225,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -310,7 +307,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putFalseWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putFalseWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -328,9 +325,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -398,7 +394,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
 
     // Construct URL
@@ -408,9 +404,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -489,7 +484,7 @@ export class Bool {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
 
     // Construct URL
@@ -499,9 +494,8 @@ export class Bool {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

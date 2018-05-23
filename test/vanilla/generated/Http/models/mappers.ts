@@ -868,3 +868,273 @@ export const HttpRetryPatch504OptionalParams = {
     }
   }
 };
+
+export const HttpRedirectsHead300Headers = {
+  required: false,
+  serializedName: 'httpredirects-head300-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsHead300Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsGet300Headers = {
+  required: false,
+  serializedName: 'httpredirects-get300-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsGet300Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsHead301Headers = {
+  required: false,
+  serializedName: 'httpredirects-head301-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsHead301Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsGet301Headers = {
+  required: false,
+  serializedName: 'httpredirects-get301-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsGet301Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPut301Headers = {
+  required: false,
+  serializedName: 'httpredirects-put301-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPut301Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsHead302Headers = {
+  required: false,
+  serializedName: 'httpredirects-head302-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsHead302Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsGet302Headers = {
+  required: false,
+  serializedName: 'httpredirects-get302-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsGet302Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPatch302Headers = {
+  required: false,
+  serializedName: 'httpredirects-patch302-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPatch302Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPost303Headers = {
+  required: false,
+  serializedName: 'httpredirects-post303-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPost303Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsHead307Headers = {
+  required: false,
+  serializedName: 'httpredirects-head307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsHead307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsGet307Headers = {
+  required: false,
+  serializedName: 'httpredirects-get307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsGet307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPut307Headers = {
+  required: false,
+  serializedName: 'httpredirects-put307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPut307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPatch307Headers = {
+  required: false,
+  serializedName: 'httpredirects-patch307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPatch307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsPost307Headers = {
+  required: false,
+  serializedName: 'httpredirects-post307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsPost307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HttpRedirectsDelete307Headers = {
+  required: false,
+  serializedName: 'httpredirects-delete307-headers',
+  type: {
+    name: 'Composite',
+    className: 'HttpRedirectsDelete307Headers',
+    modelProperties: {
+      location: {
+        required: false,
+        serializedName: 'location',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};

@@ -41,7 +41,7 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async uploadFileWithHttpOperationResponse(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async uploadFileWithHttpOperationResponse(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
     // Validate
     try {
@@ -62,9 +62,8 @@ export class Formdata {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'multipart/form-data';
+    httpRequest.headers.set("Content-Type", "multipart/form-data");
     // Serialize Request
     let formData: any = {};
     if (fileContent !== undefined && fileContent !== null) {
@@ -136,7 +135,7 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async uploadFileViaBodyWithHttpOperationResponse(fileContent: ReadableStream, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async uploadFileViaBodyWithHttpOperationResponse(fileContent: ReadableStream, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
     // Validate
     try {
@@ -154,9 +153,8 @@ export class Formdata {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/octet-stream';
+    httpRequest.headers.set("Content-Type", "application/octet-stream");
     httpRequest.body = fileContent;
     // Send Request
     httpRequest.rawResponse = true;

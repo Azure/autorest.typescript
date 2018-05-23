@@ -40,7 +40,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -58,9 +58,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -126,7 +125,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseExistingKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseExistingKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse> {
     let client = this.client;
 
     // Construct URL
@@ -136,9 +135,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -177,6 +175,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseExistingKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -199,7 +201,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -217,9 +219,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -285,7 +286,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseProtectedKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseProtectedKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse> {
     let client = this.client;
 
     // Construct URL
@@ -295,9 +296,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -336,6 +336,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseProtectedKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -361,7 +365,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -382,9 +386,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -457,7 +460,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse> {
     let client = this.client;
     // Validate
     try {
@@ -475,9 +478,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -523,6 +525,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseIntegerHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -548,7 +554,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -569,9 +575,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -644,7 +649,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse> {
     let client = this.client;
     // Validate
     try {
@@ -662,9 +667,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -710,6 +714,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseLongHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -735,7 +743,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -756,9 +764,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -831,7 +838,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse> {
     let client = this.client;
     // Validate
     try {
@@ -849,9 +856,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -897,6 +903,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseFloatHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -922,7 +932,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -943,9 +953,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1018,7 +1027,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1036,9 +1045,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1084,6 +1092,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseDoubleHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1109,7 +1121,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1130,9 +1142,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1205,7 +1216,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1223,9 +1234,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1271,6 +1281,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseBoolHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1295,7 +1309,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
     // Validate
@@ -1317,9 +1331,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1393,7 +1406,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1411,9 +1424,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1459,6 +1471,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseStringHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1485,7 +1501,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1507,9 +1523,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1582,7 +1597,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1600,9 +1615,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1648,6 +1662,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseDateHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1674,7 +1692,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1696,9 +1714,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1772,7 +1789,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse> {
     let client = this.client;
     // Validate
     try {
@@ -1790,9 +1807,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1838,6 +1854,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseDatetimeHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -1863,7 +1883,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
     // Validate
@@ -1886,9 +1906,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1962,7 +1981,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
     let client = this.client;
     // Validate
     try {
@@ -1980,9 +1999,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2028,6 +2046,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseDatetimeRfc1123Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2054,7 +2076,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2075,9 +2097,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2150,7 +2171,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse> {
     let client = this.client;
     // Validate
     try {
@@ -2168,9 +2189,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2216,6 +2236,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseDurationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2241,7 +2265,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramByteWithHttpOperationResponse(scenario: string, value: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async paramByteWithHttpOperationResponse(scenario: string, value: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -2262,9 +2286,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2337,7 +2360,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse> {
     let client = this.client;
     // Validate
     try {
@@ -2355,9 +2378,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2403,6 +2425,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseByteHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2426,7 +2452,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
     // Validate
@@ -2451,9 +2477,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2525,7 +2550,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse> {
     let client = this.client;
     // Validate
     try {
@@ -2543,9 +2568,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2591,6 +2615,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderResponseEnumHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -2611,7 +2639,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -2621,9 +2649,8 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

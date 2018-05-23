@@ -106,7 +106,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
     // Validate
@@ -131,11 +131,10 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

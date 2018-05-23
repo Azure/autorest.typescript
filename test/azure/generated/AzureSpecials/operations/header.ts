@@ -40,7 +40,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
     let client = this.client;
     // Validate
     try {
@@ -61,11 +61,10 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -119,6 +118,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -143,7 +146,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
     let client = this.client;
     // Validate
     try {
@@ -176,11 +179,10 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -234,6 +236,10 @@ export class Header {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -256,7 +262,7 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
     let client = this.client;
     // Validate
     try {
@@ -277,11 +283,10 @@ export class Header {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -336,6 +341,14 @@ export class Header {
         return Promise.reject(error);
       }
       operationRes.parsedBody = (statusCode === 200);
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 404) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);

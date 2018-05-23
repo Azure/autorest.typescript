@@ -106,7 +106,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
     // Validate
@@ -125,11 +125,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = resourceArray;
     // Send Request
@@ -215,7 +214,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
     let client = this;
     // Validate
     try {
@@ -233,11 +232,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -335,7 +333,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
     // Validate
@@ -354,11 +352,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = resourceDictionary;
     // Send Request
@@ -444,7 +441,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
     let client = this;
     // Validate
     try {
@@ -462,11 +459,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -565,7 +561,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
     // Validate
@@ -584,11 +580,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     httpRequest.body = resourceComplexObject;
     // Send Request
@@ -660,7 +655,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
     let client = this;
     // Validate
     try {
@@ -678,11 +673,10 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.generateClientRequestId) {
-        httpRequest.headers['x-ms-client-request-id'] = msRest.generateUuid();
+        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

@@ -73,7 +73,7 @@ class AutoRestReportService extends msRest.ServiceClient {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
     // Validate
@@ -95,9 +95,8 @@ class AutoRestReportService extends msRest.ServiceClient {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
