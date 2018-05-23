@@ -3,6 +3,15 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 /**
+ * Read the contents of text file at the provided filePath.
+ * @param {string} filePath The path to the text file to read.
+ * @returns {string} The text contents of the text file at the provided filePath.
+ */
+function readTextFileContents(filePath) {
+  return fs.readFileSync(filePath, { encoding: "utf8" });
+}
+
+/**
  * Execute the provided command on the shell synchronously.
  * @param {string} command The command to execute.
  * @param {string} workingDirectory The working directory to execute the command in.
@@ -18,7 +27,7 @@ function execute(command, workingDirectory) {
  * @returns {string} The absolute path to this repository's folder path.
  */
 function getThisRepositoryFolderPath() {
-  return path.resolve(__dirname, "..");
+  return replaceAll(path.resolve(__dirname, ".."), "\\", "/");
 }
 
 /**
@@ -26,7 +35,7 @@ function getThisRepositoryFolderPath() {
  * @returns {string} The absolute path to the package.json.
  */
 function getPackageJsonFilePath() {
-  return path.resolve(__dirname, "../package.json");
+  return replaceAll(path.resolve(__dirname, "../package.json"), "\\", "/");
 }
 
 /**
@@ -35,8 +44,9 @@ function getPackageJsonFilePath() {
  * @returns {string} The absolute path to the local clone of the repository.
  */
 function getLocalRepositoryPath(repoName) {
-  return path.resolve(__dirname, "..", "..", repoName);
+  return replaceAll(path.resolve(__dirname, "..", "..", repoName), "\\", "/");
 }
+exports.getLocalRepositoryPath = getLocalRepositoryPath;
 
 /**
  * Get the package.json file contents parsed as a JSON object.
@@ -48,7 +58,7 @@ function getPackageJson(packageJsonFilePath) {
   if (!packageJsonFilePath) {
     packageJsonFilePath = getPackageJsonFilePath();
   }
-  return JSON.parse(fs.readFileSync(packageJsonFilePath));
+  return JSON.parse(readTextFileContents(packageJsonFilePath));
 }
 
 /**
@@ -127,7 +137,7 @@ function updatePackageJsonDependency(dependencyName, dependencyVersion) {
     console.log(`Changing "${dependencyName}" to "${dependencyVersion}" in "${packageJsonFilePath}"`)
     packageJson.devDependencies[dependencyName] = dependencyVersion;
 
-    fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  "));
+    fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  ") + "\n");
 
     dependencyChanged = true;
   }
@@ -183,7 +193,28 @@ function updatePackageJsonMain(mainValue) {
     console.log(`Changing "main" to "${mainValue}" in "${packageJsonFilePath}"`)
     packageJson.main = mainValue;
 
-    fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  "));
+    fs.writeFileSync(packageJsonFilePath, JSON.stringify(packageJson, undefined, "  ") + "\n");
   }
 }
 exports.updatePackageJsonMain = updatePackageJsonMain;
+
+/**
+ * Update the code used to generate package.json files so that the ms-rest-js dependency version is
+ * the provided newDependencyVersion.
+ * @param {string} newDependencyVersion The version of ms-rest-js that generated package.json files
+ * will depend on.
+ */
+function updateGeneratedPackageJsonMsRestJsDependencyVersion(newDependencyVersion) {
+  const codeFilePath = replaceAll(path.resolve(getThisRepositoryFolderPath(), "src", "vanilla", "Model", "CodeModelTS.cs"), "\\", "/");
+  console.log(`Changing ms-rest-js dependency reference in ${codeFilePath}`)
+  const codeFileContents = readTextFileContents(codeFilePath);
+  const regularExpression = /\\"ms-rest-js\\": \\".*\\"/;
+  const newValue = `\\"ms-rest-js\\": \\"${newDependencyVersion}\\"`;
+  const updatedCodeFileContents = codeFileContents.replace(regularExpression, newValue);
+  fs.writeFileSync(codeFilePath, updatedCodeFileContents);
+}
+exports.updateGeneratedPackageJsonMsRestJsDependencyVersion = updateGeneratedPackageJsonMsRestJsDependencyVersion;
+
+function replaceAll(text, searchValue, replaceValue) {
+  return text.split(searchValue).join(replaceValue);
+}
