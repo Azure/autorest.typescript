@@ -24,7 +24,8 @@ import { AutoRestUrlTestService, AutoRestUrlTestServiceModels } from './generate
 import { AutoRestSwaggerBATFileService } from './generated/BodyFile/autoRestSwaggerBATFileService';
 import { AutoRestSwaggerBATArrayService } from './generated/BodyArray/autoRestSwaggerBATArrayService';
 import { AutoRestSwaggerBATdictionaryService, AutoRestSwaggerBATdictionaryServiceModels } from './generated/BodyDictionary/autoRestSwaggerBATdictionaryService';
-import { AutoRestHttpInfrastructureTestService } from './generated/Http/autoRestHttpInfrastructureTestService';
+import { AutoRestHttpInfrastructureTestService, AutoRestHttpInfrastructureTestServiceMappers } from './generated/Http/autoRestHttpInfrastructureTestService';
+import * as AutoRestHttpInfrastructureMappers from "./generated/Http/models/mappers";
 import { AutoRestSwaggerBATFormDataService } from './generated/BodyFormData/autoRestSwaggerBATFormDataService';
 import { AutoRestParameterizedHostTestClient } from './generated/CustomBaseUri/autoRestParameterizedHostTestClient';
 import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBaseUriMoreOptions/autoRestParameterizedCustomHostTestClient';
@@ -1872,7 +1873,7 @@ describe('typescript', function () {
           const response = await testClient.formdata.uploadFile(blob as any, 'sample.png');
           const body = await response.blobBody();
           const reader = new FileReader();
-          const readPromise = new Promise(function(resolve, reject) {
+          const readPromise = new Promise(function (resolve, reject) {
             reader.addEventListener("error", reject);
             reader.addEventListener("abort", reject);
             reader.addEventListener("load", resolve);
@@ -2223,11 +2224,16 @@ describe('typescript', function () {
       });
     });
     describe('Http infrastructure Client', function () {
-      var testOptions: msRest.ServiceClientOptions = clientOptions;
+      const serializer = new msRest.Serializer(AutoRestHttpInfrastructureTestServiceMappers);
+      var testOptions: msRest.ServiceClientOptions = {
+        ...clientOptions,
+        serializer: serializer
+      };
       //testOptions.requestOptions = { jar: true };
       testOptions.requestPolicyCreators = [
         msRest.redirectPolicy(),
-        msRest.exponentialRetryPolicy(3, 0, 0, 0)
+        msRest.exponentialRetryPolicy(3, 0, 0, 0),
+        msRest.serializationPolicy(serializer)
       ];
       testOptions.noRetryPolicy = true;
       var testClient = new AutoRestHttpInfrastructureTestService(baseUri, testOptions);
