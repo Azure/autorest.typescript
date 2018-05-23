@@ -49,20 +49,6 @@ namespace AutoRest.TypeScript.Model
         public bool IsLocal => (!IsClientProperty) && !string.IsNullOrWhiteSpace(Name) && !IsConstant;
 
         [JsonIgnore]
-        public string OperationType
-        {
-            get
-            {
-                string operationType = null;
-
-                IModelType modelType = ModelType;
-                if (modelType is PrimaryType primaryType)
-                {
-                    operationType = primaryType.KnownPrimaryType.ToString();
-                }
-
-                return operationType;
-            }
-        }
+        public string OperationType => ModelType is PrimaryType primaryType ? primaryType.KnownPrimaryType.ToString() : null;
     }
 }
