@@ -20,25 +20,25 @@ const commentIndicatorBundlesize = "<!--AUTO-GENERATED TYPESCRIPT BUNDLESIZE COM
 async function getBundleSize() {
     await exec(join(__dirname, "../node_modules/.bin/webpack"));
     const status = await stat(join(__dirname, "../testBundle.js"));
-    const baseSize = filesize(status.size);
-    return baseSize;
+    return status.size;
 }
 
 async function main(repo, pr, token) {
     const ghClient = new GitHubCiClient(repo, token);
 
     const prData = await ghClient.getPR(pr);
-    const baseCommit = prData.base.sha;
-    await exec("git checkout " + baseCommit);
+    await exec("git checkout " + prData.base.sha);
     const baseSize = await getBundleSize();
 
-    await exec("git checkout " + baseCommit);
+    await exec("git checkout " + pr.head.sha);
     const headSize = await getBundleSize();
+
+    const change = (headSize / baseSize) - 1;
+    const percentChange = (Math.abs(change) * 100).toFixed(2) + '%';
 
     const comment = `${commentIndicatorBundlesize}
 # 🤖 AutoRest automatic bundle size check 🤖
-## Size before PR: ${baseSize}
-## Size after PR: ${headSize}
+### Size ${change >= 0 ? "increased" : "decreased"} by ${percentChange} (${filesize(headSize-baseSize)})
 `
 
     // try cleaning up previous auto-comments
