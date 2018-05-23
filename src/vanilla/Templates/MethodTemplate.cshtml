@@ -73,10 +73,9 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   // Create HTTP transport objects
   const httpRequest = new WebResource();
   httpRequest.url = requestUrl.toString();
-  httpRequest.headers = {};
 
   // Set Headers
-  httpRequest.headers['Content-Type'] = '@(Model.RequestContentType)';
+  httpRequest.headers.set("Content-Type", "@(Model.RequestContentType)");
   @(Model.SetDefaultHeaders)
 
   @if (Model.RequestBody != null)

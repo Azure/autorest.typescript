@@ -62,9 +62,8 @@ export class Formdata {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'multipart/form-data';
+    httpRequest.headers.set("Content-Type", "multipart/form-data");
     // Serialize Request
     let formData: any = {};
     if (fileContent !== undefined && fileContent !== null) {
@@ -154,9 +153,8 @@ export class Formdata {
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/octet-stream';
+    httpRequest.headers.set("Content-Type", "application/octet-stream");
     httpRequest.body = fileContent;
     // Send Request
     httpRequest.rawResponse = true;
