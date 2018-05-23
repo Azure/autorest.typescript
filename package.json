@@ -50,6 +50,7 @@
     "coffee-script": "^1.11.1",
     "dotnet-sdk-2.0.0": "^1.4.4",
     "express": "^4.16.3",
+    "filesize": "^3.6.1",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
