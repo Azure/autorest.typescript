@@ -37,7 +37,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
     let client = this.client;
 
     // Construct URL
@@ -123,7 +123,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -205,7 +205,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
     let client = this.client;
 
     // Construct URL
@@ -287,7 +287,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -369,7 +369,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse> {
     let client = this.client;
 
     // Construct URL
@@ -415,6 +415,10 @@ export class Xml {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 200) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.XmlGetHeadersHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -434,7 +438,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
     let client = this.client;
 
     // Construct URL
@@ -516,7 +520,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -594,7 +598,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
     let client = this.client;
 
     // Construct URL
@@ -676,7 +680,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -754,7 +758,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
     // Construct URL
@@ -851,7 +855,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -936,7 +940,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1033,7 +1037,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1118,7 +1122,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
     // Construct URL
@@ -1215,7 +1219,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1300,7 +1304,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana>> {
     let client = this.client;
 
     // Construct URL
@@ -1382,7 +1386,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -1460,7 +1464,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listContainersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListContainersResponse>> {
     let client = this.client;
     let comp = 'list';
 
@@ -1542,7 +1546,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getServicePropertiesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageServiceProperties>> {
     let client = this.client;
     let comp = 'properties';
     let restype = 'service';
@@ -1628,7 +1632,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putServicePropertiesWithHttpOperationResponse(properties: Models.StorageServiceProperties, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let comp = 'properties';
     let restype = 'service';
@@ -1710,7 +1714,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getAclsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SignedIdentifier[]>> {
     let client = this.client;
     let comp = 'acl';
     let restype = 'container';
@@ -1811,7 +1815,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putAclsWithHttpOperationResponse(properties: Models.SignedIdentifier[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let comp = 'acl';
     let restype = 'container';
@@ -1900,7 +1904,7 @@ export class Xml {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async listBlobsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ListBlobsResponse>> {
     let client = this.client;
     let comp = 'list';
     let restype = 'container';

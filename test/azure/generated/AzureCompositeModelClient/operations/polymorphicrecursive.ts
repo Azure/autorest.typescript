@@ -37,7 +37,7 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Fish>> {
     let client = this.client;
     // Validate
     try {
@@ -194,7 +194,7 @@ export class Polymorphicrecursive {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {

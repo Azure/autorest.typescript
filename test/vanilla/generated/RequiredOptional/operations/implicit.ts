@@ -39,7 +39,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     // Validate
     try {
@@ -130,7 +130,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
     // Validate
@@ -212,7 +212,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
     // Validate
@@ -298,7 +298,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
     // Validate
@@ -386,7 +386,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     // Validate
     try {
@@ -476,7 +476,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     // Validate
     try {
@@ -566,7 +566,7 @@ export class Implicit {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     // Validate
     try {

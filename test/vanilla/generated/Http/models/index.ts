@@ -660,6 +660,216 @@ export interface HttpRetryPatch504OptionalParams extends msRest.RequestOptionsBa
 }
 
 /**
+ * @interface
+ * An interface representing HttpRedirectsHead300Headers.
+ * Defines headers for head300 operation.
+ *
+ */
+export interface HttpRedirectsHead300Headers {
+  /**
+   * @member {Location} [location] The redirect location for this request.
+   * Possible values include: '/http/success/head/200'
+   */
+  location?: Location;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsGet300Headers.
+ * Defines headers for get300 operation.
+ *
+ */
+export interface HttpRedirectsGet300Headers {
+  /**
+   * @member {Location1} [location] The redirect location for this request.
+   * Possible values include: '/http/success/get/200'
+   */
+  location?: Location1;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsHead301Headers.
+ * Defines headers for head301 operation.
+ *
+ */
+export interface HttpRedirectsHead301Headers {
+  /**
+   * @member {Location2} [location] The redirect location for this request.
+   * Possible values include: '/http/success/head/200'
+   */
+  location?: Location2;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsGet301Headers.
+ * Defines headers for get301 operation.
+ *
+ */
+export interface HttpRedirectsGet301Headers {
+  /**
+   * @member {Location3} [location] The redirect location for this request.
+   * Possible values include: '/http/success/get/200'
+   */
+  location?: Location3;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPut301Headers.
+ * Defines headers for put301 operation.
+ *
+ */
+export interface HttpRedirectsPut301Headers {
+  /**
+   * @member {Location4} [location] The redirect location for this request.
+   * Possible values include: '/http/failure/500'
+   */
+  location?: Location4;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsHead302Headers.
+ * Defines headers for head302 operation.
+ *
+ */
+export interface HttpRedirectsHead302Headers {
+  /**
+   * @member {Location5} [location] The redirect location for this request.
+   * Possible values include: '/http/success/head/200'
+   */
+  location?: Location5;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsGet302Headers.
+ * Defines headers for get302 operation.
+ *
+ */
+export interface HttpRedirectsGet302Headers {
+  /**
+   * @member {Location6} [location] The redirect location for this request.
+   * Possible values include: '/http/success/get/200'
+   */
+  location?: Location6;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPatch302Headers.
+ * Defines headers for patch302 operation.
+ *
+ */
+export interface HttpRedirectsPatch302Headers {
+  /**
+   * @member {Location7} [location] The redirect location for this request.
+   * Possible values include: '/http/failure/500'
+   */
+  location?: Location7;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPost303Headers.
+ * Defines headers for post303 operation.
+ *
+ */
+export interface HttpRedirectsPost303Headers {
+  /**
+   * @member {Location8} [location] The redirect location for this request.
+   * Possible values include: '/http/success/get/200'
+   */
+  location?: Location8;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsHead307Headers.
+ * Defines headers for head307 operation.
+ *
+ */
+export interface HttpRedirectsHead307Headers {
+  /**
+   * @member {Location9} [location] The redirect location for this request.
+   * Possible values include: '/http/success/head/200'
+   */
+  location?: Location9;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsGet307Headers.
+ * Defines headers for get307 operation.
+ *
+ */
+export interface HttpRedirectsGet307Headers {
+  /**
+   * @member {Location10} [location] The redirect location for this request.
+   * Possible values include: '/http/success/get/200'
+   */
+  location?: Location10;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPut307Headers.
+ * Defines headers for put307 operation.
+ *
+ */
+export interface HttpRedirectsPut307Headers {
+  /**
+   * @member {Location11} [location] The redirect location for this request.
+   * Possible values include: '/http/success/put/200'
+   */
+  location?: Location11;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPatch307Headers.
+ * Defines headers for patch307 operation.
+ *
+ */
+export interface HttpRedirectsPatch307Headers {
+  /**
+   * @member {Location12} [location] The redirect location for this request.
+   * Possible values include: '/http/success/patch/200'
+   */
+  location?: Location12;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsPost307Headers.
+ * Defines headers for post307 operation.
+ *
+ */
+export interface HttpRedirectsPost307Headers {
+  /**
+   * @member {Location13} [location] The redirect location for this request.
+   * Possible values include: '/http/success/post/200'
+   */
+  location?: Location13;
+}
+
+/**
+ * @interface
+ * An interface representing HttpRedirectsDelete307Headers.
+ * Defines headers for delete307 operation.
+ *
+ */
+export interface HttpRedirectsDelete307Headers {
+  /**
+   * @member {Location14} [location] The redirect location for this request.
+   * Possible values include: '/http/success/delete/200'
+   */
+  location?: Location14;
+}
+
+/**
  * Defines values for Location.
  * Possible values include: '/http/success/head/200'
  * There could be more values for this enum apart from the ones defined here.If
@@ -868,3 +1078,78 @@ export enum Location13 {
 export enum Location14 {
   Httpsuccessdelete200 = '/http/success/delete/200',
 }
+
+/**
+ * Contains response data for the head300 operation.
+ */
+export interface HttpRedirectsHead300Response extends msRest.HttpOperationResponse<void, HttpRedirectsHead300Headers> {};
+
+/**
+ * Contains response data for the get300 operation.
+ */
+export interface HttpRedirectsGet300Response extends msRest.HttpOperationResponse<string[], HttpRedirectsGet300Headers> {};
+
+/**
+ * Contains response data for the head301 operation.
+ */
+export interface HttpRedirectsHead301Response extends msRest.HttpOperationResponse<void, HttpRedirectsHead301Headers> {};
+
+/**
+ * Contains response data for the get301 operation.
+ */
+export interface HttpRedirectsGet301Response extends msRest.HttpOperationResponse<void, HttpRedirectsGet301Headers> {};
+
+/**
+ * Contains response data for the put301 operation.
+ */
+export interface HttpRedirectsPut301Response extends msRest.HttpOperationResponse<void, HttpRedirectsPut301Headers> {};
+
+/**
+ * Contains response data for the head302 operation.
+ */
+export interface HttpRedirectsHead302Response extends msRest.HttpOperationResponse<void, HttpRedirectsHead302Headers> {};
+
+/**
+ * Contains response data for the get302 operation.
+ */
+export interface HttpRedirectsGet302Response extends msRest.HttpOperationResponse<void, HttpRedirectsGet302Headers> {};
+
+/**
+ * Contains response data for the patch302 operation.
+ */
+export interface HttpRedirectsPatch302Response extends msRest.HttpOperationResponse<void, HttpRedirectsPatch302Headers> {};
+
+/**
+ * Contains response data for the post303 operation.
+ */
+export interface HttpRedirectsPost303Response extends msRest.HttpOperationResponse<void, HttpRedirectsPost303Headers> {};
+
+/**
+ * Contains response data for the head307 operation.
+ */
+export interface HttpRedirectsHead307Response extends msRest.HttpOperationResponse<void, HttpRedirectsHead307Headers> {};
+
+/**
+ * Contains response data for the get307 operation.
+ */
+export interface HttpRedirectsGet307Response extends msRest.HttpOperationResponse<void, HttpRedirectsGet307Headers> {};
+
+/**
+ * Contains response data for the put307 operation.
+ */
+export interface HttpRedirectsPut307Response extends msRest.HttpOperationResponse<void, HttpRedirectsPut307Headers> {};
+
+/**
+ * Contains response data for the patch307 operation.
+ */
+export interface HttpRedirectsPatch307Response extends msRest.HttpOperationResponse<void, HttpRedirectsPatch307Headers> {};
+
+/**
+ * Contains response data for the post307 operation.
+ */
+export interface HttpRedirectsPost307Response extends msRest.HttpOperationResponse<void, HttpRedirectsPost307Headers> {};
+
+/**
+ * Contains response data for the delete307 operation.
+ */
+export interface HttpRedirectsDelete307Response extends msRest.HttpOperationResponse<void, HttpRedirectsDelete307Headers> {};

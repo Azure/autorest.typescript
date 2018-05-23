@@ -37,7 +37,7 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -118,7 +118,7 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
 
     // Construct URL
@@ -200,7 +200,7 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate
@@ -301,7 +301,7 @@ export class HttpServerFailure {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
     // Validate

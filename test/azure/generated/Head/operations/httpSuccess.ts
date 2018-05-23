@@ -36,7 +36,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
     // Validate
     try {
@@ -124,7 +124,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
     // Validate
     try {
@@ -212,7 +212,7 @@ export class HttpSuccess {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
     let client = this.client;
     // Validate
     try {
