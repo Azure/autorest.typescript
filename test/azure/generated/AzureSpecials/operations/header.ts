@@ -59,33 +59,40 @@ export class Header {
     requestUrl.setPath("/azurespecials/customNamedRequestId");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
-    }
-    if (fooClientRequestId !== undefined && fooClientRequestId !== null) {
-      httpRequest.headers['foo-client-request-id'] = fooClientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "fooClientRequestId": fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "fooClientRequestId",
+              headerName: "foo-client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -166,33 +173,40 @@ export class Header {
     requestUrl.setPath("/azurespecials/customNamedRequestIdParamGrouping");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if (fooClientRequestId !== undefined && fooClientRequestId !== null) {
-      httpRequest.headers['foo-client-request-id'] = fooClientRequestId;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "fooClientRequestId": fooClientRequestId,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          headerParameters: [
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "fooClientRequestId",
+              headerName: "foo-client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -259,33 +273,40 @@ export class Header {
     requestUrl.setPath("/azurespecials/customNamedRequestIdHead");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     if (this.client.generateClientRequestId) {
-        httpRequest.headers['foo-client-request-id'] = msRest.generateUuid();
-    }
-    if (fooClientRequestId !== undefined && fooClientRequestId !== null) {
-      httpRequest.headers['foo-client-request-id'] = fooClientRequestId;
-    }
-    if (this.client.acceptLanguage !== undefined && this.client.acceptLanguage !== null) {
-      httpRequest.headers['accept-language'] = this.client.acceptLanguage;
-    }
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
+        httpRequest.headers.set('foo-client-request-id', msRest.generateUuid());
     }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "HEAD"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+            "fooClientRequestId": fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage,
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "HEAD",
+          headerParameters: [
+            {
+              parameterName: "fooClientRequestId",
+              headerName: "foo-client-request-id",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              headerName: "accept-language",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 404) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

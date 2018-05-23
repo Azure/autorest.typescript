@@ -45,24 +45,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/204/none/default/Error/response/200/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -130,24 +129,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/204/none/default/Error/response/204/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -215,24 +213,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/204/none/default/Error/response/201/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -300,24 +297,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/204/none/default/Error/response/202/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -386,24 +382,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/204/none/default/Error/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -471,24 +466,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/B/default/Error/response/200/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -572,24 +566,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/B/default/Error/response/201/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -673,24 +666,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/B/default/Error/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -773,24 +765,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -888,24 +879,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1003,24 +993,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1119,24 +1108,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1234,24 +1222,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/Error/response/202/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1304,24 +1291,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/Error/response/204/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1375,24 +1361,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/Error/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1445,24 +1430,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/none/response/202/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1511,24 +1495,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/none/response/204/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1577,24 +1560,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/none/response/400/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1643,24 +1625,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/202/none/204/none/default/none/response/400/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1709,24 +1690,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/A/response/200/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1791,24 +1771,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/A/response/200/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1873,24 +1852,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/A/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1955,24 +1933,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/A/response/400/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2037,24 +2014,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/none/response/200/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2103,24 +2079,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/none/response/200/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2169,24 +2144,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/none/response/400/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2235,24 +2209,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/default/none/response/400/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2302,24 +2275,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/200/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2383,24 +2355,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/200/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2464,24 +2435,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/200/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2546,24 +2516,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/400/none");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2627,24 +2596,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/400/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2708,24 +2676,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/400/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2789,24 +2756,23 @@ export class MultipleResponses {
     requestUrl.setPath("/http/payloads/200/A/response/202/valid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

@@ -44,24 +44,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/null");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -135,24 +134,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/invalid");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -226,24 +224,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/overflow");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -317,24 +314,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/underflow");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -419,18 +415,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/utc");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -442,11 +430,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -499,24 +494,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/utc/lowercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -590,24 +584,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/utc/uppercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -693,18 +686,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localpositiveoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -716,11 +701,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -774,24 +766,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localpositiveoffset/lowercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -866,24 +857,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localpositiveoffset/uppercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -969,18 +959,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localnegativeoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -992,11 +974,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1050,24 +1039,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localnegativeoffset/uppercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1142,24 +1130,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/max/localnegativeoffset/lowercase");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1244,18 +1231,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/utc");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1267,11 +1246,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1324,24 +1310,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/utc");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1426,18 +1411,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/localpositiveoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1449,11 +1426,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1506,24 +1490,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/localpositiveoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1608,18 +1591,10 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/localnegativeoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1631,11 +1606,18 @@ export class Datetime {
           name: 'DateTime'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "datetimeBody"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "datetimeBody",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1688,24 +1670,23 @@ export class Datetime {
     requestUrl.setPath("/datetime/min/localnegativeoffset");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

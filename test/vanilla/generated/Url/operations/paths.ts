@@ -47,24 +47,23 @@ export class Paths {
     requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -119,24 +118,23 @@ export class Paths {
     requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -191,24 +189,23 @@ export class Paths {
     requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -263,24 +260,23 @@ export class Paths {
     requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -335,24 +331,23 @@ export class Paths {
     requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -407,24 +402,23 @@ export class Paths {
     requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -479,24 +473,23 @@ export class Paths {
     requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -551,24 +544,23 @@ export class Paths {
     requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -623,24 +615,23 @@ export class Paths {
     requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -695,24 +686,23 @@ export class Paths {
     requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -767,24 +757,23 @@ export class Paths {
     requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -839,24 +828,23 @@ export class Paths {
     requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -911,24 +899,23 @@ export class Paths {
     requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -992,24 +979,23 @@ export class Paths {
     requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1079,24 +1065,23 @@ export class Paths {
     requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1166,24 +1151,23 @@ export class Paths {
     requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1248,24 +1232,23 @@ export class Paths {
     requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1320,24 +1303,23 @@ export class Paths {
     requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1401,24 +1383,23 @@ export class Paths {
     requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1473,24 +1454,23 @@ export class Paths {
     requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1556,24 +1536,23 @@ export class Paths {
     requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1628,24 +1607,23 @@ export class Paths {
     requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1711,24 +1689,23 @@ export class Paths {
     requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1792,24 +1769,23 @@ export class Paths {
     requestUrl.replaceAll("{base64UrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'base64UrlPath', type: {name: 'Base64Url'}}, base64UrlPath, 'base64UrlPath')));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1880,24 +1856,23 @@ export class Paths {
     requestUrl.replaceAll("{arrayPath}", encodeURIComponent(arrayPath.toString()));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1962,24 +1937,23 @@ export class Paths {
     requestUrl.replaceAll("{unixTimeUrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'unixTimeUrlPath', type: {name: 'UnixTime'}}, unixTimeUrlPath, 'unixTimeUrlPath')));
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

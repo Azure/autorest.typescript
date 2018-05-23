@@ -45,24 +45,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "HEAD"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "HEAD",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -127,24 +126,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -219,18 +217,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -242,11 +232,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -321,18 +318,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -344,11 +333,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PATCH",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -423,18 +419,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -446,11 +434,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -525,18 +520,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/400");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -548,11 +535,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -617,24 +611,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/401");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "HEAD"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "HEAD",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -699,24 +692,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/402");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -781,24 +773,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/403");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -873,18 +864,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/404");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -896,11 +879,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -975,18 +965,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/405");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -998,11 +980,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PATCH",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1077,18 +1066,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/406");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1100,11 +1081,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1179,18 +1167,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/407");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1202,11 +1182,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1281,18 +1268,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/409");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1304,11 +1283,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1373,24 +1359,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/410");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "HEAD"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "HEAD",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1455,24 +1440,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/411");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1537,24 +1521,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/412");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1629,18 +1612,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/413");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1652,11 +1627,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PUT",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PUT",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1731,18 +1713,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/414");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1754,11 +1728,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "PATCH",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "PATCH",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1833,18 +1814,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/415");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1856,11 +1829,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "POST",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "POST",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -1925,24 +1905,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/416");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "GET"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "GET",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2017,18 +1996,10 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/417");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2040,11 +2011,18 @@ export class HttpClientFailure {
           name: 'Boolean'
         }
       };
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "DELETE",
-        requestBodyMapper: requestModelMapper,
-        requestBodyName: "booleanValue"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "DELETE",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "booleanValue",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);
@@ -2109,24 +2087,23 @@ export class HttpClientFailure {
     requestUrl.setPath("/http/failure/client/429");
 
     // Create HTTP transport objects
-    let httpRequest = new WebResource();
+    const httpRequest = new WebResource();
     httpRequest.url = requestUrl.toString();
-    httpRequest.headers = {};
     // Set Headers
-    httpRequest.headers['Content-Type'] = 'application/json; charset=utf-8';
-    if(options && options.customHeaders) {
-      for(let headerName in options.customHeaders) {
-        if (options.customHeaders.hasOwnProperty(headerName)) {
-          httpRequest.headers[headerName] = options.customHeaders[headerName];
-        }
-      }
-    }
+    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(httpRequest, {
-        httpMethod: "HEAD"
-      });
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        {
+          arguments: {
+          },
+          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+        },
+        {
+          httpMethod: "HEAD",
+        });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
         let error = new msRest.RestError(operationRes.bodyAsText as string);

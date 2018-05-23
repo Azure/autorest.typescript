@@ -71,26 +71,12 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
 @(Model.BuildUrl("requestUrl"))
   @EmptyLine
   // Create HTTP transport objects
-  let httpRequest = new WebResource();
+  const httpRequest = new WebResource();
   httpRequest.url = requestUrl.toString();
-  httpRequest.headers = {};
 
   // Set Headers
-  httpRequest.headers['Content-Type'] = '@(Model.RequestContentType)';
+  httpRequest.headers.set("Content-Type", "@(Model.RequestContentType)");
   @(Model.SetDefaultHeaders)
-  @foreach (var parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
-  {
-  @:if (@(parameter.Name) !== undefined && @(parameter.Name) !== null) {
-  @:  httpRequest.headers['@(parameter.SerializedName)'] = @parameter.ModelType.ToString(parameter.Name);
-  @:}
-  }
-  if(options && options.customHeaders) {
-    for(let headerName in options.customHeaders) {
-      if (options.customHeaders.hasOwnProperty(headerName)) {
-        httpRequest.headers[headerName] = options.customHeaders[headerName];
-      }
-    }
-  }
 
   @if (Model.RequestBody != null)
   {
