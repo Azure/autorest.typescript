@@ -11,7 +11,7 @@ using AutoRest.Core.Utilities;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
-    
+
     public class CodeModelTSa : CodeModelTS
     {
         public CodeModelTSa()
@@ -32,7 +32,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
 
         [JsonIgnore]
-        public override IEnumerable<CompositeTypeTS> ModelTemplateModels => ModelTypes.Cast<CompositeTypeTS>().Concat(PageTemplateModels).Where(each => !PageTemplateModels.Any(ptm => ptm.Name.EqualsIgnoreCase(each.Name)));
+        public override IEnumerable<CompositeTypeTS> ModelTemplateModels => base.ModelTemplateModels.Concat(PageTemplateModels).Where(each => !PageTemplateModels.Any(ptm => ptm.Name.EqualsIgnoreCase(each.Name)));
 
         public override string OptionalParameterTypeForClientConstructor
         {

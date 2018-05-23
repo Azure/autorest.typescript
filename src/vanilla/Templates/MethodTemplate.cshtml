@@ -9,7 +9,7 @@
 @inherits AutoRest.Core.Template<MethodTS>
 
 @(Model.GenerateMethodDocumentation(MethodTS.MethodFlavor.HttpOperationResponse))
-async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<msRest.HttpOperationResponse> {
+async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<@(Model.HttpOperationResponseName)> {
   let client = @(Model.ClientReference);
 
   @if (Model.OptionsParameterModelType.Properties.Count > 0)
