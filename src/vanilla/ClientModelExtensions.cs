@@ -683,7 +683,6 @@ namespace AutoRest.TypeScript
                 builder.AppendLine($"xmlName: '{xmlName}',");
             }
 
-            // Treat header names as case insensitive
             if (!isCaseSensitive)
             {
                 serializedName = serializedName.ToLower();

@@ -39,6 +39,6 @@ export { BaseResource, CloudError };
 /**
 @WrapComment(" * ", $"Contains response data for the {method.Name} operation.")
  */
+export interface @(Regex.Replace(method.ReturnType.Headers.Name, "Headers$", "Response")) extends msRest.HttpOperationResponse<@(method.ReturnType.Body?.TSType(inModelsModule: true) ?? "void"), @(method.ReturnType.Headers.Name)> {};
 </text>
-@:export interface @(Regex.Replace(method.ReturnType.Headers.Name, "Headers$", "Response")) extends msRest.HttpOperationResponse<@(method.ReturnType.Body?.TSType(inModelsModule: true) ?? "void"), @(method.ReturnType.Headers.Name)> {};
 }
