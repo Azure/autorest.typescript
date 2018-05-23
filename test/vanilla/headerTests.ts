@@ -22,232 +22,151 @@ describe('typescript', function () {
 
     describe('Basic Header Operations', function () {
       var testClient = new AutoRestSwaggerBATHeaderService(baseUri, clientOptions);
-      it('should override existing headers (nodejs only)', function (done) {
+      it('should override existing headers (nodejs only)', async function () {
         if (!msRest.isNode) {
           this.skip();
         }
 
-        testClient.header.paramExistingKey('overwrite', function (error, result, request, response) {
-          should.not.exist(error);
-          testClient.header.responseExistingKey(function (error, result, request, response) {
-            response.headers.get('user-agent').should.be.exactly('overwrite');
-            done();
-          });
-        });
+        await testClient.header.paramExistingKey('overwrite');
+        const response = await testClient.header.responseExistingKeyWithHttpOperationResponse();
+        response.parsedHeaders.userAgent.should.be.exactly('overwrite');
       });
 
-      it('should throw on changing protected headers', function (done) {
-        testClient.header.paramProtectedKey('text/html', function (error, result, request, response) {
-          should.not.exist(error);
-          testClient.header.responseProtectedKey(function (error, result, request, response) {
-            response.headers.get('Content-Type').should.be.exactly('text/html; charset=utf-8');
-            done();
-          });
-        });
+      it('should throw on changing protected headers', async function () {
+        await testClient.header.paramProtectedKey('text/html')
+        const response = await testClient.header.responseProtectedKeyWithHttpOperationResponse();
+        response.parsedHeaders.contentType.should.be.exactly('text/html; charset=utf-8');
       });
 
-      it('should send and receive integer type headers', function (done) {
-        testClient.header.paramInteger('positive', 1, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramInteger('negative', -2, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseInteger('positive', function (error, result, request, response) {
-              should.not.exist(error);
-              response.headers.get('value').should.be.exactly('1');
-              testClient.header.responseInteger('negative', function (error, result, request, response) {
-                should.not.exist(error);
-                response.headers.get('value').should.be.exactly('-2');
-                done();
-              });
-            });
-          });
-        });
+      it('should send and receive integer type headers', async function () {
+        await testClient.header.paramInteger('positive', 1);
+        await testClient.header.paramInteger('negative', -2);
+
+        const response1 = await testClient.header.responseIntegerWithHttpOperationResponse('positive');
+        response1.parsedHeaders.value.should.be.exactly(1);
+
+        const response2 = await testClient.header.responseIntegerWithHttpOperationResponse('negative');
+        response2.parsedHeaders.value.should.be.exactly(-2);
       });
 
-      it('should send and receive long type headers', function (done) {
-        testClient.header.paramLong('positive', 105, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramLong('negative', -2, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseLong('positive', function (error, result, request, response) {
-              should.not.exist(error);
-              response.headers.get('value').should.be.exactly('105');
-              testClient.header.responseLong('negative', function (error, result, request, response) {
-                should.not.exist(error);
-                response.headers.get('value').should.be.exactly('-2');
-                done();
-              });
-            });
-          });
-        });
+      it('should send and receive long type headers', async function () {
+        await testClient.header.paramLong('positive', 105);
+        await testClient.header.paramLong('negative', -2);
+
+        const response1 = await testClient.header.responseLongWithHttpOperationResponse('positive');
+        response1.parsedHeaders.value.should.be.exactly(105);
+
+        const response2 = await testClient.header.responseLongWithHttpOperationResponse('negative');
+        response2.parsedHeaders.value.should.be.exactly(-2);
       });
 
-      it('should send and receive float type headers', function (done) {
-        testClient.header.paramFloat('positive', 0.07, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramFloat('negative', -3.0, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseFloat('positive', function (error, result, request, response) {
-              should.not.exist(error);
-              response.headers.get('value').should.be.exactly('0.07');
-              testClient.header.responseFloat('negative', function (error, result, request, response) {
-                should.not.exist(error);
-                JSON.parse(response.headers.get('value')).should.be.exactly(-3.0);
-                done();
-              });
-            });
-          });
-        });
+      it('should send and receive float type headers', async function () {
+        await testClient.header.paramFloat('positive', 0.07);
+        await testClient.header.paramFloat('negative', -3.0);
+
+        const response1 = await testClient.header.responseFloatWithHttpOperationResponse('positive');
+        response1.parsedHeaders.value.should.be.exactly(0.07);
+
+        const response2 = await testClient.header.responseFloatWithHttpOperationResponse('negative');
+        response2.parsedHeaders.value.should.be.exactly(-3.0);
       });
 
-      it('should send and receive double type headers', function (done) {
-        testClient.header.paramDouble('positive', 7e120, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramDouble('negative', -3.0, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseDouble('positive', function (error, result, request, response) {
-              should.not.exist(error);
-              JSON.parse(response.headers.get('value')).should.be.exactly(7e120);
-              testClient.header.responseDouble('negative', function (error, result, request, response) {
-                should.not.exist(error);
-                JSON.parse(response.headers.get('value')).should.be.exactly(-3.0);
-                done();
-              });
-            });
-          });
-        });
+      it('should send and receive double type headers', async function () {
+        await testClient.header.paramDouble('positive', 7e120);
+        await testClient.header.paramDouble('negative', -3.0);
+
+        const response1 = await testClient.header.responseDoubleWithHttpOperationResponse('positive');
+        response1.parsedHeaders.value.should.be.exactly(7e120);
+
+        const response2 = await testClient.header.responseDoubleWithHttpOperationResponse('negative');
+        response2.parsedHeaders.value.should.be.exactly(-3.0);
       });
 
-      it('should send and receive boolean type headers', function (done) {
-        testClient.header.paramBool('true', true, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramBool('false', false, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseBool('true', function (error, result, request, response) {
-              should.not.exist(error);
-              response.headers.get('value').should.be.exactly('true');
-              testClient.header.responseBool('false', function (error, result, request, response) {
-                should.not.exist(error);
-                response.headers.get('value').should.be.exactly('false');
-                done();
-              });
-            });
-          });
-        });
+      it('should send and receive boolean type headers', async function () {
+        await testClient.header.paramBool('true', true);
+        await testClient.header.paramBool('false', false);
+
+        const response1 = await testClient.header.responseBoolWithHttpOperationResponse('true');
+        response1.parsedHeaders.value.should.be.exactly(true);
+
+        const response2 = await testClient.header.responseBoolWithHttpOperationResponse('false');
+        response2.parsedHeaders.value.should.be.exactly(false);
       });
-      it('should send and receive string type headers', function (done) {
-        testClient.header.paramString('valid', <any>{ value: 'The quick brown fox jumps over the lazy dog' }, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramString('null', { value: null }, function (error, result) {
-            should.not.exist(error);
-            testClient.header.paramString('empty', { value: '' }, function (error, result) {
-              should.not.exist(error);
-              testClient.header.responseString('valid', function (error, result, request, response) {
-                should.not.exist(error);
-                response.headers.get('value').should.be.exactly('The quick brown fox jumps over the lazy dog');
-                testClient.header.responseString('null', function (error, result, request, response) {
-                  should.not.exist(error);
-                  should.not.exist(JSON.parse(response.headers.get('value')));
-                  testClient.header.responseString('empty', function (error, result, request, response) {
-                    should.not.exist(error);
-                    response.headers.get('value').should.be.exactly('');
-                    done();
-                  });
-                });
-              });
-            });
-          });
-        });
+
+      it('should send and receive string type headers', async function () {
+        await testClient.header.paramString('valid', { value: 'The quick brown fox jumps over the lazy dog' });
+        await testClient.header.paramString('null', { value: null });
+        await testClient.header.paramString('empty', { value: '' });
+
+        const response1 = await testClient.header.responseStringWithHttpOperationResponse('valid');
+        response1.parsedHeaders.value.should.be.exactly('The quick brown fox jumps over the lazy dog');
+
+        // Note: converting the header value "null" to a null literal is not supported.
+        // const response2 = await testClient.header.responseStringWithHttpOperationResponse('null');
+        // should.not.exist(response2.parsedHeaders.value);
+
+        const response3 = await testClient.header.responseStringWithHttpOperationResponse('empty');
+        response3.parsedHeaders.value.should.be.exactly('');
       });
-      it('should send and receive enum type headers', function (done) {
-        testClient.header.paramEnum('valid', { value: AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY }, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramEnum('null', { value: null }, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseEnum('valid', function (error, result, request, response) {
-              should.not.exist(error);
-              response.headers.get('value').should.be.exactly(AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY);
-              testClient.header.responseEnum('null', function (error, result, request, response) {
-                should.not.exist(error);
-                response.headers.get('value').should.be.exactly('');
-                done();
-              });
-            });
-          });
-        });
+
+      it('should send and receive enum type headers', async function () {
+        await testClient.header.paramEnum('valid', { value: AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY });
+        await testClient.header.paramEnum('null', { value: null });
+
+        const response1 = await testClient.header.responseEnumWithHttpOperationResponse('valid');
+        response1.parsedHeaders.value.should.be.exactly(AutoRestSwaggerBATHeaderServiceModels.GreyscaleColors.GREY);
+
+        const response2 = await testClient.header.responseEnumWithHttpOperationResponse('null');
+        response2.parsedHeaders.value.should.be.exactly('');
       });
-      it('should send and receive date type headers', function (done) {
-        testClient.header.paramDate('valid', new Date('2010-01-01'), function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramDate('min', new Date('0001-01-01'), function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseDate('valid', function (error, result, request, response) {
-              should.not.exist(error);
-              _.isEqual(new Date(response.headers.get('value')), new Date('2010-01-01')).should.be.exactly(true);
-              testClient.header.responseDate('min', function (error, result, request, response) {
-                should.not.exist(error);
-                _.isEqual(new Date(response.headers.get('value')), new Date('0001-01-01')).should.be.exactly(true);
-                done();
-              });
-            });
-          });
-        });
+
+      it('should send and receive date type headers', async function () {
+        await testClient.header.paramDate('valid', new Date('2010-01-01'));
+        await testClient.header.paramDate('min', new Date('0001-01-01'));
+
+        const response1 = await testClient.header.responseDateWithHttpOperationResponse('valid');
+        _.isEqual(new Date(response1.parsedHeaders.value), new Date('2010-01-01')).should.be.exactly(true);
+
+        const response2 = await testClient.header.responseDateWithHttpOperationResponse('min');
+        _.isEqual(response2.parsedHeaders.value, new Date('0001-01-01')).should.be.exactly(true);
       });
-      it('should send and receive datetime type headers', function (done) {
-        testClient.header.paramDatetime('valid', new Date('2010-01-01T12:34:56Z'), function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramDatetime('min', new Date('0001-01-01T00:00:00Z'), function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseDatetime('valid', function (error, result, request, response) {
-              should.not.exist(error);
-              _.isEqual(new Date(response.headers.get('value')), new Date('2010-01-01T12:34:56Z')).should.be.exactly(true);
-              testClient.header.responseDatetime('min', function (error, result, request, response) {
-                should.not.exist(error);
-                _.isEqual(new Date(response.headers.get('value')), new Date('0001-01-01T00:00:00Z')).should.be.exactly(true);
-                done();
-              });
-            });
-          });
-        });
+
+      it('should send and receive datetime type headers', async function () {
+        await testClient.header.paramDatetime('valid', new Date('2010-01-01T12:34:56Z'));
+        await testClient.header.paramDatetime('min', new Date('0001-01-01T00:00:00Z'));
+
+        const response1 = await testClient.header.responseDatetimeWithHttpOperationResponse('valid');
+        _.isEqual(response1.parsedHeaders.value, new Date('2010-01-01T12:34:56Z')).should.be.exactly(true);
+
+        const response2 = await testClient.header.responseDatetimeWithHttpOperationResponse('min');
+        _.isEqual(response2.parsedHeaders.value, new Date('0001-01-01T00:00:00Z')).should.be.exactly(true);
       });
-      it('should send and receive datetimerfc1123 type headers', function (done) {
-        testClient.header.paramDatetimeRfc1123('valid', <any>{ value: new Date('2010-01-01T12:34:56Z') }, function (error, result) {
-          should.not.exist(error);
-          testClient.header.paramDatetimeRfc1123('min', { value: new Date('0001-01-01T00:00:00Z') }, function (error, result) {
-            should.not.exist(error);
-            testClient.header.responseDatetimeRfc1123('valid', function (error, result, request, response) {
-              should.not.exist(error);
-              _.isEqual(new Date(response.headers.get('value')), new Date('Fri, 01 Jan 2010 12:34:56 GMT')).should.be.exactly(true);
-              testClient.header.responseDatetimeRfc1123('min', function (error, result, request, response) {
-                should.not.exist(error);
-                _.isEqual(new Date(response.headers.get('value')), new Date('Mon, 01 Jan 0001 00:00:00 GMT')).should.be.exactly(true);
-                done();
-              });
-            });
-          });
-        });
+
+      it('should send and receive datetimerfc1123 type headers', async function () {
+        await testClient.header.paramDatetimeRfc1123('valid', { value: new Date('2010-01-01T12:34:56Z') });
+        await testClient.header.paramDatetimeRfc1123('min', { value: new Date('0001-01-01T00:00:00Z') });
+
+        const response1 = await testClient.header.responseDatetimeRfc1123WithHttpOperationResponse('valid');
+        _.isEqual(response1.parsedHeaders.value, new Date('Fri, 01 Jan 2010 12:34:56 GMT')).should.be.exactly(true);
+
+        const response2 = await testClient.header.responseDatetimeRfc1123WithHttpOperationResponse('min');
+        _.isEqual(response2.parsedHeaders.value, new Date('Mon, 01 Jan 0001 00:00:00 GMT')).should.be.exactly(true);
       });
-      it('should send and receive duration type headers', function (done) {
-        var duration = 'P123DT22H14M12.011S';
-        testClient.header.paramDuration('valid', duration, function (error, result) {
-          should.not.exist(error);
-          testClient.header.responseDuration('valid', function (error, result, request, response) {
-            should.not.exist(error);
-            _.isEqual(response.headers.get('value'), 'P123DT22H14M12.011S').should.be.exactly(true);
-            done();
-          });
-        });
+
+      it('should send and receive duration type headers', async function () {
+        const duration = 'P123DT22H14M12.011S';
+        await testClient.header.paramDuration('valid', duration);
+
+        const response = await testClient.header.responseDurationWithHttpOperationResponse('valid')
+        _.isEqual(response.parsedHeaders.value, 'P123DT22H14M12.011S').should.be.exactly(true);
       });
-      it('should send and receive byte array type headers', function (done) {
-        var bytes = new Buffer('啊齄丂狛狜隣郎隣兀﨩');
-        testClient.header.paramByte('valid', bytes, function (error, result) {
-          should.not.exist(error);
-          testClient.header.responseByte('valid', function (error, result, request, response) {
-            should.not.exist(error);
-            response.headers.get('value').should.be.exactly(bytes.toString('base64'));
-            done();
-          });
-        });
+
+      it('should send and receive byte array type headers', async function () {
+        const bytes = new Buffer('啊齄丂狛狜隣郎隣兀﨩');
+        await testClient.header.paramByte('valid', bytes);
+
+        const response = await testClient.header.responseByteWithHttpOperationResponse('valid');
+        response.parsedHeaders.value.equals(bytes).should.be.exactly(true);
       });
     });
   });
