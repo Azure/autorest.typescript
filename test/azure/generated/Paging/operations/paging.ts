@@ -37,7 +37,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -139,7 +139,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
@@ -284,7 +284,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getOdataMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getOdataMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
@@ -432,7 +432,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     // Validate
@@ -587,7 +587,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -691,7 +691,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -793,7 +793,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -895,7 +895,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -997,7 +997,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1103,7 +1103,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1217,7 +1217,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1350,7 +1350,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1469,7 +1469,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1603,7 +1603,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -1712,7 +1712,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
@@ -1863,7 +1863,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
@@ -2013,7 +2013,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesWithOffsetNextOptions = (options && options.pagingGetMultiplePagesWithOffsetNextOptions !== undefined) ? options.pagingGetMultiplePagesWithOffsetNextOptions : undefined;
@@ -2163,7 +2163,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -2273,7 +2273,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -2381,7 +2381,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -2489,7 +2489,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {
@@ -2597,7 +2597,7 @@ export class Paging {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     // Validate
     try {

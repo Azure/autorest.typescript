@@ -155,3 +155,57 @@ export const OdataGetWithFilterOptionalParams = {
     }
   }
 };
+
+export const HeaderCustomNamedRequestIdHeaders = {
+  required: false,
+  serializedName: 'header-customnamedrequestid-headers',
+  type: {
+    name: 'Composite',
+    className: 'HeaderCustomNamedRequestIdHeaders',
+    modelProperties: {
+      fooRequestId: {
+        required: false,
+        serializedName: 'foo-request-id',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
+  required: false,
+  serializedName: 'header-customnamedrequestidparamgrouping-headers',
+  type: {
+    name: 'Composite',
+    className: 'HeaderCustomNamedRequestIdParamGroupingHeaders',
+    modelProperties: {
+      fooRequestId: {
+        required: false,
+        serializedName: 'foo-request-id',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};
+
+export const HeaderCustomNamedRequestIdHeadHeaders = {
+  required: false,
+  serializedName: 'header-customnamedrequestidhead-headers',
+  type: {
+    name: 'Composite',
+    className: 'HeaderCustomNamedRequestIdHeadHeaders',
+    modelProperties: {
+      fooRequestId: {
+        required: false,
+        serializedName: 'foo-request-id',
+        type: {
+          name: 'String'
+        }
+      }
+    }
+  }
+};

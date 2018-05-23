@@ -41,7 +41,7 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async uploadFileWithHttpOperationResponse(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async uploadFileWithHttpOperationResponse(fileContent: ReadableStream, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
     // Validate
     try {
@@ -135,7 +135,7 @@ export class Formdata {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async uploadFileViaBodyWithHttpOperationResponse(fileContent: ReadableStream, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async uploadFileViaBodyWithHttpOperationResponse(fileContent: ReadableStream, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
     let client = this.client;
     // Validate
     try {

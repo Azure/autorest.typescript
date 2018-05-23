@@ -37,7 +37,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model204NoModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -121,7 +121,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model204NoModelDefaultError204ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -205,7 +205,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model204NoModelDefaultError201InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -289,7 +289,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model204NoModelDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -374,7 +374,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model204NoModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -458,7 +458,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model201ModelDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -558,7 +558,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model201ModelDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -658,7 +658,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200Model201ModelDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -757,7 +757,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA201ModelC404ModelDDefaultError200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
     let client = this.client;
 
     // Construct URL
@@ -871,7 +871,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA201ModelC404ModelDDefaultError201ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
     let client = this.client;
 
     // Construct URL
@@ -985,7 +985,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA201ModelC404ModelDDefaultError404ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
     let client = this.client;
 
     // Construct URL
@@ -1100,7 +1100,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA201ModelC404ModelDDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<any>> {
     let client = this.client;
 
     // Construct URL
@@ -1214,7 +1214,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultError202NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1283,7 +1283,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultError204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1353,7 +1353,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultError400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1422,7 +1422,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultNone202InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1487,7 +1487,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultNone204NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1552,7 +1552,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1617,7 +1617,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get202None204NoneDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -1682,7 +1682,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -1763,7 +1763,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -1844,7 +1844,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -1925,7 +1925,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2006,7 +2006,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultNone200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -2071,7 +2071,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultNone200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -2136,7 +2136,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultNone400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -2201,7 +2201,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async getDefaultNone400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Construct URL
@@ -2267,7 +2267,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA200NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2347,7 +2347,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA200ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2427,7 +2427,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA200InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2508,7 +2508,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA400NoneWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2588,7 +2588,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA400ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2668,7 +2668,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA400InvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL
@@ -2748,7 +2748,7 @@ export class MultipleResponses {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async get200ModelA202ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async get200ModelA202ValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.A>> {
     let client = this.client;
 
     // Construct URL

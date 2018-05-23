@@ -1607,7 +1607,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1716,7 +1716,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1826,7 +1826,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -1936,7 +1936,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2061,7 +2061,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2171,7 +2171,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2296,7 +2296,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2406,7 +2406,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2493,6 +2493,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2516,7 +2517,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2603,6 +2604,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2626,7 +2628,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2713,6 +2715,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutAsyncNoRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2736,7 +2739,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2823,6 +2826,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutAsyncRetryFailedHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2846,7 +2850,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -2933,6 +2937,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutAsyncNoRetrycanceledHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -2956,7 +2961,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -3043,6 +3048,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPutAsyncNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3064,7 +3070,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
     // Validate
@@ -3172,7 +3178,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
     // Validate
@@ -3280,7 +3286,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
     // Validate
@@ -3401,7 +3407,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
     // Validate
@@ -3524,7 +3530,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
     let client = this.client;
     // Validate
     try {
@@ -3606,6 +3612,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 202) {
@@ -3621,6 +3628,7 @@ export class LROs {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3644,7 +3652,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
     let client = this.client;
     // Validate
     try {
@@ -3726,6 +3734,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202DeletingFailed200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 202) {
@@ -3741,6 +3750,7 @@ export class LROs {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202DeletingFailed200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3764,7 +3774,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
     let client = this.client;
     // Validate
     try {
@@ -3846,6 +3856,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202Deletingcanceled200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 202) {
@@ -3861,6 +3872,7 @@ export class LROs {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteProvisioning202Deletingcanceled200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -3881,7 +3893,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -3970,7 +3982,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
     let client = this.client;
     // Validate
     try {
@@ -4052,6 +4064,11 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -4074,7 +4091,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
     let client = this.client;
     // Validate
     try {
@@ -4156,6 +4173,11 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDelete202NoRetry204Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDelete202NoRetry204Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -4178,7 +4200,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4246,6 +4268,14 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 204) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4267,7 +4297,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4335,6 +4365,14 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 204) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4356,7 +4394,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4424,6 +4462,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4445,7 +4487,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4513,6 +4555,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncNoRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4534,7 +4580,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4602,6 +4648,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncRetryFailedHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4623,7 +4673,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
     let client = this.client;
     // Validate
     try {
@@ -4691,6 +4741,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsDeleteAsyncRetrycanceledHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4712,7 +4766,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  async beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     // Validate
     try {
@@ -4832,7 +4886,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -4905,6 +4959,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -4926,7 +4984,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -5013,6 +5071,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPost202NoRetry204Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -5036,7 +5095,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -5110,6 +5169,10 @@ export class LROs {
         return Promise.reject(error);
       }
       // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
@@ -5123,6 +5186,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -5146,7 +5210,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -5220,6 +5284,10 @@ export class LROs {
         return Promise.reject(error);
       }
       // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncNoRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
+      // Deserialize Response
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
@@ -5233,6 +5301,7 @@ export class LROs {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncNoRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -5256,7 +5325,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -5329,6 +5398,10 @@ export class LROs {
         }
         return Promise.reject(error);
       }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncRetryFailedHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+      }
 
     } catch(err) {
       return Promise.reject(err);
@@ -5351,7 +5424,7 @@ export class LROs {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<msRest.HttpOperationResponse> {
+  async beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
     // Validate
@@ -5423,6 +5496,10 @@ export class LROs {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LROsPostAsyncRetrycanceledHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
