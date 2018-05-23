@@ -206,14 +206,37 @@ exports.updatePackageJsonMain = updatePackageJsonMain;
  */
 function updateGeneratedPackageJsonMsRestJsDependencyVersion(newDependencyVersion) {
   const codeFilePath = replaceAll(path.resolve(getThisRepositoryFolderPath(), "src", "vanilla", "Model", "CodeModelTS.cs"), "\\", "/");
-  console.log(`Changing ms-rest-js dependency reference in ${codeFilePath}`)
   const codeFileContents = readTextFileContents(codeFilePath);
-  const regularExpression = /\\"ms-rest-js\\": \\".*\\"/;
-  const newValue = `\\"ms-rest-js\\": \\"${newDependencyVersion}\\"`;
-  const updatedCodeFileContents = codeFileContents.replace(regularExpression, newValue);
-  fs.writeFileSync(codeFilePath, updatedCodeFileContents);
+  const regularExpression = /\\"ms-rest-js\\": \\"(.*)\\"/;
+  const match = codeFileContents.match(regularExpression);
+  if (match && match[1] !== newDependencyVersion) {
+    console.log(`In ${codeFilePath}, changing "ms-rest-js" version from "${match[1]}" to "${newDependencyVersion}".`);
+    const newValue = `\\"ms-rest-js\\": \\"${newDependencyVersion}\\"`;
+    const updatedCodeFileContents = codeFileContents.replace(regularExpression, newValue);
+    fs.writeFileSync(codeFilePath, updatedCodeFileContents);
+  }
 }
 exports.updateGeneratedPackageJsonMsRestJsDependencyVersion = updateGeneratedPackageJsonMsRestJsDependencyVersion;
+
+/**
+ * Update the code used to generate package.json files so that the ms-rest-azure-js dependency version is
+ * the provided newDependencyVersion.
+ * @param {string} newDependencyVersion The version of ms-rest-js that generated package.json files
+ * will depend on.
+ */
+function updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(newDependencyVersion) {
+  const codeFilePath = replaceAll(path.resolve(getThisRepositoryFolderPath(), "src", "azure", "Model", "CodeModelTSa.cs"), "\\", "/");
+  const codeFileContents = readTextFileContents(codeFilePath);
+  const regularExpression = /\\"ms-rest-azure-js\\": \\"(.*)\\"/;
+  const match = codeFileContents.match(regularExpression);
+  if (match && match[1] !== newDependencyVersion) {
+    console.log(`In ${codeFilePath}, changing "ms-rest-azure-js" version from "${match[1]}" to "${newDependencyVersion}".`);
+    const newValue = `\\"ms-rest-azure-js\\": \\"${newDependencyVersion}\\"`;
+    const updatedCodeFileContents = codeFileContents.replace(regularExpression, newValue);
+    fs.writeFileSync(codeFilePath, updatedCodeFileContents);
+  }
+}
+exports.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion = updateGeneratedPackageJsonMsRestAzureJsDependencyVersion;
 
 function replaceAll(text, searchValue, replaceValue) {
   return text.split(searchValue).join(replaceValue);

@@ -12,6 +12,8 @@ for (const localDependency of localDependencies) {
   }
   if (localDependency === "ms-rest-js") {
     dependencies.updateGeneratedPackageJsonMsRestJsDependencyVersion(localRepositoryPath);
+  } else if (localDependency === "ms-rest-azure-js") {
+    dependencies.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(localRepositoryPath);
   }
 }
 if (refreshNodeModules) {
