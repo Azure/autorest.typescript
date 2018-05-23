@@ -159,8 +159,10 @@ describe('typescript', function () {
     });
 
     it('should not overwrite x-ms-client-request-id', function (done) {
-      var testClient2 = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, baseUri, clientOptions);
-      testClient2.generateClientRequestId = false;
+      var testClient2 = new AutoRestAzureSpecialParametersTestClient(credentials, dummySubscriptionId, baseUri, {
+        ...clientOptions,
+        generateClientRequestIdHeader: false
+      });
       testClient2.xMsClientRequestId.get(function (error, result, request, response) {
         should.not.exist(error);
         response.status.should.equal(200);

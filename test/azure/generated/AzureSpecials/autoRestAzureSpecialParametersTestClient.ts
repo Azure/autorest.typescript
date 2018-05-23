@@ -28,8 +28,6 @@ class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceC
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
 
   // Operation groups
@@ -93,7 +91,6 @@ class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceC
     this.apiVersion = '2015-07-01-preview';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
@@ -107,9 +104,6 @@ class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceC
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);

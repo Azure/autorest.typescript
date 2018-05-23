@@ -24,8 +24,6 @@ class AutoRestLongRunningOperationTestService extends msRestAzure.AzureServiceCl
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
 
   // Operation groups
@@ -79,7 +77,6 @@ class AutoRestLongRunningOperationTestService extends msRestAzure.AzureServiceCl
 
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
@@ -92,9 +89,6 @@ class AutoRestLongRunningOperationTestService extends msRestAzure.AzureServiceCl
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);

@@ -27,8 +27,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
 
   // Operation groups
@@ -87,7 +85,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     this.subscriptionId = '123456';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
       this.baseUri = 'http://localhost:3000';
@@ -100,9 +97,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
@@ -160,9 +154,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -287,9 +278,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -418,9 +406,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
-    if (this.generateClientRequestId) {
-        httpRequest.headers.set('x-ms-client-request-id', msRest.generateUuid());
-    }
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;

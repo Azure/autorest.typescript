@@ -26,8 +26,6 @@ class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-
-  generateClientRequestId: boolean;
   baseUri: string;
 
   // Operation groups
@@ -79,7 +77,6 @@ class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient
     this.host = 'host';
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
-    this.generateClientRequestId = true;
     this.baseUri = 'http://{accountName}{host}';
     this.credentials = credentials;
 
@@ -92,9 +89,6 @@ class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient
     }
     if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
       this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
-    if(options.generateClientRequestId !== null && options.generateClientRequestId !== undefined) {
-      this.generateClientRequestId = options.generateClientRequestId;
     }
     this.paths = new operations.Paths(this);
     this.serializer = new msRest.Serializer(Mappers);

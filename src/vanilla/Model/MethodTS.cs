@@ -605,17 +605,6 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        /// <summary>
-        /// Gets the expression for default header setting.
-        /// </summary>
-        public virtual string SetDefaultHeaders
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
-
         [JsonIgnore]
         public string ConstructRequestBodyMapper
         {
