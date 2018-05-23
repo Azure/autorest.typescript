@@ -32,13 +32,15 @@ namespace AutoRest.TypeScript.Model
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>().Where(each => each.MethodGroup.IsCodeModelMethodGroup);
 
         [JsonIgnore]
-        public virtual IEnumerable<CompositeTypeTS> ModelTemplateModels => ModelTypes.Cast<CompositeTypeTS>();
+        public virtual IEnumerable<CompositeTypeTS> ModelTemplateModels => ModelTypes.Concat(HeaderTypes).Cast<CompositeTypeTS>();
 
         [JsonIgnore]
         public virtual IEnumerable<EnumTypeTS> EnumTemplateModels => EnumTypes.Cast<EnumTypeTS>();
 
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where(each => !each.IsCodeModelMethodGroup);
+
+        public virtual IEnumerable<MethodTS> MethodsWithHeaders => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null);
 
         /// <summary>
         /// Provides an ordered ModelTemplateModel list such that the parent
