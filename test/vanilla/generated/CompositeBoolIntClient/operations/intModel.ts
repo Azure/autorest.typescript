@@ -41,8 +41,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -128,8 +126,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -215,8 +211,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -302,8 +296,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -389,8 +381,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -476,8 +466,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -573,8 +561,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -599,6 +585,7 @@ export class IntModel {
           path: "/int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -659,8 +646,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -685,6 +670,7 @@ export class IntModel {
           path: "/int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -745,8 +731,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -771,6 +755,7 @@ export class IntModel {
           path: "/int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -831,8 +816,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -857,6 +840,7 @@ export class IntModel {
           path: "/int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -907,8 +891,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1005,8 +987,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1031,6 +1011,7 @@ export class IntModel {
           path: "/int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1081,8 +1062,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1168,8 +1147,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

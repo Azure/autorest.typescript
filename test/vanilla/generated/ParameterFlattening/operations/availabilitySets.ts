@@ -78,8 +78,6 @@ export class AvailabilitySets {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = tags1;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -111,6 +109,7 @@ export class AvailabilitySets {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "tags1",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

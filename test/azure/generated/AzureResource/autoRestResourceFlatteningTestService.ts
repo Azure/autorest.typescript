@@ -114,8 +114,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -156,6 +154,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -215,8 +214,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -329,8 +326,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -371,6 +366,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceDictionary",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -430,8 +426,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -545,8 +539,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -573,6 +565,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceComplexObject",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -632,8 +625,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

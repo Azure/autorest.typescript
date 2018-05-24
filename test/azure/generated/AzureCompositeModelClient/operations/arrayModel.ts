@@ -50,8 +50,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -160,8 +158,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -188,6 +184,7 @@ export class ArrayModel {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -246,8 +243,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -356,8 +351,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -384,6 +377,7 @@ export class ArrayModel {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -443,8 +437,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

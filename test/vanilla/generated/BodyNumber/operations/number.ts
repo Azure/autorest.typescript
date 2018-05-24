@@ -41,8 +41,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -128,8 +126,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -215,8 +211,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -302,8 +296,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -399,8 +391,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -425,6 +415,7 @@ export class Number {
           path: "/number/big/float/3.402823e+20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -475,8 +466,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -572,8 +561,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -598,6 +585,7 @@ export class Number {
           path: "/number/big/double/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -648,8 +636,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -745,8 +731,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -771,6 +755,7 @@ export class Number {
           path: "/number/big/double/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -821,8 +806,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -918,8 +901,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -944,6 +925,7 @@ export class Number {
           path: "/number/big/double/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -994,8 +976,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1091,8 +1071,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1117,6 +1095,7 @@ export class Number {
           path: "/number/big/decimal/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1167,8 +1146,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1264,8 +1241,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1290,6 +1265,7 @@ export class Number {
           path: "/number/big/decimal/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1340,8 +1316,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1437,8 +1411,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1463,6 +1435,7 @@ export class Number {
           path: "/number/big/decimal/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1513,8 +1486,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1610,8 +1581,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1636,6 +1605,7 @@ export class Number {
           path: "/number/small/float/3.402823e-20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1686,8 +1656,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1783,8 +1751,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1809,6 +1775,7 @@ export class Number {
           path: "/number/small/double/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1859,8 +1826,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1956,8 +1921,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = numberBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1982,6 +1945,7 @@ export class Number {
           path: "/number/small/decimal/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2032,8 +1996,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
