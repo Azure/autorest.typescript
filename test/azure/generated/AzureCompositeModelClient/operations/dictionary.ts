@@ -48,13 +48,8 @@ export class Dictionary {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/valid");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -66,10 +61,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -161,13 +158,8 @@ export class Dictionary {
       complexBody.defaultProgram = defaultProgram;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/valid");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
@@ -181,10 +173,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -250,13 +244,8 @@ export class Dictionary {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/empty");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -268,10 +257,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -363,13 +354,8 @@ export class Dictionary {
       complexBody.defaultProgram = defaultProgram;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/empty");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
@@ -383,10 +369,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -452,13 +440,8 @@ export class Dictionary {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/null");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -470,10 +453,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -553,13 +538,8 @@ export class Dictionary {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/complex/dictionary/typed/notprovided");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -571,10 +551,12 @@ export class Dictionary {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

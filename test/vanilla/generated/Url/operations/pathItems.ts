@@ -75,25 +75,8 @@ export class PathItems {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery");
-    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
-    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
-    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
-    if (localStringQuery != undefined) {
-      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
-    }
-    if (pathItemStringQuery != undefined) {
-      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
-    }
-    if (this.client.globalStringQuery != undefined) {
-      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -103,11 +86,49 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
+            "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -190,25 +211,8 @@ export class PathItems {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery");
-    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
-    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
-    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
-    if (localStringQuery != undefined) {
-      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
-    }
-    if (pathItemStringQuery != undefined) {
-      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
-    }
-    if (this.client.globalStringQuery != undefined) {
-      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -218,11 +222,49 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
+            "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -305,25 +347,8 @@ export class PathItems {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null");
-    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
-    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
-    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
-    if (localStringQuery != undefined) {
-      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
-    }
-    if (pathItemStringQuery != undefined) {
-      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
-    }
-    if (this.client.globalStringQuery != undefined) {
-      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -333,11 +358,49 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
+            "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -420,25 +483,8 @@ export class PathItems {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null");
-    requestUrl.replaceAll("{localStringPath}", encodeURIComponent(localStringPath));
-    requestUrl.replaceAll("{pathItemStringPath}", encodeURIComponent(pathItemStringPath));
-    requestUrl.replaceAll("{globalStringPath}", encodeURIComponent(this.client.globalStringPath));
-    if (localStringQuery != undefined) {
-      requestUrl.setQueryParameter("localStringQuery", encodeURIComponent(localStringQuery));
-    }
-    if (pathItemStringQuery != undefined) {
-      requestUrl.setQueryParameter("pathItemStringQuery", encodeURIComponent(pathItemStringQuery));
-    }
-    if (this.client.globalStringQuery != undefined) {
-      requestUrl.setQueryParameter("globalStringQuery", encodeURIComponent(this.client.globalStringQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -448,11 +494,49 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
+            "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
+            "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

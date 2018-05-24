@@ -61,22 +61,8 @@ export class Odata {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/odata/filter");
-    if (filter != undefined) {
-      requestUrl.setQueryParameter("$filter", encodeURIComponent(filter));
-    }
-    if (top != undefined) {
-      requestUrl.setQueryParameter("$top", encodeURIComponent(top.toString()));
-    }
-    if (orderby != undefined) {
-      requestUrl.setQueryParameter("$orderby", encodeURIComponent(orderby));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -86,12 +72,34 @@ export class Odata {
         httpRequest,
         {
           arguments: {
+            "filter": filter,
+            "top": top,
+            "orderby": orderby,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/azurespecials/odata/filter",
+          queryParameters: [
+            {
+              parameterName: "filter",
+              queryParameterName: "$filter",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "top",
+              queryParameterName: "$top",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "orderby",
+              queryParameterName: "$orderby",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

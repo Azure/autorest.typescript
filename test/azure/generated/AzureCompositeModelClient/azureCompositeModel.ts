@@ -142,16 +142,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -161,12 +153,35 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -266,16 +281,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -287,12 +294,34 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -394,16 +423,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -415,12 +436,34 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

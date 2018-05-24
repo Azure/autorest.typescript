@@ -85,16 +85,8 @@ class AutoRestReportService extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/report");
-    if (qualifier != undefined) {
-      requestUrl.setQueryParameter("qualifier", encodeURIComponent(qualifier));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -104,11 +96,20 @@ class AutoRestReportService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "qualifier": qualifier,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
+          path: "/report",
+          queryParameters: [
+            {
+              parameterName: "qualifier",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

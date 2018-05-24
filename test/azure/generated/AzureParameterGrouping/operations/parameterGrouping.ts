@@ -91,17 +91,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postRequired/{path}");
-    requestUrl.replaceAll("{path}", encodeURIComponent(path));
-    if (query != undefined) {
-      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -121,11 +112,27 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "customHeader": customHeader,
+            "query": query,
+            "path": path,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/parameterGrouping/postRequired/{path}",
+          urlParameters: [
+            {
+              parameterName: "path",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "query",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -217,16 +224,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postOptional");
-    if (query != undefined) {
-      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -238,11 +237,20 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "customHeader": customHeader,
+            "query": query,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/parameterGrouping/postOptional",
+          queryParameters: [
+            {
+              parameterName: "query",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -349,19 +357,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postMultipleParameterGroups");
-    if (queryOne != undefined) {
-      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
-    }
-    if (queryTwo != undefined) {
-      requestUrl.setQueryParameter("query-two", encodeURIComponent(queryTwo.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -373,12 +370,28 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "headerOne": headerOne,
+            "queryOne": queryOne,
             "headerTwo": headerTwo,
+            "queryTwo": queryTwo,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/parameterGrouping/postMultipleParameterGroups",
+          queryParameters: [
+            {
+              parameterName: "queryOne",
+              queryParameterName: "query-one",
+              type: msRest.OperationParameterType.Int,
+            },
+            {
+              parameterName: "queryTwo",
+              queryParameterName: "query-two",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -474,16 +487,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/sharedParameterGroupObject");
-    if (queryOne != undefined) {
-      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -495,11 +500,21 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "headerOne": headerOne,
+            "queryOne": queryOne,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/parameterGrouping/sharedParameterGroupObject",
+          queryParameters: [
+            {
+              parameterName: "queryOne",
+              queryParameterName: "query-one",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

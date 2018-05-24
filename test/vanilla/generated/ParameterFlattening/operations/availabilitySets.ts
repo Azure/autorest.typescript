@@ -76,15 +76,8 @@ export class AvailabilitySets {
       tags1.tags = tags;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterFlattening/{resourceGroupName}/{availabilitySetName}");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{availabilitySetName}", encodeURIComponent(avset));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = tags1;
@@ -96,11 +89,26 @@ export class AvailabilitySets {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "avset": avset,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
+          path: "/parameterFlattening/{resourceGroupName}/{availabilitySetName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "avset",
+              urlParameterName: "availabilitySetName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "tags1",
         });

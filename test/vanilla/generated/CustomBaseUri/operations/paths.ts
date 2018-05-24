@@ -52,15 +52,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/customuri");
-    requestUrl.replaceAll("{accountName}", accountName);
-    requestUrl.replaceAll("{host}", this.client.host);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -70,11 +63,28 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "accountName": accountName,
+            "this.client.host": this.client.host,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/customuri",
+          urlParameters: [
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+              skipEncoding: true,
+            },
+            {
+              parameterName: "this.client.host",
+              urlParameterName: "host",
+              type: msRest.OperationParameterType.String,
+              skipEncoding: true,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

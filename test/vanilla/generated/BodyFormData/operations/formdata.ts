@@ -55,13 +55,8 @@ export class Formdata {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/formdata/stream/uploadfile");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "multipart/form-data");
     // Serialize Request
@@ -82,10 +77,12 @@ export class Formdata {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
-          httpMethod: "POST"
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/formdata/stream/uploadfile",
         });
       let statusCode = operationRes.status;
 
@@ -146,13 +143,8 @@ export class Formdata {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/formdata/stream/uploadfile");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/octet-stream");
     httpRequest.body = fileContent;
@@ -165,10 +157,12 @@ export class Formdata {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
-          httpMethod: "PUT"
+          httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/formdata/stream/uploadfile",
         });
       let statusCode = operationRes.status;
 

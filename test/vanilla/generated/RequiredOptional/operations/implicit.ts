@@ -50,14 +50,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/required/path/{pathParameter}");
-    requestUrl.replaceAll("{pathParameter}", encodeURIComponent(pathParameter));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -67,11 +61,20 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "pathParameter": pathParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/required/path/{pathParameter}",
+          urlParameters: [
+            {
+              parameterName: "pathParameter",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -142,16 +145,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/query");
-    if (queryParameter != undefined) {
-      requestUrl.setQueryParameter("queryParameter", encodeURIComponent(queryParameter));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -161,11 +156,20 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "queryParameter": queryParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/query",
+          queryParameters: [
+            {
+              parameterName: "queryParameter",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -224,13 +228,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/header");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -242,10 +241,12 @@ export class Implicit {
           arguments: {
             "queryParameter": queryParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/header",
           headerParameters: [
             {
               parameterName: "queryParameter",
@@ -310,13 +311,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/body");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -335,10 +331,12 @@ export class Implicit {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/body",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -397,14 +395,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/required/path/{required-global-path}");
-    requestUrl.replaceAll("{required-global-path}", encodeURIComponent(this.client.requiredGlobalPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -414,11 +406,21 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.requiredGlobalPath": this.client.requiredGlobalPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/global/required/path/{required-global-path}",
+          urlParameters: [
+            {
+              parameterName: "this.client.requiredGlobalPath",
+              urlParameterName: "required-global-path",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -487,14 +489,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/required/query");
-    requestUrl.setQueryParameter("required-global-query", encodeURIComponent(this.client.requiredGlobalQuery));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -504,11 +500,21 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/global/required/query",
+          queryParameters: [
+            {
+              parameterName: "this.client.requiredGlobalQuery",
+              queryParameterName: "required-global-query",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -577,16 +583,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/optional/query");
-    if (this.client.optionalGlobalQuery != undefined) {
-      requestUrl.setQueryParameter("optional-global-query", encodeURIComponent(this.client.optionalGlobalQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -596,11 +594,21 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/reqopt/global/optional/query",
+          queryParameters: [
+            {
+              parameterName: "this.client.optionalGlobalQuery",
+              queryParameterName: "optional-global-query",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

@@ -16,56 +16,6 @@ namespace AutoRest.TypeScript
     public static class ClientModelExtensions
     {
         /// <summary>
-        /// Format the value of a sequence given the modeled element format.
-        /// </summary>
-        /// <param name="parameter">The parameter to format</param>
-        /// <returns>A reference to the formatted parameter value</returns>
-        public static string GetFormattedReferenceValue(this Parameter parameter)
-        {
-            if (parameter == null)
-            {
-                throw new ArgumentNullException(nameof(parameter));
-            }
-
-            SequenceType sequence = parameter.ModelType as SequenceType;
-            if (sequence == null)
-            {
-                return parameter.ModelType.ToString(parameter.Name);
-            }
-
-            PrimaryType primaryType = sequence.ElementType as PrimaryType;
-            EnumType enumType = sequence.ElementType as EnumType;
-            if (enumType != null && enumType.ModelAsString)
-            {
-                primaryType = New<PrimaryType>(KnownPrimaryType.String);
-            }
-
-            return $"{parameter.Name}.join('{parameter.CollectionFormat.GetSeparator()}')";
-        }
-
-        /// <summary>
-        /// Return the separator associated with a given collectionFormat
-        /// </summary>
-        /// <param name="format">The collection format</param>
-        /// <returns>The separator</returns>
-        private static string GetSeparator(this CollectionFormat format)
-        {
-            switch (format)
-            {
-                case CollectionFormat.Csv:
-                    return ",";
-                case CollectionFormat.Pipes:
-                    return "|";
-                case CollectionFormat.Ssv:
-                    return " ";
-                case CollectionFormat.Tsv:
-                    return "\t";
-                default:
-                    throw new NotSupportedException($"Collection format {format} is not supported.");
-            }
-        }
-
-        /// <summary>
         /// Simple conversion of the type to string
         /// </summary>
         /// <param name="type">The type to convert</param>

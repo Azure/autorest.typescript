@@ -40,13 +40,8 @@ export class Xml {
   async getSimpleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/simple");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -57,10 +52,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/simple",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -134,13 +131,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/simple");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = slideshow;
@@ -153,10 +145,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/simple",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           isXML: true,
@@ -208,13 +202,8 @@ export class Xml {
   async getWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/wrapped-lists");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -225,10 +214,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/wrapped-lists",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -298,13 +289,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/wrapped-lists");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = wrappedLists;
@@ -317,10 +303,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "wrappedLists",
           isXML: true,
@@ -372,13 +360,8 @@ export class Xml {
   async getHeadersWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.XmlGetHeadersResponse> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/headers");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -389,10 +372,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/headers",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -441,13 +426,8 @@ export class Xml {
   async getEmptyListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Slideshow>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -458,10 +438,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -531,13 +513,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = slideshow;
@@ -550,10 +527,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           isXML: true,
@@ -601,13 +580,8 @@ export class Xml {
   async getEmptyWrappedListsWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AppleBarrel>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-wrapped-lists");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -618,10 +592,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-wrapped-lists",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -691,13 +667,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-wrapped-lists");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = appleBarrel;
@@ -710,10 +681,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "appleBarrel",
           isXML: true,
@@ -761,13 +734,8 @@ export class Xml {
   async getRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/root-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -778,10 +746,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/root-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -858,13 +828,8 @@ export class Xml {
   async putRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/root-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
@@ -892,10 +857,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -943,13 +910,8 @@ export class Xml {
   async getRootListSingleItemWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/root-list-single-item");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -960,10 +922,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/root-list-single-item",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1040,13 +1004,8 @@ export class Xml {
   async putRootListSingleItemWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/root-list-single-item");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
@@ -1074,10 +1033,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/root-list-single-item",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -1125,13 +1086,8 @@ export class Xml {
   async getEmptyRootListWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana[]>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-root-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1142,10 +1098,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-root-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1222,13 +1180,8 @@ export class Xml {
   async putEmptyRootListWithHttpOperationResponse(bananas: Models.Banana[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-root-list");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = bananas;
@@ -1256,10 +1209,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -1307,13 +1262,8 @@ export class Xml {
   async getEmptyChildElementWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Banana>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-child-element");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1324,10 +1274,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-child-element",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1397,13 +1349,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/empty-child-element");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = banana;
@@ -1416,10 +1363,12 @@ export class Xml {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/empty-child-element",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "banana",
           isXML: true,
@@ -1468,14 +1417,8 @@ export class Xml {
     let client = this.client;
     let comp = 'list';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1485,11 +1428,20 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1551,15 +1503,8 @@ export class Xml {
     let comp = 'properties';
     let restype = 'service';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-    requestUrl.setQueryParameter("restype", encodeURIComponent(restype));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1569,11 +1514,25 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "restype",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1645,15 +1604,8 @@ export class Xml {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-    requestUrl.setQueryParameter("restype", encodeURIComponent(restype));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = properties;
@@ -1665,11 +1617,25 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "restype",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1719,15 +1685,8 @@ export class Xml {
     let comp = 'acl';
     let restype = 'container';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/mycontainer");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-    requestUrl.setQueryParameter("restype", encodeURIComponent(restype));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1737,11 +1696,25 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "restype",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1820,15 +1793,8 @@ export class Xml {
     let comp = 'acl';
     let restype = 'container';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/mycontainer");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-    requestUrl.setQueryParameter("restype", encodeURIComponent(restype));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     httpRequest.body = properties;
@@ -1855,11 +1821,25 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "restype",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1909,15 +1889,8 @@ export class Xml {
     let comp = 'list';
     let restype = 'container';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/xml/mycontainer");
-    requestUrl.setQueryParameter("comp", encodeURIComponent(comp));
-    requestUrl.setQueryParameter("restype", encodeURIComponent(restype));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/xml; charset=utf-8");
     // Send Request
@@ -1927,11 +1900,25 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "restype",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

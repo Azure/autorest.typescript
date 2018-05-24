@@ -54,13 +54,8 @@ export class Header {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/customNamedRequestId");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -73,10 +68,12 @@ export class Header {
             "fooClientRequestId": fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/azurespecials/customNamedRequestId",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",
@@ -169,13 +166,8 @@ export class Header {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/customNamedRequestIdParamGrouping");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -188,10 +180,12 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "fooClientRequestId": fooClientRequestId,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "/azurespecials/customNamedRequestIdParamGrouping",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -270,13 +264,8 @@ export class Header {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/customNamedRequestIdHead");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -289,10 +278,12 @@ export class Header {
             "fooClientRequestId": fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
+          path: "/azurespecials/customNamedRequestIdHead",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",

@@ -70,21 +70,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/customuri/{subscriptionId}/{keyName}");
-    requestUrl.replaceAll("{vault}", vault);
-    requestUrl.replaceAll("{secret}", secret);
-    requestUrl.replaceAll("{dnsSuffix}", this.client.dnsSuffix);
-    requestUrl.replaceAll("{keyName}", encodeURIComponent(keyName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    if (keyVersion != undefined) {
-      requestUrl.setQueryParameter("keyVersion", encodeURIComponent(keyVersion));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -94,11 +81,52 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "vault": vault,
+            "secret": secret,
+            "this.client.dnsSuffix": this.client.dnsSuffix,
+            "keyName": keyName,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "keyVersion": keyVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/customuri/{subscriptionId}/{keyName}",
+          urlParameters: [
+            {
+              parameterName: "vault",
+              type: msRest.OperationParameterType.String,
+              skipEncoding: true,
+            },
+            {
+              parameterName: "secret",
+              type: msRest.OperationParameterType.String,
+              skipEncoding: true,
+            },
+            {
+              parameterName: "this.client.dnsSuffix",
+              urlParameterName: "dnsSuffix",
+              type: msRest.OperationParameterType.String,
+              skipEncoding: true,
+            },
+            {
+              parameterName: "keyName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "keyVersion",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

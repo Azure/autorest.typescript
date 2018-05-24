@@ -41,14 +41,8 @@ export class Paths {
     let client = this.client;
     let boolPath = true;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/bool/true/{boolPath}");
-    requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -58,11 +52,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "boolPath": boolPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/bool/true/{boolPath}",
+          urlParameters: [
+            {
+              parameterName: "boolPath",
+              type: msRest.OperationParameterType.Boolean,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -112,14 +115,8 @@ export class Paths {
     let client = this.client;
     let boolPath = false;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/bool/false/{boolPath}");
-    requestUrl.replaceAll("{boolPath}", encodeURIComponent(boolPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -129,11 +126,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "boolPath": boolPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/bool/false/{boolPath}",
+          urlParameters: [
+            {
+              parameterName: "boolPath",
+              type: msRest.OperationParameterType.Boolean,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -183,14 +189,8 @@ export class Paths {
     let client = this.client;
     let intPath = 1000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/int/1000000/{intPath}");
-    requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -200,11 +200,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "intPath": intPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/int/1000000/{intPath}",
+          urlParameters: [
+            {
+              parameterName: "intPath",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -254,14 +263,8 @@ export class Paths {
     let client = this.client;
     let intPath = -1000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/int/-1000000/{intPath}");
-    requestUrl.replaceAll("{intPath}", encodeURIComponent(intPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -271,11 +274,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "intPath": intPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/int/-1000000/{intPath}",
+          urlParameters: [
+            {
+              parameterName: "intPath",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -325,14 +337,8 @@ export class Paths {
     let client = this.client;
     let longPath = 10000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/long/10000000000/{longPath}");
-    requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -342,11 +348,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "longPath": longPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/long/10000000000/{longPath}",
+          urlParameters: [
+            {
+              parameterName: "longPath",
+              type: msRest.OperationParameterType.Long,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -396,14 +411,8 @@ export class Paths {
     let client = this.client;
     let longPath = -10000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/long/-10000000000/{longPath}");
-    requestUrl.replaceAll("{longPath}", encodeURIComponent(longPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -413,11 +422,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "longPath": longPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/long/-10000000000/{longPath}",
+          urlParameters: [
+            {
+              parameterName: "longPath",
+              type: msRest.OperationParameterType.Long,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -467,14 +485,8 @@ export class Paths {
     let client = this.client;
     let floatPath = 103400000000000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/float/1.034E+20/{floatPath}");
-    requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -484,11 +496,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "floatPath": floatPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/float/1.034E+20/{floatPath}",
+          urlParameters: [
+            {
+              parameterName: "floatPath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -538,14 +559,8 @@ export class Paths {
     let client = this.client;
     let floatPath = -1.034e-20;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/float/-1.034E-20/{floatPath}");
-    requestUrl.replaceAll("{floatPath}", encodeURIComponent(floatPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -555,11 +570,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "floatPath": floatPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/float/-1.034E-20/{floatPath}",
+          urlParameters: [
+            {
+              parameterName: "floatPath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -609,14 +633,8 @@ export class Paths {
     let client = this.client;
     let doublePath = 9999999.999;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/double/9999999.999/{doublePath}");
-    requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -626,11 +644,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "doublePath": doublePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/double/9999999.999/{doublePath}",
+          urlParameters: [
+            {
+              parameterName: "doublePath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -680,14 +707,8 @@ export class Paths {
     let client = this.client;
     let doublePath = -9999999.999;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/double/-9999999.999/{doublePath}");
-    requestUrl.replaceAll("{doublePath}", encodeURIComponent(doublePath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -697,11 +718,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "doublePath": doublePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/double/-9999999.999/{doublePath}",
+          urlParameters: [
+            {
+              parameterName: "doublePath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -751,14 +781,8 @@ export class Paths {
     let client = this.client;
     let stringPath = '啊齄丂狛狜隣郎隣兀﨩';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/unicode/{stringPath}");
-    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -768,11 +792,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/unicode/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -822,14 +855,8 @@ export class Paths {
     let client = this.client;
     let stringPath = 'begin!*\'();:@ &=+$,/?#[]end';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}");
-    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -839,11 +866,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -893,14 +929,8 @@ export class Paths {
     let client = this.client;
     let stringPath = '';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/empty/{stringPath}");
-    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -910,11 +940,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/empty/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -973,14 +1012,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/null/{stringPath}");
-    requestUrl.replaceAll("{stringPath}", encodeURIComponent(stringPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -990,11 +1023,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/null/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1059,14 +1101,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/enum/green%20color/{enumPath}");
-    requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1076,11 +1112,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "enumPath": enumPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/enum/green%20color/{enumPath}",
+          urlParameters: [
+            {
+              parameterName: "enumPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1145,14 +1189,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/null/{enumPath}");
-    requestUrl.replaceAll("{enumPath}", encodeURIComponent(enumPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1162,11 +1200,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "enumPath": enumPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/null/{enumPath}",
+          urlParameters: [
+            {
+              parameterName: "enumPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1226,14 +1272,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/byte/multibyte/{bytePath}");
-    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1243,11 +1283,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/byte/multibyte/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1297,14 +1346,8 @@ export class Paths {
     let client = this.client;
     let bytePath = new Buffer('');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/byte/empty/{bytePath}");
-    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1314,11 +1357,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/byte/empty/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1377,14 +1429,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/byte/null/{bytePath}");
-    requestUrl.replaceAll("{bytePath}", encodeURIComponent(msRest.serializeObject(bytePath)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1394,11 +1440,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/byte/null/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1448,14 +1503,8 @@ export class Paths {
     let client = this.client;
     let datePath = new Date('2012-01-01');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/date/2012-01-01/{datePath}");
-    requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1465,11 +1514,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "datePath": datePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/date/2012-01-01/{datePath}",
+          urlParameters: [
+            {
+              parameterName: "datePath",
+              type: msRest.OperationParameterType.Date,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1530,14 +1588,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/date/null/{datePath}");
-    requestUrl.replaceAll("{datePath}", encodeURIComponent(msRest.serializeObject(datePath).replace(/[Tt].*[Zz]/, '')));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1547,11 +1599,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "datePath": datePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/date/null/{datePath}",
+          urlParameters: [
+            {
+              parameterName: "datePath",
+              type: msRest.OperationParameterType.Date,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1601,14 +1662,8 @@ export class Paths {
     let client = this.client;
     let dateTimePath = new Date('2012-01-01T01:01:01Z');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}");
-    requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1618,11 +1673,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "dateTimePath": dateTimePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
+          urlParameters: [
+            {
+              parameterName: "dateTimePath",
+              type: msRest.OperationParameterType.DateTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1683,14 +1747,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/datetime/null/{dateTimePath}");
-    requestUrl.replaceAll("{dateTimePath}", encodeURIComponent(msRest.serializeObject(dateTimePath)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1700,11 +1758,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "dateTimePath": dateTimePath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/datetime/null/{dateTimePath}",
+          urlParameters: [
+            {
+              parameterName: "dateTimePath",
+              type: msRest.OperationParameterType.DateTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1763,14 +1830,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/string/bG9yZW0/{base64UrlPath}");
-    requestUrl.replaceAll("{base64UrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'base64UrlPath', type: {name: 'Base64Url'}}, base64UrlPath, 'base64UrlPath')));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1780,11 +1841,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "base64UrlPath": base64UrlPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/string/bG9yZW0/{base64UrlPath}",
+          urlParameters: [
+            {
+              parameterName: "base64UrlPath",
+              type: msRest.OperationParameterType.Base64Url,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1850,14 +1920,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}");
-    requestUrl.replaceAll("{arrayPath}", encodeURIComponent(arrayPath.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1867,11 +1931,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "arrayPath": arrayPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+          urlParameters: [
+            {
+              parameterName: "arrayPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1931,14 +2003,8 @@ export class Paths {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paths/int/1460505600/{unixTimeUrlPath}");
-    requestUrl.replaceAll("{unixTimeUrlPath}", encodeURIComponent(client.serializer.serialize({required: true, serializedName: 'unixTimeUrlPath', type: {name: 'UnixTime'}}, unixTimeUrlPath, 'unixTimeUrlPath')));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1948,11 +2014,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "unixTimeUrlPath": unixTimeUrlPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
+          path: "/paths/int/1460505600/{unixTimeUrlPath}",
+          urlParameters: [
+            {
+              parameterName: "unixTimeUrlPath",
+              type: msRest.OperationParameterType.UnixTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

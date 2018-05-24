@@ -31,15 +31,6 @@ namespace AutoRest.TypeScript.Azure.Model
         [JsonIgnore]
         public bool IsLongRunningOperation => Extensions.ContainsKey(AzureExtensions.LongRunningExtension);
 
-        /// <summary>
-        /// If this is a relative uri, we will add api-version query, so add this condition to the check
-        /// </summary>
-        /// <returns>true if there are any query parameters in the uri, otherwise false</returns>
-        protected override bool HasQueryParameters()
-        {
-            return base.HasQueryParameters() || !IsAbsoluteUrl;
-        }
-
 
         [JsonIgnore]
         public override string InitializeResult

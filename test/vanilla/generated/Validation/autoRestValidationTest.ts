@@ -145,17 +145,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
-    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -165,11 +156,39 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "id": id,
+            "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
+          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "id",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "apiVersion",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -292,17 +311,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
-    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -314,11 +324,39 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "id": id,
+            "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
+          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "id",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "apiVersion",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });
@@ -384,14 +422,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let client = this;
     let constantParam = 'constant';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
-    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -401,11 +433,20 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "constantParam": constantParam,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
+          path: "/validation/constantsInPath/{constantParam}/value",
+          urlParameters: [
+            {
+              parameterName: "constantParam",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -452,14 +493,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let body = (options && options.body !== undefined) ? options.body : undefined;
     let constantParam = 'constant';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
-    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -471,11 +506,20 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "constantParam": constantParam,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
+          baseUrl: this.baseUri,
+          path: "/validation/constantsInPath/{constantParam}/value",
+          urlParameters: [
+            {
+              parameterName: "constantParam",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });

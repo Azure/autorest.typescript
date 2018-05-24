@@ -1,5 +1,6 @@
 ﻿@using System.Linq;
 @using AutoRest.Core.Model
+@using AutoRest.TypeScript
 @using AutoRest.TypeScript.Model
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
 // Send Request
@@ -15,17 +16,102 @@ try {
     httpRequest,
     {
       arguments: {
-@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
+@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header || p.Location == ParameterLocation.Path || p.Location == ParameterLocation.Query))
 {
 <text>
         "@(parameter.Name)": @(parameter.Name),
 </text>
 }
       },
-      customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+      customHeaders: options && options.customHeaders
     },
     {
       httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
+@if (Model.IsAbsoluteUrl)
+{
+<text>
+      baseUrl: "@(Model.Url)",
+</text>
+}
+else
+{
+<text>
+      baseUrl: @(Model.ClientReference).baseUri,
+      path: "@(Model.Url)",
+</text>
+}
+@if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Path))
+{
+<text>
+      urlParameters: [
+@foreach (ParameterTS pathParameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Path))
+{
+<text>
+        {
+          parameterName: "@(pathParameter.Name)",
+@if (pathParameter.Name != pathParameter.SerializedName)
+{
+<text>
+          urlParameterName: "@(pathParameter.SerializedName)",
+</text>
+}
+@if (pathParameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(pathParameter.OperationType),
+</text>
+}
+@if (pathParameter.SkipUrlEncoding())
+{
+<text>
+          skipEncoding: true,
+</text>
+}
+        },
+</text>
+}
+      ],
+</text>
+}
+@if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Query))
+{
+<text>
+      queryParameters: [
+@foreach (ParameterTS queryParameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Query))
+{
+<text>
+        {
+          parameterName: "@(queryParameter.Name)",
+@if (queryParameter.Name != queryParameter.SerializedName)
+{
+<text>
+          queryParameterName: "@(queryParameter.SerializedName)",
+</text>
+}
+@if (queryParameter.SkipUrlEncoding())
+{
+<text>
+          skipEncoding: true,
+</text>
+}
+@if (queryParameter.CollectionFormat != CollectionFormat.None)
+{
+<text>
+          collectionFormat: msRest.QueryCollectionFormat.@(queryParameter.CollectionFormat),
+</text>
+}
+@if (queryParameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(queryParameter.OperationType),
+</text>
+}
+        },
+</text>
+}
+      ],
+</text>
+}
 @if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Header))
 {
 <text>
