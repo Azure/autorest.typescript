@@ -61,6 +61,7 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -166,6 +167,7 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
         });

@@ -60,6 +60,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -150,6 +151,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -240,6 +242,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -330,6 +333,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -439,6 +443,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -510,6 +515,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -600,6 +606,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -709,6 +716,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -780,6 +788,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -1085,6 +1085,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1206,6 +1207,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1327,6 +1329,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1449,6 +1452,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1551,6 +1555,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1639,6 +1644,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1729,6 +1735,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1821,6 +1828,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1915,6 +1923,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2011,6 +2020,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2106,6 +2116,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2228,6 +2239,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2336,6 +2348,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2439,6 +2452,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2525,6 +2539,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2618,6 +2633,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2714,6 +2730,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2809,6 +2826,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2916,6 +2934,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3024,6 +3043,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3127,6 +3147,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3216,6 +3237,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3306,6 +3328,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3399,6 +3422,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3495,6 +3519,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3591,6 +3616,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -70,6 +70,7 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -185,6 +186,7 @@ export class ArrayModel {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -272,6 +274,7 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -387,6 +390,7 @@ export class ArrayModel {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -475,6 +479,7 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

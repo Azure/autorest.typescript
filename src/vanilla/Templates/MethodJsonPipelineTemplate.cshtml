@@ -26,6 +26,18 @@ try {
     },
     {
       httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",
+@if (Model.IsAbsoluteUrl)
+{
+<text>
+      baseUrl: "@(Model.Url)",
+</text>
+}
+else
+{
+<text>
+      baseUrl: @(Model.ClientReference).baseUri,
+</text>
+}
 @if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Header))
 {
 <text>

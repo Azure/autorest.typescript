@@ -61,6 +61,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -138,6 +139,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -240,6 +242,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -317,6 +320,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -413,6 +417,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -488,6 +493,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -565,6 +571,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -661,6 +668,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -754,6 +762,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -833,6 +842,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -910,6 +920,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1004,6 +1015,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1100,6 +1112,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1196,6 +1209,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1292,6 +1306,7 @@ export class HttpRedirects {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });

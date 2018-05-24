@@ -69,6 +69,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -153,6 +154,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -237,6 +239,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -109,6 +109,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

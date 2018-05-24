@@ -79,6 +79,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

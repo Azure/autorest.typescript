@@ -79,6 +79,7 @@ export class UsageOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

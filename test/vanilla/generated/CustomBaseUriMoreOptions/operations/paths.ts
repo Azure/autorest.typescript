@@ -99,6 +99,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

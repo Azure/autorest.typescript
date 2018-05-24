@@ -117,6 +117,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -231,6 +232,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -347,6 +349,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });

@@ -101,6 +101,7 @@ export class AvailabilitySets {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "tags1",
         });

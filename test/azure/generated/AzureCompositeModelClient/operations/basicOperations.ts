@@ -70,6 +70,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -179,6 +180,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -266,6 +268,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -366,6 +369,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -466,6 +470,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -566,6 +571,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -126,6 +126,7 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -243,6 +244,7 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -379,6 +381,7 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -500,6 +503,7 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

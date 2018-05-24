@@ -73,6 +73,7 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -167,6 +168,7 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -255,6 +257,7 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -343,6 +346,7 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

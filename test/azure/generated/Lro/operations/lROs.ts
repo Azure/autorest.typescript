@@ -1643,6 +1643,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1749,6 +1750,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1856,6 +1858,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1963,6 +1966,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2085,6 +2089,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2192,6 +2197,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2314,6 +2320,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2421,6 +2428,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2529,6 +2537,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2637,6 +2646,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2745,6 +2755,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2853,6 +2864,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2961,6 +2973,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3067,6 +3080,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3172,6 +3186,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3290,6 +3305,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3408,6 +3424,7 @@ export class LROs {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3512,6 +3529,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3631,6 +3649,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3750,6 +3769,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3866,6 +3886,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3952,6 +3973,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4058,6 +4080,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4164,6 +4187,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4258,6 +4282,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4352,6 +4377,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4442,6 +4468,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4532,6 +4559,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4622,6 +4650,7 @@ export class LROs {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4712,6 +4741,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4832,6 +4862,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4927,6 +4958,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5035,6 +5067,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5147,6 +5180,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5259,6 +5293,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5355,6 +5390,7 @@ export class LROs {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

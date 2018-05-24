@@ -360,6 +360,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -482,6 +483,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -587,6 +589,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -705,6 +708,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -795,6 +799,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -889,6 +894,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -985,6 +991,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

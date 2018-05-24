@@ -73,6 +73,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "userAgent",
@@ -149,6 +150,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -234,6 +236,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "contentType",
@@ -310,6 +313,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -402,6 +406,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -493,6 +498,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -591,6 +597,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -682,6 +689,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -780,6 +788,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -871,6 +880,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -969,6 +979,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1060,6 +1071,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1158,6 +1170,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1249,6 +1262,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1347,6 +1361,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1439,6 +1454,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1539,6 +1555,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1630,6 +1647,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1730,6 +1748,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1822,6 +1841,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1922,6 +1942,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2014,6 +2035,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2113,6 +2135,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2204,6 +2227,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2302,6 +2326,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2393,6 +2418,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2493,6 +2519,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2583,6 +2610,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2663,6 +2691,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

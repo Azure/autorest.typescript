@@ -80,6 +80,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -181,6 +182,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -271,6 +273,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -372,6 +375,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -455,6 +459,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -554,6 +559,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -648,6 +654,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -749,6 +756,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -839,6 +847,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -940,6 +949,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1023,6 +1033,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -1122,6 +1133,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "bodyParameter",
@@ -1210,6 +1222,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1297,6 +1310,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1387,6 +1401,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1480,6 +1495,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1582,6 +1598,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1694,6 +1711,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1789,6 +1807,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1894,6 +1913,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1982,6 +2002,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -2084,6 +2105,7 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "headerParameter",

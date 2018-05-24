@@ -170,6 +170,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -319,6 +320,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });
@@ -406,6 +408,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -476,6 +479,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });

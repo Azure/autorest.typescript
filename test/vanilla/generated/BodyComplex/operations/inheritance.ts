@@ -61,6 +61,7 @@ export class Inheritance {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -160,6 +161,7 @@ export class Inheritance {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
         });

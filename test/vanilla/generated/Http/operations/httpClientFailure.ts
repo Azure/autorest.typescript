@@ -61,6 +61,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -142,6 +143,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -241,6 +243,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -342,6 +345,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -443,6 +447,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -544,6 +549,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -627,6 +633,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -708,6 +715,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -789,6 +797,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -888,6 +897,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -989,6 +999,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1090,6 +1101,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1191,6 +1203,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1292,6 +1305,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1375,6 +1389,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1456,6 +1471,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1537,6 +1553,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1636,6 +1653,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1737,6 +1755,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1838,6 +1857,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1921,6 +1941,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2020,6 +2041,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -2103,6 +2125,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

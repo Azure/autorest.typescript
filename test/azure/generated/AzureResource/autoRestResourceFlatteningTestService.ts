@@ -150,6 +150,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -238,6 +239,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -371,6 +373,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -459,6 +462,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -579,6 +583,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -667,6 +672,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

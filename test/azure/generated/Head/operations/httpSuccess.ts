@@ -69,6 +69,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -154,6 +155,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -239,6 +241,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

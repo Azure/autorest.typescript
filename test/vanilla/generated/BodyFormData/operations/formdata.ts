@@ -85,7 +85,8 @@ export class Formdata {
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
-          httpMethod: "POST"
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
 
@@ -168,7 +169,8 @@ export class Formdata {
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
-          httpMethod: "PUT"
+          httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
 

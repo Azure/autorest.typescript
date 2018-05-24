@@ -72,6 +72,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -166,6 +167,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -246,6 +248,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "queryParameter",
@@ -339,6 +342,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -419,6 +423,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -509,6 +514,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -601,6 +607,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

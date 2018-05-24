@@ -70,6 +70,7 @@ export class XMsClientRequestId {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -162,6 +163,7 @@ export class XMsClientRequestId {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
           headerParameters: [
             {
               parameterName: "xMsClientRequestId",

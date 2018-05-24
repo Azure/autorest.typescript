@@ -167,6 +167,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -293,6 +294,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -421,6 +423,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.baseUri,
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

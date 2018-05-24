@@ -60,7 +60,8 @@ export class Files {
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
-          httpMethod: "GET"
+          httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
 
@@ -132,7 +133,8 @@ export class Files {
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
-          httpMethod: "GET"
+          httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
 
@@ -204,7 +206,8 @@ export class Files {
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
-          httpMethod: "GET"
+          httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
 

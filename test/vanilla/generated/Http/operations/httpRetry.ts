@@ -61,6 +61,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -147,6 +148,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -235,6 +237,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -306,6 +309,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -392,6 +396,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -480,6 +485,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -568,6 +574,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -656,6 +663,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });

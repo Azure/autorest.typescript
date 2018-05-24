@@ -61,6 +61,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -145,6 +146,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -229,6 +231,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -313,6 +316,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -398,6 +402,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -482,6 +487,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -582,6 +588,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -682,6 +689,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -781,6 +789,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -895,6 +904,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1009,6 +1019,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1124,6 +1135,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1238,6 +1250,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1307,6 +1320,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1377,6 +1391,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1446,6 +1461,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1511,6 +1527,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1576,6 +1593,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1641,6 +1659,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1706,6 +1725,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1787,6 +1807,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1868,6 +1889,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1949,6 +1971,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2030,6 +2053,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2095,6 +2119,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2160,6 +2185,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2225,6 +2251,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2291,6 +2318,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2371,6 +2399,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2451,6 +2480,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2532,6 +2562,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2612,6 +2643,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2692,6 +2724,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2772,6 +2805,7 @@ export class MultipleResponses {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

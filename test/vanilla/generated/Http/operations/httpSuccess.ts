@@ -61,6 +61,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -130,6 +131,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "GET",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -237,6 +239,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -325,6 +328,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -413,6 +417,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -501,6 +506,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -589,6 +595,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -677,6 +684,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -765,6 +773,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -853,6 +862,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -941,6 +951,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1029,6 +1040,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1100,6 +1112,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1186,6 +1199,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PUT",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1274,6 +1288,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "PATCH",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1362,6 +1377,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "POST",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1450,6 +1466,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "DELETE",
+          baseUrl: this.client.baseUri,
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
         });
@@ -1521,6 +1538,7 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
+          baseUrl: this.client.baseUri,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204 && statusCode !== 404) {
