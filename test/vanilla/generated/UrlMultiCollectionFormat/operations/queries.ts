@@ -90,7 +90,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Multi"
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
             },
           ],
         });
@@ -191,7 +191,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Multi"
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
             },
           ],
         });
@@ -293,7 +293,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Multi"
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
             },
           ],
         });

@@ -1530,6 +1530,7 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1623,9 +1624,11 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "restype",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1731,9 +1734,11 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "restype",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,
@@ -1815,9 +1820,11 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "restype",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1945,9 +1952,11 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "restype",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,
@@ -2029,9 +2038,11 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "restype",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });

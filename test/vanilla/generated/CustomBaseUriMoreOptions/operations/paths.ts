@@ -111,15 +111,18 @@ export class Paths {
             {
               parameterName: "vault",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
             {
               parameterName: "secret",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
             {
               parameterName: "this.client.dnsSuffix",
               urlParameterName: "dnsSuffix",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
             {
               parameterName: "keyName",
@@ -134,6 +137,7 @@ export class Paths {
           queryParameters: [
             {
               parameterName: "keyVersion",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });

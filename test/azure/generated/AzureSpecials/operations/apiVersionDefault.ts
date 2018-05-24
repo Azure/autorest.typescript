@@ -80,6 +80,7 @@ export class ApiVersionDefault {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -178,6 +179,7 @@ export class ApiVersionDefault {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -276,6 +278,7 @@ export class ApiVersionDefault {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -374,6 +377,7 @@ export class ApiVersionDefault {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

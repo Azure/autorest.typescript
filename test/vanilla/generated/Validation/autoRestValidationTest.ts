@@ -195,6 +195,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "this.apiVersion",
               queryParameterName: "apiVersion",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -371,6 +372,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "this.apiVersion",
               queryParameterName: "apiVersion",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,

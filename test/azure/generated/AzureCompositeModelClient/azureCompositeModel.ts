@@ -187,6 +187,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -334,6 +335,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -483,6 +485,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

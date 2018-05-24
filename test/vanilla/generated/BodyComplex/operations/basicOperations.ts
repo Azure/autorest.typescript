@@ -167,6 +167,7 @@ export class BasicOperations {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,

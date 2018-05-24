@@ -103,6 +103,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -313,6 +314,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -449,6 +451,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -615,6 +618,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -764,6 +768,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -889,6 +894,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1027,6 +1033,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1191,6 +1198,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1354,6 +1362,7 @@ export class StorageAccounts {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

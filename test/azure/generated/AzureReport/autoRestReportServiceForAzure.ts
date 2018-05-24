@@ -146,6 +146,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

@@ -137,6 +137,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -272,6 +273,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,
@@ -409,6 +411,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           requestBodyMapper: requestModelMapper,

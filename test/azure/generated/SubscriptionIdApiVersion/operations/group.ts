@@ -104,6 +104,7 @@ export class Group {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

@@ -84,6 +84,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -185,6 +186,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -281,6 +283,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -383,6 +386,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "q1",
               skipEncoding: true,
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -485,6 +489,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "q1",
               skipEncoding: true,
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -587,6 +592,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "q1",
               skipEncoding: true,
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -684,6 +690,7 @@ export class SkipUrlEncoding {
             {
               parameterName: "q1",
               skipEncoding: true,
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

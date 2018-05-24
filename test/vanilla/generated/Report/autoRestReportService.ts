@@ -115,6 +115,7 @@ class AutoRestReportService extends msRest.ServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });

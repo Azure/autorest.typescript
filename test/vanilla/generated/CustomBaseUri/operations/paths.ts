@@ -83,11 +83,13 @@ export class Paths {
             {
               parameterName: "accountName",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
             {
               parameterName: "this.client.host",
               urlParameterName: "host",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
         });

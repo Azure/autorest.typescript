@@ -80,6 +80,7 @@ export class ApiVersionLocal {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -183,6 +184,7 @@ export class ApiVersionLocal {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -280,6 +282,7 @@ export class ApiVersionLocal {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -377,6 +380,7 @@ export class ApiVersionLocal {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

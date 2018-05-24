@@ -134,13 +134,16 @@ export class PathItems {
           queryParameters: [
             {
               parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -284,13 +287,16 @@ export class PathItems {
           queryParameters: [
             {
               parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -434,13 +440,16 @@ export class PathItems {
           queryParameters: [
             {
               parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -584,13 +593,16 @@ export class PathItems {
           queryParameters: [
             {
               parameterName: "localStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "pathItemStringQuery",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });

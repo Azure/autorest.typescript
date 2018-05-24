@@ -1156,6 +1156,7 @@ export class Paging {
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1300,6 +1301,7 @@ export class Paging {
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1432,12 +1434,14 @@ export class Paging {
             {
               parameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1582,6 +1586,7 @@ export class Paging {
             {
               parameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
             {
               parameterName: "tenant",
@@ -1592,6 +1597,7 @@ export class Paging {
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [
@@ -1706,6 +1712,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -1849,6 +1856,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2006,6 +2014,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2162,6 +2171,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2290,6 +2300,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2406,6 +2417,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2520,6 +2532,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2634,6 +2647,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [
@@ -2748,6 +2762,7 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+              skipEncoding: true,
             },
           ],
           headerParameters: [

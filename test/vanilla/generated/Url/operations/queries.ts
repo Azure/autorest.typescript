@@ -69,6 +69,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
+              type: msRest.OperationParameterType.Boolean,
             },
           ],
         });
@@ -148,6 +149,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
+              type: msRest.OperationParameterType.Boolean,
             },
           ],
         });
@@ -237,6 +239,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
+              type: msRest.OperationParameterType.Boolean,
             },
           ],
         });
@@ -316,6 +319,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
+              type: msRest.OperationParameterType.Int,
             },
           ],
         });
@@ -395,6 +399,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
+              type: msRest.OperationParameterType.Int,
             },
           ],
         });
@@ -484,6 +489,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
+              type: msRest.OperationParameterType.Int,
             },
           ],
         });
@@ -563,6 +569,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
+              type: msRest.OperationParameterType.Long,
             },
           ],
         });
@@ -642,6 +649,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
+              type: msRest.OperationParameterType.Long,
             },
           ],
         });
@@ -731,6 +739,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
+              type: msRest.OperationParameterType.Long,
             },
           ],
         });
@@ -810,6 +819,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -889,6 +899,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -978,6 +989,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -1057,6 +1069,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -1136,6 +1149,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -1225,6 +1239,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
+              type: msRest.OperationParameterType.Double,
             },
           ],
         });
@@ -1304,6 +1319,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1383,6 +1399,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1462,6 +1479,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1551,6 +1569,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -1824,6 +1843,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
+              type: msRest.OperationParameterType.ByteArray,
             },
           ],
         });
@@ -1903,6 +1923,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
+              type: msRest.OperationParameterType.ByteArray,
             },
           ],
         });
@@ -1992,6 +2013,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
+              type: msRest.OperationParameterType.ByteArray,
             },
           ],
         });
@@ -2071,6 +2093,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateQuery",
+              type: msRest.OperationParameterType.Date,
             },
           ],
         });
@@ -2161,6 +2184,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateQuery",
+              type: msRest.OperationParameterType.Date,
             },
           ],
         });
@@ -2240,6 +2264,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
+              type: msRest.OperationParameterType.DateTime,
             },
           ],
         });
@@ -2330,6 +2355,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
+              type: msRest.OperationParameterType.DateTime,
             },
           ],
         });
@@ -2425,7 +2451,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Csv"
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
             },
           ],
         });
@@ -2520,7 +2546,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Csv"
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
             },
           ],
         });
@@ -2615,7 +2641,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Csv"
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
             },
           ],
         });
@@ -2711,7 +2737,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Ssv"
+              collectionFormat: msRest.QueryCollectionFormat.Ssv,
             },
           ],
         });
@@ -2807,7 +2833,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Tsv"
+              collectionFormat: msRest.QueryCollectionFormat.Tsv,
             },
           ],
         });
@@ -2903,7 +2929,7 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: "Pipes"
+              collectionFormat: msRest.QueryCollectionFormat.Pipes,
             },
           ],
         });

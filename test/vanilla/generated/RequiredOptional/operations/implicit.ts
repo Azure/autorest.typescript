@@ -181,6 +181,7 @@ export class Implicit {
           queryParameters: [
             {
               parameterName: "queryParameter",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -547,6 +548,7 @@ export class Implicit {
             {
               parameterName: "this.client.requiredGlobalQuery",
               queryParameterName: "required-global-query",
+              type: msRest.OperationParameterType.String,
             },
           ],
         });
@@ -648,6 +650,7 @@ export class Implicit {
             {
               parameterName: "this.client.optionalGlobalQuery",
               queryParameterName: "optional-global-query",
+              type: msRest.OperationParameterType.Int,
             },
           ],
         });

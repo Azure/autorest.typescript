@@ -56,6 +56,12 @@ else
           type: msRest.OperationParameterType.@(pathParameter.OperationType),
 </text>
 }
+@if (pathParameter.SkipUrlEncoding())
+{
+<text>
+          skipEncoding: true,
+</text>
+}
         },
 </text>
 }
@@ -86,7 +92,13 @@ else
 @if (queryParameter.CollectionFormat != CollectionFormat.None)
 {
 <text>
-          collectionFormat: "@(queryParameter.CollectionFormat)"
+          collectionFormat: msRest.QueryCollectionFormat.@(queryParameter.CollectionFormat),
+</text>
+}
+@if (queryParameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(queryParameter.OperationType),
 </text>
 }
         },

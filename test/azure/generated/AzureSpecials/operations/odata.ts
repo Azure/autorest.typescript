@@ -101,14 +101,17 @@ export class Odata {
             {
               parameterName: "filter",
               queryParameterName: "$filter",
+              type: msRest.OperationParameterType.String,
             },
             {
               parameterName: "top",
               queryParameterName: "$top",
+              type: msRest.OperationParameterType.Int,
             },
             {
               parameterName: "orderby",
               queryParameterName: "$orderby",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

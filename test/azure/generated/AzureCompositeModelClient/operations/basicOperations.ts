@@ -188,6 +188,7 @@ export class BasicOperations {
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
+              type: msRest.OperationParameterType.String,
             },
           ],
           headerParameters: [

@@ -139,6 +139,7 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "query",
+              type: msRest.OperationParameterType.Int,
             },
           ],
           headerParameters: [
@@ -264,6 +265,7 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "query",
+              type: msRest.OperationParameterType.Int,
             },
           ],
           headerParameters: [
@@ -410,10 +412,12 @@ export class ParameterGrouping {
             {
               parameterName: "queryOne",
               queryParameterName: "query-one",
+              type: msRest.OperationParameterType.Int,
             },
             {
               parameterName: "queryTwo",
               queryParameterName: "query-two",
+              type: msRest.OperationParameterType.Int,
             },
           ],
           headerParameters: [
@@ -544,6 +548,7 @@ export class ParameterGrouping {
             {
               parameterName: "queryOne",
               queryParameterName: "query-one",
+              type: msRest.OperationParameterType.Int,
             },
           ],
           headerParameters: [
