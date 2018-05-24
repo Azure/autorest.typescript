@@ -51,6 +51,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -138,6 +139,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -225,6 +227,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -312,6 +315,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -417,6 +421,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -485,6 +490,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -590,6 +596,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -658,6 +665,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -763,6 +771,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -831,6 +840,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -936,6 +946,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1004,6 +1015,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1109,6 +1121,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1177,6 +1190,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1282,6 +1296,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1350,6 +1365,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1455,6 +1471,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1523,6 +1540,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1628,6 +1646,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1696,6 +1715,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1801,6 +1821,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1869,6 +1890,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1974,6 +1996,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2042,6 +2065,7 @@ export class Number {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

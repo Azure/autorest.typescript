@@ -54,6 +54,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -128,6 +129,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -210,6 +212,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -284,6 +287,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -358,6 +362,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -440,6 +445,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -514,6 +520,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -588,6 +595,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -670,6 +678,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -744,6 +753,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -818,6 +828,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -900,6 +911,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -974,6 +986,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1048,6 +1061,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1130,6 +1144,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1204,6 +1219,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1278,6 +1294,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1352,6 +1369,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1434,6 +1452,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1519,6 +1538,7 @@ export class Queries {
           arguments: {
             "enumQuery": enumQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1603,6 +1623,7 @@ export class Queries {
           arguments: {
             "enumQuery": enumQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1684,6 +1705,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1758,6 +1780,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1840,6 +1863,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1914,6 +1938,7 @@ export class Queries {
           arguments: {
             "dateQuery": dateQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1997,6 +2022,7 @@ export class Queries {
           arguments: {
             "dateQuery": dateQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2071,6 +2097,7 @@ export class Queries {
           arguments: {
             "dateTimeQuery": dateTimeQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2154,6 +2181,7 @@ export class Queries {
           arguments: {
             "dateTimeQuery": dateTimeQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2242,6 +2270,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2329,6 +2358,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2416,6 +2446,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2504,6 +2535,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2592,6 +2624,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2680,6 +2713,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

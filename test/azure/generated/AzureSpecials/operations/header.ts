@@ -68,6 +68,7 @@ export class Header {
             "fooClientRequestId": fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -180,6 +181,7 @@ export class Header {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "fooClientRequestId": fooClientRequestId,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -278,6 +280,7 @@ export class Header {
             "fooClientRequestId": fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

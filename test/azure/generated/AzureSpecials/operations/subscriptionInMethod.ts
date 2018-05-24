@@ -68,6 +68,7 @@ export class SubscriptionInMethod {
             "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -164,6 +165,7 @@ export class SubscriptionInMethod {
             "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -260,6 +262,7 @@ export class SubscriptionInMethod {
             "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -356,6 +359,7 @@ export class SubscriptionInMethod {
             "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

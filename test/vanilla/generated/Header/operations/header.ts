@@ -64,6 +64,7 @@ export class Header {
           arguments: {
             "userAgent": userAgent,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -137,6 +138,7 @@ export class Header {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -219,6 +221,7 @@ export class Header {
           arguments: {
             "contentType": contentType,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -292,6 +295,7 @@ export class Header {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -381,6 +385,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -469,6 +474,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -564,6 +570,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -652,6 +659,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -747,6 +755,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -835,6 +844,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -930,6 +940,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1018,6 +1029,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1113,6 +1125,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1201,6 +1214,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1296,6 +1310,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1385,6 +1400,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1482,6 +1498,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1570,6 +1587,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1667,6 +1685,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1756,6 +1775,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1853,6 +1873,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1942,6 +1963,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2038,6 +2060,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2126,6 +2149,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2221,6 +2245,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2309,6 +2334,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2406,6 +2432,7 @@ export class Header {
             "scenario": scenario,
             "value": value,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2493,6 +2520,7 @@ export class Header {
           arguments: {
             "scenario": scenario,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2570,6 +2598,7 @@ export class Header {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

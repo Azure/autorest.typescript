@@ -158,6 +158,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -299,6 +300,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -441,6 +443,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

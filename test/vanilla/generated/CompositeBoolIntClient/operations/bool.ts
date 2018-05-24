@@ -51,6 +51,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -156,6 +157,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -224,6 +226,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -329,6 +332,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -397,6 +401,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -484,6 +489,7 @@ export class Bool {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

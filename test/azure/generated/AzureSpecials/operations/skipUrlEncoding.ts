@@ -68,6 +68,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -164,6 +165,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -255,6 +257,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -352,6 +355,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -447,6 +451,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -544,6 +549,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -636,6 +642,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

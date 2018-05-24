@@ -52,6 +52,7 @@ export class Files {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -121,6 +122,7 @@ export class Files {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -190,6 +192,7 @@ export class Files {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

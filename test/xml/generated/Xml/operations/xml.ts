@@ -52,6 +52,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -145,6 +146,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -214,6 +216,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -303,6 +306,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -372,6 +376,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -438,6 +443,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -527,6 +533,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -592,6 +599,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -681,6 +689,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -746,6 +755,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -857,6 +867,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -922,6 +933,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1033,6 +1045,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1098,6 +1111,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1209,6 +1223,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1274,6 +1289,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1363,6 +1379,7 @@ export class Xml {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1430,6 +1447,7 @@ export class Xml {
           arguments: {
             "comp": comp,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1517,6 +1535,7 @@ export class Xml {
             "comp": comp,
             "restype": restype,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1620,6 +1639,7 @@ export class Xml {
             "comp": comp,
             "restype": restype,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1699,6 +1719,7 @@ export class Xml {
             "comp": comp,
             "restype": restype,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1824,6 +1845,7 @@ export class Xml {
             "comp": comp,
             "restype": restype,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1903,6 +1925,7 @@ export class Xml {
             "comp": comp,
             "restype": restype,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

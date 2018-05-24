@@ -64,6 +64,7 @@ export class ApiVersionLocal {
             "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -160,6 +161,7 @@ export class ApiVersionLocal {
             "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -252,6 +254,7 @@ export class ApiVersionLocal {
             "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -344,6 +347,7 @@ export class ApiVersionLocal {
             "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

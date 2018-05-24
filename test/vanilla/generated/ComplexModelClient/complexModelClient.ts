@@ -108,6 +108,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -237,6 +238,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -367,6 +369,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

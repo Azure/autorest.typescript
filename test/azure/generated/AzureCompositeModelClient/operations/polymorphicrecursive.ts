@@ -61,6 +61,7 @@ export class Polymorphicrecursive {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -217,6 +218,7 @@ export class Polymorphicrecursive {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

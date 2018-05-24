@@ -93,6 +93,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -229,6 +230,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -365,6 +367,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -501,6 +504,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

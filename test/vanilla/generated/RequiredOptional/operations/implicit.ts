@@ -63,6 +63,7 @@ export class Implicit {
           arguments: {
             "pathParameter": pathParameter,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -158,6 +159,7 @@ export class Implicit {
           arguments: {
             "queryParameter": queryParameter,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -241,6 +243,7 @@ export class Implicit {
           arguments: {
             "queryParameter": queryParameter,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -331,6 +334,7 @@ export class Implicit {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -408,6 +412,7 @@ export class Implicit {
           arguments: {
             "this.client.requiredGlobalPath": this.client.requiredGlobalPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -502,6 +507,7 @@ export class Implicit {
           arguments: {
             "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -596,6 +602,7 @@ export class Implicit {
           arguments: {
             "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

@@ -141,6 +141,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -226,6 +227,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -356,6 +358,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -441,6 +444,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -558,6 +562,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -643,6 +648,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

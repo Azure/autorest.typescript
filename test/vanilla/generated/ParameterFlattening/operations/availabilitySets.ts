@@ -92,6 +92,7 @@ export class AvailabilitySets {
             "resourceGroupName": resourceGroupName,
             "avset": avset,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

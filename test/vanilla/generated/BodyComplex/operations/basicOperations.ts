@@ -52,6 +52,7 @@ export class BasicOperations {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -146,6 +147,7 @@ export class BasicOperations {
           arguments: {
             "this.client.apiVersion": this.client.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -221,6 +223,7 @@ export class BasicOperations {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -302,6 +305,7 @@ export class BasicOperations {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -383,6 +387,7 @@ export class BasicOperations {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -464,6 +469,7 @@ export class BasicOperations {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
