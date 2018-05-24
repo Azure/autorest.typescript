@@ -18,6 +18,7 @@ try {
 </text>
 }
       },
+      abortSignal: options && options.abortSignal,
       customHeaders: options && options.customHeaders
     },
     {
@@ -126,7 +127,7 @@ else
 {
 <text>
           type: msRest.OperationParameterType.@(parameter.OperationType),
-</text>    
+</text>
 }
         },
 </text>

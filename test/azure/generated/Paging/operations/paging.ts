@@ -59,6 +59,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -181,6 +182,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -318,6 +320,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -469,6 +472,7 @@ export class Paging {
             "offset": offset,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -583,6 +587,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -679,6 +684,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -773,6 +779,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -867,6 +874,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -961,6 +969,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1067,6 +1076,7 @@ export class Paging {
             "tenant": tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1203,6 +1213,7 @@ export class Paging {
             "apiVersion": apiVersion,
             "tenant": tenant,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1328,6 +1339,7 @@ export class Paging {
             "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1474,6 +1486,7 @@ export class Paging {
             "apiVersion": apiVersion,
             "tenant": tenant,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1593,6 +1606,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1730,6 +1744,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1881,6 +1896,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2031,6 +2047,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2153,6 +2170,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2263,6 +2281,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2371,6 +2390,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2479,6 +2499,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -2587,6 +2608,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

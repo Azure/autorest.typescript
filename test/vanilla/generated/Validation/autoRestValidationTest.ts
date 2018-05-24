@@ -159,6 +159,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "id": id,
             "this.apiVersion": this.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -325,6 +326,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "id": id,
             "this.apiVersion": this.apiVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -430,6 +432,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           arguments: {
             "constantParam": constantParam,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -501,6 +504,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           arguments: {
             "constantParam": constantParam,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

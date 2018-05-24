@@ -52,6 +52,7 @@ export class Paths {
           arguments: {
             "boolPath": boolPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -124,6 +125,7 @@ export class Paths {
           arguments: {
             "boolPath": boolPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -196,6 +198,7 @@ export class Paths {
           arguments: {
             "intPath": intPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -268,6 +271,7 @@ export class Paths {
           arguments: {
             "intPath": intPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -340,6 +344,7 @@ export class Paths {
           arguments: {
             "longPath": longPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -412,6 +417,7 @@ export class Paths {
           arguments: {
             "longPath": longPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -484,6 +490,7 @@ export class Paths {
           arguments: {
             "floatPath": floatPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -556,6 +563,7 @@ export class Paths {
           arguments: {
             "floatPath": floatPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -628,6 +636,7 @@ export class Paths {
           arguments: {
             "doublePath": doublePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -700,6 +709,7 @@ export class Paths {
           arguments: {
             "doublePath": doublePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -772,6 +782,7 @@ export class Paths {
           arguments: {
             "stringPath": stringPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -844,6 +855,7 @@ export class Paths {
           arguments: {
             "stringPath": stringPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -916,6 +928,7 @@ export class Paths {
           arguments: {
             "stringPath": stringPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -997,6 +1010,7 @@ export class Paths {
           arguments: {
             "stringPath": stringPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1084,6 +1098,7 @@ export class Paths {
           arguments: {
             "enumPath": enumPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1170,6 +1185,7 @@ export class Paths {
           arguments: {
             "enumPath": enumPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1251,6 +1267,7 @@ export class Paths {
           arguments: {
             "bytePath": bytePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1323,6 +1340,7 @@ export class Paths {
           arguments: {
             "bytePath": bytePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1404,6 +1422,7 @@ export class Paths {
           arguments: {
             "bytePath": bytePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1476,6 +1495,7 @@ export class Paths {
           arguments: {
             "datePath": datePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1559,6 +1579,7 @@ export class Paths {
           arguments: {
             "datePath": datePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1631,6 +1652,7 @@ export class Paths {
           arguments: {
             "dateTimePath": dateTimePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1714,6 +1736,7 @@ export class Paths {
           arguments: {
             "dateTimePath": dateTimePath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1795,6 +1818,7 @@ export class Paths {
           arguments: {
             "base64UrlPath": base64UrlPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1883,6 +1907,7 @@ export class Paths {
           arguments: {
             "arrayPath": arrayPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1964,6 +1989,7 @@ export class Paths {
           arguments: {
             "unixTimeUrlPath": unixTimeUrlPath,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

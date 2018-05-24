@@ -64,6 +64,7 @@ export class Paths {
             "accountName": accountName,
             "this.client.host": this.client.host,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

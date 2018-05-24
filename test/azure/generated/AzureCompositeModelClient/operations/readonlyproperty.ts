@@ -59,6 +59,7 @@ export class Readonlyproperty {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -170,6 +171,7 @@ export class Readonlyproperty {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

@@ -113,6 +113,7 @@ export class ParameterGrouping {
             "query": query,
             "path": path,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -236,6 +237,7 @@ export class ParameterGrouping {
             "customHeader": customHeader,
             "query": query,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -369,6 +371,7 @@ export class ParameterGrouping {
             "headerTwo": headerTwo,
             "queryTwo": queryTwo,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -495,6 +498,7 @@ export class ParameterGrouping {
             "headerOne": headerOne,
             "queryOne": queryOne,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

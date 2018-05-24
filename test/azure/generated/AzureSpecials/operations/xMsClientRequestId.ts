@@ -59,6 +59,7 @@ export class XMsClientRequestId {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -146,6 +147,7 @@ export class XMsClientRequestId {
             "xMsClientRequestId": xMsClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

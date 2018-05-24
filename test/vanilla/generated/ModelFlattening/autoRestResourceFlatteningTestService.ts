@@ -103,6 +103,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -171,6 +172,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -284,6 +286,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -353,6 +356,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -465,6 +469,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -533,6 +538,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -632,6 +638,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -700,6 +707,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -784,6 +792,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -914,6 +923,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -1073,6 +1083,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           arguments: {
             "name": name,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

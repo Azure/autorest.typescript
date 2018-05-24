@@ -86,6 +86,7 @@ export class Paths {
             "this.client.subscriptionId": this.client.subscriptionId,
             "keyVersion": keyVersion,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

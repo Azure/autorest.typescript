@@ -65,6 +65,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -150,6 +151,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
@@ -236,6 +238,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {

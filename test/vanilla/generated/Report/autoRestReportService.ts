@@ -96,6 +96,7 @@ class AutoRestReportService extends msRest.ServiceClient {
           arguments: {
             "qualifier": qualifier,
           },
+          abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
