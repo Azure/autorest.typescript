@@ -67,6 +67,7 @@ export class ApiVersionDefault {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -75,6 +76,12 @@ export class ApiVersionDefault {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -158,6 +165,7 @@ export class ApiVersionDefault {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -166,6 +174,12 @@ export class ApiVersionDefault {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -249,6 +263,7 @@ export class ApiVersionDefault {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -257,6 +272,12 @@ export class ApiVersionDefault {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -340,6 +361,7 @@ export class ApiVersionDefault {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -348,6 +370,12 @@ export class ApiVersionDefault {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

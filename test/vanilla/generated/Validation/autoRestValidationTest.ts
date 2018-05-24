@@ -168,6 +168,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "this.subscriptionId": this.subscriptionId,
             "resourceGroupName": resourceGroupName,
             "id": id,
+            "this.apiVersion": this.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -188,6 +189,12 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "id",
               type: msRest.OperationParameterType.Int,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "apiVersion",
             },
           ],
         });
@@ -337,6 +344,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "this.subscriptionId": this.subscriptionId,
             "resourceGroupName": resourceGroupName,
             "id": id,
+            "this.apiVersion": this.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -357,6 +365,12 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "id",
               type: msRest.OperationParameterType.Int,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "apiVersion",
             },
           ],
           requestBodyMapper: requestModelMapper,

@@ -82,6 +82,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -96,6 +97,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -277,6 +284,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -299,6 +307,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -406,6 +420,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -428,6 +443,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -565,6 +586,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -587,6 +609,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -707,6 +735,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -729,6 +758,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -833,6 +868,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -847,6 +883,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -960,6 +1002,7 @@ export class StorageAccounts {
         {
           arguments: {
             "resourceGroupName": resourceGroupName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -978,6 +1021,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -1113,6 +1162,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -1135,6 +1185,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -1269,6 +1325,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -1291,6 +1348,12 @@ export class StorageAccounts {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [

@@ -155,6 +155,7 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -162,6 +163,12 @@ export class BasicOperations {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/complex/basic/valid",
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
         });

@@ -104,6 +104,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "qualifier": qualifier,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -111,6 +112,11 @@ class AutoRestReportService extends msRest.ServiceClient {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "/report",
+          queryParameters: [
+            {
+              parameterName: "qualifier",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

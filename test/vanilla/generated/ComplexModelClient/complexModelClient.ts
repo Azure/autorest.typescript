@@ -114,6 +114,7 @@ class ComplexModelClient extends msRest.ServiceClient {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "this.apiVersion": this.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -130,6 +131,12 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
         });
@@ -243,6 +250,7 @@ class ComplexModelClient extends msRest.ServiceClient {
           arguments: {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "this.apiVersion": this.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -258,6 +266,12 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           requestBodyMapper: requestModelMapper,
@@ -373,6 +387,7 @@ class ComplexModelClient extends msRest.ServiceClient {
           arguments: {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "this.apiVersion": this.apiVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -388,6 +403,12 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           requestBodyMapper: requestModelMapper,

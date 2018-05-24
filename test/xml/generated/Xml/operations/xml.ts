@@ -1519,6 +1519,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1526,6 +1527,11 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1605,6 +1611,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1612,6 +1620,14 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+            {
+              parameterName: "restype",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1703,6 +1719,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1710,6 +1728,14 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/xml/",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+            {
+              parameterName: "restype",
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1777,6 +1803,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1784,6 +1812,14 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+            {
+              parameterName: "restype",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1897,6 +1933,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1904,6 +1942,14 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+            {
+              parameterName: "restype",
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1971,6 +2017,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "comp": comp,
+            "restype": restype,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1978,6 +2026,14 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/mycontainer",
+          queryParameters: [
+            {
+              parameterName: "comp",
+            },
+            {
+              parameterName: "restype",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

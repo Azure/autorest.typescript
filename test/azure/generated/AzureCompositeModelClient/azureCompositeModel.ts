@@ -163,6 +163,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -180,6 +181,12 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -304,6 +311,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           arguments: {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -320,6 +328,12 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
@@ -446,6 +460,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           arguments: {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -462,6 +477,12 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [

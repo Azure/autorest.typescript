@@ -86,6 +86,9 @@ export class Odata {
         httpRequest,
         {
           arguments: {
+            "filter": filter,
+            "top": top,
+            "orderby": orderby,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -94,6 +97,20 @@ export class Odata {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/odata/filter",
+          queryParameters: [
+            {
+              parameterName: "filter",
+              queryParameterName: "$filter",
+            },
+            {
+              parameterName: "top",
+              queryParameterName: "$top",
+            },
+            {
+              parameterName: "orderby",
+              queryParameterName: "$orderby",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

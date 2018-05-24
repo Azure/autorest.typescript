@@ -121,6 +121,7 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "customHeader": customHeader,
+            "query": query,
             "path": path,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -133,6 +134,11 @@ export class ParameterGrouping {
             {
               parameterName: "path",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "query",
             },
           ],
           headerParameters: [
@@ -247,6 +253,7 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "customHeader": customHeader,
+            "query": query,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -254,6 +261,11 @@ export class ParameterGrouping {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "/parameterGrouping/postOptional",
+          queryParameters: [
+            {
+              parameterName: "query",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -384,7 +396,9 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "headerOne": headerOne,
+            "queryOne": queryOne,
             "headerTwo": headerTwo,
+            "queryTwo": queryTwo,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -392,6 +406,16 @@ export class ParameterGrouping {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "/parameterGrouping/postMultipleParameterGroups",
+          queryParameters: [
+            {
+              parameterName: "queryOne",
+              queryParameterName: "query-one",
+            },
+            {
+              parameterName: "queryTwo",
+              queryParameterName: "query-two",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -508,6 +532,7 @@ export class ParameterGrouping {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "headerOne": headerOne,
+            "queryOne": queryOne,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -515,6 +540,12 @@ export class ParameterGrouping {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "/parameterGrouping/sharedParameterGroupObject",
+          queryParameters: [
+            {
+              parameterName: "queryOne",
+              queryParameterName: "query-one",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

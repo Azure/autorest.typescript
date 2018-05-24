@@ -175,6 +175,7 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
+            "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -183,6 +184,12 @@ export class BasicOperations {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/complex/basic/valid",
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api-version",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

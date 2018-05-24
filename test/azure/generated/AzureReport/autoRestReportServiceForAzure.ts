@@ -134,6 +134,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "qualifier": qualifier,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -142,6 +143,11 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "/report/azure",
+          queryParameters: [
+            {
+              parameterName: "qualifier",
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

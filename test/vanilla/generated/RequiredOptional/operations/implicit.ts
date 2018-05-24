@@ -170,6 +170,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "queryParameter": queryParameter,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -177,6 +178,11 @@ export class Implicit {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/reqopt/implicit/optional/query",
+          queryParameters: [
+            {
+              parameterName: "queryParameter",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -529,6 +535,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -536,6 +543,12 @@ export class Implicit {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/reqopt/global/required/query",
+          queryParameters: [
+            {
+              parameterName: "this.client.requiredGlobalQuery",
+              queryParameterName: "required-global-query",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -623,6 +636,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -630,6 +644,12 @@ export class Implicit {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/reqopt/global/optional/query",
+          queryParameters: [
+            {
+              parameterName: "this.client.optionalGlobalQuery",
+              queryParameterName: "optional-global-query",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

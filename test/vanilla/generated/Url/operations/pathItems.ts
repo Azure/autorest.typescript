@@ -104,8 +104,11 @@ export class PathItems {
         {
           arguments: {
             "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
             "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -126,6 +129,18 @@ export class PathItems {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+            },
+            {
+              parameterName: "pathItemStringQuery",
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
             },
           ],
         });
@@ -239,8 +254,11 @@ export class PathItems {
         {
           arguments: {
             "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
             "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -261,6 +279,18 @@ export class PathItems {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+            },
+            {
+              parameterName: "pathItemStringQuery",
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
             },
           ],
         });
@@ -374,8 +404,11 @@ export class PathItems {
         {
           arguments: {
             "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
             "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -396,6 +429,18 @@ export class PathItems {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+            },
+            {
+              parameterName: "pathItemStringQuery",
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
             },
           ],
         });
@@ -509,8 +554,11 @@ export class PathItems {
         {
           arguments: {
             "localStringPath": localStringPath,
+            "localStringQuery": localStringQuery,
             "pathItemStringPath": pathItemStringPath,
+            "pathItemStringQuery": pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
+            "this.client.globalStringQuery": this.client.globalStringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -531,6 +579,18 @@ export class PathItems {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "localStringQuery",
+            },
+            {
+              parameterName: "pathItemStringQuery",
+            },
+            {
+              parameterName: "this.client.globalStringQuery",
+              queryParameterName: "globalStringQuery",
             },
           ],
         });

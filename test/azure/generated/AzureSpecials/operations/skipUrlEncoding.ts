@@ -370,6 +370,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
+            "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -378,6 +379,12 @@ export class SkipUrlEncoding {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/method/query/valid",
+          queryParameters: [
+            {
+              parameterName: "q1",
+              skipEncoding: true,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -465,6 +472,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
+            "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -473,6 +481,12 @@ export class SkipUrlEncoding {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/method/query/null",
+          queryParameters: [
+            {
+              parameterName: "q1",
+              skipEncoding: true,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -560,6 +574,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
+            "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -568,6 +583,12 @@ export class SkipUrlEncoding {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/path/query/valid",
+          queryParameters: [
+            {
+              parameterName: "q1",
+              skipEncoding: true,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -650,6 +671,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
+            "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -658,6 +680,12 @@ export class SkipUrlEncoding {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/swagger/query/valid",
+          queryParameters: [
+            {
+              parameterName: "q1",
+              skipEncoding: true,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

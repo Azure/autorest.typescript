@@ -58,6 +58,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "boolQuery": boolQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -65,6 +66,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/bool/true",
+          queryParameters: [
+            {
+              parameterName: "boolQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -131,6 +137,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "boolQuery": boolQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -138,6 +145,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/bool/false",
+          queryParameters: [
+            {
+              parameterName: "boolQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -214,6 +226,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "boolQuery": boolQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -221,6 +234,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/bool/null",
+          queryParameters: [
+            {
+              parameterName: "boolQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -287,6 +305,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "intQuery": intQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -294,6 +313,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/int/1000000",
+          queryParameters: [
+            {
+              parameterName: "intQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -360,6 +384,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "intQuery": intQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -367,6 +392,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/int/-1000000",
+          queryParameters: [
+            {
+              parameterName: "intQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -443,6 +473,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "intQuery": intQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -450,6 +481,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/int/null",
+          queryParameters: [
+            {
+              parameterName: "intQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -516,6 +552,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "longQuery": longQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -523,6 +560,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/long/10000000000",
+          queryParameters: [
+            {
+              parameterName: "longQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -589,6 +631,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "longQuery": longQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -596,6 +639,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/long/-10000000000",
+          queryParameters: [
+            {
+              parameterName: "longQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -672,6 +720,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "longQuery": longQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -679,6 +728,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/long/null",
+          queryParameters: [
+            {
+              parameterName: "longQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -745,6 +799,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "floatQuery": floatQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -752,6 +807,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/float/1.034E+20",
+          queryParameters: [
+            {
+              parameterName: "floatQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -818,6 +878,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "floatQuery": floatQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -825,6 +886,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/float/-1.034E-20",
+          queryParameters: [
+            {
+              parameterName: "floatQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -901,6 +967,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "floatQuery": floatQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -908,6 +975,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/float/null",
+          queryParameters: [
+            {
+              parameterName: "floatQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -974,6 +1046,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "doubleQuery": doubleQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -981,6 +1054,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/double/9999999.999",
+          queryParameters: [
+            {
+              parameterName: "doubleQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1047,6 +1125,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "doubleQuery": doubleQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1054,6 +1133,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/double/-9999999.999",
+          queryParameters: [
+            {
+              parameterName: "doubleQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1130,6 +1214,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "doubleQuery": doubleQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1137,6 +1222,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/double/null",
+          queryParameters: [
+            {
+              parameterName: "doubleQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1203,6 +1293,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "stringQuery": stringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1210,6 +1301,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/string/unicode/",
+          queryParameters: [
+            {
+              parameterName: "stringQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1276,6 +1372,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "stringQuery": stringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1283,6 +1380,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
+          queryParameters: [
+            {
+              parameterName: "stringQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1349,6 +1451,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "stringQuery": stringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1356,6 +1459,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/string/empty",
+          queryParameters: [
+            {
+              parameterName: "stringQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1432,6 +1540,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "stringQuery": stringQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1439,6 +1548,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/string/null",
+          queryParameters: [
+            {
+              parameterName: "stringQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1518,6 +1632,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "enumQuery": enumQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1525,6 +1640,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/enum/green%20color",
+          queryParameters: [
+            {
+              parameterName: "enumQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1604,6 +1724,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "enumQuery": enumQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1611,6 +1732,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/enum/null",
+          queryParameters: [
+            {
+              parameterName: "enumQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1687,6 +1813,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "byteQuery": byteQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1694,6 +1821,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/byte/multibyte",
+          queryParameters: [
+            {
+              parameterName: "byteQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1760,6 +1892,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "byteQuery": byteQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1767,6 +1900,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/byte/empty",
+          queryParameters: [
+            {
+              parameterName: "byteQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1843,6 +1981,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "byteQuery": byteQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1850,6 +1989,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/byte/null",
+          queryParameters: [
+            {
+              parameterName: "byteQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1916,6 +2060,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "dateQuery": dateQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -1923,6 +2068,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/date/2012-01-01",
+          queryParameters: [
+            {
+              parameterName: "dateQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2000,6 +2150,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "dateQuery": dateQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2007,6 +2158,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/date/null",
+          queryParameters: [
+            {
+              parameterName: "dateQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2073,6 +2229,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "dateTimeQuery": dateTimeQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2080,6 +2237,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
+          queryParameters: [
+            {
+              parameterName: "dateTimeQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2157,6 +2319,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "dateTimeQuery": dateTimeQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2164,6 +2327,11 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/datetime/null",
+          queryParameters: [
+            {
+              parameterName: "dateTimeQuery",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2246,6 +2414,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2253,6 +2422,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/csv/string/valid",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Csv"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2334,6 +2509,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2341,6 +2517,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/csv/string/null",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Csv"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2422,6 +2604,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2429,6 +2612,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/csv/string/empty",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Csv"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2511,6 +2700,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2518,6 +2708,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/ssv/string/valid",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Ssv"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2600,6 +2796,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2607,6 +2804,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/tsv/string/valid",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Tsv"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2689,6 +2892,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
+            "arrayQuery": arrayQuery,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -2696,6 +2900,12 @@ export class Queries {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/queries/array/pipes/string/valid",
+          queryParameters: [
+            {
+              parameterName: "arrayQuery",
+              collectionFormat: "Pipes"
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

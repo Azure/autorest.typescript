@@ -1136,6 +1136,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "apiVersion": apiVersion,
             "tenant": tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -1149,6 +1150,12 @@ export class Paging {
             {
               parameterName: "tenant",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api_version",
             },
           ],
           headerParameters: [
@@ -1274,6 +1281,7 @@ export class Paging {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "apiVersion": apiVersion,
             "tenant": tenant,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1286,6 +1294,12 @@ export class Paging {
             {
               parameterName: "tenant",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api_version",
             },
           ],
           headerParameters: [
@@ -1399,6 +1413,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "apiVersion": apiVersion,
             "tenant": tenant,
             "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
@@ -1417,6 +1432,12 @@ export class Paging {
             {
               parameterName: "nextLink",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api_version",
             },
           ],
           headerParameters: [
@@ -1548,6 +1569,7 @@ export class Paging {
           arguments: {
             "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "apiVersion": apiVersion,
             "tenant": tenant,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1564,6 +1586,12 @@ export class Paging {
             {
               parameterName: "tenant",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "apiVersion",
+              queryParameterName: "api_version",
             },
           ],
           headerParameters: [

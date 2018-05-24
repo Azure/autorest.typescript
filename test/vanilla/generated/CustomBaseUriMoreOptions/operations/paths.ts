@@ -99,6 +99,7 @@ export class Paths {
             "this.client.dnsSuffix": this.client.dnsSuffix,
             "keyName": keyName,
             "this.client.subscriptionId": this.client.subscriptionId,
+            "keyVersion": keyVersion,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
@@ -128,6 +129,11 @@ export class Paths {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "keyVersion",
             },
           ],
         });

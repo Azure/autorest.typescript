@@ -73,6 +73,7 @@ export class UsageOperations {
         httpRequest,
         {
           arguments: {
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
@@ -87,6 +88,12 @@ export class UsageOperations {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [

@@ -80,6 +80,7 @@ export class Group {
           arguments: {
             "this.client.subscriptionId": this.client.subscriptionId,
             "resourceGroupName": resourceGroupName,
+            "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -97,6 +98,12 @@ export class Group {
             {
               parameterName: "resourceGroupName",
               type: msRest.OperationParameterType.String,
+            },
+          ],
+          queryParameters: [
+            {
+              parameterName: "this.client.apiVersion",
+              queryParameterName: "api-version",
             },
           ],
           headerParameters: [
