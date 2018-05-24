@@ -1,11 +1,36 @@
 import * as should from 'should';
+import * as assert from 'assert';
 import { AutoRestSwaggerBATXMLService, AutoRestSwaggerBATXMLServiceModels as models } from './generated/Xml/autoRestSwaggerBATXMLService';
 
 const baseUri = 'http://localhost:3000';
 const testClient = new AutoRestSwaggerBATXMLService(baseUri);
 
+function getAbortController(): AbortController {
+  let controller: AbortController;
+  if (typeof AbortController === "function") {
+    controller = new AbortController();
+  } else {
+    const AbortControllerPonyfill = require("abortcontroller-polyfill/dist/cjs-ponyfill").AbortController;
+    controller = new AbortControllerPonyfill();
+  }
+  return controller;
+}
+
 describe('typescript', function () {
   describe('XML client', function () {
+    it('should be able to abort a simple XML get', async function () {
+      const controller = getAbortController();
+      const slideshowPromise = testClient.xml.getSimple({ abortSignal: controller.signal });
+      controller.abort();
+      try {
+        await slideshowPromise;
+        assert.fail('');
+      } catch (err) {
+        err.should.not.be.instanceof(assert.AssertionError);
+        err.code.should.equal("REQUEST_ABORTED_ERROR");
+      }
+    });
+
     it('should correctly deserialize a simple XML document', async function () {
       const slideshow = await testClient.xml.getSimple();
       should.exist(slideshow);
