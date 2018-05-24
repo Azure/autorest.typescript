@@ -46,6 +46,7 @@
     "@types/node": "^8.0.28",
     "@types/should": "^8.3.0",
     "@types/webpack": "^4.1.3",
+    "abortcontroller-polyfill": "^1.1.9",
     "arraybuffer-loader": "^1.0.4",
     "autorest": "^2.0.4278",
     "coffee-script": "^1.11.1",
