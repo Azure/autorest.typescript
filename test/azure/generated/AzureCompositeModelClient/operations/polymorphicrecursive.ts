@@ -71,6 +71,7 @@ export class Polymorphicrecursive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphicrecursive/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -231,6 +232,7 @@ export class Polymorphicrecursive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphicrecursive/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

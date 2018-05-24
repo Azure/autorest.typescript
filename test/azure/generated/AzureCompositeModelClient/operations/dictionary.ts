@@ -71,6 +71,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -187,6 +188,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -275,6 +277,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -391,6 +394,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -479,6 +483,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -581,6 +586,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/dictionary/typed/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -78,6 +78,8 @@ export class Group {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "resourceGroupName": resourceGroupName,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -85,6 +87,18 @@ export class Group {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

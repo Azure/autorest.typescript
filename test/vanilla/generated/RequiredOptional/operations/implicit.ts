@@ -67,12 +67,20 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "pathParameter": pathParameter,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/required/path/{pathParameter}",
+          urlParameters: [
+            {
+              parameterName: "pathParameter",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -168,6 +176,7 @@ export class Implicit {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/query",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -249,6 +258,7 @@ export class Implicit {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/header",
           headerParameters: [
             {
               parameterName: "queryParameter",
@@ -343,6 +353,7 @@ export class Implicit {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/implicit/optional/body",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -418,12 +429,21 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
+            "this.client.requiredGlobalPath": this.client.requiredGlobalPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/global/required/path/{required-global-path}",
+          urlParameters: [
+            {
+              parameterName: "this.client.requiredGlobalPath",
+              urlParameterName: "required-global-path",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -515,6 +535,7 @@ export class Implicit {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/global/required/query",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -608,6 +629,7 @@ export class Implicit {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/global/optional/query",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

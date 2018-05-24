@@ -61,6 +61,7 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/bool/true",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -170,6 +171,7 @@ export class Bool {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/bool/true",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
         });
@@ -242,6 +244,7 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/bool/false",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -351,6 +354,7 @@ export class Bool {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/bool/false",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
         });
@@ -423,6 +427,7 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/bool/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -514,6 +519,7 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/bool/invalid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

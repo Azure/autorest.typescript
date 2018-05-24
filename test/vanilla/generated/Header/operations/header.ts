@@ -74,6 +74,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/existingkey",
           headerParameters: [
             {
               parameterName: "userAgent",
@@ -151,6 +152,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/existingkey",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -237,6 +239,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/protectedkey",
           headerParameters: [
             {
               parameterName: "contentType",
@@ -314,6 +317,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/protectedkey",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -407,6 +411,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/integer",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -499,6 +504,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/integer",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -598,6 +604,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/long",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -690,6 +697,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/long",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -789,6 +797,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/float",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -881,6 +890,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/float",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -980,6 +990,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/double",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1072,6 +1083,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/double",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1171,6 +1183,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/bool",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1263,6 +1276,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/bool",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1362,6 +1376,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/string",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1455,6 +1470,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/string",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1556,6 +1572,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/date",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1648,6 +1665,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/date",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1749,6 +1767,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/datetime",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1842,6 +1861,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/datetime",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -1943,6 +1963,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/datetimerfc1123",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2036,6 +2057,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/datetimerfc1123",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2136,6 +2158,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/duration",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2228,6 +2251,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/duration",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2327,6 +2351,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/byte",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2419,6 +2444,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/byte",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2520,6 +2546,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/param/prim/enum",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2611,6 +2638,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/response/prim/enum",
           headerParameters: [
             {
               parameterName: "scenario",
@@ -2692,6 +2720,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

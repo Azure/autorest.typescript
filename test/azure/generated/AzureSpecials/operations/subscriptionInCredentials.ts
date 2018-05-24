@@ -68,6 +68,7 @@ export class SubscriptionInCredentials {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -75,6 +76,14 @@ export class SubscriptionInCredentials {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -160,6 +169,7 @@ export class SubscriptionInCredentials {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -167,6 +177,14 @@ export class SubscriptionInCredentials {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -255,6 +273,7 @@ export class SubscriptionInCredentials {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -262,6 +281,14 @@ export class SubscriptionInCredentials {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -346,6 +373,7 @@ export class SubscriptionInCredentials {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -353,6 +381,14 @@ export class SubscriptionInCredentials {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -437,6 +473,7 @@ export class SubscriptionInCredentials {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -444,6 +481,14 @@ export class SubscriptionInCredentials {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

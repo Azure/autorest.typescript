@@ -82,6 +82,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -89,6 +90,14 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -266,6 +275,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -273,6 +285,22 @@ export class StorageAccounts {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -376,6 +404,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -383,6 +414,22 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -516,6 +563,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -523,6 +573,22 @@ export class StorageAccounts {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -639,6 +705,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -646,6 +715,22 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -748,6 +833,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -755,6 +841,14 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -865,6 +959,8 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -872,6 +968,18 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1003,6 +1111,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1010,6 +1121,22 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1140,6 +1267,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "accountName": accountName,
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1147,6 +1277,22 @@ export class StorageAccounts {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

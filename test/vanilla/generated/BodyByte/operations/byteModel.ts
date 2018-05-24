@@ -61,6 +61,7 @@ export class ByteModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/byte/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,6 +153,7 @@ export class ByteModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/byte/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -243,6 +245,7 @@ export class ByteModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/byte/nonAscii",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -353,6 +356,7 @@ export class ByteModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/byte/nonAscii",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "byteBody",
         });
@@ -425,6 +429,7 @@ export class ByteModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/byte/invalid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

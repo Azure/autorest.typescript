@@ -62,6 +62,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -160,6 +161,7 @@ export class BasicOperations {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
         });
@@ -232,6 +234,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/invalid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -317,6 +320,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -402,6 +406,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -487,6 +492,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/basic/notprovided",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

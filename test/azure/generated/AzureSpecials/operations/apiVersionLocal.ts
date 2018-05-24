@@ -74,6 +74,7 @@ export class ApiVersionLocal {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/apiVersion/method/string/none/query/local/2.0",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -169,6 +170,7 @@ export class ApiVersionLocal {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/apiVersion/method/string/none/query/local/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -258,6 +260,7 @@ export class ApiVersionLocal {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/apiVersion/path/string/none/query/local/2.0",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -347,6 +350,7 @@ export class ApiVersionLocal {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/apiVersion/swagger/string/none/query/local/2.0",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

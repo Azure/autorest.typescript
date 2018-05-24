@@ -71,6 +71,7 @@ export class XMsClientRequestId {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/overwrite/x-ms-client-request-id/method/",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -164,6 +165,7 @@ export class XMsClientRequestId {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
           headerParameters: [
             {
               parameterName: "xMsClientRequestId",

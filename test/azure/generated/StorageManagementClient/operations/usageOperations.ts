@@ -73,6 +73,7 @@ export class UsageOperations {
         httpRequest,
         {
           arguments: {
+            "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -80,6 +81,14 @@ export class UsageOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
+          urlParameters: [
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

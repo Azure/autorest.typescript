@@ -61,6 +61,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,6 +153,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/invalid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -243,6 +245,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/overflow",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -334,6 +337,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/underflow",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -444,6 +448,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -516,6 +521,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/utc/lowercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -607,6 +613,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/utc/uppercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -718,6 +725,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -791,6 +799,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localpositiveoffset/lowercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -883,6 +892,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localpositiveoffset/uppercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -994,6 +1004,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -1067,6 +1078,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localnegativeoffset/uppercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1159,6 +1171,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/max/localnegativeoffset/lowercase",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1269,6 +1282,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -1341,6 +1355,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/utc",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1451,6 +1466,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -1523,6 +1539,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/localpositiveoffset",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1633,6 +1650,7 @@ export class Datetime {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
         });
@@ -1705,6 +1723,7 @@ export class Datetime {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/datetime/min/localnegativeoffset",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

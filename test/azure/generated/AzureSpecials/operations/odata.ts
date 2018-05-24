@@ -93,6 +93,7 @@ export class Odata {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/odata/filter",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

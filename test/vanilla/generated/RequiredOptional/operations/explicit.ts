@@ -81,6 +81,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -183,6 +184,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -274,6 +276,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -376,6 +379,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -460,6 +464,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/integer/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -560,6 +565,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/integer/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -655,6 +661,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -757,6 +764,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -848,6 +856,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -950,6 +959,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1034,6 +1044,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/string/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -1134,6 +1145,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/string/header",
           headerParameters: [
             {
               parameterName: "bodyParameter",
@@ -1223,6 +1235,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1311,6 +1324,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1402,6 +1416,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1496,6 +1511,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1599,6 +1615,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1712,6 +1729,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1808,6 +1826,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -1914,6 +1933,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -2003,6 +2023,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/requied/array/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -2106,6 +2127,7 @@ export class Explicit {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/reqopt/optional/array/header",
           headerParameters: [
             {
               parameterName: "headerParameter",

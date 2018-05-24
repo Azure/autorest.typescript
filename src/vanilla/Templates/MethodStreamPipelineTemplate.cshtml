@@ -10,7 +10,7 @@ try {
     httpRequest,
     {
       arguments: {
-@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header))
+@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header || p.Location == ParameterLocation.Path))
 {
 <text>
         "@(parameter.Name)": @(parameter.Name),
@@ -31,6 +31,34 @@ else
 {
 <text>
       baseUrl: @(Model.ClientReference).baseUri,
+      path: "@(Model.Url)",
+</text>
+}
+@if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Path))
+{
+<text>
+      urlParameters: [
+@foreach (ParameterTS pathParameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Path))
+{
+<text>
+        {
+          parameterName: "@(pathParameter.Name)",
+@if (pathParameter.Name != pathParameter.SerializedName)
+{
+<text>
+          urlParameterName: "@(pathParameter.SerializedName)",
+</text>
+}
+@if (pathParameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(pathParameter.OperationType),
+</text>
+}
+        },
+</text>
+}
+      ],
 </text>
 }
 @if (Model.LogicalParameters.Any(p => p.Location == ParameterLocation.Header))

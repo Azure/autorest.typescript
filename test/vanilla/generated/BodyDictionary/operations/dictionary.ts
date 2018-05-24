@@ -62,6 +62,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -160,6 +161,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -288,6 +290,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -360,6 +363,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/nullvalue",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -458,6 +462,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/nullkey",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -556,6 +561,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/keyemptystring",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -654,6 +660,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/invalid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -752,6 +759,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/boolean/tfft",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -880,6 +888,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/boolean/tfft",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -952,6 +961,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/boolean/true.null.false",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1050,6 +1060,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/boolean/true.boolean.false",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1148,6 +1159,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/integer/1.-1.3.300",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1276,6 +1288,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/integer/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -1348,6 +1361,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/integer/1.null.zero",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1446,6 +1460,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/integer/1.integer.0",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1544,6 +1559,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/long/1.-1.3.300",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1672,6 +1688,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/long/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -1744,6 +1761,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/long/1.null.zero",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1842,6 +1860,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/long/1.integer.0",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1940,6 +1959,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/float/0--0.01-1.2e20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2068,6 +2088,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/float/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -2140,6 +2161,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/float/0.0-null-1.2e20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2238,6 +2260,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/float/1.number.0",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2336,6 +2359,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/double/0--0.01-1.2e20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2464,6 +2488,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/double/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -2536,6 +2561,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/double/0.0-null-1.2e20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2634,6 +2660,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/double/1.number.0",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2732,6 +2759,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/string/foo1.foo2.foo3",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2860,6 +2888,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/string/foo1.foo2.foo3",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -2932,6 +2961,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/string/foo.null.foo2",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3030,6 +3060,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/string/foo.123.foo2",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3129,6 +3160,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3259,6 +3291,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -3331,6 +3364,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date/invalidnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3429,6 +3463,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date/invalidchars",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3528,6 +3563,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3658,6 +3694,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -3730,6 +3767,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time/invalidnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3828,6 +3866,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time/invalidchars",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3928,6 +3967,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time-rfc1123/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4058,6 +4098,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/date-time-rfc1123/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -4131,6 +4172,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/duration/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4259,6 +4301,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/duration/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -4332,6 +4375,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/byte/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4461,6 +4505,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/byte/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -4534,6 +4579,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/byte/invalidnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4633,6 +4679,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/prim/base64url/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4731,6 +4778,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4830,6 +4878,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4930,6 +4979,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/itemnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5030,6 +5080,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/itemempty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5130,6 +5181,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5249,6 +5301,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/complex/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -5321,6 +5374,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5426,6 +5480,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5532,6 +5587,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/itemnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5638,6 +5694,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/itemempty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5744,6 +5801,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5891,6 +5949,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });
@@ -5963,6 +6022,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6068,6 +6128,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6175,6 +6236,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/itemnull",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6282,6 +6344,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/itemempty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6389,6 +6452,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6538,6 +6602,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/dictionary/dictionary/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
         });

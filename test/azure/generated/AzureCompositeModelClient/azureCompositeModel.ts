@@ -161,6 +161,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -168,6 +170,18 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -288,6 +302,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -295,6 +311,17 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -417,6 +444,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -424,6 +453,17 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

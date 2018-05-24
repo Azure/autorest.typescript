@@ -112,12 +112,26 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -227,12 +241,25 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });
@@ -344,12 +371,25 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
+            "resourceGroupName": resourceGroupName,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
+          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
         });

@@ -96,12 +96,26 @@ export class AvailabilitySets {
         httpRequest,
         {
           arguments: {
+            "resourceGroupName": resourceGroupName,
+            "avset": avset,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
+          path: "/parameterFlattening/{resourceGroupName}/{availabilitySetName}",
+          urlParameters: [
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "avset",
+              urlParameterName: "availabilitySetName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "tags1",
         });

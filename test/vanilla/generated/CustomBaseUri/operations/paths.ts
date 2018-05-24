@@ -70,12 +70,26 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "accountName": accountName,
+            "this.client.host": this.client.host,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/customuri",
+          urlParameters: [
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.host",
+              urlParameterName: "host",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

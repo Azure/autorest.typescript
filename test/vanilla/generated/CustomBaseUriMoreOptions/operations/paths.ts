@@ -94,12 +94,42 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "vault": vault,
+            "secret": secret,
+            "this.client.dnsSuffix": this.client.dnsSuffix,
+            "keyName": keyName,
+            "this.client.subscriptionId": this.client.subscriptionId,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/customuri/{subscriptionId}/{keyName}",
+          urlParameters: [
+            {
+              parameterName: "vault",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "secret",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.dnsSuffix",
+              urlParameterName: "dnsSuffix",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "keyName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

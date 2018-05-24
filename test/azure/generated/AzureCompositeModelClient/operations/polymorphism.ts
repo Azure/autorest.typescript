@@ -71,6 +71,7 @@ export class Polymorphism {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -211,6 +212,7 @@ export class Polymorphism {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -300,6 +302,7 @@ export class Polymorphism {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/complicated",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -409,6 +412,7 @@ export class Polymorphism {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/complicated",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -504,6 +508,7 @@ export class Polymorphism {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/missingdiscriminator",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -641,6 +646,7 @@ export class Polymorphism {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/complex/polymorphism/missingrequired/invalid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

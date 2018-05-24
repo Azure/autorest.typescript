@@ -64,6 +64,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/bool/true",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,6 +137,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/bool/false",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -218,6 +220,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/bool/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -290,6 +293,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/int/1000000",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -362,6 +366,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/int/-1000000",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -444,6 +449,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/int/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -516,6 +522,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/long/10000000000",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -588,6 +595,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/long/-10000000000",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -670,6 +678,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/long/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -742,6 +751,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/float/1.034E+20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -814,6 +824,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/float/-1.034E-20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -896,6 +907,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/float/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -968,6 +980,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/double/9999999.999",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1040,6 +1053,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/double/-9999999.999",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1122,6 +1136,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/double/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1194,6 +1209,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/string/unicode/",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1266,6 +1282,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1338,6 +1355,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/string/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1420,6 +1438,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/string/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1505,6 +1524,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/enum/green%20color",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1590,6 +1610,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/enum/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1672,6 +1693,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/byte/multibyte",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1744,6 +1766,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/byte/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1826,6 +1849,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/byte/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1898,6 +1922,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/date/2012-01-01",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1981,6 +2006,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/date/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2053,6 +2079,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2136,6 +2163,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/datetime/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2224,6 +2252,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/csv/string/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2311,6 +2340,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/csv/string/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2398,6 +2428,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/csv/string/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2486,6 +2517,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/ssv/string/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2574,6 +2606,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/tsv/string/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2662,6 +2695,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/pipes/string/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

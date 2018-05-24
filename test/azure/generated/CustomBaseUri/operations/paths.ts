@@ -73,6 +73,8 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "accountName": accountName,
+            "this.client.host": this.client.host,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -80,6 +82,18 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/customuri",
+          urlParameters: [
+            {
+              parameterName: "accountName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.host",
+              urlParameterName: "host",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

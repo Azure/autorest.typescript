@@ -71,6 +71,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/single",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -199,6 +200,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple",
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -342,6 +344,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/odata",
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -492,6 +495,7 @@ export class Paging {
             "clientRequestId": clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "maxresults": maxresults,
+            "offset": offset,
             "timeout": timeout,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -499,6 +503,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/withpath/{offset}",
+          urlParameters: [
+            {
+              parameterName: "offset",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -613,6 +624,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/retryfirst",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -715,6 +727,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/retrysecond",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -815,6 +828,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/single/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -915,6 +929,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1015,6 +1030,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/failureuri",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1120,6 +1136,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "tenant": tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1127,6 +1144,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/fragment/{tenant}",
+          urlParameters: [
+            {
+              parameterName: "tenant",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1250,12 +1274,20 @@ export class Paging {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "tenant": tenant,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/fragmentwithgrouping/{tenant}",
+          urlParameters: [
+            {
+              parameterName: "tenant",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1367,6 +1399,8 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "tenant": tenant,
+            "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1374,6 +1408,17 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/fragment/{tenant}/{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "tenant",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1501,13 +1546,26 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "tenant": tenant,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "tenant",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1607,6 +1665,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -1614,6 +1673,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1739,6 +1805,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "clientRequestId": clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "maxresults": maxresults,
@@ -1749,6 +1816,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -1888,6 +1962,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "clientRequestId": clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "maxresults": maxresults,
@@ -1898,6 +1973,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -2036,6 +2118,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "clientRequestId": clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             "maxresults": maxresults,
@@ -2046,6 +2129,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -2159,6 +2249,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -2166,6 +2257,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2267,6 +2365,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -2274,6 +2373,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2373,6 +2479,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -2380,6 +2487,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2479,6 +2593,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -2486,6 +2601,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2585,6 +2707,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
+            "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -2592,6 +2715,13 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              urlParameterName: "nextLink",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

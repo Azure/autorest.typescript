@@ -165,12 +165,31 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "id": id,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
+          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "id",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -315,12 +334,31 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "this.subscriptionId": this.subscriptionId,
+            "resourceGroupName": resourceGroupName,
+            "id": id,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
+          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          urlParameters: [
+            {
+              parameterName: "this.subscriptionId",
+              urlParameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "resourceGroupName",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "id",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });
@@ -403,12 +441,20 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "constantParam": constantParam,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
+          path: "/validation/constantsInPath/{constantParam}/value",
+          urlParameters: [
+            {
+              parameterName: "constantParam",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -474,12 +520,20 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "constantParam": constantParam,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
+          path: "/validation/constantsInPath/{constantParam}/value",
+          urlParameters: [
+            {
+              parameterName: "constantParam",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
         });

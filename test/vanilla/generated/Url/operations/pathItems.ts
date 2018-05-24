@@ -103,12 +103,31 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "pathItemStringPath": pathItemStringPath,
+            "this.client.globalStringPath": this.client.globalStringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -219,12 +238,31 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "pathItemStringPath": pathItemStringPath,
+            "this.client.globalStringPath": this.client.globalStringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -335,12 +373,31 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "pathItemStringPath": pathItemStringPath,
+            "this.client.globalStringPath": this.client.globalStringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -451,12 +508,31 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
+            "localStringPath": localStringPath,
+            "pathItemStringPath": pathItemStringPath,
+            "this.client.globalStringPath": this.client.globalStringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+          urlParameters: [
+            {
+              parameterName: "localStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "pathItemStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+            {
+              parameterName: "this.client.globalStringPath",
+              urlParameterName: "globalStringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

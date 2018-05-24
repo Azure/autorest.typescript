@@ -62,6 +62,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/simple",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -159,6 +160,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/simple",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           isXML: true,
@@ -232,6 +234,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/wrapped-lists",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -325,6 +328,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "wrappedLists",
           isXML: true,
@@ -398,6 +402,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/headers",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -468,6 +473,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -561,6 +567,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           isXML: true,
@@ -630,6 +637,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-wrapped-lists",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -723,6 +731,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "appleBarrel",
           isXML: true,
@@ -792,6 +801,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/root-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -907,6 +917,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -976,6 +987,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/root-list-single-item",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1091,6 +1103,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/root-list-single-item",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -1160,6 +1173,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-root-list",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1275,6 +1289,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           isXML: true,
@@ -1344,6 +1359,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-child-element",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1437,6 +1453,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/empty-child-element",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "banana",
           isXML: true,
@@ -1508,6 +1525,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1593,6 +1611,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1690,6 +1709,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1763,6 +1783,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1882,6 +1903,7 @@ export class Xml {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           isXML: true,
@@ -1955,6 +1977,7 @@ export class Xml {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/xml/mycontainer",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

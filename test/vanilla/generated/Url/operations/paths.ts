@@ -58,12 +58,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "boolPath": boolPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/bool/true/{boolPath}",
+          urlParameters: [
+            {
+              parameterName: "boolPath",
+              type: msRest.OperationParameterType.Boolean,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -130,12 +138,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "boolPath": boolPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/bool/false/{boolPath}",
+          urlParameters: [
+            {
+              parameterName: "boolPath",
+              type: msRest.OperationParameterType.Boolean,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -202,12 +218,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "intPath": intPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/int/1000000/{intPath}",
+          urlParameters: [
+            {
+              parameterName: "intPath",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -274,12 +298,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "intPath": intPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/int/-1000000/{intPath}",
+          urlParameters: [
+            {
+              parameterName: "intPath",
+              type: msRest.OperationParameterType.Int,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -346,12 +378,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "longPath": longPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/long/10000000000/{longPath}",
+          urlParameters: [
+            {
+              parameterName: "longPath",
+              type: msRest.OperationParameterType.Long,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -418,12 +458,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "longPath": longPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/long/-10000000000/{longPath}",
+          urlParameters: [
+            {
+              parameterName: "longPath",
+              type: msRest.OperationParameterType.Long,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -490,12 +538,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "floatPath": floatPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/float/1.034E+20/{floatPath}",
+          urlParameters: [
+            {
+              parameterName: "floatPath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -562,12 +618,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "floatPath": floatPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/float/-1.034E-20/{floatPath}",
+          urlParameters: [
+            {
+              parameterName: "floatPath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -634,12 +698,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "doublePath": doublePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/double/9999999.999/{doublePath}",
+          urlParameters: [
+            {
+              parameterName: "doublePath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -706,12 +778,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "doublePath": doublePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/double/-9999999.999/{doublePath}",
+          urlParameters: [
+            {
+              parameterName: "doublePath",
+              type: msRest.OperationParameterType.Double,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -778,12 +858,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/unicode/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -850,12 +938,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -922,12 +1018,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/empty/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1003,12 +1107,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "stringPath": stringPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/null/{stringPath}",
+          urlParameters: [
+            {
+              parameterName: "stringPath",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1090,12 +1202,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "enumPath": enumPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/enum/green%20color/{enumPath}",
+          urlParameters: [
+            {
+              parameterName: "enumPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1177,12 +1296,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "enumPath": enumPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/null/{enumPath}",
+          urlParameters: [
+            {
+              parameterName: "enumPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1259,12 +1385,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/byte/multibyte/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1331,12 +1465,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/byte/empty/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1412,12 +1554,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "bytePath": bytePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/byte/null/{bytePath}",
+          urlParameters: [
+            {
+              parameterName: "bytePath",
+              type: msRest.OperationParameterType.ByteArray,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1484,12 +1634,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "datePath": datePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/date/2012-01-01/{datePath}",
+          urlParameters: [
+            {
+              parameterName: "datePath",
+              type: msRest.OperationParameterType.Date,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1567,12 +1725,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "datePath": datePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/date/null/{datePath}",
+          urlParameters: [
+            {
+              parameterName: "datePath",
+              type: msRest.OperationParameterType.Date,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1639,12 +1805,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "dateTimePath": dateTimePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
+          urlParameters: [
+            {
+              parameterName: "dateTimePath",
+              type: msRest.OperationParameterType.DateTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1722,12 +1896,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "dateTimePath": dateTimePath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/datetime/null/{dateTimePath}",
+          urlParameters: [
+            {
+              parameterName: "dateTimePath",
+              type: msRest.OperationParameterType.DateTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1803,12 +1985,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "base64UrlPath": base64UrlPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/string/bG9yZW0/{base64UrlPath}",
+          urlParameters: [
+            {
+              parameterName: "base64UrlPath",
+              type: msRest.OperationParameterType.Base64Url,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1891,12 +2081,19 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "arrayPath": arrayPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+          urlParameters: [
+            {
+              parameterName: "arrayPath",
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1973,12 +2170,20 @@ export class Paths {
         httpRequest,
         {
           arguments: {
+            "unixTimeUrlPath": unixTimeUrlPath,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/paths/int/1460505600/{unixTimeUrlPath}",
+          urlParameters: [
+            {
+              parameterName: "unixTimeUrlPath",
+              type: msRest.OperationParameterType.UnixTime,
+            },
+          ],
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

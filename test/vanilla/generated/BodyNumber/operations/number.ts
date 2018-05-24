@@ -61,6 +61,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,6 +153,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/invalidfloat",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -243,6 +245,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/invaliddouble",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -334,6 +337,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/invaliddecimal",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -443,6 +447,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/float/3.402823e+20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -515,6 +520,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/float/3.402823e+20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -624,6 +630,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -696,6 +703,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/2.5976931e+101",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -805,6 +813,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -877,6 +886,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/99999999.99",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -986,6 +996,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1058,6 +1069,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/double/-99999999.99",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1167,6 +1179,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1239,6 +1252,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/2.5976931e+101",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1348,6 +1362,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1420,6 +1435,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/99999999.99",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1529,6 +1545,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1601,6 +1618,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/big/decimal/-99999999.99",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1710,6 +1728,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/small/float/3.402823e-20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1782,6 +1801,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/small/float/3.402823e-20",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1891,6 +1911,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/small/double/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -1963,6 +1984,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/small/double/2.5976931e-101",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2072,6 +2094,7 @@ export class Number {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
+          path: "/number/small/decimal/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
         });
@@ -2144,6 +2167,7 @@ export class Number {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/number/small/decimal/2.5976931e-101",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

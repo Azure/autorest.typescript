@@ -85,6 +85,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/multi/string/null",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -178,6 +179,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/multi/string/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -272,6 +274,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/queries/array/multi/string/valid",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

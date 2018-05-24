@@ -61,6 +61,7 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/http/failure/emptybody/error",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,6 +153,7 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/http/failure/nomodel/error",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -239,6 +241,7 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
+          path: "/http/failure/nomodel/empty",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

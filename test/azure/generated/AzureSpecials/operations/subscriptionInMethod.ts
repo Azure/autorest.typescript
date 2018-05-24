@@ -71,6 +71,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -78,6 +79,13 @@ export class SubscriptionInMethod {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -165,6 +173,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -172,6 +181,13 @@ export class SubscriptionInMethod {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -259,6 +275,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -266,6 +283,13 @@ export class SubscriptionInMethod {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -353,6 +377,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
+            "subscriptionId": subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
@@ -360,6 +385,13 @@ export class SubscriptionInMethod {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
+          path: "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          urlParameters: [
+            {
+              parameterName: "subscriptionId",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
