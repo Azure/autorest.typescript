@@ -54,22 +54,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/multi/string/null");
-    if (arrayQuery != undefined) {
-      if (arrayQuery.length == 0) {
-        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
-      } else {
-        for (const item of arrayQuery) {
-          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
-        }
-      }
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -81,7 +67,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -155,22 +141,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/multi/string/empty");
-    if (arrayQuery != undefined) {
-      if (arrayQuery.length == 0) {
-        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
-      } else {
-        for (const item of arrayQuery) {
-          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
-        }
-      }
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -182,7 +154,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -257,22 +229,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/multi/string/valid");
-    if (arrayQuery != undefined) {
-      if (arrayQuery.length == 0) {
-        requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(''));
-      } else {
-        for (const item of arrayQuery) {
-          requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(item == undefined ? "" : "" + item));
-        }
-      }
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -284,7 +242,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

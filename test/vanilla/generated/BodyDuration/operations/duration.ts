@@ -39,13 +39,8 @@ export class Duration {
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/duration/null");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -56,7 +51,7 @@ export class Duration {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -141,13 +136,8 @@ export class Duration {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/duration/positiveduration");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = durationBody;
@@ -166,7 +156,7 @@ export class Duration {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -222,13 +212,8 @@ export class Duration {
   async getPositiveDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/duration/positiveduration");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -239,7 +224,7 @@ export class Duration {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -314,13 +299,8 @@ export class Duration {
   async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/duration/invalid");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -331,7 +311,7 @@ export class Duration {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

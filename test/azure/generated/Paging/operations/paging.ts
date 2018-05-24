@@ -48,13 +48,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/single");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -66,7 +61,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -174,13 +169,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -195,7 +185,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -318,13 +308,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/odata");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -339,7 +324,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -475,14 +460,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/withpath/{offset}");
-    requestUrl.replaceAll("{offset}", encodeURIComponent(offset.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -498,7 +477,7 @@ export class Paging {
             "offset": offset,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -601,13 +580,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/retryfirst");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -619,7 +593,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -704,13 +678,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/retrysecond");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -722,7 +691,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -805,13 +774,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/single/failure");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -823,7 +787,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -906,13 +870,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/failure");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -924,7 +883,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1007,13 +966,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/failureuri");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1025,7 +979,7 @@ export class Paging {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1118,15 +1072,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/fragment/{tenant}");
-    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
-    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1140,7 +1087,7 @@ export class Paging {
             "tenant": tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1263,15 +1210,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/fragmentwithgrouping/{tenant}");
-    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
-    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1285,7 +1225,7 @@ export class Paging {
             "apiVersion": apiVersion,
             "tenant": tenant,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1396,16 +1336,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/fragment/{tenant}/{nextLink}");
-    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
-    requestUrl.replaceAll("{nextLink}", nextLink);
-    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1420,7 +1352,7 @@ export class Paging {
             "nextLink": nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1552,16 +1484,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextLink);
-    requestUrl.replaceAll("{tenant}", encodeURIComponent(tenant));
-    requestUrl.setQueryParameter("api_version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1576,7 +1500,7 @@ export class Paging {
             "apiVersion": apiVersion,
             "tenant": tenant,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1683,13 +1607,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1702,7 +1621,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1824,13 +1743,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1846,7 +1760,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1982,13 +1896,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2004,7 +1913,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2139,13 +2048,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2161,7 +2065,7 @@ export class Paging {
             "maxresults": maxresults,
             "timeout": timeout,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2271,13 +2175,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2290,7 +2189,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2388,13 +2287,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2407,7 +2301,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2503,13 +2397,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2522,7 +2411,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2618,13 +2507,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2637,7 +2521,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2733,13 +2617,8 @@ export class Paging {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("{nextLink}");
-    requestUrl.replaceAll("{nextLink}", nextPageLink);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2752,7 +2631,7 @@ export class Paging {
             "nextPageLink": nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

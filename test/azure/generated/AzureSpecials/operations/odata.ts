@@ -61,22 +61,8 @@ export class Odata {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/odata/filter");
-    if (filter != undefined) {
-      requestUrl.setQueryParameter("$filter", encodeURIComponent(filter));
-    }
-    if (top != undefined) {
-      requestUrl.setQueryParameter("$top", encodeURIComponent(top.toString()));
-    }
-    if (orderby != undefined) {
-      requestUrl.setQueryParameter("$orderby", encodeURIComponent(orderby));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -91,7 +77,7 @@ export class Odata {
             "orderby": orderby,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

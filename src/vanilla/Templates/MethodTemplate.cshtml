@@ -54,25 +54,8 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   }
 @(Model.BuildInputMappings())
   @EmptyLine
-  // Construct URL
-  @if (Model.IsAbsoluteUrl)
-  {
-  <text>
-  const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse("@(Model.Url)");
-  </text>
-  }
-  else
-  {
-  <text>
-  const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(@(Model.ClientReference).baseUri);
-  requestUrl.setPath("@(Model.Url)");
-  </text>
-  }
-@(Model.BuildUrl("requestUrl"))
-  @EmptyLine
   // Create HTTP transport objects
   const httpRequest = new WebResource();
-  httpRequest.url = requestUrl.toString();
 
   // Set Headers
   httpRequest.headers.set("Content-Type", "@(Model.RequestContentType)");

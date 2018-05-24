@@ -40,13 +40,8 @@ export class HttpRetry {
   async head408WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/408");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -57,7 +52,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
@@ -120,13 +115,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/500");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -145,7 +135,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -210,13 +200,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/500");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -235,7 +220,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PATCH",
@@ -291,13 +276,8 @@ export class HttpRetry {
   async get502WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/502");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -308,7 +288,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -371,13 +351,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/503");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -396,7 +371,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -461,13 +436,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/503");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -486,7 +456,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "DELETE",
@@ -551,13 +521,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/504");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -576,7 +541,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -641,13 +606,8 @@ export class HttpRetry {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/http/retry/504");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
@@ -666,7 +626,7 @@ export class HttpRetry {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PATCH",

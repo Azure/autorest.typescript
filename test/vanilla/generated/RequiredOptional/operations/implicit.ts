@@ -50,14 +50,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/required/path/{pathParameter}");
-    requestUrl.replaceAll("{pathParameter}", encodeURIComponent(pathParameter));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -69,7 +63,7 @@ export class Implicit {
           arguments: {
             "pathParameter": pathParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -151,16 +145,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/query");
-    if (queryParameter != undefined) {
-      requestUrl.setQueryParameter("queryParameter", encodeURIComponent(queryParameter));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -172,7 +158,7 @@ export class Implicit {
           arguments: {
             "queryParameter": queryParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -242,13 +228,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/header");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -260,7 +241,7 @@ export class Implicit {
           arguments: {
             "queryParameter": queryParameter,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -330,13 +311,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/implicit/optional/body");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -355,7 +331,7 @@ export class Implicit {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -419,14 +395,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/required/path/{required-global-path}");
-    requestUrl.replaceAll("{required-global-path}", encodeURIComponent(this.client.requiredGlobalPath));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -438,7 +408,7 @@ export class Implicit {
           arguments: {
             "this.client.requiredGlobalPath": this.client.requiredGlobalPath,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -519,14 +489,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/required/query");
-    requestUrl.setQueryParameter("required-global-query", encodeURIComponent(this.client.requiredGlobalQuery));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -538,7 +502,7 @@ export class Implicit {
           arguments: {
             "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -619,16 +583,8 @@ export class Implicit {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/reqopt/global/optional/query");
-    if (this.client.optionalGlobalQuery != undefined) {
-      requestUrl.setQueryParameter("optional-global-query", encodeURIComponent(this.client.optionalGlobalQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -640,7 +596,7 @@ export class Implicit {
           arguments: {
             "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

@@ -145,17 +145,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
-    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -170,7 +161,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "id": id,
             "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -320,17 +311,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/fakepath/{subscriptionId}/{resourceGroupName}/{id}");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{id}", encodeURIComponent(id.toString()));
-    requestUrl.setQueryParameter("apiVersion", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -347,7 +329,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "id": id,
             "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -440,14 +422,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let client = this;
     let constantParam = 'constant';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
-    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -459,7 +435,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           arguments: {
             "constantParam": constantParam,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -517,14 +493,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     let body = (options && options.body !== undefined) ? options.body : undefined;
     let constantParam = 'constant';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/validation/constantsInPath/{constantParam}/value");
-    requestUrl.replaceAll("{constantParam}", encodeURIComponent(constantParam));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -538,7 +508,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           arguments: {
             "constantParam": constantParam,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",

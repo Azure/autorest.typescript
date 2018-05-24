@@ -54,14 +54,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}");
-    requestUrl.replaceAll("{unencodedPathParam}", unencodedPathParam);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -74,7 +68,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -156,14 +150,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}");
-    requestUrl.replaceAll("{unencodedPathParam}", unencodedPathParam);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -176,7 +164,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -253,14 +241,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}");
-    requestUrl.replaceAll("{unencodedPathParam}", unencodedPathParam);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -273,7 +255,7 @@ export class SkipUrlEncoding {
             "unencodedPathParam": unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -356,14 +338,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/method/query/valid");
-    requestUrl.setQueryParameter("q1", q1);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -376,7 +352,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -457,16 +433,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/method/query/null");
-    if (q1 != undefined) {
-      requestUrl.setQueryParameter("q1", q1);
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -479,7 +447,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -562,14 +530,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/path/query/valid");
-    requestUrl.setQueryParameter("q1", q1);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -582,7 +544,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -660,14 +622,8 @@ export class SkipUrlEncoding {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/azurespecials/skipUrlEncoding/swagger/query/valid");
-    requestUrl.setQueryParameter("q1", q1);
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -680,7 +636,7 @@ export class SkipUrlEncoding {
             "q1": q1,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

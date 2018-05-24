@@ -112,13 +112,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/array");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceArray;
@@ -146,7 +141,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -218,13 +213,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/array");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -236,7 +226,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -337,13 +327,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/dictionary");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceDictionary;
@@ -371,7 +356,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -443,13 +428,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/dictionary");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -461,7 +441,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -563,13 +543,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/resourcecollection");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceComplexObject;
@@ -583,7 +558,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -655,13 +630,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/azure/resource-flatten/resourcecollection");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -673,7 +643,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           arguments: {
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

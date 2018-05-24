@@ -115,16 +115,8 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/report/azure");
-    if (qualifier != undefined) {
-      requestUrl.setQueryParameter("qualifier", encodeURIComponent(qualifier));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -137,7 +129,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
             "qualifier": qualifier,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

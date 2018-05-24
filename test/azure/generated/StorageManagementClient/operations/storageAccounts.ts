@@ -62,15 +62,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = accountName;
@@ -86,7 +79,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -263,17 +256,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -289,7 +273,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "DELETE",
@@ -400,17 +384,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -426,7 +401,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -565,17 +540,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = parameters;
@@ -593,7 +559,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PATCH",
@@ -717,17 +683,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -743,7 +700,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -855,15 +812,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -877,7 +827,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -988,16 +938,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1012,7 +954,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1145,17 +1087,8 @@ export class StorageAccounts {
       regenerateKeyParameter.keyName = keyName;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = regenerateKeyParameter;
@@ -1173,7 +1106,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -1309,17 +1242,8 @@ export class StorageAccounts {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}");
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.replaceAll("{accountName}", encodeURIComponent(accountName));
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.client.subscriptionId));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.client.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = parameters;
@@ -1337,7 +1261,7 @@ export class StorageAccounts {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",

@@ -77,13 +77,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/array");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceArray;
@@ -110,7 +105,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -167,13 +162,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
     let client = this;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/array");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -184,7 +174,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -271,13 +261,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/wrappedarray");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceArray;
@@ -304,7 +289,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -362,13 +347,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   async getWrappedArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductWrapper[]>> {
     let client = this;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/wrappedarray");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -379,7 +359,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -465,13 +445,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/dictionary");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceDictionary;
@@ -498,7 +473,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -555,13 +530,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
     let client = this;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/dictionary");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -572,7 +542,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -659,13 +629,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/resourcecollection");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = resourceComplexObject;
@@ -678,7 +643,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -735,13 +700,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
     let client = this;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/resourcecollection");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -752,7 +712,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -824,13 +784,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let client = this;
     let simpleBodyProduct = (options && options.simpleBodyProduct !== undefined) ? options.simpleBodyProduct : undefined;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/customFlattening");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = simpleBodyProduct;
@@ -843,7 +798,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",
@@ -960,13 +915,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/customFlattening");
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = simpleBodyProduct;
@@ -979,7 +929,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -1124,14 +1074,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/model-flatten/customFlattening/parametergrouping/{name}/");
-    requestUrl.replaceAll("{name}", encodeURIComponent(name));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = simpleBodyProduct;
@@ -1145,7 +1089,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           arguments: {
             "name": name,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",

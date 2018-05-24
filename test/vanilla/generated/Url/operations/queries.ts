@@ -41,14 +41,8 @@ export class Queries {
     let client = this.client;
     let boolQuery = true;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/bool/true");
-    requestUrl.setQueryParameter("boolQuery", encodeURIComponent(boolQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -60,7 +54,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -121,14 +115,8 @@ export class Queries {
     let client = this.client;
     let boolQuery = false;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/bool/false");
-    requestUrl.setQueryParameter("boolQuery", encodeURIComponent(boolQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -140,7 +128,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -209,16 +197,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/bool/null");
-    if (boolQuery != undefined) {
-      requestUrl.setQueryParameter("boolQuery", encodeURIComponent(boolQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -230,7 +210,7 @@ export class Queries {
           arguments: {
             "boolQuery": boolQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -291,14 +271,8 @@ export class Queries {
     let client = this.client;
     let intQuery = 1000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/int/1000000");
-    requestUrl.setQueryParameter("intQuery", encodeURIComponent(intQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -310,7 +284,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -371,14 +345,8 @@ export class Queries {
     let client = this.client;
     let intQuery = -1000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/int/-1000000");
-    requestUrl.setQueryParameter("intQuery", encodeURIComponent(intQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -390,7 +358,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -459,16 +427,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/int/null");
-    if (intQuery != undefined) {
-      requestUrl.setQueryParameter("intQuery", encodeURIComponent(intQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -480,7 +440,7 @@ export class Queries {
           arguments: {
             "intQuery": intQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -541,14 +501,8 @@ export class Queries {
     let client = this.client;
     let longQuery = 10000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/long/10000000000");
-    requestUrl.setQueryParameter("longQuery", encodeURIComponent(longQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -560,7 +514,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -621,14 +575,8 @@ export class Queries {
     let client = this.client;
     let longQuery = -10000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/long/-10000000000");
-    requestUrl.setQueryParameter("longQuery", encodeURIComponent(longQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -640,7 +588,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -709,16 +657,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/long/null");
-    if (longQuery != undefined) {
-      requestUrl.setQueryParameter("longQuery", encodeURIComponent(longQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -730,7 +670,7 @@ export class Queries {
           arguments: {
             "longQuery": longQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -791,14 +731,8 @@ export class Queries {
     let client = this.client;
     let floatQuery = 103400000000000000000;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/float/1.034E+20");
-    requestUrl.setQueryParameter("floatQuery", encodeURIComponent(floatQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -810,7 +744,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -871,14 +805,8 @@ export class Queries {
     let client = this.client;
     let floatQuery = -1.034e-20;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/float/-1.034E-20");
-    requestUrl.setQueryParameter("floatQuery", encodeURIComponent(floatQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -890,7 +818,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -959,16 +887,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/float/null");
-    if (floatQuery != undefined) {
-      requestUrl.setQueryParameter("floatQuery", encodeURIComponent(floatQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -980,7 +900,7 @@ export class Queries {
           arguments: {
             "floatQuery": floatQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1041,14 +961,8 @@ export class Queries {
     let client = this.client;
     let doubleQuery = 9999999.999;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/double/9999999.999");
-    requestUrl.setQueryParameter("doubleQuery", encodeURIComponent(doubleQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1060,7 +974,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1121,14 +1035,8 @@ export class Queries {
     let client = this.client;
     let doubleQuery = -9999999.999;
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/double/-9999999.999");
-    requestUrl.setQueryParameter("doubleQuery", encodeURIComponent(doubleQuery.toString()));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1140,7 +1048,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1209,16 +1117,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/double/null");
-    if (doubleQuery != undefined) {
-      requestUrl.setQueryParameter("doubleQuery", encodeURIComponent(doubleQuery.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1230,7 +1130,7 @@ export class Queries {
           arguments: {
             "doubleQuery": doubleQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1291,14 +1191,8 @@ export class Queries {
     let client = this.client;
     let stringQuery = '啊齄丂狛狜隣郎隣兀﨩';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/string/unicode/");
-    requestUrl.setQueryParameter("stringQuery", encodeURIComponent(stringQuery));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1310,7 +1204,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1371,14 +1265,8 @@ export class Queries {
     let client = this.client;
     let stringQuery = 'begin!*\'();:@ &=+$,/?#[]end';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend");
-    requestUrl.setQueryParameter("stringQuery", encodeURIComponent(stringQuery));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1390,7 +1278,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1451,14 +1339,8 @@ export class Queries {
     let client = this.client;
     let stringQuery = '';
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/string/empty");
-    requestUrl.setQueryParameter("stringQuery", encodeURIComponent(stringQuery));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1470,7 +1352,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1539,16 +1421,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/string/null");
-    if (stringQuery != undefined) {
-      requestUrl.setQueryParameter("stringQuery", encodeURIComponent(stringQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1560,7 +1434,7 @@ export class Queries {
           arguments: {
             "stringQuery": stringQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1632,16 +1506,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/enum/green%20color");
-    if (enumQuery != undefined) {
-      requestUrl.setQueryParameter("enumQuery", encodeURIComponent(enumQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1653,7 +1519,7 @@ export class Queries {
           arguments: {
             "enumQuery": enumQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1724,16 +1590,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/enum/null");
-    if (enumQuery != undefined) {
-      requestUrl.setQueryParameter("enumQuery", encodeURIComponent(enumQuery));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1745,7 +1603,7 @@ export class Queries {
           arguments: {
             "enumQuery": enumQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1813,16 +1671,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/byte/multibyte");
-    if (byteQuery != undefined) {
-      requestUrl.setQueryParameter("byteQuery", encodeURIComponent(msRest.serializeObject(byteQuery)));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1834,7 +1684,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1895,14 +1745,8 @@ export class Queries {
     let client = this.client;
     let byteQuery = new Buffer('');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/byte/empty");
-    requestUrl.setQueryParameter("byteQuery", encodeURIComponent(msRest.serializeObject(byteQuery)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -1914,7 +1758,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -1983,16 +1827,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/byte/null");
-    if (byteQuery != undefined) {
-      requestUrl.setQueryParameter("byteQuery", encodeURIComponent(msRest.serializeObject(byteQuery)));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2004,7 +1840,7 @@ export class Queries {
           arguments: {
             "byteQuery": byteQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2065,14 +1901,8 @@ export class Queries {
     let client = this.client;
     let dateQuery = new Date('2012-01-01');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/date/2012-01-01");
-    requestUrl.setQueryParameter("dateQuery", encodeURIComponent(msRest.serializeObject(dateQuery).replace(/[Tt].*[Zz]/, '')));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2084,7 +1914,7 @@ export class Queries {
           arguments: {
             "dateQuery": dateQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2154,16 +1984,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/date/null");
-    if (dateQuery != undefined) {
-      requestUrl.setQueryParameter("dateQuery", encodeURIComponent(msRest.serializeObject(dateQuery).replace(/[Tt].*[Zz]/, '')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2175,7 +1997,7 @@ export class Queries {
           arguments: {
             "dateQuery": dateQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2236,14 +2058,8 @@ export class Queries {
     let client = this.client;
     let dateTimeQuery = new Date('2012-01-01T01:01:01Z');
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/datetime/2012-01-01T01%3A01%3A01Z");
-    requestUrl.setQueryParameter("dateTimeQuery", encodeURIComponent(msRest.serializeObject(dateTimeQuery)));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2255,7 +2071,7 @@ export class Queries {
           arguments: {
             "dateTimeQuery": dateTimeQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2325,16 +2141,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/datetime/null");
-    if (dateTimeQuery != undefined) {
-      requestUrl.setQueryParameter("dateTimeQuery", encodeURIComponent(msRest.serializeObject(dateTimeQuery)));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2346,7 +2154,7 @@ export class Queries {
           arguments: {
             "dateTimeQuery": dateTimeQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2421,16 +2229,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/csv/string/valid");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join(',')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2442,7 +2242,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2516,16 +2316,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/csv/string/null");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join(',')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2537,7 +2329,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2611,16 +2403,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/csv/string/empty");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join(',')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2632,7 +2416,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2707,16 +2491,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/ssv/string/valid");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join(' ')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2728,7 +2504,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2803,16 +2579,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/tsv/string/valid");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join('	')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2824,7 +2592,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -2899,16 +2667,8 @@ export class Queries {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/queries/array/pipes/string/valid");
-    if (arrayQuery != undefined) {
-      requestUrl.setQueryParameter("arrayQuery", encodeURIComponent(arrayQuery.join('|')));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -2920,7 +2680,7 @@ export class Queries {
           arguments: {
             "arrayQuery": arrayQuery,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",

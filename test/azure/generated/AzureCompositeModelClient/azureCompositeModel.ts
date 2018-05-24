@@ -142,16 +142,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -166,7 +158,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -289,16 +281,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -315,7 +299,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -439,16 +423,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
       bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -465,7 +441,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",

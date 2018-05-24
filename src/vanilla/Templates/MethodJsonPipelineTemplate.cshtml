@@ -23,7 +23,7 @@ try {
 </text>
 }
       },
-      customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+      customHeaders: options && options.customHeaders
     },
     {
       httpMethod: "@(Model.HttpMethod.ToString().ToUpper())",

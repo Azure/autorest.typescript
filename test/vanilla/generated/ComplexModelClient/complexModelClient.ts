@@ -93,16 +93,8 @@ class ComplexModelClient extends msRest.ServiceClient {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(this.subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -116,7 +108,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
@@ -228,16 +220,8 @@ class ComplexModelClient extends msRest.ServiceClient {
       bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -253,7 +237,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -366,16 +350,8 @@ class ComplexModelClient extends msRest.ServiceClient {
       bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.baseUri);
-    requestUrl.setPath("/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis");
-    requestUrl.replaceAll("{subscriptionId}", encodeURIComponent(subscriptionId));
-    requestUrl.replaceAll("{resourceGroupName}", encodeURIComponent(resourceGroupName));
-    requestUrl.setQueryParameter("api-version", encodeURIComponent(this.apiVersion));
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
@@ -391,7 +367,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "PUT",

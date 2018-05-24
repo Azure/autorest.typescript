@@ -91,17 +91,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postRequired/{path}");
-    requestUrl.replaceAll("{path}", encodeURIComponent(path));
-    if (query != undefined) {
-      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
@@ -124,7 +115,7 @@ export class ParameterGrouping {
             "query": query,
             "path": path,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -233,16 +224,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postOptional");
-    if (query != undefined) {
-      requestUrl.setQueryParameter("query", encodeURIComponent(query.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -256,7 +239,7 @@ export class ParameterGrouping {
             "customHeader": customHeader,
             "query": query,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -374,19 +357,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/postMultipleParameterGroups");
-    if (queryOne != undefined) {
-      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
-    }
-    if (queryTwo != undefined) {
-      requestUrl.setQueryParameter("query-two", encodeURIComponent(queryTwo.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -402,7 +374,7 @@ export class ParameterGrouping {
             "headerTwo": headerTwo,
             "queryTwo": queryTwo,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
@@ -515,16 +487,8 @@ export class ParameterGrouping {
       return Promise.reject(error);
     }
 
-    // Construct URL
-    const requestUrl: msRest.URLBuilder = msRest.URLBuilder.parse(this.client.baseUri);
-    requestUrl.setPath("/parameterGrouping/sharedParameterGroupObject");
-    if (queryOne != undefined) {
-      requestUrl.setQueryParameter("query-one", encodeURIComponent(queryOne.toString()));
-    }
-
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.url = requestUrl.toString();
     // Set Headers
     httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
@@ -538,7 +502,7 @@ export class ParameterGrouping {
             "headerOne": headerOne,
             "queryOne": queryOne,
           },
-          customHeaders: new msRest.HttpHeaders(options && options.customHeaders)
+          customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
