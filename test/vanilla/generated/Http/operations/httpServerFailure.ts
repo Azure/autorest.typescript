@@ -42,8 +42,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -120,8 +118,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -208,8 +204,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -234,6 +228,7 @@ export class HttpServerFailure {
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -306,8 +301,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -332,6 +325,7 @@ export class HttpServerFailure {
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

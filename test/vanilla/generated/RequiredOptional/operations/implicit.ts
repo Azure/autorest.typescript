@@ -52,8 +52,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -147,8 +145,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -230,8 +226,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -313,8 +307,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -339,6 +331,7 @@ export class Implicit {
           path: "/reqopt/implicit/optional/body",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -397,8 +390,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -491,8 +482,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -585,8 +574,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

@@ -53,8 +53,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -79,6 +77,7 @@ export class Explicit {
           path: "/reqopt/requied/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -151,8 +150,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -177,6 +174,7 @@ export class Explicit {
           path: "/reqopt/optional/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -244,8 +242,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -264,6 +260,7 @@ export class Explicit {
           path: "/reqopt/requied/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -342,8 +339,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -362,6 +357,7 @@ export class Explicit {
           path: "/reqopt/optional/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -423,8 +419,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -519,8 +513,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -603,8 +595,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -629,6 +619,7 @@ export class Explicit {
           path: "/reqopt/requied/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -701,8 +692,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -727,6 +716,7 @@ export class Explicit {
           path: "/reqopt/optional/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -794,8 +784,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -814,6 +802,7 @@ export class Explicit {
           path: "/reqopt/requied/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -892,8 +881,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -912,6 +899,7 @@ export class Explicit {
           path: "/reqopt/optional/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -973,8 +961,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1069,8 +1055,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1153,8 +1137,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1173,6 +1155,7 @@ export class Explicit {
           path: "/reqopt/requied/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1237,8 +1220,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1257,6 +1238,7 @@ export class Explicit {
           path: "/reqopt/optional/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1324,8 +1306,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1344,6 +1324,7 @@ export class Explicit {
           path: "/reqopt/requied/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1414,8 +1395,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1434,6 +1413,7 @@ export class Explicit {
           path: "/reqopt/optional/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1500,8 +1480,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1533,6 +1511,7 @@ export class Explicit {
           path: "/reqopt/requied/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1609,8 +1588,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1642,6 +1619,7 @@ export class Explicit {
           path: "/reqopt/optional/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1714,8 +1692,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1734,6 +1710,7 @@ export class Explicit {
           path: "/reqopt/requied/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1816,8 +1793,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1836,6 +1811,7 @@ export class Explicit {
           path: "/reqopt/optional/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1902,8 +1878,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2001,8 +1975,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

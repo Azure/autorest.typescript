@@ -42,8 +42,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -133,8 +131,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -153,6 +149,7 @@ export class Primitive {
           path: "/complex/primitive/integer",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -203,8 +200,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -294,8 +289,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -314,6 +307,7 @@ export class Primitive {
           path: "/complex/primitive/long",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -364,8 +358,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -455,8 +447,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -475,6 +465,7 @@ export class Primitive {
           path: "/complex/primitive/float",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -525,8 +516,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -617,8 +606,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -637,6 +624,7 @@ export class Primitive {
           path: "/complex/primitive/double",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -687,8 +675,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -778,8 +764,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -798,6 +782,7 @@ export class Primitive {
           path: "/complex/primitive/bool",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -848,8 +833,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -939,8 +922,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -959,6 +940,7 @@ export class Primitive {
           path: "/complex/primitive/string",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1009,8 +991,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1100,8 +1080,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1120,6 +1098,7 @@ export class Primitive {
           path: "/complex/primitive/date",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1170,8 +1149,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1262,8 +1239,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1282,6 +1257,7 @@ export class Primitive {
           path: "/complex/primitive/datetime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1332,8 +1308,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1424,8 +1398,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1444,6 +1416,7 @@ export class Primitive {
           path: "/complex/primitive/datetimerfc1123",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1494,8 +1467,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1589,8 +1560,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1609,6 +1578,7 @@ export class Primitive {
           path: "/complex/primitive/duration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1659,8 +1629,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1754,8 +1722,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1774,6 +1740,7 @@ export class Primitive {
           path: "/complex/primitive/byte",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

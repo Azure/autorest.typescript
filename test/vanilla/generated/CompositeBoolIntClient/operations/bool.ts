@@ -41,8 +41,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -138,8 +136,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -164,6 +160,7 @@ export class Bool {
           path: "/bool/true",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -214,8 +211,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -311,8 +306,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -337,6 +330,7 @@ export class Bool {
           path: "/bool/false",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -387,8 +381,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -474,8 +466,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

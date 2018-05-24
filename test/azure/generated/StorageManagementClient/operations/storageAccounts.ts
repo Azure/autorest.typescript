@@ -64,8 +64,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = accountName;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -108,6 +106,7 @@ export class StorageAccounts {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "accountName",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -258,8 +257,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -386,8 +383,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -542,8 +537,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -596,6 +589,7 @@ export class StorageAccounts {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "parameters",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -685,8 +679,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -814,8 +806,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -940,8 +930,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1089,8 +1077,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = regenerateKeyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1143,6 +1129,7 @@ export class StorageAccounts {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "regenerateKeyParameter",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1244,8 +1231,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1298,6 +1283,7 @@ export class StorageAccounts {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "parameters",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {

@@ -41,8 +41,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
@@ -58,6 +56,7 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/nonempty",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 
@@ -110,8 +109,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
@@ -127,6 +124,7 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/verylarge",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 
@@ -179,8 +177,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
@@ -196,6 +192,7 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/empty",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 

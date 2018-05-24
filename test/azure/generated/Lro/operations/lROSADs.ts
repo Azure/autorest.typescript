@@ -1063,8 +1063,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1091,6 +1089,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1181,8 +1180,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1209,6 +1206,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1299,8 +1297,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1327,6 +1323,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1418,8 +1415,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1446,6 +1441,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1519,8 +1515,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1604,8 +1598,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1691,8 +1683,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1778,8 +1768,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1806,6 +1794,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1869,8 +1858,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1897,6 +1884,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1962,8 +1950,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1990,6 +1976,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2054,8 +2041,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2082,6 +2067,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2173,8 +2159,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2201,6 +2185,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2278,8 +2263,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2306,6 +2289,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2380,8 +2364,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2463,8 +2445,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2551,8 +2531,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2579,6 +2557,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2644,8 +2623,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2672,6 +2649,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2736,8 +2714,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2764,6 +2740,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -2840,8 +2817,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2868,6 +2843,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2945,8 +2921,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -2973,6 +2947,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3047,8 +3022,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3133,8 +3106,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3220,8 +3191,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3308,8 +3277,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3336,6 +3303,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3401,8 +3369,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3429,6 +3395,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3494,8 +3461,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -3522,6 +3487,7 @@ export class LROSADs {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {

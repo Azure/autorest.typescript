@@ -42,8 +42,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -108,8 +106,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -204,8 +200,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -230,6 +224,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -289,8 +284,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -315,6 +308,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -374,8 +368,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -400,6 +392,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -459,8 +452,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -485,6 +476,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -544,8 +536,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -570,6 +560,7 @@ export class HttpSuccess {
           path: "/http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -629,8 +620,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -655,6 +644,7 @@ export class HttpSuccess {
           path: "/http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -714,8 +704,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -740,6 +728,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -799,8 +788,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -825,6 +812,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -884,8 +872,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -910,6 +896,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -969,8 +956,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -995,6 +980,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1045,8 +1031,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1120,8 +1104,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1146,6 +1128,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1205,8 +1188,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1231,6 +1212,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1290,8 +1272,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1316,6 +1296,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1375,8 +1356,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -1401,6 +1380,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1451,8 +1431,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {

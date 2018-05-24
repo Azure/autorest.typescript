@@ -147,8 +147,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -313,8 +311,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -359,6 +355,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -424,8 +421,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -495,8 +490,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/json; charset=utf-8");
     httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
@@ -522,6 +515,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
+          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

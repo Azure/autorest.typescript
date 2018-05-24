@@ -57,8 +57,6 @@ export class Formdata {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "multipart/form-data");
     // Serialize Request
     let formData: any = {};
     if (fileContent !== undefined && fileContent !== null) {
@@ -83,6 +81,7 @@ export class Formdata {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
+          contentType: "multipart/form-data",
         });
       let statusCode = operationRes.status;
 
@@ -145,8 +144,6 @@ export class Formdata {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Set Headers
-    httpRequest.headers.set("Content-Type", "application/octet-stream");
     httpRequest.body = fileContent;
     // Send Request
     httpRequest.rawResponse = true;
@@ -163,6 +160,7 @@ export class Formdata {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
+          contentType: "application/octet-stream",
         });
       let statusCode = operationRes.status;
 
