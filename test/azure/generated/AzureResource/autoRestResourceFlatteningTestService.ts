@@ -114,7 +114,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -137,6 +136,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
+            "resourceArray": resourceArray,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -326,7 +326,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -349,6 +348,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
+            "resourceDictionary": resourceDictionary,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -539,7 +539,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -548,6 +547,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
+            "resourceComplexObject": resourceComplexObject,
             "this.acceptLanguage": this.acceptLanguage,
           },
           customHeaders: options && options.customHeaders

@@ -1897,6 +1897,7 @@ describe('typescript', function () {
             should.exist(result);
             readStreamToBuffer(result.readableStreamBody, function (err, buff) {
               should.not.exist(err);
+              const text = buff.toString("utf-8");
               assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
               done();
             });

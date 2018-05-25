@@ -56,6 +56,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/simple",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -131,7 +132,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = slideshow;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -140,6 +140,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "slideshow": slideshow,
           },
           customHeaders: options && options.customHeaders
         },
@@ -215,6 +216,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/wrapped-lists",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -286,7 +288,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = wrappedLists;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -295,6 +296,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "wrappedLists": wrappedLists,
           },
           customHeaders: options && options.customHeaders
         },
@@ -370,6 +372,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/headers",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -434,6 +437,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-list",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -505,7 +509,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = slideshow;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -514,6 +517,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "slideshow": slideshow,
           },
           customHeaders: options && options.customHeaders
         },
@@ -585,6 +589,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-wrapped-lists",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -656,7 +661,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = appleBarrel;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -665,6 +669,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "appleBarrel": appleBarrel,
           },
           customHeaders: options && options.customHeaders
         },
@@ -736,6 +741,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/root-list",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -814,7 +820,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -838,6 +843,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "bananas": bananas,
           },
           customHeaders: options && options.customHeaders
         },
@@ -909,6 +915,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/root-list-single-item",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -987,7 +994,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1011,6 +1017,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "bananas": bananas,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1082,6 +1089,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-root-list",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1160,7 +1168,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bananas;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1184,6 +1191,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "bananas": bananas,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1255,6 +1263,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-child-element",
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1326,7 +1335,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = banana;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1335,6 +1343,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
+            "banana": banana,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1414,6 +1423,7 @@ export class Xml {
               type: msRest.OperationParameterType.String,
             },
           ],
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1503,6 +1513,7 @@ export class Xml {
               type: msRest.OperationParameterType.String,
             },
           ],
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1576,7 +1587,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = properties;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1587,6 +1597,7 @@ export class Xml {
           arguments: {
             "comp": comp,
             "restype": restype,
+            "properties": properties,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1682,6 +1693,7 @@ export class Xml {
               type: msRest.OperationParameterType.String,
             },
           ],
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1762,7 +1774,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = properties;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1788,6 +1799,7 @@ export class Xml {
           arguments: {
             "comp": comp,
             "restype": restype,
+            "properties": properties,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1883,6 +1895,7 @@ export class Xml {
               type: msRest.OperationParameterType.String,
             },
           ],
+          isXML: true,
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

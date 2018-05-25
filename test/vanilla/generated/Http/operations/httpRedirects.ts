@@ -366,7 +366,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -381,6 +380,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -390,6 +390,7 @@ export class HttpRedirects {
           path: "/http/redirect/301",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -600,7 +601,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -615,6 +615,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -624,6 +625,7 @@ export class HttpRedirects {
           path: "/http/redirect/302",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -689,7 +691,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -704,6 +705,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -713,6 +715,7 @@ export class HttpRedirects {
           path: "/http/redirect/303",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -925,7 +928,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -940,6 +942,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -949,6 +952,7 @@ export class HttpRedirects {
           path: "/http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1017,7 +1021,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1032,6 +1035,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1041,6 +1045,7 @@ export class HttpRedirects {
           path: "/http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1109,7 +1114,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1124,6 +1128,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1133,6 +1138,7 @@ export class HttpRedirects {
           path: "/http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1201,7 +1207,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1216,6 +1221,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1225,6 +1231,7 @@ export class HttpRedirects {
           path: "/http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

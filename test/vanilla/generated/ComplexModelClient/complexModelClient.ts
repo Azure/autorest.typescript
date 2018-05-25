@@ -220,7 +220,6 @@ class ComplexModelClient extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -232,6 +231,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -349,7 +349,6 @@ class ComplexModelClient extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -361,6 +360,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             "subscriptionId": subscriptionId,
             "resourceGroupName": resourceGroupName,
             "this.apiVersion": this.apiVersion,
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },

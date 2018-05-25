@@ -151,7 +151,6 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -160,6 +159,7 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
             "apiVersion": apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },

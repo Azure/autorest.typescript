@@ -57,16 +57,6 @@ export class Formdata {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Serialize Request
-    let formData: any = {};
-    if (fileContent !== undefined && fileContent !== null) {
-      formData['fileContent'] = fileContent;
-    }
-    if (fileName !== undefined && fileName !== null) {
-      formData['fileName'] = fileName;
-    }
-    httpRequest.formData = formData;
-    // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -74,6 +64,8 @@ export class Formdata {
         httpRequest,
         {
           arguments: {
+            "fileContent": fileContent,
+            "fileName": fileName,
           },
           customHeaders: options && options.customHeaders
         },
@@ -81,6 +73,16 @@ export class Formdata {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
+          formDataParameters: [
+            {
+              parameterName: "fileContent",
+              type: msRest.OperationParameterType.Stream,
+            },
+            {
+              parameterName: "fileName",
+              type: msRest.OperationParameterType.String,
+            },
+          ],
           contentType: "multipart/form-data",
         });
       let statusCode = operationRes.status;
@@ -144,15 +146,21 @@ export class Formdata {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = fileContent;
-    // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
+      let requestModelMapper = {
+        required: true,
+        serializedName: 'fileContent',
+        type: {
+          name: 'Stream'
+        }
+      };
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
+            "fileContent": fileContent,
           },
           customHeaders: options && options.customHeaders
         },
@@ -160,6 +168,9 @@ export class Formdata {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
+          requestBodyMapper: requestModelMapper,
+          requestBodyName: "fileContent",
+          requestBodyType: msRest.OperationParameterType.Stream,
           contentType: "application/octet-stream",
         });
       let statusCode = operationRes.status;

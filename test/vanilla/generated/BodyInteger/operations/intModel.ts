@@ -561,7 +561,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -576,6 +575,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
+            "intBody": intBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -585,6 +585,7 @@ export class IntModel {
           path: "/int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -646,7 +647,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -661,6 +661,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
+            "intBody": intBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -670,6 +671,7 @@ export class IntModel {
           path: "/int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          requestBodyType: msRest.OperationParameterType.Long,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -731,7 +733,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -746,6 +747,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
+            "intBody": intBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -755,6 +757,7 @@ export class IntModel {
           path: "/int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -816,7 +819,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -831,6 +833,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
+            "intBody": intBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -840,6 +843,7 @@ export class IntModel {
           path: "/int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          requestBodyType: msRest.OperationParameterType.Long,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -987,7 +991,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = intBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1002,6 +1005,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
+            "intBody": intBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1011,6 +1015,7 @@ export class IntModel {
           path: "/int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
+          requestBodyType: msRest.OperationParameterType.UnixTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

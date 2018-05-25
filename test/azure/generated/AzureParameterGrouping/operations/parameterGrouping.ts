@@ -93,7 +93,6 @@ export class ParameterGrouping {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -109,6 +108,7 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "body": body,
             "customHeader": customHeader,
             "query": query,
             "path": path,
@@ -144,6 +144,7 @@ export class ParameterGrouping {
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
+          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

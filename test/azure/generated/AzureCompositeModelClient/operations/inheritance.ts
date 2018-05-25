@@ -153,7 +153,6 @@ export class Inheritance {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -162,6 +161,7 @@ export class Inheritance {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders

@@ -392,7 +392,6 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = dateBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -407,6 +406,7 @@ export class DateModel {
         httpRequest,
         {
           arguments: {
+            "dateBody": dateBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -416,6 +416,7 @@ export class DateModel {
           path: "/date/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
+          requestBodyType: msRest.OperationParameterType.Date,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -563,7 +564,6 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = dateBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -578,6 +578,7 @@ export class DateModel {
         httpRequest,
         {
           arguments: {
+            "dateBody": dateBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -587,6 +588,7 @@ export class DateModel {
           path: "/date/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
+          requestBodyType: msRest.OperationParameterType.Date,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

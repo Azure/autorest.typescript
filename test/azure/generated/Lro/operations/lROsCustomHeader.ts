@@ -229,7 +229,6 @@ export class LROsCustomHeader {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -238,6 +237,7 @@ export class LROsCustomHeader {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -335,7 +335,6 @@ export class LROsCustomHeader {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -344,6 +343,7 @@ export class LROsCustomHeader {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -454,7 +454,6 @@ export class LROsCustomHeader {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -463,6 +462,7 @@ export class LROsCustomHeader {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -548,7 +548,6 @@ export class LROsCustomHeader {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -557,6 +556,7 @@ export class LROsCustomHeader {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders

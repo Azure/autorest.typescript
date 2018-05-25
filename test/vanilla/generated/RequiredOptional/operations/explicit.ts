@@ -53,7 +53,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -68,6 +67,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -77,6 +77,7 @@ export class Explicit {
           path: "/reqopt/requied/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -150,7 +151,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -165,6 +165,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -174,6 +175,7 @@ export class Explicit {
           path: "/reqopt/optional/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -242,7 +244,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -251,6 +252,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -339,7 +341,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -348,6 +349,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -595,7 +597,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -610,6 +611,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -619,6 +621,7 @@ export class Explicit {
           path: "/reqopt/requied/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -692,7 +695,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -707,6 +709,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -716,6 +719,7 @@ export class Explicit {
           path: "/reqopt/optional/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
+          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -784,7 +788,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -793,6 +796,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -881,7 +885,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -890,6 +893,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1137,7 +1141,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1146,6 +1149,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1220,7 +1224,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1229,6 +1232,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1306,7 +1310,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1315,6 +1318,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1395,7 +1399,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1404,6 +1407,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1480,7 +1484,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1502,6 +1505,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1588,7 +1592,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1610,6 +1613,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1692,7 +1696,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1701,6 +1704,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1793,7 +1797,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1802,6 +1805,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
+            "bodyParameter": bodyParameter,
           },
           customHeaders: options && options.customHeaders
         },

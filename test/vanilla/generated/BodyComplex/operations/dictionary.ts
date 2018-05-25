@@ -139,7 +139,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -148,6 +147,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -305,7 +305,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -314,6 +313,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },

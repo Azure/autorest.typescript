@@ -392,7 +392,6 @@ export class Datetimerfc1123 {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -407,6 +406,7 @@ export class Datetimerfc1123 {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -416,6 +416,7 @@ export class Datetimerfc1123 {
           path: "/datetimerfc1123/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTimeRfc1123,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -648,7 +649,6 @@ export class Datetimerfc1123 {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -663,6 +663,7 @@ export class Datetimerfc1123 {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -672,6 +673,7 @@ export class Datetimerfc1123 {
           path: "/datetimerfc1123/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTimeRfc1123,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

@@ -140,7 +140,6 @@ export class Readonlyproperty {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -149,6 +148,7 @@ export class Readonlyproperty {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },

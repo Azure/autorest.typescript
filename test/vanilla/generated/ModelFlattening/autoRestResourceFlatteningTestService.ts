@@ -79,7 +79,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -102,6 +101,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceArray": resourceArray,
           },
           customHeaders: options && options.customHeaders
         },
@@ -260,7 +260,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -283,6 +282,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceArray": resourceArray,
           },
           customHeaders: options && options.customHeaders
         },
@@ -441,7 +441,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -464,6 +463,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceDictionary": resourceDictionary,
           },
           customHeaders: options && options.customHeaders
         },
@@ -622,7 +622,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -631,6 +630,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceComplexObject": resourceComplexObject,
           },
           customHeaders: options && options.customHeaders
         },
@@ -774,7 +774,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -783,6 +782,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "simpleBodyProduct": simpleBodyProduct,
           },
           customHeaders: options && options.customHeaders
         },
@@ -904,7 +904,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -913,6 +912,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "simpleBodyProduct": simpleBodyProduct,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1062,7 +1062,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1072,6 +1071,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
             "name": name,
+            "productId": productId,
+            "description": description,
+            "maxProductDisplayName": maxProductDisplayName,
+            "genericValue": genericValue,
+            "odatavalue": odatavalue,
+            "simpleBodyProduct": simpleBodyProduct,
           },
           customHeaders: options && options.customHeaders
         },

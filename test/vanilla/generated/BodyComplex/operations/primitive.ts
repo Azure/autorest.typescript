@@ -131,7 +131,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -140,6 +139,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -289,7 +289,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -298,6 +297,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -447,7 +447,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -456,6 +455,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -606,7 +606,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -615,6 +614,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -764,7 +764,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -773,6 +772,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -922,7 +922,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -931,6 +930,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1080,7 +1080,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1089,6 +1088,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1239,7 +1239,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1248,6 +1247,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1398,7 +1398,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1407,6 +1406,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1560,7 +1560,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1569,6 +1568,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1722,7 +1722,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1731,6 +1730,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           customHeaders: options && options.customHeaders
         },

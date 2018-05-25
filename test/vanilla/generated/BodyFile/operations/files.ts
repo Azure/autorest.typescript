@@ -41,7 +41,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -56,7 +55,6 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/nonempty",
-          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 
@@ -109,7 +107,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -124,7 +121,6 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/verylarge",
-          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 
@@ -177,7 +173,6 @@ export class Files {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -192,7 +187,6 @@ export class Files {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/files/stream/empty",
-          contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
 

@@ -1063,7 +1063,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1072,6 +1071,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1180,7 +1180,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1189,6 +1188,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1297,7 +1297,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1306,6 +1305,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1415,7 +1415,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1424,6 +1423,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1768,7 +1768,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1777,6 +1776,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1858,7 +1858,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1867,6 +1866,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -1950,7 +1950,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1959,6 +1958,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2041,7 +2041,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2050,6 +2049,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2159,7 +2159,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2168,6 +2167,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2263,7 +2263,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2272,6 +2271,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2531,7 +2531,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2540,6 +2539,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2623,7 +2623,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2632,6 +2631,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2714,7 +2714,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2723,6 +2722,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2817,7 +2817,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2826,6 +2825,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -2921,7 +2921,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2930,6 +2929,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -3277,7 +3277,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3286,6 +3285,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -3369,7 +3369,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3378,6 +3377,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders
@@ -3461,7 +3461,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3470,6 +3469,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           customHeaders: options && options.customHeaders

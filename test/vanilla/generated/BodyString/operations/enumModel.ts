@@ -146,7 +146,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -162,6 +161,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -326,7 +326,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = enumStringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -342,6 +341,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
+            "enumStringBody": enumStringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -500,7 +500,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = enumStringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -509,6 +508,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
+            "enumStringBody": enumStringBody,
           },
           customHeaders: options && options.customHeaders
         },

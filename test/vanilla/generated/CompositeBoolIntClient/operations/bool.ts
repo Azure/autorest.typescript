@@ -136,7 +136,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -151,6 +150,7 @@ export class Bool {
         httpRequest,
         {
           arguments: {
+            "boolBody": boolBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -160,6 +160,7 @@ export class Bool {
           path: "/bool/true",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -306,7 +307,6 @@ export class Bool {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = boolBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -321,6 +321,7 @@ export class Bool {
         httpRequest,
         {
           arguments: {
+            "boolBody": boolBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -330,6 +331,7 @@ export class Bool {
           path: "/bool/false",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

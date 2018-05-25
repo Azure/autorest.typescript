@@ -136,7 +136,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -151,6 +150,7 @@ export class String {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -306,7 +306,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -321,6 +320,7 @@ export class String {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -479,7 +479,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -494,6 +493,7 @@ export class String {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -654,7 +654,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -669,6 +668,7 @@ export class String {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -994,7 +994,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = stringBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1009,6 +1008,7 @@ export class String {
         httpRequest,
         {
           arguments: {
+            "stringBody": stringBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1018,6 +1018,7 @@ export class String {
           path: "/string/base64UrlEncoding",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
+          requestBodyType: msRest.OperationParameterType.Base64Url,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

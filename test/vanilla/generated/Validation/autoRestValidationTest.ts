@@ -311,7 +311,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -323,6 +322,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             "this.subscriptionId": this.subscriptionId,
             "resourceGroupName": resourceGroupName,
             "id": id,
+            "body": body,
             "this.apiVersion": this.apiVersion,
           },
           customHeaders: options && options.customHeaders
@@ -490,7 +490,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = body;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -500,6 +499,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           arguments: {
             "constantParam": constantParam,
+            "body": body,
           },
           customHeaders: options && options.customHeaders
         },

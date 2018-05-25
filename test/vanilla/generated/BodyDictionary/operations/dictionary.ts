@@ -241,7 +241,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -263,6 +262,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -798,7 +798,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -820,6 +819,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1171,7 +1171,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1193,6 +1192,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1544,7 +1544,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1566,6 +1565,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -1917,7 +1917,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1939,6 +1938,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -2290,7 +2290,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2312,6 +2311,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -2663,7 +2663,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2685,6 +2684,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -3039,7 +3039,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3061,6 +3060,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -3415,7 +3415,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3437,6 +3436,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -3792,7 +3792,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3814,6 +3813,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -3982,7 +3982,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4004,6 +4003,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -4173,7 +4173,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4195,6 +4194,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -4913,7 +4913,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4936,6 +4935,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -5514,7 +5514,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -5543,6 +5542,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
@@ -6126,7 +6126,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = arrayBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -6155,6 +6154,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
+            "arrayBody": arrayBody,
           },
           customHeaders: options && options.customHeaders
         },
