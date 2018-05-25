@@ -299,14 +299,17 @@ namespace AutoRest.TypeScript.Model
                 string result = "void";
                 if (ReturnType.Body != null)
                 {
-                    result = ReturnType.Body.TSType(false);
                     // We will return the actual response if the return type is stream.
                     // That provides better user experience as customers can use
                     // .text(), .json(), etc. inbuilt methods of the response class
                     // to read the stream.
-                    if (result.Contains("ReadableStream"))
+                    if (ReturnType.Body.IsStream())
                     {
-                        result = "msRest.HttpOperationResponse";
+                        result = "void";
+                    }
+                    else
+                    {
+                        result = ReturnType.Body.TSType(false);
                     }
                 }
                 return result;

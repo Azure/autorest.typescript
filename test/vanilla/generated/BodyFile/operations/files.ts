@@ -36,7 +36,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
+  async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -102,7 +102,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
+  async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -168,7 +168,7 @@ export class Files {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<msRest.HttpOperationResponse>> {
+  async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -221,138 +221,6 @@ export class Files {
     }
 
     return Promise.resolve(operationRes);
-  }
-
-  /**
-   * Get file
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {msRest.HttpOperationResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getFile(): Promise<msRest.HttpOperationResponse>;
-  getFile(options: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse>;
-  getFile(callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<msRest.HttpOperationResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<msRest.HttpOperationResponse>;
-    if (!callback) {
-      return this.getFileWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFileWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data;
-        return cb(err, result, data.request, data);
-      });
-    }
-  }
-
-  /**
-   * Get a large file
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {msRest.HttpOperationResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getFileLarge(): Promise<msRest.HttpOperationResponse>;
-  getFileLarge(options: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse>;
-  getFileLarge(callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getFileLarge(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getFileLarge(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<msRest.HttpOperationResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<msRest.HttpOperationResponse>;
-    if (!callback) {
-      return this.getFileLargeWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getFileLargeWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data;
-        return cb(err, result, data.request, data);
-      });
-    }
-  }
-
-  /**
-   * Get empty file
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback - The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
-   *                      {msRest.HttpOperationResponse} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getEmptyFile(): Promise<msRest.HttpOperationResponse>;
-  getEmptyFile(options: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse>;
-  getEmptyFile(callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getEmptyFile(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<msRest.HttpOperationResponse>): void;
-  getEmptyFile(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<msRest.HttpOperationResponse>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<msRest.HttpOperationResponse>;
-    if (!callback) {
-      return this.getEmptyFileWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getEmptyFileWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data;
-        return cb(err, result, data.request, data);
-      });
-    }
   }
 
 }

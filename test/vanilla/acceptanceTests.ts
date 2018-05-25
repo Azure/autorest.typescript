@@ -32,25 +32,31 @@ import { AutoRestParameterizedCustomHostTestClient } from './generated/CustomBas
 import { fail } from "assert";
 import { timeoutPromise } from '../util/util';
 
-// TODO: Check types
-var readStreamToBuffer = function (strm: NodeJS.ReadableStream, callback: (err: Error, result: Buffer) => void) {
-  var bufs: Buffer[] = [];
-  strm.on('data', function (d: Buffer) {
-    bufs.push(d);
-  });
-  strm.on('end', function () {
-    callback(null, Buffer.concat(bufs));
+const readStreamToBuffer = async function (strm: NodeJS.ReadableStream): Promise<Buffer> {
+  return new Promise<Buffer>((resolve, reject) => {
+    const bufs: Buffer[] = [];
+    strm.on('data', function (d: Buffer) {
+      bufs.push(d);
+    });
+    strm.on('end', function () {
+      resolve(Buffer.concat(bufs));
+    });
+    strm.on('error', reject);
   });
 };
 
-var readStreamCountBytes = function (stream: NodeJS.ReadableStream, callback: (err: Error, result: number) => void) {
-  var bytesRead = 0;
-  stream.on('data', function (d: Buffer) {
-    bytesRead = bytesRead + d.length;
-  });
+const readStreamCountBytes = async function (stream: NodeJS.ReadableStream): Promise<number> {
+  return new Promise<number>((resolve, reject) => {
+    let bytesRead = 0;
+    stream.on('data', function (d: Buffer) {
+      bytesRead = bytesRead + d.length;
+    });
 
-  stream.on('end', function () {
-    callback(null, bytesRead);
+    stream.on('end', function () {
+      resolve(bytesRead);
+    });
+
+    stream.on('error', reject);
   });
 }
 
@@ -1766,25 +1772,16 @@ describe('typescript', function () {
       var testClient = new AutoRestSwaggerBATFileService(baseUri, clientOptions);
 
       if (msRest.isNode) {
-        it('nodejs should correctly deserialize binary streams', function (done) {
-          testClient.files.getFile(function (error, result) {
-            should.not.exist(error);
-            should.exist(result);
-            readStreamToBuffer(result.readableStreamBody, (err, buf) => {
-              if (err) {
-                done(err);
-              } else {
-                assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
-                done();
-              }
-            });
-          });
+        it('nodejs should correctly deserialize binary streams', async function () {
+          const result = await testClient.files.getFileWithHttpOperationResponse()
+          const buf = await readStreamToBuffer(result.readableStreamBody);
+          assert.deepEqual(buf, fs.readFileSync(__dirname + '/sample.png'));
         });
       }
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize binary streams', async function () {
-          const result = await testClient.files.getFile();
+          const result = await testClient.files.getFileWithHttpOperationResponse();
           should.exist(result);
           should.exist(result.blobBody);
           const body = await result.blobBody();
@@ -1806,42 +1803,32 @@ describe('typescript', function () {
       }
 
       if (msRest.isNode) {
-        it('nodejs should correctly deserialize empty streams', function (done) {
-          testClient.files.getEmptyFile().then(result => {
-            readStreamCountBytes(result.readableStreamBody as any, function (err, byteCount) {
-              should.not.exist(err);
-              byteCount.should.equal(0);
-              done();
-            });
-          }).catch(err => done(err));
+        it('nodejs should correctly deserialize empty streams', async function () {
+          const result = await testClient.files.getEmptyFileWithHttpOperationResponse()
+          const byteCount = await readStreamCountBytes(result.readableStreamBody as any);
+          byteCount.should.equal(0);
         });
       }
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize empty streams', async function () {
-          const result = await testClient.files.getEmptyFile();
+          const result = await testClient.files.getEmptyFileWithHttpOperationResponse();
           const body = await result.blobBody();
           body.size.should.equal(0);
         });
       }
 
       if (msRest.isNode) {
-        it('nodejs should correctly deserialize large streams', function (done) {
-          testClient.files.getFileLarge(function (error, result) {
-            should.not.exist(error);
-            should.exist(result);
-            readStreamCountBytes(result.readableStreamBody as any, function (err, byteCount) {
-              should.not.exist(err);
-              byteCount.should.equal(3000 * 1024 * 1024);
-              done();
-            });
-          });
+        it('nodejs should correctly deserialize large streams', async function () {
+          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
+          const byteCount = await readStreamCountBytes(result.readableStreamBody);
+          byteCount.should.equal(3000 * 1024 * 1024);
         });
       }
 
       if (!msRest.isNode) {
         it('browser should correctly deserialize large streams', async function () {
-          const result = await testClient.files.getFileLarge();
+          const result = await testClient.files.getFileLargeWithHttpOperationResponse();
           const body = await result.blobBody();
           body.size.should.equal(3000 * 1024 * 1024);
         });
@@ -1852,16 +1839,10 @@ describe('typescript', function () {
       var testClient = new AutoRestSwaggerBATFormDataService(baseUri, clientOptions);
 
       if (msRest.isNode) {
-        it('nodejs should correctly accept file via form-dat', function (done) {
-          testClient.formdata.uploadFile(fs.createReadStream(__dirname + '/sample.png') as any, 'sample.png', function (error, result: msRest.HttpOperationResponse) {
-            should.not.exist(error);
-            should.exist(result);
-            readStreamToBuffer(result.readableStreamBody, function (err, buff) {
-              should.not.exist(err);
-              assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
-              done();
-            });
-          });
+        it('nodejs should correctly accept file via form-dat', async function () {
+          const result = await testClient.formdata.uploadFileWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'), 'sample.png');
+          const buff = await readStreamToBuffer(result.readableStreamBody)
+          assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
       }
 
@@ -1869,8 +1850,7 @@ describe('typescript', function () {
         it('browser should correctly accept file via form-dat', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
           const blob = new Blob([content]);
-          // TODO: fix types
-          const response = await testClient.formdata.uploadFile(blob as any, 'sample.png');
+          const response = await testClient.formdata.uploadFileWithHttpOperationResponse(blob, 'sample.png');
           const body = await response.blobBody();
           const reader = new FileReader();
           const readPromise = new Promise(function (resolve, reject) {
@@ -1890,25 +1870,17 @@ describe('typescript', function () {
       }
 
       if (msRest.isNode) {
-        it('nodejs should correctly accept file via body', function (done) {
-          // TODO: fix stream types
-          testClient.formdata.uploadFileViaBody(fs.createReadStream(__dirname + '/sample.png') as any, function (error, result: msRest.HttpOperationResponse) {
-            should.not.exist(error);
-            should.exist(result);
-            readStreamToBuffer(result.readableStreamBody, function (err, buff) {
-              should.not.exist(err);
-              const text = buff.toString("utf-8");
-              assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
-              done();
-            });
-          });
+        it('nodejs should correctly accept file via body', async function () {
+          const result = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(() => fs.createReadStream(__dirname + '/sample.png'));
+          const buff = await readStreamToBuffer(result.readableStreamBody);
+          assert.deepEqual(buff, fs.readFileSync(__dirname + '/sample.png'));
         });
       }
 
       if (!msRest.isNode) {
         it('browser should correctly accept file via body', async function () {
           const content = require(`arraybuffer-loader!${__dirname}/sample.png`);
-          const response = await testClient.formdata.uploadFileViaBody(new Blob([content]) as any);
+          const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(new Blob([content]));
           const reader = new FileReader();
           const readPromise = new Promise((resolve, reject) => {
             reader.addEventListener("abort", reject);

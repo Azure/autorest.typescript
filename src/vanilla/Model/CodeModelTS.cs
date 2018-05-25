@@ -40,6 +40,10 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where(each => !each.IsCodeModelMethodGroup);
 
+        [JsonIgnore]
+        public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
+            MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
+
         public virtual IEnumerable<MethodTS> MethodsWithHeaders => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null);
 
         /// <summary>

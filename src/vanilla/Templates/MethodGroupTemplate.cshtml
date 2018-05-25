@@ -31,7 +31,7 @@ export class @(Model.TypeName) {
   @:@(Include(new MethodTemplate(), method))
   @EmptyLine
 }
-@foreach (var method in Model.MethodTemplateModels)
+@foreach (var method in Model.MethodWrappableTemplateModels)
 {
   @:@(Include(new MethodCallbackWrapperTemplate(), method))
   @EmptyLine
