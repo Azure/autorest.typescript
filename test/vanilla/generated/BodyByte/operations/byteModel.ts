@@ -310,7 +310,6 @@ export class ByteModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = byteBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -325,6 +324,7 @@ export class ByteModel {
         httpRequest,
         {
           arguments: {
+            "byteBody": byteBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -335,6 +335,7 @@ export class ByteModel {
           path: "/byte/nonAscii",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "byteBody",
+          requestBodyType: msRest.OperationParameterType.ByteArray,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

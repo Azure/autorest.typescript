@@ -396,7 +396,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -411,6 +410,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -421,6 +421,7 @@ export class Datetime {
           path: "/datetime/max/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -656,7 +657,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -671,6 +671,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -681,6 +682,7 @@ export class Datetime {
           path: "/datetime/max/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -918,7 +920,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -933,6 +934,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -943,6 +945,7 @@ export class Datetime {
           path: "/datetime/max/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1179,7 +1182,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1194,6 +1196,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1204,6 +1207,7 @@ export class Datetime {
           path: "/datetime/min/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1352,7 +1356,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1367,6 +1370,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1377,6 +1381,7 @@ export class Datetime {
           path: "/datetime/min/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1525,7 +1530,6 @@ export class Datetime {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = datetimeBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1540,6 +1544,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
+            "datetimeBody": datetimeBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1550,6 +1555,7 @@ export class Datetime {
           path: "/datetime/min/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
+          requestBodyType: msRest.OperationParameterType.DateTime,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

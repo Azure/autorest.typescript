@@ -1621,7 +1621,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1630,6 +1629,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -1724,7 +1724,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1733,6 +1732,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -1828,7 +1828,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1837,6 +1836,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -1932,7 +1932,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1941,6 +1940,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2051,7 +2051,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2060,6 +2059,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2155,7 +2155,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2164,6 +2163,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2274,7 +2274,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2283,6 +2282,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2378,7 +2378,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2387,6 +2386,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2483,7 +2483,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2492,6 +2491,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2588,7 +2588,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2597,6 +2596,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2693,7 +2693,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2702,6 +2701,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2798,7 +2798,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2807,6 +2806,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -2903,7 +2903,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -2912,6 +2911,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -3006,7 +3006,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3015,6 +3014,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "sku": sku,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -3108,7 +3108,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = sku;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3117,6 +3116,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "sku": sku,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -3223,7 +3223,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3233,6 +3232,7 @@ export class LROs {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "product": product,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3338,7 +3338,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -3348,6 +3347,7 @@ export class LROs {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "product": product,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4707,7 +4707,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4716,6 +4715,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -4799,7 +4799,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4808,6 +4807,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -4904,7 +4904,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -4913,6 +4912,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -5013,7 +5013,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -5022,6 +5021,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -5122,7 +5122,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -5131,6 +5130,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,
@@ -5215,7 +5215,6 @@ export class LROs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = product;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -5224,6 +5223,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
+            "product": product,
             "this.client.acceptLanguage": this.client.acceptLanguage,
           },
           abortSignal: options && options.abortSignal,

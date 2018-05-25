@@ -1,6 +1,4 @@
-﻿@using System
-@using System.Globalization
-@using System.Linq;
+﻿@using System.Linq;
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript
@@ -56,34 +54,6 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   @EmptyLine
   // Create HTTP transport objects
   const httpRequest = new WebResource();
-  
-  @if (Model.RequestBody != null)
-  {
-  <text>
-  httpRequest.body = @(Model.RequestBody.Name);
-  </text>
-  }
-  else if (Model.LogicalParameters.Where(p => p.Location == ParameterLocation.FormData).Any())
-  {
-  <text>
-  // Serialize Request
-  let formData: any = {};
-      @foreach (var parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.FormData))
-      {
-  @:if (@(parameter.Name) !== undefined && @(parameter.Name) !== null) {
-          if (parameter.ModelType.IsPrimaryType(KnownPrimaryType.Stream))
-          {
-    @:formData['@(parameter.SerializedName)'] = @(parameter.Name);
-          }
-          else
-          {
-    @:formData['@(parameter.SerializedName)'] = @parameter.ModelType.ToString(parameter.Name);
-          }
-  @:}
-      }
-  httpRequest.formData = formData;
-  </text>
-  }
 
   @if (Model.Responses.Any(r => r.Value.Body.IsPrimaryType(KnownPrimaryType.Stream)))
   {

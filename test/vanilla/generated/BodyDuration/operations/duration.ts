@@ -137,7 +137,6 @@ export class Duration {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = durationBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -152,6 +151,7 @@ export class Duration {
         httpRequest,
         {
           arguments: {
+            "durationBody": durationBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -162,6 +162,7 @@ export class Duration {
           path: "/duration/positiveduration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "durationBody",
+          requestBodyType: msRest.OperationParameterType.TimeSpan,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

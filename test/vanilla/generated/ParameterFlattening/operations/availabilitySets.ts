@@ -78,7 +78,6 @@ export class AvailabilitySets {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = tags1;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -89,6 +88,7 @@ export class AvailabilitySets {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "avset": avset,
+            "tags1": tags1,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

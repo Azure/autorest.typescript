@@ -282,7 +282,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -295,6 +294,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "resourceGroupName": resourceGroupName,
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
+            "bodyParameter": bodyParameter,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -424,7 +424,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = bodyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -437,6 +436,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             "resourceGroupName": resourceGroupName,
             "apiVersion": apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
+            "bodyParameter": bodyParameter,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

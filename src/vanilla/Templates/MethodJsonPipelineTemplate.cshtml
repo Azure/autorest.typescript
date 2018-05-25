@@ -16,7 +16,7 @@ try {
     httpRequest,
     {
       arguments: {
-@foreach (Parameter parameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.Header || p.Location == ParameterLocation.Path || p.Location == ParameterLocation.Query))
+@foreach (Parameter parameter in Model.LogicalParameters)
 {
 <text>
         "@(parameter.Name)": @(parameter.Name),
@@ -145,14 +145,48 @@ else
 <text>
       requestBodyMapper: requestModelMapper,
       requestBodyName: "@(Model.RequestBody.Name)",
+@if (Model.RequestBody.OperationType != null)
+{
+<text>
+      requestBodyType: msRest.OperationParameterType.@(Model.RequestBody.OperationType),
+</text>
+}
       contentType: "@(Model.RequestContentType)",
 </text>
+}
+else if (Model.LogicalParameters.Where(p => p.Location == ParameterLocation.FormData).Any())
+{
+<text>
+      formDataParameters: [
+@foreach (ParameterTS formDataParameter in Model.LogicalParameters.Where(p => p.Location == ParameterLocation.FormData))
+{
+<text>
+        {
+          parameterName: "@(formDataParameter.Name)",
+@if (formDataParameter.Name != formDataParameter.SerializedName)
+{
+<text>
+          formDataPropertyName: "@(formDataParameter.SerializedName)",
+</text>
+}
+@if (formDataParameter.OperationType != null)
+{
+<text>
+          type: msRest.OperationParameterType.@(formDataParameter.OperationType),
+</text>
+}
+        },
+</text>
+}
+      ],
+      contentType: "@(Model.RequestContentType)",
+</text>
+}
 @if (Model.CodeModel.ShouldGenerateXmlSerialization)
 {
 <text>
       isXML: true,
 </text>
-}
 }
     });
   let statusCode = operationRes.status;

@@ -202,7 +202,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -217,6 +216,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -227,6 +227,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -287,7 +288,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -302,6 +302,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -312,6 +313,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -372,7 +374,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -387,6 +388,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -397,6 +399,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -457,7 +460,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -472,6 +474,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -482,6 +485,7 @@ export class HttpSuccess {
           path: "/http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -542,7 +546,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -557,6 +560,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -567,6 +571,7 @@ export class HttpSuccess {
           path: "/http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -627,7 +632,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -642,6 +646,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -652,6 +657,7 @@ export class HttpSuccess {
           path: "/http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -712,7 +718,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -727,6 +732,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -737,6 +743,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -797,7 +804,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -812,6 +818,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -822,6 +829,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -882,7 +890,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -897,6 +904,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -907,6 +915,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -967,7 +976,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -982,6 +990,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -992,6 +1001,7 @@ export class HttpSuccess {
           path: "/http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1117,7 +1127,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1132,6 +1141,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1142,6 +1152,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1202,7 +1213,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1217,6 +1227,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1227,6 +1238,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1287,7 +1299,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1302,6 +1313,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1312,6 +1324,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -1372,7 +1385,6 @@ export class HttpSuccess {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1387,6 +1399,7 @@ export class HttpSuccess {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1397,6 +1410,7 @@ export class HttpSuccess {
           path: "/http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

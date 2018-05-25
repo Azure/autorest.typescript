@@ -184,7 +184,6 @@ export class Polymorphicrecursive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = complexBody;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -193,6 +192,7 @@ export class Polymorphicrecursive {
         httpRequest,
         {
           arguments: {
+            "complexBody": complexBody,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

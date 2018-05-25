@@ -116,7 +116,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -131,6 +130,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -141,6 +141,7 @@ export class HttpRetry {
           path: "/http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -201,7 +202,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -216,6 +216,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -226,6 +227,7 @@ export class HttpRetry {
           path: "/http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -351,7 +353,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -366,6 +367,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -376,6 +378,7 @@ export class HttpRetry {
           path: "/http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -436,7 +439,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -451,6 +453,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -461,6 +464,7 @@ export class HttpRetry {
           path: "/http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -521,7 +525,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -536,6 +539,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -546,6 +550,7 @@ export class HttpRetry {
           path: "/http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -606,7 +611,6 @@ export class HttpRetry {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -621,6 +625,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -631,6 +636,7 @@ export class HttpRetry {
           path: "/http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

@@ -206,7 +206,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -221,6 +220,7 @@ export class HttpServerFailure {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -231,6 +231,7 @@ export class HttpServerFailure {
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;
@@ -304,7 +305,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = booleanValue;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -319,6 +319,7 @@ export class HttpServerFailure {
         httpRequest,
         {
           arguments: {
+            "booleanValue": booleanValue,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -329,6 +330,7 @@ export class HttpServerFailure {
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
+          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8",
         });
       let statusCode = operationRes.status;

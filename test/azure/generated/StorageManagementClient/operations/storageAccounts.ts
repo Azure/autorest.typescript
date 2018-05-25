@@ -64,7 +64,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = accountName;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -73,6 +72,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
+            "accountName": accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
@@ -540,7 +540,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -551,6 +550,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "parameters": parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
@@ -1084,7 +1084,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = regenerateKeyParameter;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1098,6 +1097,7 @@ export class StorageAccounts {
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
+            "regenerateKeyParameter": regenerateKeyParameter,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1239,7 +1239,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = parameters;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1250,6 +1249,7 @@ export class StorageAccounts {
           arguments: {
             "resourceGroupName": resourceGroupName,
             "accountName": accountName,
+            "parameters": parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,

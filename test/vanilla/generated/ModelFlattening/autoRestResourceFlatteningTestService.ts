@@ -79,7 +79,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -102,6 +101,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceArray": resourceArray,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -262,7 +262,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceArray;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -285,6 +284,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceArray": resourceArray,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -445,7 +445,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceDictionary;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -468,6 +467,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceDictionary": resourceDictionary,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -628,7 +628,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = resourceComplexObject;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -637,6 +636,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "resourceComplexObject": resourceComplexObject,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -782,7 +782,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -791,6 +790,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "simpleBodyProduct": simpleBodyProduct,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -913,7 +913,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -922,6 +921,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
+            "simpleBodyProduct": simpleBodyProduct,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1072,7 +1072,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    httpRequest.body = simpleBodyProduct;
     // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
@@ -1082,6 +1081,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           arguments: {
             "name": name,
+            "productId": productId,
+            "description": description,
+            "maxProductDisplayName": maxProductDisplayName,
+            "genericValue": genericValue,
+            "odatavalue": odatavalue,
+            "simpleBodyProduct": simpleBodyProduct,
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
