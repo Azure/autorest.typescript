@@ -45,7 +45,7 @@ namespace AutoRest.TypeScript.Model
                         return "number";
 
                     case KnownPrimaryType.Stream:
-                        return "ReadableStream";
+                        return "msRest.HttpRequestBody";
 
                     case KnownPrimaryType.String:
                     case KnownPrimaryType.Uuid:

@@ -40,6 +40,10 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public virtual IEnumerable<MethodGroupTS> MethodGroupModels => Operations.Cast<MethodGroupTS>().Where(each => !each.IsCodeModelMethodGroup);
 
+        [JsonIgnore]
+        public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
+            MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());
+
         public virtual IEnumerable<MethodTS> MethodsWithHeaders => Methods.Cast<MethodTS>().Where(m => m.ReturnType.Headers != null);
 
         /// <summary>
@@ -282,7 +286,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"^0.7.211\"";
+            return "\"ms-rest-js\": \"^0.7.213\"";
         }
 
         public virtual Method GetSampleMethod()
