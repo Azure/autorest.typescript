@@ -230,7 +230,7 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)
                 return "Buffer";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
-                return "ReadableStream";
+                return "msRest.HttpRequestBody";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)
                 return "string";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Credentials)

@@ -19,9 +19,13 @@ namespace AutoRest.TypeScript.Model
         protected MethodGroupTS(string name): base(name)
         {
         }
-        
+
         [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
+
+        [JsonIgnore]
+        public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
+            MethodTemplateModels.Where(method => !(method.ReturnType.Body is PrimaryType pt && pt.KnownPrimaryType == KnownPrimaryType.Stream));
 
         [JsonIgnore]
         public bool ContainsTimeSpan
