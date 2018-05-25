@@ -25,7 +25,7 @@ namespace AutoRest.TypeScript.Model
 
         [JsonIgnore]
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
-            MethodTemplateModels.Where(method => !(method.ReturnType.Body is PrimaryType pt && pt.KnownPrimaryType == KnownPrimaryType.Stream));
+            MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream();
 
         [JsonIgnore]
         public bool ContainsTimeSpan

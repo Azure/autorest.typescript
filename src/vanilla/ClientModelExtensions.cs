@@ -446,6 +446,11 @@ namespace AutoRest.TypeScript
                    type.IsSequenceContainingType(KnownPrimaryType.UnixTime);
         }
 
+        public static bool IsStream(this IModelType type)
+        {
+            return type is PrimaryType primaryType && primaryType.KnownPrimaryType == KnownPrimaryType.Stream;
+        }
+
         public static bool IsDictionaryContainingDateKind(this IModelType type)
         {
             return type.IsDictionaryContainingType(KnownPrimaryType.Date) ||

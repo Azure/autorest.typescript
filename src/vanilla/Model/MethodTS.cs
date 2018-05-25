@@ -302,7 +302,7 @@ namespace AutoRest.TypeScript.Model
                     // That provides better user experience as customers can use
                     // .text(), .json(), etc. inbuilt methods of the response class
                     // to read the stream.
-                    if (ReturnType.Body is PrimaryType pt && pt.KnownPrimaryType == KnownPrimaryType.Stream)
+                    if (ReturnType.Body.IsStream())
                     {
                         result = "void";
                     }
