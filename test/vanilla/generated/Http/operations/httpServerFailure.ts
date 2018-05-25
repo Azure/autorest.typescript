@@ -42,21 +42,19 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/501",
+          path: "/http/failure/server/501"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -119,21 +117,19 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/501",
+          path: "/http/failure/server/501"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -206,7 +202,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -220,7 +215,7 @@ export class HttpServerFailure {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -232,7 +227,7 @@ export class HttpServerFailure {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -305,7 +300,6 @@ export class HttpServerFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -319,7 +313,7 @@ export class HttpServerFailure {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -331,7 +325,7 @@ export class HttpServerFailure {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

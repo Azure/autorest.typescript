@@ -42,21 +42,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/integer",
+          path: "/complex/primitive/integer"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -132,7 +130,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.IntWrapper;
@@ -140,7 +137,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -151,7 +148,7 @@ export class Primitive {
           path: "/complex/primitive/integer",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -202,21 +199,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/long",
+          path: "/complex/primitive/long"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -292,7 +287,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.LongWrapper;
@@ -300,7 +294,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -311,7 +305,7 @@ export class Primitive {
           path: "/complex/primitive/long",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -362,21 +356,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/float",
+          path: "/complex/primitive/float"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -452,7 +444,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.FloatWrapper;
@@ -460,7 +451,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -471,7 +462,7 @@ export class Primitive {
           path: "/complex/primitive/float",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -522,21 +513,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/double",
+          path: "/complex/primitive/double"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -613,7 +602,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.DoubleWrapper;
@@ -621,7 +609,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -632,7 +620,7 @@ export class Primitive {
           path: "/complex/primitive/double",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -683,21 +671,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/bool",
+          path: "/complex/primitive/bool"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -773,7 +759,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.BooleanWrapper;
@@ -781,7 +766,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -792,7 +777,7 @@ export class Primitive {
           path: "/complex/primitive/bool",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -843,21 +828,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/string",
+          path: "/complex/primitive/string"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -933,7 +916,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StringWrapper;
@@ -941,7 +923,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -952,7 +934,7 @@ export class Primitive {
           path: "/complex/primitive/string",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1003,21 +985,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/date",
+          path: "/complex/primitive/date"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1093,7 +1073,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.DateWrapper;
@@ -1101,7 +1080,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1112,7 +1091,7 @@ export class Primitive {
           path: "/complex/primitive/date",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1163,21 +1142,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetime",
+          path: "/complex/primitive/datetime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1254,7 +1231,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.DatetimeWrapper;
@@ -1262,7 +1238,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1273,7 +1249,7 @@ export class Primitive {
           path: "/complex/primitive/datetime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1324,21 +1300,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetimerfc1123",
+          path: "/complex/primitive/datetimerfc1123"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1415,7 +1389,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Datetimerfc1123Wrapper;
@@ -1423,7 +1396,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1434,7 +1407,7 @@ export class Primitive {
           path: "/complex/primitive/datetimerfc1123",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1485,21 +1458,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/duration",
+          path: "/complex/primitive/duration"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1579,7 +1550,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.DurationWrapper;
@@ -1587,7 +1557,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1598,7 +1568,7 @@ export class Primitive {
           path: "/complex/primitive/duration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1649,21 +1619,19 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/byte",
+          path: "/complex/primitive/byte"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1743,7 +1711,6 @@ export class Primitive {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ByteWrapper;
@@ -1751,7 +1718,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1762,7 +1729,7 @@ export class Primitive {
           path: "/complex/primitive/byte",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -42,21 +42,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/valid",
+          path: "/complex/array/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -140,7 +138,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayWrapper;
@@ -148,7 +145,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -159,7 +156,7 @@ export class ArrayModel {
           path: "/complex/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -210,21 +207,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/empty",
+          path: "/complex/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -308,7 +303,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayWrapper;
@@ -316,7 +310,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
+            complexBody: complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -327,7 +321,7 @@ export class ArrayModel {
           path: "/complex/array/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -379,21 +373,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/notprovided",
+          path: "/complex/array/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

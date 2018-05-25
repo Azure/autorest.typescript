@@ -42,21 +42,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/204/none/default/Error/response/200/valid",
+          path: "/http/payloads/200/A/204/none/default/Error/response/200/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -122,21 +120,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/204/none/default/Error/response/204/none",
+          path: "/http/payloads/200/A/204/none/default/Error/response/204/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -202,21 +198,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/204/none/default/Error/response/201/valid",
+          path: "/http/payloads/200/A/204/none/default/Error/response/201/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -282,21 +276,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/204/none/default/Error/response/202/none",
+          path: "/http/payloads/200/A/204/none/default/Error/response/202/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -363,21 +355,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/204/none/default/Error/response/400/valid",
+          path: "/http/payloads/200/A/204/none/default/Error/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -443,21 +433,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/B/default/Error/response/200/valid",
+          path: "/http/payloads/200/A/201/B/default/Error/response/200/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -539,21 +527,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/B/default/Error/response/201/valid",
+          path: "/http/payloads/200/A/201/B/default/Error/response/201/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -635,21 +621,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/B/default/Error/response/400/valid",
+          path: "/http/payloads/200/A/201/B/default/Error/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -730,21 +714,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
+          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -840,21 +822,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
+          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -950,21 +930,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
+          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1061,21 +1039,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
+          path: "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201 && statusCode !== 404) {
@@ -1171,21 +1147,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/Error/response/202/none",
+          path: "/http/payloads/202/none/204/none/default/Error/response/202/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1236,21 +1210,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/Error/response/204/none",
+          path: "/http/payloads/202/none/204/none/default/Error/response/204/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1302,21 +1274,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/Error/response/400/valid",
+          path: "/http/payloads/202/none/204/none/default/Error/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1367,21 +1337,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/none/response/202/invalid",
+          path: "/http/payloads/202/none/204/none/default/none/response/202/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1428,21 +1396,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/none/response/204/none",
+          path: "/http/payloads/202/none/204/none/default/none/response/204/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1489,21 +1455,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/none/response/400/none",
+          path: "/http/payloads/202/none/204/none/default/none/response/400/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1550,21 +1514,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/202/none/204/none/default/none/response/400/invalid",
+          path: "/http/payloads/202/none/204/none/default/none/response/400/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202 && statusCode !== 204) {
@@ -1611,21 +1573,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/A/response/200/valid",
+          path: "/http/payloads/default/A/response/200/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1688,21 +1648,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/A/response/200/none",
+          path: "/http/payloads/default/A/response/200/none"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1765,21 +1723,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/A/response/400/valid",
+          path: "/http/payloads/default/A/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1842,21 +1798,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/A/response/400/none",
+          path: "/http/payloads/default/A/response/400/none"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1919,21 +1873,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/none/response/200/invalid",
+          path: "/http/payloads/default/none/response/200/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1980,21 +1932,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/none/response/200/none",
+          path: "/http/payloads/default/none/response/200/none"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2041,21 +1991,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/none/response/400/invalid",
+          path: "/http/payloads/default/none/response/400/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2102,21 +2050,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/default/none/response/400/none",
+          path: "/http/payloads/default/none/response/400/none"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2164,21 +2110,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/200/none",
+          path: "/http/payloads/200/A/response/200/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2240,21 +2184,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/200/valid",
+          path: "/http/payloads/200/A/response/200/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2316,21 +2258,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/200/invalid",
+          path: "/http/payloads/200/A/response/200/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2393,21 +2333,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/400/none",
+          path: "/http/payloads/200/A/response/400/none"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2469,21 +2407,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/400/valid",
+          path: "/http/payloads/200/A/response/400/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2545,21 +2481,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/400/invalid",
+          path: "/http/payloads/200/A/response/400/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2621,21 +2555,19 @@ export class MultipleResponses {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/payloads/200/A/response/202/valid",
+          path: "/http/payloads/200/A/response/202/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

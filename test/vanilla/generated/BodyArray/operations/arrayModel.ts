@@ -42,21 +42,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/null",
+          path: "/array/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -135,21 +133,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/invalid",
+          path: "/array/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -228,21 +224,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/empty",
+          path: "/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -336,7 +330,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -357,7 +350,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -368,7 +361,7 @@ export class ArrayModel {
           path: "/array/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -419,21 +412,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/boolean/tfft",
+          path: "/array/prim/boolean/tfft"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -527,7 +518,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -548,7 +538,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -559,7 +549,7 @@ export class ArrayModel {
           path: "/array/prim/boolean/tfft",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -610,21 +600,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/boolean/true.null.false",
+          path: "/array/prim/boolean/true.null.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -703,21 +691,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/boolean/true.boolean.false",
+          path: "/array/prim/boolean/true.boolean.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -796,21 +782,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/integer/1.-1.3.300",
+          path: "/array/prim/integer/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -904,7 +888,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -925,7 +908,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -936,7 +919,7 @@ export class ArrayModel {
           path: "/array/prim/integer/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -987,21 +970,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/integer/1.null.zero",
+          path: "/array/prim/integer/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1080,21 +1061,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/integer/1.integer.0",
+          path: "/array/prim/integer/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1173,21 +1152,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/long/1.-1.3.300",
+          path: "/array/prim/long/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1281,7 +1258,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1302,7 +1278,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1313,7 +1289,7 @@ export class ArrayModel {
           path: "/array/prim/long/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1364,21 +1340,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/long/1.null.zero",
+          path: "/array/prim/long/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1457,21 +1431,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/long/1.integer.0",
+          path: "/array/prim/long/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1550,21 +1522,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/float/0--0.01-1.2e20",
+          path: "/array/prim/float/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1658,7 +1628,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1679,7 +1648,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1690,7 +1659,7 @@ export class ArrayModel {
           path: "/array/prim/float/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1741,21 +1710,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/float/0.0-null-1.2e20",
+          path: "/array/prim/float/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1834,21 +1801,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/float/1.number.0",
+          path: "/array/prim/float/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1927,21 +1892,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/double/0--0.01-1.2e20",
+          path: "/array/prim/double/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2035,7 +1998,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -2056,7 +2018,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2067,7 +2029,7 @@ export class ArrayModel {
           path: "/array/prim/double/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2118,21 +2080,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/double/0.0-null-1.2e20",
+          path: "/array/prim/double/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2211,21 +2171,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/double/1.number.0",
+          path: "/array/prim/double/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2304,21 +2262,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/string/foo1.foo2.foo3",
+          path: "/array/prim/string/foo1.foo2.foo3"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2412,7 +2368,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -2433,7 +2388,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2444,7 +2399,7 @@ export class ArrayModel {
           path: "/array/prim/string/foo1.foo2.foo3",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2495,21 +2450,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/string/foo.null.foo2",
+          path: "/array/prim/string/foo.null.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2588,21 +2541,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/string/foo.123.foo2",
+          path: "/array/prim/string/foo.123.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2683,21 +2634,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/uuid/valid",
+          path: "/array/prim/uuid/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2793,7 +2742,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -2814,7 +2762,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2825,7 +2773,7 @@ export class ArrayModel {
           path: "/array/prim/uuid/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2876,21 +2824,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/uuid/invalidchars",
+          path: "/array/prim/uuid/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2969,21 +2915,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date/valid",
+          path: "/array/prim/date/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3078,7 +3022,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3099,7 +3042,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3110,7 +3053,7 @@ export class ArrayModel {
           path: "/array/prim/date/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3161,21 +3104,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date/invalidnull",
+          path: "/array/prim/date/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3254,21 +3195,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date/invalidchars",
+          path: "/array/prim/date/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3348,21 +3287,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date-time/valid",
+          path: "/array/prim/date-time/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3458,7 +3395,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3479,7 +3415,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3490,7 +3426,7 @@ export class ArrayModel {
           path: "/array/prim/date-time/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3541,21 +3477,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date-time/invalidnull",
+          path: "/array/prim/date-time/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3634,21 +3568,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date-time/invalidchars",
+          path: "/array/prim/date-time/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3728,21 +3660,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/date-time-rfc1123/valid",
+          path: "/array/prim/date-time-rfc1123/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3838,7 +3768,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3859,7 +3788,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3870,7 +3799,7 @@ export class ArrayModel {
           path: "/array/prim/date-time-rfc1123/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3921,21 +3850,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/duration/valid",
+          path: "/array/prim/duration/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4029,7 +3956,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4050,7 +3976,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4061,7 +3987,7 @@ export class ArrayModel {
           path: "/array/prim/duration/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4113,21 +4039,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/byte/valid",
+          path: "/array/prim/byte/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4222,7 +4146,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4243,7 +4166,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4254,7 +4177,7 @@ export class ArrayModel {
           path: "/array/prim/byte/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4306,21 +4229,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/byte/invalidnull",
+          path: "/array/prim/byte/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4400,21 +4321,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/prim/base64url/valid",
+          path: "/array/prim/base64url/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4493,21 +4412,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/complex/null",
+          path: "/array/complex/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4587,21 +4504,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/complex/empty",
+          path: "/array/complex/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4682,21 +4597,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/complex/itemnull",
+          path: "/array/complex/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4777,21 +4690,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/complex/itemempty",
+          path: "/array/complex/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4872,21 +4783,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/complex/valid",
+          path: "/array/complex/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4969,7 +4878,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4991,7 +4899,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -5002,7 +4910,7 @@ export class ArrayModel {
           path: "/array/complex/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5053,21 +4961,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/array/null",
+          path: "/array/array/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5153,21 +5059,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/array/empty",
+          path: "/array/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5253,21 +5157,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/array/itemnull",
+          path: "/array/array/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5353,21 +5255,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/array/itemempty",
+          path: "/array/array/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5454,21 +5354,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/array/valid",
+          path: "/array/array/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5574,7 +5472,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -5602,7 +5499,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -5613,7 +5510,7 @@ export class ArrayModel {
           path: "/array/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5664,21 +5561,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/dictionary/null",
+          path: "/array/dictionary/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5764,21 +5659,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/dictionary/empty",
+          path: "/array/dictionary/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5866,21 +5759,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/dictionary/itemnull",
+          path: "/array/dictionary/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5968,21 +5859,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/dictionary/itemempty",
+          path: "/array/dictionary/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6070,21 +5959,19 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/array/dictionary/valid",
+          path: "/array/dictionary/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6191,7 +6078,6 @@ export class ArrayModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -6219,7 +6105,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody: arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -6230,7 +6116,7 @@ export class ArrayModel {
           path: "/array/dictionary/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

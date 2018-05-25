@@ -42,21 +42,19 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/valid",
+          path: "/complex/basic/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -132,7 +130,6 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Basic;
@@ -140,8 +137,8 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
-            "this.client.apiVersion": this.client.apiVersion,
+            complexBody: complexBody,
+            "this.client.apiVersion": this.client.apiVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -154,12 +151,12 @@ export class BasicOperations {
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -210,21 +207,19 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/invalid",
+          path: "/complex/basic/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -290,21 +285,19 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/empty",
+          path: "/complex/basic/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -370,21 +363,19 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/null",
+          path: "/complex/basic/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -450,21 +441,19 @@ export class BasicOperations {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/notprovided",
+          path: "/complex/basic/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

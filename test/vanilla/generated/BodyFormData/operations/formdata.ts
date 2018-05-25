@@ -64,8 +64,8 @@ export class Formdata {
         httpRequest,
         {
           arguments: {
-            "fileContent": fileContent,
-            "fileName": fileName,
+            fileContent: fileContent,
+            fileName: fileName
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -77,14 +77,14 @@ export class Formdata {
           formDataParameters: [
             {
               parameterName: "fileContent",
-              type: msRest.OperationParameterType.Stream,
+              type: msRest.OperationParameterType.Stream
             },
             {
               parameterName: "fileName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
-          contentType: "multipart/form-data",
+          contentType: "multipart/form-data"
         });
       let statusCode = operationRes.status;
 
@@ -161,7 +161,7 @@ export class Formdata {
         httpRequest,
         {
           arguments: {
-            "fileContent": fileContent,
+            fileContent: fileContent
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -173,7 +173,7 @@ export class Formdata {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "fileContent",
           requestBodyType: msRest.OperationParameterType.Stream,
-          contentType: "application/octet-stream",
+          contentType: "application/octet-stream"
         });
       let statusCode = operationRes.status;
 

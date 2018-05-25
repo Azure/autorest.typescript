@@ -43,21 +43,19 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/enum/notExpandable",
+          path: "/string/enum/notExpandable"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -147,7 +145,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -162,7 +159,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody: stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -173,7 +170,7 @@ export class EnumModel {
           path: "/string/enum/notExpandable",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -225,21 +222,19 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/enum/Referenced",
+          path: "/string/enum/Referenced"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -329,7 +324,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -344,7 +338,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            "enumStringBody": enumStringBody,
+            enumStringBody: enumStringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -355,7 +349,7 @@ export class EnumModel {
           path: "/string/enum/Referenced",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "enumStringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -406,21 +400,19 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/enum/ReferencedConstant",
+          path: "/string/enum/ReferencedConstant"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -505,7 +497,6 @@ export class EnumModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.RefColorConstant;
@@ -513,7 +504,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            "enumStringBody": enumStringBody,
+            enumStringBody: enumStringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -524,7 +515,7 @@ export class EnumModel {
           path: "/string/enum/ReferencedConstant",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "enumStringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

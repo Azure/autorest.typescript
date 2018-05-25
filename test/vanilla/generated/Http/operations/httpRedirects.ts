@@ -42,21 +42,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/300",
+          path: "/http/redirect/300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -115,21 +113,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/300",
+          path: "/http/redirect/300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -213,21 +209,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/301",
+          path: "/http/redirect/301"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -286,21 +280,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/301",
+          path: "/http/redirect/301"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -370,7 +362,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -384,7 +375,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -396,7 +387,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 301) {
@@ -451,21 +442,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/302",
+          path: "/http/redirect/302"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -524,21 +513,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/302",
+          path: "/http/redirect/302"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -608,7 +595,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -622,7 +608,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -634,7 +620,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 302) {
@@ -699,7 +685,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -713,7 +698,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -725,7 +710,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 303) {
@@ -784,21 +769,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "/http/redirect/307"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -857,21 +840,19 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "/http/redirect/307"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -939,7 +920,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -953,7 +933,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -965,7 +945,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1033,7 +1013,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1047,7 +1026,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1059,7 +1038,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1127,7 +1106,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1141,7 +1119,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1153,7 +1131,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -1221,7 +1199,6 @@ export class HttpRedirects {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1235,7 +1212,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            "booleanValue": booleanValue,
+            booleanValue: booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1247,7 +1224,7 @@ export class HttpRedirects {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {

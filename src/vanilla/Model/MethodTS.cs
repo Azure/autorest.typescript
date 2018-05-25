@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 
 namespace AutoRest.TypeScript.Model
@@ -829,6 +830,168 @@ namespace AutoRest.TypeScript.Model
                 sb.AppendFormat("{0}.parsedBody as {1}", resultReference, ReturnTypeTSString);
             }
             return sb.ToString();
+        }
+
+        public string GenerateSendOperationRequest()
+        {
+            TSBuilder builder = new TSBuilder();
+            builder.FunctionCall("await client.sendOperationRequest", argumentList =>
+            {
+                argumentList.Text("httpRequest");
+                argumentList.Object(GenerateOperationArguments);
+                argumentList.Object(GenerateOperationSpec);
+            });
+            return builder.ToString();
+        }
+
+        public void GenerateOperationArguments(TSObject operationArguments)
+        {
+            operationArguments.ObjectProperty("arguments", arguments =>
+            {
+                foreach (Parameter parameter in LogicalParameters)
+                {
+                    arguments.TextProperty(parameter.Name, parameter.Name);
+                }
+            });
+            operationArguments.TextProperty("abortSignal", "options && options.abortSignal");
+            operationArguments.TextProperty("customHeaders", "options && options.customHeaders");
+        }
+
+        public void GenerateOperationSpec(TSObject operationSpec)
+        {
+            operationSpec.QuotedStringProperty("httpMethod", HttpMethod.ToString().ToUpper());
+            if (IsAbsoluteUrl)
+            {
+                operationSpec.QuotedStringProperty("baseUrl", Url);
+            }
+            else
+            {
+                operationSpec.TextProperty("baseUrl", $"{ClientReference}.baseUri");
+                operationSpec.QuotedStringProperty("path", Url);
+            }
+
+            IEnumerable<Parameter> urlParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Path);
+            if (urlParameters.Any())
+            {
+                operationSpec.ArrayProperty("urlParameters", urlParameterArray =>
+                {
+                    foreach (ParameterTS urlParameter in urlParameters)
+                    {
+                        urlParameterArray.Object(urlParameterObject =>
+                        {
+                            urlParameterObject.QuotedStringProperty("parameterName", urlParameter.Name);
+                            if (urlParameter.Name != urlParameter.SerializedName)
+                            {
+                                urlParameterObject.QuotedStringProperty("urlParameterName", urlParameter.SerializedName);
+                            }
+                            if (urlParameter.OperationType != null)
+                            {
+                                urlParameterObject.TextProperty("type", $"msRest.OperationParameterType.{urlParameter.OperationType}");
+                            }
+                            if (urlParameter.SkipUrlEncoding())
+                            {
+                                urlParameterObject.BooleanProperty("skipEncoding", true);
+                            }
+                        });
+                    }
+                });
+            }
+
+            IEnumerable<Parameter> queryParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Query);
+            if (queryParameters.Any())
+            {
+                operationSpec.ArrayProperty("queryParameters", queryParameterArray =>
+                {
+                    foreach (ParameterTS queryParameter in queryParameters)
+                    {
+                        queryParameterArray.Object(queryParameterObject =>
+                        {
+                            queryParameterObject.QuotedStringProperty("parameterName", queryParameter.Name);
+                            if (queryParameter.Name != queryParameter.SerializedName)
+                            {
+                                queryParameterObject.QuotedStringProperty("queryParameterName", queryParameter.SerializedName);
+                            }
+                            if (queryParameter.OperationType != null)
+                            {
+                                queryParameterObject.TextProperty("type", $"msRest.OperationParameterType.{queryParameter.OperationType}");
+                            }
+                            if (queryParameter.SkipUrlEncoding())
+                            {
+                                queryParameterObject.BooleanProperty("skipEncoding", true);
+                            }
+                            if (queryParameter.CollectionFormat != CollectionFormat.None)
+                            {
+                                queryParameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{queryParameter.CollectionFormat}");
+                            }
+                        });
+                    }
+                });
+            }
+
+            IEnumerable<Parameter> headerParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Header);
+            if (headerParameters.Any())
+            {
+                operationSpec.ArrayProperty("headerParameters", headerParameterArray =>
+                {
+                    foreach (ParameterTS headerParameter in headerParameters)
+                    {
+                        headerParameterArray.Object(headerParameterObject =>
+                        {
+                            headerParameterObject.QuotedStringProperty("parameterName", headerParameter.Name);
+                            if (headerParameter.Name != headerParameter.SerializedName)
+                            {
+                                headerParameterObject.QuotedStringProperty("headerName", headerParameter.SerializedName);
+                            }
+                            if (headerParameter.OperationType != null)
+                            {
+                                headerParameterObject.TextProperty("type", $"msRest.OperationParameterType.{headerParameter.OperationType}");
+                            }
+                        });
+                    }
+                });
+            }
+
+            if (RequestBody != null)
+            {
+                operationSpec.TextProperty("requestBodyMapper", "requestModelMapper");
+                operationSpec.QuotedStringProperty("requestBodyName", RequestBody.Name);
+                if (RequestBody.OperationType != null)
+                {
+                    operationSpec.TextProperty("requestBodyType", $"msRest.OperationParameterType.{RequestBody.OperationType}");
+                }
+                operationSpec.QuotedStringProperty("contentType", RequestContentType);
+            }
+            else
+            {
+                IEnumerable<Parameter> formDataParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.FormData);
+                if (formDataParameters.Any())
+                {
+                    operationSpec.ArrayProperty("formDataParameters", formDataParameterArray =>
+                    {
+                        foreach (ParameterTS formDataParameter in formDataParameters)
+                        {
+                            formDataParameterArray.Object(formDataParameterObject =>
+                            {
+                                formDataParameterObject.QuotedStringProperty("parameterName", formDataParameter.Name);
+                                if (formDataParameter.Name != formDataParameter.SerializedName)
+                                {
+                                    formDataParameterObject.QuotedStringProperty("headerName", formDataParameter.SerializedName);
+                                }
+                                if (formDataParameter.OperationType != null)
+                                {
+                                    formDataParameterObject.TextProperty("type", $"msRest.OperationParameterType.{formDataParameter.OperationType}");
+                                }
+                            });
+                        }
+                    });
+                    operationSpec.QuotedStringProperty("contentType", RequestContentType);
+                }
+            }
+
+            if (CodeModel.ShouldGenerateXmlSerialization)
+            {
+                operationSpec.BooleanProperty("isXML", true);
+            }
         }
     }
 }

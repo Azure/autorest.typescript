@@ -41,21 +41,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/null",
+          path: "/date/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -127,21 +125,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/invaliddate",
+          path: "/date/invaliddate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -213,21 +209,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/overflowdate",
+          path: "/date/overflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -299,21 +293,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/underflowdate",
+          path: "/date/underflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -396,7 +388,6 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -410,7 +401,7 @@ export class DateModel {
         httpRequest,
         {
           arguments: {
-            "dateBody": dateBody,
+            dateBody: dateBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -422,7 +413,7 @@ export class DateModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -473,21 +464,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/max",
+          path: "/date/max"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -570,7 +559,6 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -584,7 +572,7 @@ export class DateModel {
         httpRequest,
         {
           arguments: {
-            "dateBody": dateBody,
+            dateBody: dateBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -596,7 +584,7 @@ export class DateModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -647,21 +635,19 @@ export class DateModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/min",
+          path: "/date/min"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

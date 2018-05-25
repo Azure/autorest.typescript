@@ -53,14 +53,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "userAgent": userAgent,
+            userAgent: userAgent
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -73,9 +72,9 @@ export class Header {
             {
               parameterName: "userAgent",
               headerName: "User-Agent",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -126,21 +125,19 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/header/response/existingkey",
+          path: "/header/response/existingkey"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -206,14 +203,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "contentType": contentType,
+            contentType: contentType
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -226,9 +222,9 @@ export class Header {
             {
               parameterName: "contentType",
               headerName: "Content-Type",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -279,21 +275,19 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/header/response/protectedkey",
+          path: "/header/response/protectedkey"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -365,15 +359,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -385,13 +378,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -453,14 +446,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -472,9 +464,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -546,15 +538,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -566,13 +557,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -634,14 +625,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -653,9 +643,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -727,15 +717,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -747,13 +736,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -815,14 +804,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -834,9 +822,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -908,15 +896,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -928,13 +915,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -996,14 +983,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1015,9 +1001,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1089,15 +1075,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1109,13 +1094,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1177,14 +1162,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1196,9 +1180,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1270,15 +1254,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1290,13 +1273,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1359,14 +1342,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1378,9 +1360,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1454,15 +1436,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1474,13 +1455,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Date,
-            },
-          ],
+              type: msRest.OperationParameterType.Date
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1542,14 +1523,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1561,9 +1541,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1637,15 +1617,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1657,13 +1636,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.DateTime,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1726,14 +1705,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1745,9 +1723,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1821,15 +1799,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1841,13 +1818,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.DateTimeRfc1123,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTimeRfc1123
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1910,14 +1887,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1929,9 +1905,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2004,15 +1980,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2024,13 +1999,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.TimeSpan,
-            },
-          ],
+              type: msRest.OperationParameterType.TimeSpan
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2092,14 +2067,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2111,9 +2085,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2185,15 +2159,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2205,13 +2178,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2273,14 +2246,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2292,9 +2264,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2368,15 +2340,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
-            "value": value,
+            scenario: scenario,
+            value: value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2388,12 +2359,12 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
-              parameterName: "value",
-            },
-          ],
+              parameterName: "value"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2455,14 +2426,13 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "scenario": scenario,
+            scenario: scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2474,9 +2444,9 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2532,21 +2502,19 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0",
+          path: "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

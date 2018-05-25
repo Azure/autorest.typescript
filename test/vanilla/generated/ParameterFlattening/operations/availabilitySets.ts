@@ -78,7 +78,6 @@ export class AvailabilitySets {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
@@ -86,9 +85,9 @@ export class AvailabilitySets {
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "avset": avset,
-            "tags1": tags1,
+            resourceGroupName: resourceGroupName,
+            avset: avset,
+            tags1: tags1
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -100,17 +99,17 @@ export class AvailabilitySets {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "avset",
               urlParameterName: "availabilitySetName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "tags1",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

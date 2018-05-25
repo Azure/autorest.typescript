@@ -50,14 +50,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -70,9 +69,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -170,17 +169,16 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "clientRequestId": clientRequestId,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "timeout": timeout,
+            maxresults: maxresults,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -193,22 +191,22 @@ export class Paging {
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -308,17 +306,16 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "clientRequestId": clientRequestId,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "timeout": timeout,
+            maxresults: maxresults,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -331,22 +328,22 @@ export class Paging {
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -459,18 +456,17 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "clientRequestId": clientRequestId,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "offset": offset,
-            "timeout": timeout,
+            maxresults: maxresults,
+            offset: offset,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -482,29 +478,29 @@ export class Paging {
           urlParameters: [
             {
               parameterName: "offset",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -578,14 +574,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -598,9 +593,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -675,14 +670,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -695,9 +689,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -770,14 +764,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -790,9 +783,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -865,14 +858,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -885,9 +877,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -960,14 +952,13 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -980,9 +971,9 @@ export class Paging {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1065,16 +1056,15 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "apiVersion": apiVersion,
-            "tenant": tenant,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            apiVersion: apiVersion,
+            tenant: tenant,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1086,23 +1076,23 @@ export class Paging {
           urlParameters: [
             {
               parameterName: "tenant",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1202,7 +1192,6 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -1210,8 +1199,8 @@ export class Paging {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "apiVersion": apiVersion,
-            "tenant": tenant,
+            apiVersion: apiVersion,
+            tenant: tenant
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1223,23 +1212,23 @@ export class Paging {
           urlParameters: [
             {
               parameterName: "tenant",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1327,17 +1316,16 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "apiVersion": apiVersion,
-            "tenant": tenant,
-            "nextLink": nextLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            apiVersion: apiVersion,
+            tenant: tenant,
+            nextLink: nextLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1349,28 +1337,28 @@ export class Paging {
           urlParameters: [
             {
               parameterName: "tenant",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1474,17 +1462,16 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextLink": nextLink,
+            nextLink: nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "apiVersion": apiVersion,
-            "tenant": tenant,
+            apiVersion: apiVersion,
+            tenant: tenant
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1497,27 +1484,27 @@ export class Paging {
             {
               parameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
+              skipEncoding: true
             },
             {
               parameterName: "tenant",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api_version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1596,15 +1583,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1617,16 +1603,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1731,18 +1717,17 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "clientRequestId": clientRequestId,
+            nextPageLink: nextPageLink,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "timeout": timeout,
+            maxresults: maxresults,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1755,29 +1740,29 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1883,18 +1868,17 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "clientRequestId": clientRequestId,
+            nextPageLink: nextPageLink,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "timeout": timeout,
+            maxresults: maxresults,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1907,29 +1891,29 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2034,18 +2018,17 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "clientRequestId": clientRequestId,
+            nextPageLink: nextPageLink,
+            clientRequestId: clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "maxresults": maxresults,
-            "timeout": timeout,
+            maxresults: maxresults,
+            timeout: timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2058,29 +2041,29 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
               headerName: "client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "maxresults",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "timeout",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2160,15 +2143,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2181,16 +2163,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2271,15 +2253,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2292,16 +2273,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2380,15 +2361,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2401,16 +2381,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2489,15 +2469,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2510,16 +2489,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2598,15 +2577,14 @@ export class Paging {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "nextPageLink": nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            nextPageLink: nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2619,16 +2597,16 @@ export class Paging {
               parameterName: "nextPageLink",
               urlParameterName: "nextLink",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -114,7 +114,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -136,8 +135,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            "resourceArray": resourceArray,
-            "this.acceptLanguage": this.acceptLanguage,
+            resourceArray: resourceArray,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -150,12 +149,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -215,14 +214,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.acceptLanguage": this.acceptLanguage,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -235,9 +233,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -328,7 +326,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -350,8 +347,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            "resourceDictionary": resourceDictionary,
-            "this.acceptLanguage": this.acceptLanguage,
+            resourceDictionary: resourceDictionary,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -364,12 +361,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceDictionary",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -429,14 +426,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.acceptLanguage": this.acceptLanguage,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -449,9 +445,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -543,7 +539,6 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ResourceCollection;
@@ -551,8 +546,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            "resourceComplexObject": resourceComplexObject,
-            "this.acceptLanguage": this.acceptLanguage,
+            resourceComplexObject: resourceComplexObject,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -565,12 +560,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceComplexObject",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -630,14 +625,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.acceptLanguage": this.acceptLanguage,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -650,9 +644,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

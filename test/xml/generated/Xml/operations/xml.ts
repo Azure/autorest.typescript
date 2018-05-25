@@ -42,14 +42,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -57,7 +55,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/simple",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -133,7 +131,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Slideshow;
@@ -141,7 +138,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "slideshow": slideshow,
+            slideshow: slideshow
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -153,7 +150,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -204,14 +201,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -219,7 +214,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/wrapped-lists",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -291,7 +286,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.AppleBarrel;
@@ -299,7 +293,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "wrappedLists": wrappedLists,
+            wrappedLists: wrappedLists
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -311,7 +305,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "wrappedLists",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -362,14 +356,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -377,7 +369,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/headers",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -428,14 +420,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -443,7 +433,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-list",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -515,7 +505,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Slideshow;
@@ -523,7 +512,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "slideshow": slideshow,
+            slideshow: slideshow
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -535,7 +524,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -582,14 +571,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -597,7 +584,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-wrapped-lists",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -669,7 +656,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.AppleBarrel;
@@ -677,7 +663,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "appleBarrel": appleBarrel,
+            appleBarrel: appleBarrel
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -689,7 +675,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "appleBarrel",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -736,14 +722,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -751,7 +735,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/root-list",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -830,7 +814,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -853,7 +836,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "bananas": bananas,
+            bananas: bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -865,7 +848,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -912,14 +895,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -927,7 +908,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/root-list-single-item",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1006,7 +987,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1029,7 +1009,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "bananas": bananas,
+            bananas: bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1041,7 +1021,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -1088,14 +1068,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -1103,7 +1081,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-root-list",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1182,7 +1160,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1205,7 +1182,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "bananas": bananas,
+            bananas: bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1217,7 +1194,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -1264,14 +1241,12 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
@@ -1279,7 +1254,7 @@ export class Xml {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "/xml/empty-child-element",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1351,7 +1326,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Banana;
@@ -1359,7 +1333,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "banana": banana,
+            banana: banana
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1371,7 +1345,7 @@ export class Xml {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "banana",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -1419,14 +1393,13 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "comp": comp,
+            comp: comp
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1438,10 +1411,10 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1505,15 +1478,14 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "comp": comp,
-            "restype": restype,
+            comp: comp,
+            restype: restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1525,14 +1497,14 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1606,7 +1578,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageServiceProperties;
@@ -1614,9 +1585,9 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "comp": comp,
-            "restype": restype,
-            "properties": properties,
+            comp: comp,
+            restype: restype,
+            properties: properties
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1628,17 +1599,17 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -1687,15 +1658,14 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "comp": comp,
-            "restype": restype,
+            comp: comp,
+            restype: restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1707,14 +1677,14 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1795,7 +1765,6 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1818,9 +1787,9 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            "comp": comp,
-            "restype": restype,
-            "properties": properties,
+            comp: comp,
+            restype: restype,
+            properties: properties
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1832,17 +1801,17 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201) {
@@ -1891,15 +1860,14 @@ export class Xml {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "comp": comp,
-            "restype": restype,
+            comp: comp,
+            restype: restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1911,14 +1879,14 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
-          isXML: true,
+          isXML: true
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

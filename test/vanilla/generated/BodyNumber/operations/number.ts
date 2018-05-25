@@ -41,21 +41,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/null",
+          path: "/number/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -127,21 +125,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/invalidfloat",
+          path: "/number/invalidfloat"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -213,21 +209,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/invaliddouble",
+          path: "/number/invaliddouble"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -299,21 +293,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/invaliddecimal",
+          path: "/number/invaliddecimal"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -395,7 +387,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -409,7 +400,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -421,7 +412,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -472,21 +463,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/float/3.402823e+20",
+          path: "/number/big/float/3.402823e+20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -568,7 +557,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -582,7 +570,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -594,7 +582,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -645,21 +633,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/double/2.5976931e+101",
+          path: "/number/big/double/2.5976931e+101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -741,7 +727,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -755,7 +740,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -767,7 +752,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -818,21 +803,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/double/99999999.99",
+          path: "/number/big/double/99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -914,7 +897,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -928,7 +910,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -940,7 +922,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -991,21 +973,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/double/-99999999.99",
+          path: "/number/big/double/-99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1087,7 +1067,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1101,7 +1080,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1113,7 +1092,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1164,21 +1143,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/decimal/2.5976931e+101",
+          path: "/number/big/decimal/2.5976931e+101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1260,7 +1237,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1274,7 +1250,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1286,7 +1262,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1337,21 +1313,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/decimal/99999999.99",
+          path: "/number/big/decimal/99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1433,7 +1407,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1447,7 +1420,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1459,7 +1432,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1510,21 +1483,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/big/decimal/-99999999.99",
+          path: "/number/big/decimal/-99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1606,7 +1577,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1620,7 +1590,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1632,7 +1602,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1683,21 +1653,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/small/float/3.402823e-20",
+          path: "/number/small/float/3.402823e-20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1779,7 +1747,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1793,7 +1760,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1805,7 +1772,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1856,21 +1823,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/small/double/2.5976931e-101",
+          path: "/number/small/double/2.5976931e-101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1952,7 +1917,6 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1966,7 +1930,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            "numberBody": numberBody,
+            numberBody: numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1978,7 +1942,7 @@ export class Number {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2029,21 +1993,19 @@ export class Number {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/number/small/decimal/2.5976931e-101",
+          path: "/number/small/decimal/2.5976931e-101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

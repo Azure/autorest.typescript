@@ -87,14 +87,13 @@ class AutoRestReportService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "qualifier": qualifier,
+            qualifier: qualifier
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -106,9 +105,9 @@ class AutoRestReportService extends msRest.ServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

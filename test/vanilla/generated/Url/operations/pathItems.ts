@@ -77,19 +77,18 @@ export class PathItems {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "localStringPath": localStringPath,
-            "localStringQuery": localStringQuery,
-            "pathItemStringPath": pathItemStringPath,
-            "pathItemStringQuery": pathItemStringQuery,
+            localStringPath: localStringPath,
+            localStringQuery: localStringQuery,
+            pathItemStringPath: pathItemStringPath,
+            pathItemStringQuery: pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery,
+            "this.client.globalStringQuery": this.client.globalStringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -101,33 +100,33 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -212,19 +211,18 @@ export class PathItems {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "localStringPath": localStringPath,
-            "localStringQuery": localStringQuery,
-            "pathItemStringPath": pathItemStringPath,
-            "pathItemStringQuery": pathItemStringQuery,
+            localStringPath: localStringPath,
+            localStringQuery: localStringQuery,
+            pathItemStringPath: pathItemStringPath,
+            pathItemStringQuery: pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery,
+            "this.client.globalStringQuery": this.client.globalStringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -236,33 +234,33 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -347,19 +345,18 @@ export class PathItems {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "localStringPath": localStringPath,
-            "localStringQuery": localStringQuery,
-            "pathItemStringPath": pathItemStringPath,
-            "pathItemStringQuery": pathItemStringQuery,
+            localStringPath: localStringPath,
+            localStringQuery: localStringQuery,
+            pathItemStringPath: pathItemStringPath,
+            pathItemStringQuery: pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery,
+            "this.client.globalStringQuery": this.client.globalStringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -371,33 +368,33 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -482,19 +479,18 @@ export class PathItems {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "localStringPath": localStringPath,
-            "localStringQuery": localStringQuery,
-            "pathItemStringPath": pathItemStringPath,
-            "pathItemStringQuery": pathItemStringQuery,
+            localStringPath: localStringPath,
+            localStringQuery: localStringQuery,
+            pathItemStringPath: pathItemStringPath,
+            pathItemStringQuery: pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery,
+            "this.client.globalStringQuery": this.client.globalStringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -506,33 +502,33 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringPath",
               urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.globalStringQuery",
               queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -56,15 +56,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "unencodedPathParam": unencodedPathParam,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            unencodedPathParam: unencodedPathParam,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -77,16 +76,16 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -151,15 +150,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "unencodedPathParam": unencodedPathParam,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            unencodedPathParam: unencodedPathParam,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -172,16 +170,16 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -241,15 +239,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "unencodedPathParam": unencodedPathParam,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            unencodedPathParam: unencodedPathParam,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -262,16 +259,16 @@ export class SkipUrlEncoding {
             {
               parameterName: "unencodedPathParam",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -337,15 +334,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "q1": q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            q1: q1,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -357,17 +353,17 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              skipEncoding: true,
               type: msRest.OperationParameterType.String,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -431,15 +427,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "q1": q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            q1: q1,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -451,17 +446,17 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              skipEncoding: true,
               type: msRest.OperationParameterType.String,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -527,15 +522,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "q1": q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            q1: q1,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -547,17 +541,17 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              skipEncoding: true,
               type: msRest.OperationParameterType.String,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -618,15 +612,14 @@ export class SkipUrlEncoding {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "q1": q1,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            q1: q1,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -638,17 +631,17 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              skipEncoding: true,
               type: msRest.OperationParameterType.String,
-            },
+              skipEncoding: true
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

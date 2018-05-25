@@ -43,14 +43,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "boolPath": boolPath,
+            boolPath: boolPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -62,9 +61,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "boolPath",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -116,14 +115,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "boolPath": boolPath,
+            boolPath: boolPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -135,9 +133,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "boolPath",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -189,14 +187,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "intPath": intPath,
+            intPath: intPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -208,9 +205,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "intPath",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -262,14 +259,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "intPath": intPath,
+            intPath: intPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -281,9 +277,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "intPath",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -335,14 +331,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "longPath": longPath,
+            longPath: longPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -354,9 +349,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "longPath",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -408,14 +403,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "longPath": longPath,
+            longPath: longPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -427,9 +421,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "longPath",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -481,14 +475,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "floatPath": floatPath,
+            floatPath: floatPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -500,9 +493,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "floatPath",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -554,14 +547,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "floatPath": floatPath,
+            floatPath: floatPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -573,9 +565,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "floatPath",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -627,14 +619,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "doublePath": doublePath,
+            doublePath: doublePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -646,9 +637,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "doublePath",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -700,14 +691,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "doublePath": doublePath,
+            doublePath: doublePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -719,9 +709,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "doublePath",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -773,14 +763,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringPath": stringPath,
+            stringPath: stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -792,9 +781,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -846,14 +835,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringPath": stringPath,
+            stringPath: stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -865,9 +853,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -919,14 +907,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringPath": stringPath,
+            stringPath: stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -938,9 +925,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1001,14 +988,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringPath": stringPath,
+            stringPath: stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1020,9 +1006,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1089,14 +1075,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "enumPath": enumPath,
+            enumPath: enumPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1107,9 +1092,9 @@ export class Paths {
           path: "/paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
-            },
-          ],
+              parameterName: "enumPath"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1176,14 +1161,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "enumPath": enumPath,
+            enumPath: enumPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1194,9 +1178,9 @@ export class Paths {
           path: "/paths/string/null/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
-            },
-          ],
+              parameterName: "enumPath"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1258,14 +1242,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "bytePath": bytePath,
+            bytePath: bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1277,9 +1260,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1331,14 +1314,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "bytePath": bytePath,
+            bytePath: bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1350,9 +1332,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1413,14 +1395,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "bytePath": bytePath,
+            bytePath: bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1432,9 +1413,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1486,14 +1467,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "datePath": datePath,
+            datePath: datePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1505,9 +1485,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "datePath",
-              type: msRest.OperationParameterType.Date,
-            },
-          ],
+              type: msRest.OperationParameterType.Date
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1570,14 +1550,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "datePath": datePath,
+            datePath: datePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1589,9 +1568,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "datePath",
-              type: msRest.OperationParameterType.Date,
-            },
-          ],
+              type: msRest.OperationParameterType.Date
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1643,14 +1622,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateTimePath": dateTimePath,
+            dateTimePath: dateTimePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1662,9 +1640,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "dateTimePath",
-              type: msRest.OperationParameterType.DateTime,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1727,14 +1705,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateTimePath": dateTimePath,
+            dateTimePath: dateTimePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1746,9 +1723,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "dateTimePath",
-              type: msRest.OperationParameterType.DateTime,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 400) {
@@ -1809,14 +1786,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "base64UrlPath": base64UrlPath,
+            base64UrlPath: base64UrlPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1828,9 +1804,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "base64UrlPath",
-              type: msRest.OperationParameterType.Base64Url,
-            },
-          ],
+              type: msRest.OperationParameterType.Base64Url
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1898,14 +1874,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayPath": arrayPath,
+            arrayPath: arrayPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1916,9 +1891,9 @@ export class Paths {
           path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
-              parameterName: "arrayPath",
-            },
-          ],
+              parameterName: "arrayPath"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1980,14 +1955,13 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "unixTimeUrlPath": unixTimeUrlPath,
+            unixTimeUrlPath: unixTimeUrlPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1999,9 +1973,9 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "unixTimeUrlPath",
-              type: msRest.OperationParameterType.UnixTime,
-            },
-          ],
+              type: msRest.OperationParameterType.UnixTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
