@@ -50,14 +50,13 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -70,9 +69,9 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -183,7 +182,6 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Fish;
@@ -191,8 +189,8 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            complexBody,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -205,12 +203,12 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -270,14 +268,13 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -290,9 +287,9 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -372,7 +369,6 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Salmon;
@@ -380,8 +376,8 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            complexBody,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -394,12 +390,12 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -463,7 +459,6 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Salmon;
@@ -471,8 +466,8 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            complexBody,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -485,12 +480,12 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -596,7 +591,6 @@ export class Polymorphism {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Fish;
@@ -604,8 +598,8 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            "complexBody": complexBody,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            complexBody,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -618,12 +612,12 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

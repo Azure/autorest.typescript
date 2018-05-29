@@ -41,21 +41,19 @@ export class HttpFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/emptybody/error",
+          path: "/http/failure/emptybody/error"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -127,21 +125,19 @@ export class HttpFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/nomodel/error",
+          path: "/http/failure/nomodel/error"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -209,21 +205,19 @@ export class HttpFailure {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/nomodel/empty",
+          path: "/http/failure/nomodel/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

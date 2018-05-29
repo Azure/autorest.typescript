@@ -93,7 +93,6 @@ export class ParameterGrouping {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -108,10 +107,10 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "body": body,
-            "customHeader": customHeader,
-            "query": query,
-            "path": path,
+            body,
+            customHeader,
+            query,
+            path
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -123,30 +122,30 @@ export class ParameterGrouping {
           urlParameters: [
             {
               parameterName: "path",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "query",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "customHeader",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
           requestBodyType: msRest.OperationParameterType.Int,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -227,7 +226,6 @@ export class ParameterGrouping {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -235,8 +233,8 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "customHeader": customHeader,
-            "query": query,
+            customHeader,
+            query
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -248,20 +246,20 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "query",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "customHeader",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -359,7 +357,6 @@ export class ParameterGrouping {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -367,10 +364,10 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "headerOne": headerOne,
-            "queryOne": queryOne,
-            "headerTwo": headerTwo,
-            "queryTwo": queryTwo,
+            headerOne,
+            queryOne,
+            headerTwo,
+            queryTwo
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -383,31 +380,31 @@ export class ParameterGrouping {
             {
               parameterName: "queryOne",
               queryParameterName: "query-one",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "queryTwo",
               queryParameterName: "query-two",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "headerOne",
               headerName: "header-one",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "headerTwo",
               headerName: "header-two",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -488,7 +485,6 @@ export class ParameterGrouping {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -496,8 +492,8 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "headerOne": headerOne,
-            "queryOne": queryOne,
+            headerOne,
+            queryOne
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -510,21 +506,21 @@ export class ParameterGrouping {
             {
               parameterName: "queryOne",
               queryParameterName: "query-one",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "headerOne",
               headerName: "header-one",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

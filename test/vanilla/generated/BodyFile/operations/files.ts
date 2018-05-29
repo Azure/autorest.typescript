@@ -47,15 +47,14 @@ export class Files {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/files/stream/nonempty",
+          path: "/files/stream/nonempty"
         });
       let statusCode = operationRes.status;
 
@@ -114,15 +113,14 @@ export class Files {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/files/stream/verylarge",
+          path: "/files/stream/verylarge"
         });
       let statusCode = operationRes.status;
 
@@ -181,15 +179,14 @@ export class Files {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/files/stream/empty",
+          path: "/files/stream/empty"
         });
       let statusCode = operationRes.status;
 

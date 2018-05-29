@@ -52,14 +52,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "pathParameter": pathParameter,
+            pathParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -71,9 +70,9 @@ export class Implicit {
           urlParameters: [
             {
               parameterName: "pathParameter",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -146,14 +145,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "queryParameter": queryParameter,
+            queryParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -165,9 +163,9 @@ export class Implicit {
           queryParameters: [
             {
               parameterName: "queryParameter",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -228,14 +226,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "queryParameter": queryParameter,
+            queryParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -247,9 +244,9 @@ export class Implicit {
           headerParameters: [
             {
               parameterName: "queryParameter",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -310,7 +307,6 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -324,7 +320,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -336,7 +332,7 @@ export class Implicit {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -395,14 +391,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.requiredGlobalPath": this.client.requiredGlobalPath,
+            "this.client.requiredGlobalPath": this.client.requiredGlobalPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -415,9 +410,9 @@ export class Implicit {
             {
               parameterName: "this.client.requiredGlobalPath",
               urlParameterName: "required-global-path",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -488,14 +483,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery,
+            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -508,9 +502,9 @@ export class Implicit {
             {
               parameterName: "this.client.requiredGlobalQuery",
               queryParameterName: "required-global-query",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -581,14 +575,13 @@ export class Implicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery,
+            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -601,9 +594,9 @@ export class Implicit {
             {
               parameterName: "this.client.optionalGlobalQuery",
               queryParameterName: "optional-global-query",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

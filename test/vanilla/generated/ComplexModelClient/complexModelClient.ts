@@ -95,7 +95,6 @@ class ComplexModelClient extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -103,8 +102,8 @@ class ComplexModelClient extends msRest.ServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "this.apiVersion": this.apiVersion,
+            resourceGroupName,
+            "this.apiVersion": this.apiVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -117,20 +116,20 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "this.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -221,7 +220,6 @@ class ComplexModelClient extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogDictionaryOfArray;
@@ -229,10 +227,10 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "subscriptionId": subscriptionId,
-            "resourceGroupName": resourceGroupName,
+            subscriptionId,
+            resourceGroupName,
             "this.apiVersion": this.apiVersion,
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -244,23 +242,23 @@ class ComplexModelClient extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -351,7 +349,6 @@ class ComplexModelClient extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogArrayOfDictionary;
@@ -359,10 +356,10 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "subscriptionId": subscriptionId,
-            "resourceGroupName": resourceGroupName,
+            subscriptionId,
+            resourceGroupName,
             "this.apiVersion": this.apiVersion,
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -374,23 +371,23 @@ class ComplexModelClient extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

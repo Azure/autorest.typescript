@@ -43,14 +43,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "boolQuery": boolQuery,
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -62,9 +61,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -116,14 +115,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "boolQuery": boolQuery,
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -135,9 +133,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -197,14 +195,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "boolQuery": boolQuery,
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -216,9 +213,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "boolQuery",
-              type: msRest.OperationParameterType.Boolean,
-            },
-          ],
+              type: msRest.OperationParameterType.Boolean
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -270,14 +267,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "intQuery": intQuery,
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -289,9 +285,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -343,14 +339,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "intQuery": intQuery,
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -362,9 +357,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -424,14 +419,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "intQuery": intQuery,
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -443,9 +437,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "intQuery",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -497,14 +491,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "longQuery": longQuery,
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -516,9 +509,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -570,14 +563,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "longQuery": longQuery,
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -589,9 +581,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -651,14 +643,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "longQuery": longQuery,
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -670,9 +661,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "longQuery",
-              type: msRest.OperationParameterType.Long,
-            },
-          ],
+              type: msRest.OperationParameterType.Long
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -724,14 +715,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "floatQuery": floatQuery,
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -743,9 +733,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -797,14 +787,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "floatQuery": floatQuery,
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -816,9 +805,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -878,14 +867,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "floatQuery": floatQuery,
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -897,9 +885,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "floatQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -951,14 +939,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "doubleQuery": doubleQuery,
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -970,9 +957,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1024,14 +1011,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "doubleQuery": doubleQuery,
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1043,9 +1029,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1105,14 +1091,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "doubleQuery": doubleQuery,
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1124,9 +1109,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "doubleQuery",
-              type: msRest.OperationParameterType.Double,
-            },
-          ],
+              type: msRest.OperationParameterType.Double
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1178,14 +1163,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringQuery": stringQuery,
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1197,9 +1181,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1251,14 +1235,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringQuery": stringQuery,
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1270,9 +1253,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1324,14 +1307,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringQuery": stringQuery,
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1343,9 +1325,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1405,14 +1387,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "stringQuery": stringQuery,
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1424,9 +1405,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "stringQuery",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1489,14 +1470,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "enumQuery": enumQuery,
+            enumQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1507,9 +1487,9 @@ export class Queries {
           path: "/queries/enum/green%20color",
           queryParameters: [
             {
-              parameterName: "enumQuery",
-            },
-          ],
+              parameterName: "enumQuery"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1572,14 +1552,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "enumQuery": enumQuery,
+            enumQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1590,9 +1569,9 @@ export class Queries {
           path: "/queries/enum/null",
           queryParameters: [
             {
-              parameterName: "enumQuery",
-            },
-          ],
+              parameterName: "enumQuery"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1652,14 +1631,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "byteQuery": byteQuery,
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1671,9 +1649,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1725,14 +1703,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "byteQuery": byteQuery,
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1744,9 +1721,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1806,14 +1783,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "byteQuery": byteQuery,
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1825,9 +1801,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "byteQuery",
-              type: msRest.OperationParameterType.ByteArray,
-            },
-          ],
+              type: msRest.OperationParameterType.ByteArray
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1879,14 +1855,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateQuery": dateQuery,
+            dateQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1898,9 +1873,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateQuery",
-              type: msRest.OperationParameterType.Date,
-            },
-          ],
+              type: msRest.OperationParameterType.Date
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1961,14 +1936,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateQuery": dateQuery,
+            dateQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1980,9 +1954,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateQuery",
-              type: msRest.OperationParameterType.Date,
-            },
-          ],
+              type: msRest.OperationParameterType.Date
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2034,14 +2008,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateTimeQuery": dateTimeQuery,
+            dateTimeQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2053,9 +2026,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
-              type: msRest.OperationParameterType.DateTime,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2116,14 +2089,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "dateTimeQuery": dateTimeQuery,
+            dateTimeQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2135,9 +2107,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
-              type: msRest.OperationParameterType.DateTime,
-            },
-          ],
+              type: msRest.OperationParameterType.DateTime
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2203,14 +2175,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2222,9 +2193,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Csv
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2289,14 +2260,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2308,9 +2278,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Csv
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2375,14 +2345,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2394,9 +2363,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Csv,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Csv
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2462,14 +2431,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2481,9 +2449,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Ssv,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Ssv
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2549,14 +2517,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2568,9 +2535,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Tsv,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Tsv
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2636,14 +2603,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2655,9 +2621,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Pipes,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Pipes
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

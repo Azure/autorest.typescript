@@ -56,15 +56,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "fooClientRequestId": fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -77,14 +76,14 @@ export class Header {
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -167,7 +166,6 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -175,7 +173,7 @@ export class Header {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "fooClientRequestId": fooClientRequestId,
+            fooClientRequestId
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -188,14 +186,14 @@ export class Header {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -264,15 +262,14 @@ export class Header {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "fooClientRequestId": fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            fooClientRequestId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -285,14 +282,14 @@ export class Header {
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 404) {

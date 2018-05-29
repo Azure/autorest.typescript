@@ -41,21 +41,19 @@ export class Duration {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/duration/null",
+          path: "/duration/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -137,7 +135,6 @@ export class Duration {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -151,7 +148,7 @@ export class Duration {
         httpRequest,
         {
           arguments: {
-            "durationBody": durationBody,
+            durationBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -163,7 +160,7 @@ export class Duration {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "durationBody",
           requestBodyType: msRest.OperationParameterType.TimeSpan,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -214,21 +211,19 @@ export class Duration {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/duration/positiveduration",
+          path: "/duration/positiveduration"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -300,21 +295,19 @@ export class Duration {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/duration/invalid",
+          path: "/duration/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

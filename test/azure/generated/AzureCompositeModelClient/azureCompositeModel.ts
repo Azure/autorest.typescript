@@ -144,7 +144,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -152,9 +151,9 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "apiVersion": apiVersion,
-            "this.acceptLanguage": this.acceptLanguage,
+            resourceGroupName,
+            apiVersion,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -167,27 +166,27 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "this.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -282,7 +281,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogDictionaryOfArray;
@@ -290,11 +288,11 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
-            "subscriptionId": subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "apiVersion": apiVersion,
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -306,30 +304,30 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -424,7 +422,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.CatalogArrayOfDictionary;
@@ -432,11 +429,11 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
-            "subscriptionId": subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "apiVersion": apiVersion,
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -448,30 +445,30 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

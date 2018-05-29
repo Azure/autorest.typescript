@@ -1063,7 +1063,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1071,8 +1070,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1085,12 +1084,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1181,7 +1180,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1189,8 +1187,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1203,12 +1201,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1299,7 +1297,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1307,8 +1304,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1321,12 +1318,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -1418,7 +1415,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1426,8 +1422,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1440,12 +1436,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1519,14 +1515,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1539,9 +1534,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1603,14 +1598,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1623,9 +1617,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1689,14 +1683,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1709,9 +1702,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1775,7 +1768,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1783,8 +1775,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1797,12 +1789,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1866,7 +1858,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1874,8 +1865,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1888,12 +1879,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1959,7 +1950,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1967,8 +1957,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1981,12 +1971,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2051,7 +2041,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2059,8 +2048,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2073,12 +2062,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -2170,7 +2159,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2178,8 +2166,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2192,12 +2180,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2275,7 +2263,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2283,8 +2270,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2297,12 +2284,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2377,14 +2364,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2397,9 +2383,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -2459,14 +2445,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2479,9 +2464,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2546,7 +2531,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2554,8 +2538,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2568,12 +2552,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2639,7 +2623,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2647,8 +2630,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2661,12 +2644,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -2731,7 +2714,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2739,8 +2721,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2753,12 +2735,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -2835,7 +2817,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2843,8 +2824,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2857,12 +2838,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2940,7 +2921,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -2948,8 +2928,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2962,12 +2942,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3042,14 +3022,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3062,9 +3041,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3127,14 +3106,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3147,9 +3125,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3213,14 +3191,13 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3233,9 +3210,9 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3300,7 +3277,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -3308,8 +3284,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3322,12 +3298,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3393,7 +3369,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -3401,8 +3376,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3415,12 +3390,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -3486,7 +3461,6 @@ export class LROSADs {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -3494,8 +3468,8 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            "product": product,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            product,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3508,12 +3482,12 @@ export class LROSADs {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {

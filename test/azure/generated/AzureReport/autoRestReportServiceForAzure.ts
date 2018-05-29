@@ -117,15 +117,14 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "qualifier": qualifier,
-            "this.acceptLanguage": this.acceptLanguage,
+            qualifier,
+            "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -137,16 +136,16 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

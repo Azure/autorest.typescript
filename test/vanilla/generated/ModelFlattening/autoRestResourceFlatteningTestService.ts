@@ -79,7 +79,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -101,7 +100,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "resourceArray": resourceArray,
+            resourceArray
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -112,7 +111,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/array",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -164,21 +163,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/array",
+          path: "/model-flatten/array"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -262,7 +259,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -284,7 +280,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "resourceArray": resourceArray,
+            resourceArray
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -295,7 +291,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/wrappedarray",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -348,21 +344,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/wrappedarray",
+          path: "/model-flatten/wrappedarray"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -445,7 +439,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -467,7 +460,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "resourceDictionary": resourceDictionary,
+            resourceDictionary
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -478,7 +471,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/dictionary",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceDictionary",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -530,21 +523,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/dictionary",
+          path: "/model-flatten/dictionary"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -628,7 +619,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ResourceCollection;
@@ -636,7 +626,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "resourceComplexObject": resourceComplexObject,
+            resourceComplexObject
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -647,7 +637,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/resourcecollection",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceComplexObject",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -699,21 +689,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/resourcecollection",
+          path: "/model-flatten/resourcecollection"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -782,7 +770,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
@@ -790,7 +777,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "simpleBodyProduct": simpleBodyProduct,
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -801,7 +788,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/customFlattening",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "simpleBodyProduct",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -913,7 +900,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
@@ -921,7 +907,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "simpleBodyProduct": simpleBodyProduct,
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -932,7 +918,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           path: "/model-flatten/customFlattening",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "simpleBodyProduct",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1072,7 +1058,6 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.SimpleProduct;
@@ -1080,13 +1065,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "name": name,
-            "productId": productId,
-            "description": description,
-            "maxProductDisplayName": maxProductDisplayName,
-            "genericValue": genericValue,
-            "odatavalue": odatavalue,
-            "simpleBodyProduct": simpleBodyProduct,
+            name,
+            productId,
+            description,
+            maxProductDisplayName,
+            genericValue,
+            odatavalue,
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1098,12 +1083,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "name",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "simpleBodyProduct",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -53,7 +53,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -67,7 +66,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -79,7 +78,7 @@ export class Explicit {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.Int,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -152,7 +151,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -166,7 +164,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -178,7 +176,7 @@ export class Explicit {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.Int,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -246,7 +244,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.IntWrapper;
@@ -254,7 +251,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -265,7 +262,7 @@ export class Explicit {
           path: "/reqopt/requied/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -344,7 +341,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.IntOptionalWrapper;
@@ -352,7 +348,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -363,7 +359,7 @@ export class Explicit {
           path: "/reqopt/optional/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -425,14 +421,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "headerParameter": headerParameter,
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -444,9 +439,9 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -520,14 +515,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "headerParameter": headerParameter,
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -539,9 +533,9 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int,
-            },
-          ],
+              type: msRest.OperationParameterType.Int
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -603,7 +597,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -617,7 +610,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -629,7 +622,7 @@ export class Explicit {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -702,7 +695,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -716,7 +708,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -728,7 +720,7 @@ export class Explicit {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -796,7 +788,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StringWrapper;
@@ -804,7 +795,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -815,7 +806,7 @@ export class Explicit {
           path: "/reqopt/requied/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -894,7 +885,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StringOptionalWrapper;
@@ -902,7 +892,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -913,7 +903,7 @@ export class Explicit {
           path: "/reqopt/optional/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -975,14 +965,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "headerParameter": headerParameter,
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -994,9 +983,9 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1070,14 +1059,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1089,9 +1077,9 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "bodyParameter",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1153,7 +1141,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1161,7 +1148,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1172,7 +1159,7 @@ export class Explicit {
           path: "/reqopt/requied/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1237,7 +1224,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -1245,7 +1231,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1256,7 +1242,7 @@ export class Explicit {
           path: "/reqopt/optional/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1324,7 +1310,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ClassWrapper;
@@ -1332,7 +1317,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1343,7 +1328,7 @@ export class Explicit {
           path: "/reqopt/requied/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1414,7 +1399,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ClassOptionalWrapper;
@@ -1422,7 +1406,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1433,7 +1417,7 @@ export class Explicit {
           path: "/reqopt/optional/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1500,7 +1484,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1521,7 +1504,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1532,7 +1515,7 @@ export class Explicit {
           path: "/reqopt/requied/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1609,7 +1592,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1630,7 +1612,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1641,7 +1623,7 @@ export class Explicit {
           path: "/reqopt/optional/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1714,7 +1696,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayWrapper;
@@ -1722,7 +1703,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1733,7 +1714,7 @@ export class Explicit {
           path: "/reqopt/requied/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1816,7 +1797,6 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.ArrayOptionalWrapper;
@@ -1824,7 +1804,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            "bodyParameter": bodyParameter,
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1835,7 +1815,7 @@ export class Explicit {
           path: "/reqopt/optional/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1902,14 +1882,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "headerParameter": headerParameter,
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1920,9 +1899,9 @@ export class Explicit {
           path: "/reqopt/requied/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
-            },
-          ],
+              parameterName: "headerParameter"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -2000,14 +1979,13 @@ export class Explicit {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "headerParameter": headerParameter,
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2018,9 +1996,9 @@ export class Explicit {
           path: "/reqopt/optional/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
-            },
-          ],
+              parameterName: "headerParameter"
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

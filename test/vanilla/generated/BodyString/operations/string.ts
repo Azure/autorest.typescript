@@ -42,21 +42,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/null",
+          path: "/string/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -137,7 +135,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -151,7 +148,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -162,7 +159,7 @@ export class String {
           path: "/string/null",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -213,21 +210,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/empty",
+          path: "/string/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -309,7 +304,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -323,7 +317,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -334,7 +328,7 @@ export class String {
           path: "/string/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -386,21 +380,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/mbcs",
+          path: "/string/mbcs"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -484,7 +476,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -498,7 +489,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -509,7 +500,7 @@ export class String {
           path: "/string/mbcs",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -562,21 +553,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/whitespace",
+          path: "/string/whitespace"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -661,7 +650,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -675,7 +663,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -686,7 +674,7 @@ export class String {
           path: "/string/whitespace",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -737,21 +725,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/notProvided",
+          path: "/string/notProvided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -823,21 +809,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/base64Encoding",
+          path: "/string/base64Encoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -909,21 +893,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/base64UrlEncoding",
+          path: "/string/base64UrlEncoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1005,7 +987,6 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1019,7 +1000,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            "stringBody": stringBody,
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1031,7 +1012,7 @@ export class String {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           requestBodyType: msRest.OperationParameterType.Base64Url,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1082,21 +1063,19 @@ export class String {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/string/nullBase64UrlEncoding",
+          path: "/string/nullBase64UrlEncoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

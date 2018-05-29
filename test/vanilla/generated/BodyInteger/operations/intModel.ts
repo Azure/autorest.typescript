@@ -41,21 +41,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/null",
+          path: "/int/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -127,21 +125,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/invalid",
+          path: "/int/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -213,21 +209,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/overflowint32",
+          path: "/int/overflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -299,21 +293,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/underflowint32",
+          path: "/int/underflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -385,21 +377,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/overflowint64",
+          path: "/int/overflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -471,21 +461,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/underflowint64",
+          path: "/int/underflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -567,7 +555,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -581,7 +568,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            "intBody": intBody,
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -593,7 +580,7 @@ export class IntModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -654,7 +641,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -668,7 +654,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            "intBody": intBody,
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -680,7 +666,7 @@ export class IntModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -741,7 +727,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -755,7 +740,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            "intBody": intBody,
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -767,7 +752,7 @@ export class IntModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -828,7 +813,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -842,7 +826,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            "intBody": intBody,
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -854,7 +838,7 @@ export class IntModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -905,21 +889,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/unixtime",
+          path: "/int/unixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1002,7 +984,6 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1016,7 +997,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            "intBody": intBody,
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1028,7 +1009,7 @@ export class IntModel {
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.UnixTime,
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1079,21 +1060,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/invalidunixtime",
+          path: "/int/invalidunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1165,21 +1144,19 @@ export class IntModel {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/nullunixtime",
+          path: "/int/nullunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

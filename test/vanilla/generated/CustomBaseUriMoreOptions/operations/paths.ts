@@ -72,19 +72,18 @@ export class Paths {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "vault": vault,
-            "secret": secret,
+            vault,
+            secret,
             "this.client.dnsSuffix": this.client.dnsSuffix,
-            "keyName": keyName,
+            keyName,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "keyVersion": keyVersion,
+            keyVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -97,35 +96,35 @@ export class Paths {
             {
               parameterName: "vault",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
+              skipEncoding: true
             },
             {
               parameterName: "secret",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
+              skipEncoding: true
             },
             {
               parameterName: "this.client.dnsSuffix",
               urlParameterName: "dnsSuffix",
               type: msRest.OperationParameterType.String,
-              skipEncoding: true,
+              skipEncoding: true
             },
             {
               parameterName: "keyName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "keyVersion",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

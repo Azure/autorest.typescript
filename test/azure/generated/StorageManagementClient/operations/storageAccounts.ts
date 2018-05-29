@@ -64,7 +64,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
@@ -72,10 +71,10 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            "accountName": accountName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -88,26 +87,26 @@ export class StorageAccounts {
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "accountName",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -258,18 +257,17 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -281,32 +279,32 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 204) {
@@ -385,18 +383,17 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -408,32 +405,32 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -540,7 +537,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountUpdateParameters;
@@ -548,12 +544,12 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
-            "parameters": parameters,
+            resourceGroupName,
+            accountName,
+            parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -565,35 +561,35 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "parameters",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -683,18 +679,17 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -706,32 +701,32 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -811,7 +806,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -820,7 +814,7 @@ export class StorageAccounts {
           arguments: {
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -833,23 +827,23 @@ export class StorageAccounts {
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -936,17 +930,16 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
+            resourceGroupName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -958,28 +951,28 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1084,7 +1077,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
@@ -1092,12 +1084,12 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            "regenerateKeyParameter": regenerateKeyParameter,
+            regenerateKeyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1109,35 +1101,35 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "regenerateKeyParameter",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1239,7 +1231,6 @@ export class StorageAccounts {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.StorageAccountCreateParameters;
@@ -1247,12 +1238,12 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            "resourceGroupName": resourceGroupName,
-            "accountName": accountName,
-            "parameters": parameters,
+            resourceGroupName,
+            accountName,
+            parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1264,35 +1255,35 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "parameters",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {

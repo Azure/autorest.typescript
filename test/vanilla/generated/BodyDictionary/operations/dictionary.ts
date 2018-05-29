@@ -42,21 +42,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/null",
+          path: "/dictionary/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -135,21 +133,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/empty",
+          path: "/dictionary/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -243,7 +239,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -264,7 +259,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -275,7 +270,7 @@ export class Dictionary {
           path: "/dictionary/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -326,21 +321,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/nullvalue",
+          path: "/dictionary/nullvalue"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -419,21 +412,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/nullkey",
+          path: "/dictionary/nullkey"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -512,21 +503,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/keyemptystring",
+          path: "/dictionary/keyemptystring"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -605,21 +594,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/invalid",
+          path: "/dictionary/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -698,21 +685,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/boolean/tfft",
+          path: "/dictionary/prim/boolean/tfft"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -806,7 +791,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -827,7 +811,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -838,7 +822,7 @@ export class Dictionary {
           path: "/dictionary/prim/boolean/tfft",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -889,21 +873,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/boolean/true.null.false",
+          path: "/dictionary/prim/boolean/true.null.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -982,21 +964,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/boolean/true.boolean.false",
+          path: "/dictionary/prim/boolean/true.boolean.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1075,21 +1055,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.-1.3.300",
+          path: "/dictionary/prim/integer/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1183,7 +1161,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1204,7 +1181,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1215,7 +1192,7 @@ export class Dictionary {
           path: "/dictionary/prim/integer/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1266,21 +1243,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.null.zero",
+          path: "/dictionary/prim/integer/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1359,21 +1334,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.integer.0",
+          path: "/dictionary/prim/integer/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1452,21 +1425,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/long/1.-1.3.300",
+          path: "/dictionary/prim/long/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1560,7 +1531,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1581,7 +1551,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1592,7 +1562,7 @@ export class Dictionary {
           path: "/dictionary/prim/long/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1643,21 +1613,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/long/1.null.zero",
+          path: "/dictionary/prim/long/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1736,21 +1704,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/long/1.integer.0",
+          path: "/dictionary/prim/long/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1829,21 +1795,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/float/0--0.01-1.2e20",
+          path: "/dictionary/prim/float/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1937,7 +1901,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -1958,7 +1921,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1969,7 +1932,7 @@ export class Dictionary {
           path: "/dictionary/prim/float/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2020,21 +1983,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/float/0.0-null-1.2e20",
+          path: "/dictionary/prim/float/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2113,21 +2074,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/float/1.number.0",
+          path: "/dictionary/prim/float/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2206,21 +2165,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/double/0--0.01-1.2e20",
+          path: "/dictionary/prim/double/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2314,7 +2271,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -2335,7 +2291,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2346,7 +2302,7 @@ export class Dictionary {
           path: "/dictionary/prim/double/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2397,21 +2353,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/double/0.0-null-1.2e20",
+          path: "/dictionary/prim/double/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2490,21 +2444,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/double/1.number.0",
+          path: "/dictionary/prim/double/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2583,21 +2535,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/string/foo1.foo2.foo3",
+          path: "/dictionary/prim/string/foo1.foo2.foo3"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2691,7 +2641,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -2712,7 +2661,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2723,7 +2672,7 @@ export class Dictionary {
           path: "/dictionary/prim/string/foo1.foo2.foo3",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2774,21 +2723,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/string/foo.null.foo2",
+          path: "/dictionary/prim/string/foo.null.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2867,21 +2814,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/string/foo.123.foo2",
+          path: "/dictionary/prim/string/foo.123.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2961,21 +2906,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date/valid",
+          path: "/dictionary/prim/date/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3071,7 +3014,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3092,7 +3034,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3103,7 +3045,7 @@ export class Dictionary {
           path: "/dictionary/prim/date/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3154,21 +3096,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date/invalidnull",
+          path: "/dictionary/prim/date/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3247,21 +3187,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date/invalidchars",
+          path: "/dictionary/prim/date/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3341,21 +3279,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date-time/valid",
+          path: "/dictionary/prim/date-time/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3451,7 +3387,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3472,7 +3407,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3483,7 +3418,7 @@ export class Dictionary {
           path: "/dictionary/prim/date-time/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3534,21 +3469,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date-time/invalidnull",
+          path: "/dictionary/prim/date-time/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3627,21 +3560,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date-time/invalidchars",
+          path: "/dictionary/prim/date-time/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3722,21 +3653,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/date-time-rfc1123/valid",
+          path: "/dictionary/prim/date-time-rfc1123/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3832,7 +3761,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -3853,7 +3781,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3864,7 +3792,7 @@ export class Dictionary {
           path: "/dictionary/prim/date-time-rfc1123/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3916,21 +3844,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/duration/valid",
+          path: "/dictionary/prim/duration/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4024,7 +3950,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4045,7 +3970,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4056,7 +3981,7 @@ export class Dictionary {
           path: "/dictionary/prim/duration/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4108,21 +4033,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/byte/valid",
+          path: "/dictionary/prim/byte/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4217,7 +4140,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4238,7 +4160,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4249,7 +4171,7 @@ export class Dictionary {
           path: "/dictionary/prim/byte/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4301,21 +4223,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/byte/invalidnull",
+          path: "/dictionary/prim/byte/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4395,21 +4315,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/prim/base64url/valid",
+          path: "/dictionary/prim/base64url/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4488,21 +4406,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/complex/null",
+          path: "/dictionary/complex/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4582,21 +4498,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/complex/empty",
+          path: "/dictionary/complex/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4677,21 +4591,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/complex/itemnull",
+          path: "/dictionary/complex/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4772,21 +4684,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/complex/itemempty",
+          path: "/dictionary/complex/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4867,21 +4777,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/complex/valid",
+          path: "/dictionary/complex/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4965,7 +4873,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -4987,7 +4894,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4998,7 +4905,7 @@ export class Dictionary {
           path: "/dictionary/complex/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5049,21 +4956,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/array/null",
+          path: "/dictionary/array/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5149,21 +5054,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/array/empty",
+          path: "/dictionary/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5250,21 +5153,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/array/itemnull",
+          path: "/dictionary/array/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5351,21 +5252,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/array/itemempty",
+          path: "/dictionary/array/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5452,21 +5351,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/array/valid",
+          path: "/dictionary/array/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5572,7 +5469,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -5600,7 +5496,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -5611,7 +5507,7 @@ export class Dictionary {
           path: "/dictionary/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5662,21 +5558,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/dictionary/null",
+          path: "/dictionary/dictionary/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5762,21 +5656,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/dictionary/empty",
+          path: "/dictionary/dictionary/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5864,21 +5756,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/dictionary/itemnull",
+          path: "/dictionary/dictionary/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5966,21 +5856,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/dictionary/itemempty",
+          path: "/dictionary/dictionary/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6068,21 +5956,19 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
-          arguments: {
-          },
+          arguments: {},
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
         },
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/dictionary/dictionary/valid",
+          path: "/dictionary/dictionary/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6190,7 +6076,6 @@ export class Dictionary {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
@@ -6218,7 +6103,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            "arrayBody": arrayBody,
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -6229,7 +6114,7 @@ export class Dictionary {
           path: "/dictionary/dictionary/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

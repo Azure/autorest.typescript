@@ -56,14 +56,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -75,9 +74,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Multi
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -142,14 +141,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -161,9 +159,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Multi
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -229,14 +227,13 @@ export class Queries {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "arrayQuery": arrayQuery,
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -248,9 +245,9 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi,
-            },
-          ],
+              collectionFormat: msRest.QueryCollectionFormat.Multi
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

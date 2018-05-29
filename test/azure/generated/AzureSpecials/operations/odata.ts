@@ -63,17 +63,16 @@ export class Odata {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "filter": filter,
-            "top": top,
-            "orderby": orderby,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
+            filter,
+            top,
+            orderby,
+            "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -86,26 +85,26 @@ export class Odata {
             {
               parameterName: "filter",
               queryParameterName: "$filter",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "top",
               queryParameterName: "$top",
-              type: msRest.OperationParameterType.Int,
+              type: msRest.OperationParameterType.Int
             },
             {
               parameterName: "orderby",
               queryParameterName: "$orderby",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

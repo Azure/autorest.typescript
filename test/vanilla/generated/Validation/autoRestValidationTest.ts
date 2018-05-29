@@ -147,7 +147,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
@@ -155,9 +154,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "id": id,
-            "this.apiVersion": this.apiVersion,
+            resourceGroupName,
+            id,
+            "this.apiVersion": this.apiVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -170,24 +169,24 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "this.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "id",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
               queryParameterName: "apiVersion",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -312,7 +311,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -321,10 +319,10 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            "resourceGroupName": resourceGroupName,
-            "id": id,
-            "body": body,
-            "this.apiVersion": this.apiVersion,
+            resourceGroupName,
+            id,
+            body,
+            "this.apiVersion": this.apiVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -337,27 +335,27 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             {
               parameterName: "this.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String,
+              type: msRest.OperationParameterType.String
             },
             {
               parameterName: "id",
-              type: msRest.OperationParameterType.Int,
-            },
+              type: msRest.OperationParameterType.Int
+            }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
               queryParameterName: "apiVersion",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -423,14 +421,13 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
         {
           arguments: {
-            "constantParam": constantParam,
+            constantParam
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -442,9 +439,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "constantParam",
-              type: msRest.OperationParameterType.String,
-            },
-          ],
+              type: msRest.OperationParameterType.String
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -493,7 +490,6 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    // Send Request
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = Mappers.Product;
@@ -501,8 +497,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            "constantParam": constantParam,
-            "body": body,
+            constantParam,
+            body
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -514,12 +510,12 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "constantParam",
-              type: msRest.OperationParameterType.String,
-            },
+              type: msRest.OperationParameterType.String
+            }
           ],
           requestBodyMapper: requestModelMapper,
           requestBodyName: "body",
-          contentType: "application/json; charset=utf-8",
+          contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
