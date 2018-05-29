@@ -135,7 +135,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            resourceArray: resourceArray,
+            resourceArray,
             "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -347,7 +347,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            resourceDictionary: resourceDictionary,
+            resourceDictionary,
             "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -546,7 +546,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         httpRequest,
         {
           arguments: {
-            resourceComplexObject: resourceComplexObject,
+            resourceComplexObject,
             "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

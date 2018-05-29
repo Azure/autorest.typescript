@@ -62,7 +62,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
+            subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -156,7 +156,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
+            subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -250,7 +250,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
+            subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -344,7 +344,7 @@ export class SubscriptionInMethod {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
+            subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

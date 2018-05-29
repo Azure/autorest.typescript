@@ -166,7 +166,7 @@ export class Dictionary {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -359,7 +359,7 @@ export class Dictionary {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

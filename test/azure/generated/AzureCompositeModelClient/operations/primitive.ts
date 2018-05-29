@@ -157,7 +157,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -342,7 +342,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -527,7 +527,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -713,7 +713,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -898,7 +898,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1083,7 +1083,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1268,7 +1268,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1454,7 +1454,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1640,7 +1640,7 @@ export class Primitive {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1830,7 +1830,7 @@ export class Primitive {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2019,7 +2019,7 @@ export class Primitive {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

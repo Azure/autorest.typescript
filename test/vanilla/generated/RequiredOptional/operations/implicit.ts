@@ -58,7 +58,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
-            pathParameter: pathParameter
+            pathParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -151,7 +151,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
-            queryParameter: queryParameter
+            queryParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -232,7 +232,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
-            queryParameter: queryParameter
+            queryParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -320,7 +320,7 @@ export class Implicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

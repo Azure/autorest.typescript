@@ -71,7 +71,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            accountName: accountName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -263,8 +263,8 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -389,8 +389,8 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -544,9 +544,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
-            parameters: parameters,
+            resourceGroupName,
+            accountName,
+            parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -685,8 +685,8 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -936,7 +936,7 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
+            resourceGroupName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
@@ -1084,12 +1084,12 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
+            resourceGroupName,
+            accountName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            regenerateKeyParameter: regenerateKeyParameter
+            regenerateKeyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1238,9 +1238,9 @@ export class StorageAccounts {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            accountName: accountName,
-            parameters: parameters,
+            resourceGroupName,
+            accountName,
+            parameters,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage

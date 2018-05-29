@@ -83,10 +83,10 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
-            localStringPath: localStringPath,
-            localStringQuery: localStringQuery,
-            pathItemStringPath: pathItemStringPath,
-            pathItemStringQuery: pathItemStringQuery,
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
@@ -217,10 +217,10 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
-            localStringPath: localStringPath,
-            localStringQuery: localStringQuery,
-            pathItemStringPath: pathItemStringPath,
-            pathItemStringQuery: pathItemStringQuery,
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
@@ -351,10 +351,10 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
-            localStringPath: localStringPath,
-            localStringQuery: localStringQuery,
-            pathItemStringPath: pathItemStringPath,
-            pathItemStringQuery: pathItemStringQuery,
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
@@ -485,10 +485,10 @@ export class PathItems {
         httpRequest,
         {
           arguments: {
-            localStringPath: localStringPath,
-            localStringQuery: localStringQuery,
-            pathItemStringPath: pathItemStringPath,
-            pathItemStringQuery: pathItemStringQuery,
+            localStringPath,
+            localStringQuery,
+            pathItemStringPath,
+            pathItemStringQuery,
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },

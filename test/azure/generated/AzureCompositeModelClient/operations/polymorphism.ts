@@ -189,7 +189,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -376,7 +376,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -466,7 +466,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -598,7 +598,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

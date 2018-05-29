@@ -62,7 +62,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -147,7 +147,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -233,7 +233,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

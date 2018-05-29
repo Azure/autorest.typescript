@@ -350,7 +350,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -538,7 +538,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -908,7 +908,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1278,7 +1278,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1648,7 +1648,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2018,7 +2018,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2388,7 +2388,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2762,7 +2762,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3042,7 +3042,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3415,7 +3415,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3788,7 +3788,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3976,7 +3976,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4166,7 +4166,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4899,7 +4899,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -5499,7 +5499,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -6105,7 +6105,7 @@ export class ArrayModel {
         httpRequest,
         {
           arguments: {
-            arrayBody: arrayBody
+            arrayBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

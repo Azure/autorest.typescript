@@ -62,7 +62,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            unencodedPathParam: unencodedPathParam,
+            unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -156,7 +156,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            unencodedPathParam: unencodedPathParam,
+            unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -245,7 +245,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            unencodedPathParam: unencodedPathParam,
+            unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -340,7 +340,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            q1: q1,
+            q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -433,7 +433,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            q1: q1,
+            q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -528,7 +528,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            q1: q1,
+            q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -618,7 +618,7 @@ export class SkipUrlEncoding {
         httpRequest,
         {
           arguments: {
-            q1: q1,
+            q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

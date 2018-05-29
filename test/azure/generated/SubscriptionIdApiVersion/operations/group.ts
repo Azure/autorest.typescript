@@ -68,7 +68,7 @@ export class Group {
         {
           arguments: {
             "this.client.subscriptionId": this.client.subscriptionId,
-            resourceGroupName: resourceGroupName,
+            resourceGroupName,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },

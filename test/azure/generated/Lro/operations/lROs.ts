@@ -1628,7 +1628,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1730,7 +1730,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1833,7 +1833,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1936,7 +1936,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2054,7 +2054,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2157,7 +2157,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2275,7 +2275,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2378,7 +2378,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2482,7 +2482,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2586,7 +2586,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2690,7 +2690,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2794,7 +2794,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2898,7 +2898,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3000,7 +3000,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            sku: sku,
+            sku,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3101,7 +3101,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            sku: sku,
+            sku,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3216,7 +3216,7 @@ export class LROs {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            product: product
+            product
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -3330,7 +3330,7 @@ export class LROs {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            product: product
+            product
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -4684,7 +4684,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -4775,7 +4775,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -4879,7 +4879,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -4987,7 +4987,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -5095,7 +5095,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -5187,7 +5187,7 @@ export class LROs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

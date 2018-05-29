@@ -1070,7 +1070,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1187,7 +1187,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1304,7 +1304,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1422,7 +1422,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1775,7 +1775,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1865,7 +1865,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1957,7 +1957,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2048,7 +2048,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2166,7 +2166,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2270,7 +2270,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2538,7 +2538,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2630,7 +2630,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2721,7 +2721,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2824,7 +2824,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2928,7 +2928,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3284,7 +3284,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3376,7 +3376,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -3468,7 +3468,7 @@ export class LROSADs {
         httpRequest,
         {
           arguments: {
-            product: product,
+            product,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

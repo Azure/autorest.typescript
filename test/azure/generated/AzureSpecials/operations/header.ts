@@ -62,7 +62,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            fooClientRequestId: fooClientRequestId,
+            fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -173,7 +173,7 @@ export class Header {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            fooClientRequestId: fooClientRequestId
+            fooClientRequestId
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -268,7 +268,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            fooClientRequestId: fooClientRequestId,
+            fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

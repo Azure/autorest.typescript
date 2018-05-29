@@ -58,7 +58,7 @@ export class ApiVersionLocal {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
+            apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -152,7 +152,7 @@ export class ApiVersionLocal {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
+            apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -242,7 +242,7 @@ export class ApiVersionLocal {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
+            apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -332,7 +332,7 @@ export class ApiVersionLocal {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
+            apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

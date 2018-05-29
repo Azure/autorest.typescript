@@ -159,7 +159,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -338,7 +338,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            enumStringBody: enumStringBody
+            enumStringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -504,7 +504,7 @@ export class EnumModel {
         httpRequest,
         {
           arguments: {
-            enumStringBody: enumStringBody
+            enumStringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

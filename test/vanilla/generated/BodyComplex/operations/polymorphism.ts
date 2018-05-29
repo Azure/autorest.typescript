@@ -169,7 +169,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -328,7 +328,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -407,7 +407,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -528,7 +528,7 @@ export class Polymorphism {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

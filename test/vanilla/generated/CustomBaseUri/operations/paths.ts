@@ -60,7 +60,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            accountName: accountName,
+            accountName,
             "this.client.host": this.client.host
           },
           abortSignal: options && options.abortSignal,

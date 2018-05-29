@@ -317,7 +317,7 @@ export class ByteModel {
         httpRequest,
         {
           arguments: {
-            byteBody: byteBody
+            byteBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

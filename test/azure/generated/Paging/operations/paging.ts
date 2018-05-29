@@ -175,10 +175,10 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            clientRequestId: clientRequestId,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            timeout: timeout
+            maxresults,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -312,10 +312,10 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            clientRequestId: clientRequestId,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            timeout: timeout
+            maxresults,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -462,11 +462,11 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            clientRequestId: clientRequestId,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            offset: offset,
-            timeout: timeout
+            maxresults,
+            offset,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1062,8 +1062,8 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
-            tenant: tenant,
+            apiVersion,
+            tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1199,8 +1199,8 @@ export class Paging {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            apiVersion: apiVersion,
-            tenant: tenant
+            apiVersion,
+            tenant
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1322,9 +1322,9 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            apiVersion: apiVersion,
-            tenant: tenant,
-            nextLink: nextLink,
+            apiVersion,
+            tenant,
+            nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1468,10 +1468,10 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextLink: nextLink,
+            nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            apiVersion: apiVersion,
-            tenant: tenant
+            apiVersion,
+            tenant
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1589,7 +1589,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -1723,11 +1723,11 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
-            clientRequestId: clientRequestId,
+            nextPageLink,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            timeout: timeout
+            maxresults,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1874,11 +1874,11 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
-            clientRequestId: clientRequestId,
+            nextPageLink,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            timeout: timeout
+            maxresults,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2024,11 +2024,11 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
-            clientRequestId: clientRequestId,
+            nextPageLink,
+            clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults: maxresults,
-            timeout: timeout
+            maxresults,
+            timeout
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2149,7 +2149,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2259,7 +2259,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2367,7 +2367,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2475,7 +2475,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -2583,7 +2583,7 @@ export class Paging {
         httpRequest,
         {
           arguments: {
-            nextPageLink: nextPageLink,
+            nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

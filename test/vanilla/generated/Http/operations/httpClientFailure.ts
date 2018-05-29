@@ -215,7 +215,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -313,7 +313,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -411,7 +411,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -509,7 +509,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -832,7 +832,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -930,7 +930,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1028,7 +1028,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1126,7 +1126,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1224,7 +1224,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1547,7 +1547,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1645,7 +1645,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1743,7 +1743,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1916,7 +1916,7 @@ export class HttpClientFailure {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

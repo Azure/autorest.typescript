@@ -158,8 +158,8 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
-            apiVersion: apiVersion,
+            complexBody,
+            apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

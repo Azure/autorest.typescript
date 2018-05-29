@@ -148,7 +148,7 @@ export class Duration {
         httpRequest,
         {
           arguments: {
-            durationBody: durationBody
+            durationBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

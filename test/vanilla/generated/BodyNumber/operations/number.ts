@@ -400,7 +400,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -570,7 +570,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -740,7 +740,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -910,7 +910,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1080,7 +1080,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1250,7 +1250,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1420,7 +1420,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1590,7 +1590,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1760,7 +1760,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1930,7 +1930,7 @@ export class Number {
         httpRequest,
         {
           arguments: {
-            numberBody: numberBody
+            numberBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

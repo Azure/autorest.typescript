@@ -85,9 +85,9 @@ export class AvailabilitySets {
         httpRequest,
         {
           arguments: {
-            resourceGroupName: resourceGroupName,
-            avset: avset,
-            tags1: tags1
+            resourceGroupName,
+            avset,
+            tags1
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

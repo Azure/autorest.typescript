@@ -148,7 +148,7 @@ export class Bool {
         httpRequest,
         {
           arguments: {
-            boolBody: boolBody
+            boolBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -318,7 +318,7 @@ export class Bool {
         httpRequest,
         {
           arguments: {
-            boolBody: boolBody
+            boolBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

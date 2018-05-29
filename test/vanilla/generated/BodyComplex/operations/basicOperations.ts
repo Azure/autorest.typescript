@@ -137,7 +137,7 @@ export class BasicOperations {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.apiVersion": this.client.apiVersion
           },
           abortSignal: options && options.abortSignal,

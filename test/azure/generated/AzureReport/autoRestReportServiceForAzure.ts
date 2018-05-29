@@ -123,7 +123,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
-            qualifier: qualifier,
+            qualifier,
             "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

@@ -142,7 +142,7 @@ export class XMsClientRequestId {
         httpRequest,
         {
           arguments: {
-            xMsClientRequestId: xMsClientRequestId,
+            xMsClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

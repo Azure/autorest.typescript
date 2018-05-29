@@ -107,10 +107,10 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            body: body,
-            customHeader: customHeader,
-            query: query,
-            path: path
+            body,
+            customHeader,
+            query,
+            path
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -233,8 +233,8 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            customHeader: customHeader,
-            query: query
+            customHeader,
+            query
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -364,10 +364,10 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            headerOne: headerOne,
-            queryOne: queryOne,
-            headerTwo: headerTwo,
-            queryTwo: queryTwo
+            headerOne,
+            queryOne,
+            headerTwo,
+            queryTwo
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -492,8 +492,8 @@ export class ParameterGrouping {
         {
           arguments: {
             "this.client.acceptLanguage": this.client.acceptLanguage,
-            headerOne: headerOne,
-            queryOne: queryOne
+            headerOne,
+            queryOne
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

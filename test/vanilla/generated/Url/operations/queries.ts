@@ -49,7 +49,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            boolQuery: boolQuery
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -121,7 +121,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            boolQuery: boolQuery
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -201,7 +201,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            boolQuery: boolQuery
+            boolQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -273,7 +273,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            intQuery: intQuery
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -345,7 +345,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            intQuery: intQuery
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -425,7 +425,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            intQuery: intQuery
+            intQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -497,7 +497,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            longQuery: longQuery
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -569,7 +569,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            longQuery: longQuery
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -649,7 +649,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            longQuery: longQuery
+            longQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -721,7 +721,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            floatQuery: floatQuery
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -793,7 +793,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            floatQuery: floatQuery
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -873,7 +873,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            floatQuery: floatQuery
+            floatQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -945,7 +945,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            doubleQuery: doubleQuery
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1017,7 +1017,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            doubleQuery: doubleQuery
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1097,7 +1097,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            doubleQuery: doubleQuery
+            doubleQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1169,7 +1169,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            stringQuery: stringQuery
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1241,7 +1241,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            stringQuery: stringQuery
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1313,7 +1313,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            stringQuery: stringQuery
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1393,7 +1393,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            stringQuery: stringQuery
+            stringQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1476,7 +1476,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            enumQuery: enumQuery
+            enumQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1558,7 +1558,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            enumQuery: enumQuery
+            enumQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1637,7 +1637,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            byteQuery: byteQuery
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1709,7 +1709,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            byteQuery: byteQuery
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1789,7 +1789,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            byteQuery: byteQuery
+            byteQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1861,7 +1861,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            dateQuery: dateQuery
+            dateQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1942,7 +1942,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            dateQuery: dateQuery
+            dateQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2014,7 +2014,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            dateTimeQuery: dateTimeQuery
+            dateTimeQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2095,7 +2095,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            dateTimeQuery: dateTimeQuery
+            dateTimeQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2181,7 +2181,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2266,7 +2266,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2351,7 +2351,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2437,7 +2437,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2523,7 +2523,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2609,7 +2609,7 @@ export class Queries {
         httpRequest,
         {
           arguments: {
-            arrayQuery: arrayQuery
+            arrayQuery
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

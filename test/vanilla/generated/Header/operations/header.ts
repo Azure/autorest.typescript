@@ -59,7 +59,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            userAgent: userAgent
+            userAgent
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -209,7 +209,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            contentType: contentType
+            contentType
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -365,8 +365,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -452,7 +452,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -544,8 +544,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -631,7 +631,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -723,8 +723,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -810,7 +810,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -902,8 +902,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -989,7 +989,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1081,8 +1081,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1168,7 +1168,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1260,8 +1260,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1348,7 +1348,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1442,8 +1442,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1529,7 +1529,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1623,8 +1623,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1711,7 +1711,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1805,8 +1805,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1893,7 +1893,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1986,8 +1986,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2073,7 +2073,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2165,8 +2165,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2252,7 +2252,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2346,8 +2346,8 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario,
-            value: value
+            scenario,
+            value
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -2432,7 +2432,7 @@ export class Header {
         httpRequest,
         {
           arguments: {
-            scenario: scenario
+            scenario
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

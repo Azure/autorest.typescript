@@ -160,7 +160,7 @@ export class Inheritance {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody,
+            complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

@@ -401,7 +401,7 @@ export class Datetimerfc1123 {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -656,7 +656,7 @@ export class Datetimerfc1123 {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

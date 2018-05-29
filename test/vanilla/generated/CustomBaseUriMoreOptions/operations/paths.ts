@@ -78,12 +78,12 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            vault: vault,
-            secret: secret,
+            vault,
+            secret,
             "this.client.dnsSuffix": this.client.dnsSuffix,
-            keyName: keyName,
+            keyName,
             "this.client.subscriptionId": this.client.subscriptionId,
-            keyVersion: keyVersion
+            keyVersion
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

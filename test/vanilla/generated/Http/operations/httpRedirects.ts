@@ -375,7 +375,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -608,7 +608,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -698,7 +698,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -933,7 +933,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1026,7 +1026,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1119,7 +1119,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1212,7 +1212,7 @@ export class HttpRedirects {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

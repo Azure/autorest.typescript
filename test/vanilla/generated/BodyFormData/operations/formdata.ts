@@ -64,8 +64,8 @@ export class Formdata {
         httpRequest,
         {
           arguments: {
-            fileContent: fileContent,
-            fileName: fileName
+            fileContent,
+            fileName
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -161,7 +161,7 @@ export class Formdata {
         httpRequest,
         {
           arguments: {
-            fileContent: fileContent
+            fileContent
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

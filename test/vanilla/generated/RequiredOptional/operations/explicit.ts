@@ -66,7 +66,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -164,7 +164,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -251,7 +251,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -348,7 +348,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -427,7 +427,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            headerParameter: headerParameter
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -521,7 +521,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            headerParameter: headerParameter
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -610,7 +610,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -708,7 +708,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -795,7 +795,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -892,7 +892,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -971,7 +971,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            headerParameter: headerParameter
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1065,7 +1065,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1148,7 +1148,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1231,7 +1231,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1317,7 +1317,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1406,7 +1406,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1504,7 +1504,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1612,7 +1612,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1703,7 +1703,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1804,7 +1804,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1888,7 +1888,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            headerParameter: headerParameter
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1985,7 +1985,7 @@ export class Explicit {
         httpRequest,
         {
           arguments: {
-            headerParameter: headerParameter
+            headerParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

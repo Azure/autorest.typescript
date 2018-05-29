@@ -93,7 +93,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            qualifier: qualifier
+            qualifier
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

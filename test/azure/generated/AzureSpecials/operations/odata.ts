@@ -69,9 +69,9 @@ export class Odata {
         httpRequest,
         {
           arguments: {
-            filter: filter,
-            top: top,
-            orderby: orderby,
+            filter,
+            top,
+            orderby,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
           abortSignal: options && options.abortSignal,

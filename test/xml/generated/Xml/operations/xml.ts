@@ -138,7 +138,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            slideshow: slideshow
+            slideshow
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -293,7 +293,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            wrappedLists: wrappedLists
+            wrappedLists
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -512,7 +512,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            slideshow: slideshow
+            slideshow
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -663,7 +663,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            appleBarrel: appleBarrel
+            appleBarrel
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -836,7 +836,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            bananas: bananas
+            bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1009,7 +1009,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            bananas: bananas
+            bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1182,7 +1182,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            bananas: bananas
+            bananas
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1333,7 +1333,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            banana: banana
+            banana
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1399,7 +1399,7 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp
+            comp
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1484,8 +1484,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp,
-            restype: restype
+            comp,
+            restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1585,9 +1585,9 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp,
-            restype: restype,
-            properties: properties
+            comp,
+            restype,
+            properties
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1664,8 +1664,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp,
-            restype: restype
+            comp,
+            restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1787,9 +1787,9 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp,
-            restype: restype,
-            properties: properties
+            comp,
+            restype,
+            properties
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1866,8 +1866,8 @@ export class Xml {
         httpRequest,
         {
           arguments: {
-            comp: comp,
-            restype: restype
+            comp,
+            restype
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

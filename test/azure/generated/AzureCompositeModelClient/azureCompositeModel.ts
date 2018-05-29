@@ -151,8 +151,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            resourceGroupName: resourceGroupName,
-            apiVersion: apiVersion,
+            resourceGroupName,
+            apiVersion,
             "this.acceptLanguage": this.acceptLanguage
           },
           abortSignal: options && options.abortSignal,
@@ -288,11 +288,11 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
-            resourceGroupName: resourceGroupName,
-            apiVersion: apiVersion,
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -429,11 +429,11 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
-            resourceGroupName: resourceGroupName,
-            apiVersion: apiVersion,
+            subscriptionId,
+            resourceGroupName,
+            apiVersion,
             "this.acceptLanguage": this.acceptLanguage,
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

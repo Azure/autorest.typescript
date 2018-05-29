@@ -401,7 +401,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -657,7 +657,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -915,7 +915,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1172,7 +1172,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1343,7 +1343,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1514,7 +1514,7 @@ export class Datetime {
         httpRequest,
         {
           arguments: {
-            datetimeBody: datetimeBody
+            datetimeBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

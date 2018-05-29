@@ -148,7 +148,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -317,7 +317,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -489,7 +489,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -663,7 +663,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1000,7 +1000,7 @@ export class String {
         httpRequest,
         {
           arguments: {
-            stringBody: stringBody
+            stringBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

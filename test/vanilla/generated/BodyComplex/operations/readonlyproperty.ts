@@ -146,7 +146,7 @@ export class Readonlyproperty {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

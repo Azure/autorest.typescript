@@ -49,7 +49,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            boolPath: boolPath
+            boolPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -121,7 +121,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            boolPath: boolPath
+            boolPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -193,7 +193,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            intPath: intPath
+            intPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -265,7 +265,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            intPath: intPath
+            intPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -337,7 +337,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            longPath: longPath
+            longPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -409,7 +409,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            longPath: longPath
+            longPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -481,7 +481,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            floatPath: floatPath
+            floatPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -553,7 +553,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            floatPath: floatPath
+            floatPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -625,7 +625,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            doublePath: doublePath
+            doublePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -697,7 +697,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            doublePath: doublePath
+            doublePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -769,7 +769,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            stringPath: stringPath
+            stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -841,7 +841,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            stringPath: stringPath
+            stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -913,7 +913,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            stringPath: stringPath
+            stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -994,7 +994,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            stringPath: stringPath
+            stringPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1081,7 +1081,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            enumPath: enumPath
+            enumPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1167,7 +1167,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            enumPath: enumPath
+            enumPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1248,7 +1248,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            bytePath: bytePath
+            bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1320,7 +1320,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            bytePath: bytePath
+            bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1401,7 +1401,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            bytePath: bytePath
+            bytePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1473,7 +1473,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            datePath: datePath
+            datePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1556,7 +1556,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            datePath: datePath
+            datePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1628,7 +1628,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            dateTimePath: dateTimePath
+            dateTimePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1711,7 +1711,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            dateTimePath: dateTimePath
+            dateTimePath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1792,7 +1792,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            base64UrlPath: base64UrlPath
+            base64UrlPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1880,7 +1880,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            arrayPath: arrayPath
+            arrayPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1961,7 +1961,7 @@ export class Paths {
         httpRequest,
         {
           arguments: {
-            unixTimeUrlPath: unixTimeUrlPath
+            unixTimeUrlPath
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

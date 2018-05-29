@@ -568,7 +568,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            intBody: intBody
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -654,7 +654,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            intBody: intBody
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -740,7 +740,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            intBody: intBody
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -826,7 +826,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            intBody: intBody
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -997,7 +997,7 @@ export class IntModel {
         httpRequest,
         {
           arguments: {
-            intBody: intBody
+            intBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

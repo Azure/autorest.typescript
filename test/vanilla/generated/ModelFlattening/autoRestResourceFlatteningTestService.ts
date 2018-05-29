@@ -100,7 +100,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            resourceArray: resourceArray
+            resourceArray
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -280,7 +280,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            resourceArray: resourceArray
+            resourceArray
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -460,7 +460,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            resourceDictionary: resourceDictionary
+            resourceDictionary
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -626,7 +626,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            resourceComplexObject: resourceComplexObject
+            resourceComplexObject
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -777,7 +777,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            simpleBodyProduct: simpleBodyProduct
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -907,7 +907,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            simpleBodyProduct: simpleBodyProduct
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -1065,13 +1065,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            name: name,
-            productId: productId,
-            description: description,
-            maxProductDisplayName: maxProductDisplayName,
-            genericValue: genericValue,
-            odatavalue: odatavalue,
-            simpleBodyProduct: simpleBodyProduct
+            name,
+            productId,
+            description,
+            maxProductDisplayName,
+            genericValue,
+            odatavalue,
+            simpleBodyProduct
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

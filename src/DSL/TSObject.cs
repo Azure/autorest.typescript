@@ -80,6 +80,11 @@ namespace AutoRest.TypeScript.DSL
             }
         }
 
+        private bool PropertyNameNeedsToBeQuoted(string propertyName)
+        {
+            return propertyName.Contains(".");
+        }
+
         /// <summary>
         /// Add a property to this TSObject with the provided name. The provided action will be invoked to populate the value of this property.
         /// </summary>
@@ -88,7 +93,7 @@ namespace AutoRest.TypeScript.DSL
         public void Property(string propertyName, Action<TSValue> propertyValueAction)
         {
             SetCurrentState(State.Property);
-            if (propertyName.Contains("."))
+            if (PropertyNameNeedsToBeQuoted(propertyName))
             {
                 builder.QuotedString(propertyName);
             }
@@ -126,7 +131,15 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="propertyValue">The text value of the new property. This value will not be quoted.</param>
         public void TextProperty(string propertyName, string propertyValue)
         {
-            Property(propertyName, (TSValue tsValue) => tsValue.Text(propertyValue));
+            if (!PropertyNameNeedsToBeQuoted(propertyName) && propertyName == propertyValue)
+            {
+                SetCurrentState(State.Property);
+                builder.Text(propertyName);
+            }
+            else
+            {
+                Property(propertyName, (TSValue tsValue) => tsValue.Text(propertyValue));
+            }
         }
 
         /// <summary>

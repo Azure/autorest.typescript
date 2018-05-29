@@ -145,7 +145,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -310,7 +310,7 @@ export class Dictionary {
         httpRequest,
         {
           arguments: {
-            complexBody: complexBody
+            complexBody
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

@@ -127,7 +127,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -212,7 +212,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -360,7 +360,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -445,7 +445,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -530,7 +530,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -615,7 +615,7 @@ export class HttpRetry {
         httpRequest,
         {
           arguments: {
-            booleanValue: booleanValue
+            booleanValue
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders

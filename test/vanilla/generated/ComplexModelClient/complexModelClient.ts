@@ -102,7 +102,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         {
           arguments: {
             "this.subscriptionId": this.subscriptionId,
-            resourceGroupName: resourceGroupName,
+            resourceGroupName,
             "this.apiVersion": this.apiVersion
           },
           abortSignal: options && options.abortSignal,
@@ -227,10 +227,10 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
-            resourceGroupName: resourceGroupName,
+            subscriptionId,
+            resourceGroupName,
             "this.apiVersion": this.apiVersion,
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
@@ -356,10 +356,10 @@ class ComplexModelClient extends msRest.ServiceClient {
         httpRequest,
         {
           arguments: {
-            subscriptionId: subscriptionId,
-            resourceGroupName: resourceGroupName,
+            subscriptionId,
+            resourceGroupName,
             "this.apiVersion": this.apiVersion,
-            bodyParameter: bodyParameter
+            bodyParameter
           },
           abortSignal: options && options.abortSignal,
           customHeaders: options && options.customHeaders
