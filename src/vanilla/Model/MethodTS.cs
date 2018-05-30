@@ -59,11 +59,7 @@ namespace AutoRest.TypeScript.Model
             return parameter;
         }
 
-        [JsonIgnore]
-        public string SchemeHostAndPort => (CodeModel as CodeModelTS).SchemeHostAndPort;
-
-        [JsonIgnore]
-        public string BasePath => (CodeModel as CodeModelTS).BasePath;
+        private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
 
         [JsonIgnore]
         public string RelativePath
@@ -84,7 +80,7 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                string path = BasePath;
+                string path = CodeModelTS.BasePath;
                 string relativePath = RelativePath;
                 if (!string.IsNullOrEmpty(relativePath))
                 {
@@ -904,7 +900,7 @@ namespace AutoRest.TypeScript.Model
             operationSpec.QuotedStringProperty("httpMethod", HttpMethod.ToString().ToUpper());
             if (IsAbsoluteUrl)
             {
-                operationSpec.QuotedStringProperty("baseUrl", SchemeHostAndPort);
+                operationSpec.QuotedStringProperty("baseUrl", CodeModelTS.SchemeHostAndPort);
             }
             else
             {
