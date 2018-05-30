@@ -63,8 +63,8 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/readonlyproperty/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/readonlyproperty/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -174,8 +174,8 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/readonlyproperty/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/readonlyproperty/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -53,8 +53,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/valid"
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -176,8 +176,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -243,8 +243,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/complicated"
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/complicated"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -335,8 +335,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/complicated",
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/complicated",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -414,8 +414,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/missingdiscriminator",
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/missingdiscriminator",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -535,8 +535,8 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/polymorphism/missingrequired/invalid",
+          baseUrl: this.client.baseUri,
+          path: "complex/polymorphism/missingrequired/invalid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"

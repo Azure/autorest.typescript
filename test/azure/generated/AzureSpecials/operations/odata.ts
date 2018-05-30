@@ -79,8 +79,8 @@ export class Odata {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/odata/filter",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/odata/filter",
           queryParameters: [
             {
               parameterName: "filter",

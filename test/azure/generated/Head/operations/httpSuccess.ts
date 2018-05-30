@@ -62,8 +62,8 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/success/200",
+          baseUrl: this.client.baseUri,
+          path: "http/success/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -142,8 +142,8 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/success/204",
+          baseUrl: this.client.baseUri,
+          path: "http/success/204",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -222,8 +222,8 @@ export class HttpSuccess {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/success/404",
+          baseUrl: this.client.baseUri,
+          path: "http/success/404",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

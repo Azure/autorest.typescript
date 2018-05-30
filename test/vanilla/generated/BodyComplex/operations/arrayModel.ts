@@ -53,8 +53,8 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/array/valid"
+          baseUrl: this.client.baseUri,
+          path: "complex/array/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,8 +152,8 @@ export class ArrayModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/array/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -218,8 +218,8 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/array/empty"
+          baseUrl: this.client.baseUri,
+          path: "complex/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -317,8 +317,8 @@ export class ArrayModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/array/empty",
+          baseUrl: this.client.baseUri,
+          path: "complex/array/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -384,8 +384,8 @@ export class ArrayModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/array/notprovided"
+          baseUrl: this.client.baseUri,
+          path: "complex/array/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

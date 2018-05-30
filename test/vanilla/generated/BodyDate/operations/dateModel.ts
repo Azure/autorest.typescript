@@ -52,8 +52,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/null"
+          baseUrl: this.client.baseUri,
+          path: "date/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,8 +136,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/invaliddate"
+          baseUrl: this.client.baseUri,
+          path: "date/invaliddate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -220,8 +220,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/overflowdate"
+          baseUrl: this.client.baseUri,
+          path: "date/overflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -304,8 +304,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/underflowdate"
+          baseUrl: this.client.baseUri,
+          path: "date/underflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -408,8 +408,8 @@ export class DateModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/max",
+          baseUrl: this.client.baseUri,
+          path: "date/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
@@ -475,8 +475,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/max"
+          baseUrl: this.client.baseUri,
+          path: "date/max"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -579,8 +579,8 @@ export class DateModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/min",
+          baseUrl: this.client.baseUri,
+          path: "date/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
@@ -646,8 +646,8 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/date/min"
+          baseUrl: this.client.baseUri,
+          path: "date/min"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

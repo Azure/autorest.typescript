@@ -63,8 +63,8 @@ export class Inheritance {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/inheritance/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/inheritance/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -168,8 +168,8 @@ export class Inheritance {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/inheritance/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/inheritance/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

@@ -53,8 +53,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid"
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -152,8 +152,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -218,8 +218,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty"
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -317,8 +317,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -383,8 +383,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/null"
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -462,8 +462,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/notprovided"
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

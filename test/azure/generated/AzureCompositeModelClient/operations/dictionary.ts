@@ -63,8 +63,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -173,8 +173,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -256,8 +256,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -366,8 +366,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -449,8 +449,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/null",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -545,8 +545,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/dictionary/typed/notprovided",
+          baseUrl: this.client.baseUri,
+          path: "complex/dictionary/typed/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

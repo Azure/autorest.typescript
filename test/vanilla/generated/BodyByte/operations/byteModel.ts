@@ -52,8 +52,8 @@ export class ByteModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/byte/null"
+          baseUrl: this.client.baseUri,
+          path: "byte/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,8 +136,8 @@ export class ByteModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/byte/empty"
+          baseUrl: this.client.baseUri,
+          path: "byte/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -220,8 +220,8 @@ export class ByteModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/byte/nonAscii"
+          baseUrl: this.client.baseUri,
+          path: "byte/nonAscii"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -324,8 +324,8 @@ export class ByteModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/byte/nonAscii",
+          baseUrl: this.client.baseUri,
+          path: "byte/nonAscii",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "byteBody",
           requestBodyType: msRest.OperationParameterType.ByteArray,
@@ -391,8 +391,8 @@ export class ByteModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/byte/invalid"
+          baseUrl: this.client.baseUri,
+          path: "byte/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

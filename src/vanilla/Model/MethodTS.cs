@@ -66,47 +66,33 @@ namespace AutoRest.TypeScript.Model
         public string BasePath => (CodeModel as CodeModelTS).BasePath;
 
         [JsonIgnore]
-        public string RelativePath => Url;
+        public string RelativePath
+        {
+            get
+            {
+                string relativePath = Url;
+                if (!string.IsNullOrEmpty(relativePath) && relativePath.StartsWith('/'))
+                {
+                    relativePath = relativePath.Substring(1);
+                }
+                return relativePath;
+            }
+        }
 
         [JsonIgnore]
         public string Path
         {
             get
             {
-                string basePath = BasePath;
+                string path = BasePath;
                 string relativePath = RelativePath;
-                string path = "";
-                if (!string.IsNullOrEmpty(basePath))
-                {
-                    path = basePath;
-                }
                 if (!string.IsNullOrEmpty(relativePath))
                 {
-                    if (string.IsNullOrEmpty(path))
+                    if (!string.IsNullOrEmpty(path))
                     {
-                        path = relativePath;
+                        path += '/';
                     }
-                    else
-                    {
-                        bool pathEndsWithSlash = path.EndsWith('/');
-                        bool relativePathEndsWithSlash = relativePath.EndsWith('/');
-                        if (pathEndsWithSlash != relativePathEndsWithSlash)
-                        {
-                            path += relativePath;
-                        }
-                        else if (pathEndsWithSlash)
-                        {
-                            path += relativePath.Substring(1);
-                        }
-                        else
-                        {
-                            path += '/' + relativePath;
-                        }
-                    }
-                }
-                if (!string.IsNullOrEmpty(path) && !path.StartsWith('/'))
-                {
-                    path = '/' + path;
+                    path += relativePath;
                 }
                 return path;
             }

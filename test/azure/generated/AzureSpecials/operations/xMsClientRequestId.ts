@@ -63,8 +63,8 @@ export class XMsClientRequestId {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/overwrite/x-ms-client-request-id/method/",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/overwrite/x-ms-client-request-id/method/",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -150,8 +150,8 @@ export class XMsClientRequestId {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
           headerParameters: [
             {
               parameterName: "xMsClientRequestId",

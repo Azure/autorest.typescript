@@ -51,7 +51,18 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 string basePath = Uri.TryCreate(BaseUrl, UriKind.Absolute, out Uri baseUri) ? baseUri.AbsolutePath : null;
-                return basePath == "/" ? null : basePath;
+                if (!string.IsNullOrEmpty(basePath))
+                {
+                    if (basePath.StartsWith('/'))
+                    {
+                        basePath = basePath.Substring(1);
+                    }
+                    if (basePath.EndsWith('/'))
+                    {
+                        basePath = basePath.Substring(0, basePath.Length - 1);
+                    }
+                }
+                return basePath;
             }
         }
 

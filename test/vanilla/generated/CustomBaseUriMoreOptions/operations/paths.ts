@@ -90,8 +90,8 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/customuri/{subscriptionId}/{keyName}",
+          baseUrl: this.client.baseUri,
+          path: "customuri/{subscriptionId}/{keyName}",
           urlParameters: [
             {
               parameterName: "vault",

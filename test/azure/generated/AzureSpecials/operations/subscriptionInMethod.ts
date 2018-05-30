@@ -70,8 +70,8 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
               parameterName: "subscriptionId",
@@ -164,8 +164,8 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
           urlParameters: [
             {
               parameterName: "subscriptionId",
@@ -258,8 +258,8 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
               parameterName: "subscriptionId",
@@ -352,8 +352,8 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
               parameterName: "subscriptionId",

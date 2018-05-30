@@ -52,8 +52,8 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/duration/null"
+          baseUrl: this.client.baseUri,
+          path: "duration/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -155,8 +155,8 @@ export class Duration {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/duration/positiveduration",
+          baseUrl: this.client.baseUri,
+          path: "duration/positiveduration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "durationBody",
           requestBodyType: msRest.OperationParameterType.TimeSpan,
@@ -222,8 +222,8 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/duration/positiveduration"
+          baseUrl: this.client.baseUri,
+          path: "duration/positiveduration"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -306,8 +306,8 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/duration/invalid"
+          baseUrl: this.client.baseUri,
+          path: "duration/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -53,8 +53,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/simple",
+          baseUrl: this.client.baseUri,
+          path: "xml/simple",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -145,8 +145,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/simple",
+          baseUrl: this.client.baseUri,
+          path: "xml/simple",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
@@ -212,8 +212,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/wrapped-lists",
+          baseUrl: this.client.baseUri,
+          path: "xml/wrapped-lists",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -300,8 +300,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/wrapped-lists",
+          baseUrl: this.client.baseUri,
+          path: "xml/wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "wrappedLists",
           contentType: "application/xml; charset=utf-8",
@@ -367,8 +367,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/headers",
+          baseUrl: this.client.baseUri,
+          path: "xml/headers",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -431,8 +431,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-list",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -519,8 +519,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
@@ -582,8 +582,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-wrapped-lists",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-wrapped-lists",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -670,8 +670,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-wrapped-lists",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-wrapped-lists",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "appleBarrel",
           contentType: "application/xml; charset=utf-8",
@@ -733,8 +733,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/root-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/root-list",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -843,8 +843,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/root-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
@@ -906,8 +906,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/root-list-single-item",
+          baseUrl: this.client.baseUri,
+          path: "xml/root-list-single-item",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -1016,8 +1016,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/root-list-single-item",
+          baseUrl: this.client.baseUri,
+          path: "xml/root-list-single-item",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
@@ -1079,8 +1079,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-root-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-root-list",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -1189,8 +1189,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-root-list",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-root-list",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
@@ -1252,8 +1252,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-child-element",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-child-element",
           isXML: true
         });
       let statusCode = operationRes.status;
@@ -1340,8 +1340,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/empty-child-element",
+          baseUrl: this.client.baseUri,
+          path: "xml/empty-child-element",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "banana",
           contentType: "application/xml; charset=utf-8",
@@ -1406,8 +1406,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/",
+          baseUrl: this.client.baseUri,
+          path: "xml/",
           queryParameters: [
             {
               parameterName: "comp",
@@ -1492,8 +1492,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/",
+          baseUrl: this.client.baseUri,
+          path: "xml/",
           queryParameters: [
             {
               parameterName: "comp",
@@ -1594,8 +1594,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/",
+          baseUrl: this.client.baseUri,
+          path: "xml/",
           queryParameters: [
             {
               parameterName: "comp",
@@ -1672,8 +1672,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/mycontainer",
+          baseUrl: this.client.baseUri,
+          path: "xml/mycontainer",
           queryParameters: [
             {
               parameterName: "comp",
@@ -1796,8 +1796,8 @@ export class Xml {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/mycontainer",
+          baseUrl: this.client.baseUri,
+          path: "xml/mycontainer",
           queryParameters: [
             {
               parameterName: "comp",
@@ -1874,8 +1874,8 @@ export class Xml {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/xml/mycontainer",
+          baseUrl: this.client.baseUri,
+          path: "xml/mycontainer",
           queryParameters: [
             {
               parameterName: "comp",

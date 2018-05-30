@@ -143,8 +143,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/array",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/array",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -227,8 +227,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/array",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/array",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -355,8 +355,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/dictionary",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -439,8 +439,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/dictionary",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -554,8 +554,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/resourcecollection",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
@@ -638,8 +638,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/azure/resource-flatten/resourcecollection",
+          baseUrl: this.baseUri,
+          path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",

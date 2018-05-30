@@ -52,8 +52,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/null"
+          baseUrl: this.client.baseUri,
+          path: "int/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,8 +136,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/invalid"
+          baseUrl: this.client.baseUri,
+          path: "int/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -220,8 +220,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/overflowint32"
+          baseUrl: this.client.baseUri,
+          path: "int/overflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -304,8 +304,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/underflowint32"
+          baseUrl: this.client.baseUri,
+          path: "int/underflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -388,8 +388,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/overflowint64"
+          baseUrl: this.client.baseUri,
+          path: "int/overflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -472,8 +472,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/underflowint64"
+          baseUrl: this.client.baseUri,
+          path: "int/underflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -575,8 +575,8 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/max/32",
+          baseUrl: this.client.baseUri,
+          path: "int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -661,8 +661,8 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/max/64",
+          baseUrl: this.client.baseUri,
+          path: "int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
@@ -747,8 +747,8 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/min/32",
+          baseUrl: this.client.baseUri,
+          path: "int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -833,8 +833,8 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/min/64",
+          baseUrl: this.client.baseUri,
+          path: "int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
@@ -900,8 +900,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/unixtime"
+          baseUrl: this.client.baseUri,
+          path: "int/unixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1004,8 +1004,8 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/unixtime",
+          baseUrl: this.client.baseUri,
+          path: "int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.UnixTime,
@@ -1071,8 +1071,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/invalidunixtime"
+          baseUrl: this.client.baseUri,
+          path: "int/invalidunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1155,8 +1155,8 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/int/nullunixtime"
+          baseUrl: this.client.baseUri,
+          path: "int/nullunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

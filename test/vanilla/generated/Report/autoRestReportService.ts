@@ -100,8 +100,8 @@ class AutoRestReportService extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/report",
+          baseUrl: this.baseUri,
+          path: "report",
           queryParameters: [
             {
               parameterName: "qualifier",

@@ -70,8 +70,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
@@ -164,8 +164,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
@@ -253,8 +253,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
@@ -348,8 +348,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/method/query/valid",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/method/query/valid",
           queryParameters: [
             {
               parameterName: "q1",
@@ -441,8 +441,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/method/query/null",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/method/query/null",
           queryParameters: [
             {
               parameterName: "q1",
@@ -536,8 +536,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/path/query/valid",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/path/query/valid",
           queryParameters: [
             {
               parameterName: "q1",
@@ -626,8 +626,8 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/skipUrlEncoding/swagger/query/valid",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/skipUrlEncoding/swagger/query/valid",
           queryParameters: [
             {
               parameterName: "q1",

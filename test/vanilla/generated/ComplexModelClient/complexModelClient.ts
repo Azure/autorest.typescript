@@ -110,8 +110,8 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -237,8 +237,8 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "subscriptionId",
@@ -366,8 +366,8 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "subscriptionId",

@@ -117,8 +117,8 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/parameterGrouping/postRequired/{path}",
+          baseUrl: this.client.baseUri,
+          path: "parameterGrouping/postRequired/{path}",
           urlParameters: [
             {
               parameterName: "path",
@@ -241,8 +241,8 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/parameterGrouping/postOptional",
+          baseUrl: this.client.baseUri,
+          path: "parameterGrouping/postOptional",
           queryParameters: [
             {
               parameterName: "query",
@@ -374,8 +374,8 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/parameterGrouping/postMultipleParameterGroups",
+          baseUrl: this.client.baseUri,
+          path: "parameterGrouping/postMultipleParameterGroups",
           queryParameters: [
             {
               parameterName: "queryOne",
@@ -500,8 +500,8 @@ export class ParameterGrouping {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/parameterGrouping/sharedParameterGroupObject",
+          baseUrl: this.client.baseUri,
+          path: "parameterGrouping/sharedParameterGroupObject",
           queryParameters: [
             {
               parameterName: "queryOne",

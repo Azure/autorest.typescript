@@ -53,8 +53,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/null"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -144,8 +144,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/empty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -266,8 +266,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/empty",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -332,8 +332,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/nullvalue"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/nullvalue"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -423,8 +423,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/nullkey"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/nullkey"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -514,8 +514,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/keyemptystring"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/keyemptystring"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -605,8 +605,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/invalid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -696,8 +696,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/boolean/tfft"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/boolean/tfft"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -818,8 +818,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/boolean/tfft",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/boolean/tfft",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -884,8 +884,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/boolean/true.null.false"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/boolean/true.null.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -975,8 +975,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/boolean/true.boolean.false"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/boolean/true.boolean.false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1066,8 +1066,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.-1.3.300"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/integer/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1188,8 +1188,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.-1.3.300",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/integer/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -1254,8 +1254,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.null.zero"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/integer/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1345,8 +1345,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/integer/1.integer.0"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/integer/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1436,8 +1436,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/long/1.-1.3.300"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/long/1.-1.3.300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1558,8 +1558,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/long/1.-1.3.300",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/long/1.-1.3.300",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -1624,8 +1624,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/long/1.null.zero"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/long/1.null.zero"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1715,8 +1715,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/long/1.integer.0"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/long/1.integer.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1806,8 +1806,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/float/0--0.01-1.2e20"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/float/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1928,8 +1928,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/float/0--0.01-1.2e20",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/float/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -1994,8 +1994,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/float/0.0-null-1.2e20"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/float/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2085,8 +2085,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/float/1.number.0"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/float/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2176,8 +2176,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/double/0--0.01-1.2e20"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/double/0--0.01-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2298,8 +2298,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/double/0--0.01-1.2e20",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/double/0--0.01-1.2e20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -2364,8 +2364,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/double/0.0-null-1.2e20"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/double/0.0-null-1.2e20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2455,8 +2455,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/double/1.number.0"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/double/1.number.0"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2546,8 +2546,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/string/foo1.foo2.foo3"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/string/foo1.foo2.foo3"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2668,8 +2668,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/string/foo1.foo2.foo3",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/string/foo1.foo2.foo3",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -2734,8 +2734,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/string/foo.null.foo2"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/string/foo.null.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2825,8 +2825,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/string/foo.123.foo2"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/string/foo.123.foo2"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2917,8 +2917,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3041,8 +3041,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -3107,8 +3107,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date/invalidnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3198,8 +3198,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date/invalidchars"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3290,8 +3290,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3414,8 +3414,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -3480,8 +3480,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time/invalidnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3571,8 +3571,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time/invalidchars"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time/invalidchars"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3664,8 +3664,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time-rfc1123/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time-rfc1123/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3788,8 +3788,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/date-time-rfc1123/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/date-time-rfc1123/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -3855,8 +3855,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/duration/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/duration/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -3977,8 +3977,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/duration/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/duration/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -4044,8 +4044,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/byte/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/byte/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4167,8 +4167,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/byte/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/byte/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -4234,8 +4234,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/byte/invalidnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/byte/invalidnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4326,8 +4326,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/prim/base64url/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/prim/base64url/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4417,8 +4417,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/null"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4509,8 +4509,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/empty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4602,8 +4602,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/itemnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4695,8 +4695,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/itemempty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4788,8 +4788,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -4901,8 +4901,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/complex/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/complex/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -4967,8 +4967,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/null"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5065,8 +5065,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/empty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5164,8 +5164,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/itemnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5263,8 +5263,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/itemempty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5362,8 +5362,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5503,8 +5503,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/array/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/array/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
@@ -5569,8 +5569,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/null"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5667,8 +5667,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/empty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5767,8 +5767,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/itemnull"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/itemnull"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5867,8 +5867,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/itemempty"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/itemempty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -5967,8 +5967,8 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/valid"
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -6110,8 +6110,8 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/dictionary/dictionary/valid",
+          baseUrl: this.client.baseUri,
+          path: "dictionary/dictionary/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"

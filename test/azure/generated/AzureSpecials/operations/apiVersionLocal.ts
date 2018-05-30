@@ -66,8 +66,8 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/apiVersion/method/string/none/query/local/2.0",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
           queryParameters: [
             {
               parameterName: "apiVersion",
@@ -160,8 +160,8 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/apiVersion/method/string/none/query/local/null",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/apiVersion/method/string/none/query/local/null",
           queryParameters: [
             {
               parameterName: "apiVersion",
@@ -250,8 +250,8 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/apiVersion/path/string/none/query/local/2.0",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/apiVersion/path/string/none/query/local/2.0",
           queryParameters: [
             {
               parameterName: "apiVersion",
@@ -340,8 +340,8 @@ export class ApiVersionLocal {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/azurespecials/apiVersion/swagger/string/none/query/local/2.0",
+          baseUrl: this.client.baseUri,
+          path: "azurespecials/apiVersion/swagger/string/none/query/local/2.0",
           queryParameters: [
             {
               parameterName: "apiVersion",

@@ -163,8 +163,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          baseUrl: this.baseUri,
+          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -329,8 +329,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          baseUrl: this.baseUri,
+          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -434,8 +434,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/validation/constantsInPath/{constantParam}/value",
+          baseUrl: this.baseUri,
+          path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
               parameterName: "constantParam",
@@ -505,8 +505,8 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.baseUri,
-          path: "/validation/constantsInPath/{constantParam}/value",
+          baseUrl: this.baseUri,
+          path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
               parameterName: "constantParam",

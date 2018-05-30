@@ -53,8 +53,8 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/readonlyproperty/valid"
+          baseUrl: this.client.baseUri,
+          path: "complex/readonlyproperty/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -153,8 +153,8 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/readonlyproperty/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/readonlyproperty/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"

@@ -69,8 +69,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/multi/string/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/multi/string/null",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -154,8 +154,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/multi/string/empty",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/multi/string/empty",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -240,8 +240,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/multi/string/valid",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/multi/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",

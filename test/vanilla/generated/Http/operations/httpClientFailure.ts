@@ -53,8 +53,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -128,8 +128,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -222,8 +222,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -320,8 +320,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -418,8 +418,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -516,8 +516,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/400",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -595,8 +595,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/401"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/401"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -670,8 +670,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/402"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/402"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -745,8 +745,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/403"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/403"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -839,8 +839,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/404",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/404",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -937,8 +937,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/405",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/405",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1035,8 +1035,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/406",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/406",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1133,8 +1133,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/407",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/407",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1231,8 +1231,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/409",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/409",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1310,8 +1310,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/410"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/410"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1385,8 +1385,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/411"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/411"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1460,8 +1460,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/412"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/412"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1554,8 +1554,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/413",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/413",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1652,8 +1652,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/414",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/414",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1750,8 +1750,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/415",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/415",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1829,8 +1829,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/416"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/416"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1923,8 +1923,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/417",
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/417",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -2002,8 +2002,8 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/failure/client/429"
+          baseUrl: this.client.baseUri,
+          path: "http/failure/client/429"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {

@@ -53,8 +53,8 @@ export class Files {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/files/stream/nonempty"
+          baseUrl: this.client.baseUri,
+          path: "files/stream/nonempty"
         });
       let statusCode = operationRes.status;
 
@@ -119,8 +119,8 @@ export class Files {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/files/stream/verylarge"
+          baseUrl: this.client.baseUri,
+          path: "files/stream/verylarge"
         });
       let statusCode = operationRes.status;
 
@@ -185,8 +185,8 @@ export class Files {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/files/stream/empty"
+          baseUrl: this.client.baseUri,
+          path: "files/stream/empty"
         });
       let statusCode = operationRes.status;
 

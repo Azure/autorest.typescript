@@ -56,8 +56,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/bool/true",
+          baseUrl: this.client.baseUri,
+          path: "queries/bool/true",
           queryParameters: [
             {
               parameterName: "boolQuery",
@@ -128,8 +128,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/bool/false",
+          baseUrl: this.client.baseUri,
+          path: "queries/bool/false",
           queryParameters: [
             {
               parameterName: "boolQuery",
@@ -208,8 +208,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/bool/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/bool/null",
           queryParameters: [
             {
               parameterName: "boolQuery",
@@ -280,8 +280,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/int/1000000",
+          baseUrl: this.client.baseUri,
+          path: "queries/int/1000000",
           queryParameters: [
             {
               parameterName: "intQuery",
@@ -352,8 +352,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/int/-1000000",
+          baseUrl: this.client.baseUri,
+          path: "queries/int/-1000000",
           queryParameters: [
             {
               parameterName: "intQuery",
@@ -432,8 +432,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/int/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/int/null",
           queryParameters: [
             {
               parameterName: "intQuery",
@@ -504,8 +504,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/long/10000000000",
+          baseUrl: this.client.baseUri,
+          path: "queries/long/10000000000",
           queryParameters: [
             {
               parameterName: "longQuery",
@@ -576,8 +576,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/long/-10000000000",
+          baseUrl: this.client.baseUri,
+          path: "queries/long/-10000000000",
           queryParameters: [
             {
               parameterName: "longQuery",
@@ -656,8 +656,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/long/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/long/null",
           queryParameters: [
             {
               parameterName: "longQuery",
@@ -728,8 +728,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/float/1.034E+20",
+          baseUrl: this.client.baseUri,
+          path: "queries/float/1.034E+20",
           queryParameters: [
             {
               parameterName: "floatQuery",
@@ -800,8 +800,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/float/-1.034E-20",
+          baseUrl: this.client.baseUri,
+          path: "queries/float/-1.034E-20",
           queryParameters: [
             {
               parameterName: "floatQuery",
@@ -880,8 +880,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/float/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/float/null",
           queryParameters: [
             {
               parameterName: "floatQuery",
@@ -952,8 +952,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/double/9999999.999",
+          baseUrl: this.client.baseUri,
+          path: "queries/double/9999999.999",
           queryParameters: [
             {
               parameterName: "doubleQuery",
@@ -1024,8 +1024,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/double/-9999999.999",
+          baseUrl: this.client.baseUri,
+          path: "queries/double/-9999999.999",
           queryParameters: [
             {
               parameterName: "doubleQuery",
@@ -1104,8 +1104,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/double/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/double/null",
           queryParameters: [
             {
               parameterName: "doubleQuery",
@@ -1176,8 +1176,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/string/unicode/",
+          baseUrl: this.client.baseUri,
+          path: "queries/string/unicode/",
           queryParameters: [
             {
               parameterName: "stringQuery",
@@ -1248,8 +1248,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
+          baseUrl: this.client.baseUri,
+          path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
           queryParameters: [
             {
               parameterName: "stringQuery",
@@ -1320,8 +1320,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/string/empty",
+          baseUrl: this.client.baseUri,
+          path: "queries/string/empty",
           queryParameters: [
             {
               parameterName: "stringQuery",
@@ -1400,8 +1400,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/string/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/string/null",
           queryParameters: [
             {
               parameterName: "stringQuery",
@@ -1483,8 +1483,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/enum/green%20color",
+          baseUrl: this.client.baseUri,
+          path: "queries/enum/green%20color",
           queryParameters: [
             {
               parameterName: "enumQuery"
@@ -1565,8 +1565,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/enum/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/enum/null",
           queryParameters: [
             {
               parameterName: "enumQuery"
@@ -1644,8 +1644,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/byte/multibyte",
+          baseUrl: this.client.baseUri,
+          path: "queries/byte/multibyte",
           queryParameters: [
             {
               parameterName: "byteQuery",
@@ -1716,8 +1716,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/byte/empty",
+          baseUrl: this.client.baseUri,
+          path: "queries/byte/empty",
           queryParameters: [
             {
               parameterName: "byteQuery",
@@ -1796,8 +1796,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/byte/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/byte/null",
           queryParameters: [
             {
               parameterName: "byteQuery",
@@ -1868,8 +1868,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/date/2012-01-01",
+          baseUrl: this.client.baseUri,
+          path: "queries/date/2012-01-01",
           queryParameters: [
             {
               parameterName: "dateQuery",
@@ -1949,8 +1949,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/date/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/date/null",
           queryParameters: [
             {
               parameterName: "dateQuery",
@@ -2021,8 +2021,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
+          baseUrl: this.client.baseUri,
+          path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
@@ -2102,8 +2102,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/datetime/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/datetime/null",
           queryParameters: [
             {
               parameterName: "dateTimeQuery",
@@ -2188,8 +2188,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/csv/string/valid",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/csv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -2273,8 +2273,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/csv/string/null",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/csv/string/null",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -2358,8 +2358,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/csv/string/empty",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/csv/string/empty",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -2444,8 +2444,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/ssv/string/valid",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/ssv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -2530,8 +2530,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/tsv/string/valid",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/tsv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -2616,8 +2616,8 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/queries/array/pipes/string/valid",
+          baseUrl: this.client.baseUri,
+          path: "queries/array/pipes/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",

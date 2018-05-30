@@ -53,8 +53,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/valid"
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -145,8 +145,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/valid",
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
@@ -218,8 +218,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/invalid"
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -296,8 +296,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/empty"
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -374,8 +374,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/null"
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -452,8 +452,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/notprovided"
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

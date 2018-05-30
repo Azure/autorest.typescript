@@ -53,8 +53,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/null"
+          baseUrl: this.client.baseUri,
+          path: "string/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -155,8 +155,8 @@ export class String {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/null",
+          baseUrl: this.client.baseUri,
+          path: "string/null",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
@@ -221,8 +221,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/empty"
+          baseUrl: this.client.baseUri,
+          path: "string/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -324,8 +324,8 @@ export class String {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/empty",
+          baseUrl: this.client.baseUri,
+          path: "string/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
@@ -391,8 +391,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/mbcs"
+          baseUrl: this.client.baseUri,
+          path: "string/mbcs"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -496,8 +496,8 @@ export class String {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/mbcs",
+          baseUrl: this.client.baseUri,
+          path: "string/mbcs",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
@@ -564,8 +564,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/whitespace"
+          baseUrl: this.client.baseUri,
+          path: "string/whitespace"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -670,8 +670,8 @@ export class String {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/whitespace",
+          baseUrl: this.client.baseUri,
+          path: "string/whitespace",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
@@ -736,8 +736,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/notProvided"
+          baseUrl: this.client.baseUri,
+          path: "string/notProvided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -820,8 +820,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/base64Encoding"
+          baseUrl: this.client.baseUri,
+          path: "string/base64Encoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -904,8 +904,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/base64UrlEncoding"
+          baseUrl: this.client.baseUri,
+          path: "string/base64UrlEncoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1007,8 +1007,8 @@ export class String {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/base64UrlEncoding",
+          baseUrl: this.client.baseUri,
+          path: "string/base64UrlEncoding",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
           requestBodyType: msRest.OperationParameterType.Base64Url,
@@ -1074,8 +1074,8 @@ export class String {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/string/nullBase64UrlEncoding"
+          baseUrl: this.client.baseUri,
+          path: "string/nullBase64UrlEncoding"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -52,8 +52,8 @@ export class Bool {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/true"
+          baseUrl: this.client.baseUri,
+          path: "bool/true"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -155,8 +155,8 @@ export class Bool {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/true",
+          baseUrl: this.client.baseUri,
+          path: "bool/true",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -222,8 +222,8 @@ export class Bool {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/false"
+          baseUrl: this.client.baseUri,
+          path: "bool/false"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -325,8 +325,8 @@ export class Bool {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/false",
+          baseUrl: this.client.baseUri,
+          path: "bool/false",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -392,8 +392,8 @@ export class Bool {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/null"
+          baseUrl: this.client.baseUri,
+          path: "bool/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -476,8 +476,8 @@ export class Bool {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/bool/invalid"
+          baseUrl: this.client.baseUri,
+          path: "bool/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

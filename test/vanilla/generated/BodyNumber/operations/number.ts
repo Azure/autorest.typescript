@@ -52,8 +52,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/null"
+          baseUrl: this.client.baseUri,
+          path: "number/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,8 +136,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/invalidfloat"
+          baseUrl: this.client.baseUri,
+          path: "number/invalidfloat"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -220,8 +220,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/invaliddouble"
+          baseUrl: this.client.baseUri,
+          path: "number/invaliddouble"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -304,8 +304,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/invaliddecimal"
+          baseUrl: this.client.baseUri,
+          path: "number/invaliddecimal"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -407,8 +407,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/float/3.402823e+20",
+          baseUrl: this.client.baseUri,
+          path: "number/big/float/3.402823e+20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -474,8 +474,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/float/3.402823e+20"
+          baseUrl: this.client.baseUri,
+          path: "number/big/float/3.402823e+20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -577,8 +577,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/2.5976931e+101",
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -644,8 +644,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/2.5976931e+101"
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/2.5976931e+101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -747,8 +747,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/99999999.99",
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -814,8 +814,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/99999999.99"
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -917,8 +917,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/-99999999.99",
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -984,8 +984,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/double/-99999999.99"
+          baseUrl: this.client.baseUri,
+          path: "number/big/double/-99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1087,8 +1087,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/2.5976931e+101",
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/2.5976931e+101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
@@ -1154,8 +1154,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/2.5976931e+101"
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/2.5976931e+101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1257,8 +1257,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/99999999.99",
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
@@ -1324,8 +1324,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/99999999.99"
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1427,8 +1427,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/-99999999.99",
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/-99999999.99",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
@@ -1494,8 +1494,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/big/decimal/-99999999.99"
+          baseUrl: this.client.baseUri,
+          path: "number/big/decimal/-99999999.99"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1597,8 +1597,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/float/3.402823e-20",
+          baseUrl: this.client.baseUri,
+          path: "number/small/float/3.402823e-20",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -1664,8 +1664,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/float/3.402823e-20"
+          baseUrl: this.client.baseUri,
+          path: "number/small/float/3.402823e-20"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1767,8 +1767,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/double/2.5976931e-101",
+          baseUrl: this.client.baseUri,
+          path: "number/small/double/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Double,
@@ -1834,8 +1834,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/double/2.5976931e-101"
+          baseUrl: this.client.baseUri,
+          path: "number/small/double/2.5976931e-101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1937,8 +1937,8 @@ export class Number {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/decimal/2.5976931e-101",
+          baseUrl: this.client.baseUri,
+          path: "number/small/decimal/2.5976931e-101",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "numberBody",
           requestBodyType: msRest.OperationParameterType.Decimal,
@@ -2004,8 +2004,8 @@ export class Number {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/number/small/decimal/2.5976931e-101"
+          baseUrl: this.client.baseUri,
+          path: "number/small/decimal/2.5976931e-101"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

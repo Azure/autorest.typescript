@@ -53,8 +53,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "HEAD",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/408"
+          baseUrl: this.client.baseUri,
+          path: "http/retry/408"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -134,8 +134,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/500",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -219,8 +219,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/500",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -286,8 +286,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/502"
+          baseUrl: this.client.baseUri,
+          path: "http/retry/502"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -367,8 +367,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/503",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -452,8 +452,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "DELETE",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/503",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -537,8 +537,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/504",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -622,8 +622,8 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/http/retry/504",
+          baseUrl: this.client.baseUri,
+          path: "http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,

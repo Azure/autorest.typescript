@@ -63,8 +63,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -167,8 +167,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/valid",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/valid",
           queryParameters: [
             {
               parameterName: "apiVersion",
@@ -257,8 +257,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/invalid",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/invalid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -352,8 +352,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/empty",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -447,8 +447,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/null",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -542,8 +542,8 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/complex/basic/notprovided",
+          baseUrl: this.client.baseUri,
+          path: "complex/basic/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

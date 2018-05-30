@@ -77,8 +77,8 @@ export class Group {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
+          baseUrl: this.client.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",

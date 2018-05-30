@@ -52,8 +52,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/null"
+          baseUrl: this.client.baseUri,
+          path: "datetime/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -136,8 +136,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/invalid"
+          baseUrl: this.client.baseUri,
+          path: "datetime/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -220,8 +220,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/overflow"
+          baseUrl: this.client.baseUri,
+          path: "datetime/overflow"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -304,8 +304,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/underflow"
+          baseUrl: this.client.baseUri,
+          path: "datetime/underflow"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -408,8 +408,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/utc",
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -475,8 +475,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/utc/lowercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/utc/lowercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -559,8 +559,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/utc/uppercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/utc/uppercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -664,8 +664,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localpositiveoffset",
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -732,8 +732,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localpositiveoffset/lowercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localpositiveoffset/lowercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -817,8 +817,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localpositiveoffset/uppercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localpositiveoffset/uppercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -922,8 +922,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localnegativeoffset",
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -990,8 +990,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localnegativeoffset/uppercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localnegativeoffset/uppercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1075,8 +1075,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/max/localnegativeoffset/lowercase"
+          baseUrl: this.client.baseUri,
+          path: "datetime/max/localnegativeoffset/lowercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1179,8 +1179,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/utc",
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/utc",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -1246,8 +1246,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/utc"
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/utc"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1350,8 +1350,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/localpositiveoffset",
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/localpositiveoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -1417,8 +1417,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/localpositiveoffset"
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/localpositiveoffset"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1521,8 +1521,8 @@ export class Datetime {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/localnegativeoffset",
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/localnegativeoffset",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTime,
@@ -1588,8 +1588,8 @@ export class Datetime {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/datetime/min/localnegativeoffset"
+          baseUrl: this.client.baseUri,
+          path: "datetime/min/localnegativeoffset"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -160,8 +160,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -299,8 +299,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "subscriptionId",
@@ -440,8 +440,8 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
+          baseUrl: this.baseUri,
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "subscriptionId",

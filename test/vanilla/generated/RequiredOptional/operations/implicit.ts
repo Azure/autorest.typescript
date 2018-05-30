@@ -65,8 +65,8 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/implicit/required/path/{pathParameter}",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/implicit/required/path/{pathParameter}",
           urlParameters: [
             {
               parameterName: "pathParameter",
@@ -158,8 +158,8 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/implicit/optional/query",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/implicit/optional/query",
           queryParameters: [
             {
               parameterName: "queryParameter",
@@ -239,8 +239,8 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/implicit/optional/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/implicit/optional/header",
           headerParameters: [
             {
               parameterName: "queryParameter",
@@ -327,8 +327,8 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/implicit/optional/body",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/implicit/optional/body",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
@@ -404,8 +404,8 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/global/required/path/{required-global-path}",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/global/required/path/{required-global-path}",
           urlParameters: [
             {
               parameterName: "this.client.requiredGlobalPath",
@@ -496,8 +496,8 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/global/required/query",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/global/required/query",
           queryParameters: [
             {
               parameterName: "this.client.requiredGlobalQuery",
@@ -588,8 +588,8 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/global/optional/query",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/global/optional/query",
           queryParameters: [
             {
               parameterName: "this.client.optionalGlobalQuery",

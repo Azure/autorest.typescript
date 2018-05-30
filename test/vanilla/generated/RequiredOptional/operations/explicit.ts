@@ -73,8 +73,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/integer/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -171,8 +171,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/integer/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -258,8 +258,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/integer/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -355,8 +355,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/integer/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/integer/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -434,8 +434,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/integer/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/integer/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -528,8 +528,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/integer/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/integer/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -617,8 +617,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/string/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
@@ -715,8 +715,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/string/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           requestBodyType: msRest.OperationParameterType.String,
@@ -802,8 +802,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/string/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -899,8 +899,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/string/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/string/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -978,8 +978,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/string/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/string/header",
           headerParameters: [
             {
               parameterName: "headerParameter",
@@ -1072,8 +1072,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/string/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/string/header",
           headerParameters: [
             {
               parameterName: "bodyParameter",
@@ -1155,8 +1155,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/class/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1238,8 +1238,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/class/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/class/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1324,8 +1324,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/class/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1413,8 +1413,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/class/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/class/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1511,8 +1511,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/array/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1619,8 +1619,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/array/parameter",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/array/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1710,8 +1710,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/array/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1811,8 +1811,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/array/property",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/array/property",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
@@ -1895,8 +1895,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/requied/array/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/requied/array/header",
           headerParameters: [
             {
               parameterName: "headerParameter"
@@ -1992,8 +1992,8 @@ export class Explicit {
         },
         {
           httpMethod: "POST",
-          schemeHostAndPort: this.client.baseUri,
-          path: "/reqopt/optional/array/header",
+          baseUrl: this.client.baseUri,
+          path: "reqopt/optional/array/header",
           headerParameters: [
             {
               parameterName: "headerParameter"
