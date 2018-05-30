@@ -60,8 +60,8 @@ export class ApiVersionLocal {
           {
             apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -152,8 +152,8 @@ export class ApiVersionLocal {
           {
             apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -240,8 +240,8 @@ export class ApiVersionLocal {
           {
             apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -328,8 +328,8 @@ export class ApiVersionLocal {
           {
             apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
