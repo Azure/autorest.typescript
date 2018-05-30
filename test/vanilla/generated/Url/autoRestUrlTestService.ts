@@ -67,7 +67,7 @@ class AutoRestUrlTestService extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = "http://localhost:3000";
     }
     this.globalStringPath = globalStringPath;
 

@@ -56,7 +56,7 @@ class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
     super(undefined, options);
 
     this.host = 'host';
-    this.baseUri = 'http://{accountName}{host}';
+    this.baseUri = "http://{accountName}{host}";
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.host !== null && options.host !== undefined) {

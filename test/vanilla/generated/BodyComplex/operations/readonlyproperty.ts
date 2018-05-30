@@ -53,7 +53,7 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/readonlyproperty/valid"
         });
       let statusCode = operationRes.status;
@@ -153,7 +153,7 @@ export class Readonlyproperty {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/readonlyproperty/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",

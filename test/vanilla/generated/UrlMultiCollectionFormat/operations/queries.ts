@@ -69,7 +69,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/multi/string/null",
           queryParameters: [
             {
@@ -154,7 +154,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/multi/string/empty",
           queryParameters: [
             {
@@ -240,7 +240,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/multi/string/valid",
           queryParameters: [
             {

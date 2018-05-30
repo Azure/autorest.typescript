@@ -26,6 +26,35 @@ namespace AutoRest.TypeScript.Model
 
         private string _optionalParameterTypeForClientConstructor;
 
+        [JsonIgnore]
+        public string SchemeHostAndPort
+        {
+            get
+            {
+                string result = null;
+                string baseUrl = BaseUrl;
+                if (!string.IsNullOrEmpty(baseUrl))
+                {
+                    const string colonSlashSlash = "://";
+                    int colonSlashSlashIndex = baseUrl.IndexOf(colonSlashSlash);
+                    int hostStartIndex = colonSlashSlashIndex == -1 ? 0 : colonSlashSlashIndex + colonSlashSlash.Length;
+                    int pathStartIndex = baseUrl.IndexOf('/', hostStartIndex);
+                    result = (pathStartIndex == -1 ? baseUrl : baseUrl.Substring(0, pathStartIndex));
+                }
+                return result;
+            }
+        }
+
+        [JsonIgnore]
+        public string BasePath
+        {
+            get
+            {
+                string basePath = Uri.TryCreate(BaseUrl, UriKind.Absolute, out Uri baseUri) ? baseUri.AbsolutePath : null;
+                return basePath == "/" ? null : basePath;
+            }
+        }
+
         public bool IsCustomBaseUri => Extensions.ContainsKey(SwaggerExtensions.ParameterizedHostExtension);
 
         [JsonIgnore]
@@ -286,7 +315,7 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string PackageDependencies()
         {
-            return "\"ms-rest-js\": \"^0.7.213\"";
+            return "\"ms-rest-js\": \"C:/Users/daschult/Sources/ms-rest-js\"";
         }
 
         public virtual Method GetSampleMethod()

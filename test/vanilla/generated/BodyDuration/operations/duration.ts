@@ -52,7 +52,7 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/duration/null"
         });
       let statusCode = operationRes.status;
@@ -155,7 +155,7 @@ export class Duration {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/duration/positiveduration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "durationBody",
@@ -222,7 +222,7 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/duration/positiveduration"
         });
       let statusCode = operationRes.status;
@@ -306,7 +306,7 @@ export class Duration {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/duration/invalid"
         });
       let statusCode = operationRes.status;

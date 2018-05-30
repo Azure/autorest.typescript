@@ -62,7 +62,7 @@ class AutoRestParameterizedCustomHostTestClient extends msRest.ServiceClient {
     super(undefined, options);
 
     this.dnsSuffix = 'host';
-    this.baseUri = '{vault}{secret}{dnsSuffix}';
+    this.baseUri = "{vault}{secret}{dnsSuffix}";
     this.subscriptionId = subscriptionId;
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);

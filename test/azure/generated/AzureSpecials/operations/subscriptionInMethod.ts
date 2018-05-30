@@ -70,7 +70,7 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
@@ -164,7 +164,7 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
           urlParameters: [
             {
@@ -258,7 +258,7 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
@@ -352,7 +352,7 @@ export class SubscriptionInMethod {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {

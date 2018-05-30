@@ -53,7 +53,7 @@ export class Inheritance {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/inheritance/valid"
         });
       let statusCode = operationRes.status;
@@ -147,7 +147,7 @@ export class Inheritance {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/inheritance/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",

@@ -72,7 +72,7 @@ export class UsageOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
           urlParameters: [
             {

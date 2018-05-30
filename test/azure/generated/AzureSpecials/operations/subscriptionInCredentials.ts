@@ -67,7 +67,7 @@ export class SubscriptionInCredentials {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
@@ -160,7 +160,7 @@ export class SubscriptionInCredentials {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
           urlParameters: [
             {
@@ -256,7 +256,7 @@ export class SubscriptionInCredentials {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
@@ -355,7 +355,7 @@ export class SubscriptionInCredentials {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
@@ -447,7 +447,7 @@ export class SubscriptionInCredentials {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {

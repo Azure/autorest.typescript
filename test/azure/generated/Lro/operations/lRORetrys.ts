@@ -353,7 +353,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/put/201/creating/succeeded/200",
           headerParameters: [
             {
@@ -471,7 +471,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/putasync/retry/succeeded",
           headerParameters: [
             {
@@ -572,7 +572,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded",
           headerParameters: [
             {
@@ -685,7 +685,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/delete/202/retry/200",
           headerParameters: [
             {
@@ -770,7 +770,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/deleteasync/retry/succeeded",
           headerParameters: [
             {
@@ -859,7 +859,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/post/202/retry/200",
           headerParameters: [
             {
@@ -951,7 +951,7 @@ export class LRORetrys {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/retryerror/postasync/retry/succeeded",
           headerParameters: [
             {

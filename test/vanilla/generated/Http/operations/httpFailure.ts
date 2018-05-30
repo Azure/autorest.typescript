@@ -52,7 +52,7 @@ export class HttpFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/emptybody/error"
         });
       let statusCode = operationRes.status;
@@ -136,7 +136,7 @@ export class HttpFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/nomodel/error"
         });
       let statusCode = operationRes.status;
@@ -216,7 +216,7 @@ export class HttpFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/nomodel/empty"
         });
       let statusCode = operationRes.status;

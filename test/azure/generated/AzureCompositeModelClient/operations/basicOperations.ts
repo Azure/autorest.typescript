@@ -63,7 +63,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/valid",
           headerParameters: [
             {
@@ -167,7 +167,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/valid",
           queryParameters: [
             {
@@ -257,7 +257,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/invalid",
           headerParameters: [
             {
@@ -352,7 +352,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/empty",
           headerParameters: [
             {
@@ -447,7 +447,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/null",
           headerParameters: [
             {
@@ -542,7 +542,7 @@ export class BasicOperations {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/basic/notprovided",
           headerParameters: [
             {

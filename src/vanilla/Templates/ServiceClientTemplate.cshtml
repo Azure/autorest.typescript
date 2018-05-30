@@ -124,14 +124,14 @@ class @(Model.Name) extends msRest.ServiceClient {
     this.baseUri = baseUri as string;
 
     if (!this.baseUri) {
-      this.baseUri = '@Model.BaseUrl';
+      this.baseUri = "@Model.SchemeHostAndPort";
     }
 </text>
 }
 else
 {
 <text>
-    this.baseUri = '@Model.BaseUrl';
+    this.baseUri = "@Model.SchemeHostAndPort";
 </text>
 }
 

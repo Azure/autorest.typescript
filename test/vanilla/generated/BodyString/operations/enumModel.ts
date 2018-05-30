@@ -54,7 +54,7 @@ export class EnumModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/notExpandable"
         });
       let statusCode = operationRes.status;
@@ -166,7 +166,7 @@ export class EnumModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/notExpandable",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "stringBody",
@@ -233,7 +233,7 @@ export class EnumModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/Referenced"
         });
       let statusCode = operationRes.status;
@@ -345,7 +345,7 @@ export class EnumModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/Referenced",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "enumStringBody",
@@ -411,7 +411,7 @@ export class EnumModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/ReferencedConstant"
         });
       let statusCode = operationRes.status;
@@ -511,7 +511,7 @@ export class EnumModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/string/enum/ReferencedConstant",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "enumStringBody",

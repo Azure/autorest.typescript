@@ -72,7 +72,7 @@ export class Formdata {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
           formDataParameters: [
             {
@@ -168,7 +168,7 @@ export class Formdata {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/formdata/stream/uploadfile",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "fileContent",

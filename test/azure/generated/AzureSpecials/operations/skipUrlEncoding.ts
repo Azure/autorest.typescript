@@ -70,7 +70,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
@@ -164,7 +164,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
@@ -253,7 +253,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
@@ -348,7 +348,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/method/query/valid",
           queryParameters: [
             {
@@ -441,7 +441,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/method/query/null",
           queryParameters: [
             {
@@ -536,7 +536,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/path/query/valid",
           queryParameters: [
             {
@@ -626,7 +626,7 @@ export class SkipUrlEncoding {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/skipUrlEncoding/swagger/query/valid",
           queryParameters: [
             {

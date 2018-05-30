@@ -63,7 +63,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/single",
           headerParameters: [
             {
@@ -185,7 +185,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple",
           headerParameters: [
             {
@@ -322,7 +322,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/odata",
           headerParameters: [
             {
@@ -473,7 +473,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/withpath/{offset}",
           urlParameters: [
             {
@@ -587,7 +587,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/retryfirst",
           headerParameters: [
             {
@@ -683,7 +683,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/retrysecond",
           headerParameters: [
             {
@@ -777,7 +777,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/single/failure",
           headerParameters: [
             {
@@ -871,7 +871,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/failure",
           headerParameters: [
             {
@@ -965,7 +965,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/failureuri",
           headerParameters: [
             {
@@ -1071,7 +1071,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/fragment/{tenant}",
           urlParameters: [
             {
@@ -1207,7 +1207,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/fragmentwithgrouping/{tenant}",
           urlParameters: [
             {
@@ -1332,7 +1332,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/fragment/{tenant}/{nextLink}",
           urlParameters: [
             {
@@ -1478,7 +1478,7 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
           urlParameters: [
             {
@@ -1597,7 +1597,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -1734,7 +1735,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -1885,7 +1887,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2035,7 +2038,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2157,7 +2161,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2267,7 +2272,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2375,7 +2381,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2483,7 +2490,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2591,7 +2599,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          schemeHostAndPort: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",

@@ -244,7 +244,7 @@ export class LROsCustomHeader {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/customheader/putasync/retry/succeeded",
           headerParameters: [
             {
@@ -350,7 +350,7 @@ export class LROsCustomHeader {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/customheader/put/201/creating/succeeded/200",
           headerParameters: [
             {
@@ -469,7 +469,7 @@ export class LROsCustomHeader {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/customheader/post/202/retry/200",
           headerParameters: [
             {
@@ -563,7 +563,7 @@ export class LROsCustomHeader {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/customheader/postasync/retry/succeeded",
           headerParameters: [
             {

@@ -52,7 +52,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/null"
         });
       let statusCode = operationRes.status;
@@ -136,7 +136,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/invaliddate"
         });
       let statusCode = operationRes.status;
@@ -220,7 +220,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/overflowdate"
         });
       let statusCode = operationRes.status;
@@ -304,7 +304,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/underflowdate"
         });
       let statusCode = operationRes.status;
@@ -408,7 +408,7 @@ export class DateModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
@@ -475,7 +475,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/max"
         });
       let statusCode = operationRes.status;
@@ -579,7 +579,7 @@ export class DateModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
@@ -646,7 +646,7 @@ export class DateModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/date/min"
         });
       let statusCode = operationRes.status;

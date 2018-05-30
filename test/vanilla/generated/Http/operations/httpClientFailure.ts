@@ -53,7 +53,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400"
         });
       let statusCode = operationRes.status;
@@ -128,7 +128,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400"
         });
       let statusCode = operationRes.status;
@@ -222,7 +222,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -320,7 +320,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -418,7 +418,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -516,7 +516,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/400",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -595,7 +595,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/401"
         });
       let statusCode = operationRes.status;
@@ -670,7 +670,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/402"
         });
       let statusCode = operationRes.status;
@@ -745,7 +745,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/403"
         });
       let statusCode = operationRes.status;
@@ -839,7 +839,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/404",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -937,7 +937,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/405",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1035,7 +1035,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/406",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1133,7 +1133,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/407",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1231,7 +1231,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/409",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1310,7 +1310,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/410"
         });
       let statusCode = operationRes.status;
@@ -1385,7 +1385,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/411"
         });
       let statusCode = operationRes.status;
@@ -1460,7 +1460,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/412"
         });
       let statusCode = operationRes.status;
@@ -1554,7 +1554,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/413",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1652,7 +1652,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/414",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1750,7 +1750,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/415",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -1829,7 +1829,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/416"
         });
       let statusCode = operationRes.status;
@@ -1923,7 +1923,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/417",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -2002,7 +2002,7 @@ export class HttpClientFailure {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/client/429"
         });
       let statusCode = operationRes.status;

@@ -63,7 +63,7 @@ export class Polymorphicrecursive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphicrecursive/valid",
           headerParameters: [
             {
@@ -217,7 +217,7 @@ export class Polymorphicrecursive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphicrecursive/valid",
           headerParameters: [
             {

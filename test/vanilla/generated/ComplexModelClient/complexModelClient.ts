@@ -57,7 +57,7 @@ class ComplexModelClient extends msRest.ServiceClient {
     this.apiVersion = '2014-04-01-preview';
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = "http://localhost:3000";
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
@@ -110,7 +110,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
@@ -237,7 +237,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
@@ -366,7 +366,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {

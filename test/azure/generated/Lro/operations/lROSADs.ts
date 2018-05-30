@@ -1078,7 +1078,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/put/400",
           headerParameters: [
             {
@@ -1195,7 +1195,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/put/201/creating/400",
           headerParameters: [
             {
@@ -1312,7 +1312,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/put/201/creating/400/invalidjson",
           headerParameters: [
             {
@@ -1430,7 +1430,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/putasync/retry/400",
           headerParameters: [
             {
@@ -1528,7 +1528,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/delete/400",
           headerParameters: [
             {
@@ -1611,7 +1611,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/delete/202/retry/400",
           headerParameters: [
             {
@@ -1696,7 +1696,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/deleteasync/retry/400",
           headerParameters: [
             {
@@ -1783,7 +1783,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/post/400",
           headerParameters: [
             {
@@ -1873,7 +1873,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/post/202/retry/400",
           headerParameters: [
             {
@@ -1965,7 +1965,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/nonretryerror/postasync/retry/400",
           headerParameters: [
             {
@@ -2056,7 +2056,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/put/201/noprovisioningstatepayload",
           headerParameters: [
             {
@@ -2174,7 +2174,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/putasync/retry/nostatus",
           headerParameters: [
             {
@@ -2278,7 +2278,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/putasync/retry/nostatuspayload",
           headerParameters: [
             {
@@ -2377,7 +2377,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/delete/204/nolocation",
           headerParameters: [
             {
@@ -2458,7 +2458,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/deleteasync/retry/nostatus",
           headerParameters: [
             {
@@ -2546,7 +2546,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/post/202/nolocation",
           headerParameters: [
             {
@@ -2638,7 +2638,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/postasync/retry/nopayload",
           headerParameters: [
             {
@@ -2729,7 +2729,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/put/200/invalidjson",
           headerParameters: [
             {
@@ -2832,7 +2832,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/putasync/retry/invalidheader",
           headerParameters: [
             {
@@ -2936,7 +2936,7 @@ export class LROSADs {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/putasync/retry/invalidjsonpolling",
           headerParameters: [
             {
@@ -3035,7 +3035,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/delete/202/retry/invalidheader",
           headerParameters: [
             {
@@ -3119,7 +3119,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/deleteasync/retry/invalidheader",
           headerParameters: [
             {
@@ -3204,7 +3204,7 @@ export class LROSADs {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/deleteasync/retry/invalidjsonpolling",
           headerParameters: [
             {
@@ -3292,7 +3292,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/post/202/retry/invalidheader",
           headerParameters: [
             {
@@ -3384,7 +3384,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/postasync/retry/invalidheader",
           headerParameters: [
             {
@@ -3476,7 +3476,7 @@ export class LROSADs {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/lro/error/postasync/retry/invalidjsonpolling",
           headerParameters: [
             {

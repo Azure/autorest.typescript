@@ -68,7 +68,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/customuri",
           urlParameters: [
             {

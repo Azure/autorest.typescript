@@ -65,7 +65,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/implicit/required/path/{pathParameter}",
           urlParameters: [
             {
@@ -158,7 +158,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/implicit/optional/query",
           queryParameters: [
             {
@@ -239,7 +239,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/implicit/optional/header",
           headerParameters: [
             {
@@ -327,7 +327,7 @@ export class Implicit {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/implicit/optional/body",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
@@ -404,7 +404,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/global/required/path/{required-global-path}",
           urlParameters: [
             {
@@ -496,7 +496,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/global/required/query",
           queryParameters: [
             {
@@ -588,7 +588,7 @@ export class Implicit {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/reqopt/global/optional/query",
           queryParameters: [
             {

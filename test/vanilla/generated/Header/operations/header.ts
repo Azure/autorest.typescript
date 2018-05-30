@@ -66,7 +66,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/existingkey",
           headerParameters: [
             {
@@ -136,7 +136,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/existingkey"
         });
       let statusCode = operationRes.status;
@@ -216,7 +216,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/protectedkey",
           headerParameters: [
             {
@@ -286,7 +286,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/protectedkey"
         });
       let statusCode = operationRes.status;
@@ -373,7 +373,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/integer",
           headerParameters: [
             {
@@ -459,7 +459,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/integer",
           headerParameters: [
             {
@@ -552,7 +552,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/long",
           headerParameters: [
             {
@@ -638,7 +638,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/long",
           headerParameters: [
             {
@@ -731,7 +731,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/float",
           headerParameters: [
             {
@@ -817,7 +817,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/float",
           headerParameters: [
             {
@@ -910,7 +910,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/double",
           headerParameters: [
             {
@@ -996,7 +996,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/double",
           headerParameters: [
             {
@@ -1089,7 +1089,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/bool",
           headerParameters: [
             {
@@ -1175,7 +1175,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/bool",
           headerParameters: [
             {
@@ -1268,7 +1268,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/string",
           headerParameters: [
             {
@@ -1355,7 +1355,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/string",
           headerParameters: [
             {
@@ -1450,7 +1450,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/date",
           headerParameters: [
             {
@@ -1536,7 +1536,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/date",
           headerParameters: [
             {
@@ -1631,7 +1631,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/datetime",
           headerParameters: [
             {
@@ -1718,7 +1718,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/datetime",
           headerParameters: [
             {
@@ -1813,7 +1813,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/datetimerfc1123",
           headerParameters: [
             {
@@ -1900,7 +1900,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/datetimerfc1123",
           headerParameters: [
             {
@@ -1994,7 +1994,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/duration",
           headerParameters: [
             {
@@ -2080,7 +2080,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/duration",
           headerParameters: [
             {
@@ -2173,7 +2173,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/byte",
           headerParameters: [
             {
@@ -2259,7 +2259,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/byte",
           headerParameters: [
             {
@@ -2354,7 +2354,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/param/prim/enum",
           headerParameters: [
             {
@@ -2439,7 +2439,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/response/prim/enum",
           headerParameters: [
             {
@@ -2513,7 +2513,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
         });
       let statusCode = operationRes.status;

@@ -52,7 +52,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/null"
         });
       let statusCode = operationRes.status;
@@ -136,7 +136,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/invalid"
         });
       let statusCode = operationRes.status;
@@ -220,7 +220,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/overflowint32"
         });
       let statusCode = operationRes.status;
@@ -304,7 +304,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/underflowint32"
         });
       let statusCode = operationRes.status;
@@ -388,7 +388,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/overflowint64"
         });
       let statusCode = operationRes.status;
@@ -472,7 +472,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/underflowint64"
         });
       let statusCode = operationRes.status;
@@ -575,7 +575,7 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
@@ -661,7 +661,7 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
@@ -747,7 +747,7 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
@@ -833,7 +833,7 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
@@ -900,7 +900,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/unixtime"
         });
       let statusCode = operationRes.status;
@@ -1004,7 +1004,7 @@ export class IntModel {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
@@ -1071,7 +1071,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/invalidunixtime"
         });
       let statusCode = operationRes.status;
@@ -1155,7 +1155,7 @@ export class IntModel {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/int/nullunixtime"
         });
       let statusCode = operationRes.status;

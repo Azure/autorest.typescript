@@ -131,7 +131,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/report/azure",
           queryParameters: [
             {

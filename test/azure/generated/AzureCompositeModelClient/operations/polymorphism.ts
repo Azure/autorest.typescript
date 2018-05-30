@@ -63,7 +63,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/valid",
           headerParameters: [
             {
@@ -197,7 +197,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/valid",
           headerParameters: [
             {
@@ -281,7 +281,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/complicated",
           headerParameters: [
             {
@@ -384,7 +384,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/complicated",
           headerParameters: [
             {
@@ -474,7 +474,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/missingdiscriminator",
           headerParameters: [
             {
@@ -606,7 +606,7 @@ export class Polymorphism {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/polymorphism/missingrequired/invalid",
           headerParameters: [
             {

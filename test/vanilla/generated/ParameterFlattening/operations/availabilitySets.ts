@@ -94,7 +94,7 @@ export class AvailabilitySets {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/parameterFlattening/{resourceGroupName}/{availabilitySetName}",
           urlParameters: [
             {

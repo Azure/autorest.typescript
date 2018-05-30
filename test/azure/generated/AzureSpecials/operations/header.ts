@@ -70,7 +70,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/customNamedRequestId",
           headerParameters: [
             {
@@ -180,7 +180,7 @@ export class Header {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/customNamedRequestIdParamGrouping",
           headerParameters: [
             {
@@ -276,7 +276,7 @@ export class Header {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/customNamedRequestIdHead",
           headerParameters: [
             {

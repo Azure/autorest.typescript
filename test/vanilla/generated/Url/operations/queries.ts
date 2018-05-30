@@ -56,7 +56,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/bool/true",
           queryParameters: [
             {
@@ -128,7 +128,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/bool/false",
           queryParameters: [
             {
@@ -208,7 +208,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/bool/null",
           queryParameters: [
             {
@@ -280,7 +280,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/int/1000000",
           queryParameters: [
             {
@@ -352,7 +352,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/int/-1000000",
           queryParameters: [
             {
@@ -432,7 +432,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/int/null",
           queryParameters: [
             {
@@ -504,7 +504,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/long/10000000000",
           queryParameters: [
             {
@@ -576,7 +576,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/long/-10000000000",
           queryParameters: [
             {
@@ -656,7 +656,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/long/null",
           queryParameters: [
             {
@@ -728,7 +728,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/float/1.034E+20",
           queryParameters: [
             {
@@ -800,7 +800,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/float/-1.034E-20",
           queryParameters: [
             {
@@ -880,7 +880,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/float/null",
           queryParameters: [
             {
@@ -952,7 +952,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/double/9999999.999",
           queryParameters: [
             {
@@ -1024,7 +1024,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/double/-9999999.999",
           queryParameters: [
             {
@@ -1104,7 +1104,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/double/null",
           queryParameters: [
             {
@@ -1176,7 +1176,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/string/unicode/",
           queryParameters: [
             {
@@ -1248,7 +1248,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
           queryParameters: [
             {
@@ -1320,7 +1320,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/string/empty",
           queryParameters: [
             {
@@ -1400,7 +1400,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/string/null",
           queryParameters: [
             {
@@ -1483,7 +1483,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/enum/green%20color",
           queryParameters: [
             {
@@ -1565,7 +1565,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/enum/null",
           queryParameters: [
             {
@@ -1644,7 +1644,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/byte/multibyte",
           queryParameters: [
             {
@@ -1716,7 +1716,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/byte/empty",
           queryParameters: [
             {
@@ -1796,7 +1796,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/byte/null",
           queryParameters: [
             {
@@ -1868,7 +1868,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/date/2012-01-01",
           queryParameters: [
             {
@@ -1949,7 +1949,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/date/null",
           queryParameters: [
             {
@@ -2021,7 +2021,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/datetime/2012-01-01T01%3A01%3A01Z",
           queryParameters: [
             {
@@ -2102,7 +2102,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/datetime/null",
           queryParameters: [
             {
@@ -2188,7 +2188,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/csv/string/valid",
           queryParameters: [
             {
@@ -2273,7 +2273,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/csv/string/null",
           queryParameters: [
             {
@@ -2358,7 +2358,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/csv/string/empty",
           queryParameters: [
             {
@@ -2444,7 +2444,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/ssv/string/valid",
           queryParameters: [
             {
@@ -2530,7 +2530,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/tsv/string/valid",
           queryParameters: [
             {
@@ -2616,7 +2616,7 @@ export class Queries {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/queries/array/pipes/string/valid",
           queryParameters: [
             {

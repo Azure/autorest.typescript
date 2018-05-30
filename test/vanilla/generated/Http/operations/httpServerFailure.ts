@@ -53,7 +53,7 @@ export class HttpServerFailure {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/server/501"
         });
       let statusCode = operationRes.status;
@@ -128,7 +128,7 @@ export class HttpServerFailure {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/server/501"
         });
       let statusCode = operationRes.status;
@@ -222,7 +222,7 @@ export class HttpServerFailure {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -320,7 +320,7 @@ export class HttpServerFailure {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",

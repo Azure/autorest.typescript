@@ -62,7 +62,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/success/200",
           headerParameters: [
             {
@@ -141,7 +141,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/success/204",
           headerParameters: [
             {
@@ -220,7 +220,7 @@ export class HeadException {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/success/404",
           headerParameters: [
             {

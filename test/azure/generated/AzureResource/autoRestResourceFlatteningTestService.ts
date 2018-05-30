@@ -143,7 +143,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/array",
           headerParameters: [
             {
@@ -227,7 +227,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/array",
           headerParameters: [
             {
@@ -355,7 +355,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/dictionary",
           headerParameters: [
             {
@@ -439,7 +439,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/dictionary",
           headerParameters: [
             {
@@ -554,7 +554,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
@@ -638,7 +638,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         {
           httpMethod: "GET",
-          baseUrl: this.baseUri,
+          schemeHostAndPort: this.baseUri,
           path: "/azure/resource-flatten/resourcecollection",
           headerParameters: [
             {

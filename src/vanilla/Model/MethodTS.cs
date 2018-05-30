@@ -60,6 +60,59 @@ namespace AutoRest.TypeScript.Model
         }
 
         [JsonIgnore]
+        public string SchemeHostAndPort => (CodeModel as CodeModelTS).SchemeHostAndPort;
+
+        [JsonIgnore]
+        public string BasePath => (CodeModel as CodeModelTS).BasePath;
+
+        [JsonIgnore]
+        public string RelativePath => Url;
+
+        [JsonIgnore]
+        public string Path
+        {
+            get
+            {
+                string basePath = BasePath;
+                string relativePath = RelativePath;
+                string path = "";
+                if (!string.IsNullOrEmpty(basePath))
+                {
+                    path = basePath;
+                }
+                if (!string.IsNullOrEmpty(relativePath))
+                {
+                    if (string.IsNullOrEmpty(path))
+                    {
+                        path = relativePath;
+                    }
+                    else
+                    {
+                        bool pathEndsWithSlash = path.EndsWith('/');
+                        bool relativePathEndsWithSlash = relativePath.EndsWith('/');
+                        if (pathEndsWithSlash != relativePathEndsWithSlash)
+                        {
+                            path += relativePath;
+                        }
+                        else if (pathEndsWithSlash)
+                        {
+                            path += relativePath.Substring(1);
+                        }
+                        else
+                        {
+                            path += '/' + relativePath;
+                        }
+                    }
+                }
+                if (!string.IsNullOrEmpty(path) && !path.StartsWith('/'))
+                {
+                    path = '/' + path;
+                }
+                return path;
+            }
+        }
+
+        [JsonIgnore]
         public CompositeType OptionsParameterModelType => ((CompositeType)OptionsParameterTemplateModel.ModelType);
 
         [JsonIgnore]
@@ -865,12 +918,17 @@ namespace AutoRest.TypeScript.Model
             operationSpec.QuotedStringProperty("httpMethod", HttpMethod.ToString().ToUpper());
             if (IsAbsoluteUrl)
             {
-                operationSpec.QuotedStringProperty("baseUrl", Url);
+                operationSpec.QuotedStringProperty("baseUrl", SchemeHostAndPort);
             }
             else
             {
                 operationSpec.TextProperty("baseUrl", $"{ClientReference}.baseUri");
-                operationSpec.QuotedStringProperty("path", Url);
+            }
+
+            string path = Path;
+            if (!string.IsNullOrEmpty(path))
+            {
+                operationSpec.QuotedStringProperty("path", path);
             }
 
             IEnumerable<Parameter> urlParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Path);

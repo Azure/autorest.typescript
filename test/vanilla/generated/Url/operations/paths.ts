@@ -56,7 +56,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/bool/true/{boolPath}",
           urlParameters: [
             {
@@ -128,7 +128,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/bool/false/{boolPath}",
           urlParameters: [
             {
@@ -200,7 +200,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/int/1000000/{intPath}",
           urlParameters: [
             {
@@ -272,7 +272,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/int/-1000000/{intPath}",
           urlParameters: [
             {
@@ -344,7 +344,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/long/10000000000/{longPath}",
           urlParameters: [
             {
@@ -416,7 +416,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/long/-10000000000/{longPath}",
           urlParameters: [
             {
@@ -488,7 +488,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/float/1.034E+20/{floatPath}",
           urlParameters: [
             {
@@ -560,7 +560,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/float/-1.034E-20/{floatPath}",
           urlParameters: [
             {
@@ -632,7 +632,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/double/9999999.999/{doublePath}",
           urlParameters: [
             {
@@ -704,7 +704,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/double/-9999999.999/{doublePath}",
           urlParameters: [
             {
@@ -776,7 +776,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/unicode/{stringPath}",
           urlParameters: [
             {
@@ -848,7 +848,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
           urlParameters: [
             {
@@ -920,7 +920,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/empty/{stringPath}",
           urlParameters: [
             {
@@ -1001,7 +1001,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/null/{stringPath}",
           urlParameters: [
             {
@@ -1088,7 +1088,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
@@ -1174,7 +1174,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/null/{enumPath}",
           urlParameters: [
             {
@@ -1255,7 +1255,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/byte/multibyte/{bytePath}",
           urlParameters: [
             {
@@ -1327,7 +1327,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/byte/empty/{bytePath}",
           urlParameters: [
             {
@@ -1408,7 +1408,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/byte/null/{bytePath}",
           urlParameters: [
             {
@@ -1480,7 +1480,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/date/2012-01-01/{datePath}",
           urlParameters: [
             {
@@ -1563,7 +1563,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/date/null/{datePath}",
           urlParameters: [
             {
@@ -1635,7 +1635,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
           urlParameters: [
             {
@@ -1718,7 +1718,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/datetime/null/{dateTimePath}",
           urlParameters: [
             {
@@ -1799,7 +1799,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/string/bG9yZW0/{base64UrlPath}",
           urlParameters: [
             {
@@ -1887,7 +1887,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
@@ -1968,7 +1968,7 @@ export class Paths {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/paths/int/1460505600/{unixTimeUrlPath}",
           urlParameters: [
             {

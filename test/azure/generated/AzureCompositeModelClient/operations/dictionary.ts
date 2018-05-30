@@ -63,7 +63,7 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
@@ -173,7 +173,7 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/valid",
           headerParameters: [
             {
@@ -256,7 +256,7 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
@@ -366,7 +366,7 @@ export class Dictionary {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/empty",
           headerParameters: [
             {
@@ -449,7 +449,7 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/null",
           headerParameters: [
             {
@@ -545,7 +545,7 @@ export class Dictionary {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/dictionary/typed/notprovided",
           headerParameters: [
             {

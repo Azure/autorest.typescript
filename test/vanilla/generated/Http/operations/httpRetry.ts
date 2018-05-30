@@ -53,7 +53,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "HEAD",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/408"
         });
       let statusCode = operationRes.status;
@@ -134,7 +134,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -219,7 +219,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -286,7 +286,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/502"
         });
       let statusCode = operationRes.status;
@@ -367,7 +367,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "POST",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -452,7 +452,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -537,7 +537,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
@@ -622,7 +622,7 @@ export class HttpRetry {
         },
         {
           httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",

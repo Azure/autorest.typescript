@@ -52,7 +52,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/null"
         });
       let statusCode = operationRes.status;
@@ -136,7 +136,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/invalid"
         });
       let statusCode = operationRes.status;
@@ -220,7 +220,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/overflow"
         });
       let statusCode = operationRes.status;
@@ -304,7 +304,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/underflow"
         });
       let statusCode = operationRes.status;
@@ -408,7 +408,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
@@ -475,7 +475,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/max/lowercase"
         });
       let statusCode = operationRes.status;
@@ -559,7 +559,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/max/uppercase"
         });
       let statusCode = operationRes.status;
@@ -663,7 +663,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
@@ -730,7 +730,7 @@ export class Datetimerfc1123 {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/datetimerfc1123/min"
         });
       let statusCode = operationRes.status;

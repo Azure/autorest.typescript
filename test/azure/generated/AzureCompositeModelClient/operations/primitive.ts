@@ -63,7 +63,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/integer",
           headerParameters: [
             {
@@ -165,7 +165,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/integer",
           headerParameters: [
             {
@@ -248,7 +248,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/long",
           headerParameters: [
             {
@@ -350,7 +350,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/long",
           headerParameters: [
             {
@@ -433,7 +433,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/float",
           headerParameters: [
             {
@@ -535,7 +535,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/float",
           headerParameters: [
             {
@@ -618,7 +618,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/double",
           headerParameters: [
             {
@@ -721,7 +721,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/double",
           headerParameters: [
             {
@@ -804,7 +804,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/bool",
           headerParameters: [
             {
@@ -906,7 +906,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/bool",
           headerParameters: [
             {
@@ -989,7 +989,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/string",
           headerParameters: [
             {
@@ -1091,7 +1091,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/string",
           headerParameters: [
             {
@@ -1174,7 +1174,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/date",
           headerParameters: [
             {
@@ -1276,7 +1276,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/date",
           headerParameters: [
             {
@@ -1359,7 +1359,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/datetime",
           headerParameters: [
             {
@@ -1462,7 +1462,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/datetime",
           headerParameters: [
             {
@@ -1545,7 +1545,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/datetimerfc1123",
           headerParameters: [
             {
@@ -1648,7 +1648,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/datetimerfc1123",
           headerParameters: [
             {
@@ -1731,7 +1731,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/duration",
           headerParameters: [
             {
@@ -1837,7 +1837,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/duration",
           headerParameters: [
             {
@@ -1920,7 +1920,7 @@ export class Primitive {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/byte",
           headerParameters: [
             {
@@ -2026,7 +2026,7 @@ export class Primitive {
         },
         {
           httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/complex/primitive/byte",
           headerParameters: [
             {

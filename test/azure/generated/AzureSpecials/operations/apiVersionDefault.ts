@@ -66,7 +66,7 @@ export class ApiVersionDefault {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
@@ -157,7 +157,7 @@ export class ApiVersionDefault {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
           queryParameters: [
             {
@@ -248,7 +248,7 @@ export class ApiVersionDefault {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
@@ -339,7 +339,7 @@ export class ApiVersionDefault {
         },
         {
           httpMethod: "GET",
-          baseUrl: this.client.baseUri,
+          schemeHostAndPort: this.client.baseUri,
           path: "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
