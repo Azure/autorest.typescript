@@ -31,7 +31,7 @@ task 'test/typecheck', 'type check generated code', [], (done) ->
   done();
 
 task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
-  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
+  await execute "#{basefolder}/node_modules/.bin/mocha --no-colors", defer _
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
