@@ -78,7 +78,7 @@ export class Group {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
+          path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",

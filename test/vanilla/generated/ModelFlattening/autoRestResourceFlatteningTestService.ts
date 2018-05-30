@@ -53,7 +53,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = "http://localhost:3000";
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
@@ -108,7 +108,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/array",
+          path: "model-flatten/array",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8"
@@ -175,7 +175,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/array"
+          path: "model-flatten/array"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -288,7 +288,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/wrappedarray",
+          path: "model-flatten/wrappedarray",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8"
@@ -356,7 +356,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/wrappedarray"
+          path: "model-flatten/wrappedarray"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -468,7 +468,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/dictionary",
+          path: "model-flatten/dictionary",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8"
@@ -535,7 +535,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/dictionary"
+          path: "model-flatten/dictionary"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -634,7 +634,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/resourcecollection",
+          path: "model-flatten/resourcecollection",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "resourceComplexObject",
           contentType: "application/json; charset=utf-8"
@@ -701,7 +701,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/model-flatten/resourcecollection"
+          path: "model-flatten/resourcecollection"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -785,7 +785,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/customFlattening",
+          path: "model-flatten/customFlattening",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8"
@@ -915,7 +915,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
-          path: "/model-flatten/customFlattening",
+          path: "model-flatten/customFlattening",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8"
@@ -1079,7 +1079,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/model-flatten/customFlattening/parametergrouping/{name}/",
+          path: "model-flatten/customFlattening/parametergrouping/{name}/",
           urlParameters: [
             {
               parameterName: "name",

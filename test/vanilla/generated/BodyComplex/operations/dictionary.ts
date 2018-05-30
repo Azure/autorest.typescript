@@ -54,7 +54,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid"
+          path: "complex/dictionary/typed/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -153,7 +153,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/valid",
+          path: "complex/dictionary/typed/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -219,7 +219,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty"
+          path: "complex/dictionary/typed/empty"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -318,7 +318,7 @@ export class Dictionary {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/empty",
+          path: "complex/dictionary/typed/empty",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -384,7 +384,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/null"
+          path: "complex/dictionary/typed/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -463,7 +463,7 @@ export class Dictionary {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/dictionary/typed/notprovided"
+          path: "complex/dictionary/typed/notprovided"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

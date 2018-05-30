@@ -54,7 +54,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/integer"
+          path: "complex/primitive/integer"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -145,7 +145,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/integer",
+          path: "complex/primitive/integer",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -211,7 +211,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/long"
+          path: "complex/primitive/long"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -302,7 +302,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/long",
+          path: "complex/primitive/long",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -368,7 +368,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/float"
+          path: "complex/primitive/float"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -459,7 +459,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/float",
+          path: "complex/primitive/float",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -525,7 +525,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/double"
+          path: "complex/primitive/double"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -617,7 +617,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/double",
+          path: "complex/primitive/double",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -683,7 +683,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/bool"
+          path: "complex/primitive/bool"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -774,7 +774,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/bool",
+          path: "complex/primitive/bool",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -840,7 +840,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/string"
+          path: "complex/primitive/string"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -931,7 +931,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/string",
+          path: "complex/primitive/string",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -997,7 +997,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/date"
+          path: "complex/primitive/date"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1088,7 +1088,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/date",
+          path: "complex/primitive/date",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -1154,7 +1154,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetime"
+          path: "complex/primitive/datetime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1246,7 +1246,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetime",
+          path: "complex/primitive/datetime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -1312,7 +1312,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetimerfc1123"
+          path: "complex/primitive/datetimerfc1123"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1404,7 +1404,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/datetimerfc1123",
+          path: "complex/primitive/datetimerfc1123",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -1470,7 +1470,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/duration"
+          path: "complex/primitive/duration"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1565,7 +1565,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/duration",
+          path: "complex/primitive/duration",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
@@ -1631,7 +1631,7 @@ export class Primitive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/byte"
+          path: "complex/primitive/byte"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1726,7 +1726,7 @@ export class Primitive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/primitive/byte",
+          path: "complex/primitive/byte",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"

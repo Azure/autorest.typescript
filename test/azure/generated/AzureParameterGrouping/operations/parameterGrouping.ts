@@ -118,7 +118,7 @@ export class ParameterGrouping {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/parameterGrouping/postRequired/{path}",
+          path: "parameterGrouping/postRequired/{path}",
           urlParameters: [
             {
               parameterName: "path",
@@ -242,7 +242,7 @@ export class ParameterGrouping {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/parameterGrouping/postOptional",
+          path: "parameterGrouping/postOptional",
           queryParameters: [
             {
               parameterName: "query",
@@ -375,7 +375,7 @@ export class ParameterGrouping {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/parameterGrouping/postMultipleParameterGroups",
+          path: "parameterGrouping/postMultipleParameterGroups",
           queryParameters: [
             {
               parameterName: "queryOne",
@@ -501,7 +501,7 @@ export class ParameterGrouping {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/parameterGrouping/sharedParameterGroupObject",
+          path: "parameterGrouping/sharedParameterGroupObject",
           queryParameters: [
             {
               parameterName: "queryOne",

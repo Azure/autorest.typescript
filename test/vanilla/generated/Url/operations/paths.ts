@@ -57,7 +57,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/bool/true/{boolPath}",
+          path: "paths/bool/true/{boolPath}",
           urlParameters: [
             {
               parameterName: "boolPath",
@@ -129,7 +129,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/bool/false/{boolPath}",
+          path: "paths/bool/false/{boolPath}",
           urlParameters: [
             {
               parameterName: "boolPath",
@@ -201,7 +201,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/int/1000000/{intPath}",
+          path: "paths/int/1000000/{intPath}",
           urlParameters: [
             {
               parameterName: "intPath",
@@ -273,7 +273,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/int/-1000000/{intPath}",
+          path: "paths/int/-1000000/{intPath}",
           urlParameters: [
             {
               parameterName: "intPath",
@@ -345,7 +345,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/long/10000000000/{longPath}",
+          path: "paths/long/10000000000/{longPath}",
           urlParameters: [
             {
               parameterName: "longPath",
@@ -417,7 +417,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/long/-10000000000/{longPath}",
+          path: "paths/long/-10000000000/{longPath}",
           urlParameters: [
             {
               parameterName: "longPath",
@@ -489,7 +489,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/float/1.034E+20/{floatPath}",
+          path: "paths/float/1.034E+20/{floatPath}",
           urlParameters: [
             {
               parameterName: "floatPath",
@@ -561,7 +561,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/float/-1.034E-20/{floatPath}",
+          path: "paths/float/-1.034E-20/{floatPath}",
           urlParameters: [
             {
               parameterName: "floatPath",
@@ -633,7 +633,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/double/9999999.999/{doublePath}",
+          path: "paths/double/9999999.999/{doublePath}",
           urlParameters: [
             {
               parameterName: "doublePath",
@@ -705,7 +705,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/double/-9999999.999/{doublePath}",
+          path: "paths/double/-9999999.999/{doublePath}",
           urlParameters: [
             {
               parameterName: "doublePath",
@@ -777,7 +777,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/unicode/{stringPath}",
+          path: "paths/string/unicode/{stringPath}",
           urlParameters: [
             {
               parameterName: "stringPath",
@@ -849,7 +849,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
+          path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
           urlParameters: [
             {
               parameterName: "stringPath",
@@ -921,7 +921,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/empty/{stringPath}",
+          path: "paths/string/empty/{stringPath}",
           urlParameters: [
             {
               parameterName: "stringPath",
@@ -1002,7 +1002,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/null/{stringPath}",
+          path: "paths/string/null/{stringPath}",
           urlParameters: [
             {
               parameterName: "stringPath",
@@ -1089,7 +1089,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/enum/green%20color/{enumPath}",
+          path: "paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
               parameterName: "enumPath"
@@ -1175,7 +1175,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/null/{enumPath}",
+          path: "paths/string/null/{enumPath}",
           urlParameters: [
             {
               parameterName: "enumPath"
@@ -1256,7 +1256,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/byte/multibyte/{bytePath}",
+          path: "paths/byte/multibyte/{bytePath}",
           urlParameters: [
             {
               parameterName: "bytePath",
@@ -1328,7 +1328,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/byte/empty/{bytePath}",
+          path: "paths/byte/empty/{bytePath}",
           urlParameters: [
             {
               parameterName: "bytePath",
@@ -1409,7 +1409,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/byte/null/{bytePath}",
+          path: "paths/byte/null/{bytePath}",
           urlParameters: [
             {
               parameterName: "bytePath",
@@ -1481,7 +1481,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/date/2012-01-01/{datePath}",
+          path: "paths/date/2012-01-01/{datePath}",
           urlParameters: [
             {
               parameterName: "datePath",
@@ -1564,7 +1564,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/date/null/{datePath}",
+          path: "paths/date/null/{datePath}",
           urlParameters: [
             {
               parameterName: "datePath",
@@ -1636,7 +1636,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
+          path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
           urlParameters: [
             {
               parameterName: "dateTimePath",
@@ -1719,7 +1719,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/datetime/null/{dateTimePath}",
+          path: "paths/datetime/null/{dateTimePath}",
           urlParameters: [
             {
               parameterName: "dateTimePath",
@@ -1800,7 +1800,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/string/bG9yZW0/{base64UrlPath}",
+          path: "paths/string/bG9yZW0/{base64UrlPath}",
           urlParameters: [
             {
               parameterName: "base64UrlPath",
@@ -1888,7 +1888,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+          path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
               parameterName: "arrayPath"
@@ -1969,7 +1969,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paths/int/1460505600/{unixTimeUrlPath}",
+          path: "paths/int/1460505600/{unixTimeUrlPath}",
           urlParameters: [
             {
               parameterName: "unixTimeUrlPath",

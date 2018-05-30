@@ -71,7 +71,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/azurespecials/customNamedRequestId",
+          path: "azurespecials/customNamedRequestId",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",
@@ -181,7 +181,7 @@ export class Header {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/azurespecials/customNamedRequestIdParamGrouping",
+          path: "azurespecials/customNamedRequestIdParamGrouping",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -277,7 +277,7 @@ export class Header {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/azurespecials/customNamedRequestIdHead",
+          path: "azurespecials/customNamedRequestIdHead",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",

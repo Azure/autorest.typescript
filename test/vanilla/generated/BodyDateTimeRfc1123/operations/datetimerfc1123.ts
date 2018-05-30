@@ -53,7 +53,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/null"
+          path: "datetimerfc1123/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -137,7 +137,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/invalid"
+          path: "datetimerfc1123/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -221,7 +221,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/overflow"
+          path: "datetimerfc1123/overflow"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -305,7 +305,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/underflow"
+          path: "datetimerfc1123/underflow"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -409,7 +409,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/max",
+          path: "datetimerfc1123/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTimeRfc1123,
@@ -476,7 +476,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/max/lowercase"
+          path: "datetimerfc1123/max/lowercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -560,7 +560,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/max/uppercase"
+          path: "datetimerfc1123/max/uppercase"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -664,7 +664,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/min",
+          path: "datetimerfc1123/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "datetimeBody",
           requestBodyType: msRest.OperationParameterType.DateTimeRfc1123,
@@ -731,7 +731,7 @@ export class Datetimerfc1123 {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/datetimerfc1123/min"
+          path: "datetimerfc1123/min"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

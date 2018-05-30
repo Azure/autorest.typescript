@@ -53,7 +53,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/null"
+          path: "date/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -137,7 +137,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/invaliddate"
+          path: "date/invaliddate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -221,7 +221,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/overflowdate"
+          path: "date/overflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -305,7 +305,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/underflowdate"
+          path: "date/underflowdate"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -409,7 +409,7 @@ export class DateModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/date/max",
+          path: "date/max",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
@@ -476,7 +476,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/max"
+          path: "date/max"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -580,7 +580,7 @@ export class DateModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/date/min",
+          path: "date/min",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "dateBody",
           requestBodyType: msRest.OperationParameterType.Date,
@@ -647,7 +647,7 @@ export class DateModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/date/min"
+          path: "date/min"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

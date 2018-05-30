@@ -1637,7 +1637,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/200/succeeded",
+          path: "lro/put/200/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1739,7 +1739,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/200/succeeded/nostate",
+          path: "lro/put/200/succeeded/nostate",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1842,7 +1842,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/202/retry/200",
+          path: "lro/put/202/retry/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1945,7 +1945,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/201/creating/succeeded/200",
+          path: "lro/put/201/creating/succeeded/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2063,7 +2063,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/200/updating/succeeded/200",
+          path: "lro/put/200/updating/succeeded/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2166,7 +2166,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/201/created/failed/200",
+          path: "lro/put/201/created/failed/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2284,7 +2284,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/200/accepted/canceled/200",
+          path: "lro/put/200/accepted/canceled/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2387,7 +2387,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/put/noheader/202/200",
+          path: "lro/put/noheader/202/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2491,7 +2491,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putasync/retry/succeeded",
+          path: "lro/putasync/retry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2595,7 +2595,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putasync/noretry/succeeded",
+          path: "lro/putasync/noretry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2699,7 +2699,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putasync/retry/failed",
+          path: "lro/putasync/retry/failed",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2803,7 +2803,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putasync/noretry/canceled",
+          path: "lro/putasync/noretry/canceled",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2907,7 +2907,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putasync/noheader/201/200",
+          path: "lro/putasync/noheader/201/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3009,7 +3009,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putnonresource/202/200",
+          path: "lro/putnonresource/202/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3110,7 +3110,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putnonresourceasync/202/200",
+          path: "lro/putnonresourceasync/202/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3224,7 +3224,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putsubresource/202/200",
+          path: "lro/putsubresource/202/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3338,7 +3338,7 @@ export class LROs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/putsubresourceasync/202/200",
+          path: "lro/putsubresourceasync/202/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3438,7 +3438,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/provisioning/202/accepted/200/succeeded",
+          path: "lro/delete/provisioning/202/accepted/200/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3552,7 +3552,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/provisioning/202/deleting/200/failed",
+          path: "lro/delete/provisioning/202/deleting/200/failed",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3666,7 +3666,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/provisioning/202/deleting/200/canceled",
+          path: "lro/delete/provisioning/202/deleting/200/canceled",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3777,7 +3777,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/204/succeeded",
+          path: "lro/delete/204/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3858,7 +3858,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/202/retry/200",
+          path: "lro/delete/202/retry/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3959,7 +3959,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/202/noretry/204",
+          path: "lro/delete/202/noretry/204",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4060,7 +4060,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/delete/noheader",
+          path: "lro/delete/noheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4149,7 +4149,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/deleteasync/noheader/202/204",
+          path: "lro/deleteasync/noheader/202/204",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4238,7 +4238,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/deleteasync/retry/succeeded",
+          path: "lro/deleteasync/retry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4323,7 +4323,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/deleteasync/noretry/succeeded",
+          path: "lro/deleteasync/noretry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4408,7 +4408,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/deleteasync/retry/failed",
+          path: "lro/deleteasync/retry/failed",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4493,7 +4493,7 @@ export class LROs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/deleteasync/retry/canceled",
+          path: "lro/deleteasync/retry/canceled",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4578,7 +4578,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/post/payload/200",
+          path: "lro/post/payload/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4693,7 +4693,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/post/202/retry/200",
+          path: "lro/post/202/retry/200",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4784,7 +4784,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/post/202/noretry/204",
+          path: "lro/post/202/noretry/204",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4888,7 +4888,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/postasync/retry/succeeded",
+          path: "lro/postasync/retry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -4996,7 +4996,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/postasync/noretry/succeeded",
+          path: "lro/postasync/noretry/succeeded",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5104,7 +5104,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/postasync/retry/failed",
+          path: "lro/postasync/retry/failed",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -5196,7 +5196,7 @@ export class LROs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/postasync/retry/canceled",
+          path: "lro/postasync/retry/canceled",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

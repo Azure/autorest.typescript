@@ -64,7 +64,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/valid",
+          path: "complex/basic/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -168,7 +168,7 @@ export class BasicOperations {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/valid",
+          path: "complex/basic/valid",
           queryParameters: [
             {
               parameterName: "apiVersion",
@@ -258,7 +258,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/invalid",
+          path: "complex/basic/invalid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -353,7 +353,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/empty",
+          path: "complex/basic/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -448,7 +448,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/null",
+          path: "complex/basic/null",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -543,7 +543,7 @@ export class BasicOperations {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/basic/notprovided",
+          path: "complex/basic/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

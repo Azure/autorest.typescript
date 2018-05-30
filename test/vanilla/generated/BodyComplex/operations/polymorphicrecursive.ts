@@ -54,7 +54,7 @@ export class Polymorphicrecursive {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/polymorphicrecursive/valid"
+          path: "complex/polymorphicrecursive/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -197,7 +197,7 @@ export class Polymorphicrecursive {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/polymorphicrecursive/valid",
+          path: "complex/polymorphicrecursive/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"

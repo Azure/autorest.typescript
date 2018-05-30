@@ -1079,7 +1079,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/put/400",
+          path: "lro/nonretryerror/put/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1196,7 +1196,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/put/201/creating/400",
+          path: "lro/nonretryerror/put/201/creating/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1313,7 +1313,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/put/201/creating/400/invalidjson",
+          path: "lro/nonretryerror/put/201/creating/400/invalidjson",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1431,7 +1431,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/putasync/retry/400",
+          path: "lro/nonretryerror/putasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1529,7 +1529,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/delete/400",
+          path: "lro/nonretryerror/delete/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1612,7 +1612,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/delete/202/retry/400",
+          path: "lro/nonretryerror/delete/202/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1697,7 +1697,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/deleteasync/retry/400",
+          path: "lro/nonretryerror/deleteasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1784,7 +1784,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/post/400",
+          path: "lro/nonretryerror/post/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1874,7 +1874,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/post/202/retry/400",
+          path: "lro/nonretryerror/post/202/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1966,7 +1966,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/nonretryerror/postasync/retry/400",
+          path: "lro/nonretryerror/postasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2057,7 +2057,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/put/201/noprovisioningstatepayload",
+          path: "lro/error/put/201/noprovisioningstatepayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2175,7 +2175,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/putasync/retry/nostatus",
+          path: "lro/error/putasync/retry/nostatus",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2279,7 +2279,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/putasync/retry/nostatuspayload",
+          path: "lro/error/putasync/retry/nostatuspayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2378,7 +2378,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/delete/204/nolocation",
+          path: "lro/error/delete/204/nolocation",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2459,7 +2459,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/deleteasync/retry/nostatus",
+          path: "lro/error/deleteasync/retry/nostatus",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2547,7 +2547,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/post/202/nolocation",
+          path: "lro/error/post/202/nolocation",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2639,7 +2639,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/postasync/retry/nopayload",
+          path: "lro/error/postasync/retry/nopayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2730,7 +2730,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/put/200/invalidjson",
+          path: "lro/error/put/200/invalidjson",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2833,7 +2833,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/putasync/retry/invalidheader",
+          path: "lro/error/putasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -2937,7 +2937,7 @@ export class LROSADs {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/putasync/retry/invalidjsonpolling",
+          path: "lro/error/putasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3036,7 +3036,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/delete/202/retry/invalidheader",
+          path: "lro/error/delete/202/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3120,7 +3120,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/deleteasync/retry/invalidheader",
+          path: "lro/error/deleteasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3205,7 +3205,7 @@ export class LROSADs {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/deleteasync/retry/invalidjsonpolling",
+          path: "lro/error/deleteasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3293,7 +3293,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/post/202/retry/invalidheader",
+          path: "lro/error/post/202/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3385,7 +3385,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/postasync/retry/invalidheader",
+          path: "lro/error/postasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -3477,7 +3477,7 @@ export class LROSADs {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/lro/error/postasync/retry/invalidjsonpolling",
+          path: "lro/error/postasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

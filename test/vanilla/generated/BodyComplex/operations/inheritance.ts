@@ -54,7 +54,7 @@ export class Inheritance {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/inheritance/valid"
+          path: "complex/inheritance/valid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -148,7 +148,7 @@ export class Inheritance {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/inheritance/valid",
+          path: "complex/inheritance/valid",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"

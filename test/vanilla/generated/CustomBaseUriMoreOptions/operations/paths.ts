@@ -91,7 +91,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/customuri/{subscriptionId}/{keyName}",
+          path: "customuri/{subscriptionId}/{keyName}",
           urlParameters: [
             {
               parameterName: "vault",

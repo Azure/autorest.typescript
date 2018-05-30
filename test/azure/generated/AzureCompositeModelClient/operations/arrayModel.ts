@@ -64,7 +64,7 @@ export class ArrayModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/valid",
+          path: "complex/array/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -174,7 +174,7 @@ export class ArrayModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/valid",
+          path: "complex/array/valid",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -257,7 +257,7 @@ export class ArrayModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/empty",
+          path: "complex/array/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -367,7 +367,7 @@ export class ArrayModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/empty",
+          path: "complex/array/empty",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -451,7 +451,7 @@ export class ArrayModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/complex/array/notprovided",
+          path: "complex/array/notprovided",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",

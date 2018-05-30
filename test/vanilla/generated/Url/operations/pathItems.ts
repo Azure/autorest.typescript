@@ -96,7 +96,7 @@ export class PathItems {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
+          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
               parameterName: "localStringPath",
@@ -230,7 +230,7 @@ export class PathItems {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
+          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
               parameterName: "localStringPath",
@@ -364,7 +364,7 @@ export class PathItems {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
+          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
           urlParameters: [
             {
               parameterName: "localStringPath",
@@ -498,7 +498,7 @@ export class PathItems {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
+          path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
           urlParameters: [
             {
               parameterName: "localStringPath",

@@ -54,7 +54,7 @@ export class HttpServerFailure {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/501"
+          path: "http/failure/server/501"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -129,7 +129,7 @@ export class HttpServerFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/501"
+          path: "http/failure/server/501"
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -223,7 +223,7 @@ export class HttpServerFailure {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/505",
+          path: "http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -321,7 +321,7 @@ export class HttpServerFailure {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/http/failure/server/505",
+          path: "http/failure/server/505",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,

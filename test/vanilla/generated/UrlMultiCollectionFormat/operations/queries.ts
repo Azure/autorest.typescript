@@ -70,7 +70,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/queries/array/multi/string/null",
+          path: "queries/array/multi/string/null",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -155,7 +155,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/queries/array/multi/string/empty",
+          path: "queries/array/multi/string/empty",
           queryParameters: [
             {
               parameterName: "arrayQuery",
@@ -241,7 +241,7 @@ export class Queries {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/queries/array/multi/string/valid",
+          path: "queries/array/multi/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",

@@ -73,7 +73,7 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/customuri",
+          path: "customuri",
           urlParameters: [
             {
               parameterName: "accountName",

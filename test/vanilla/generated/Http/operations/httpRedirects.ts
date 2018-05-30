@@ -54,7 +54,7 @@ export class HttpRedirects {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/300"
+          path: "http/redirect/300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -125,7 +125,7 @@ export class HttpRedirects {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/300"
+          path: "http/redirect/300"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 300) {
@@ -221,7 +221,7 @@ export class HttpRedirects {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/301"
+          path: "http/redirect/301"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -292,7 +292,7 @@ export class HttpRedirects {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/301"
+          path: "http/redirect/301"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 301) {
@@ -383,7 +383,7 @@ export class HttpRedirects {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/301",
+          path: "http/redirect/301",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -454,7 +454,7 @@ export class HttpRedirects {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/302"
+          path: "http/redirect/302"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -525,7 +525,7 @@ export class HttpRedirects {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/302"
+          path: "http/redirect/302"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 302) {
@@ -616,7 +616,7 @@ export class HttpRedirects {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/302",
+          path: "http/redirect/302",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -706,7 +706,7 @@ export class HttpRedirects {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/303",
+          path: "http/redirect/303",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -781,7 +781,7 @@ export class HttpRedirects {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307"
+          path: "http/redirect/307"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -852,7 +852,7 @@ export class HttpRedirects {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307"
+          path: "http/redirect/307"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 307) {
@@ -941,7 +941,7 @@ export class HttpRedirects {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1034,7 +1034,7 @@ export class HttpRedirects {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1127,7 +1127,7 @@ export class HttpRedirects {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1220,7 +1220,7 @@ export class HttpRedirects {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/http/redirect/307",
+          path: "http/redirect/307",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,

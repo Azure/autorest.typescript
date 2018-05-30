@@ -53,7 +53,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/null"
+          path: "int/null"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -137,7 +137,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/invalid"
+          path: "int/invalid"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -221,7 +221,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/overflowint32"
+          path: "int/overflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -305,7 +305,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/underflowint32"
+          path: "int/underflowint32"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -389,7 +389,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/overflowint64"
+          path: "int/overflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -473,7 +473,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/underflowint64"
+          path: "int/underflowint64"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -576,7 +576,7 @@ export class IntModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/int/max/32",
+          path: "int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -662,7 +662,7 @@ export class IntModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/int/max/64",
+          path: "int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
@@ -748,7 +748,7 @@ export class IntModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/int/min/32",
+          path: "int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Int,
@@ -834,7 +834,7 @@ export class IntModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/int/min/64",
+          path: "int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.Long,
@@ -901,7 +901,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/unixtime"
+          path: "int/unixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1005,7 +1005,7 @@ export class IntModel {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/int/unixtime",
+          path: "int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
           requestBodyType: msRest.OperationParameterType.UnixTime,
@@ -1072,7 +1072,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/invalidunixtime"
+          path: "int/invalidunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1156,7 +1156,7 @@ export class IntModel {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/int/nullunixtime"
+          path: "int/nullunixtime"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

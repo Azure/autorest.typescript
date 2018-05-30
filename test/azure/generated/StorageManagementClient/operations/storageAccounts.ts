@@ -82,7 +82,7 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
+          path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
@@ -275,7 +275,7 @@ export class StorageAccounts {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -401,7 +401,7 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -557,7 +557,7 @@ export class StorageAccounts {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -697,7 +697,7 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -822,7 +822,7 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
+          path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
@@ -947,7 +947,7 @@ export class StorageAccounts {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -1097,7 +1097,7 @@ export class StorageAccounts {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
           urlParameters: [
             {
               parameterName: "resourceGroupName",
@@ -1251,7 +1251,7 @@ export class StorageAccounts {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
+          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
               parameterName: "resourceGroupName",

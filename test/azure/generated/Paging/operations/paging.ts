@@ -64,7 +64,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/single",
+          path: "paging/single",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -186,7 +186,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple",
+          path: "paging/multiple",
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -323,7 +323,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/odata",
+          path: "paging/multiple/odata",
           headerParameters: [
             {
               parameterName: "clientRequestId",
@@ -474,7 +474,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/withpath/{offset}",
+          path: "paging/multiple/withpath/{offset}",
           urlParameters: [
             {
               parameterName: "offset",
@@ -588,7 +588,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/retryfirst",
+          path: "paging/multiple/retryfirst",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -684,7 +684,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/retrysecond",
+          path: "paging/multiple/retrysecond",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -778,7 +778,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/single/failure",
+          path: "paging/single/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -872,7 +872,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/failure",
+          path: "paging/multiple/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -966,7 +966,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/failureuri",
+          path: "paging/multiple/failureuri",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
@@ -1072,7 +1072,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/fragment/{tenant}",
+          path: "paging/multiple/fragment/{tenant}",
           urlParameters: [
             {
               parameterName: "tenant",
@@ -1208,7 +1208,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/fragmentwithgrouping/{tenant}",
+          path: "paging/multiple/fragmentwithgrouping/{tenant}",
           urlParameters: [
             {
               parameterName: "tenant",
@@ -1333,7 +1333,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/fragment/{tenant}/{nextLink}",
+          path: "paging/multiple/fragment/{tenant}/{nextLink}",
           urlParameters: [
             {
               parameterName: "tenant",
@@ -1479,7 +1479,7 @@ export class Paging {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
+          path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
           urlParameters: [
             {
               parameterName: "nextLink",
@@ -1597,7 +1597,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -1734,7 +1735,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -1885,7 +1887,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2035,7 +2038,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2157,7 +2161,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2267,7 +2272,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2375,7 +2381,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2483,7 +2490,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
@@ -2591,7 +2599,8 @@ export class Paging {
         },
         {
           httpMethod: "GET",
-          baseUrl: "{nextLink}",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",

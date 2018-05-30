@@ -59,6 +59,41 @@ namespace AutoRest.TypeScript.Model
             return parameter;
         }
 
+        private CodeModelTS CodeModelTS => (CodeModelTS)CodeModel;
+
+        [JsonIgnore]
+        public string RelativePath
+        {
+            get
+            {
+                string relativePath = Url;
+                if (!string.IsNullOrEmpty(relativePath) && relativePath.StartsWith('/'))
+                {
+                    relativePath = relativePath.Substring(1);
+                }
+                return relativePath;
+            }
+        }
+
+        [JsonIgnore]
+        public string Path
+        {
+            get
+            {
+                string path = CodeModelTS.BasePath;
+                string relativePath = RelativePath;
+                if (!string.IsNullOrEmpty(relativePath))
+                {
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        path += '/';
+                    }
+                    path += relativePath;
+                }
+                return path;
+            }
+        }
+
         [JsonIgnore]
         public CompositeType OptionsParameterModelType => ((CompositeType)OptionsParameterTemplateModel.ModelType);
 
@@ -865,12 +900,17 @@ namespace AutoRest.TypeScript.Model
             operationSpec.QuotedStringProperty("httpMethod", HttpMethod.ToString().ToUpper());
             if (IsAbsoluteUrl)
             {
-                operationSpec.QuotedStringProperty("baseUrl", Url);
+                operationSpec.QuotedStringProperty("baseUrl", CodeModelTS.SchemeHostAndPort);
             }
             else
             {
                 operationSpec.TextProperty("baseUrl", $"{ClientReference}.baseUri");
-                operationSpec.QuotedStringProperty("path", Url);
+            }
+
+            string path = Path;
+            if (!string.IsNullOrEmpty(path))
+            {
+                operationSpec.QuotedStringProperty("path", path);
             }
 
             IEnumerable<Parameter> urlParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Path);

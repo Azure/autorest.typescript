@@ -73,7 +73,7 @@ export class Formdata {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/formdata/stream/uploadfile",
+          path: "formdata/stream/uploadfile",
           formDataParameters: [
             {
               parameterName: "fileContent",
@@ -169,7 +169,7 @@ export class Formdata {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/formdata/stream/uploadfile",
+          path: "formdata/stream/uploadfile",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "fileContent",
           requestBodyType: msRest.OperationParameterType.Stream,

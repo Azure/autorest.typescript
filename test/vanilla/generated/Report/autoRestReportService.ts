@@ -53,7 +53,7 @@ class AutoRestReportService extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = "http://localhost:3000";
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
@@ -101,7 +101,7 @@ class AutoRestReportService extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/report",
+          path: "report",
           queryParameters: [
             {
               parameterName: "qualifier",

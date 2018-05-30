@@ -54,7 +54,7 @@ export class HttpSuccess {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200"
+          path: "http/success/200"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -117,7 +117,7 @@ export class HttpSuccess {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200"
+          path: "http/success/200"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -219,7 +219,7 @@ export class HttpSuccess {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200",
+          path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -304,7 +304,7 @@ export class HttpSuccess {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200",
+          path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -389,7 +389,7 @@ export class HttpSuccess {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200",
+          path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -474,7 +474,7 @@ export class HttpSuccess {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/http/success/200",
+          path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -559,7 +559,7 @@ export class HttpSuccess {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/success/201",
+          path: "http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -644,7 +644,7 @@ export class HttpSuccess {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/success/201",
+          path: "http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -729,7 +729,7 @@ export class HttpSuccess {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/success/202",
+          path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -814,7 +814,7 @@ export class HttpSuccess {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/http/success/202",
+          path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -899,7 +899,7 @@ export class HttpSuccess {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/success/202",
+          path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -984,7 +984,7 @@ export class HttpSuccess {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/http/success/202",
+          path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1051,7 +1051,7 @@ export class HttpSuccess {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/success/204"
+          path: "http/success/204"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204) {
@@ -1132,7 +1132,7 @@ export class HttpSuccess {
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
-          path: "/http/success/204",
+          path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1217,7 +1217,7 @@ export class HttpSuccess {
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
-          path: "/http/success/204",
+          path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1302,7 +1302,7 @@ export class HttpSuccess {
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
-          path: "/http/success/204",
+          path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1387,7 +1387,7 @@ export class HttpSuccess {
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
-          path: "/http/success/204",
+          path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
           requestBodyType: msRest.OperationParameterType.Boolean,
@@ -1454,7 +1454,7 @@ export class HttpSuccess {
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
-          path: "/http/success/404"
+          path: "http/success/404"
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204 && statusCode !== 404) {

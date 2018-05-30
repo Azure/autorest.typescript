@@ -65,7 +65,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
 
     this.baseUri = baseUri as string;
     if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
+      this.baseUri = "http://localhost:3000";
     }
     this.subscriptionId = subscriptionId;
     this.apiVersion = apiVersion;
@@ -164,7 +164,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -330,7 +330,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
-          path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
+          path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
@@ -435,7 +435,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
-          path: "/validation/constantsInPath/{constantParam}/value",
+          path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
               parameterName: "constantParam",
@@ -506,7 +506,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
-          path: "/validation/constantsInPath/{constantParam}/value",
+          path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
               parameterName: "constantParam",
