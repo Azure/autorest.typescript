@@ -60,14 +60,12 @@ export class SubscriptionInMethod {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -154,14 +152,12 @@ export class SubscriptionInMethod {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -248,14 +244,12 @@ export class SubscriptionInMethod {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -342,14 +336,12 @@ export class SubscriptionInMethod {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

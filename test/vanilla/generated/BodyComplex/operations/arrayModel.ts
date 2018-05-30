@@ -46,12 +46,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid"
@@ -143,14 +139,12 @@ export class ArrayModel {
       let requestModelMapper = Mappers.ArrayWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid",
@@ -211,12 +205,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty"
@@ -308,14 +298,12 @@ export class ArrayModel {
       let requestModelMapper = Mappers.ArrayWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty",
@@ -377,12 +365,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/notprovided"

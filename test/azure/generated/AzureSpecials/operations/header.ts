@@ -60,14 +60,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -170,14 +168,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             fooClientRequestId
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -266,14 +262,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             fooClientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,

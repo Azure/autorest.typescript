@@ -234,14 +234,12 @@ export class LROsCustomHeader {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -340,14 +338,12 @@ export class LROsCustomHeader {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -459,14 +455,12 @@ export class LROsCustomHeader {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -553,14 +547,12 @@ export class LROsCustomHeader {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

@@ -54,13 +54,11 @@ export class Polymorphism {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -187,14 +185,12 @@ export class Polymorphism {
       let requestModelMapper = Mappers.Fish;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -272,13 +268,11 @@ export class Polymorphism {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -374,14 +368,12 @@ export class Polymorphism {
       let requestModelMapper = Mappers.Salmon;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -464,14 +456,12 @@ export class Polymorphism {
       let requestModelMapper = Mappers.Salmon;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -596,14 +586,12 @@ export class Polymorphism {
       let requestModelMapper = Mappers.Fish;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,

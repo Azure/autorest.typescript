@@ -91,14 +91,12 @@ class AutoRestReportService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             qualifier
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report",

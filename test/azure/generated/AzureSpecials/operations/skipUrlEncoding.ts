@@ -60,14 +60,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -154,14 +152,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -243,14 +239,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             unencodedPathParam,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -338,14 +332,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -431,14 +423,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -526,14 +516,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -616,14 +604,12 @@ export class SkipUrlEncoding {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

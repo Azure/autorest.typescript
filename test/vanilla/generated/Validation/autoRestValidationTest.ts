@@ -151,16 +151,14 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.subscriptionId": this.subscriptionId,
             resourceGroupName,
             id,
             "this.apiVersion": this.apiVersion
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -316,17 +314,15 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.subscriptionId": this.subscriptionId,
             resourceGroupName,
             id,
             body,
             "this.apiVersion": this.apiVersion
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -425,14 +421,12 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             constantParam
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",
@@ -495,15 +489,13 @@ class AutoRestValidationTest extends msRest.ServiceClient {
       let requestModelMapper = Mappers.Product;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             constantParam,
             body
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",

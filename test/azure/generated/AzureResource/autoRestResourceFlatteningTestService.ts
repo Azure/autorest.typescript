@@ -133,14 +133,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceArray,
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -218,13 +216,11 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -345,14 +341,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceDictionary,
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -430,13 +424,11 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -544,14 +536,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
       let requestModelMapper = Mappers.ResourceCollection;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceComplexObject,
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -629,13 +619,11 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,

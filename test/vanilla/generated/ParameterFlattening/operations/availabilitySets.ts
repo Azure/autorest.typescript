@@ -83,16 +83,14 @@ export class AvailabilitySets {
       let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceGroupName,
             avset,
             tags1
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",

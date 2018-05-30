@@ -54,13 +54,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -155,14 +153,12 @@ export class Primitive {
       let requestModelMapper = Mappers.IntWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -239,13 +235,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -340,14 +334,12 @@ export class Primitive {
       let requestModelMapper = Mappers.LongWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -424,13 +416,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -525,14 +515,12 @@ export class Primitive {
       let requestModelMapper = Mappers.FloatWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -609,13 +597,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -711,14 +697,12 @@ export class Primitive {
       let requestModelMapper = Mappers.DoubleWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -795,13 +779,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -896,14 +878,12 @@ export class Primitive {
       let requestModelMapper = Mappers.BooleanWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -980,13 +960,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1081,14 +1059,12 @@ export class Primitive {
       let requestModelMapper = Mappers.StringWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1165,13 +1141,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1266,14 +1240,12 @@ export class Primitive {
       let requestModelMapper = Mappers.DateWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1350,13 +1322,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1452,14 +1422,12 @@ export class Primitive {
       let requestModelMapper = Mappers.DatetimeWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1536,13 +1504,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1638,14 +1604,12 @@ export class Primitive {
       let requestModelMapper = Mappers.Datetimerfc1123Wrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1722,13 +1686,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1827,14 +1789,12 @@ export class Primitive {
       let requestModelMapper = Mappers.DurationWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             complexBody
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1911,13 +1871,11 @@ export class Primitive {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2016,14 +1974,12 @@ export class Primitive {
       let requestModelMapper = Mappers.ByteWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             complexBody
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,

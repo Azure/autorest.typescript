@@ -45,12 +45,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/null"
@@ -129,12 +125,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/invaliddate"
@@ -213,12 +205,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/overflowdate"
@@ -297,12 +285,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/underflowdate"
@@ -399,14 +383,12 @@ export class DateModel {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             dateBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/max",
@@ -468,12 +450,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/max"
@@ -570,14 +548,12 @@ export class DateModel {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             dateBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/min",
@@ -639,12 +615,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/min"

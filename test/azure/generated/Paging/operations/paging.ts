@@ -54,13 +54,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -173,16 +171,14 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -310,16 +306,14 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -460,17 +454,15 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             offset,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -578,13 +570,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -674,13 +664,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -768,13 +756,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -862,13 +848,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -956,13 +940,11 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1060,15 +1042,13 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             apiVersion,
             tenant,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1196,15 +1176,13 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             apiVersion,
             tenant
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1320,16 +1298,14 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             apiVersion,
             tenant,
             nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1466,16 +1442,14 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextLink,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             apiVersion,
             tenant
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1587,14 +1561,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -1722,17 +1694,15 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -1874,17 +1844,15 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2025,17 +1993,15 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             clientRequestId,
             "this.client.acceptLanguage": this.client.acceptLanguage,
             maxresults,
             timeout
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2151,14 +2117,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2262,14 +2226,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2371,14 +2333,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2480,14 +2440,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
@@ -2589,14 +2547,12 @@ export class Paging {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             nextPageLink,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",

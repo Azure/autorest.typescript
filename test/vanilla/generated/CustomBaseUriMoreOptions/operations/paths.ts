@@ -76,8 +76,8 @@ export class Paths {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             vault,
             secret,
             "this.client.dnsSuffix": this.client.dnsSuffix,
@@ -85,9 +85,7 @@ export class Paths {
             "this.client.subscriptionId": this.client.subscriptionId,
             keyVersion
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

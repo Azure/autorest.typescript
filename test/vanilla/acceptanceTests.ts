@@ -1897,6 +1897,26 @@ describe('typescript', function () {
           }
         });
       }
+
+      if (!msRest.isNode) {
+        it('browser should report upload/download progress', async function() {
+          const content = new Uint8Array(1024*1024*1);
+          let uploadNotified = false;
+          let downloadNotified = false;
+          const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(content, {
+            onUploadProgress: ev => {
+              uploadNotified = true;
+              ev.loadedBytes.should.be.a.Number;
+            },
+            onDownloadProgress: ev => {
+              downloadNotified = true;
+              ev.loadedBytes.should.be.a.Number;
+            }
+          });
+          assert(uploadNotified);
+          assert(downloadNotified);
+        });
+      }
     });
 
     describe('Url Client', function () {

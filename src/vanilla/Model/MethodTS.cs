@@ -876,23 +876,22 @@ namespace AutoRest.TypeScript.Model
             builder.FunctionCall("await client.sendOperationRequest", argumentList =>
             {
                 argumentList.Text("httpRequest");
-                argumentList.Object(GenerateOperationArguments);
+                argumentList.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
                 argumentList.Object(GenerateOperationSpec);
             });
             return builder.ToString();
         }
 
-        public void GenerateOperationArguments(TSObject operationArguments)
+        public void GenerateOperationArguments(TSArgumentList operationArguments)
         {
-            operationArguments.ObjectProperty("arguments", arguments =>
+            operationArguments.Object(obj =>
             {
                 foreach (Parameter parameter in LogicalParameters)
                 {
-                    arguments.TextProperty(parameter.Name, parameter.Name);
+                    obj.TextProperty(parameter.Name, parameter.Name);
                 }
             });
-            operationArguments.TextProperty("abortSignal", "options && options.abortSignal");
-            operationArguments.TextProperty("customHeaders", "options && options.customHeaders");
+            operationArguments.Text("options");
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)

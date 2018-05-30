@@ -45,12 +45,8 @@ export class Bool {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "bool/true"
@@ -146,14 +142,12 @@ export class Bool {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             boolBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "bool/true",
@@ -215,12 +209,8 @@ export class Bool {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "bool/false"
@@ -316,14 +306,12 @@ export class Bool {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             boolBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "bool/false",
@@ -385,12 +373,8 @@ export class Bool {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "bool/null"
@@ -469,12 +453,8 @@ export class Bool {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "bool/invalid"

@@ -57,14 +57,12 @@ export class SubscriptionInCredentials {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -150,14 +148,12 @@ export class SubscriptionInCredentials {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -245,15 +241,13 @@ export class SubscriptionInCredentials {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.apiVersion": this.client.apiVersion,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -345,14 +339,12 @@ export class SubscriptionInCredentials {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -437,14 +429,12 @@ export class SubscriptionInCredentials {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.client.subscriptionId": this.client.subscriptionId,
             "this.client.acceptLanguage": this.client.acceptLanguage
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

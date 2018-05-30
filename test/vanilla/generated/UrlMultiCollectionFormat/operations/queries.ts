@@ -60,14 +60,12 @@ export class Queries {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             arrayQuery
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/null",
@@ -145,14 +143,12 @@ export class Queries {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             arrayQuery
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/empty",
@@ -231,14 +227,12 @@ export class Queries {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             arrayQuery
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/valid",

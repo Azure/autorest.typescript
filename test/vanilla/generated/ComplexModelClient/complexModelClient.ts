@@ -99,15 +99,13 @@ class ComplexModelClient extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             "this.subscriptionId": this.subscriptionId,
             resourceGroupName,
             "this.apiVersion": this.apiVersion
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -225,16 +223,14 @@ class ComplexModelClient extends msRest.ServiceClient {
       let requestModelMapper = Mappers.CatalogDictionaryOfArray;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             resourceGroupName,
             "this.apiVersion": this.apiVersion,
             bodyParameter
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -354,16 +350,14 @@ class ComplexModelClient extends msRest.ServiceClient {
       let requestModelMapper = Mappers.CatalogArrayOfDictionary;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             subscriptionId,
             resourceGroupName,
             "this.apiVersion": this.apiVersion,
             bodyParameter
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,

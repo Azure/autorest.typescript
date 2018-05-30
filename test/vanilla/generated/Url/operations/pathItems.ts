@@ -81,8 +81,8 @@ export class PathItems {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
@@ -90,9 +90,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -215,8 +213,8 @@ export class PathItems {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
@@ -224,9 +222,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -349,8 +345,8 @@ export class PathItems {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
@@ -358,9 +354,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -483,8 +477,8 @@ export class PathItems {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             localStringPath,
             localStringQuery,
             pathItemStringPath,
@@ -492,9 +486,7 @@ export class PathItems {
             "this.client.globalStringPath": this.client.globalStringPath,
             "this.client.globalStringQuery": this.client.globalStringQuery
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

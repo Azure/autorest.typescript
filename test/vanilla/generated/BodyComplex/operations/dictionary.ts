@@ -46,12 +46,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid"
@@ -143,14 +139,12 @@ export class Dictionary {
       let requestModelMapper = Mappers.DictionaryWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid",
@@ -211,12 +205,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty"
@@ -308,14 +298,12 @@ export class Dictionary {
       let requestModelMapper = Mappers.DictionaryWrapper;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             complexBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty",
@@ -376,12 +364,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/null"
@@ -455,12 +439,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/notprovided"

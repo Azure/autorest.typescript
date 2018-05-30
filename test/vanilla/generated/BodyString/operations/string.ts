@@ -46,12 +46,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/null"
@@ -146,14 +142,12 @@ export class String {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             stringBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/null",
@@ -214,12 +208,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/empty"
@@ -315,14 +305,12 @@ export class String {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             stringBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/empty",
@@ -384,12 +372,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/mbcs"
@@ -487,14 +471,12 @@ export class String {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             stringBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/mbcs",
@@ -557,12 +539,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/whitespace"
@@ -661,14 +639,12 @@ export class String {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             stringBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/whitespace",
@@ -729,12 +705,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/notProvided"
@@ -813,12 +785,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/base64Encoding"
@@ -897,12 +865,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/base64UrlEncoding"
@@ -998,14 +962,12 @@ export class String {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             stringBody
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/base64UrlEncoding",
@@ -1067,12 +1029,8 @@ export class String {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/nullBase64UrlEncoding"
