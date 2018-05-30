@@ -57,14 +57,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             userAgent
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/existingkey",
@@ -129,12 +127,8 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/existingkey"
@@ -207,14 +201,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             contentType
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/protectedkey",
@@ -279,12 +271,8 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/protectedkey"
@@ -363,15 +351,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/integer",
@@ -450,14 +436,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/integer",
@@ -542,15 +526,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/long",
@@ -629,14 +611,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/long",
@@ -721,15 +701,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/float",
@@ -808,14 +786,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/float",
@@ -900,15 +876,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/double",
@@ -987,14 +961,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/double",
@@ -1079,15 +1051,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/bool",
@@ -1166,14 +1136,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/bool",
@@ -1258,15 +1226,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/string",
@@ -1346,14 +1312,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/string",
@@ -1440,15 +1404,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/date",
@@ -1527,14 +1489,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/date",
@@ -1621,15 +1581,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/datetime",
@@ -1709,14 +1667,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/datetime",
@@ -1803,15 +1759,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/datetimerfc1123",
@@ -1891,14 +1845,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/datetimerfc1123",
@@ -1984,15 +1936,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/duration",
@@ -2071,14 +2021,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/duration",
@@ -2163,15 +2111,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/byte",
@@ -2250,14 +2196,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/byte",
@@ -2344,15 +2288,13 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario,
             value
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/enum",
@@ -2430,14 +2372,12 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             scenario
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/enum",
@@ -2506,12 +2446,8 @@ export class Header {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"

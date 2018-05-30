@@ -121,14 +121,12 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             qualifier,
             "this.acceptLanguage": this.acceptLanguage
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          }
+          ,options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,

@@ -98,14 +98,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceArray
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/array",
@@ -167,12 +165,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/array"
@@ -278,14 +272,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceArray
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray",
@@ -348,12 +340,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray"
@@ -458,14 +446,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       };
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceDictionary
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary",
@@ -527,12 +513,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary"
@@ -624,14 +606,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       let requestModelMapper = Mappers.ResourceCollection;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             resourceComplexObject
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection",
@@ -693,12 +673,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {},
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+        msRest.createOperationArguments({}, options)
+        ,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection"
@@ -775,14 +751,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       let requestModelMapper = Mappers.SimpleProduct;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             simpleBodyProduct
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
@@ -905,14 +879,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       let requestModelMapper = Mappers.SimpleProduct;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             simpleBodyProduct
-          },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
-        {
+          }
+          ,options)
+        ,{
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
@@ -1063,8 +1035,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
       let requestModelMapper = Mappers.SimpleProduct;
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        {
-          arguments: {
+        msRest.createOperationArguments(
+          {
             name,
             productId,
             description,
@@ -1073,9 +1045,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             odatavalue,
             simpleBodyProduct
           },
-          abortSignal: options && options.abortSignal,
-          customHeaders: options && options.customHeaders
-        },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
