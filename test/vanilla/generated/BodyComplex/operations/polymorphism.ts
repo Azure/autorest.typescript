@@ -46,9 +46,9 @@ export class Polymorphism {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid"
@@ -167,9 +167,9 @@ export class Polymorphism {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid",
@@ -231,9 +231,9 @@ export class Polymorphism {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated"
@@ -321,9 +321,9 @@ export class Polymorphism {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated",
@@ -398,9 +398,9 @@ export class Polymorphism {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingdiscriminator",
@@ -517,9 +517,9 @@ export class Polymorphism {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingrequired/invalid",

@@ -46,9 +46,9 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid"
@@ -143,9 +143,9 @@ export class ArrayModel {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid",
@@ -206,9 +206,9 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty"
@@ -303,9 +303,9 @@ export class ArrayModel {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty",
@@ -367,9 +367,9 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/notprovided"

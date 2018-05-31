@@ -67,9 +67,9 @@ export class Formdata {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
@@ -167,9 +167,9 @@ export class Formdata {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",

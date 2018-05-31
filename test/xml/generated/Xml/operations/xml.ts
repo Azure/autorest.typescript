@@ -46,9 +46,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
@@ -136,9 +136,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
@@ -200,9 +200,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
@@ -286,9 +286,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
@@ -350,9 +350,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/headers",
@@ -411,9 +411,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
@@ -497,9 +497,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
@@ -557,9 +557,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
@@ -643,9 +643,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
@@ -703,9 +703,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
@@ -794,9 +794,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
@@ -868,9 +868,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
@@ -959,9 +959,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
@@ -1033,9 +1033,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
@@ -1124,9 +1124,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
@@ -1198,9 +1198,9 @@ export class Xml {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
@@ -1284,9 +1284,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
@@ -1349,9 +1349,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1442,9 +1442,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1558,9 +1558,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1651,9 +1651,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",
@@ -1772,9 +1772,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",
@@ -1879,9 +1879,9 @@ export class Xml {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",

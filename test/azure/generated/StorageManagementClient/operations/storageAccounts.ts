@@ -75,9 +75,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
@@ -282,9 +282,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -434,9 +434,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -615,9 +615,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -781,9 +781,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
@@ -932,9 +932,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
@@ -1071,9 +1071,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
@@ -1240,9 +1240,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
@@ -1419,9 +1419,9 @@ export class StorageAccounts {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",

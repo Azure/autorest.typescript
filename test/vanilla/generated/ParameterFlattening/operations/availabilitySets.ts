@@ -88,9 +88,9 @@ export class AvailabilitySets {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",

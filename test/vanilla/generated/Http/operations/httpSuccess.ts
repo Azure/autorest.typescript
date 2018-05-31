@@ -46,9 +46,9 @@ export class HttpSuccess {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -106,9 +106,9 @@ export class HttpSuccess {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -199,9 +199,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -280,9 +280,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -361,9 +361,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -442,9 +442,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -523,9 +523,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
@@ -604,9 +604,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
@@ -685,9 +685,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -766,9 +766,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -847,9 +847,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -928,9 +928,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -996,9 +996,9 @@ export class HttpSuccess {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/204"
@@ -1069,9 +1069,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1150,9 +1150,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1231,9 +1231,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1312,9 +1312,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1380,9 +1380,9 @@ export class HttpSuccess {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/404"

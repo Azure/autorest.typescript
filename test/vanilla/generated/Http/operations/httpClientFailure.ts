@@ -46,9 +46,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400"
@@ -118,9 +118,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400"
@@ -204,9 +204,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
@@ -298,9 +298,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
@@ -392,9 +392,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
@@ -486,9 +486,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
@@ -566,9 +566,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/401"
@@ -638,9 +638,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/402"
@@ -710,9 +710,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/403"
@@ -796,9 +796,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/404",
@@ -890,9 +890,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/405",
@@ -984,9 +984,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/406",
@@ -1078,9 +1078,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/407",
@@ -1172,9 +1172,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/409",
@@ -1252,9 +1252,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/410"
@@ -1324,9 +1324,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/411"
@@ -1396,9 +1396,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/412"
@@ -1482,9 +1482,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/413",
@@ -1576,9 +1576,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/414",
@@ -1670,9 +1670,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/415",
@@ -1750,9 +1750,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/416"
@@ -1836,9 +1836,9 @@ export class HttpClientFailure {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/417",
@@ -1916,9 +1916,9 @@ export class HttpClientFailure {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/429"

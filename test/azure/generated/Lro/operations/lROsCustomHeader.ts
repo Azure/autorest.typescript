@@ -238,9 +238,9 @@ export class LROsCustomHeader {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/customheader/putasync/retry/succeeded",
@@ -347,9 +347,9 @@ export class LROsCustomHeader {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/customheader/put/201/creating/succeeded/200",
@@ -469,9 +469,9 @@ export class LROsCustomHeader {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/customheader/post/202/retry/200",
@@ -566,9 +566,9 @@ export class LROsCustomHeader {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/customheader/postasync/retry/succeeded",

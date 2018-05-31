@@ -1072,9 +1072,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/400",
@@ -1192,9 +1192,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/201/creating/400",
@@ -1312,9 +1312,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/201/creating/400/invalidjson",
@@ -1433,9 +1433,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/putasync/retry/400",
@@ -1535,9 +1535,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/delete/400",
@@ -1622,9 +1622,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/delete/202/retry/400",
@@ -1711,9 +1711,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/deleteasync/retry/400",
@@ -1801,9 +1801,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/post/400",
@@ -1894,9 +1894,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/post/202/retry/400",
@@ -1989,9 +1989,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/postasync/retry/400",
@@ -2083,9 +2083,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/put/201/noprovisioningstatepayload",
@@ -2204,9 +2204,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/nostatus",
@@ -2311,9 +2311,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/nostatuspayload",
@@ -2414,9 +2414,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/delete/204/nolocation",
@@ -2499,9 +2499,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/nostatus",
@@ -2590,9 +2590,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/post/202/nolocation",
@@ -2685,9 +2685,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/nopayload",
@@ -2779,9 +2779,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/put/200/invalidjson",
@@ -2885,9 +2885,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/invalidheader",
@@ -2992,9 +2992,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/invalidjsonpolling",
@@ -3095,9 +3095,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/delete/202/retry/invalidheader",
@@ -3183,9 +3183,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/invalidheader",
@@ -3272,9 +3272,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/invalidjsonpolling",
@@ -3363,9 +3363,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/post/202/retry/invalidheader",
@@ -3458,9 +3458,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/invalidheader",
@@ -3553,9 +3553,9 @@ export class LROSADs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/invalidjsonpolling",

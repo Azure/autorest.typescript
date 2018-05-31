@@ -1630,9 +1630,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/200/succeeded",
@@ -1735,9 +1735,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/200/succeeded/nostate",
@@ -1841,9 +1841,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/202/retry/200",
@@ -1947,9 +1947,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/201/creating/succeeded/200",
@@ -2068,9 +2068,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/200/updating/succeeded/200",
@@ -2174,9 +2174,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/201/created/failed/200",
@@ -2295,9 +2295,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/200/accepted/canceled/200",
@@ -2401,9 +2401,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/put/noheader/202/200",
@@ -2508,9 +2508,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putasync/retry/succeeded",
@@ -2615,9 +2615,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putasync/noretry/succeeded",
@@ -2722,9 +2722,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putasync/retry/failed",
@@ -2829,9 +2829,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putasync/noretry/canceled",
@@ -2936,9 +2936,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putasync/noheader/201/200",
@@ -3041,9 +3041,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putnonresource/202/200",
@@ -3145,9 +3145,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putnonresourceasync/202/200",
@@ -3262,9 +3262,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putsubresource/202/200",
@@ -3379,9 +3379,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/putsubresourceasync/202/200",
@@ -3483,9 +3483,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/provisioning/202/accepted/200/succeeded",
@@ -3601,9 +3601,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/provisioning/202/deleting/200/failed",
@@ -3719,9 +3719,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/provisioning/202/deleting/200/canceled",
@@ -3834,9 +3834,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/204/succeeded",
@@ -3919,9 +3919,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/202/retry/200",
@@ -4024,9 +4024,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/202/noretry/204",
@@ -4129,9 +4129,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/delete/noheader",
@@ -4222,9 +4222,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/deleteasync/noheader/202/204",
@@ -4315,9 +4315,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/deleteasync/retry/succeeded",
@@ -4404,9 +4404,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/deleteasync/noretry/succeeded",
@@ -4493,9 +4493,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/deleteasync/retry/failed",
@@ -4582,9 +4582,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/deleteasync/retry/canceled",
@@ -4671,9 +4671,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/post/payload/200",
@@ -4789,9 +4789,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/post/202/retry/200",
@@ -4883,9 +4883,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/post/202/noretry/204",
@@ -4990,9 +4990,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/postasync/retry/succeeded",
@@ -5101,9 +5101,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/postasync/noretry/succeeded",
@@ -5212,9 +5212,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/postasync/retry/failed",
@@ -5307,9 +5307,9 @@ export class LROs {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/postasync/retry/canceled",

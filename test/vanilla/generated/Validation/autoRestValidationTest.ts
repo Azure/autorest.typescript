@@ -158,9 +158,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
@@ -357,9 +357,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
@@ -496,9 +496,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",
@@ -573,9 +573,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",

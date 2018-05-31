@@ -95,9 +95,9 @@ class AutoRestReportService extends msRest.ServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report",

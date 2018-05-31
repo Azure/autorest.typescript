@@ -61,9 +61,9 @@ export class ApiVersionLocal {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
@@ -166,9 +166,9 @@ export class ApiVersionLocal {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/local/null",
@@ -264,9 +264,9 @@ export class ApiVersionLocal {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/path/string/none/query/local/2.0",
@@ -365,9 +365,9 @@ export class ApiVersionLocal {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/swagger/string/none/query/local/2.0",

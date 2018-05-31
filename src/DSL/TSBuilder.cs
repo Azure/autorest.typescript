@@ -89,6 +89,10 @@ namespace AutoRest.TypeScript.DSL
                         position.CharactersAfterPreviousPosition += text.Length;
                         break;
                     }
+                    else
+                    {
+                        positionIndex += position.CharactersAfterPreviousPosition;
+                    }
                 }
             }
             contents.Insert(index, text);

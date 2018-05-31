@@ -58,9 +58,9 @@ export class XMsClientRequestId {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/overwrite/x-ms-client-request-id/method/",
@@ -149,9 +149,9 @@ export class XMsClientRequestId {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",

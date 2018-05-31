@@ -65,9 +65,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
@@ -169,9 +169,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
@@ -268,9 +268,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
@@ -375,9 +375,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/method/query/valid",
@@ -478,9 +478,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/method/query/null",
@@ -582,9 +582,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/path/query/valid",
@@ -682,9 +682,9 @@ export class SkipUrlEncoding {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/skipUrlEncoding/swagger/query/valid",

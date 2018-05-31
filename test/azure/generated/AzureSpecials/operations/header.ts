@@ -65,9 +65,9 @@ export class Header {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestId",
@@ -184,9 +184,9 @@ export class Header {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestIdParamGrouping",
@@ -289,9 +289,9 @@ export class Header {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestIdHead",

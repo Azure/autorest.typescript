@@ -57,9 +57,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -141,9 +141,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -225,9 +225,9 @@ export class HttpSuccess {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/404",

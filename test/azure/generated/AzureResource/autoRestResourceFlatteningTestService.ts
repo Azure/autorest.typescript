@@ -123,9 +123,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/array",
@@ -223,9 +223,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/array",
@@ -338,9 +338,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/dictionary",
@@ -438,9 +438,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/dictionary",
@@ -554,9 +554,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/resourcecollection",
@@ -642,9 +642,9 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/resourcecollection",

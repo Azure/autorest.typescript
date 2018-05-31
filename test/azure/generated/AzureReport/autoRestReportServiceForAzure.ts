@@ -126,9 +126,9 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report/azure",

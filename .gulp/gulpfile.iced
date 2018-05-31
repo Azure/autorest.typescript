@@ -23,15 +23,19 @@ task 'init', "" ,(done)->
   done()
 
 # Run language-specific tests:
-task 'test', '', ['test/typecheck', 'test/nodejs-unit'], (done) ->
+task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/nodejs-unit'], (done) ->
   done();
+
+task 'test/generator-unit', 'run generator unit tests', [], (done) ->
+  await execute "dotnet test #{basefolder}/unittests/autorest.typescript.tests.csproj /nologo", defer _
+  done()
 
 task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
 
 task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
-  await execute "#{basefolder}/node_modules/.bin/mocha", defer _
+  await execute "#{basefolder}/node_modules/.bin/mocha --no-colors", defer _
   done();
 
 task 'test/chrome-unit', 'run browser unit tests', [], (done) ->

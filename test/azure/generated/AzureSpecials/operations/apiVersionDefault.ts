@@ -61,9 +61,9 @@ export class ApiVersionDefault {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
@@ -161,9 +161,9 @@ export class ApiVersionDefault {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
@@ -261,9 +261,9 @@ export class ApiVersionDefault {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
@@ -361,9 +361,9 @@ export class ApiVersionDefault {
         },
         options);
       operationRes = await client.sendOperationRequest(
-        httpRequest
-        ,operationArgument
-        s,{
+        httpRequest,
+        operationArguments,
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
