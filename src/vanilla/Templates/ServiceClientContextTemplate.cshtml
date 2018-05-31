@@ -9,12 +9,7 @@
  */
 @EmptyLine
 import * as msRest from "ms-rest-js";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-@if (Model.MethodTemplateModels.Any())
-{
-@:const WebResource = msRest.WebResource;
-}
 @EmptyLine
 
 const packageName = "@Model.PackageName";
@@ -22,7 +17,7 @@ const packageVersion = "@Model.PackageVersion";
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);}
 @EmptyLine
-class @(Model.ContextName) extends msRest.ServiceClient {
+export class @(Model.ContextName) extends msRest.ServiceClient {
 @foreach (var property in Model.Properties)
 {
     if (property.IsRequired)
@@ -139,5 +134,3 @@ else
     this.serializer = new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()));
   }
 }
-@EmptyLine
-export { @(Model.ContextName), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };

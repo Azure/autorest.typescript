@@ -8,13 +8,13 @@
 @Header(" * ")
  */
 @EmptyLine
-import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 @if (Model.MethodGroupModels.Any()) {
 @:import * as operations from "./operations";
 }
+import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 @if (Model.MethodTemplateModels.Any())
 {
 @:const WebResource = msRest.WebResource;

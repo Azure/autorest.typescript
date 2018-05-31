@@ -9,14 +9,9 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
-@if (Model.MethodGroupModels.Any()) {
-@:import * as operations from "./operations";
-}
+import * as Mappers from "./models/mappers";
 @if (Model.MethodTemplateModels.Any())
 {
 @:const WebResource = msRest.WebResource;
@@ -27,14 +22,7 @@ const packageVersion = "@Model.PackageVersion";
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
-class @(Model.Name) extends @(Model.ContextName) {
-
-@foreach (var property in Model.Properties.Where(p => p.Name != "generateClientRequestId"))
-{
-  @EmptyLine
-  @:@(property.Name): @(property.ModelType.TSType(false));
-}
-  baseUri: string;
+export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
 @if (Model.MethodGroupModels.Any())
 {
   @EmptyLine
@@ -77,24 +65,53 @@ foreach (var methodGroup in Model.MethodGroupModels)
    */
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
-    super(...arguments);
-  @foreach (var methodGroup in Model.MethodGroupModels)
+@foreach (var param in requiredParameters)
+{
+  @:  if (@(param.Name) == undefined) {
+  @:    throw new Error('\'@(param.Name)\' cannot be null.');
+  @:  }
+}
+    @EmptyLine
+    if (!options) {
+      options = {};
+    }
+    if (!options.serializer) {
+      options = {
+        ...options,
+        serializer: new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()))
+      };
+    }
+    @EmptyLine
+    super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
+    @EmptyLine
+@foreach (var property in Model.Properties.Where(p => p.DefaultValue != null && p.Name != "generateClientRequestId"))
+{
+    @:this.@(property.Name) = @(property.DefaultValue);
+}
+
+@if(!Model.IsCustomBaseUri)
+{
+    @:this.baseUri = baseUri as string;
+    @:if (!this.baseUri) {
+      @:this.baseUri = '@Model.BaseUrl';
+    @:}
+}
+else
+{
+    @:this.baseUri = '@Model.BaseUrl';
+}
+
+@foreach (var param in requiredParameters)
+{
+  @:  this.@(param.Name) = @(param.Name);
+}
+  @EmptyLine
+    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+  @foreach (var property in optionalParameters.Where(p => p.Name != "generateClientRequestId"))
   {
-    @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
+    @:if(options.@(property.Name) !== null && options.@(property.Name) !== undefined) {
+    @:  this.@(property.Name) = options.@(property.Name);
+    @:}
   }
-    this.serializer = new msRest.Serializer(Mappers);
   }
-@foreach (var method in Model.MethodTemplateModels)
-{
-  @:// methods on the client.
-  @EmptyLine
-  @:@(Include(new MethodTemplate(), method))
 }
-@foreach (var method in Model.MethodWrappableTemplateModels)
-{
-  @EmptyLine
-  @:@(Include(new MethodCallbackWrapperTemplate(), method))
-}
-}
-@EmptyLine
-export { @(Model.Name), Models as @(Model.ClientPrefix)Models, Mappers as @(Model.ClientPrefix)Mappers };
