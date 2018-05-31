@@ -46,8 +46,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid"
@@ -142,9 +142,9 @@ export class Dictionary {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid",
@@ -205,8 +205,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty"
@@ -301,9 +301,9 @@ export class Dictionary {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty",
@@ -364,8 +364,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/null"
@@ -439,8 +439,8 @@ export class Dictionary {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/notprovided"

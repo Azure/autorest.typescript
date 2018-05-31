@@ -59,9 +59,9 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             pathParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/required/path/{pathParameter}",
@@ -150,9 +150,9 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             queryParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/query",
@@ -229,9 +229,9 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             queryParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/header",
@@ -315,9 +315,9 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/body",
@@ -390,8 +390,8 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             "this.client.requiredGlobalPath": this.client.requiredGlobalPath
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -480,8 +480,8 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -570,8 +570,8 @@ export class Implicit {
         msRest.createOperationArguments(
           {
             "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

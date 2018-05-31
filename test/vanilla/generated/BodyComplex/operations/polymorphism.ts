@@ -46,8 +46,8 @@ export class Polymorphism {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid"
@@ -166,9 +166,9 @@ export class Polymorphism {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid",
@@ -230,8 +230,8 @@ export class Polymorphism {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated"
@@ -319,9 +319,9 @@ export class Polymorphism {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated",
@@ -396,9 +396,9 @@ export class Polymorphism {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingdiscriminator",
@@ -515,9 +515,9 @@ export class Polymorphism {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingrequired/invalid",

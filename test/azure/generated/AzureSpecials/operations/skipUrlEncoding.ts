@@ -336,8 +336,8 @@ export class SkipUrlEncoding {
           {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -427,8 +427,8 @@ export class SkipUrlEncoding {
           {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -520,8 +520,8 @@ export class SkipUrlEncoding {
           {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -608,8 +608,8 @@ export class SkipUrlEncoding {
           {
             q1,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

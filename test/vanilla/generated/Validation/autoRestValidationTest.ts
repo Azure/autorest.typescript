@@ -424,9 +424,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             constantParam
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",
@@ -493,9 +493,9 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           {
             constantParam,
             body
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "validation/constantsInPath/{constantParam}/value",

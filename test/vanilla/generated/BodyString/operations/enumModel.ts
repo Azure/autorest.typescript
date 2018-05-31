@@ -47,8 +47,8 @@ export class EnumModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable"
@@ -156,9 +156,9 @@ export class EnumModel {
         msRest.createOperationArguments(
           {
             stringBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable",
@@ -220,8 +220,8 @@ export class EnumModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced"
@@ -329,9 +329,9 @@ export class EnumModel {
         msRest.createOperationArguments(
           {
             enumStringBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced",
@@ -392,8 +392,8 @@ export class EnumModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant"
@@ -489,9 +489,9 @@ export class EnumModel {
         msRest.createOperationArguments(
           {
             enumStringBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant",

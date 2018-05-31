@@ -46,8 +46,8 @@ export class HttpSuccess {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -105,8 +105,8 @@ export class HttpSuccess {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -204,9 +204,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -287,9 +287,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -370,9 +370,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -453,9 +453,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
@@ -536,9 +536,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
@@ -619,9 +619,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
@@ -702,9 +702,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -785,9 +785,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -868,9 +868,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -951,9 +951,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
@@ -1015,8 +1015,8 @@ export class HttpSuccess {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/204"
@@ -1093,9 +1093,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1176,9 +1176,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1259,9 +1259,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1342,9 +1342,9 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
@@ -1406,8 +1406,8 @@ export class HttpSuccess {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/404"

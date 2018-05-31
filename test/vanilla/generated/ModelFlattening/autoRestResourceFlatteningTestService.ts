@@ -101,9 +101,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             resourceArray
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/array",
@@ -165,8 +165,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/array"
@@ -275,9 +275,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             resourceArray
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray",
@@ -340,8 +340,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray"
@@ -449,9 +449,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             resourceDictionary
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary",
@@ -513,8 +513,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary"
@@ -609,9 +609,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             resourceComplexObject
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection",
@@ -673,8 +673,8 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection"
@@ -754,9 +754,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             simpleBodyProduct
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
@@ -882,9 +882,9 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             simpleBodyProduct
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",

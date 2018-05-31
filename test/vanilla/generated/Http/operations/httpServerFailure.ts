@@ -46,8 +46,8 @@ export class HttpServerFailure {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/501"
@@ -117,8 +117,8 @@ export class HttpServerFailure {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/501"
@@ -208,9 +208,9 @@ export class HttpServerFailure {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
@@ -304,9 +304,9 @@ export class HttpServerFailure {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",

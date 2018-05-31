@@ -62,8 +62,8 @@ export class Paths {
           {
             accountName,
             "this.client.host": this.client.host
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

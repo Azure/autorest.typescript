@@ -88,9 +88,9 @@ export class AvailabilitySets {
             resourceGroupName,
             avset,
             tags1
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",

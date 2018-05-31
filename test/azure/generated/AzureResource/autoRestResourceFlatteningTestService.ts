@@ -137,8 +137,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           {
             resourceArray,
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -219,8 +219,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         msRest.createOperationArguments(
           {
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -345,8 +345,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           {
             resourceDictionary,
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -427,8 +427,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         msRest.createOperationArguments(
           {
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -540,8 +540,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
           {
             resourceComplexObject,
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -622,8 +622,8 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         msRest.createOperationArguments(
           {
             "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,

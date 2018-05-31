@@ -46,8 +46,8 @@ export class Inheritance {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/inheritance/valid"
@@ -137,9 +137,9 @@ export class Inheritance {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/inheritance/valid",

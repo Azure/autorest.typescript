@@ -45,8 +45,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/null"
@@ -125,8 +125,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/invalidfloat"
@@ -205,8 +205,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/invaliddouble"
@@ -285,8 +285,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/invaliddecimal"
@@ -385,9 +385,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/float/3.402823e+20",
@@ -449,8 +449,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/float/3.402823e+20"
@@ -549,9 +549,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/2.5976931e+101",
@@ -613,8 +613,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/double/2.5976931e+101"
@@ -713,9 +713,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/99999999.99",
@@ -777,8 +777,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/double/99999999.99"
@@ -877,9 +877,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/-99999999.99",
@@ -941,8 +941,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/double/-99999999.99"
@@ -1041,9 +1041,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/2.5976931e+101",
@@ -1105,8 +1105,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/2.5976931e+101"
@@ -1205,9 +1205,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/99999999.99",
@@ -1269,8 +1269,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/99999999.99"
@@ -1369,9 +1369,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/-99999999.99",
@@ -1433,8 +1433,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/-99999999.99"
@@ -1533,9 +1533,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/float/3.402823e-20",
@@ -1597,8 +1597,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/small/float/3.402823e-20"
@@ -1697,9 +1697,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/double/2.5976931e-101",
@@ -1761,8 +1761,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/small/double/2.5976931e-101"
@@ -1861,9 +1861,9 @@ export class Number {
         msRest.createOperationArguments(
           {
             numberBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/decimal/2.5976931e-101",
@@ -1925,8 +1925,8 @@ export class Number {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "number/small/decimal/2.5976931e-101"

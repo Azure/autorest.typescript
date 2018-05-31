@@ -46,8 +46,8 @@ export class HttpRetry {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/retry/408"
@@ -124,9 +124,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/retry/500",
@@ -207,9 +207,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/retry/500",
@@ -271,8 +271,8 @@ export class HttpRetry {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/retry/502"
@@ -349,9 +349,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/retry/503",
@@ -432,9 +432,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/retry/503",
@@ -515,9 +515,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/retry/504",
@@ -598,9 +598,9 @@ export class HttpRetry {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/retry/504",

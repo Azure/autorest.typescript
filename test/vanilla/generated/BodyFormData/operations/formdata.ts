@@ -66,9 +66,9 @@ export class Formdata {
           {
             fileContent,
             fileName
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
@@ -160,9 +160,9 @@ export class Formdata {
         msRest.createOperationArguments(
           {
             fileContent
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",

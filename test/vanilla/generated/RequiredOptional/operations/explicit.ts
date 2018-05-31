@@ -67,9 +67,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/parameter",
@@ -163,9 +163,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/parameter",
@@ -248,9 +248,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/property",
@@ -343,9 +343,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/property",
@@ -420,9 +420,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             headerParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/header",
@@ -512,9 +512,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             headerParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/header",
@@ -599,9 +599,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/parameter",
@@ -695,9 +695,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/parameter",
@@ -780,9 +780,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/property",
@@ -875,9 +875,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/property",
@@ -952,9 +952,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             headerParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/header",
@@ -1044,9 +1044,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/header",
@@ -1125,9 +1125,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/parameter",
@@ -1206,9 +1206,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/parameter",
@@ -1290,9 +1290,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/property",
@@ -1377,9 +1377,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/property",
@@ -1473,9 +1473,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/parameter",
@@ -1579,9 +1579,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/parameter",
@@ -1668,9 +1668,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/property",
@@ -1767,9 +1767,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             bodyParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/property",
@@ -1849,9 +1849,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             headerParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/header",
@@ -1944,9 +1944,9 @@ export class Explicit {
         msRest.createOperationArguments(
           {
             headerParameter
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/header",
