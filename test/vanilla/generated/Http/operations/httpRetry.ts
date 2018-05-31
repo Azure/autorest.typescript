@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestHttpInfrastructureTestService } from "../autoRestHttpInfrastructureTestService";
+import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a HttpRetry. */
 export class HttpRetry {
-  private readonly client: AutoRestHttpInfrastructureTestService;
+  private readonly client: AutoRestHttpInfrastructureTestServiceContext;
   /**
    * Create a HttpRetry.
-   * @param {AutoRestHttpInfrastructureTestService} client Reference to the service client.
+   * @param {AutoRestHttpInfrastructureTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestHttpInfrastructureTestService) {
+  constructor(client: AutoRestHttpInfrastructureTestServiceContext) {
     this.client = client;
   }
 

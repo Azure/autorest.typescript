@@ -11,14 +11,13 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 const WebResource = msRest.WebResource;
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
-  baseUri: string;
-  serializer: msRest.Serializer;
+class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
 
   /**
    * @class
@@ -38,26 +37,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
+    super(baseUri, options);
   }
   // methods on the client.
 

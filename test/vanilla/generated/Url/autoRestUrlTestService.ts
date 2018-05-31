@@ -12,27 +12,22 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestUrlTestServiceContext } from "./autoRestUrlTestServiceContext";
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestUrlTestService extends msRest.ServiceClient {
-  globalStringPath: string;
-  globalStringQuery?: string;
-  baseUri: string;
+class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
 
   // Operation groups
   paths: operations.Paths;
   queries: operations.Queries;
   pathItems: operations.PathItems;
-  serializer: msRest.Serializer;
 
   /**
    * @class
    * Initializes a new instance of the AutoRestUrlTestService class.
    * @constructor
-   *
-   * @param {string} globalStringPath - A string value 'globalItemStringPath' that appears in the path
    *
    * @param {string} [baseUri] - The base URI of the service.
    *
@@ -49,36 +44,10 @@ class AutoRestUrlTestService extends msRest.ServiceClient {
    *
    */
   constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
-    if (globalStringPath === null || globalStringPath === undefined) {
-      throw new Error('\'globalStringPath\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-    this.globalStringPath = globalStringPath;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.globalStringQuery !== null && options.globalStringQuery !== undefined) {
-      this.globalStringQuery = options.globalStringQuery;
-    }
+    super(globalStringPath, baseUri, options);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

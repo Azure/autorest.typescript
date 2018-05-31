@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATFileService } from "../autoRestSwaggerBATFileService";
+import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Files. */
 export class Files {
-  private readonly client: AutoRestSwaggerBATFileService;
+  private readonly client: AutoRestSwaggerBATFileServiceContext;
   /**
    * Create a Files.
-   * @param {AutoRestSwaggerBATFileService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATFileServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATFileService) {
+  constructor(client: AutoRestSwaggerBATFileServiceContext) {
     this.client = client;
   }
 

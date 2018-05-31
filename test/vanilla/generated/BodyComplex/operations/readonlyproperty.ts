@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestComplexTestService } from "../autoRestComplexTestService";
+import { AutoRestComplexTestServiceContext } from "../autoRestComplexTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Readonlyproperty. */
 export class Readonlyproperty {
-  private readonly client: AutoRestComplexTestService;
+  private readonly client: AutoRestComplexTestServiceContext;
   /**
    * Create a Readonlyproperty.
-   * @param {AutoRestComplexTestService} client Reference to the service client.
+   * @param {AutoRestComplexTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestComplexTestService) {
+  constructor(client: AutoRestComplexTestServiceContext) {
     this.client = client;
   }
 

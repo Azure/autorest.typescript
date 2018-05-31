@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { CompositeBoolInt } from "../compositeBoolInt";
+import { CompositeBoolIntContext } from "../compositeBoolIntContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a IntModel. */
 export class IntModel {
-  private readonly client: CompositeBoolInt;
+  private readonly client: CompositeBoolIntContext;
   /**
    * Create a IntModel.
-   * @param {CompositeBoolInt} client Reference to the service client.
+   * @param {CompositeBoolIntContext} client Reference to the service client.
    */
-  constructor(client: CompositeBoolInt) {
+  constructor(client: CompositeBoolIntContext) {
     this.client = client;
   }
 

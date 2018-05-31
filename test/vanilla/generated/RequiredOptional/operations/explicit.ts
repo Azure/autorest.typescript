@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestRequiredOptionalTestService } from "../autoRestRequiredOptionalTestService";
+import { AutoRestRequiredOptionalTestServiceContext } from "../autoRestRequiredOptionalTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Explicit. */
 export class Explicit {
-  private readonly client: AutoRestRequiredOptionalTestService;
+  private readonly client: AutoRestRequiredOptionalTestServiceContext;
   /**
    * Create a Explicit.
-   * @param {AutoRestRequiredOptionalTestService} client Reference to the service client.
+   * @param {AutoRestRequiredOptionalTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestRequiredOptionalTestService) {
+  constructor(client: AutoRestRequiredOptionalTestServiceContext) {
     this.client = client;
   }
 

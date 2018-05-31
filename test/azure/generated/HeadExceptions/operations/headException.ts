@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestHeadExceptionTestService } from "../autoRestHeadExceptionTestService";
+import { AutoRestHeadExceptionTestServiceContext } from "../autoRestHeadExceptionTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a HeadException. */
 export class HeadException {
-  private readonly client: AutoRestHeadExceptionTestService;
+  private readonly client: AutoRestHeadExceptionTestServiceContext;
   /**
    * Create a HeadException.
-   * @param {AutoRestHeadExceptionTestService} client Reference to the service client.
+   * @param {AutoRestHeadExceptionTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestHeadExceptionTestService) {
+  constructor(client: AutoRestHeadExceptionTestServiceContext) {
     this.client = client;
   }
 

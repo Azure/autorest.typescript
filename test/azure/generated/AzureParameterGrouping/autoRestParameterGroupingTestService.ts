@@ -12,12 +12,13 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AutoRestParameterGroupingTestServiceContext } from "./autoRestParameterGroupingTestServiceContext";
 import * as operations from "./operations";
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestParameterGroupingTestService extends msRestAzure.AzureServiceClient {
+class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTestServiceContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -28,7 +29,6 @@ class AutoRestParameterGroupingTestService extends msRestAzure.AzureServiceClien
 
   // Operation groups
   parameterGrouping: operations.ParameterGrouping;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -56,37 +56,7 @@ class AutoRestParameterGroupingTestService extends msRestAzure.AzureServiceClien
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-    this.credentials = credentials;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, baseUri, options);
     this.parameterGrouping = new operations.ParameterGrouping(this);
     this.serializer = new msRest.Serializer(Mappers);
   }

@@ -12,17 +12,16 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { CompositeBoolIntContext } from "./compositeBoolIntContext";
 
 const packageName = "";
 const packageVersion = "";
 
-class CompositeBoolInt extends msRest.ServiceClient {
-  baseUri: string;
+class CompositeBoolInt extends CompositeBoolIntContext {
 
   // Operation groups
   bool: operations.Bool;
   intModel: operations.IntModel;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -42,28 +41,9 @@ class CompositeBoolInt extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.bool = new operations.Bool(this);
     this.intModel = new operations.IntModel(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

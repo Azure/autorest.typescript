@@ -12,12 +12,13 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AutoRestParameterizedHostTestClientContext } from "./autoRestParameterizedHostTestClientContext";
 import * as operations from "./operations";
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient {
+class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -30,7 +31,6 @@ class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient
 
   // Operation groups
   paths: operations.Paths;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -58,38 +58,7 @@ class AutoRestParameterizedHostTestClient extends msRestAzure.AzureServiceClient
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
     super(credentials, options);
-
-    this.host = 'host';
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = 'http://{accountName}{host}';
-    this.credentials = credentials;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.host !== null && options.host !== undefined) {
-      this.host = options.host;
-    }
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
     this.paths = new operations.Paths(this);
     this.serializer = new msRest.Serializer(Mappers);
   }

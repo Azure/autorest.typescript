@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestUrlMutliCollectionFormatTestService } from "../autoRestUrlMutliCollectionFormatTestService";
+import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "../autoRestUrlMutliCollectionFormatTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Queries. */
 export class Queries {
-  private readonly client: AutoRestUrlMutliCollectionFormatTestService;
+  private readonly client: AutoRestUrlMutliCollectionFormatTestServiceContext;
   /**
    * Create a Queries.
-   * @param {AutoRestUrlMutliCollectionFormatTestService} client Reference to the service client.
+   * @param {AutoRestUrlMutliCollectionFormatTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestUrlMutliCollectionFormatTestService) {
+  constructor(client: AutoRestUrlMutliCollectionFormatTestServiceContext) {
     this.client = client;
   }
 

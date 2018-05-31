@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestAzureSpecialParametersTestClient } from "../autoRestAzureSpecialParametersTestClient";
+import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a SkipUrlEncoding. */
 export class SkipUrlEncoding {
-  private readonly client: AutoRestAzureSpecialParametersTestClient;
+  private readonly client: AutoRestAzureSpecialParametersTestClientContext;
   /**
    * Create a SkipUrlEncoding.
-   * @param {AutoRestAzureSpecialParametersTestClient} client Reference to the service client.
+   * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
    */
-  constructor(client: AutoRestAzureSpecialParametersTestClient) {
+  constructor(client: AutoRestAzureSpecialParametersTestClientContext) {
     this.client = client;
   }
 

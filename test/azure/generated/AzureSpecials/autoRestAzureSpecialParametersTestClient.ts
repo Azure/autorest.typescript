@@ -12,12 +12,13 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AutoRestAzureSpecialParametersTestClientContext } from "./autoRestAzureSpecialParametersTestClientContext";
 import * as operations from "./operations";
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceClient {
+class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParametersTestClientContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -39,7 +40,6 @@ class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceC
   skipUrlEncoding: operations.SkipUrlEncoding;
   odata: operations.Odata;
   header: operations.Header;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -69,42 +69,7 @@ class AutoRestAzureSpecialParametersTestClient extends msRestAzure.AzureServiceC
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.apiVersion = '2015-07-01-preview';
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-    this.credentials = credentials;
-    this.subscriptionId = subscriptionId;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, subscriptionId, baseUri, options);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);
     this.subscriptionInMethod = new operations.SubscriptionInMethod(this);

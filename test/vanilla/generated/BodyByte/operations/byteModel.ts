@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATByteService } from "../autoRestSwaggerBATByteService";
+import { AutoRestSwaggerBATByteServiceContext } from "../autoRestSwaggerBATByteServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a ByteModel. */
 export class ByteModel {
-  private readonly client: AutoRestSwaggerBATByteService;
+  private readonly client: AutoRestSwaggerBATByteServiceContext;
   /**
    * Create a ByteModel.
-   * @param {AutoRestSwaggerBATByteService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATByteServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATByteService) {
+  constructor(client: AutoRestSwaggerBATByteServiceContext) {
     this.client = client;
   }
 

@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestPagingTestService } from "../autoRestPagingTestService";
+import { AutoRestPagingTestServiceContext } from "../autoRestPagingTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Paging. */
 export class Paging {
-  private readonly client: AutoRestPagingTestService;
+  private readonly client: AutoRestPagingTestServiceContext;
   /**
    * Create a Paging.
-   * @param {AutoRestPagingTestService} client Reference to the service client.
+   * @param {AutoRestPagingTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestPagingTestService) {
+  constructor(client: AutoRestPagingTestServiceContext) {
     this.client = client;
   }
 

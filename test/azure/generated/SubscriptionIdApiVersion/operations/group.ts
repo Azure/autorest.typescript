@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { MicrosoftAzureTestUrl } from "../microsoftAzureTestUrl";
+import { MicrosoftAzureTestUrlContext } from "../microsoftAzureTestUrlContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Group. */
 export class Group {
-  private readonly client: MicrosoftAzureTestUrl;
+  private readonly client: MicrosoftAzureTestUrlContext;
   /**
    * Create a Group.
-   * @param {MicrosoftAzureTestUrl} client Reference to the service client.
+   * @param {MicrosoftAzureTestUrlContext} client Reference to the service client.
    */
-  constructor(client: MicrosoftAzureTestUrl) {
+  constructor(client: MicrosoftAzureTestUrlContext) {
     this.client = client;
   }
 

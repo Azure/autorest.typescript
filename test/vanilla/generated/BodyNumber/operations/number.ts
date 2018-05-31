@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestNumberTestService } from "../autoRestNumberTestService";
+import { AutoRestNumberTestServiceContext } from "../autoRestNumberTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Number. */
 export class Number {
-  private readonly client: AutoRestNumberTestService;
+  private readonly client: AutoRestNumberTestServiceContext;
   /**
    * Create a Number.
-   * @param {AutoRestNumberTestService} client Reference to the service client.
+   * @param {AutoRestNumberTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestNumberTestService) {
+  constructor(client: AutoRestNumberTestServiceContext) {
     this.client = client;
   }
 

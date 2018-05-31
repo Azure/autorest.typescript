@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATFormDataService } from "../autoRestSwaggerBATFormDataService";
+import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATFormDataServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Formdata. */
 export class Formdata {
-  private readonly client: AutoRestSwaggerBATFormDataService;
+  private readonly client: AutoRestSwaggerBATFormDataServiceContext;
   /**
    * Create a Formdata.
-   * @param {AutoRestSwaggerBATFormDataService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATFormDataServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATFormDataService) {
+  constructor(client: AutoRestSwaggerBATFormDataServiceContext) {
     this.client = client;
   }
 

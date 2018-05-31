@@ -12,12 +12,13 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AutoRestReportServiceForAzureContext } from "./autoRestReportServiceForAzureContext";
 const WebResource = msRest.WebResource;
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
+class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -25,7 +26,6 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -53,37 +53,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-    this.credentials = credentials;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, baseUri, options);
     this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.

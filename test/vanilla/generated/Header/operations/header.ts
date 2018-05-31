@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATHeaderService } from "../autoRestSwaggerBATHeaderService";
+import { AutoRestSwaggerBATHeaderServiceContext } from "../autoRestSwaggerBATHeaderServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Header. */
 export class Header {
-  private readonly client: AutoRestSwaggerBATHeaderService;
+  private readonly client: AutoRestSwaggerBATHeaderServiceContext;
   /**
    * Create a Header.
-   * @param {AutoRestSwaggerBATHeaderService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATHeaderServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATHeaderService) {
+  constructor(client: AutoRestSwaggerBATHeaderServiceContext) {
     this.client = client;
   }
 

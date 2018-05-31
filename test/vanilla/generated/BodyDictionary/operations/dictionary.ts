@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATdictionaryService } from "../autoRestSwaggerBATdictionaryService";
+import { AutoRestSwaggerBATdictionaryServiceContext } from "../autoRestSwaggerBATdictionaryServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Dictionary. */
 export class Dictionary {
-  private readonly client: AutoRestSwaggerBATdictionaryService;
+  private readonly client: AutoRestSwaggerBATdictionaryServiceContext;
   /**
    * Create a Dictionary.
-   * @param {AutoRestSwaggerBATdictionaryService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATdictionaryServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATdictionaryService) {
+  constructor(client: AutoRestSwaggerBATdictionaryServiceContext) {
     this.client = client;
   }
 

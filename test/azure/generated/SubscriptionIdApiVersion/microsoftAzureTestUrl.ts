@@ -12,12 +12,13 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { MicrosoftAzureTestUrlContext } from "./microsoftAzureTestUrlContext";
 import * as operations from "./operations";
 
 const packageName = "";
 const packageVersion = "";
 
-class MicrosoftAzureTestUrl extends msRestAzure.AzureServiceClient {
+class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -32,7 +33,6 @@ class MicrosoftAzureTestUrl extends msRestAzure.AzureServiceClient {
 
   // Operation groups
   group: operations.Group;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -62,42 +62,7 @@ class MicrosoftAzureTestUrl extends msRestAzure.AzureServiceClient {
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.apiVersion = '2014-04-01-preview';
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'https://management.azure.com/';
-    }
-    this.credentials = credentials;
-    this.subscriptionId = subscriptionId;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, subscriptionId, baseUri, options);
     this.group = new operations.Group(this);
     this.serializer = new msRest.Serializer(Mappers);
   }

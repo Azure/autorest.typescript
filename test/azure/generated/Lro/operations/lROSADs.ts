@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestLongRunningOperationTestService } from "../autoRestLongRunningOperationTestService";
+import { AutoRestLongRunningOperationTestServiceContext } from "../autoRestLongRunningOperationTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a LROSADs. */
 export class LROSADs {
-  private readonly client: AutoRestLongRunningOperationTestService;
+  private readonly client: AutoRestLongRunningOperationTestServiceContext;
   /**
    * Create a LROSADs.
-   * @param {AutoRestLongRunningOperationTestService} client Reference to the service client.
+   * @param {AutoRestLongRunningOperationTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestLongRunningOperationTestService) {
+  constructor(client: AutoRestLongRunningOperationTestServiceContext) {
     this.client = client;
   }
 

@@ -12,13 +12,14 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 import * as operations from "./operations";
 const WebResource = msRest.WebResource;
 
 const packageName = "";
 const packageVersion = "";
 
-class AzureCompositeModel extends msRestAzure.AzureServiceClient {
+class AzureCompositeModel extends AzureCompositeModelContext {
 
   credentials: msRest.ServiceClientCredentials;
 
@@ -38,7 +39,6 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
   polymorphism: operations.Polymorphism;
   polymorphicrecursive: operations.Polymorphicrecursive;
   readonlyproperty: operations.Readonlyproperty;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -66,38 +66,7 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.subscriptionId = '123456';
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-    this.credentials = credentials;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, baseUri, options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);

@@ -12,16 +12,15 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestSwaggerBATArrayServiceContext } from "./autoRestSwaggerBATArrayServiceContext";
 
 const packageName = "";
 const packageVersion = "";
 
-class AutoRestSwaggerBATArrayService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceContext {
 
   // Operation groups
   arrayModel: operations.ArrayModel;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,27 +40,8 @@ class AutoRestSwaggerBATArrayService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.arrayModel = new operations.ArrayModel(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

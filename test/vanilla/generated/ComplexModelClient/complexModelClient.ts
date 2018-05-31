@@ -11,16 +11,13 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import { ComplexModelClientContext } from "./complexModelClientContext";
 const WebResource = msRest.WebResource;
 
 const packageName = "";
 const packageVersion = "";
 
-class ComplexModelClient extends msRest.ServiceClient {
-  subscriptionId: string;
-  apiVersion: string;
-  baseUri: string;
-  serializer: msRest.Serializer;
+class ComplexModelClient extends ComplexModelClientContext {
 
   /**
    * @class
@@ -40,28 +37,7 @@ class ComplexModelClient extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.subscriptionId = '123456';
-    this.apiVersion = '2014-04-01-preview';
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
+    super(baseUri, options);
   }
   // methods on the client.
 
