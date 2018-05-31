@@ -44,10 +44,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/null"
@@ -132,24 +133,24 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "stringBody",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/null",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "stringBody",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -204,10 +205,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/empty"
@@ -293,25 +295,25 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "stringBody",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/empty",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "stringBody",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -367,10 +369,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/mbcs"
@@ -458,25 +461,25 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "stringBody",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/mbcs",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "stringBody",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -533,10 +536,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/whitespace"
@@ -625,25 +629,25 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "stringBody",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/whitespace",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "stringBody",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -698,10 +702,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/notProvided"
@@ -777,10 +782,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/base64Encoding"
@@ -856,10 +862,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/base64UrlEncoding"
@@ -945,25 +952,25 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "stringBody",
-        type: {
-          name: "Base64Url"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/base64UrlEncoding",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "stringBody",
+            type: {
+              name: "Base64Url"
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1018,10 +1025,11 @@ export class String {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/nullBase64UrlEncoding"

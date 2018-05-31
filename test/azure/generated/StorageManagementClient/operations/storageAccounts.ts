@@ -66,61 +66,58 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountCheckNameAvailabilityParameters,
           requestBodyName: "accountName",
           contentType: "application/json; charset=utf-8"
         });
@@ -275,18 +272,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -294,59 +292,56 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -429,18 +424,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -448,59 +444,56 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -611,20 +604,20 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountUpdateParameters;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          parameters,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -632,62 +625,59 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountUpdateParameters,
           requestBodyName: "parameters",
           contentType: "application/json; charset=utf-8"
         });
@@ -781,18 +771,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
@@ -800,59 +791,56 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -936,56 +924,54 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1076,17 +1062,18 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
@@ -1094,49 +1081,46 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1245,20 +1229,20 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            regenerateKeyParameter
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          regenerateKeyParameter
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
@@ -1266,62 +1250,59 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountRegenerateKeyParameters,
           requestBodyName: "regenerateKeyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1427,20 +1408,20 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountCreateParameters;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceGroupName,
+          accountName,
+          parameters,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
@@ -1448,62 +1429,59 @@ export class StorageAccounts {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountCreateParameters,
           requestBodyName: "parameters",
           contentType: "application/json; charset=utf-8"
         });

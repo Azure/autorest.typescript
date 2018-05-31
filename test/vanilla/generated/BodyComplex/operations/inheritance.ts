@@ -44,10 +44,11 @@ export class Inheritance {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/inheritance/valid"
@@ -131,19 +132,19 @@ export class Inheritance {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Siamese;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/inheritance/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Siamese,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });

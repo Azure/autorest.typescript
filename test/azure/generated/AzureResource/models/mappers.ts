@@ -20,17 +20,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -42,44 +42,44 @@ export const Resource = {
     className: "Resource",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-},
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-}
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -91,62 +91,62 @@ export const FlattenedProduct = {
     className: "FlattenedProduct",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-},
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       pname: {
-  serializedName: "properties.pname",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "properties.pname",
+        type: {
+          name: "String"
+        }
+      },
       lsize: {
-  serializedName: "properties.lsize",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "properties.lsize",
+        type: {
+          name: "Number"
+        }
+      },
       provisioningState: {
-  serializedName: "properties.provisioningState",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "properties.provisioningState",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -158,38 +158,38 @@ export const ResourceCollection = {
     className: "ResourceCollection",
     modelProperties: {
       productresource: {
-  serializedName: "productresource",
-  type: {
-    name: "Composite",
-    className: "FlattenedProduct"
-  }
-},
+        serializedName: "productresource",
+        type: {
+          name: "Composite",
+          className: "FlattenedProduct"
+        }
+      },
       arrayofresources: {
-  serializedName: "arrayofresources",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "FlattenedProductElementType",
-  type: {
-    name: "Composite",
-    className: "FlattenedProduct"
-  }
-}
-  }
-},
+        serializedName: "arrayofresources",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      },
       dictionaryofresources: {
-  serializedName: "dictionaryofresources",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "FlattenedProductElementType",
-  type: {
-    name: "Composite",
-    className: "FlattenedProduct"
-  }
-}
-  }
-}
+        serializedName: "dictionaryofresources",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -201,18 +201,18 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
     className: "AutoRestResourceFlatteningTestServicePutArrayOptionalParams",
     modelProperties: {
       resourceArray: {
-  serializedName: "ResourceArray",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "ResourceElementType",
-  type: {
-    name: "Composite",
-    className: "Resource"
-  }
-}
-  }
-}
+        serializedName: "ResourceArray",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "ResourceElementType",
+            type: {
+              name: "Composite",
+              className: "Resource"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -224,18 +224,18 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
     className: "AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams",
     modelProperties: {
       resourceDictionary: {
-  serializedName: "ResourceDictionary",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "FlattenedProductElementType",
-  type: {
-    name: "Composite",
-    className: "FlattenedProduct"
-  }
-}
-  }
-}
+        serializedName: "ResourceDictionary",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -247,12 +247,12 @@ export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalP
     className: "AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams",
     modelProperties: {
       resourceComplexObject: {
-  serializedName: "ResourceComplexObject",
-  type: {
-    name: "Composite",
-    className: "ResourceCollection"
-  }
-}
+        serializedName: "ResourceComplexObject",
+        type: {
+          name: "Composite",
+          className: "ResourceCollection"
+        }
+      }
     }
   }
 };

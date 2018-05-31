@@ -45,14 +45,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/bool/true/{boolPath}",
@@ -60,14 +61,14 @@ export class Paths {
             {
               parameterName: "boolPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "boolPath",
-          defaultValue: true,
-          type: {
-            name: "Boolean"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "boolPath",
+                defaultValue: true,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -123,14 +124,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/bool/false/{boolPath}",
@@ -138,14 +140,14 @@ export class Paths {
             {
               parameterName: "boolPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "boolPath",
-          defaultValue: false,
-          type: {
-            name: "Boolean"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "boolPath",
+                defaultValue: false,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -201,14 +203,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            intPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/int/1000000/{intPath}",
@@ -216,14 +219,14 @@ export class Paths {
             {
               parameterName: "intPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "intPath",
-          defaultValue: 1000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "intPath",
+                defaultValue: 1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -279,14 +282,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            intPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/int/-1000000/{intPath}",
@@ -294,14 +298,14 @@ export class Paths {
             {
               parameterName: "intPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "intPath",
-          defaultValue: -1000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "intPath",
+                defaultValue: -1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -357,14 +361,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            longPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/long/10000000000/{longPath}",
@@ -372,14 +377,14 @@ export class Paths {
             {
               parameterName: "longPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "longPath",
-          defaultValue: 10000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "longPath",
+                defaultValue: 10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -435,14 +440,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            longPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/long/-10000000000/{longPath}",
@@ -450,14 +456,14 @@ export class Paths {
             {
               parameterName: "longPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "longPath",
-          defaultValue: -10000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "longPath",
+                defaultValue: -10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -513,14 +519,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/float/1.034E+20/{floatPath}",
@@ -528,14 +535,14 @@ export class Paths {
             {
               parameterName: "floatPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "floatPath",
-          defaultValue: 103400000000000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "floatPath",
+                defaultValue: 103400000000000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -591,14 +598,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/float/-1.034E-20/{floatPath}",
@@ -606,14 +614,14 @@ export class Paths {
             {
               parameterName: "floatPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "floatPath",
-          defaultValue: -1.034e-20,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "floatPath",
+                defaultValue: -1.034e-20,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -669,14 +677,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doublePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            doublePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/double/9999999.999/{doublePath}",
@@ -684,14 +693,14 @@ export class Paths {
             {
               parameterName: "doublePath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "doublePath",
-          defaultValue: 9999999.999,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "doublePath",
+                defaultValue: 9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -747,14 +756,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doublePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            doublePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/double/-9999999.999/{doublePath}",
@@ -762,14 +772,14 @@ export class Paths {
             {
               parameterName: "doublePath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "doublePath",
-          defaultValue: -9999999.999,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "doublePath",
+                defaultValue: -9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -825,14 +835,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/unicode/{stringPath}",
@@ -840,14 +851,14 @@ export class Paths {
             {
               parameterName: "stringPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringPath",
-          defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -903,14 +914,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
@@ -918,14 +930,14 @@ export class Paths {
             {
               parameterName: "stringPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringPath",
-          defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -981,14 +993,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/empty/{stringPath}",
@@ -996,14 +1009,14 @@ export class Paths {
             {
               parameterName: "stringPath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringPath",
-          defaultValue: '',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: '',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1068,14 +1081,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/null/{stringPath}",
@@ -1083,12 +1097,12 @@ export class Paths {
             {
               parameterName: "stringPath",
               mapper: {
-          required: true,
-          serializedName: "stringPath",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "stringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1159,14 +1173,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/enum/green%20color/{enumPath}",
@@ -1174,17 +1189,17 @@ export class Paths {
             {
               parameterName: "enumPath",
               mapper: {
-          required: true,
-          serializedName: "enumPath",
-          type: {
-            name: "Enum",
-            allowedValues: [
-              "red color",
-              "green color",
-              "blue color"
-            ]
-          }
-        }
+                required: true,
+                serializedName: "enumPath",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1255,14 +1270,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/null/{enumPath}",
@@ -1270,17 +1286,17 @@ export class Paths {
             {
               parameterName: "enumPath",
               mapper: {
-          required: true,
-          serializedName: "enumPath",
-          type: {
-            name: "Enum",
-            allowedValues: [
-              "red color",
-              "green color",
-              "blue color"
-            ]
-          }
-        }
+                required: true,
+                serializedName: "enumPath",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1346,14 +1362,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/byte/multibyte/{bytePath}",
@@ -1361,12 +1378,12 @@ export class Paths {
             {
               parameterName: "bytePath",
               mapper: {
-          required: true,
-          serializedName: "bytePath",
-          type: {
-            name: "ByteArray"
-          }
-        }
+                required: true,
+                serializedName: "bytePath",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1422,14 +1439,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/byte/empty/{bytePath}",
@@ -1437,14 +1455,14 @@ export class Paths {
             {
               parameterName: "bytePath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "bytePath",
-          defaultValue: new Buffer(''),
-          type: {
-            name: "ByteArray"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "bytePath",
+                defaultValue: new Buffer(''),
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1509,14 +1527,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/byte/null/{bytePath}",
@@ -1524,12 +1543,12 @@ export class Paths {
             {
               parameterName: "bytePath",
               mapper: {
-          required: true,
-          serializedName: "bytePath",
-          type: {
-            name: "ByteArray"
-          }
-        }
+                required: true,
+                serializedName: "bytePath",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1585,14 +1604,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/date/2012-01-01/{datePath}",
@@ -1600,14 +1620,14 @@ export class Paths {
             {
               parameterName: "datePath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "datePath",
-          defaultValue: new Date('2012-01-01'),
-          type: {
-            name: "Date"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "datePath",
+                defaultValue: new Date('2012-01-01'),
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1674,14 +1694,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/date/null/{datePath}",
@@ -1689,12 +1710,12 @@ export class Paths {
             {
               parameterName: "datePath",
               mapper: {
-          required: true,
-          serializedName: "datePath",
-          type: {
-            name: "Date"
-          }
-        }
+                required: true,
+                serializedName: "datePath",
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1750,14 +1771,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
@@ -1765,14 +1787,14 @@ export class Paths {
             {
               parameterName: "dateTimePath",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "dateTimePath",
-          defaultValue: new Date('2012-01-01T01:01:01Z'),
-          type: {
-            name: "DateTime"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "dateTimePath",
+                defaultValue: new Date('2012-01-01T01:01:01Z'),
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1839,14 +1861,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimePath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/datetime/null/{dateTimePath}",
@@ -1854,12 +1877,12 @@ export class Paths {
             {
               parameterName: "dateTimePath",
               mapper: {
-          required: true,
-          serializedName: "dateTimePath",
-          type: {
-            name: "DateTime"
-          }
-        }
+                required: true,
+                serializedName: "dateTimePath",
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1924,14 +1947,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          base64UrlPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            base64UrlPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/bG9yZW0/{base64UrlPath}",
@@ -1939,12 +1963,12 @@ export class Paths {
             {
               parameterName: "base64UrlPath",
               mapper: {
-          required: true,
-          serializedName: "base64UrlPath",
-          type: {
-            name: "Base64Url"
-          }
-        }
+                required: true,
+                serializedName: "base64UrlPath",
+                type: {
+                  name: "Base64Url"
+                }
+              }
             }
           ]
         });
@@ -2016,14 +2040,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
@@ -2031,18 +2056,18 @@ export class Paths {
             {
               parameterName: "arrayPath",
               mapper: {
-          required: true,
-          serializedName: "arrayPath",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        }
+                required: true,
+                serializedName: "arrayPath",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2108,14 +2133,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          unixTimeUrlPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            unixTimeUrlPath
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/int/1460505600/{unixTimeUrlPath}",
@@ -2123,12 +2149,12 @@ export class Paths {
             {
               parameterName: "unixTimeUrlPath",
               mapper: {
-          required: true,
-          serializedName: "unixTimeUrlPath",
-          type: {
-            name: "UnixTime"
-          }
-        }
+                required: true,
+                serializedName: "unixTimeUrlPath",
+                type: {
+                  name: "UnixTime"
+                }
+              }
             }
           ]
         });

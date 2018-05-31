@@ -146,71 +146,69 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.subscriptionId": this.subscriptionId,
-            resourceGroupName,
-            apiVersion,
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.subscriptionId": this.subscriptionId,
+          resourceGroupName,
+          apiVersion,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "subscriptionId",
-          defaultValue: '123456',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "subscriptionId",
+                defaultValue: '123456',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -309,19 +307,19 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogDictionaryOfArray;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            apiVersion,
-            "this.acceptLanguage": this.acceptLanguage,
-            bodyParameter
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          resourceGroupName,
+          apiVersion,
+          "this.acceptLanguage": this.acceptLanguage,
+          bodyParameter
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
@@ -329,53 +327,51 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -474,19 +470,19 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogArrayOfDictionary;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            apiVersion,
-            "this.acceptLanguage": this.acceptLanguage,
-            bodyParameter
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          resourceGroupName,
+          apiVersion,
+          "this.acceptLanguage": this.acceptLanguage,
+          bodyParameter
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
@@ -494,53 +490,51 @@ class AzureCompositeModel extends msRestAzure.AzureServiceClient {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });

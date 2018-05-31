@@ -52,28 +52,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/single",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -175,60 +175,59 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple",
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -332,60 +331,59 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/odata",
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -502,18 +500,19 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            offset,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          offset,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/withpath/{offset}",
@@ -521,54 +520,52 @@ export class Paging {
             {
               parameterName: "offset",
               mapper: {
-          required: true,
-          serializedName: "offset",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "offset",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -646,28 +643,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/retryfirst",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -746,28 +743,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/retrysecond",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -844,28 +841,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/single/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -942,28 +939,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/failure",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1040,28 +1037,28 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/failureuri",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1148,16 +1145,17 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            tenant,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          apiVersion,
+          tenant,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/fragment/{tenant}",
@@ -1165,38 +1163,36 @@ export class Paging {
             {
               parameterName: "tenant",
               mapper: {
-          required: true,
-          serializedName: "tenant",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "tenant",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api_version",
               mapper: {
-          required: true,
-          serializedName: "api_version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api_version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1300,16 +1296,17 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            apiVersion,
-            tenant
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          apiVersion,
+          tenant
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/fragmentwithgrouping/{tenant}",
@@ -1317,38 +1314,36 @@ export class Paging {
             {
               parameterName: "tenant",
               mapper: {
-          required: true,
-          serializedName: "tenant",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "tenant",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api_version",
               mapper: {
-          required: true,
-          serializedName: "api_version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api_version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1440,17 +1435,18 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            tenant,
-            nextLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          apiVersion,
+          tenant,
+          nextLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/fragment/{tenant}/{nextLink}",
@@ -1458,49 +1454,47 @@ export class Paging {
             {
               parameterName: "tenant",
               mapper: {
-          required: true,
-          serializedName: "tenant",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "tenant",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api_version",
               mapper: {
-          required: true,
-          serializedName: "api_version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api_version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1608,67 +1602,66 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            apiVersion,
-            tenant
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          apiVersion,
+          tenant
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
           urlParameters: [
             {
               parameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "tenant",
               mapper: {
-          required: true,
-          serializedName: "tenant",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "tenant",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api_version",
               mapper: {
-          required: true,
-          serializedName: "api_version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api_version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1751,43 +1744,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1896,75 +1888,73 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -2074,75 +2064,73 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -2251,75 +2239,73 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            clientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            maxresults,
-            timeout
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "clientRequestId",
-              headerName: "client-request-id",
               mapper: {
-          serializedName: "client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "maxresults",
               mapper: {
-          serializedName: "maxresults",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "timeout",
               mapper: {
-          serializedName: "timeout",
-          defaultValue: 30,
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -2403,43 +2389,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2524,43 +2509,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2643,43 +2627,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2762,43 +2745,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2881,43 +2863,42 @@ export class Paging {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          nextPageLink,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: "http://localhost:3000",
           path: "{nextLink}",
           urlParameters: [
             {
               parameterName: "nextPageLink",
-              urlParameterName: "nextLink",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "nextLink",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

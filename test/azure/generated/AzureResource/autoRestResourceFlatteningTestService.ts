@@ -116,45 +116,44 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "ResourceArray",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "ResourceElementType",
-        type: {
-          name: "Composite",
-          className: "Resource"
-        }
-      }
-        }
-      };
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceArray,
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceArray,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "ResourceArray",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ResourceElementType",
+                type: {
+                  name: "Composite",
+                  className: "Resource"
+                }
+              }
+            }
+          },
           requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8"
         });
@@ -218,28 +217,28 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -278,12 +277,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "FlattenedProductElementType",
-              type: {
-                name: "Composite",
-                className: "FlattenedProduct"
-              }
-            }
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -332,45 +331,44 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "ResourceDictionary",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "FlattenedProductElementType",
-        type: {
-          name: "Composite",
-          className: "FlattenedProduct"
-        }
-      }
-        }
-      };
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceDictionary,
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceDictionary,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "ResourceDictionary",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "FlattenedProductElementType",
+                type: {
+                  name: "Composite",
+                  className: "FlattenedProduct"
+                }
+              }
+            }
+          },
           requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8"
         });
@@ -434,28 +432,28 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -494,12 +492,12 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "FlattenedProductElementType",
-              type: {
-                name: "Composite",
-                className: "FlattenedProduct"
-              }
-            }
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -549,33 +547,32 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ResourceCollection;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceComplexObject,
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          resourceComplexObject,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ResourceCollection,
           requestBodyName: "resourceComplexObject",
           contentType: "application/json; charset=utf-8"
         });
@@ -639,28 +636,28 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

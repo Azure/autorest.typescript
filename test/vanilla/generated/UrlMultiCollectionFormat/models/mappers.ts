@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,17 +38,17 @@ export const QueriesArrayStringMultiNullOptionalParams = {
     className: "QueriesArrayStringMultiNullOptionalParams",
     modelProperties: {
       arrayQuery: {
-  serializedName: "arrayQuery",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -60,17 +60,17 @@ export const QueriesArrayStringMultiEmptyOptionalParams = {
     className: "QueriesArrayStringMultiEmptyOptionalParams",
     modelProperties: {
       arrayQuery: {
-  serializedName: "arrayQuery",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -82,17 +82,17 @@ export const QueriesArrayStringMultiValidOptionalParams = {
     className: "QueriesArrayStringMultiValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-  serializedName: "arrayQuery",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "arrayQuery",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };

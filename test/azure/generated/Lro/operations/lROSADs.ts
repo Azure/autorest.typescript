@@ -1065,33 +1065,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1186,33 +1185,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/201/creating/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1307,33 +1305,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/put/201/creating/400/invalidjson",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1429,33 +1426,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/putasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1533,28 +1529,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/delete/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1620,28 +1616,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/delete/202/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1709,28 +1705,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/deleteasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1798,33 +1794,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/post/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1892,33 +1887,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/post/202/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -1988,33 +1982,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/nonretryerror/postasync/retry/400",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2083,33 +2076,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/put/201/noprovisioningstatepayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2205,33 +2197,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/nostatus",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2313,33 +2304,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/nostatuspayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2418,28 +2408,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/delete/204/nolocation",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2503,28 +2493,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/nostatus",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2593,33 +2583,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/post/202/nolocation",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2689,33 +2678,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/nopayload",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2784,33 +2772,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/put/200/invalidjson",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2891,33 +2878,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -2999,33 +2985,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "lro/error/putasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -3104,28 +3089,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/delete/202/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -3192,28 +3177,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -3281,28 +3266,28 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "lro/error/deleteasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -3371,33 +3356,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/post/202/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -3467,33 +3451,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/invalidheader",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });
@@ -3563,33 +3546,32 @@ export class LROSADs {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            product,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          product,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "lro/error/postasync/retry/invalidjsonpolling",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8"
         });

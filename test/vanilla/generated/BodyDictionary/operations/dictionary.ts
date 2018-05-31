@@ -44,10 +44,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/null"
@@ -87,11 +88,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -129,10 +130,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/empty"
@@ -172,11 +174,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -229,31 +231,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/empty",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -308,10 +310,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/nullvalue"
@@ -351,11 +354,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -393,10 +396,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/nullkey"
@@ -436,11 +440,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -478,10 +482,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/keyemptystring"
@@ -521,11 +526,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -563,10 +568,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/invalid"
@@ -606,11 +612,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -648,10 +654,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/tfft"
@@ -691,11 +698,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -748,31 +755,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "booleanElementType",
-        type: {
-          name: "Boolean"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/tfft",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "booleanElementType",
+                type: {
+                  name: "Boolean"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -827,10 +834,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/true.null.false"
@@ -870,11 +878,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -912,10 +920,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/true.boolean.false"
@@ -955,11 +964,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -997,10 +1006,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.-1.3.300"
@@ -1040,11 +1050,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1097,31 +1107,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1176,10 +1186,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.null.zero"
@@ -1219,11 +1230,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1261,10 +1272,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.integer.0"
@@ -1304,11 +1316,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1346,10 +1358,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.-1.3.300"
@@ -1389,11 +1402,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1446,31 +1459,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1525,10 +1538,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.null.zero"
@@ -1568,11 +1582,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1610,10 +1624,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.integer.0"
@@ -1653,11 +1668,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1695,10 +1710,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/0--0.01-1.2e20"
@@ -1738,11 +1754,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1795,31 +1811,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1874,10 +1890,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/0.0-null-1.2e20"
@@ -1917,11 +1934,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1959,10 +1976,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/1.number.0"
@@ -2002,11 +2020,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2044,10 +2062,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/0--0.01-1.2e20"
@@ -2087,11 +2106,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2144,31 +2163,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2223,10 +2242,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/0.0-null-1.2e20"
@@ -2266,11 +2286,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2308,10 +2328,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/1.number.0"
@@ -2351,11 +2372,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2393,10 +2414,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo1.foo2.foo3"
@@ -2436,11 +2458,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2493,31 +2515,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2572,10 +2594,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo.null.foo2"
@@ -2615,11 +2638,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2657,10 +2680,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo.123.foo2"
@@ -2700,11 +2724,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2743,10 +2767,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/valid"
@@ -2786,11 +2811,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2845,31 +2870,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "DateElementType",
-        type: {
-          name: "Date"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "Date"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2924,10 +2949,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/invalidnull"
@@ -2967,11 +2993,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3009,10 +3035,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/invalidchars"
@@ -3052,11 +3079,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3095,10 +3122,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/valid"
@@ -3138,11 +3166,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3197,31 +3225,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "DateElementType",
-        type: {
-          name: "DateTime"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTime"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3276,10 +3304,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/invalidnull"
@@ -3319,11 +3348,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3361,10 +3390,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/invalidchars"
@@ -3404,11 +3434,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3448,10 +3478,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time-rfc1123/valid"
@@ -3491,11 +3522,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTimeRfc1123"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3550,31 +3581,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "DateElementType",
-        type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time-rfc1123/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTimeRfc1123"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3630,10 +3661,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/duration/valid"
@@ -3673,11 +3705,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "TimeSpan"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3730,31 +3762,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "stringElementType",
-        type: {
-          name: "TimeSpan"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/duration/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "TimeSpan"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3810,10 +3842,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/byte/valid"
@@ -3853,11 +3886,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "ByteArray"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3911,31 +3944,31 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "BufferElementType",
-        type: {
-          name: "ByteArray"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/byte/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "BufferElementType",
+                type: {
+                  name: "ByteArray"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3991,10 +4024,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/byte/invalidnull"
@@ -4034,11 +4068,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "ByteArray"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4077,10 +4111,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/base64url/valid"
@@ -4120,11 +4155,11 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "Base64Url"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "Base64Url"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4162,10 +4197,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/null"
@@ -4205,12 +4241,12 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "WidgetElementType",
-              type: {
-                name: "Composite",
-                className: "Widget"
-              }
-            }
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4248,10 +4284,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/empty"
@@ -4291,12 +4328,12 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "WidgetElementType",
-              type: {
-                name: "Composite",
-                className: "Widget"
-              }
-            }
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4335,10 +4372,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/itemnull"
@@ -4378,12 +4416,12 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "WidgetElementType",
-              type: {
-                name: "Composite",
-                className: "Widget"
-              }
-            }
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4422,10 +4460,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/itemempty"
@@ -4465,12 +4504,12 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "WidgetElementType",
-              type: {
-                name: "Composite",
-                className: "Widget"
-              }
-            }
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4509,10 +4548,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/valid"
@@ -4552,12 +4592,12 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "WidgetElementType",
-              type: {
-                name: "Composite",
-                className: "Widget"
-              }
-            }
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4599,32 +4639,32 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "WidgetElementType",
-        type: {
-          name: "Composite",
-          className: "Widget"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "WidgetElementType",
+                type: {
+                  name: "Composite",
+                  className: "Widget"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -4679,10 +4719,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/null"
@@ -4722,17 +4763,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4770,10 +4811,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/empty"
@@ -4813,17 +4855,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4862,10 +4904,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/itemnull"
@@ -4905,17 +4948,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4954,10 +4997,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/itemempty"
@@ -4997,17 +5041,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5046,10 +5090,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/valid"
@@ -5089,17 +5134,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5157,37 +5202,37 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "ArrayElementType",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "ArrayElementType",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -5242,10 +5287,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/null"
@@ -5285,17 +5331,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5333,10 +5379,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/empty"
@@ -5376,17 +5423,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5426,10 +5473,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/itemnull"
@@ -5469,17 +5517,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5519,10 +5567,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/itemempty"
@@ -5562,17 +5611,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5612,10 +5661,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/valid"
@@ -5655,17 +5705,17 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5725,37 +5775,37 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "ObjectElementType",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "ObjectElementType",
+                type: {
+                  name: "Dictionary",
+                  value: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });

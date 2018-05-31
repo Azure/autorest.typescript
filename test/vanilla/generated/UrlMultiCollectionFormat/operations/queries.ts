@@ -58,33 +58,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/null",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -153,33 +154,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/empty",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -249,33 +251,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/multi/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });

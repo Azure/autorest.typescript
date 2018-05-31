@@ -10,6 +10,7 @@ using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
+using AutoRest.TypeScript.Model;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
@@ -629,9 +630,33 @@ namespace AutoRest.TypeScript
             return "/" + constraintValue.Replace("/", "\\/") + "/";
         }
 
-        public static string ConstructMapper(IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        public static void ConstructRequestBodyMapper(TSValue value, ParameterTS requestBody)
         {
-            TSBuilder builder = new TSBuilder();
+            IModelType requestBodyModelType = requestBody.ModelType;
+            if (requestBodyModelType is CompositeType)
+            {
+                value.Text($"Mappers.{requestBodyModelType.Name}");
+            }
+            else
+            {
+                ConstructMapper(
+                    value,
+                    requestBodyModelType,
+                    requestBody.SerializedName,
+                    requestBody,
+                    isPageable: false,
+                    expandComposite: false,
+                    isXML: requestBody.Parent.CodeModel.ShouldGenerateXmlSerialization == true);
+            }
+        }
+
+        public static void ConstructMapper(TSBuilder builder, IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        {
+            builder.Value(value => ConstructMapper(value, type, serializedName, parameter, isPageable, expandComposite, isXML, isCaseSensitive, xmlName));
+        }
+
+        public static void ConstructMapper(TSValue value, IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        {
             string defaultValue = null;
             bool isRequired = false;
             bool isConstant = false;
@@ -646,7 +671,7 @@ namespace AutoRest.TypeScript
                 constraints = parameter.Constraints;
             }
 
-            builder.Object(mapper =>
+            value.Object(mapper =>
             {
                 bool wroteXmlName = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
                 if (wroteXmlName)
@@ -803,14 +828,17 @@ namespace AutoRest.TypeScript
                 {
                     AddTypeProperty(mapper, "Sequence", typeObject =>
                     {
-                        typeObject.TextProperty("element", ConstructMapper(sequence.ElementType, sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
+                        typeObject.Property("element", element =>
+                        {
+                            ConstructMapper(element, sequence.ElementType, sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive);
+                        });
                     });
                 }
                 else if (dictionary != null)
                 {
                     AddTypeProperty(mapper, "Dictionary", typeObject =>
                     {
-                        typeObject.TextProperty("value", ConstructMapper(dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
+                        typeObject.Property("value", dictionaryValue => ConstructMapper(dictionaryValue, dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
                     });
                 }
                 else if (composite != null)
@@ -863,7 +891,7 @@ namespace AutoRest.TypeScript
                                         }
                                     }
 
-                                    modelProperties.TextProperty(prop.Name, ConstructMapper(prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                    modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
                                 }
                             });
                         }
@@ -874,8 +902,6 @@ namespace AutoRest.TypeScript
                     throw new NotImplementedException($"{type} is not a supported Type.");
                 }
             });
-
-            return builder.ToString();
         }
 
         private static void AddTypeProperty(TSObject mapper, string mapperTypeName, Action<TSObject> additionalTypeObjectPropertiesAction = null)

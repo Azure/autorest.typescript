@@ -44,10 +44,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid"
@@ -136,19 +137,19 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.DictionaryWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -203,10 +204,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty"
@@ -295,19 +297,19 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.DictionaryWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -362,10 +364,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/null"
@@ -437,10 +440,11 @@ export class Dictionary {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/notprovided"

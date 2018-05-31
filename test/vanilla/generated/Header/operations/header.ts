@@ -55,28 +55,28 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          userAgent
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            userAgent
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/existingkey",
           headerParameters: [
             {
               parameterName: "userAgent",
-              headerName: "User-Agent",
               mapper: {
-          required: true,
-          serializedName: "User-Agent",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "User-Agent",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -131,10 +131,11 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/existingkey"
@@ -205,28 +206,28 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          contentType
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            contentType
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/protectedkey",
           headerParameters: [
             {
               parameterName: "contentType",
-              headerName: "Content-Type",
               mapper: {
-          required: true,
-          serializedName: "Content-Type",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "Content-Type",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -281,10 +282,11 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/protectedkey"
@@ -361,15 +363,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/integer",
@@ -377,22 +380,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -458,14 +461,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/integer",
@@ -473,12 +477,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -554,15 +558,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/long",
@@ -570,22 +575,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -651,14 +656,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/long",
@@ -666,12 +672,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -747,15 +753,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/float",
@@ -763,22 +770,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -844,14 +851,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/float",
@@ -859,12 +867,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -940,15 +948,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/double",
@@ -956,22 +965,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -1037,14 +1046,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/double",
@@ -1052,12 +1062,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1133,15 +1143,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/bool",
@@ -1149,22 +1160,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Boolean"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -1230,14 +1241,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/bool",
@@ -1245,12 +1257,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1326,15 +1338,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/string",
@@ -1342,21 +1355,21 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          serializedName: "value",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "value",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1423,14 +1436,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/string",
@@ -1438,12 +1452,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1521,15 +1535,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/date",
@@ -1537,22 +1552,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "Date"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1618,14 +1633,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/date",
@@ -1633,12 +1649,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1716,15 +1732,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/datetime",
@@ -1732,22 +1749,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "DateTime"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1814,14 +1831,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/datetime",
@@ -1829,12 +1847,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1912,15 +1930,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/datetimerfc1123",
@@ -1928,21 +1947,21 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          serializedName: "value",
-          type: {
-            name: "DateTimeRfc1123"
-          }
-        }
+                serializedName: "value",
+                type: {
+                  name: "DateTimeRfc1123"
+                }
+              }
             }
           ]
         });
@@ -2009,14 +2028,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/datetimerfc1123",
@@ -2024,12 +2044,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2106,15 +2126,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/duration",
@@ -2122,22 +2143,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "TimeSpan"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "TimeSpan"
+                }
+              }
             }
           ]
         });
@@ -2203,14 +2224,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/duration",
@@ -2218,12 +2240,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2299,15 +2321,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/byte",
@@ -2315,22 +2338,22 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          required: true,
-          serializedName: "value",
-          type: {
-            name: "ByteArray"
-          }
-        }
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -2396,14 +2419,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/byte",
@@ -2411,12 +2435,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2494,15 +2518,16 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/param/prim/enum",
@@ -2510,26 +2535,26 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
               mapper: {
-          serializedName: "value",
-          type: {
-            name: "Enum",
-            allowedValues: [
-              "White",
-              "black",
-              "GREY"
-            ]
-          }
-        }
+                serializedName: "value",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "White",
+                    "black",
+                    "GREY"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -2595,14 +2620,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/response/prim/enum",
@@ -2610,12 +2636,12 @@ export class Header {
             {
               parameterName: "scenario",
               mapper: {
-          required: true,
-          serializedName: "scenario",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2675,10 +2701,11 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"

@@ -97,57 +97,56 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.subscriptionId": this.subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.subscriptionId": this.subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "subscriptionId",
-          defaultValue: '123456',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "subscriptionId",
+                defaultValue: '123456',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -242,18 +241,18 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogDictionaryOfArray;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion,
-            bodyParameter
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion,
+          bodyParameter
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
@@ -261,40 +260,39 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -389,18 +387,18 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogArrayOfDictionary;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion,
-            bodyParameter
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion,
+          bodyParameter
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
@@ -408,40 +406,39 @@ class ComplexModelClient extends msRest.ServiceClient {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "api-version",
-          defaultValue: '2014-04-01-preview',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
+using AutoRest.TypeScript.DSL;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript.Model
@@ -232,9 +233,12 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string ConstructModelMapper()
         {
+            TSBuilder builder = new TSBuilder();
+            builder.Text($"export const {Name} = ");
             bool isXML = CodeModel?.ShouldGenerateXmlSerialization == true;
-            string modelMapper = ClientModelExtensions.ConstructMapper(this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: CodeModel?.HeaderTypes.Contains(this) != true, xmlName: isXML ? XmlName : null);
-            return $"export const {Name} = {modelMapper};";
+            ClientModelExtensions.ConstructMapper(builder, this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: CodeModel?.HeaderTypes.Contains(this) != true, xmlName: isXML ? XmlName : null);
+            builder.Line(";");
+            return builder.ToString();
         }
 
         /// <summary>

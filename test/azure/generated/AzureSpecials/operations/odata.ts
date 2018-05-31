@@ -65,63 +65,60 @@ export class Odata {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            filter,
-            top,
-            orderby,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          filter,
+          top,
+          orderby,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/odata/filter",
           queryParameters: [
             {
               parameterName: "filter",
-              queryParameterName: "$filter",
               mapper: {
-          serializedName: "$filter",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "$filter",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "top",
-              queryParameterName: "$top",
               mapper: {
-          serializedName: "$top",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "$top",
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "orderby",
-              queryParameterName: "$orderby",
               mapper: {
-          serializedName: "$orderby",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "$orderby",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

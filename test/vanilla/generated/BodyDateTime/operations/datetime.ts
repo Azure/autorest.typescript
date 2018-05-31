@@ -43,10 +43,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/null"
@@ -122,10 +123,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/invalid"
@@ -201,10 +203,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/overflow"
@@ -280,10 +283,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/underflow"
@@ -370,25 +374,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -443,10 +447,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc/lowercase"
@@ -522,10 +527,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc/uppercase"
@@ -613,25 +619,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -687,10 +693,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset/lowercase"
@@ -767,10 +774,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset/uppercase"
@@ -858,25 +866,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -932,10 +940,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset/uppercase"
@@ -1012,10 +1021,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset/lowercase"
@@ -1102,25 +1112,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1175,10 +1185,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc"
@@ -1265,25 +1276,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1338,10 +1349,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset"
@@ -1428,25 +1440,25 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "datetimeBody",
-        type: {
-          name: "DateTime"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datetimeBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            datetimeBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "datetimeBody",
+            type: {
+              name: "DateTime"
+            }
+          },
           requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1501,10 +1513,11 @@ export class Datetime {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset"

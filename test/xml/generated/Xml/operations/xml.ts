@@ -44,10 +44,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
@@ -129,19 +130,19 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Slideshow;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          slideshow
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            slideshow
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Slideshow,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -197,10 +198,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
@@ -278,19 +280,19 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.AppleBarrel;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          wrappedLists
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            wrappedLists
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.AppleBarrel,
           requestBodyName: "wrappedLists",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -346,10 +348,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/headers",
@@ -406,10 +409,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
@@ -487,19 +491,19 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Slideshow;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          slideshow
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            slideshow
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Slideshow,
           requestBodyName: "slideshow",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -551,10 +555,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
@@ -632,19 +637,19 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.AppleBarrel;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          appleBarrel
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            appleBarrel
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.AppleBarrel,
           requestBodyName: "appleBarrel",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -696,10 +701,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
@@ -737,12 +743,12 @@ export class Xml {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BananaElementType",
-              type: {
-                name: "Composite",
-                className: "Banana"
-              }
-            }
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -782,33 +788,33 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        xmlElementName: "banana",
-        required: true,
-        serializedName: "bananas",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "BananaElementType",
-        type: {
-          name: "Composite",
-          className: "Banana"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bananas
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bananas
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            xmlElementName: "banana",
+            required: true,
+            serializedName: "bananas",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "BananaElementType",
+                type: {
+                  name: "Composite",
+                  className: "Banana"
+                }
+              }
+            }
+          },
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -860,10 +866,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
@@ -901,12 +908,12 @@ export class Xml {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BananaElementType",
-              type: {
-                name: "Composite",
-                className: "Banana"
-              }
-            }
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -946,33 +953,33 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        xmlElementName: "banana",
-        required: true,
-        serializedName: "bananas",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "BananaElementType",
-        type: {
-          name: "Composite",
-          className: "Banana"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bananas
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bananas
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            xmlElementName: "banana",
+            required: true,
+            serializedName: "bananas",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "BananaElementType",
+                type: {
+                  name: "Composite",
+                  className: "Banana"
+                }
+              }
+            }
+          },
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -1024,10 +1031,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
@@ -1065,12 +1073,12 @@ export class Xml {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BananaElementType",
-              type: {
-                name: "Composite",
-                className: "Banana"
-              }
-            }
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -1110,33 +1118,33 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        xmlElementName: "banana",
-        required: true,
-        serializedName: "bananas",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "BananaElementType",
-        type: {
-          name: "Composite",
-          className: "Banana"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bananas
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bananas
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            xmlElementName: "banana",
+            required: true,
+            serializedName: "bananas",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "BananaElementType",
+                type: {
+                  name: "Composite",
+                  className: "Banana"
+                }
+              }
+            }
+          },
           requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -1188,10 +1196,11 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
@@ -1269,19 +1278,19 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Banana;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          banana
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            banana
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Banana,
           requestBodyName: "banana",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -1334,14 +1343,15 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1349,14 +1359,14 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'list',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'list',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           isXML: true
@@ -1425,15 +1435,16 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp,
+          restype
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp,
-            restype
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1441,26 +1452,26 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'properties',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'properties',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "restype",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "restype",
-          defaultValue: 'service',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "restype",
+                defaultValue: 'service',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           isXML: true
@@ -1539,17 +1550,17 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageServiceProperties;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp,
+          restype,
+          properties
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp,
-            restype,
-            properties
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/",
@@ -1557,29 +1568,29 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'properties',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'properties',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "restype",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "restype",
-          defaultValue: 'service',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "restype",
+                defaultValue: 'service',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageServiceProperties,
           requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -1633,15 +1644,16 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp,
+          restype
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp,
-            restype
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",
@@ -1649,26 +1661,26 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'acl',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'acl',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "restype",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "restype",
-          defaultValue: 'container',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "restype",
+                defaultValue: 'container',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           isXML: true
@@ -1705,12 +1717,12 @@ export class Xml {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "SignedIdentifierElementType",
-              type: {
-                name: "Composite",
-                className: "SignedIdentifier"
-              }
-            }
+                  serializedName: "SignedIdentifierElementType",
+                  type: {
+                    name: "Composite",
+                    className: "SignedIdentifier"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['SignedIdentifier'] : [], 'operationRes.parsedBody');
@@ -1752,31 +1764,17 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        xmlElementName: "SignedIdentifiers",
-        required: true,
-        serializedName: "properties",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "SignedIdentifierElementType",
-        type: {
-          name: "Composite",
-          className: "SignedIdentifier"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp,
+          restype,
+          properties
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp,
-            restype,
-            properties
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",
@@ -1784,29 +1782,43 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'acl',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'acl',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "restype",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "restype",
-          defaultValue: 'container',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "restype",
+                defaultValue: 'container',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            xmlElementName: "SignedIdentifiers",
+            required: true,
+            serializedName: "properties",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "SignedIdentifierElementType",
+                type: {
+                  name: "Composite",
+                  className: "SignedIdentifier"
+                }
+              }
+            }
+          },
           requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
           isXML: true
@@ -1860,15 +1872,16 @@ export class Xml {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          comp,
+          restype
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            comp,
-            restype
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "xml/mycontainer",
@@ -1876,26 +1889,26 @@ export class Xml {
             {
               parameterName: "comp",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "comp",
-          defaultValue: 'list',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "comp",
+                defaultValue: 'list',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "restype",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "restype",
-          defaultValue: 'container',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "restype",
+                defaultValue: 'container',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           isXML: true

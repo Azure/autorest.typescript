@@ -16,17 +16,17 @@ export const Product = {
     className: "Product",
     modelProperties: {
       integer: {
-  serializedName: "integer",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "integer",
+        type: {
+          name: "Number"
+        }
+      },
       string: {
-  serializedName: "string",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "string",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,17 +38,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

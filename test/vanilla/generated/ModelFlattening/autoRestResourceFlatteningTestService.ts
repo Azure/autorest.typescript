@@ -81,31 +81,31 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "ResourceArray",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "ResourceElementType",
-        type: {
-          name: "Composite",
-          className: "Resource"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceArray
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceArray
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/array",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "ResourceArray",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ResourceElementType",
+                type: {
+                  name: "Composite",
+                  className: "Resource"
+                }
+              }
+            }
+          },
           requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8"
         });
@@ -161,10 +161,11 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/array"
@@ -204,12 +205,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "FlattenedProductElementType",
-              type: {
-                name: "Composite",
-                className: "FlattenedProduct"
-              }
-            }
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -251,31 +252,31 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "ResourceArray",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "WrappedProductElementType",
-        type: {
-          name: "Composite",
-          className: "WrappedProduct"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceArray
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceArray
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "ResourceArray",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "WrappedProductElementType",
+                type: {
+                  name: "Composite",
+                  className: "WrappedProduct"
+                }
+              }
+            }
+          },
           requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8"
         });
@@ -332,10 +333,11 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray"
@@ -375,12 +377,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductWrapperElementType",
-              type: {
-                name: "Composite",
-                className: "ProductWrapper"
-              }
-            }
+                  serializedName: "ProductWrapperElementType",
+                  type: {
+                    name: "Composite",
+                    className: "ProductWrapper"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -421,31 +423,31 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "ResourceDictionary",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "FlattenedProductElementType",
-        type: {
-          name: "Composite",
-          className: "FlattenedProduct"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceDictionary
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceDictionary
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "ResourceDictionary",
+            type: {
+              name: "Dictionary",
+              value: {
+                serializedName: "FlattenedProductElementType",
+                type: {
+                  name: "Composite",
+                  className: "FlattenedProduct"
+                }
+              }
+            }
+          },
           requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8"
         });
@@ -501,10 +503,11 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary"
@@ -544,12 +547,12 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "FlattenedProductElementType",
-              type: {
-                name: "Composite",
-                className: "FlattenedProduct"
-              }
-            }
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -591,19 +594,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ResourceCollection;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceComplexObject
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceComplexObject
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ResourceCollection,
           requestBodyName: "resourceComplexObject",
           contentType: "application/json; charset=utf-8"
         });
@@ -659,10 +662,11 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection"
@@ -736,19 +740,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.SimpleProduct;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          simpleBodyProduct
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            simpleBodyProduct
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8"
         });
@@ -864,19 +868,19 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.SimpleProduct;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          simpleBodyProduct
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            simpleBodyProduct
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8"
         });
@@ -1020,21 +1024,21 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.SimpleProduct;
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            name,
-            productId,
-            description,
-            maxProductDisplayName,
-            genericValue,
-            odatavalue,
-            simpleBodyProduct
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          name,
+          productId,
+          description,
+          maxProductDisplayName,
+          genericValue,
+          odatavalue,
+          simpleBodyProduct
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening/parametergrouping/{name}/",
@@ -1042,15 +1046,15 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             {
               parameterName: "name",
               mapper: {
-          required: true,
-          serializedName: "name",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "name",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8"
         });

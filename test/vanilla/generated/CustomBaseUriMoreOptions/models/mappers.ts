@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -37,12 +37,12 @@ export const AutoRestParameterizedCustomHostTestClientOptions = {
     className: "AutoRestParameterizedCustomHostTestClientOptions",
     modelProperties: {
       dnsSuffix: {
-  serializedName: "dnsSuffix",
-  defaultValue: 'host',
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "dnsSuffix",
+        defaultValue: 'host',
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -54,12 +54,12 @@ export const PathsGetEmptyOptionalParams = {
     className: "PathsGetEmptyOptionalParams",
     modelProperties: {
       keyVersion: {
-  serializedName: "keyVersion",
-  defaultValue: 'v1',
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "keyVersion",
+        defaultValue: 'v1',
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

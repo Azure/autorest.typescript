@@ -20,17 +20,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -41,12 +41,12 @@ export const AutoRestParameterizedHostTestClientOptions = {
     className: "AutoRestParameterizedHostTestClientOptions",
     modelProperties: {
       host: {
-  serializedName: "host",
-  defaultValue: 'host',
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "host",
+        defaultValue: 'host',
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

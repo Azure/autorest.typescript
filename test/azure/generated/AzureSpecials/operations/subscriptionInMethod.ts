@@ -58,15 +58,16 @@ export class SubscriptionInMethod {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
@@ -74,25 +75,24 @@ export class SubscriptionInMethod {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -162,15 +162,16 @@ export class SubscriptionInMethod {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
@@ -178,25 +179,24 @@ export class SubscriptionInMethod {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -266,15 +266,16 @@ export class SubscriptionInMethod {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
@@ -282,25 +283,24 @@ export class SubscriptionInMethod {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -370,15 +370,16 @@ export class SubscriptionInMethod {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
@@ -386,25 +387,24 @@ export class SubscriptionInMethod {
             {
               parameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

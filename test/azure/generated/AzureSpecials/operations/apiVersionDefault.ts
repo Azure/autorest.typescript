@@ -54,42 +54,41 @@ export class ApiVersionDefault {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -155,42 +154,41 @@ export class ApiVersionDefault {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -256,42 +254,41 @@ export class ApiVersionDefault {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -357,42 +354,41 @@ export class ApiVersionDefault {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
               mapper: {
-          required: true,
-          serializedName: "api-version",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

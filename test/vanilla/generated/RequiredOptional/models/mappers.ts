@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,12 +38,12 @@ export const IntWrapper = {
     className: "IntWrapper",
     modelProperties: {
       value: {
-  required: true,
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -55,11 +55,11 @@ export const IntOptionalWrapper = {
     className: "IntOptionalWrapper",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -71,12 +71,12 @@ export const StringWrapper = {
     className: "StringWrapper",
     modelProperties: {
       value: {
-  required: true,
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-}
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -88,11 +88,11 @@ export const StringOptionalWrapper = {
     className: "StringOptionalWrapper",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -104,18 +104,18 @@ export const ArrayWrapper = {
     className: "ArrayWrapper",
     modelProperties: {
       value: {
-  required: true,
-  serializedName: "value",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -127,17 +127,17 @@ export const ArrayOptionalWrapper = {
     className: "ArrayOptionalWrapper",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -149,18 +149,18 @@ export const Product = {
     className: "Product",
     modelProperties: {
       id: {
-  required: true,
-  serializedName: "id",
-  type: {
-    name: "Number"
-  }
-},
+        required: true,
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      },
       name: {
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -172,13 +172,13 @@ export const ClassWrapper = {
     className: "ClassWrapper",
     modelProperties: {
       value: {
-  required: true,
-  serializedName: "value",
-  type: {
-    name: "Composite",
-    className: "Product"
-  }
-}
+        required: true,
+        serializedName: "value",
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -190,12 +190,12 @@ export const ClassOptionalWrapper = {
     className: "ClassOptionalWrapper",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Composite",
-    className: "Product"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -206,11 +206,11 @@ export const AutoRestRequiredOptionalTestServiceOptions = {
     className: "AutoRestRequiredOptionalTestServiceOptions",
     modelProperties: {
       optionalGlobalQuery: {
-  serializedName: "optional-global-query",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "optional-global-query",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -222,11 +222,11 @@ export const ImplicitPutOptionalQueryOptionalParams = {
     className: "ImplicitPutOptionalQueryOptionalParams",
     modelProperties: {
       queryParameter: {
-  serializedName: "queryParameter",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "queryParameter",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -238,11 +238,11 @@ export const ImplicitPutOptionalHeaderOptionalParams = {
     className: "ImplicitPutOptionalHeaderOptionalParams",
     modelProperties: {
       queryParameter: {
-  serializedName: "queryParameter",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "queryParameter",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -254,11 +254,11 @@ export const ImplicitPutOptionalBodyOptionalParams = {
     className: "ImplicitPutOptionalBodyOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -270,11 +270,11 @@ export const ExplicitPostOptionalIntegerParameterOptionalParams = {
     className: "ExplicitPostOptionalIntegerParameterOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -286,11 +286,11 @@ export const ExplicitPostOptionalIntegerPropertyOptionalParams = {
     className: "ExplicitPostOptionalIntegerPropertyOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -302,11 +302,11 @@ export const ExplicitPostOptionalIntegerHeaderOptionalParams = {
     className: "ExplicitPostOptionalIntegerHeaderOptionalParams",
     modelProperties: {
       headerParameter: {
-  serializedName: "headerParameter",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "headerParameter",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -318,11 +318,11 @@ export const ExplicitPostOptionalStringParameterOptionalParams = {
     className: "ExplicitPostOptionalStringParameterOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -334,11 +334,11 @@ export const ExplicitPostOptionalStringPropertyOptionalParams = {
     className: "ExplicitPostOptionalStringPropertyOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -350,11 +350,11 @@ export const ExplicitPostOptionalStringHeaderOptionalParams = {
     className: "ExplicitPostOptionalStringHeaderOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -366,12 +366,12 @@ export const ExplicitPostOptionalClassParameterOptionalParams = {
     className: "ExplicitPostOptionalClassParameterOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "Composite",
-    className: "Product"
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -383,12 +383,12 @@ export const ExplicitPostOptionalClassPropertyOptionalParams = {
     className: "ExplicitPostOptionalClassPropertyOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Composite",
-    className: "Product"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
     }
   }
 };
@@ -400,17 +400,17 @@ export const ExplicitPostOptionalArrayParameterOptionalParams = {
     className: "ExplicitPostOptionalArrayParameterOptionalParams",
     modelProperties: {
       bodyParameter: {
-  serializedName: "bodyParameter",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "bodyParameter",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -422,17 +422,17 @@ export const ExplicitPostOptionalArrayPropertyOptionalParams = {
     className: "ExplicitPostOptionalArrayPropertyOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -444,17 +444,17 @@ export const ExplicitPostOptionalArrayHeaderOptionalParams = {
     className: "ExplicitPostOptionalArrayHeaderOptionalParams",
     modelProperties: {
       headerParameter: {
-  serializedName: "headerParameter",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "headerParameter",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };

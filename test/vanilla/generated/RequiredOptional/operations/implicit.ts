@@ -54,14 +54,15 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          pathParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            pathParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/required/path/{pathParameter}",
@@ -69,12 +70,12 @@ export class Implicit {
             {
               parameterName: "pathParameter",
               mapper: {
-          required: true,
-          serializedName: "pathParameter",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "pathParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -151,14 +152,15 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          queryParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            queryParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/query",
@@ -166,11 +168,11 @@ export class Implicit {
             {
               parameterName: "queryParameter",
               mapper: {
-          serializedName: "queryParameter",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "queryParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -235,14 +237,15 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          queryParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            queryParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/header",
@@ -250,11 +253,11 @@ export class Implicit {
             {
               parameterName: "queryParameter",
               mapper: {
-          serializedName: "queryParameter",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "queryParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -319,24 +322,24 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "bodyParameter",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/body",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -399,28 +402,28 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.requiredGlobalPath": this.client.requiredGlobalPath
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.requiredGlobalPath": this.client.requiredGlobalPath
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "reqopt/global/required/path/{required-global-path}",
           urlParameters: [
             {
               parameterName: "this.client.requiredGlobalPath",
-              urlParameterName: "required-global-path",
               mapper: {
-          required: true,
-          serializedName: "required-global-path",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "required-global-path",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -495,28 +498,28 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "reqopt/global/required/query",
           queryParameters: [
             {
               parameterName: "this.client.requiredGlobalQuery",
-              queryParameterName: "required-global-query",
               mapper: {
-          required: true,
-          serializedName: "required-global-query",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "required-global-query",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -591,27 +594,27 @@ export class Implicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "reqopt/global/optional/query",
           queryParameters: [
             {
               parameterName: "this.client.optionalGlobalQuery",
-              queryParameterName: "optional-global-query",
               mapper: {
-          serializedName: "optional-global-query",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "optional-global-query",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });

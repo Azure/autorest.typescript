@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,20 +38,20 @@ export const RefColorConstant = {
     className: "RefColorConstant",
     modelProperties: {
       colorConstant: {
-  required: true,
-  isConstant: true,
-  serializedName: "ColorConstant",
-  defaultValue: 'green-color',
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        isConstant: true,
+        serializedName: "ColorConstant",
+        defaultValue: 'green-color',
+        type: {
+          name: "String"
+        }
+      },
       field1: {
-  serializedName: "field1",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "field1",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -63,11 +63,11 @@ export const StringPutNullOptionalParams = {
     className: "StringPutNullOptionalParams",
     modelProperties: {
       stringBody: {
-  serializedName: "stringBody",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "stringBody",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -79,11 +79,11 @@ export const EnumModelPutReferencedConstantOptionalParams = {
     className: "EnumModelPutReferencedConstantOptionalParams",
     modelProperties: {
       field1: {
-  serializedName: "field1",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "field1",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

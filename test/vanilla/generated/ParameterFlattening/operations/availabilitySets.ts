@@ -80,17 +80,17 @@ export class AvailabilitySets {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          avset,
+          tags1
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            avset,
-            tags1
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
@@ -98,29 +98,28 @@ export class AvailabilitySets {
             {
               parameterName: "resourceGroupName",
               mapper: {
-          required: true,
-          serializedName: "resourceGroupName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "avset",
-              urlParameterName: "availabilitySetName",
               mapper: {
-          required: true,
-          serializedName: "availabilitySetName",
-          constraints: {
-            MaxLength: 80
-          },
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "availabilitySetName",
+                constraints: {
+                  MaxLength: 80
+                },
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.AvailabilitySetUpdateParameters,
           requestBodyName: "tags1",
           contentType: "application/json; charset=utf-8"
         });

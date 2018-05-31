@@ -45,14 +45,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/bool/true",
@@ -60,14 +61,14 @@ export class Queries {
             {
               parameterName: "boolQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "boolQuery",
-          defaultValue: true,
-          type: {
-            name: "Boolean"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "boolQuery",
+                defaultValue: true,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -123,14 +124,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/bool/false",
@@ -138,14 +140,14 @@ export class Queries {
             {
               parameterName: "boolQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "boolQuery",
-          defaultValue: false,
-          type: {
-            name: "Boolean"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "boolQuery",
+                defaultValue: false,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -209,14 +211,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/bool/null",
@@ -224,11 +227,11 @@ export class Queries {
             {
               parameterName: "boolQuery",
               mapper: {
-          serializedName: "boolQuery",
-          type: {
-            name: "Boolean"
-          }
-        }
+                serializedName: "boolQuery",
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -284,14 +287,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            intQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/int/1000000",
@@ -299,14 +303,14 @@ export class Queries {
             {
               parameterName: "intQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "intQuery",
-          defaultValue: 1000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "intQuery",
+                defaultValue: 1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -362,14 +366,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            intQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/int/-1000000",
@@ -377,14 +382,14 @@ export class Queries {
             {
               parameterName: "intQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "intQuery",
-          defaultValue: -1000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "intQuery",
+                defaultValue: -1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -448,14 +453,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            intQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/int/null",
@@ -463,11 +469,11 @@ export class Queries {
             {
               parameterName: "intQuery",
               mapper: {
-          serializedName: "intQuery",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "intQuery",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -523,14 +529,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            longQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/long/10000000000",
@@ -538,14 +545,14 @@ export class Queries {
             {
               parameterName: "longQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "longQuery",
-          defaultValue: 10000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "longQuery",
+                defaultValue: 10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -601,14 +608,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            longQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/long/-10000000000",
@@ -616,14 +624,14 @@ export class Queries {
             {
               parameterName: "longQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "longQuery",
-          defaultValue: -10000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "longQuery",
+                defaultValue: -10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -687,14 +695,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            longQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/long/null",
@@ -702,11 +711,11 @@ export class Queries {
             {
               parameterName: "longQuery",
               mapper: {
-          serializedName: "longQuery",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "longQuery",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -762,14 +771,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/float/1.034E+20",
@@ -777,14 +787,14 @@ export class Queries {
             {
               parameterName: "floatQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "floatQuery",
-          defaultValue: 103400000000000000000,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "floatQuery",
+                defaultValue: 103400000000000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -840,14 +850,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/float/-1.034E-20",
@@ -855,14 +866,14 @@ export class Queries {
             {
               parameterName: "floatQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "floatQuery",
-          defaultValue: -1.034e-20,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "floatQuery",
+                defaultValue: -1.034e-20,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -926,14 +937,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/float/null",
@@ -941,11 +953,11 @@ export class Queries {
             {
               parameterName: "floatQuery",
               mapper: {
-          serializedName: "floatQuery",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "floatQuery",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -1001,14 +1013,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doubleQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            doubleQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/double/9999999.999",
@@ -1016,14 +1029,14 @@ export class Queries {
             {
               parameterName: "doubleQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "doubleQuery",
-          defaultValue: 9999999.999,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "doubleQuery",
+                defaultValue: 9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -1079,14 +1092,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doubleQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            doubleQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/double/-9999999.999",
@@ -1094,14 +1108,14 @@ export class Queries {
             {
               parameterName: "doubleQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "doubleQuery",
-          defaultValue: -9999999.999,
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "doubleQuery",
+                defaultValue: -9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -1165,14 +1179,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doubleQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            doubleQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/double/null",
@@ -1180,11 +1195,11 @@ export class Queries {
             {
               parameterName: "doubleQuery",
               mapper: {
-          serializedName: "doubleQuery",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "doubleQuery",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -1240,14 +1255,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/string/unicode/",
@@ -1255,14 +1271,14 @@ export class Queries {
             {
               parameterName: "stringQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringQuery",
-          defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringQuery",
+                defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1318,14 +1334,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
@@ -1333,14 +1350,14 @@ export class Queries {
             {
               parameterName: "stringQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringQuery",
-          defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringQuery",
+                defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1396,14 +1413,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/string/empty",
@@ -1411,14 +1429,14 @@ export class Queries {
             {
               parameterName: "stringQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "stringQuery",
-          defaultValue: '',
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "stringQuery",
+                defaultValue: '',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1482,14 +1500,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/string/null",
@@ -1497,11 +1516,11 @@ export class Queries {
             {
               parameterName: "stringQuery",
               mapper: {
-          serializedName: "stringQuery",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "stringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1568,14 +1587,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/enum/green%20color",
@@ -1583,16 +1603,16 @@ export class Queries {
             {
               parameterName: "enumQuery",
               mapper: {
-          serializedName: "enumQuery",
-          type: {
-            name: "Enum",
-            allowedValues: [
-              "red color",
-              "green color",
-              "blue color"
-            ]
-          }
-        }
+                serializedName: "enumQuery",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1659,14 +1679,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/enum/null",
@@ -1674,16 +1695,16 @@ export class Queries {
             {
               parameterName: "enumQuery",
               mapper: {
-          serializedName: "enumQuery",
-          type: {
-            name: "Enum",
-            allowedValues: [
-              "red color",
-              "green color",
-              "blue color"
-            ]
-          }
-        }
+                serializedName: "enumQuery",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1747,14 +1768,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          byteQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            byteQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/byte/multibyte",
@@ -1762,11 +1784,11 @@ export class Queries {
             {
               parameterName: "byteQuery",
               mapper: {
-          serializedName: "byteQuery",
-          type: {
-            name: "ByteArray"
-          }
-        }
+                serializedName: "byteQuery",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1822,14 +1844,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          byteQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            byteQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/byte/empty",
@@ -1837,14 +1860,14 @@ export class Queries {
             {
               parameterName: "byteQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "byteQuery",
-          defaultValue: new Buffer(''),
-          type: {
-            name: "ByteArray"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "byteQuery",
+                defaultValue: new Buffer(''),
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1908,14 +1931,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          byteQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            byteQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/byte/null",
@@ -1923,11 +1947,11 @@ export class Queries {
             {
               parameterName: "byteQuery",
               mapper: {
-          serializedName: "byteQuery",
-          type: {
-            name: "ByteArray"
-          }
-        }
+                serializedName: "byteQuery",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1983,14 +2007,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/date/2012-01-01",
@@ -1998,14 +2023,14 @@ export class Queries {
             {
               parameterName: "dateQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "dateQuery",
-          defaultValue: new Date('2012-01-01'),
-          type: {
-            name: "Date"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "dateQuery",
+                defaultValue: new Date('2012-01-01'),
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -2070,14 +2095,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/date/null",
@@ -2085,11 +2111,11 @@ export class Queries {
             {
               parameterName: "dateQuery",
               mapper: {
-          serializedName: "dateQuery",
-          type: {
-            name: "Date"
-          }
-        }
+                serializedName: "dateQuery",
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -2145,14 +2171,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimeQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimeQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
@@ -2160,14 +2187,14 @@ export class Queries {
             {
               parameterName: "dateTimeQuery",
               mapper: {
-          required: true,
-          isConstant: true,
-          serializedName: "dateTimeQuery",
-          defaultValue: new Date('2012-01-01T01:01:01Z'),
-          type: {
-            name: "DateTime"
-          }
-        }
+                required: true,
+                isConstant: true,
+                serializedName: "dateTimeQuery",
+                defaultValue: new Date('2012-01-01T01:01:01Z'),
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -2232,14 +2259,15 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimeQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimeQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/datetime/null",
@@ -2247,11 +2275,11 @@ export class Queries {
             {
               parameterName: "dateTimeQuery",
               mapper: {
-          serializedName: "dateTimeQuery",
-          type: {
-            name: "DateTime"
-          }
-        }
+                serializedName: "dateTimeQuery",
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -2321,33 +2349,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/csv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Csv
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2416,33 +2445,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/csv/string/null",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Csv
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2511,33 +2541,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/csv/string/empty",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Csv
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2607,33 +2638,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/ssv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Ssv,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Ssv
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2703,33 +2735,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/tsv/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Tsv,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Tsv
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -2799,33 +2832,34 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "queries/array/pipes/string/valid",
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              collectionFormat: msRest.QueryCollectionFormat.Pipes,
               mapper: {
-          serializedName: "arrayQuery",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        },
-              collectionFormat: msRest.QueryCollectionFormat.Pipes
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });

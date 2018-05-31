@@ -20,17 +20,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -41,28 +41,28 @@ export const ParameterGroupingPostRequiredParameters = {
     className: "ParameterGroupingPostRequiredParameters",
     modelProperties: {
       body: {
-  required: true,
-  type: {
-    name: "Number"
-  }
-},
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
       customHeader: {
-  type: {
-    name: "String"
-  }
-},
+        type: {
+          name: "String"
+        }
+      },
       query: {
-  defaultValue: 30,
-  type: {
-    name: "Number"
-  }
-},
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      },
       path: {
-  required: true,
-  type: {
-    name: "String"
-  }
-}
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -73,16 +73,16 @@ export const ParameterGroupingPostOptionalParameters = {
     className: "ParameterGroupingPostOptionalParameters",
     modelProperties: {
       customHeader: {
-  type: {
-    name: "String"
-  }
-},
+        type: {
+          name: "String"
+        }
+      },
       query: {
-  defaultValue: 30,
-  type: {
-    name: "Number"
-  }
-}
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -93,16 +93,16 @@ export const FirstParameterGroup = {
     className: "FirstParameterGroup",
     modelProperties: {
       headerOne: {
-  type: {
-    name: "String"
-  }
-},
+        type: {
+          name: "String"
+        }
+      },
       queryOne: {
-  defaultValue: 30,
-  type: {
-    name: "Number"
-  }
-}
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -113,16 +113,16 @@ export const ParameterGroupingPostMultiParamGroupsSecondParamGroup = {
     className: "ParameterGroupingPostMultiParamGroupsSecondParamGroup",
     modelProperties: {
       headerTwo: {
-  type: {
-    name: "String"
-  }
-},
+        type: {
+          name: "String"
+        }
+      },
       queryTwo: {
-  defaultValue: 30,
-  type: {
-    name: "Number"
-  }
-}
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -134,12 +134,12 @@ export const ParameterGroupingPostOptionalOptionalParams = {
     className: "ParameterGroupingPostOptionalOptionalParams",
     modelProperties: {
       parameterGroupingPostOptionalParameters: {
-  serializedName: "",
-  type: {
-    name: "Composite",
-    className: "ParameterGroupingPostOptionalParameters"
-  }
-}
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "ParameterGroupingPostOptionalParameters"
+        }
+      }
     }
   }
 };
@@ -151,19 +151,19 @@ export const ParameterGroupingPostMultiParamGroupsOptionalParams = {
     className: "ParameterGroupingPostMultiParamGroupsOptionalParams",
     modelProperties: {
       firstParameterGroup: {
-  serializedName: "",
-  type: {
-    name: "Composite",
-    className: "FirstParameterGroup"
-  }
-},
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "FirstParameterGroup"
+        }
+      },
       parameterGroupingPostMultiParamGroupsSecondParamGroup: {
-  serializedName: "",
-  type: {
-    name: "Composite",
-    className: "ParameterGroupingPostMultiParamGroupsSecondParamGroup"
-  }
-}
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "ParameterGroupingPostMultiParamGroupsSecondParamGroup"
+        }
+      }
     }
   }
 };
@@ -175,12 +175,12 @@ export const ParameterGroupingPostSharedParameterGroupObjectOptionalParams = {
     className: "ParameterGroupingPostSharedParameterGroupObjectOptionalParams",
     modelProperties: {
       firstParameterGroup: {
-  serializedName: "",
-  type: {
-    name: "Composite",
-    className: "FirstParameterGroup"
-  }
-}
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "FirstParameterGroup"
+        }
+      }
     }
   }
 };

@@ -20,26 +20,26 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       constantId: {
-  required: true,
-  isConstant: true,
-  serializedName: "constantId",
-  defaultValue: 1,
-  type: {
-    name: "Number"
-  }
-},
+        required: true,
+        isConstant: true,
+        serializedName: "constantId",
+        defaultValue: 1,
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -51,17 +51,17 @@ export const OdataFilter = {
     className: "OdataFilter",
     modelProperties: {
       id: {
-  serializedName: "id",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "id",
+        type: {
+          name: "Number"
+        }
+      },
       name: {
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -72,11 +72,11 @@ export const HeaderCustomNamedRequestIdParamGroupingParameters = {
     className: "HeaderCustomNamedRequestIdParamGroupingParameters",
     modelProperties: {
       fooClientRequestId: {
-  required: true,
-  type: {
-    name: "String"
-  }
-}
+        required: true,
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -88,11 +88,11 @@ export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
     className: "ApiVersionLocalGetMethodLocalNullOptionalParams",
     modelProperties: {
       apiVersion: {
-  serializedName: "api-version",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "api-version",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -104,11 +104,11 @@ export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
     className: "SkipUrlEncodingGetMethodQueryNullOptionalParams",
     modelProperties: {
       q1: {
-  serializedName: "q1",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "q1",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -120,23 +120,23 @@ export const OdataGetWithFilterOptionalParams = {
     className: "OdataGetWithFilterOptionalParams",
     modelProperties: {
       filter: {
-  serializedName: "$filter",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "$filter",
+        type: {
+          name: "String"
+        }
+      },
       top: {
-  serializedName: "$top",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "$top",
+        type: {
+          name: "Number"
+        }
+      },
       orderby: {
-  serializedName: "$orderby",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "$orderby",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -148,11 +148,11 @@ export const HeaderCustomNamedRequestIdHeaders = {
     className: "HeaderCustomNamedRequestIdHeaders",
     modelProperties: {
       fooRequestId: {
-  serializedName: "foo-request-id",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -164,11 +164,11 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
     className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
     modelProperties: {
       fooRequestId: {
-  serializedName: "foo-request-id",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -180,11 +180,11 @@ export const HeaderCustomNamedRequestIdHeadHeaders = {
     className: "HeaderCustomNamedRequestIdHeadHeaders",
     modelProperties: {
       fooRequestId: {
-  serializedName: "foo-request-id",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "foo-request-id",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

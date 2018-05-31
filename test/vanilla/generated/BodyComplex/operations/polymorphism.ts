@@ -44,10 +44,11 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid"
@@ -160,19 +161,19 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Fish;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Fish,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -228,10 +229,11 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated"
@@ -313,19 +315,19 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Salmon;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Salmon,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -390,19 +392,19 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Salmon;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingdiscriminator",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Salmon,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -509,19 +511,19 @@ export class Polymorphism {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Fish;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingrequired/invalid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Fish,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });

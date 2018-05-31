@@ -59,56 +59,55 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            accountName,
-            "this.client.host": this.client.host,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          accountName,
+          "this.client.host": this.client.host,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "customuri",
           urlParameters: [
             {
               parameterName: "accountName",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.host",
-              urlParameterName: "host",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "host",
-          defaultValue: 'host',
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "host",
+                defaultValue: 'host',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

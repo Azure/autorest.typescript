@@ -20,19 +20,19 @@ export const StorageAccountCheckNameAvailabilityParameters = {
     className: "StorageAccountCheckNameAvailabilityParameters",
     modelProperties: {
       name: {
-  required: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  serializedName: "type",
-  defaultValue: 'Microsoft.Storage/storageAccounts',
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "type",
+        defaultValue: 'Microsoft.Storage/storageAccounts',
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -44,27 +44,27 @@ export const CheckNameAvailabilityResult = {
     className: "CheckNameAvailabilityResult",
     modelProperties: {
       nameAvailable: {
-  serializedName: "nameAvailable",
-  type: {
-    name: "Boolean"
-  }
-},
+        serializedName: "nameAvailable",
+        type: {
+          name: "Boolean"
+        }
+      },
       reason: {
-  serializedName: "reason",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "AccountNameInvalid",
-      "AlreadyExists"
-    ]
-  }
-},
+        serializedName: "reason",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "AccountNameInvalid",
+            "AlreadyExists"
+          ]
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -76,45 +76,45 @@ export const Resource = {
     className: "Resource",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       location: {
-  required: true,
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -126,58 +126,58 @@ export const StorageAccountCreateParameters = {
     className: "StorageAccountCreateParameters",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       location: {
-  required: true,
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-},
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
       accountType: {
-  serializedName: "properties.accountType",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Standard_LRS",
-      "Standard_ZRS",
-      "Standard_GRS",
-      "Standard_RAGRS",
-      "Premium_LRS"
-    ]
-  }
-}
+        serializedName: "properties.accountType",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Standard_GRS",
+            "Standard_RAGRS",
+            "Premium_LRS"
+          ]
+        }
+      }
     }
   }
 };
@@ -189,12 +189,12 @@ export const Bar = {
     className: "Bar",
     modelProperties: {
       recursivePoint: {
-  serializedName: "RecursivePoint",
-  type: {
-    name: "Composite",
-    className: "Endpoints"
-  }
-}
+        serializedName: "RecursivePoint",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      }
     }
   }
 };
@@ -206,12 +206,12 @@ export const Foo = {
     className: "Foo",
     modelProperties: {
       barPoint: {
-  serializedName: "Bar\\.Point",
-  type: {
-    name: "Composite",
-    className: "Bar"
-  }
-}
+        serializedName: "Bar\\.Point",
+        type: {
+          name: "Composite",
+          className: "Bar"
+        }
+      }
     }
   }
 };
@@ -223,37 +223,37 @@ export const Endpoints = {
     className: "Endpoints",
     modelProperties: {
       blob: {
-  serializedName: "blob",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "blob",
+        type: {
+          name: "String"
+        }
+      },
       queue: {
-  serializedName: "queue",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "queue",
+        type: {
+          name: "String"
+        }
+      },
       table: {
-  serializedName: "table",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "table",
+        type: {
+          name: "String"
+        }
+      },
       dummyEndPoint: {
-  serializedName: "dummyEndPoint",
-  type: {
-    name: "Composite",
-    className: "Endpoints"
-  }
-},
+        serializedName: "dummyEndPoint",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      },
       fooPoint: {
-  serializedName: "FooPoint",
-  type: {
-    name: "Composite",
-    className: "Foo"
-  }
-}
+        serializedName: "FooPoint",
+        type: {
+          name: "Composite",
+          className: "Foo"
+        }
+      }
     }
   }
 };
@@ -265,17 +265,17 @@ export const CustomDomain = {
     className: "CustomDomain",
     modelProperties: {
       name: {
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       useSubDomain: {
-  serializedName: "useSubDomain",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "useSubDomain",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -287,134 +287,134 @@ export const StorageAccount = {
     className: "StorageAccount",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       location: {
-  required: true,
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-},
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
       provisioningState: {
-  serializedName: "properties.provisioningState",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Creating",
-      "ResolvingDNS",
-      "Succeeded"
-    ]
-  }
-},
+        serializedName: "properties.provisioningState",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Creating",
+            "ResolvingDNS",
+            "Succeeded"
+          ]
+        }
+      },
       accountType: {
-  serializedName: "properties.accountType",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Standard_LRS",
-      "Standard_ZRS",
-      "Standard_GRS",
-      "Standard_RAGRS",
-      "Premium_LRS"
-    ]
-  }
-},
+        serializedName: "properties.accountType",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Standard_GRS",
+            "Standard_RAGRS",
+            "Premium_LRS"
+          ]
+        }
+      },
       primaryEndpoints: {
-  serializedName: "properties.primaryEndpoints",
-  type: {
-    name: "Composite",
-    className: "Endpoints"
-  }
-},
+        serializedName: "properties.primaryEndpoints",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      },
       primaryLocation: {
-  serializedName: "properties.primaryLocation",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "properties.primaryLocation",
+        type: {
+          name: "String"
+        }
+      },
       statusOfPrimary: {
-  serializedName: "properties.statusOfPrimary",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Available",
-      "Unavailable"
-    ]
-  }
-},
+        serializedName: "properties.statusOfPrimary",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Available",
+            "Unavailable"
+          ]
+        }
+      },
       lastGeoFailoverTime: {
-  serializedName: "properties.lastGeoFailoverTime",
-  type: {
-    name: "DateTime"
-  }
-},
+        serializedName: "properties.lastGeoFailoverTime",
+        type: {
+          name: "DateTime"
+        }
+      },
       secondaryLocation: {
-  serializedName: "properties.secondaryLocation",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "properties.secondaryLocation",
+        type: {
+          name: "String"
+        }
+      },
       statusOfSecondary: {
-  serializedName: "properties.statusOfSecondary",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Available",
-      "Unavailable"
-    ]
-  }
-},
+        serializedName: "properties.statusOfSecondary",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Available",
+            "Unavailable"
+          ]
+        }
+      },
       creationTime: {
-  serializedName: "properties.creationTime",
-  type: {
-    name: "DateTime"
-  }
-},
+        serializedName: "properties.creationTime",
+        type: {
+          name: "DateTime"
+        }
+      },
       customDomain: {
-  serializedName: "properties.customDomain",
-  type: {
-    name: "Composite",
-    className: "CustomDomain"
-  }
-},
+        serializedName: "properties.customDomain",
+        type: {
+          name: "Composite",
+          className: "CustomDomain"
+        }
+      },
       secondaryEndpoints: {
-  serializedName: "properties.secondaryEndpoints",
-  type: {
-    name: "Composite",
-    className: "Endpoints"
-  }
-}
+        serializedName: "properties.secondaryEndpoints",
+        type: {
+          name: "Composite",
+          className: "Endpoints"
+        }
+      }
     }
   }
 };
@@ -426,17 +426,17 @@ export const StorageAccountKeys = {
     className: "StorageAccountKeys",
     modelProperties: {
       key1: {
-  serializedName: "key1",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "key1",
+        type: {
+          name: "String"
+        }
+      },
       key2: {
-  serializedName: "key2",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "key2",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -448,65 +448,65 @@ export const StorageAccountUpdateParameters = {
     className: "StorageAccountUpdateParameters",
     modelProperties: {
       id: {
-  readOnly: true,
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      },
       name: {
-  readOnly: true,
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       type: {
-  readOnly: true,
-  serializedName: "type",
-  type: {
-    name: "String"
-  }
-},
+        readOnly: true,
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
       location: {
-  required: true,
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-},
+        required: true,
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
       tags: {
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-},
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      },
       accountType: {
-  serializedName: "properties.accountType",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Standard_LRS",
-      "Standard_ZRS",
-      "Standard_GRS",
-      "Standard_RAGRS",
-      "Premium_LRS"
-    ]
-  }
-},
+        serializedName: "properties.accountType",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Standard_LRS",
+            "Standard_ZRS",
+            "Standard_GRS",
+            "Standard_RAGRS",
+            "Premium_LRS"
+          ]
+        }
+      },
       customDomain: {
-  serializedName: "properties.customDomain",
-  type: {
-    name: "Composite",
-    className: "CustomDomain"
-  }
-}
+        serializedName: "properties.customDomain",
+        type: {
+          name: "Composite",
+          className: "CustomDomain"
+        }
+      }
     }
   }
 };
@@ -518,15 +518,15 @@ export const StorageAccountRegenerateKeyParameters = {
     className: "StorageAccountRegenerateKeyParameters",
     modelProperties: {
       keyName: {
-  serializedName: "keyName",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "key1",
-      "key2"
-    ]
-  }
-}
+        serializedName: "keyName",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "key1",
+            "key2"
+          ]
+        }
+      }
     }
   }
 };
@@ -538,17 +538,17 @@ export const UsageName = {
     className: "UsageName",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      },
       localizedValue: {
-  serializedName: "localizedValue",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "localizedValue",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -560,38 +560,38 @@ export const Usage = {
     className: "Usage",
     modelProperties: {
       unit: {
-  serializedName: "unit",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "Count",
-      "Bytes",
-      "Seconds",
-      "Percent",
-      "CountsPerSecond",
-      "BytesPerSecond"
-    ]
-  }
-},
+        serializedName: "unit",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "Count",
+            "Bytes",
+            "Seconds",
+            "Percent",
+            "CountsPerSecond",
+            "BytesPerSecond"
+          ]
+        }
+      },
       currentValue: {
-  serializedName: "currentValue",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "currentValue",
+        type: {
+          name: "Number"
+        }
+      },
       limit: {
-  serializedName: "limit",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "limit",
+        type: {
+          name: "Number"
+        }
+      },
       name: {
-  serializedName: "name",
-  type: {
-    name: "Composite",
-    className: "UsageName"
-  }
-}
+        serializedName: "name",
+        type: {
+          name: "Composite",
+          className: "UsageName"
+        }
+      }
     }
   }
 };
@@ -603,18 +603,18 @@ export const UsageListResult = {
     className: "UsageListResult",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "UsageElementType",
-  type: {
-    name: "Composite",
-    className: "Usage"
-  }
-}
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "UsageElementType",
+            type: {
+              name: "Composite",
+              className: "Usage"
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -626,11 +626,11 @@ export const SubResource = {
     className: "SubResource",
     modelProperties: {
       id: {
-  serializedName: "id",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "id",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -642,15 +642,15 @@ export const StorageAccountsRegenerateKeyOptionalParams = {
     className: "StorageAccountsRegenerateKeyOptionalParams",
     modelProperties: {
       keyName: {
-  serializedName: "keyName",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "key1",
-      "key2"
-    ]
-  }
-}
+        serializedName: "keyName",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "key1",
+            "key2"
+          ]
+        }
+      }
     }
   }
 };
@@ -662,18 +662,18 @@ export const StorageAccountListResult = {
     className: "StorageAccountListResult",
     modelProperties: {
       value: {
-  serializedName: "",
-  type: {
-    name: "Sequence",
-    element: {
-  serializedName: "StorageAccountElementType",
-  type: {
-    name: "Composite",
-    className: "StorageAccount"
-  }
-}
-  }
-}
+        serializedName: "",
+        type: {
+          name: "Sequence",
+          element: {
+            serializedName: "StorageAccountElementType",
+            type: {
+              name: "Composite",
+              className: "StorageAccount"
+            }
+          }
+        }
+      }
     }
   }
 };

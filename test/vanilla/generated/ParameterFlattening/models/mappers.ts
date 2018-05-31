@@ -16,18 +16,18 @@ export const AvailabilitySetUpdateParameters = {
     className: "AvailabilitySetUpdateParameters",
     modelProperties: {
       tags: {
-  required: true,
-  serializedName: "tags",
-  type: {
-    name: "Dictionary",
-    value: {
-  serializedName: "stringElementType",
-  type: {
-    name: "String"
-  }
-}
-  }
-}
+        required: true,
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: {
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
+          }
+        }
+      }
     }
   }
 };

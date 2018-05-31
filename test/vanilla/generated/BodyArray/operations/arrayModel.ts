@@ -44,10 +44,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/null"
@@ -87,11 +88,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -129,10 +130,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/invalid"
@@ -172,11 +174,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -214,10 +216,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/empty"
@@ -257,11 +260,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -314,31 +317,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/empty",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -393,10 +396,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/tfft"
@@ -436,11 +440,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -493,31 +497,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "booleanElementType",
-        type: {
-          name: "Boolean"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/tfft",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "booleanElementType",
+                type: {
+                  name: "Boolean"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -572,10 +576,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/true.null.false"
@@ -615,11 +620,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -657,10 +662,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/true.boolean.false"
@@ -700,11 +706,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "booleanElementType",
-              type: {
-                name: "Boolean"
-              }
-            }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -742,10 +748,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.-1.3.300"
@@ -785,11 +792,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -842,31 +849,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -921,10 +928,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.null.zero"
@@ -964,11 +972,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1006,10 +1014,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.integer.0"
@@ -1049,11 +1058,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1091,10 +1100,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.-1.3.300"
@@ -1134,11 +1144,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1191,31 +1201,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1270,10 +1280,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.null.zero"
@@ -1313,11 +1324,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1355,10 +1366,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.integer.0"
@@ -1398,11 +1410,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1440,10 +1452,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0--0.01-1.2e20"
@@ -1483,11 +1496,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1540,31 +1553,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1619,10 +1632,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0.0-null-1.2e20"
@@ -1662,11 +1676,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1704,10 +1718,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/1.number.0"
@@ -1747,11 +1762,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1789,10 +1804,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0--0.01-1.2e20"
@@ -1832,11 +1848,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1889,31 +1905,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "numberElementType",
-        type: {
-          name: "Number"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1968,10 +1984,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0.0-null-1.2e20"
@@ -2011,11 +2028,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2053,10 +2070,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/1.number.0"
@@ -2096,11 +2114,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2138,10 +2156,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo1.foo2.foo3"
@@ -2181,11 +2200,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2238,31 +2257,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2317,10 +2336,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo.null.foo2"
@@ -2360,11 +2380,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2402,10 +2422,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo.123.foo2"
@@ -2445,11 +2466,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2489,10 +2510,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/valid"
@@ -2532,11 +2554,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "Uuid"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2591,31 +2613,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "Uuid"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "Uuid"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2670,10 +2692,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/invalidchars"
@@ -2713,11 +2736,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "Uuid"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2755,10 +2778,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/valid"
@@ -2798,11 +2822,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2856,31 +2880,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "DateElementType",
-        type: {
-          name: "Date"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "Date"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2935,10 +2959,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/invalidnull"
@@ -2978,11 +3003,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3020,10 +3045,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/invalidchars"
@@ -3063,11 +3089,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "Date"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3106,10 +3132,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/valid"
@@ -3149,11 +3176,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3208,31 +3235,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "DateElementType",
-        type: {
-          name: "DateTime"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTime"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3287,10 +3314,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/invalidnull"
@@ -3330,11 +3358,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3372,10 +3400,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/invalidchars"
@@ -3415,11 +3444,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTime"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3458,10 +3487,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time-rfc1123/valid"
@@ -3501,11 +3531,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "DateElementType",
-              type: {
-                name: "DateTimeRfc1123"
-              }
-            }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3560,31 +3590,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "DateElementType",
-        type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time-rfc1123/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTimeRfc1123"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3639,10 +3669,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/duration/valid"
@@ -3682,11 +3713,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "TimeSpan"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3739,31 +3770,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "TimeSpan"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/duration/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "TimeSpan"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3819,10 +3850,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/valid"
@@ -3862,11 +3894,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "ByteArray"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3920,31 +3952,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "BufferElementType",
-        type: {
-          name: "ByteArray"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "BufferElementType",
+                type: {
+                  name: "ByteArray"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -4000,10 +4032,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/invalidnull"
@@ -4043,11 +4076,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "ByteArray"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4086,10 +4119,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/prim/base64url/valid"
@@ -4129,11 +4163,11 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "BufferElementType",
-              type: {
-                name: "Base64Url"
-              }
-            }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "Base64Url"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4171,10 +4205,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/complex/null"
@@ -4214,12 +4249,12 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductElementType",
-              type: {
-                name: "Composite",
-                className: "Product"
-              }
-            }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4257,10 +4292,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/complex/empty"
@@ -4300,12 +4336,12 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductElementType",
-              type: {
-                name: "Composite",
-                className: "Product"
-              }
-            }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4344,10 +4380,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/complex/itemnull"
@@ -4387,12 +4424,12 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductElementType",
-              type: {
-                name: "Composite",
-                className: "Product"
-              }
-            }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4431,10 +4468,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/complex/itemempty"
@@ -4474,12 +4512,12 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductElementType",
-              type: {
-                name: "Composite",
-                className: "Product"
-              }
-            }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4518,10 +4556,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/complex/valid"
@@ -4561,12 +4600,12 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ProductElementType",
-              type: {
-                name: "Composite",
-                className: "Product"
-              }
-            }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4607,32 +4646,32 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "ProductElementType",
-        type: {
-          name: "Composite",
-          className: "Product"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/complex/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ProductElementType",
+                type: {
+                  name: "Composite",
+                  className: "Product"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -4687,10 +4726,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/array/null"
@@ -4730,17 +4770,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4778,10 +4818,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/array/empty"
@@ -4821,17 +4862,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4869,10 +4910,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/array/itemnull"
@@ -4912,17 +4954,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4960,10 +5002,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/array/itemempty"
@@ -5003,17 +5046,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5052,10 +5095,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/array/valid"
@@ -5095,17 +5139,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ArrayElementType",
-              type: {
-                name: "Sequence",
-                element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5163,37 +5207,37 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "ArrayElementType",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/array/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ArrayElementType",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -5248,10 +5292,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/null"
@@ -5291,17 +5336,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5339,10 +5384,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/empty"
@@ -5382,17 +5428,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5432,10 +5478,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/itemnull"
@@ -5475,17 +5522,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5525,10 +5572,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/itemempty"
@@ -5568,17 +5616,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5618,10 +5666,11 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/valid"
@@ -5661,17 +5710,17 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "ObjectElementType",
-              type: {
-                name: "Dictionary",
-                value: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
-              }
-            }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
+                    }
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5730,37 +5779,37 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "arrayBody",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "ObjectElementType",
-        type: {
-          name: "Dictionary",
-          value: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ObjectElementType",
+                type: {
+                  name: "Dictionary",
+                  value: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });

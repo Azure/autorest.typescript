@@ -55,25 +55,25 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "bodyParameter",
-        type: {
-          name: "Number"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "Number"
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -150,24 +150,24 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "bodyParameter",
-        type: {
-          name: "Number"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "Number"
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -239,19 +239,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.IntWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.IntWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -334,19 +334,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.IntOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.IntOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -412,14 +412,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/header",
@@ -427,12 +428,12 @@ export class Explicit {
             {
               parameterName: "headerParameter",
               mapper: {
-          required: true,
-          serializedName: "headerParameter",
-          type: {
-            name: "Number"
-          }
-        }
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -510,14 +511,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/header",
@@ -525,11 +527,11 @@ export class Explicit {
             {
               parameterName: "headerParameter",
               mapper: {
-          serializedName: "headerParameter",
-          type: {
-            name: "Number"
-          }
-        }
+                serializedName: "headerParameter",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -595,25 +597,25 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "bodyParameter",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -690,24 +692,24 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "bodyParameter",
-        type: {
-          name: "String"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -779,19 +781,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StringWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StringWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -874,19 +876,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StringOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StringOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -952,14 +954,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/header",
@@ -967,12 +970,12 @@ export class Explicit {
             {
               parameterName: "headerParameter",
               mapper: {
-          required: true,
-          serializedName: "headerParameter",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1050,14 +1053,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/header",
@@ -1065,11 +1069,11 @@ export class Explicit {
             {
               parameterName: "bodyParameter",
               mapper: {
-          serializedName: "bodyParameter",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "bodyParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1135,19 +1139,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1216,19 +1220,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1300,19 +1304,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ClassWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ClassWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1387,19 +1391,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ClassOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ClassOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1470,31 +1474,31 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "bodyParameter",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1575,30 +1579,30 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "bodyParameter",
-        type: {
-          name: "Sequence",
-          element: {
-        serializedName: "stringElementType",
-        type: {
-          name: "String"
-        }
-      }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1675,19 +1679,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ArrayWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1774,19 +1778,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ArrayOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ArrayOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1857,14 +1861,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/header",
@@ -1872,18 +1877,18 @@ export class Explicit {
             {
               parameterName: "headerParameter",
               mapper: {
-          required: true,
-          serializedName: "headerParameter",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        }
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -1965,14 +1970,15 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/header",
@@ -1980,17 +1986,17 @@ export class Explicit {
             {
               parameterName: "headerParameter",
               mapper: {
-          serializedName: "headerParameter",
-          type: {
-            name: "Sequence",
-            element: {
-          serializedName: "stringElementType",
-          type: {
-            name: "String"
-          }
-        }
-          }
-        }
+                serializedName: "headerParameter",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });

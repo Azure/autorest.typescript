@@ -89,14 +89,15 @@ class AutoRestReportService extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          qualifier
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            qualifier
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report",
@@ -104,11 +105,11 @@ class AutoRestReportService extends msRest.ServiceClient {
             {
               parameterName: "qualifier",
               mapper: {
-          serializedName: "qualifier",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "qualifier",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -147,11 +148,11 @@ class AutoRestReportService extends msRest.ServiceClient {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');

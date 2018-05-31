@@ -60,15 +60,16 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          fileContent,
+          fileName
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            fileContent,
-            fileName
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
@@ -76,22 +77,22 @@ export class Formdata {
             {
               parameterName: "fileContent",
               mapper: {
-          required: true,
-          serializedName: "fileContent",
-          type: {
-            name: "Stream"
-          }
-        }
+                required: true,
+                serializedName: "fileContent",
+                type: {
+                  name: "Stream"
+                }
+              }
             },
             {
               parameterName: "fileName",
               mapper: {
-          required: true,
-          serializedName: "fileName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "fileName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           contentType: "multipart/form-data"
@@ -160,25 +161,25 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "fileContent",
-        type: {
-          name: "Stream"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          fileContent
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            fileContent
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "fileContent",
+            type: {
+              name: "Stream"
+            }
+          },
           requestBodyName: "fileContent",
           contentType: "application/octet-stream"
         });

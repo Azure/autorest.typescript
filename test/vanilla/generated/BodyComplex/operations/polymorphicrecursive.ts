@@ -44,10 +44,11 @@ export class Polymorphicrecursive {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphicrecursive/valid"
@@ -180,19 +181,19 @@ export class Polymorphicrecursive {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Fish;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphicrecursive/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Fish,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });

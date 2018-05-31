@@ -45,10 +45,11 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable"
@@ -146,30 +147,30 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "stringBody",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green-color",
-            "blue_color"
-          ]
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "stringBody",
+            type: {
+              name: "Enum",
+              allowedValues: [
+                "red color",
+                "green-color",
+                "blue_color"
+              ]
+            }
+          },
           requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -225,10 +226,11 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced"
@@ -326,30 +328,30 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: "enumStringBody",
-        type: {
-          name: "Enum",
-          allowedValues: [
-            "red color",
-            "green-color",
-            "blue_color"
-          ]
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumStringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumStringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "enumStringBody",
+            type: {
+              name: "Enum",
+              allowedValues: [
+                "red color",
+                "green-color",
+                "blue_color"
+              ]
+            }
+          },
           requestBodyName: "enumStringBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -404,10 +406,11 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant"
@@ -497,19 +500,19 @@ export class EnumModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.RefColorConstant;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumStringBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumStringBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.RefColorConstant,
           requestBodyName: "enumStringBody",
           contentType: "application/json; charset=utf-8"
         });

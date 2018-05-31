@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,11 +38,11 @@ export const A = {
     className: "A",
     modelProperties: {
       statusCode: {
-  serializedName: "statusCode",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "statusCode",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -54,17 +54,17 @@ export const B = {
     className: "B",
     modelProperties: {
       statusCode: {
-  serializedName: "statusCode",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "statusCode",
+        type: {
+          name: "String"
+        }
+      },
       textStatusCode: {
-  serializedName: "textStatusCode",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "textStatusCode",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -76,11 +76,11 @@ export const C = {
     className: "C",
     modelProperties: {
       httpCode: {
-  serializedName: "httpCode",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "httpCode",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -92,11 +92,11 @@ export const D = {
     className: "D",
     modelProperties: {
       httpStatusCode: {
-  serializedName: "httpStatusCode",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "httpStatusCode",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -108,11 +108,11 @@ export const HttpSuccessPut200OptionalParams = {
     className: "HttpSuccessPut200OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -124,11 +124,11 @@ export const HttpSuccessPatch200OptionalParams = {
     className: "HttpSuccessPatch200OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -140,11 +140,11 @@ export const HttpSuccessPost200OptionalParams = {
     className: "HttpSuccessPost200OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -156,11 +156,11 @@ export const HttpSuccessDelete200OptionalParams = {
     className: "HttpSuccessDelete200OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -172,11 +172,11 @@ export const HttpSuccessPut201OptionalParams = {
     className: "HttpSuccessPut201OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -188,11 +188,11 @@ export const HttpSuccessPost201OptionalParams = {
     className: "HttpSuccessPost201OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -204,11 +204,11 @@ export const HttpSuccessPut202OptionalParams = {
     className: "HttpSuccessPut202OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -220,11 +220,11 @@ export const HttpSuccessPatch202OptionalParams = {
     className: "HttpSuccessPatch202OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -236,11 +236,11 @@ export const HttpSuccessPost202OptionalParams = {
     className: "HttpSuccessPost202OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -252,11 +252,11 @@ export const HttpSuccessDelete202OptionalParams = {
     className: "HttpSuccessDelete202OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -268,11 +268,11 @@ export const HttpSuccessPut204OptionalParams = {
     className: "HttpSuccessPut204OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -284,11 +284,11 @@ export const HttpSuccessPatch204OptionalParams = {
     className: "HttpSuccessPatch204OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -300,11 +300,11 @@ export const HttpSuccessPost204OptionalParams = {
     className: "HttpSuccessPost204OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -316,11 +316,11 @@ export const HttpSuccessDelete204OptionalParams = {
     className: "HttpSuccessDelete204OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -332,11 +332,11 @@ export const HttpRedirectsPut301OptionalParams = {
     className: "HttpRedirectsPut301OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -348,11 +348,11 @@ export const HttpRedirectsPatch302OptionalParams = {
     className: "HttpRedirectsPatch302OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -364,11 +364,11 @@ export const HttpRedirectsPost303OptionalParams = {
     className: "HttpRedirectsPost303OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -380,11 +380,11 @@ export const HttpRedirectsPut307OptionalParams = {
     className: "HttpRedirectsPut307OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -396,11 +396,11 @@ export const HttpRedirectsPatch307OptionalParams = {
     className: "HttpRedirectsPatch307OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -412,11 +412,11 @@ export const HttpRedirectsPost307OptionalParams = {
     className: "HttpRedirectsPost307OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -428,11 +428,11 @@ export const HttpRedirectsDelete307OptionalParams = {
     className: "HttpRedirectsDelete307OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -444,11 +444,11 @@ export const HttpClientFailurePut400OptionalParams = {
     className: "HttpClientFailurePut400OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -460,11 +460,11 @@ export const HttpClientFailurePatch400OptionalParams = {
     className: "HttpClientFailurePatch400OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -476,11 +476,11 @@ export const HttpClientFailurePost400OptionalParams = {
     className: "HttpClientFailurePost400OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -492,11 +492,11 @@ export const HttpClientFailureDelete400OptionalParams = {
     className: "HttpClientFailureDelete400OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -508,11 +508,11 @@ export const HttpClientFailurePut404OptionalParams = {
     className: "HttpClientFailurePut404OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -524,11 +524,11 @@ export const HttpClientFailurePatch405OptionalParams = {
     className: "HttpClientFailurePatch405OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -540,11 +540,11 @@ export const HttpClientFailurePost406OptionalParams = {
     className: "HttpClientFailurePost406OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -556,11 +556,11 @@ export const HttpClientFailureDelete407OptionalParams = {
     className: "HttpClientFailureDelete407OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -572,11 +572,11 @@ export const HttpClientFailurePut409OptionalParams = {
     className: "HttpClientFailurePut409OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -588,11 +588,11 @@ export const HttpClientFailurePut413OptionalParams = {
     className: "HttpClientFailurePut413OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -604,11 +604,11 @@ export const HttpClientFailurePatch414OptionalParams = {
     className: "HttpClientFailurePatch414OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -620,11 +620,11 @@ export const HttpClientFailurePost415OptionalParams = {
     className: "HttpClientFailurePost415OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -636,11 +636,11 @@ export const HttpClientFailureDelete417OptionalParams = {
     className: "HttpClientFailureDelete417OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -652,11 +652,11 @@ export const HttpServerFailurePost505OptionalParams = {
     className: "HttpServerFailurePost505OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -668,11 +668,11 @@ export const HttpServerFailureDelete505OptionalParams = {
     className: "HttpServerFailureDelete505OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -684,11 +684,11 @@ export const HttpRetryPut500OptionalParams = {
     className: "HttpRetryPut500OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -700,11 +700,11 @@ export const HttpRetryPatch500OptionalParams = {
     className: "HttpRetryPatch500OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -716,11 +716,11 @@ export const HttpRetryPost503OptionalParams = {
     className: "HttpRetryPost503OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -732,11 +732,11 @@ export const HttpRetryDelete503OptionalParams = {
     className: "HttpRetryDelete503OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -748,11 +748,11 @@ export const HttpRetryPut504OptionalParams = {
     className: "HttpRetryPut504OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -764,11 +764,11 @@ export const HttpRetryPatch504OptionalParams = {
     className: "HttpRetryPatch504OptionalParams",
     modelProperties: {
       booleanValue: {
-  serializedName: "booleanValue",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "booleanValue",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -780,11 +780,11 @@ export const HttpRedirectsHead300Headers = {
     className: "HttpRedirectsHead300Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -796,11 +796,11 @@ export const HttpRedirectsGet300Headers = {
     className: "HttpRedirectsGet300Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -812,11 +812,11 @@ export const HttpRedirectsHead301Headers = {
     className: "HttpRedirectsHead301Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -828,11 +828,11 @@ export const HttpRedirectsGet301Headers = {
     className: "HttpRedirectsGet301Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -844,11 +844,11 @@ export const HttpRedirectsPut301Headers = {
     className: "HttpRedirectsPut301Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -860,11 +860,11 @@ export const HttpRedirectsHead302Headers = {
     className: "HttpRedirectsHead302Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -876,11 +876,11 @@ export const HttpRedirectsGet302Headers = {
     className: "HttpRedirectsGet302Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -892,11 +892,11 @@ export const HttpRedirectsPatch302Headers = {
     className: "HttpRedirectsPatch302Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -908,11 +908,11 @@ export const HttpRedirectsPost303Headers = {
     className: "HttpRedirectsPost303Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -924,11 +924,11 @@ export const HttpRedirectsHead307Headers = {
     className: "HttpRedirectsHead307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -940,11 +940,11 @@ export const HttpRedirectsGet307Headers = {
     className: "HttpRedirectsGet307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -956,11 +956,11 @@ export const HttpRedirectsPut307Headers = {
     className: "HttpRedirectsPut307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -972,11 +972,11 @@ export const HttpRedirectsPatch307Headers = {
     className: "HttpRedirectsPatch307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -988,11 +988,11 @@ export const HttpRedirectsPost307Headers = {
     className: "HttpRedirectsPost307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -1004,11 +1004,11 @@ export const HttpRedirectsDelete307Headers = {
     className: "HttpRedirectsDelete307Headers",
     modelProperties: {
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

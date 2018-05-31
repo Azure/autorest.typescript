@@ -44,10 +44,11 @@ export class Readonlyproperty {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/readonlyproperty/valid"
@@ -137,19 +138,19 @@ export class Readonlyproperty {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ReadonlyObj;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          complexBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            complexBody
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/readonlyproperty/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ReadonlyObj,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8"
         });

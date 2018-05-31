@@ -44,10 +44,11 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -103,10 +104,11 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/success/200"
@@ -191,24 +193,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -272,24 +274,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -353,24 +355,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -434,24 +436,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/200",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -515,24 +517,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -596,24 +598,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/201",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -677,24 +679,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -758,24 +760,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -839,24 +841,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -920,24 +922,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/202",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -992,10 +994,11 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/204"
@@ -1060,24 +1063,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1141,24 +1144,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1222,24 +1225,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1303,24 +1306,24 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/success/204",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1375,10 +1378,11 @@ export class HttpSuccess {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/success/404"

@@ -44,10 +44,11 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/retry/408"
@@ -112,24 +113,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/retry/500",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -193,24 +194,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/retry/500",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -265,10 +266,11 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/retry/502"
@@ -333,24 +335,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/retry/503",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -414,24 +416,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/retry/503",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -495,24 +497,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/retry/504",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -576,24 +578,24 @@ export class HttpRetry {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/retry/504",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });

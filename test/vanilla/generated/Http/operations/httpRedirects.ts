@@ -44,10 +44,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/300"
@@ -111,10 +112,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/300"
@@ -158,11 +160,11 @@ export class HttpRedirects {
               type: {
                 name: "Sequence",
                 element: {
-              serializedName: "stringElementType",
-              type: {
-                name: "String"
-              }
-            }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -201,10 +203,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301"
@@ -268,10 +271,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301"
@@ -346,24 +350,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -422,10 +426,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302"
@@ -489,10 +494,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302"
@@ -567,24 +573,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -653,24 +659,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/303",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -733,10 +739,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307"
@@ -800,10 +807,11 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307"
@@ -876,24 +884,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -965,24 +973,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1054,24 +1062,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -1143,24 +1151,24 @@ export class HttpRedirects {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });

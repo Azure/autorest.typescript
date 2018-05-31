@@ -20,17 +20,17 @@ export const SampleResourceGroup = {
     className: "SampleResourceGroup",
     modelProperties: {
       name: {
-  serializedName: "name",
-  type: {
-    name: "String"
-  }
-},
+        serializedName: "name",
+        type: {
+          name: "String"
+        }
+      },
       location: {
-  serializedName: "location",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -42,17 +42,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       code: {
-  serializedName: "code",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "code",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

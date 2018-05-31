@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,11 +38,11 @@ export const HeaderParamStringOptionalParams = {
     className: "HeaderParamStringOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -54,11 +54,11 @@ export const HeaderParamDatetimeRfc1123OptionalParams = {
     className: "HeaderParamDatetimeRfc1123OptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "DateTimeRfc1123"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
     }
   }
 };
@@ -70,16 +70,16 @@ export const HeaderParamEnumOptionalParams = {
     className: "HeaderParamEnumOptionalParams",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "White",
-      "black",
-      "GREY"
-    ]
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "White",
+            "black",
+            "GREY"
+          ]
+        }
+      }
     }
   }
 };
@@ -91,11 +91,11 @@ export const HeaderResponseExistingKeyHeaders = {
     className: "HeaderResponseExistingKeyHeaders",
     modelProperties: {
       userAgent: {
-  serializedName: "user-agent",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "user-agent",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -107,11 +107,11 @@ export const HeaderResponseProtectedKeyHeaders = {
     className: "HeaderResponseProtectedKeyHeaders",
     modelProperties: {
       contentType: {
-  serializedName: "content-type",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "content-type",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -123,11 +123,11 @@ export const HeaderResponseIntegerHeaders = {
     className: "HeaderResponseIntegerHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -139,11 +139,11 @@ export const HeaderResponseLongHeaders = {
     className: "HeaderResponseLongHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -155,11 +155,11 @@ export const HeaderResponseFloatHeaders = {
     className: "HeaderResponseFloatHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -171,11 +171,11 @@ export const HeaderResponseDoubleHeaders = {
     className: "HeaderResponseDoubleHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Number"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Number"
+        }
+      }
     }
   }
 };
@@ -187,11 +187,11 @@ export const HeaderResponseBoolHeaders = {
     className: "HeaderResponseBoolHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Boolean"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Boolean"
+        }
+      }
     }
   }
 };
@@ -203,11 +203,11 @@ export const HeaderResponseStringHeaders = {
     className: "HeaderResponseStringHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -219,11 +219,11 @@ export const HeaderResponseDateHeaders = {
     className: "HeaderResponseDateHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Date"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Date"
+        }
+      }
     }
   }
 };
@@ -235,11 +235,11 @@ export const HeaderResponseDatetimeHeaders = {
     className: "HeaderResponseDatetimeHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "DateTime"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "DateTime"
+        }
+      }
     }
   }
 };
@@ -251,11 +251,11 @@ export const HeaderResponseDatetimeRfc1123Headers = {
     className: "HeaderResponseDatetimeRfc1123Headers",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "DateTimeRfc1123"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
     }
   }
 };
@@ -267,11 +267,11 @@ export const HeaderResponseDurationHeaders = {
     className: "HeaderResponseDurationHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "TimeSpan"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "TimeSpan"
+        }
+      }
     }
   }
 };
@@ -283,11 +283,11 @@ export const HeaderResponseByteHeaders = {
     className: "HeaderResponseByteHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "ByteArray"
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "ByteArray"
+        }
+      }
     }
   }
 };
@@ -299,16 +299,16 @@ export const HeaderResponseEnumHeaders = {
     className: "HeaderResponseEnumHeaders",
     modelProperties: {
       value: {
-  serializedName: "value",
-  type: {
-    name: "Enum",
-    allowedValues: [
-      "White",
-      "black",
-      "GREY"
-    ]
-  }
-}
+        serializedName: "value",
+        type: {
+          name: "Enum",
+          allowedValues: [
+            "White",
+            "black",
+            "GREY"
+          ]
+        }
+      }
     }
   }
 };

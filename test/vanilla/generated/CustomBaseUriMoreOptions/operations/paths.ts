@@ -74,90 +74,89 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            vault,
-            secret,
-            "this.client.dnsSuffix": this.client.dnsSuffix,
-            keyName,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            keyVersion
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          vault,
+          secret,
+          "this.client.dnsSuffix": this.client.dnsSuffix,
+          keyName,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          keyVersion
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "customuri/{subscriptionId}/{keyName}",
           urlParameters: [
             {
               parameterName: "vault",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "vault",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "vault",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "secret",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "secret",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "secret",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.dnsSuffix",
-              urlParameterName: "dnsSuffix",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "dnsSuffix",
-          defaultValue: 'host',
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "dnsSuffix",
+                defaultValue: 'host',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "keyName",
               mapper: {
-          required: true,
-          serializedName: "keyName",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "keyName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
               mapper: {
-          required: true,
-          serializedName: "subscriptionId",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "keyVersion",
               mapper: {
-          serializedName: "keyVersion",
-          defaultValue: 'v1',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "keyVersion",
+                defaultValue: 'v1',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

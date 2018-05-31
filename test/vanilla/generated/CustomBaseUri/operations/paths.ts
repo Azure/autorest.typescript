@@ -56,42 +56,42 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            accountName,
-            "this.client.host": this.client.host
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          accountName,
+          "this.client.host": this.client.host
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "customuri",
           urlParameters: [
             {
               parameterName: "accountName",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "accountName",
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.host",
-              urlParameterName: "host",
+              skipEncoding: true,
               mapper: {
-          required: true,
-          serializedName: "host",
-          defaultValue: 'host',
-          type: {
-            name: "String"
-          }
-        },
-              skipEncoding: true
+                required: true,
+                serializedName: "host",
+                defaultValue: 'host',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

@@ -58,40 +58,39 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          fooClientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestId",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",
-              headerName: "foo-client-request-id",
               mapper: {
-          required: true,
-          serializedName: "foo-client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "foo-client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -178,40 +177,39 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            fooClientRequestId
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          fooClientRequestId
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestIdParamGrouping",
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "fooClientRequestId",
-              headerName: "foo-client-request-id",
               mapper: {
-          required: true,
-          serializedName: "foo-client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "foo-client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -284,40 +282,39 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            fooClientRequestId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          fooClientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "azurespecials/customNamedRequestIdHead",
           headerParameters: [
             {
               parameterName: "fooClientRequestId",
-              headerName: "foo-client-request-id",
               mapper: {
-          required: true,
-          serializedName: "foo-client-request-id",
-          type: {
-            name: "String"
-          }
-        }
+                required: true,
+                serializedName: "foo-client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });

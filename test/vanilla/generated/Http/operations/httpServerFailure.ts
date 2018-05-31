@@ -44,10 +44,11 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/501"
@@ -115,10 +116,11 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/501"
@@ -196,24 +198,24 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });
@@ -290,24 +292,24 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        serializedName: "booleanValue",
-        type: {
-          name: "Boolean"
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          }
-          ,options)
-        ,{
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8"
         });

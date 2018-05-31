@@ -16,17 +16,17 @@ export const ErrorModel = {
     className: "ErrorModel",
     modelProperties: {
       status: {
-  serializedName: "status",
-  type: {
-    name: "Number"
-  }
-},
+        serializedName: "status",
+        type: {
+          name: "Number"
+        }
+      },
       message: {
-  serializedName: "message",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "message",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };
@@ -38,11 +38,11 @@ export const AutoRestReportServiceGetReportOptionalParams = {
     className: "AutoRestReportServiceGetReportOptionalParams",
     modelProperties: {
       qualifier: {
-  serializedName: "qualifier",
-  type: {
-    name: "String"
-  }
-}
+        serializedName: "qualifier",
+        type: {
+          name: "String"
+        }
+      }
     }
   }
 };

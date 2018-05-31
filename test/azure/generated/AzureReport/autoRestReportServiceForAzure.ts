@@ -119,15 +119,16 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      operationRes = await client.sendOperationRequest(
-        httpRequest,
-        msRest.createOperationArguments(
-          {
-            qualifier,
-            "this.acceptLanguage": this.acceptLanguage
-          }
-          ,options),
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          qualifier,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest
+        ,operationArgument
+        s,{
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report/azure",
@@ -135,24 +136,23 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
             {
               parameterName: "qualifier",
               mapper: {
-          serializedName: "qualifier",
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "qualifier",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
               mapper: {
-          serializedName: "accept-language",
-          defaultValue: 'en-US',
-          type: {
-            name: "String"
-          }
-        }
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -191,11 +191,11 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
               type: {
                 name: "Dictionary",
                 value: {
-              serializedName: "numberElementType",
-              type: {
-                name: "Number"
-              }
-            }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
+                }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
