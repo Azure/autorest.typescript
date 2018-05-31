@@ -97,12 +97,27 @@ export class AvailabilitySets {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "resourceGroupName",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "avset",
               urlParameterName: "availabilitySetName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "availabilitySetName",
+          constraints: {
+            MaxLength: 80
+          },
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,

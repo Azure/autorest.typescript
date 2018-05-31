@@ -456,6 +456,15 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
+        /// Invoke the provided action in order to produce a value in this TSBuilder.
+        /// </summary>
+        /// <param name="valueAction">The action to invoke.</param>
+        public void Value(Action<TSValue> valueAction)
+        {
+            valueAction?.Invoke(new TSValue(this));
+        }
+
+        /// <summary>
         /// Add a function call with the provided functionName to this TSBuilder. The provided
         /// action will be used to create the arguments for the function call.
         /// </summary>
@@ -517,7 +526,7 @@ namespace AutoRest.TypeScript.DSL
         public void Return(Action<TSValue> returnValueAction)
         {
             Text("return ");
-            returnValueAction.Invoke(new TSValue(this));
+            Value(returnValueAction);
             Line(";");
         }
 
@@ -529,7 +538,7 @@ namespace AutoRest.TypeScript.DSL
         public void ThrowNew(Action<TSValue> valueAction)
         {
             Text($"throw new ");
-            valueAction.Invoke(new TSValue(this));
+            Value(valueAction);
             Line(";");
         }
     }

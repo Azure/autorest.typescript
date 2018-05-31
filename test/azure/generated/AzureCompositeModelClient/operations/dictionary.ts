@@ -67,7 +67,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -86,7 +92,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -101,7 +107,7 @@ export class Dictionary {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.DictionaryWrapper;
+            const resultMapper = Mappers.DictionaryWrapper;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -175,7 +181,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -197,7 +209,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -256,7 +268,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -275,7 +293,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -290,7 +308,7 @@ export class Dictionary {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.DictionaryWrapper;
+            const resultMapper = Mappers.DictionaryWrapper;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -364,7 +382,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -386,7 +410,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -445,7 +469,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -464,7 +494,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -479,7 +509,7 @@ export class Dictionary {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.DictionaryWrapper;
+            const resultMapper = Mappers.DictionaryWrapper;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -539,7 +569,13 @@ export class Dictionary {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -558,7 +594,7 @@ export class Dictionary {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -573,7 +609,7 @@ export class Dictionary {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.DictionaryWrapper;
+            const resultMapper = Mappers.DictionaryWrapper;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

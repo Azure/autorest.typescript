@@ -67,7 +67,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -86,7 +92,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -101,7 +107,7 @@ export class Polymorphism {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Fish;
+            const resultMapper = Mappers.Fish;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -199,7 +205,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -221,7 +233,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -281,7 +293,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -300,7 +318,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -315,7 +333,7 @@ export class Polymorphism {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Salmon;
+            const resultMapper = Mappers.Salmon;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -382,7 +400,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -404,7 +428,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -470,7 +494,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -492,7 +522,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -507,7 +537,7 @@ export class Polymorphism {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Salmon;
+            const resultMapper = Mappers.Salmon;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -600,7 +630,13 @@ export class Polymorphism {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -622,7 +658,7 @@ export class Polymorphism {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

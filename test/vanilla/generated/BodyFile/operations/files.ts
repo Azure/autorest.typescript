@@ -68,7 +68,7 @@ export class Files {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -130,7 +130,7 @@ export class Files {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -192,7 +192,7 @@ export class Files {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

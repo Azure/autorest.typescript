@@ -72,6 +72,18 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              mapper: {
+          serializedName: "arrayQuery",
+          type: {
+            name: "Sequence",
+            element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+          }
+        },
               collectionFormat: msRest.QueryCollectionFormat.Multi
             }
           ]
@@ -91,7 +103,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -155,6 +167,18 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              mapper: {
+          serializedName: "arrayQuery",
+          type: {
+            name: "Sequence",
+            element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+          }
+        },
               collectionFormat: msRest.QueryCollectionFormat.Multi
             }
           ]
@@ -174,7 +198,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -239,6 +263,18 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
+              mapper: {
+          serializedName: "arrayQuery",
+          type: {
+            name: "Sequence",
+            element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+          }
+        },
               collectionFormat: msRest.QueryCollectionFormat.Multi
             }
           ]
@@ -258,7 +294,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

@@ -67,7 +67,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -82,7 +82,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -141,7 +141,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -156,7 +156,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -215,7 +215,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -230,7 +230,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -289,7 +289,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -304,7 +304,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -364,7 +364,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -379,7 +379,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -438,7 +438,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -453,7 +453,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -468,7 +468,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.B;
+            const resultMapper = Mappers.B;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -528,7 +528,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -543,7 +543,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -558,7 +558,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.B;
+            const resultMapper = Mappers.B;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -618,7 +618,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -633,7 +633,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -648,7 +648,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.B;
+            const resultMapper = Mappers.B;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -707,7 +707,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -722,7 +722,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -737,7 +737,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.C;
+            const resultMapper = Mappers.C;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -752,7 +752,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.D;
+            const resultMapper = Mappers.D;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -811,7 +811,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -826,7 +826,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -841,7 +841,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.C;
+            const resultMapper = Mappers.C;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -856,7 +856,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.D;
+            const resultMapper = Mappers.D;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -915,7 +915,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -930,7 +930,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -945,7 +945,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.C;
+            const resultMapper = Mappers.C;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -960,7 +960,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.D;
+            const resultMapper = Mappers.D;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1020,7 +1020,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1035,7 +1035,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1050,7 +1050,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.C;
+            const resultMapper = Mappers.C;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1065,7 +1065,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.D;
+            const resultMapper = Mappers.D;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1124,7 +1124,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1183,7 +1183,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1243,7 +1243,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1522,7 +1522,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1535,7 +1535,7 @@ export class MultipleResponses {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.A;
+          const resultMapper = Mappers.A;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1593,7 +1593,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1606,7 +1606,7 @@ export class MultipleResponses {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.A;
+          const resultMapper = Mappers.A;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1664,7 +1664,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1677,7 +1677,7 @@ export class MultipleResponses {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.A;
+          const resultMapper = Mappers.A;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1735,7 +1735,7 @@ export class MultipleResponses {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1748,7 +1748,7 @@ export class MultipleResponses {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.A;
+          const resultMapper = Mappers.A;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -2038,7 +2038,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2108,7 +2108,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2178,7 +2178,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2249,7 +2249,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2319,7 +2319,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2389,7 +2389,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2459,7 +2459,7 @@ export class MultipleResponses {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.A;
+            const resultMapper = Mappers.A;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

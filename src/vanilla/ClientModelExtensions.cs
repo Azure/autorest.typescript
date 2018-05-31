@@ -9,6 +9,7 @@ using System.Reflection;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
+using AutoRest.TypeScript.DSL;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
@@ -76,6 +77,16 @@ namespace AutoRest.TypeScript
             }
 
             return valueReference.Replace("'", "\\'");
+        }
+
+        public static string EscapeDoubleQuotes(this string valueReference)
+        {
+            if (valueReference == null)
+            {
+                throw new ArgumentNullException(nameof(valueReference));
+            }
+
+            return valueReference.Replace("\"", "\\\"");
         }
 
         private static IndentedStringBuilder ConstructValidationCheck(IndentedStringBuilder builder, string errorMessage, string valueReference, string typeName)
@@ -572,7 +583,7 @@ namespace AutoRest.TypeScript
                         break;
                     case Constraint.Pattern:
 
-                        constraintValue = "/" + constraintValue.Replace("/", "\\/") + "/";
+                        constraintValue = CreatePatternConstraintValue(constraintValue);
                         constraintCheck = $"{valueReference}.match({constraintValue}) === null";
                         break;
                     case Constraint.UniqueItems:
@@ -613,9 +624,14 @@ namespace AutoRest.TypeScript
             return builder;
         }
 
-        public static string ConstructMapper(this IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        private static string CreatePatternConstraintValue(string constraintValue)
         {
-            var builder = new IndentedStringBuilder("  ");
+            return "/" + constraintValue.Replace("/", "\\/") + "/";
+        }
+
+        public static string ConstructMapper(IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        {
+            TSBuilder builder = new TSBuilder();
             string defaultValue = null;
             bool isRequired = false;
             bool isConstant = false;
@@ -630,314 +646,245 @@ namespace AutoRest.TypeScript
                 constraints = parameter.Constraints;
             }
 
-            builder.AppendLine("").Indent();
-
-            bool wroteXmlName = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
-            if (wroteXmlName)
+            builder.Object(mapper =>
             {
-                builder.AppendLine($"xmlName: '{xmlName}',");
-            }
-
-            if (!isCaseSensitive)
-            {
-                serializedName = serializedName.ToLower();
-            }
-
-            if (property != null)
-            {
-                isReadOnly = property.IsReadOnly;
-
-                if (isXML)
+                bool wroteXmlName = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
+                if (wroteXmlName)
                 {
-                    if (property.XmlIsAttribute)
-                    {
-                        builder.AppendLine("xmlIsAttribute: true,");
-                    }
-
-                    if (property.XmlIsWrapped)
-                    {
-                        builder.AppendLine("xmlIsWrapped: true,");
-                    }
-
-                    if (!wroteXmlName && !string.IsNullOrEmpty(property.XmlName))
-                    {
-                        builder.AppendLine($"xmlName: '{property.XmlName}',");
-                    }
-                }
-            }
-
-            CompositeType composite = type as CompositeType;
-            if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
-            {
-                defaultValue = "{}";
-            }
-
-            SequenceType sequence = type as SequenceType;
-            if (sequence != null && isXML)
-            {
-                if (sequence.ElementXmlIsWrapped)
-                {
-                    builder.AppendLine("xmlElementIsWrapped: true,");
+                    mapper.QuotedStringProperty("xmlName", xmlName);
                 }
 
-                if (!string.IsNullOrEmpty(sequence.ElementXmlName))
+                if (!isCaseSensitive)
                 {
-                    builder.AppendLine($"xmlElementName: '{sequence.ElementXmlName}',");
+                    serializedName = serializedName.ToLower();
                 }
-            }
 
-            DictionaryType dictionary = type as DictionaryType;
-            PrimaryType primary = type as PrimaryType;
-            EnumType enumType = type as EnumType;
-            if (isRequired)
-            {
-                builder.AppendLine("required: true,");
-            }
-            else
-            {
-                builder.AppendLine("required: false,");
-            }
-
-            if (isReadOnly)
-            {
-                builder.AppendLine("readOnly: true,");
-            }
-
-            if (isConstant)
-            {
-                builder.AppendLine("isConstant: true,");
-            }
-
-            if (serializedName != null)
-            {
-                builder.AppendLine("serializedName: '{0}',", serializedName);
-            }
-
-            if (defaultValue != null)
-            {
-                builder.AppendLine("defaultValue: {0},", defaultValue);
-            }
-
-            if (constraints != null && constraints.Count > 0)
-            {
-                builder.AppendLine("constraints: {").Indent();
-                var keys = constraints.Keys.ToList<Constraint>();
-                for (int j = 0; j < keys.Count; j++)
+                if (property != null)
                 {
-                    var constraintValue = constraints[keys[j]];
-                    if (keys[j] == Constraint.Pattern)
+                    isReadOnly = property.IsReadOnly;
+
+                    if (isXML)
                     {
-                        constraintValue = $"'{constraintValue.EscapeSingleQuotes()}'";
+                        if (property.XmlIsAttribute)
+                        {
+                            mapper.BooleanProperty("xmlIsAttribute", true);
+                        }
+
+                        if (property.XmlIsWrapped)
+                        {
+                            mapper.BooleanProperty("xmlIsWrapped", true);
+                        }
+
+                        if (!wroteXmlName && !string.IsNullOrEmpty(property.XmlName))
+                        {
+                            mapper.QuotedStringProperty("xmlName", property.XmlName);
+                        }
                     }
-                    if (j != keys.Count - 1)
+                }
+
+                CompositeType composite = type as CompositeType;
+                if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
+                {
+                    defaultValue = "{}";
+                }
+
+                SequenceType sequence = type as SequenceType;
+                if (sequence != null && isXML)
+                {
+                    if (sequence.ElementXmlIsWrapped)
                     {
-                        builder.AppendLine("{0}: {1},", keys[j], constraintValue);
+                        mapper.BooleanProperty("xmlElementIsWrapped", true);
+                    }
+
+                    if (!string.IsNullOrEmpty(sequence.ElementXmlName))
+                    {
+                        mapper.QuotedStringProperty("xmlElementName", sequence.ElementXmlName);
+                    }
+                }
+
+                if (isRequired)
+                {
+                    mapper.BooleanProperty("required", true);
+                }
+
+                if (isReadOnly)
+                {
+                    mapper.BooleanProperty("readOnly", true);
+                }
+
+                if (isConstant)
+                {
+                    mapper.BooleanProperty("isConstant", true);
+                }
+
+                if (serializedName != null)
+                {
+                    mapper.QuotedStringProperty("serializedName", serializedName);
+                }
+
+                if (!string.IsNullOrEmpty(defaultValue))
+                {
+                    mapper.TextProperty("defaultValue", defaultValue);
+                }
+
+                if (constraints != null && constraints.Any())
+                {
+                    mapper.ObjectProperty("constraints", constraintsObject =>
+                    {
+                        foreach (KeyValuePair<Constraint,string> constraintEntry in constraints)
+                        {
+                            Constraint constraint = constraintEntry.Key;
+                            string constraintValue = constraintEntry.Value;
+                            if (constraint == Constraint.Pattern)
+                            {
+                                constraintValue = CreatePatternConstraintValue(constraintValue);
+                            }
+                            constraintsObject.TextProperty(constraint.ToString(), constraintValue);
+                        }
+                    });
+                }
+
+                DictionaryType dictionary = type as DictionaryType;
+                PrimaryType primary = type as PrimaryType;
+                EnumType enumType = type as EnumType;
+
+                // Add type information
+                if (primary != null)
+                {
+                    switch (primary.KnownPrimaryType)
+                    {
+                        case KnownPrimaryType.Base64Url:
+                        case KnownPrimaryType.Boolean:
+                        case KnownPrimaryType.ByteArray:
+                        case KnownPrimaryType.Date:
+                        case KnownPrimaryType.DateTime:
+                        case KnownPrimaryType.DateTimeRfc1123:
+                        case KnownPrimaryType.Object:
+                        case KnownPrimaryType.Stream:
+                        case KnownPrimaryType.String:
+                        case KnownPrimaryType.TimeSpan:
+                        case KnownPrimaryType.UnixTime:
+                        case KnownPrimaryType.Uuid:
+                            AddTypeProperty(mapper, primary.KnownPrimaryType.ToString());
+                            break;
+
+                        case KnownPrimaryType.Int:
+                        case KnownPrimaryType.Long:
+                        case KnownPrimaryType.Decimal:
+                        case KnownPrimaryType.Double:
+                            AddTypeProperty(mapper, "Number");
+                            break;
+
+                        default:
+                            throw new NotImplementedException($"{primary} is not a supported Type.");
+                    }
+                }
+                else if (enumType != null)
+                {
+                    if (enumType.ModelAsString)
+                    {
+                        AddTypeProperty(mapper, "String");
                     }
                     else
                     {
-                        builder.AppendLine("{0}: {1}", keys[j], constraintValue);
+                        AddTypeProperty(mapper, "Enum", typeObject =>
+                        {
+                            typeObject.ArrayProperty("allowedValues", allowedValues =>
+                            {
+                                foreach (EnumValue enumValue in enumType.Values)
+                                {
+                                    allowedValues.QuotedString(enumValue.SerializedName);
+                                }
+                            });
+                        });
                     }
                 }
-                builder.Outdent().AppendLine("},");
-            }
-
-            // Add type information
-            if (primary != null)
-            {
-                switch (primary.KnownPrimaryType)
+                else if (sequence != null)
                 {
-                    case KnownPrimaryType.Boolean:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Boolean'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.Int:
-                    case KnownPrimaryType.Long:
-                    case KnownPrimaryType.Decimal:
-                    case KnownPrimaryType.Double:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Number'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.String:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'String'").Outdent().AppendLine("}");
-                        break;
-
-                    case KnownPrimaryType.Uuid:
-                       builder.AppendLine("type: {").Indent().AppendLine("name: 'String'").Outdent().AppendLine("}");
-                        break;
-
-                    // case KnownPrimaryType.Uuid:
-                       //  builder.AppendLine("type: {").Indent().AppendLine("name: 'Uuid'").Outdent().AppendLine("}");
-                        //break;
-                    case KnownPrimaryType.ByteArray:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'ByteArray'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.Base64Url:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Base64Url'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.Date:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Date'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.DateTime:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'DateTime'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.DateTimeRfc1123:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'DateTimeRfc1123'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.TimeSpan:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'TimeSpan'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.UnixTime:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'UnixTime'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.Object:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Object'").Outdent().AppendLine("}");
-                        break;
-                    case KnownPrimaryType.Stream:
-                        builder.AppendLine("type: {").Indent().AppendLine("name: 'Stream'").Outdent().AppendLine("}");
-                        break;
-                    default:
-                        throw new NotImplementedException($"{primary} is not a supported Type.");
-                }
-            }
-            else if (enumType != null)
-            {
-                if (enumType.ModelAsString)
-                {
-                    builder.AppendLine("type: {").Indent().AppendLine("name: 'String'").Outdent().AppendLine("}");
-                }
-                else
-                {
-                    builder.AppendLine("type: {")
-                        .Indent()
-                        .AppendLine("name: 'Enum',")
-                        .AppendLine("allowedValues: {0}", enumType.GetEnumValuesArray())
-                        .Outdent()
-                        .AppendLine("}");
-                }
-            }
-            else if (sequence != null)
-            {
-                builder.AppendLine("type: {")
-                         .Indent()
-                         .AppendLine("name: 'Sequence',")
-                         .AppendLine("element: {")
-                           .Indent()
-                           .AppendLine("{0}", sequence.ElementType.ConstructMapper(sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive))
-                         .Outdent().AppendLine("}").Outdent().AppendLine("}");
-            }
-            else if (dictionary != null)
-            {
-                builder.AppendLine("type: {")
-                         .Indent()
-                         .AppendLine("name: 'Dictionary',")
-                         .AppendLine("value: {")
-                           .Indent()
-                           .AppendLine("{0}", dictionary.ValueType.ConstructMapper(dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive))
-                         .Outdent().AppendLine("}").Outdent().AppendLine("}");
-            }
-            else if (composite != null)
-            {
-                builder.AppendLine("type: {")
-                         .Indent()
-                         .AppendLine("name: 'Composite',");
-                if (composite.IsPolymorphic)
-                {
-                    builder = ConstructPolymorphicDiscriminator(composite, builder);
-                }
-                if (!expandComposite)
-                {
-                    builder.AppendLine("className: '{0}'", composite.Name).Outdent().AppendLine("}");
-                }
-                else
-                {
-                    builder.AppendLine("className: '{0}',", composite.Name)
-                           .AppendLine("modelProperties: {").Indent();
-                    var composedPropertyList = new List<Property>(composite.ComposedProperties);
-                    for (var i = 0; i < composedPropertyList.Count; i++)
+                    AddTypeProperty(mapper, "Sequence", typeObject =>
                     {
-                        var prop = composedPropertyList[i];
-                        var serializedPropertyName = prop.SerializedName;
-                        PropertyInfo nextLinkName = null;
-                        string nextLinkNameValue = null;
-                        if (isPageable)
-                        {
-                            var itemName = composite.GetType().GetProperty("ItemName");
-                            nextLinkName = composite.GetType().GetProperty("NextLinkName");
-                            nextLinkNameValue = (string)nextLinkName.GetValue(composite);
-                            if (itemName != null && ((string)itemName.GetValue(composite) == prop.Name))
-                            {
-                                serializedPropertyName = "";
-                            }
-
-                            if (prop.Name.Contains("nextLink") && nextLinkName != null && nextLinkNameValue == null)
-                            {
-                                continue;
-                            }
-                        }
-
-                        if (i != composedPropertyList.Count - 1)
-                        {
-                            if (!isPageable)
-                            {
-                                builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
-                            }
-                            else
-                            {
-                                // if pageable and nextlink is also present then we need a comma as nextLink would be the next one to be added
-                                if (nextLinkNameValue != null)
-                                {
-                                    builder.AppendLine("{0}: {{{1}}},", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
-                                }
-                                else
-                                {
-                                    builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            builder.AppendLine("{0}: {{{1}}}", prop.Name, prop.ModelType.ConstructMapper(serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
-                        }
-                    }
-                    // end of modelProperties and type
-                    builder.Outdent().AppendLine("}").Outdent().AppendLine("}");
+                        typeObject.TextProperty("element", ConstructMapper(sequence.ElementType, sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
+                    });
                 }
-            }
-            else
-            {
-                throw new NotImplementedException($"{type} is not a supported Type.");
-            }
+                else if (dictionary != null)
+                {
+                    AddTypeProperty(mapper, "Dictionary", typeObject =>
+                    {
+                        typeObject.TextProperty("value", ConstructMapper(dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
+                    });
+                }
+                else if (composite != null)
+                {
+                    AddTypeProperty(mapper, "Composite", typeObject =>
+                    {
+                        if (composite.IsPolymorphic)
+                        {
+                            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
+                            // it's serializedName, the way it is done for other properties. This makes it easy to find the
+                            // discriminator property from the responseBody during deserialization. Please, do not get confused
+                            // between the definition of the discriminator and the definition of the property that is
+                            // marked as the discriminator.
+                            typeObject.ObjectProperty("polymorphicDiscriminator", polymorphicDiscriminator =>
+                            {
+                                polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
+                                polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
+                            });
+
+                            CompositeType polymorphicType = composite;
+                            while (polymorphicType.BaseModelType != null)
+                            {
+                                polymorphicType = polymorphicType.BaseModelType;
+                            }
+                            typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
+                        }
+
+                        mapper.QuotedStringProperty("className", composite.Name);
+
+                        if (expandComposite)
+                        {
+                            mapper.ObjectProperty("modelProperties", modelProperties =>
+                            {
+                                foreach (Property prop in composite.ComposedProperties)
+                                {
+                                    var serializedPropertyName = prop.SerializedName;
+                                    if (isPageable)
+                                    {
+                                        PropertyInfo itemName = composite.GetType().GetProperty("ItemName");
+                                        PropertyInfo nextLinkName = composite.GetType().GetProperty("NextLinkName");
+                                        string nextLinkNameValue = (string)nextLinkName.GetValue(composite);
+                                        if (itemName != null && ((string)itemName.GetValue(composite) == prop.Name))
+                                        {
+                                            serializedPropertyName = "";
+                                        }
+
+                                        if (prop.Name.Contains("nextLink") && nextLinkName != null && nextLinkNameValue == null)
+                                        {
+                                            continue;
+                                        }
+                                    }
+
+                                    modelProperties.TextProperty(prop.Name, ConstructMapper(prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                }
+                            });
+                        }
+                    });
+                }
+                else
+                {
+                    throw new NotImplementedException($"{type} is not a supported Type.");
+                }
+            });
 
             return builder.ToString();
         }
 
-        public static IndentedStringBuilder ConstructPolymorphicDiscriminator(CompositeType composite, IndentedStringBuilder builder)
+        private static void AddTypeProperty(TSObject mapper, string mapperTypeName, Action<TSObject> additionalTypeObjectPropertiesAction = null)
         {
-            if (composite == null)
+            mapper.ObjectProperty("type", typeObject =>
             {
-                throw new ArgumentNullException("composite");
-            }
-            if (builder == null)
-            {
-                throw new ArgumentNullException("builder");
-            }
-            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
-            // it's serializedName, the way it is done for other properties. This makes it easy to find the
-            // discriminator property from the responseBody during deserialization. Please, do not get confused
-            // between the definition of the discriminator and the definition of the property that is
-            // marked as the discriminator.
-            builder.AppendLine("polymorphicDiscriminator: {")
-                     .Indent()
-                     .AppendLine("serializedName: '{0}',", composite.PolymorphicDiscriminator)
-                     .AppendLine("clientName: '{0}'", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator))
-                   .Outdent()
-                   .AppendLine("},");
-            var polymorphicType = composite;
-            while (polymorphicType.BaseModelType != null)
-            {
-                polymorphicType = polymorphicType.BaseModelType;
-            }
-            builder.AppendLine("uberParent: '{0}',", polymorphicType.Name);
-            return builder;
+                typeObject.QuotedStringProperty("name", mapperTypeName);
+                additionalTypeObjectPropertiesAction?.Invoke(typeObject);
+            });
         }
 
         /// <summary>

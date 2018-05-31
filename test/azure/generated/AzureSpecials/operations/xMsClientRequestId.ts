@@ -67,7 +67,13 @@ export class XMsClientRequestId {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -85,7 +91,7 @@ export class XMsClientRequestId {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -152,12 +158,24 @@ export class XMsClientRequestId {
             {
               parameterName: "xMsClientRequestId",
               headerName: "x-ms-client-request-id",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "x-ms-client-request-id",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -176,7 +194,7 @@ export class XMsClientRequestId {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

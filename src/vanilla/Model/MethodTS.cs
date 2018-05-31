@@ -441,11 +441,11 @@ namespace AutoRest.TypeScript.Model
             var builder = new IndentedStringBuilder("  ");
             if (type is CompositeType)
             {
-                builder.AppendLine("let resultMapper = Mappers.{0};", type.Name);
+                builder.AppendLine($"const resultMapper = Mappers.{type.Name};");
             }
             else
             {
-                builder.AppendLine("let resultMapper = {{{0}}};", type.ConstructMapper(responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == true));
+                builder.AppendLine($"const resultMapper = {ClientModelExtensions.ConstructMapper(type, responseVariable, null, isPageable: false, expandComposite: false, isXML: CodeModel?.ShouldGenerateXmlSerialization == true)};");
             }
 
             if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
@@ -544,21 +544,23 @@ namespace AutoRest.TypeScript.Model
         {
             get
             {
-                var builder = new IndentedStringBuilder("  ");
+                TSBuilder builder = new TSBuilder();
+                builder.Text("let requestModelMapper = ");
                 if (RequestBody.ModelType is CompositeType)
                 {
-                    builder.AppendLine("let requestModelMapper = Mappers.{0};", RequestBody.ModelType.Name);
+                    builder.Text($"Mappers.{RequestBody.ModelType.Name}");
                 }
                 else
                 {
-                    var mapper = RequestBody.ModelType.ConstructMapper(
+                    builder.Text(ClientModelExtensions.ConstructMapper(
+                        RequestBody.ModelType,
                         RequestBody.SerializedName,
                         RequestBody,
                         isPageable: false,
                         expandComposite: false,
-                        isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
-                    builder.AppendLine(@"let requestModelMapper = {{{0}}};", mapper);
+                        isXML: CodeModel?.ShouldGenerateXmlSerialization == true));
                 }
+                builder.Line(";");
                 return builder.ToString();
             }
         }
@@ -912,7 +914,35 @@ namespace AutoRest.TypeScript.Model
                 operationSpec.QuotedStringProperty("path", path);
             }
 
-            IEnumerable<Parameter> urlParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Path);
+            Parameter[] logicalParameters = LogicalParameters.ToArray();
+            GenerateUrlParameters(operationSpec, logicalParameters.Where(p => p.Location == ParameterLocation.Path));
+            GenerateQueryParameters(operationSpec, logicalParameters.Where(p => p.Location == ParameterLocation.Query));
+            GenerateHeaderParameters(operationSpec, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
+
+            if (RequestBody != null)
+            {
+                operationSpec.TextProperty("requestBodyMapper", "requestModelMapper");
+                operationSpec.QuotedStringProperty("requestBodyName", RequestBody.Name);
+                operationSpec.QuotedStringProperty("contentType", RequestContentType);
+            }
+            else
+            {
+                IEnumerable<Parameter> formDataParameters = logicalParameters.Where(p => p.Location == ParameterLocation.FormData);
+                if (formDataParameters.Any())
+                {
+                    GenerateFormDataParameters(operationSpec, formDataParameters);
+                    operationSpec.QuotedStringProperty("contentType", RequestContentType);
+                }
+            }
+
+            if (CodeModel.ShouldGenerateXmlSerialization)
+            {
+                operationSpec.BooleanProperty("isXML", true);
+            }
+        }
+
+        private static void GenerateUrlParameters(TSObject operationSpec, IEnumerable<Parameter> urlParameters)
+        {
             if (urlParameters.Any())
             {
                 operationSpec.ArrayProperty("urlParameters", urlParameterArray =>
@@ -921,15 +951,7 @@ namespace AutoRest.TypeScript.Model
                     {
                         urlParameterArray.Object(urlParameterObject =>
                         {
-                            urlParameterObject.QuotedStringProperty("parameterName", urlParameter.Name);
-                            if (urlParameter.Name != urlParameter.SerializedName)
-                            {
-                                urlParameterObject.QuotedStringProperty("urlParameterName", urlParameter.SerializedName);
-                            }
-                            if (urlParameter.OperationType != null)
-                            {
-                                urlParameterObject.TextProperty("type", $"msRest.OperationParameterType.{urlParameter.OperationType}");
-                            }
+                            GenerateCommonParameterProperties(urlParameterObject, urlParameter, "urlParameterName");
                             if (urlParameter.SkipUrlEncoding())
                             {
                                 urlParameterObject.BooleanProperty("skipEncoding", true);
@@ -938,8 +960,10 @@ namespace AutoRest.TypeScript.Model
                     }
                 });
             }
+        }
 
-            IEnumerable<Parameter> queryParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Query);
+        private static void GenerateQueryParameters(TSObject operationSpec, IEnumerable<Parameter> queryParameters)
+        {
             if (queryParameters.Any())
             {
                 operationSpec.ArrayProperty("queryParameters", queryParameterArray =>
@@ -948,15 +972,7 @@ namespace AutoRest.TypeScript.Model
                     {
                         queryParameterArray.Object(queryParameterObject =>
                         {
-                            queryParameterObject.QuotedStringProperty("parameterName", queryParameter.Name);
-                            if (queryParameter.Name != queryParameter.SerializedName)
-                            {
-                                queryParameterObject.QuotedStringProperty("queryParameterName", queryParameter.SerializedName);
-                            }
-                            if (queryParameter.OperationType != null)
-                            {
-                                queryParameterObject.TextProperty("type", $"msRest.OperationParameterType.{queryParameter.OperationType}");
-                            }
+                            GenerateCommonParameterProperties(queryParameterObject, queryParameter, "queryParameterName");
                             if (queryParameter.SkipUrlEncoding())
                             {
                                 queryParameterObject.BooleanProperty("skipEncoding", true);
@@ -969,8 +985,10 @@ namespace AutoRest.TypeScript.Model
                     }
                 });
             }
+        }
 
-            IEnumerable<Parameter> headerParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.Header);
+        private static void GenerateHeaderParameters(TSObject operationSpec, IEnumerable<Parameter> headerParameters)
+        {
             if (headerParameters.Any())
             {
                 operationSpec.ArrayProperty("headerParameters", headerParameterArray =>
@@ -979,61 +997,35 @@ namespace AutoRest.TypeScript.Model
                     {
                         headerParameterArray.Object(headerParameterObject =>
                         {
-                            headerParameterObject.QuotedStringProperty("parameterName", headerParameter.Name);
-                            if (headerParameter.Name != headerParameter.SerializedName)
-                            {
-                                headerParameterObject.QuotedStringProperty("headerName", headerParameter.SerializedName);
-                            }
-                            if (headerParameter.OperationType != null)
-                            {
-                                headerParameterObject.TextProperty("type", $"msRest.OperationParameterType.{headerParameter.OperationType}");
-                            }
+                            GenerateCommonParameterProperties(headerParameterObject, headerParameter, "headerName");
                         });
                     }
                 });
             }
+        }
 
-            if (RequestBody != null)
+        private static void GenerateFormDataParameters(TSObject operationSpec, IEnumerable<Parameter> formDataParameters)
+        {
+            operationSpec.ArrayProperty("formDataParameters", formDataParameterArray =>
             {
-                operationSpec.TextProperty("requestBodyMapper", "requestModelMapper");
-                operationSpec.QuotedStringProperty("requestBodyName", RequestBody.Name);
-                if (RequestBody.OperationType != null)
+                foreach (ParameterTS formDataParameter in formDataParameters)
                 {
-                    operationSpec.TextProperty("requestBodyType", $"msRest.OperationParameterType.{RequestBody.OperationType}");
-                }
-                operationSpec.QuotedStringProperty("contentType", RequestContentType);
-            }
-            else
-            {
-                IEnumerable<Parameter> formDataParameters = LogicalParameters.Where(p => p.Location == ParameterLocation.FormData);
-                if (formDataParameters.Any())
-                {
-                    operationSpec.ArrayProperty("formDataParameters", formDataParameterArray =>
+                    formDataParameterArray.Object(formDataParameterObject =>
                     {
-                        foreach (ParameterTS formDataParameter in formDataParameters)
-                        {
-                            formDataParameterArray.Object(formDataParameterObject =>
-                            {
-                                formDataParameterObject.QuotedStringProperty("parameterName", formDataParameter.Name);
-                                if (formDataParameter.Name != formDataParameter.SerializedName)
-                                {
-                                    formDataParameterObject.QuotedStringProperty("headerName", formDataParameter.SerializedName);
-                                }
-                                if (formDataParameter.OperationType != null)
-                                {
-                                    formDataParameterObject.TextProperty("type", $"msRest.OperationParameterType.{formDataParameter.OperationType}");
-                                }
-                            });
-                        }
+                        GenerateCommonParameterProperties(formDataParameterObject, formDataParameter, "formDataPropertyName");
                     });
-                    operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
-            }
+            });
+        }
 
-            if (CodeModel.ShouldGenerateXmlSerialization)
+        private static void GenerateCommonParameterProperties(TSObject parameterSpec, ParameterTS parameter, string parameterSerializedNameProperty)
+        {
+            parameterSpec.QuotedStringProperty("parameterName", parameter.Name);
+            if (parameter.Name != parameter.SerializedName)
             {
-                operationSpec.BooleanProperty("isXML", true);
+                parameterSpec.QuotedStringProperty(parameterSerializedNameProperty, parameter.SerializedName);
             }
+            parameterSpec.TextProperty("mapper", ClientModelExtensions.ConstructMapper(parameter.ModelType, parameter.SerializedName, parameter, false, false, false));
         }
     }
 }

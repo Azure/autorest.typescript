@@ -10,334 +10,305 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderParamStringOptionalParams = {
-  required: false,
-  serializedName: 'ParamStringOptions',
+  serializedName: "ParamStringOptions",
   type: {
-    name: 'Composite',
-    className: 'HeaderParamStringOptionalParams',
+    name: "Composite",
+    className: "HeaderParamStringOptionalParams",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderParamDatetimeRfc1123OptionalParams = {
-  required: false,
-  serializedName: 'ParamDatetimeRfc1123Options',
+  serializedName: "ParamDatetimeRfc1123Options",
   type: {
-    name: 'Composite',
-    className: 'HeaderParamDatetimeRfc1123OptionalParams',
+    name: "Composite",
+    className: "HeaderParamDatetimeRfc1123OptionalParams",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+}
     }
   }
 };
 
 export const HeaderParamEnumOptionalParams = {
-  required: false,
-  serializedName: 'ParamEnumOptions',
+  serializedName: "ParamEnumOptions",
   type: {
-    name: 'Composite',
-    className: 'HeaderParamEnumOptionalParams',
+    name: "Composite",
+    className: "HeaderParamEnumOptionalParams",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'White', 'black', 'GREY' ]
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "White",
+      "black",
+      "GREY"
+    ]
+  }
+}
     }
   }
 };
 
 export const HeaderResponseExistingKeyHeaders = {
-  required: false,
-  serializedName: 'header-responseexistingkey-headers',
+  serializedName: "header-responseexistingkey-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseExistingKeyHeaders',
+    name: "Composite",
+    className: "HeaderResponseExistingKeyHeaders",
     modelProperties: {
       userAgent: {
-        required: false,
-        serializedName: 'user-agent',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "user-agent",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseProtectedKeyHeaders = {
-  required: false,
-  serializedName: 'header-responseprotectedkey-headers',
+  serializedName: "header-responseprotectedkey-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseProtectedKeyHeaders',
+    name: "Composite",
+    className: "HeaderResponseProtectedKeyHeaders",
     modelProperties: {
       contentType: {
-        required: false,
-        serializedName: 'content-type',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "content-type",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseIntegerHeaders = {
-  required: false,
-  serializedName: 'header-responseinteger-headers',
+  serializedName: "header-responseinteger-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseIntegerHeaders',
+    name: "Composite",
+    className: "HeaderResponseIntegerHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseLongHeaders = {
-  required: false,
-  serializedName: 'header-responselong-headers',
+  serializedName: "header-responselong-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseLongHeaders',
+    name: "Composite",
+    className: "HeaderResponseLongHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseFloatHeaders = {
-  required: false,
-  serializedName: 'header-responsefloat-headers',
+  serializedName: "header-responsefloat-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseFloatHeaders',
+    name: "Composite",
+    className: "HeaderResponseFloatHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseDoubleHeaders = {
-  required: false,
-  serializedName: 'header-responsedouble-headers',
+  serializedName: "header-responsedouble-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseDoubleHeaders',
+    name: "Composite",
+    className: "HeaderResponseDoubleHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseBoolHeaders = {
-  required: false,
-  serializedName: 'header-responsebool-headers',
+  serializedName: "header-responsebool-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseBoolHeaders',
+    name: "Composite",
+    className: "HeaderResponseBoolHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Boolean'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Boolean"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseStringHeaders = {
-  required: false,
-  serializedName: 'header-responsestring-headers',
+  serializedName: "header-responsestring-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseStringHeaders',
+    name: "Composite",
+    className: "HeaderResponseStringHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseDateHeaders = {
-  required: false,
-  serializedName: 'header-responsedate-headers',
+  serializedName: "header-responsedate-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseDateHeaders',
+    name: "Composite",
+    className: "HeaderResponseDateHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Date'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Date"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseDatetimeHeaders = {
-  required: false,
-  serializedName: 'header-responsedatetime-headers',
+  serializedName: "header-responsedatetime-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseDatetimeHeaders',
+    name: "Composite",
+    className: "HeaderResponseDatetimeHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'DateTime'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "DateTime"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseDatetimeRfc1123Headers = {
-  required: false,
-  serializedName: 'header-responsedatetimerfc1123-headers',
+  serializedName: "header-responsedatetimerfc1123-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseDatetimeRfc1123Headers',
+    name: "Composite",
+    className: "HeaderResponseDatetimeRfc1123Headers",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseDurationHeaders = {
-  required: false,
-  serializedName: 'header-responseduration-headers',
+  serializedName: "header-responseduration-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseDurationHeaders',
+    name: "Composite",
+    className: "HeaderResponseDurationHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'TimeSpan'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "TimeSpan"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseByteHeaders = {
-  required: false,
-  serializedName: 'header-responsebyte-headers',
+  serializedName: "header-responsebyte-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseByteHeaders',
+    name: "Composite",
+    className: "HeaderResponseByteHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'ByteArray'
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "ByteArray"
+  }
+}
     }
   }
 };
 
 export const HeaderResponseEnumHeaders = {
-  required: false,
-  serializedName: 'header-responseenum-headers',
+  serializedName: "header-responseenum-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderResponseEnumHeaders',
+    name: "Composite",
+    className: "HeaderResponseEnumHeaders",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'White', 'black', 'GREY' ]
-        }
-      }
+  serializedName: "value",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "White",
+      "black",
+      "GREY"
+    ]
+  }
+}
     }
   }
 };

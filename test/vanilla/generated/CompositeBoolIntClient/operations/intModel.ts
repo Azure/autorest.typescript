@@ -66,7 +66,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -81,11 +81,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -146,7 +145,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -161,11 +160,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -226,7 +224,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -241,11 +239,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -306,7 +303,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -321,11 +318,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -386,7 +382,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -401,11 +397,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -466,7 +461,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -481,11 +476,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Number'
+                name: "Number"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -535,9 +529,9 @@ export class IntModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'intBody',
+        serializedName: "intBody",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -553,7 +547,6 @@ export class IntModel {
           path: "int/max/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -571,7 +564,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -619,9 +612,9 @@ export class IntModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'intBody',
+        serializedName: "intBody",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -637,7 +630,6 @@ export class IntModel {
           path: "int/max/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
-          requestBodyType: msRest.OperationParameterType.Long,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -655,7 +647,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -703,9 +695,9 @@ export class IntModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'intBody',
+        serializedName: "intBody",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -721,7 +713,6 @@ export class IntModel {
           path: "int/min/32",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -739,7 +730,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -787,9 +778,9 @@ export class IntModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'intBody',
+        serializedName: "intBody",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -805,7 +796,6 @@ export class IntModel {
           path: "int/min/64",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
-          requestBodyType: msRest.OperationParameterType.Long,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -823,7 +813,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -882,7 +872,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -897,11 +887,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'UnixTime'
+                name: "UnixTime"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -952,9 +941,9 @@ export class IntModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'intBody',
+        serializedName: "intBody",
         type: {
-          name: 'UnixTime'
+          name: "UnixTime"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -970,7 +959,6 @@ export class IntModel {
           path: "int/unixtime",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "intBody",
-          requestBodyType: msRest.OperationParameterType.UnixTime,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -988,7 +976,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1047,7 +1035,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1062,11 +1050,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'UnixTime'
+                name: "UnixTime"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1127,7 +1114,7 @@ export class IntModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1142,11 +1129,10 @@ export class IntModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'UnixTime'
+                name: "UnixTime"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');

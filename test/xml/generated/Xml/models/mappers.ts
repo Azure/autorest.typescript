@@ -10,1163 +10,1104 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        xmlName: 'status',
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "status",
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        xmlName: 'message',
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "message",
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Slide = {
-  xmlName: 'slide',
-  required: false,
-  serializedName: 'Slide',
+  xmlName: "slide",
+  serializedName: "Slide",
   type: {
-    name: 'Composite',
-    className: 'Slide',
+    name: "Composite",
+    className: "Slide",
     modelProperties: {
       type: {
-        xmlIsAttribute: true,
-        xmlName: 'type',
-        required: false,
-        serializedName: 'type',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "type",
+  serializedName: "type",
+  type: {
+    name: "String"
+  }
+},
       title: {
-        xmlName: 'title',
-        required: false,
-        serializedName: 'title',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "title",
+  serializedName: "title",
+  type: {
+    name: "String"
+  }
+},
       items: {
-        xmlName: 'items',
-        xmlElementName: 'item',
-        required: false,
-        serializedName: 'items',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  xmlName: "items",
+  xmlElementName: "item",
+  serializedName: "items",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const Slideshow = {
-  xmlName: 'slideshow',
-  required: false,
-  serializedName: 'Slideshow',
+  xmlName: "slideshow",
+  serializedName: "Slideshow",
   type: {
-    name: 'Composite',
-    className: 'Slideshow',
+    name: "Composite",
+    className: "Slideshow",
     modelProperties: {
       title: {
-        xmlIsAttribute: true,
-        xmlName: 'title',
-        required: false,
-        serializedName: 'title',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "title",
+  serializedName: "title",
+  type: {
+    name: "String"
+  }
+},
       date: {
-        xmlIsAttribute: true,
-        xmlName: 'date',
-        required: false,
-        serializedName: 'date',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "date",
+  serializedName: "date",
+  type: {
+    name: "String"
+  }
+},
       author: {
-        xmlIsAttribute: true,
-        xmlName: 'author',
-        required: false,
-        serializedName: 'author',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "author",
+  serializedName: "author",
+  type: {
+    name: "String"
+  }
+},
       slides: {
-        xmlName: 'slides',
-        xmlElementName: 'slide',
-        required: false,
-        serializedName: 'slides',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'SlideElementType',
-              type: {
-                name: 'Composite',
-                className: 'Slide'
-              }
-          }
-        }
-      }
+  xmlName: "slides",
+  xmlElementName: "slide",
+  serializedName: "slides",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "SlideElementType",
+  type: {
+    name: "Composite",
+    className: "Slide"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const AppleBarrel = {
-  required: false,
-  serializedName: 'AppleBarrel',
+  serializedName: "AppleBarrel",
   type: {
-    name: 'Composite',
-    className: 'AppleBarrel',
+    name: "Composite",
+    className: "AppleBarrel",
     modelProperties: {
       goodApples: {
-        xmlIsWrapped: true,
-        xmlName: 'GoodApples',
-        xmlElementName: 'Apple',
-        required: false,
-        serializedName: 'GoodApples',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      },
+  xmlIsWrapped: true,
+  xmlName: "GoodApples",
+  xmlElementName: "Apple",
+  serializedName: "GoodApples",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+},
       badApples: {
-        xmlIsWrapped: true,
-        xmlName: 'BadApples',
-        xmlElementName: 'Apple',
-        required: false,
-        serializedName: 'BadApples',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  xmlIsWrapped: true,
+  xmlName: "BadApples",
+  xmlElementName: "Apple",
+  serializedName: "BadApples",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const Banana = {
-  xmlName: 'banana',
-  required: false,
-  serializedName: 'Banana',
+  xmlName: "banana",
+  serializedName: "Banana",
   type: {
-    name: 'Composite',
-    className: 'Banana',
+    name: "Composite",
+    className: "Banana",
     modelProperties: {
       name: {
-        xmlName: 'name',
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "name",
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+},
       flavor: {
-        xmlName: 'flavor',
-        required: false,
-        serializedName: 'flavor',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "flavor",
+  serializedName: "flavor",
+  type: {
+    name: "String"
+  }
+},
       expiration: {
-        xmlName: 'expiration',
-        required: false,
-        serializedName: 'expiration',
-        type: {
-          name: 'DateTime'
-        }
-      }
+  xmlName: "expiration",
+  serializedName: "expiration",
+  type: {
+    name: "DateTime"
+  }
+}
     }
   }
 };
 
 export const ContainerProperties = {
-  required: false,
-  serializedName: 'ContainerProperties',
+  serializedName: "ContainerProperties",
   type: {
-    name: 'Composite',
-    className: 'ContainerProperties',
+    name: "Composite",
+    className: "ContainerProperties",
     modelProperties: {
       lastModified: {
-        xmlName: 'Last-Modified',
-        required: true,
-        serializedName: 'Last-Modified',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      },
+  xmlName: "Last-Modified",
+  required: true,
+  serializedName: "Last-Modified",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+},
       etag: {
-        xmlName: 'Etag',
-        required: true,
-        serializedName: 'Etag',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Etag",
+  required: true,
+  serializedName: "Etag",
+  type: {
+    name: "String"
+  }
+},
       leaseStatus: {
-        xmlName: 'LeaseStatus',
-        required: false,
-        serializedName: 'LeaseStatus',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'locked', 'unlocked' ]
-        }
-      },
+  xmlName: "LeaseStatus",
+  serializedName: "LeaseStatus",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "locked",
+      "unlocked"
+    ]
+  }
+},
       leaseState: {
-        xmlName: 'LeaseState',
-        required: false,
-        serializedName: 'LeaseState',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'available', 'leased', 'expired', 'breaking', 'broken' ]
-        }
-      },
+  xmlName: "LeaseState",
+  serializedName: "LeaseState",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "available",
+      "leased",
+      "expired",
+      "breaking",
+      "broken"
+    ]
+  }
+},
       leaseDuration: {
-        xmlName: 'LeaseDuration',
-        required: false,
-        serializedName: 'LeaseDuration',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'infinite', 'fixed' ]
-        }
-      },
+  xmlName: "LeaseDuration",
+  serializedName: "LeaseDuration",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "infinite",
+      "fixed"
+    ]
+  }
+},
       publicAccess: {
-        xmlName: 'PublicAccess',
-        required: false,
-        serializedName: 'PublicAccess',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "PublicAccess",
+  serializedName: "PublicAccess",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Container = {
-  required: false,
-  serializedName: 'Container',
+  serializedName: "Container",
   type: {
-    name: 'Composite',
-    className: 'Container',
+    name: "Composite",
+    className: "Container",
     modelProperties: {
       name: {
-        xmlName: 'Name',
-        required: true,
-        serializedName: 'Name',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Name",
+  required: true,
+  serializedName: "Name",
+  type: {
+    name: "String"
+  }
+},
       properties: {
-        xmlName: 'Properties',
-        required: true,
-        serializedName: 'Properties',
-        type: {
-          name: 'Composite',
-          className: 'ContainerProperties'
-        }
-      },
+  xmlName: "Properties",
+  required: true,
+  serializedName: "Properties",
+  type: {
+    name: "Composite",
+    className: "ContainerProperties"
+  }
+},
       metadata: {
-        xmlName: 'Metadata',
-        required: false,
-        serializedName: 'Metadata',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  xmlName: "Metadata",
+  serializedName: "Metadata",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ListContainersResponse = {
-  xmlName: 'EnumerationResults',
-  required: false,
-  serializedName: 'ListContainersResponse',
+  xmlName: "EnumerationResults",
+  serializedName: "ListContainersResponse",
   type: {
-    name: 'Composite',
-    className: 'ListContainersResponse',
+    name: "Composite",
+    className: "ListContainersResponse",
     modelProperties: {
       serviceEndpoint: {
-        xmlIsAttribute: true,
-        xmlName: 'ServiceEndpoint',
-        required: true,
-        serializedName: 'ServiceEndpoint',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "ServiceEndpoint",
+  required: true,
+  serializedName: "ServiceEndpoint",
+  type: {
+    name: "String"
+  }
+},
       prefix: {
-        xmlName: 'Prefix',
-        required: true,
-        serializedName: 'Prefix',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Prefix",
+  required: true,
+  serializedName: "Prefix",
+  type: {
+    name: "String"
+  }
+},
       marker: {
-        xmlName: 'Marker',
-        required: false,
-        serializedName: 'Marker',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Marker",
+  serializedName: "Marker",
+  type: {
+    name: "String"
+  }
+},
       maxResults: {
-        xmlName: 'MaxResults',
-        required: true,
-        serializedName: 'MaxResults',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "MaxResults",
+  required: true,
+  serializedName: "MaxResults",
+  type: {
+    name: "Number"
+  }
+},
       containers: {
-        xmlIsWrapped: true,
-        xmlName: 'Containers',
-        xmlElementName: 'Container',
-        required: false,
-        serializedName: 'Containers',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ContainerElementType',
-              type: {
-                name: 'Composite',
-                className: 'Container'
-              }
-          }
-        }
-      },
+  xmlIsWrapped: true,
+  xmlName: "Containers",
+  xmlElementName: "Container",
+  serializedName: "Containers",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ContainerElementType",
+  type: {
+    name: "Composite",
+    className: "Container"
+  }
+}
+  }
+},
       nextMarker: {
-        xmlName: 'NextMarker',
-        required: true,
-        serializedName: 'NextMarker',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "NextMarker",
+  required: true,
+  serializedName: "NextMarker",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const CorsRule = {
-  required: false,
-  serializedName: 'CorsRule',
+  serializedName: "CorsRule",
   type: {
-    name: 'Composite',
-    className: 'CorsRule',
+    name: "Composite",
+    className: "CorsRule",
     modelProperties: {
       allowedOrigins: {
-        xmlName: 'AllowedOrigins',
-        required: true,
-        serializedName: 'AllowedOrigins',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "AllowedOrigins",
+  required: true,
+  serializedName: "AllowedOrigins",
+  type: {
+    name: "String"
+  }
+},
       allowedMethods: {
-        xmlName: 'AllowedMethods',
-        required: true,
-        serializedName: 'AllowedMethods',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "AllowedMethods",
+  required: true,
+  serializedName: "AllowedMethods",
+  type: {
+    name: "String"
+  }
+},
       allowedHeaders: {
-        xmlName: 'AllowedHeaders',
-        required: true,
-        serializedName: 'AllowedHeaders',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "AllowedHeaders",
+  required: true,
+  serializedName: "AllowedHeaders",
+  type: {
+    name: "String"
+  }
+},
       exposedHeaders: {
-        xmlName: 'ExposedHeaders',
-        required: true,
-        serializedName: 'ExposedHeaders',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "ExposedHeaders",
+  required: true,
+  serializedName: "ExposedHeaders",
+  type: {
+    name: "String"
+  }
+},
       maxAgeInSeconds: {
-        xmlName: 'MaxAgeInSeconds',
-        required: true,
-        serializedName: 'MaxAgeInSeconds',
-        constraints: {
-          InclusiveMinimum: 0
-        },
-        type: {
-          name: 'Number'
-        }
-      }
+  xmlName: "MaxAgeInSeconds",
+  required: true,
+  serializedName: "MaxAgeInSeconds",
+  constraints: {
+    InclusiveMinimum: 0
+  },
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const BlobProperties = {
-  required: false,
-  serializedName: 'BlobProperties',
+  serializedName: "BlobProperties",
   type: {
-    name: 'Composite',
-    className: 'BlobProperties',
+    name: "Composite",
+    className: "BlobProperties",
     modelProperties: {
       lastModified: {
-        xmlName: 'Last-Modified',
-        required: true,
-        serializedName: 'Last-Modified',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      },
+  xmlName: "Last-Modified",
+  required: true,
+  serializedName: "Last-Modified",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+},
       etag: {
-        xmlName: 'Etag',
-        required: true,
-        serializedName: 'Etag',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Etag",
+  required: true,
+  serializedName: "Etag",
+  type: {
+    name: "String"
+  }
+},
       contentLength: {
-        xmlName: 'Content-Length',
-        required: false,
-        serializedName: 'Content-Length',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "Content-Length",
+  serializedName: "Content-Length",
+  type: {
+    name: "Number"
+  }
+},
       contentType: {
-        xmlName: 'Content-Type',
-        required: false,
-        serializedName: 'Content-Type',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Content-Type",
+  serializedName: "Content-Type",
+  type: {
+    name: "String"
+  }
+},
       contentEncoding: {
-        xmlName: 'Content-Encoding',
-        required: false,
-        serializedName: 'Content-Encoding',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Content-Encoding",
+  serializedName: "Content-Encoding",
+  type: {
+    name: "String"
+  }
+},
       contentLanguage: {
-        xmlName: 'Content-Language',
-        required: false,
-        serializedName: 'Content-Language',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Content-Language",
+  serializedName: "Content-Language",
+  type: {
+    name: "String"
+  }
+},
       contentMD5: {
-        xmlName: 'Content-MD5',
-        required: false,
-        serializedName: 'Content-MD5',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Content-MD5",
+  serializedName: "Content-MD5",
+  type: {
+    name: "String"
+  }
+},
       contentDisposition: {
-        xmlName: 'Content-Disposition',
-        required: false,
-        serializedName: 'Content-Disposition',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Content-Disposition",
+  serializedName: "Content-Disposition",
+  type: {
+    name: "String"
+  }
+},
       cacheControl: {
-        xmlName: 'Cache-Control',
-        required: false,
-        serializedName: 'Cache-Control',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Cache-Control",
+  serializedName: "Cache-Control",
+  type: {
+    name: "String"
+  }
+},
       blobSequenceNumber: {
-        xmlName: 'x-ms-blob-sequence-number',
-        required: false,
-        serializedName: 'x-ms-blob-sequence-number',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "x-ms-blob-sequence-number",
+  serializedName: "x-ms-blob-sequence-number",
+  type: {
+    name: "Number"
+  }
+},
       blobType: {
-        xmlName: 'BlobType',
-        required: false,
-        serializedName: 'BlobType',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'BlockBlob', 'PageBlob', 'AppendBlob' ]
-        }
-      },
+  xmlName: "BlobType",
+  serializedName: "BlobType",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "BlockBlob",
+      "PageBlob",
+      "AppendBlob"
+    ]
+  }
+},
       leaseStatus: {
-        xmlName: 'LeaseStatus',
-        required: false,
-        serializedName: 'LeaseStatus',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'locked', 'unlocked' ]
-        }
-      },
+  xmlName: "LeaseStatus",
+  serializedName: "LeaseStatus",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "locked",
+      "unlocked"
+    ]
+  }
+},
       leaseState: {
-        xmlName: 'LeaseState',
-        required: false,
-        serializedName: 'LeaseState',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'available', 'leased', 'expired', 'breaking', 'broken' ]
-        }
-      },
+  xmlName: "LeaseState",
+  serializedName: "LeaseState",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "available",
+      "leased",
+      "expired",
+      "breaking",
+      "broken"
+    ]
+  }
+},
       leaseDuration: {
-        xmlName: 'LeaseDuration',
-        required: false,
-        serializedName: 'LeaseDuration',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'infinite', 'fixed' ]
-        }
-      },
+  xmlName: "LeaseDuration",
+  serializedName: "LeaseDuration",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "infinite",
+      "fixed"
+    ]
+  }
+},
       copyId: {
-        xmlName: 'CopyId',
-        required: false,
-        serializedName: 'CopyId',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "CopyId",
+  serializedName: "CopyId",
+  type: {
+    name: "String"
+  }
+},
       copyStatus: {
-        xmlName: 'CopyStatus',
-        required: false,
-        serializedName: 'CopyStatus',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'pending', 'success', 'aborted', 'failed' ]
-        }
-      },
+  xmlName: "CopyStatus",
+  serializedName: "CopyStatus",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "pending",
+      "success",
+      "aborted",
+      "failed"
+    ]
+  }
+},
       copySource: {
-        xmlName: 'CopySource',
-        required: false,
-        serializedName: 'CopySource',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "CopySource",
+  serializedName: "CopySource",
+  type: {
+    name: "String"
+  }
+},
       copyProgress: {
-        xmlName: 'CopyProgress',
-        required: false,
-        serializedName: 'CopyProgress',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "CopyProgress",
+  serializedName: "CopyProgress",
+  type: {
+    name: "String"
+  }
+},
       copyCompletionTime: {
-        xmlName: 'CopyCompletionTime',
-        required: false,
-        serializedName: 'CopyCompletionTime',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      },
+  xmlName: "CopyCompletionTime",
+  serializedName: "CopyCompletionTime",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+},
       copyStatusDescription: {
-        xmlName: 'CopyStatusDescription',
-        required: false,
-        serializedName: 'CopyStatusDescription',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "CopyStatusDescription",
+  serializedName: "CopyStatusDescription",
+  type: {
+    name: "String"
+  }
+},
       serverEncrypted: {
-        xmlName: 'ServerEncrypted',
-        required: false,
-        serializedName: 'ServerEncrypted',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "ServerEncrypted",
+  serializedName: "ServerEncrypted",
+  type: {
+    name: "Boolean"
+  }
+},
       incrementalCopy: {
-        xmlName: 'IncrementalCopy',
-        required: false,
-        serializedName: 'IncrementalCopy',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "IncrementalCopy",
+  serializedName: "IncrementalCopy",
+  type: {
+    name: "Boolean"
+  }
+},
       destinationSnapshot: {
-        xmlName: 'DestinationSnapshot',
-        required: false,
-        serializedName: 'DestinationSnapshot',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "DestinationSnapshot",
+  serializedName: "DestinationSnapshot",
+  type: {
+    name: "String"
+  }
+},
       deletedTime: {
-        xmlName: 'DeletedTime',
-        required: false,
-        serializedName: 'DeletedTime',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      },
+  xmlName: "DeletedTime",
+  serializedName: "DeletedTime",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+},
       remainingRetentionDays: {
-        xmlName: 'RemainingRetentionDays',
-        required: false,
-        serializedName: 'RemainingRetentionDays',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "RemainingRetentionDays",
+  serializedName: "RemainingRetentionDays",
+  type: {
+    name: "Number"
+  }
+},
       accessTier: {
-        xmlName: 'AccessTier',
-        required: false,
-        serializedName: 'AccessTier',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "AccessTier",
+  serializedName: "AccessTier",
+  type: {
+    name: "String"
+  }
+},
       accessTierInferred: {
-        xmlName: 'AccessTierInferred',
-        required: false,
-        serializedName: 'AccessTierInferred',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "AccessTierInferred",
+  serializedName: "AccessTierInferred",
+  type: {
+    name: "Boolean"
+  }
+},
       archiveStatus: {
-        xmlName: 'ArchiveStatus',
-        required: false,
-        serializedName: 'ArchiveStatus',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "ArchiveStatus",
+  serializedName: "ArchiveStatus",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Blob = {
-  required: false,
-  serializedName: 'Blob',
+  serializedName: "Blob",
   type: {
-    name: 'Composite',
-    className: 'Blob',
+    name: "Composite",
+    className: "Blob",
     modelProperties: {
       name: {
-        xmlName: 'Name',
-        required: true,
-        serializedName: 'Name',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Name",
+  required: true,
+  serializedName: "Name",
+  type: {
+    name: "String"
+  }
+},
       deleted: {
-        xmlName: 'Deleted',
-        required: true,
-        serializedName: 'Deleted',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Deleted",
+  required: true,
+  serializedName: "Deleted",
+  type: {
+    name: "Boolean"
+  }
+},
       snapshot: {
-        xmlName: 'Snapshot',
-        required: true,
-        serializedName: 'Snapshot',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Snapshot",
+  required: true,
+  serializedName: "Snapshot",
+  type: {
+    name: "String"
+  }
+},
       properties: {
-        xmlName: 'Properties',
-        required: true,
-        serializedName: 'Properties',
-        type: {
-          name: 'Composite',
-          className: 'BlobProperties'
-        }
-      },
+  xmlName: "Properties",
+  required: true,
+  serializedName: "Properties",
+  type: {
+    name: "Composite",
+    className: "BlobProperties"
+  }
+},
       metadata: {
-        xmlName: 'Metadata',
-        required: false,
-        serializedName: 'Metadata',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  xmlName: "Metadata",
+  serializedName: "Metadata",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const RetentionPolicy = {
-  required: false,
-  serializedName: 'RetentionPolicy',
+  serializedName: "RetentionPolicy",
   type: {
-    name: 'Composite',
-    className: 'RetentionPolicy',
+    name: "Composite",
+    className: "RetentionPolicy",
     modelProperties: {
       enabled: {
-        xmlName: 'Enabled',
-        required: true,
-        serializedName: 'Enabled',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Enabled",
+  required: true,
+  serializedName: "Enabled",
+  type: {
+    name: "Boolean"
+  }
+},
       days: {
-        xmlName: 'Days',
-        required: false,
-        serializedName: 'Days',
-        constraints: {
-          InclusiveMinimum: 1
-        },
-        type: {
-          name: 'Number'
-        }
-      }
+  xmlName: "Days",
+  serializedName: "Days",
+  constraints: {
+    InclusiveMinimum: 1
+  },
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const Logging = {
-  required: false,
-  serializedName: 'Logging',
+  serializedName: "Logging",
   type: {
-    name: 'Composite',
-    className: 'Logging',
+    name: "Composite",
+    className: "Logging",
     modelProperties: {
       version: {
-        xmlName: 'Version',
-        required: true,
-        serializedName: 'Version',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Version",
+  required: true,
+  serializedName: "Version",
+  type: {
+    name: "String"
+  }
+},
       deleteProperty: {
-        xmlName: 'Delete',
-        required: true,
-        serializedName: 'Delete',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Delete",
+  required: true,
+  serializedName: "Delete",
+  type: {
+    name: "Boolean"
+  }
+},
       read: {
-        xmlName: 'Read',
-        required: true,
-        serializedName: 'Read',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Read",
+  required: true,
+  serializedName: "Read",
+  type: {
+    name: "Boolean"
+  }
+},
       write: {
-        xmlName: 'Write',
-        required: true,
-        serializedName: 'Write',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Write",
+  required: true,
+  serializedName: "Write",
+  type: {
+    name: "Boolean"
+  }
+},
       retentionPolicy: {
-        xmlName: 'RetentionPolicy',
-        required: true,
-        serializedName: 'RetentionPolicy',
-        type: {
-          name: 'Composite',
-          className: 'RetentionPolicy'
-        }
-      }
+  xmlName: "RetentionPolicy",
+  required: true,
+  serializedName: "RetentionPolicy",
+  type: {
+    name: "Composite",
+    className: "RetentionPolicy"
+  }
+}
     }
   }
 };
 
 export const Metrics = {
-  required: false,
-  serializedName: 'Metrics',
+  serializedName: "Metrics",
   type: {
-    name: 'Composite',
-    className: 'Metrics',
+    name: "Composite",
+    className: "Metrics",
     modelProperties: {
       version: {
-        xmlName: 'Version',
-        required: false,
-        serializedName: 'Version',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Version",
+  serializedName: "Version",
+  type: {
+    name: "String"
+  }
+},
       enabled: {
-        xmlName: 'Enabled',
-        required: true,
-        serializedName: 'Enabled',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "Enabled",
+  required: true,
+  serializedName: "Enabled",
+  type: {
+    name: "Boolean"
+  }
+},
       includeAPIs: {
-        xmlName: 'IncludeAPIs',
-        required: false,
-        serializedName: 'IncludeAPIs',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  xmlName: "IncludeAPIs",
+  serializedName: "IncludeAPIs",
+  type: {
+    name: "Boolean"
+  }
+},
       retentionPolicy: {
-        xmlName: 'RetentionPolicy',
-        required: false,
-        serializedName: 'RetentionPolicy',
-        type: {
-          name: 'Composite',
-          className: 'RetentionPolicy'
-        }
-      }
+  xmlName: "RetentionPolicy",
+  serializedName: "RetentionPolicy",
+  type: {
+    name: "Composite",
+    className: "RetentionPolicy"
+  }
+}
     }
   }
 };
 
 export const BlobPrefix = {
-  required: false,
-  serializedName: 'BlobPrefix',
+  serializedName: "BlobPrefix",
   type: {
-    name: 'Composite',
-    className: 'BlobPrefix',
+    name: "Composite",
+    className: "BlobPrefix",
     modelProperties: {
       name: {
-        xmlName: 'Name',
-        required: true,
-        serializedName: 'Name',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "Name",
+  required: true,
+  serializedName: "Name",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Blobs = {
-  required: false,
-  serializedName: 'Blobs',
+  serializedName: "Blobs",
   type: {
-    name: 'Composite',
-    className: 'Blobs',
+    name: "Composite",
+    className: "Blobs",
     modelProperties: {
       blobPrefix: {
-        xmlName: 'BlobPrefix',
-        xmlElementName: 'BlobPrefix',
-        required: false,
-        serializedName: 'BlobPrefix',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'BlobPrefixElementType',
-              type: {
-                name: 'Composite',
-                className: 'BlobPrefix'
-              }
-          }
-        }
-      },
+  xmlName: "BlobPrefix",
+  xmlElementName: "BlobPrefix",
+  serializedName: "BlobPrefix",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "BlobPrefixElementType",
+  type: {
+    name: "Composite",
+    className: "BlobPrefix"
+  }
+}
+  }
+},
       blob: {
-        xmlName: 'Blob',
-        xmlElementName: 'Blob',
-        required: false,
-        serializedName: 'Blob',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'BlobElementType',
-              type: {
-                name: 'Composite',
-                className: 'Blob'
-              }
-          }
-        }
-      }
+  xmlName: "Blob",
+  xmlElementName: "Blob",
+  serializedName: "Blob",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "BlobElementType",
+  type: {
+    name: "Composite",
+    className: "Blob"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ListBlobsResponse = {
-  xmlName: 'EnumerationResults',
-  required: false,
-  serializedName: 'ListBlobsResponse',
+  xmlName: "EnumerationResults",
+  serializedName: "ListBlobsResponse",
   type: {
-    name: 'Composite',
-    className: 'ListBlobsResponse',
+    name: "Composite",
+    className: "ListBlobsResponse",
     modelProperties: {
       serviceEndpoint: {
-        xmlIsAttribute: true,
-        xmlName: 'ServiceEndpoint',
-        required: true,
-        serializedName: 'ServiceEndpoint',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "ServiceEndpoint",
+  required: true,
+  serializedName: "ServiceEndpoint",
+  type: {
+    name: "String"
+  }
+},
       containerName: {
-        xmlIsAttribute: true,
-        xmlName: 'ContainerName',
-        required: true,
-        serializedName: 'ContainerName',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlIsAttribute: true,
+  xmlName: "ContainerName",
+  required: true,
+  serializedName: "ContainerName",
+  type: {
+    name: "String"
+  }
+},
       prefix: {
-        xmlName: 'Prefix',
-        required: true,
-        serializedName: 'Prefix',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Prefix",
+  required: true,
+  serializedName: "Prefix",
+  type: {
+    name: "String"
+  }
+},
       marker: {
-        xmlName: 'Marker',
-        required: true,
-        serializedName: 'Marker',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Marker",
+  required: true,
+  serializedName: "Marker",
+  type: {
+    name: "String"
+  }
+},
       maxResults: {
-        xmlName: 'MaxResults',
-        required: true,
-        serializedName: 'MaxResults',
-        type: {
-          name: 'Number'
-        }
-      },
+  xmlName: "MaxResults",
+  required: true,
+  serializedName: "MaxResults",
+  type: {
+    name: "Number"
+  }
+},
       delimiter: {
-        xmlName: 'Delimiter',
-        required: true,
-        serializedName: 'Delimiter',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Delimiter",
+  required: true,
+  serializedName: "Delimiter",
+  type: {
+    name: "String"
+  }
+},
       blobs: {
-        xmlName: 'Blobs',
-        required: true,
-        serializedName: 'Blobs',
-        type: {
-          name: 'Composite',
-          className: 'Blobs'
-        }
-      },
+  xmlName: "Blobs",
+  required: true,
+  serializedName: "Blobs",
+  type: {
+    name: "Composite",
+    className: "Blobs"
+  }
+},
       nextMarker: {
-        xmlName: 'NextMarker',
-        required: true,
-        serializedName: 'NextMarker',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "NextMarker",
+  required: true,
+  serializedName: "NextMarker",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const AccessPolicy = {
-  required: false,
-  serializedName: 'AccessPolicy',
+  serializedName: "AccessPolicy",
   type: {
-    name: 'Composite',
-    className: 'AccessPolicy',
+    name: "Composite",
+    className: "AccessPolicy",
     modelProperties: {
       start: {
-        xmlName: 'Start',
-        required: true,
-        serializedName: 'Start',
-        type: {
-          name: 'DateTime'
-        }
-      },
+  xmlName: "Start",
+  required: true,
+  serializedName: "Start",
+  type: {
+    name: "DateTime"
+  }
+},
       expiry: {
-        xmlName: 'Expiry',
-        required: true,
-        serializedName: 'Expiry',
-        type: {
-          name: 'DateTime'
-        }
-      },
+  xmlName: "Expiry",
+  required: true,
+  serializedName: "Expiry",
+  type: {
+    name: "DateTime"
+  }
+},
       permission: {
-        xmlName: 'Permission',
-        required: true,
-        serializedName: 'Permission',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "Permission",
+  required: true,
+  serializedName: "Permission",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const SignedIdentifier = {
-  required: false,
-  serializedName: 'SignedIdentifier',
+  serializedName: "SignedIdentifier",
   type: {
-    name: 'Composite',
-    className: 'SignedIdentifier',
+    name: "Composite",
+    className: "SignedIdentifier",
     modelProperties: {
       id: {
-        xmlName: 'Id',
-        required: true,
-        serializedName: 'Id',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "Id",
+  required: true,
+  serializedName: "Id",
+  type: {
+    name: "String"
+  }
+},
       accessPolicy: {
-        xmlName: 'AccessPolicy',
-        required: true,
-        serializedName: 'AccessPolicy',
-        type: {
-          name: 'Composite',
-          className: 'AccessPolicy'
-        }
-      }
+  xmlName: "AccessPolicy",
+  required: true,
+  serializedName: "AccessPolicy",
+  type: {
+    name: "Composite",
+    className: "AccessPolicy"
+  }
+}
     }
   }
 };
 
 export const StorageServiceProperties = {
-  required: false,
-  serializedName: 'StorageServiceProperties',
+  serializedName: "StorageServiceProperties",
   type: {
-    name: 'Composite',
-    className: 'StorageServiceProperties',
+    name: "Composite",
+    className: "StorageServiceProperties",
     modelProperties: {
       logging: {
-        xmlName: 'Logging',
-        required: false,
-        serializedName: 'Logging',
-        type: {
-          name: 'Composite',
-          className: 'Logging'
-        }
-      },
+  xmlName: "Logging",
+  serializedName: "Logging",
+  type: {
+    name: "Composite",
+    className: "Logging"
+  }
+},
       hourMetrics: {
-        xmlName: 'HourMetrics',
-        required: false,
-        serializedName: 'HourMetrics',
-        type: {
-          name: 'Composite',
-          className: 'Metrics'
-        }
-      },
+  xmlName: "HourMetrics",
+  serializedName: "HourMetrics",
+  type: {
+    name: "Composite",
+    className: "Metrics"
+  }
+},
       minuteMetrics: {
-        xmlName: 'MinuteMetrics',
-        required: false,
-        serializedName: 'MinuteMetrics',
-        type: {
-          name: 'Composite',
-          className: 'Metrics'
-        }
-      },
+  xmlName: "MinuteMetrics",
+  serializedName: "MinuteMetrics",
+  type: {
+    name: "Composite",
+    className: "Metrics"
+  }
+},
       cors: {
-        xmlIsWrapped: true,
-        xmlName: 'Cors',
-        xmlElementName: 'CorsRule',
-        required: false,
-        serializedName: 'Cors',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'CorsRuleElementType',
-              type: {
-                name: 'Composite',
-                className: 'CorsRule'
-              }
-          }
-        }
-      },
+  xmlIsWrapped: true,
+  xmlName: "Cors",
+  xmlElementName: "CorsRule",
+  serializedName: "Cors",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "CorsRuleElementType",
+  type: {
+    name: "Composite",
+    className: "CorsRule"
+  }
+}
+  }
+},
       defaultServiceVersion: {
-        xmlName: 'DefaultServiceVersion',
-        required: false,
-        serializedName: 'DefaultServiceVersion',
-        type: {
-          name: 'String'
-        }
-      },
+  xmlName: "DefaultServiceVersion",
+  serializedName: "DefaultServiceVersion",
+  type: {
+    name: "String"
+  }
+},
       deleteRetentionPolicy: {
-        xmlName: 'DeleteRetentionPolicy',
-        required: false,
-        serializedName: 'DeleteRetentionPolicy',
-        type: {
-          name: 'Composite',
-          className: 'RetentionPolicy'
-        }
-      }
+  xmlName: "DeleteRetentionPolicy",
+  serializedName: "DeleteRetentionPolicy",
+  type: {
+    name: "Composite",
+    className: "RetentionPolicy"
+  }
+}
     }
   }
 };
 
 export const XmlGetHeadersHeaders = {
-  required: false,
-  serializedName: 'xml-getheaders-headers',
+  serializedName: "xml-getheaders-headers",
   type: {
-    name: 'Composite',
-    className: 'XmlGetHeadersHeaders',
+    name: "Composite",
+    className: "XmlGetHeadersHeaders",
     modelProperties: {
       customHeader: {
-        xmlName: 'Custom-Header',
-        required: false,
-        serializedName: 'custom-header',
-        type: {
-          name: 'String'
-        }
-      }
+  xmlName: "Custom-Header",
+  serializedName: "custom-header",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

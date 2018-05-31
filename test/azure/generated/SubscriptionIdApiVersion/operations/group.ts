@@ -81,25 +81,49 @@ export class Group {
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "subscriptionId",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "resourceGroupName",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
               queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "api-version",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -118,7 +142,7 @@ export class Group {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -133,7 +157,7 @@ export class Group {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SampleResourceGroup;
+            const resultMapper = Mappers.SampleResourceGroup;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

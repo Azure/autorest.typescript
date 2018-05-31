@@ -73,7 +73,13 @@ export class SkipUrlEncoding {
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "unencodedPathParam",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -81,7 +87,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -100,7 +112,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -165,7 +177,13 @@ export class SkipUrlEncoding {
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "unencodedPathParam",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -173,7 +191,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -192,7 +216,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -252,7 +276,15 @@ export class SkipUrlEncoding {
           urlParameters: [
             {
               parameterName: "unencodedPathParam",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "unencodedPathParam",
+          defaultValue: 'path1/path2/path3',
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -260,7 +292,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -279,7 +317,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -345,7 +383,13 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "q1",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -353,7 +397,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -372,7 +422,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -436,7 +486,12 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          serializedName: "q1",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -444,7 +499,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -463,7 +524,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -529,7 +590,13 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "q1",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -537,7 +604,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -556,7 +629,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -617,7 +690,15 @@ export class SkipUrlEncoding {
           queryParameters: [
             {
               parameterName: "q1",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "q1",
+          defaultValue: 'value1&q2=value2&q3=value3',
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             }
           ],
@@ -625,7 +706,13 @@ export class SkipUrlEncoding {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -644,7 +731,7 @@ export class SkipUrlEncoding {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

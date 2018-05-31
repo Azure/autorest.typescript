@@ -79,7 +79,7 @@ namespace AutoRest.TypeScript.DSL
             builder.Text($"export const {variableName}: {variableType} = ");
             try
             {
-                valueAction.Invoke(new TSValue(builder));
+                builder.Value(valueAction);
             }
             finally
             {
@@ -98,7 +98,7 @@ namespace AutoRest.TypeScript.DSL
             builder.Text($"const {variableName}: {variableType} = ");
             try
             {
-                valueAction.Invoke(new TSValue(builder));
+                builder.Value(valueAction);
             }
             finally
             {

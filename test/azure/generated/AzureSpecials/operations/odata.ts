@@ -83,24 +83,45 @@ export class Odata {
             {
               parameterName: "filter",
               queryParameterName: "$filter",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "$filter",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "top",
               queryParameterName: "$top",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+          serializedName: "$top",
+          type: {
+            name: "Number"
+          }
+        }
             },
             {
               parameterName: "orderby",
               queryParameterName: "$orderby",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "$orderby",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -119,7 +140,7 @@ export class Odata {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

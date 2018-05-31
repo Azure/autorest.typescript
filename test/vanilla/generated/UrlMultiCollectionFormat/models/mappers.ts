@@ -10,101 +10,89 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const QueriesArrayStringMultiNullOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringMultiNullOptions',
+  serializedName: "ArrayStringMultiNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringMultiNullOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringMultiNullOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "arrayQuery",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const QueriesArrayStringMultiEmptyOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringMultiEmptyOptions',
+  serializedName: "ArrayStringMultiEmptyOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringMultiEmptyOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringMultiEmptyOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "arrayQuery",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const QueriesArrayStringMultiValidOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringMultiValidOptions',
+  serializedName: "ArrayStringMultiValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringMultiValidOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringMultiValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "arrayQuery",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };

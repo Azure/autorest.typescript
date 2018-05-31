@@ -102,7 +102,7 @@ namespace AutoRest.TypeScript.DSL
                 builder.Text(propertyName);
             }
             builder.Text(": ");
-            propertyValueAction.Invoke(new TSValue(builder));
+            builder.Value(propertyValueAction);
         }
 
         /// <summary>

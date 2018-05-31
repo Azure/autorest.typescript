@@ -10,257 +10,226 @@
 
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       productId: {
-        required: false,
-        serializedName: 'product_id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "product_id",
+  type: {
+    name: "String"
+  }
+},
       description: {
-        required: false,
-        serializedName: 'description',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "description",
+  type: {
+    name: "String"
+  }
+},
       displayName: {
-        required: false,
-        serializedName: 'display_name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "display_name",
+  type: {
+    name: "String"
+  }
+},
       capacity: {
-        required: false,
-        serializedName: 'capacity',
-        defaultValue: '100',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "capacity",
+  defaultValue: '100',
+  type: {
+    name: "String"
+  }
+},
       image: {
-        required: false,
-        serializedName: 'image',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "image",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const CatalogDictionary = {
-  required: false,
-  serializedName: 'CatalogDictionary',
+  serializedName: "CatalogDictionary",
   type: {
-    name: 'Composite',
-    className: 'CatalogDictionary',
+    name: "Composite",
+    className: "CatalogDictionary",
     modelProperties: {
       productDictionary: {
-        required: false,
-        serializedName: 'productDictionary',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      }
+  serializedName: "productDictionary",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogArray = {
-  required: false,
-  serializedName: 'CatalogArray',
+  serializedName: "CatalogArray",
   type: {
-    name: 'Composite',
-    className: 'CatalogArray',
+    name: "Composite",
+    className: "CatalogArray",
     modelProperties: {
       productArray: {
-        required: false,
-        serializedName: 'productArray',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      }
+  serializedName: "productArray",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogArrayOfDictionary = {
-  required: false,
-  serializedName: 'CatalogArrayOfDictionary',
+  serializedName: "CatalogArrayOfDictionary",
   type: {
-    name: 'Composite',
-    className: 'CatalogArrayOfDictionary',
+    name: "Composite",
+    className: "CatalogArrayOfDictionary",
     modelProperties: {
       productArrayOfDictionary: {
-        required: false,
-        serializedName: 'productArrayOfDictionary',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productArrayOfDictionary",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ObjectElementType",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogDictionaryOfArray = {
-  required: false,
-  serializedName: 'CatalogDictionaryOfArray',
+  serializedName: "CatalogDictionaryOfArray",
   type: {
-    name: 'Composite',
-    className: 'CatalogDictionaryOfArray',
+    name: "Composite",
+    className: "CatalogDictionaryOfArray",
     modelProperties: {
       productDictionaryOfArray: {
-        required: false,
-        serializedName: 'productDictionaryOfArray',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productDictionaryOfArray",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ArrayElementType",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const ComplexModelClientCreateOptionalParams = {
-  required: false,
-  serializedName: 'CreateOptions',
+  serializedName: "CreateOptions",
   type: {
-    name: 'Composite',
-    className: 'ComplexModelClientCreateOptionalParams',
+    name: "Composite",
+    className: "ComplexModelClientCreateOptionalParams",
     modelProperties: {
       productDictionaryOfArray: {
-        required: false,
-        serializedName: 'productDictionaryOfArray',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productDictionaryOfArray",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ArrayElementType",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ComplexModelClientUpdateOptionalParams = {
-  required: false,
-  serializedName: 'UpdateOptions',
+  serializedName: "UpdateOptions",
   type: {
-    name: 'Composite',
-    className: 'ComplexModelClientUpdateOptionalParams',
+    name: "Composite",
+    className: "ComplexModelClientUpdateOptionalParams",
     modelProperties: {
       productArrayOfDictionary: {
-        required: false,
-        serializedName: 'productArrayOfDictionary',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productArrayOfDictionary",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ObjectElementType",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };

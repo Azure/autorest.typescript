@@ -93,34 +93,71 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "vault",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "vault",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             },
             {
               parameterName: "secret",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "secret",
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             },
             {
               parameterName: "this.client.dnsSuffix",
               urlParameterName: "dnsSuffix",
-              type: msRest.OperationParameterType.String,
+              mapper: {
+          required: true,
+          serializedName: "dnsSuffix",
+          defaultValue: 'host',
+          type: {
+            name: "String"
+          }
+        },
               skipEncoding: true
             },
             {
               parameterName: "keyName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "keyName",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "this.client.subscriptionId",
               urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "subscriptionId",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           queryParameters: [
             {
               parameterName: "keyVersion",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "keyVersion",
+          defaultValue: 'v1',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -139,7 +176,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

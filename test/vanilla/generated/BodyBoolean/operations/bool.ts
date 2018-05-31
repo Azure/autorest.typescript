@@ -66,7 +66,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -81,11 +81,10 @@ export class Bool {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Boolean'
+                name: "Boolean"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -135,9 +134,9 @@ export class Bool {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'boolBody',
+        serializedName: "boolBody",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -153,7 +152,6 @@ export class Bool {
           path: "bool/true",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -171,7 +169,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -230,7 +228,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -245,11 +243,10 @@ export class Bool {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Boolean'
+                name: "Boolean"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -299,9 +296,9 @@ export class Bool {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'boolBody',
+        serializedName: "boolBody",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -317,7 +314,6 @@ export class Bool {
           path: "bool/false",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "boolBody",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -335,7 +331,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -394,7 +390,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -409,11 +405,10 @@ export class Bool {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Boolean'
+                name: "Boolean"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -474,7 +469,7 @@ export class Bool {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -489,11 +484,10 @@ export class Bool {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Boolean'
+                name: "Boolean"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');

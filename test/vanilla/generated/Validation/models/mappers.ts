@@ -10,223 +10,208 @@
 
 
 export const ChildProduct = {
-  required: false,
-  serializedName: 'ChildProduct',
+  serializedName: "ChildProduct",
   type: {
-    name: 'Composite',
-    className: 'ChildProduct',
+    name: "Composite",
+    className: "ChildProduct",
     modelProperties: {
       constProperty: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constProperty',
-        defaultValue: 'constant',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constProperty",
+  defaultValue: 'constant',
+  type: {
+    name: "String"
+  }
+},
       count: {
-        required: false,
-        serializedName: 'count',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "count",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const ConstantProduct = {
-  required: false,
-  serializedName: 'ConstantProduct',
+  serializedName: "ConstantProduct",
   type: {
-    name: 'Composite',
-    className: 'ConstantProduct',
+    name: "Composite",
+    className: "ConstantProduct",
     modelProperties: {
       constProperty: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constProperty',
-        defaultValue: 'constant',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constProperty",
+  defaultValue: 'constant',
+  type: {
+    name: "String"
+  }
+},
       constProperty2: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constProperty2',
-        defaultValue: 'constant2',
-        type: {
-          name: 'String'
-        }
-      }
+  required: true,
+  isConstant: true,
+  serializedName: "constProperty2",
+  defaultValue: 'constant2',
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       displayNames: {
-        required: false,
-        serializedName: 'display_names',
-        constraints: {
-          MaxItems: 6,
-          MinItems: 0,
-          UniqueItems: true
-        },
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      },
+  serializedName: "display_names",
+  constraints: {
+    MaxItems: 6,
+    MinItems: 0,
+    UniqueItems: true
+  },
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+},
       capacity: {
-        required: false,
-        serializedName: 'capacity',
-        constraints: {
-          ExclusiveMaximum: 100,
-          ExclusiveMinimum: 0
-        },
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "capacity",
+  constraints: {
+    ExclusiveMaximum: 100,
+    ExclusiveMinimum: 0
+  },
+  type: {
+    name: "Number"
+  }
+},
       image: {
-        required: false,
-        serializedName: 'image',
-        constraints: {
-          Pattern: 'http://\w+'
-        },
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "image",
+  constraints: {
+    Pattern: /http:\/\/\w+/
+  },
+  type: {
+    name: "String"
+  }
+},
       child: {
-        required: true,
-        serializedName: 'child',
-        defaultValue: {},
-        type: {
-          name: 'Composite',
-          className: 'ChildProduct'
-        }
-      },
+  required: true,
+  serializedName: "child",
+  defaultValue: {},
+  type: {
+    name: "Composite",
+    className: "ChildProduct"
+  }
+},
       constChild: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constChild',
-        defaultValue: {},
-        type: {
-          name: 'Composite',
-          className: 'ConstantProduct'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constChild",
+  defaultValue: {},
+  type: {
+    name: "Composite",
+    className: "ConstantProduct"
+  }
+},
       constInt: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constInt',
-        defaultValue: 0,
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constInt",
+  defaultValue: 0,
+  type: {
+    name: "Number"
+  }
+},
       constString: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constString',
-        defaultValue: 'constant',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constString",
+  defaultValue: 'constant',
+  type: {
+    name: "String"
+  }
+},
       constStringAsEnum: {
-        required: false,
-        serializedName: 'constStringAsEnum',
-        type: {
-          name: 'Enum',
-          allowedValues: [ 'constant_string_as_enum' ]
-        }
-      }
+  serializedName: "constStringAsEnum",
+  type: {
+    name: "Enum",
+    allowedValues: [
+      "constant_string_as_enum"
+    ]
+  }
+}
     }
   }
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       code: {
-        required: false,
-        serializedName: 'code',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "code",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+},
       fields: {
-        required: false,
-        serializedName: 'fields',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "fields",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const AutoRestValidationTestValidationOfBodyOptionalParams = {
-  required: false,
-  serializedName: 'ValidationOfBodyOptions',
+  serializedName: "ValidationOfBodyOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestValidationTestValidationOfBodyOptionalParams',
+    name: "Composite",
+    className: "AutoRestValidationTestValidationOfBodyOptionalParams",
     modelProperties: {
       body: {
-        required: false,
-        serializedName: 'body',
-        type: {
-          name: 'Composite',
-          className: 'Product'
-        }
-      }
+  serializedName: "body",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
     }
   }
 };
 
 export const AutoRestValidationTestPostWithConstantInBodyOptionalParams = {
-  required: false,
-  serializedName: 'PostWithConstantInBodyOptions',
+  serializedName: "PostWithConstantInBodyOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestValidationTestPostWithConstantInBodyOptionalParams',
+    name: "Composite",
+    className: "AutoRestValidationTestPostWithConstantInBodyOptionalParams",
     modelProperties: {
       body: {
-        required: false,
-        serializedName: 'body',
-        type: {
-          name: 'Composite',
-          className: 'Product'
-        }
-      }
+  serializedName: "body",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
     }
   }
 };

@@ -14,397 +14,352 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const ProductProperties = {
-  required: false,
-  serializedName: 'Product_properties',
+  serializedName: "Product_properties",
   type: {
-    name: 'Composite',
-    className: 'ProductProperties',
+    name: "Composite",
+    className: "ProductProperties",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       properties: {
-        required: false,
-        serializedName: 'properties',
-        type: {
-          name: 'Composite',
-          className: 'ProductProperties'
-        }
-      }
+  serializedName: "properties",
+  type: {
+    name: "Composite",
+    className: "ProductProperties"
+  }
+}
     }
   }
 };
 
 export const OperationResult = {
-  required: false,
-  serializedName: 'OperationResult',
+  serializedName: "OperationResult",
   type: {
-    name: 'Composite',
-    className: 'OperationResult',
+    name: "Composite",
+    className: "OperationResult",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "status",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesOptions',
+    name: "Composite",
+    className: "PagingGetMultiplePagesOptions",
     modelProperties: {
       maxresults: {
-        required: false,
-        type: {
-          name: 'Number'
-        }
-      },
+  type: {
+    name: "Number"
+  }
+},
       timeout: {
-        required: false,
-        defaultValue: 30,
-        type: {
-          name: 'Number'
-        }
-      }
+  defaultValue: 30,
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const PagingGetOdataMultiplePagesOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'PagingGetOdataMultiplePagesOptions',
+    name: "Composite",
+    className: "PagingGetOdataMultiplePagesOptions",
     modelProperties: {
       maxresults: {
-        required: false,
-        type: {
-          name: 'Number'
-        }
-      },
+  type: {
+    name: "Number"
+  }
+},
       timeout: {
-        required: false,
-        defaultValue: 30,
-        type: {
-          name: 'Number'
-        }
-      }
+  defaultValue: 30,
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesWithOffsetOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesWithOffsetOptions',
+    name: "Composite",
+    className: "PagingGetMultiplePagesWithOffsetOptions",
     modelProperties: {
       maxresults: {
-        required: false,
-        type: {
-          name: 'Number'
-        }
-      },
+  type: {
+    name: "Number"
+  }
+},
       offset: {
-        required: true,
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  type: {
+    name: "Number"
+  }
+},
       timeout: {
-        required: false,
-        defaultValue: 30,
-        type: {
-          name: 'Number'
-        }
-      }
+  defaultValue: 30,
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const CustomParameterGroup = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'CustomParameterGroup',
+    name: "Composite",
+    className: "CustomParameterGroup",
     modelProperties: {
       apiVersion: {
-        required: true,
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  type: {
+    name: "String"
+  }
+},
       tenant: {
-        required: true,
-        type: {
-          name: 'String'
-        }
-      }
+  required: true,
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesWithOffsetNextOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesWithOffsetNextOptions',
+    name: "Composite",
+    className: "PagingGetMultiplePagesWithOffsetNextOptions",
     modelProperties: {
       maxresults: {
-        required: false,
-        type: {
-          name: 'Number'
-        }
-      },
+  type: {
+    name: "Number"
+  }
+},
       timeout: {
-        required: false,
-        defaultValue: 30,
-        type: {
-          name: 'Number'
-        }
-      }
+  defaultValue: 30,
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesOptionalParams = {
-  required: false,
-  serializedName: 'GetMultiplePagesOptions',
+  serializedName: "GetMultiplePagesOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesOptionalParams',
+    name: "Composite",
+    className: "PagingGetMultiplePagesOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+},
       pagingGetMultiplePagesOptions: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Composite',
-          className: 'PagingGetMultiplePagesOptions'
-        }
-      }
+  serializedName: "",
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesOptions"
+  }
+}
     }
   }
 };
 
 export const PagingGetOdataMultiplePagesOptionalParams = {
-  required: false,
-  serializedName: 'GetOdataMultiplePagesOptions',
+  serializedName: "GetOdataMultiplePagesOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetOdataMultiplePagesOptionalParams',
+    name: "Composite",
+    className: "PagingGetOdataMultiplePagesOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+},
       pagingGetOdataMultiplePagesOptions: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Composite',
-          className: 'PagingGetOdataMultiplePagesOptions'
-        }
-      }
+  serializedName: "",
+  type: {
+    name: "Composite",
+    className: "PagingGetOdataMultiplePagesOptions"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesWithOffsetOptionalParams = {
-  required: false,
-  serializedName: 'GetMultiplePagesWithOffsetOptions',
+  serializedName: "GetMultiplePagesWithOffsetOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesWithOffsetOptionalParams',
+    name: "Composite",
+    className: "PagingGetMultiplePagesWithOffsetOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesNextOptionalParams = {
-  required: false,
-  serializedName: 'GetMultiplePagesNextOptions',
+  serializedName: "GetMultiplePagesNextOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesNextOptionalParams',
+    name: "Composite",
+    className: "PagingGetMultiplePagesNextOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+},
       pagingGetMultiplePagesOptions: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Composite',
-          className: 'PagingGetMultiplePagesOptions'
-        }
-      }
+  serializedName: "",
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesOptions"
+  }
+}
     }
   }
 };
 
 export const PagingGetOdataMultiplePagesNextOptionalParams = {
-  required: false,
-  serializedName: 'GetOdataMultiplePagesNextOptions',
+  serializedName: "GetOdataMultiplePagesNextOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetOdataMultiplePagesNextOptionalParams',
+    name: "Composite",
+    className: "PagingGetOdataMultiplePagesNextOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+},
       pagingGetOdataMultiplePagesOptions: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Composite',
-          className: 'PagingGetOdataMultiplePagesOptions'
-        }
-      }
+  serializedName: "",
+  type: {
+    name: "Composite",
+    className: "PagingGetOdataMultiplePagesOptions"
+  }
+}
     }
   }
 };
 
 export const PagingGetMultiplePagesWithOffsetNextOptionalParams = {
-  required: false,
-  serializedName: 'GetMultiplePagesWithOffsetNextOptions',
+  serializedName: "GetMultiplePagesWithOffsetNextOptions",
   type: {
-    name: 'Composite',
-    className: 'PagingGetMultiplePagesWithOffsetNextOptionalParams',
+    name: "Composite",
+    className: "PagingGetMultiplePagesWithOffsetNextOptionalParams",
     modelProperties: {
       clientRequestId: {
-        required: false,
-        serializedName: 'client-request-id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "client-request-id",
+  type: {
+    name: "String"
+  }
+},
       pagingGetMultiplePagesWithOffsetNextOptions: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Composite',
-          className: 'PagingGetMultiplePagesWithOffsetNextOptions'
-        }
-      }
+  serializedName: "",
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesWithOffsetNextOptions"
+  }
+}
     }
   }
 };
 
 export const ProductResult = {
-  required: false,
-  serializedName: 'ProductResult',
+  serializedName: "ProductResult",
   type: {
-    name: 'Composite',
-    className: 'ProductResult',
+    name: "Composite",
+    className: "ProductResult",
     modelProperties: {
       values: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      },
+  serializedName: "",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+},
       nextLink: {
-        required: false,
-        serializedName: 'nextLink',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "nextLink",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const OdataProductResult = {
-  required: false,
-  serializedName: 'OdataProductResult',
+  serializedName: "OdataProductResult",
   type: {
-    name: 'Composite',
-    className: 'OdataProductResult',
+    name: "Composite",
+    className: "OdataProductResult",
     modelProperties: {
       values: {
-        required: false,
-        serializedName: '',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      },
+  serializedName: "",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+},
       odatanextLink: {
-        required: false,
-        serializedName: 'odata\\.nextLink',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "odata\\.nextLink",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

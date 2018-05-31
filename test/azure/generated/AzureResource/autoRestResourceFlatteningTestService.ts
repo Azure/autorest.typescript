@@ -117,18 +117,16 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'ResourceArray',
+        serializedName: "ResourceArray",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ResourceElementType',
-              type: {
-                name: 'Composite',
-                className: 'Resource'
-              }
-          }
+        serializedName: "ResourceElementType",
+        type: {
+          name: "Composite",
+          className: "Resource"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -147,7 +145,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -169,7 +173,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -229,7 +233,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -248,7 +258,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -263,19 +273,17 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'FlattenedProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'FlattenedProduct'
-                    }
-                }
+              serializedName: "FlattenedProductElementType",
+              type: {
+                name: "Composite",
+                className: "FlattenedProduct"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -325,18 +333,16 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'ResourceDictionary',
+        serializedName: "ResourceDictionary",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'FlattenedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'FlattenedProduct'
-              }
-          }
+        serializedName: "FlattenedProductElementType",
+        type: {
+          name: "Composite",
+          className: "FlattenedProduct"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -355,7 +361,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -377,7 +389,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -437,7 +449,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -456,7 +474,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -471,19 +489,17 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Dictionary',
+                name: "Dictionary",
                 value: {
-                    required: false,
-                    serializedName: 'FlattenedProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'FlattenedProduct'
-                    }
-                }
+              serializedName: "FlattenedProductElementType",
+              type: {
+                name: "Composite",
+                className: "FlattenedProduct"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -550,7 +566,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -572,7 +594,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -632,7 +654,13 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             {
               parameterName: "this.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -651,7 +679,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -666,7 +694,7 @@ class AutoRestResourceFlatteningTestService extends msRestAzure.AzureServiceClie
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.ResourceCollection;
+            const resultMapper = Mappers.ResourceCollection;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

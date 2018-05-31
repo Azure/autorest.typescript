@@ -75,11 +75,23 @@ export class Formdata {
           formDataParameters: [
             {
               parameterName: "fileContent",
-              type: msRest.OperationParameterType.Stream
+              mapper: {
+          required: true,
+          serializedName: "fileContent",
+          type: {
+            name: "Stream"
+          }
+        }
             },
             {
               parameterName: "fileName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "fileName",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           contentType: "multipart/form-data"
@@ -100,7 +112,7 @@ export class Formdata {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -150,9 +162,9 @@ export class Formdata {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'fileContent',
+        serializedName: "fileContent",
         type: {
-          name: 'Stream'
+          name: "Stream"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -168,7 +180,6 @@ export class Formdata {
           path: "formdata/stream/uploadfile",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "fileContent",
-          requestBodyType: msRest.OperationParameterType.Stream,
           contentType: "application/octet-stream"
         });
       let statusCode = operationRes.status;
@@ -187,7 +198,7 @@ export class Formdata {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

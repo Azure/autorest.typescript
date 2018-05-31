@@ -74,12 +74,24 @@ export class Header {
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "foo-client-request-id",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -98,7 +110,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -182,12 +194,24 @@ export class Header {
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "foo-client-request-id",
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -206,7 +230,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -276,12 +300,24 @@ export class Header {
             {
               parameterName: "fooClientRequestId",
               headerName: "foo-client-request-id",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "foo-client-request-id",
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "this.client.acceptLanguage",
               headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "accept-language",
+          defaultValue: 'en-US',
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -300,7 +336,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

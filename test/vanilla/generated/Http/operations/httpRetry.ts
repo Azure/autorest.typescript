@@ -67,7 +67,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -113,10 +113,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -132,7 +131,6 @@ export class HttpRetry {
           path: "http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -150,7 +148,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -196,10 +194,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -215,7 +212,6 @@ export class HttpRetry {
           path: "http/retry/500",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -233,7 +229,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -292,7 +288,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -338,10 +334,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -357,7 +352,6 @@ export class HttpRetry {
           path: "http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -375,7 +369,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -421,10 +415,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -440,7 +433,6 @@ export class HttpRetry {
           path: "http/retry/503",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -458,7 +450,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -504,10 +496,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -523,7 +514,6 @@ export class HttpRetry {
           path: "http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -541,7 +531,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -587,10 +577,9 @@ export class HttpRetry {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -606,7 +595,6 @@ export class HttpRetry {
           path: "http/retry/504",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -624,7 +612,7 @@ export class HttpRetry {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

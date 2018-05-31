@@ -67,7 +67,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -126,7 +126,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -141,11 +141,10 @@ export class HttpSuccess {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Boolean'
+                name: "Boolean"
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -193,10 +192,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -212,7 +210,6 @@ export class HttpSuccess {
           path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -230,7 +227,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -276,10 +273,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -295,7 +291,6 @@ export class HttpSuccess {
           path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -313,7 +308,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -359,10 +354,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -378,7 +372,6 @@ export class HttpSuccess {
           path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -396,7 +389,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -442,10 +435,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -461,7 +453,6 @@ export class HttpSuccess {
           path: "http/success/200",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -479,7 +470,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -525,10 +516,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -544,7 +534,6 @@ export class HttpSuccess {
           path: "http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -562,7 +551,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -608,10 +597,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -627,7 +615,6 @@ export class HttpSuccess {
           path: "http/success/201",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -645,7 +632,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -691,10 +678,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -710,7 +696,6 @@ export class HttpSuccess {
           path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -728,7 +713,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -774,10 +759,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -793,7 +777,6 @@ export class HttpSuccess {
           path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -811,7 +794,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -857,10 +840,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -876,7 +858,6 @@ export class HttpSuccess {
           path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -894,7 +875,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -940,10 +921,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -959,7 +939,6 @@ export class HttpSuccess {
           path: "http/success/202",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -977,7 +956,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1036,7 +1015,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1082,10 +1061,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1101,7 +1079,6 @@ export class HttpSuccess {
           path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -1119,7 +1096,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1165,10 +1142,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1184,7 +1160,6 @@ export class HttpSuccess {
           path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -1202,7 +1177,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1248,10 +1223,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1267,7 +1241,6 @@ export class HttpSuccess {
           path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -1285,7 +1258,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1331,10 +1304,9 @@ export class HttpSuccess {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1350,7 +1322,6 @@ export class HttpSuccess {
           path: "http/success/204",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -1368,7 +1339,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1427,7 +1398,7 @@ export class HttpSuccess {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

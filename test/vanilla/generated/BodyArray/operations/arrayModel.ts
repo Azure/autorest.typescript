@@ -67,7 +67,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -82,18 +82,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -154,7 +152,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -169,18 +167,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -241,7 +237,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -256,18 +252,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -322,16 +316,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -364,7 +357,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -423,7 +416,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -438,18 +431,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
-                }
+              serializedName: "booleanElementType",
+              type: {
+                name: "Boolean"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -504,16 +495,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'booleanElementType',
-              type: {
-                name: 'Boolean'
-              }
-          }
+        serializedName: "booleanElementType",
+        type: {
+          name: "Boolean"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -546,7 +536,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -605,7 +595,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -620,18 +610,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
-                }
+              serializedName: "booleanElementType",
+              type: {
+                name: "Boolean"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -692,7 +680,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -707,18 +695,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
-                }
+              serializedName: "booleanElementType",
+              type: {
+                name: "Boolean"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -779,7 +765,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -794,18 +780,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -860,16 +844,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
+        serializedName: "numberElementType",
+        type: {
+          name: "Number"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -902,7 +885,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -961,7 +944,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -976,18 +959,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1048,7 +1029,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1063,18 +1044,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1135,7 +1114,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1150,18 +1129,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1216,16 +1193,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
+        serializedName: "numberElementType",
+        type: {
+          name: "Number"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1258,7 +1234,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1317,7 +1293,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1332,18 +1308,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1404,7 +1378,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1419,18 +1393,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1491,7 +1463,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1506,18 +1478,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1572,16 +1542,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
+        serializedName: "numberElementType",
+        type: {
+          name: "Number"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1614,7 +1583,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1673,7 +1642,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1688,18 +1657,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1760,7 +1727,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1775,18 +1742,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1847,7 +1812,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1862,18 +1827,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -1928,16 +1891,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
+        serializedName: "numberElementType",
+        type: {
+          name: "Number"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1970,7 +1932,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2029,7 +1991,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2044,18 +2006,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2116,7 +2076,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2131,18 +2091,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2203,7 +2161,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2218,18 +2176,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2284,16 +2240,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -2326,7 +2281,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2385,7 +2340,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2400,18 +2355,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2472,7 +2425,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2487,18 +2440,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2561,7 +2512,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2576,18 +2527,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "Uuid"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2644,16 +2593,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "Uuid"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -2686,7 +2634,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2745,7 +2693,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2760,18 +2708,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "Uuid"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2832,7 +2778,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2847,18 +2793,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "Date"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -2914,16 +2858,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'Date'
-              }
-          }
+        serializedName: "DateElementType",
+        type: {
+          name: "Date"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -2956,7 +2899,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3015,7 +2958,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3030,18 +2973,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "Date"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3102,7 +3043,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3117,18 +3058,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "Date"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3190,7 +3129,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3205,18 +3144,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "DateTime"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3273,16 +3210,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'DateTime'
-              }
-          }
+        serializedName: "DateElementType",
+        type: {
+          name: "DateTime"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -3315,7 +3251,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3374,7 +3310,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3389,18 +3325,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "DateTime"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3461,7 +3395,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3476,18 +3410,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "DateTime"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3549,7 +3481,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3564,18 +3496,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTimeRfc1123'
-                    }
-                }
+              serializedName: "DateElementType",
+              type: {
+                name: "DateTimeRfc1123"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3632,16 +3562,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'DateTimeRfc1123'
-              }
-          }
+        serializedName: "DateElementType",
+        type: {
+          name: "DateTimeRfc1123"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -3674,7 +3603,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3733,7 +3662,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3748,18 +3677,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'TimeSpan'
-                    }
-                }
+              serializedName: "stringElementType",
+              type: {
+                name: "TimeSpan"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3814,16 +3741,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'TimeSpan'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "TimeSpan"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -3856,7 +3782,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3916,7 +3842,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3931,18 +3857,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'ByteArray'
-                    }
-                }
+              serializedName: "BufferElementType",
+              type: {
+                name: "ByteArray"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -3998,16 +3922,15 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'BufferElementType',
-              type: {
-                name: 'ByteArray'
-              }
-          }
+        serializedName: "BufferElementType",
+        type: {
+          name: "ByteArray"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -4040,7 +3963,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4100,7 +4023,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4115,18 +4038,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'ByteArray'
-                    }
-                }
+              serializedName: "BufferElementType",
+              type: {
+                name: "ByteArray"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4188,7 +4109,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4203,18 +4124,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'Base64Url'
-                    }
-                }
+              serializedName: "BufferElementType",
+              type: {
+                name: "Base64Url"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4275,7 +4194,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4290,19 +4209,17 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
+              serializedName: "ProductElementType",
+              type: {
+                name: "Composite",
+                className: "Product"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4363,7 +4280,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4378,19 +4295,17 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
+              serializedName: "ProductElementType",
+              type: {
+                name: "Composite",
+                className: "Product"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4452,7 +4367,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4467,19 +4382,17 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
+              serializedName: "ProductElementType",
+              type: {
+                name: "Composite",
+                className: "Product"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4541,7 +4454,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4556,19 +4469,17 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
+              serializedName: "ProductElementType",
+              type: {
+                name: "Composite",
+                className: "Product"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4630,7 +4541,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4645,19 +4556,17 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
+              serializedName: "ProductElementType",
+              type: {
+                name: "Composite",
+                className: "Product"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4700,17 +4609,16 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
+        serializedName: "ProductElementType",
+        type: {
+          name: "Composite",
+          className: "Product"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -4743,7 +4651,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4802,7 +4710,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4817,25 +4725,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ArrayElementType",
+              type: {
+                name: "Sequence",
+                element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4896,7 +4801,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4911,25 +4816,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ArrayElementType",
+              type: {
+                name: "Sequence",
+                element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -4990,7 +4892,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5005,25 +4907,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ArrayElementType",
+              type: {
+                name: "Sequence",
+                element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5084,7 +4983,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5099,25 +4998,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ArrayElementType",
+              type: {
+                name: "Sequence",
+                element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5179,7 +5075,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5194,25 +5090,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ArrayElementType",
+              type: {
+                name: "Sequence",
+                element: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5272,23 +5165,21 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
-              }
-          }
+        serializedName: "ArrayElementType",
+        type: {
+          name: "Sequence",
+          element: {
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -5321,7 +5212,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5380,7 +5271,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5395,25 +5286,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ObjectElementType",
+              type: {
+                name: "Dictionary",
+                value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5474,7 +5362,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5489,25 +5377,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ObjectElementType",
+              type: {
+                name: "Dictionary",
+                value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5570,7 +5455,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5585,25 +5470,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ObjectElementType",
+              type: {
+                name: "Dictionary",
+                value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5666,7 +5548,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5681,25 +5563,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ObjectElementType",
+              type: {
+                name: "Dictionary",
+                value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5762,7 +5641,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5777,25 +5656,22 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
-                      }
-                    }
-                }
+              serializedName: "ObjectElementType",
+              type: {
+                name: "Dictionary",
+                value: {
+              serializedName: "stringElementType",
+              type: {
+                name: "String"
+              }
+            }
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -5856,23 +5732,21 @@ export class ArrayModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'arrayBody',
+        serializedName: "arrayBody",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
-              }
-          }
+        serializedName: "ObjectElementType",
+        type: {
+          name: "Dictionary",
+          value: {
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -5905,7 +5779,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

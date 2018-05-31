@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System.Linq;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
-using System;
+using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
+using System;
+using System.Linq;
 
 namespace AutoRest.TypeScript.Azure.Model
 {
@@ -49,9 +50,9 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string ConstructModelMapper()
         {
-            var modelMapper = this.ConstructMapper(SerializedName, null, isPageable: true, expandComposite: true, isXML: CodeModel?.ShouldGenerateXmlSerialization == true);
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("export const {0} = {{{1}}};", Name, modelMapper);
+            TSBuilder builder = new TSBuilder();
+            builder.Text($"export const {Name} = {ClientModelExtensions.ConstructMapper(this, SerializedName, null, isPageable: true, expandComposite: true, isXML: CodeModel?.ShouldGenerateXmlSerialization == true)}");
+            builder.Line(";");
             return builder.ToString();
         }
     }

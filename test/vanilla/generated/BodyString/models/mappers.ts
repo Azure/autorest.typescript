@@ -10,89 +10,80 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const RefColorConstant = {
-  required: false,
-  serializedName: 'RefColorConstant',
+  serializedName: "RefColorConstant",
   type: {
-    name: 'Composite',
-    className: 'RefColorConstant',
+    name: "Composite",
+    className: "RefColorConstant",
     modelProperties: {
       colorConstant: {
-        required: true,
-        isConstant: true,
-        serializedName: 'ColorConstant',
-        defaultValue: 'green-color',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "ColorConstant",
+  defaultValue: 'green-color',
+  type: {
+    name: "String"
+  }
+},
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "field1",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const StringPutNullOptionalParams = {
-  required: false,
-  serializedName: 'PutNullOptions',
+  serializedName: "PutNullOptions",
   type: {
-    name: 'Composite',
-    className: 'StringPutNullOptionalParams',
+    name: "Composite",
+    className: "StringPutNullOptionalParams",
     modelProperties: {
       stringBody: {
-        required: false,
-        serializedName: 'stringBody',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "stringBody",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const EnumModelPutReferencedConstantOptionalParams = {
-  required: false,
-  serializedName: 'PutReferencedConstantOptions',
+  serializedName: "PutReferencedConstantOptions",
   type: {
-    name: 'Composite',
-    className: 'EnumModelPutReferencedConstantOptionalParams',
+    name: "Composite",
+    className: "EnumModelPutReferencedConstantOptionalParams",
     modelProperties: {
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "field1",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

@@ -14,1440 +14,1284 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       productId: {
-        required: false,
-        serializedName: 'product_id',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "product_id",
+  type: {
+    name: "String"
+  }
+},
       description: {
-        required: false,
-        serializedName: 'description',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "description",
+  type: {
+    name: "String"
+  }
+},
       displayName: {
-        required: false,
-        serializedName: 'display_name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "display_name",
+  type: {
+    name: "String"
+  }
+},
       capacity: {
-        required: false,
-        serializedName: 'capacity',
-        defaultValue: '100',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "capacity",
+  defaultValue: '100',
+  type: {
+    name: "String"
+  }
+},
       image: {
-        required: false,
-        serializedName: 'image',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "image",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const CatalogDictionary = {
-  required: false,
-  serializedName: 'CatalogDictionary',
+  serializedName: "CatalogDictionary",
   type: {
-    name: 'Composite',
-    className: 'CatalogDictionary',
+    name: "Composite",
+    className: "CatalogDictionary",
     modelProperties: {
       productDictionary: {
-        required: false,
-        serializedName: 'productDictionary',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      }
+  serializedName: "productDictionary",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogArray = {
-  required: false,
-  serializedName: 'CatalogArray',
+  serializedName: "CatalogArray",
   type: {
-    name: 'Composite',
-    className: 'CatalogArray',
+    name: "Composite",
+    className: "CatalogArray",
     modelProperties: {
       productArray: {
-        required: false,
-        serializedName: 'productArray',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      }
+  serializedName: "productArray",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogArrayOfDictionary = {
-  required: false,
-  serializedName: 'CatalogArrayOfDictionary',
+  serializedName: "CatalogArrayOfDictionary",
   type: {
-    name: 'Composite',
-    className: 'CatalogArrayOfDictionary',
+    name: "Composite",
+    className: "CatalogArrayOfDictionary",
     modelProperties: {
       productArrayOfDictionary: {
-        required: false,
-        serializedName: 'productArrayOfDictionary',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productArrayOfDictionary",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ObjectElementType",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const CatalogDictionaryOfArray = {
-  required: false,
-  serializedName: 'CatalogDictionaryOfArray',
+  serializedName: "CatalogDictionaryOfArray",
   type: {
-    name: 'Composite',
-    className: 'CatalogDictionaryOfArray',
+    name: "Composite",
+    className: "CatalogDictionaryOfArray",
     modelProperties: {
       productDictionaryOfArray: {
-        required: false,
-        serializedName: 'productDictionaryOfArray',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productDictionaryOfArray",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ArrayElementType",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Basic = {
-  required: false,
-  serializedName: 'basic',
+  serializedName: "basic",
   type: {
-    name: 'Composite',
-    className: 'Basic',
+    name: "Composite",
+    className: "Basic",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+},
       color: {
-        required: false,
-        serializedName: 'color',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "color",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Pet = {
-  required: false,
-  serializedName: 'pet',
+  serializedName: "pet",
   type: {
-    name: 'Composite',
-    className: 'Pet',
+    name: "Composite",
+    className: "Pet",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Dog = {
-  required: false,
-  serializedName: 'dog',
+  serializedName: "dog",
   type: {
-    name: 'Composite',
-    className: 'Dog',
+    name: "Composite",
+    className: "Dog",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+},
       food: {
-        required: false,
-        serializedName: 'food',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "food",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Cat = {
-  required: false,
-  serializedName: 'cat',
+  serializedName: "cat",
   type: {
-    name: 'Composite',
-    className: 'Cat',
+    name: "Composite",
+    className: "Cat",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+},
       color: {
-        required: false,
-        serializedName: 'color',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "color",
+  type: {
+    name: "String"
+  }
+},
       hates: {
-        required: false,
-        serializedName: 'hates',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'DogElementType',
-              type: {
-                name: 'Composite',
-                className: 'Dog'
-              }
-          }
-        }
-      }
+  serializedName: "hates",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "DogElementType",
+  type: {
+    name: "Composite",
+    className: "Dog"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const Siamese = {
-  required: false,
-  serializedName: 'siamese',
+  serializedName: "siamese",
   type: {
-    name: 'Composite',
-    className: 'Siamese',
+    name: "Composite",
+    className: "Siamese",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+},
       color: {
-        required: false,
-        serializedName: 'color',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "color",
+  type: {
+    name: "String"
+  }
+},
       hates: {
-        required: false,
-        serializedName: 'hates',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'DogElementType',
-              type: {
-                name: 'Composite',
-                className: 'Dog'
-              }
-          }
-        }
-      },
+  serializedName: "hates",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "DogElementType",
+  type: {
+    name: "Composite",
+    className: "Dog"
+  }
+}
+  }
+},
       breed: {
-        required: false,
-        serializedName: 'breed',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "breed",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Fish = {
-  required: false,
-  serializedName: 'Fish',
+  serializedName: "Fish",
   type: {
-    name: 'Composite',
+    name: "Composite",
     polymorphicDiscriminator: {
-      serializedName: 'fishtype',
-      clientName: 'fishtype'
+      serializedName: "fishtype",
+      clientName: "fishtype"
     },
-    uberParent: 'Fish',
-    className: 'Fish',
+    uberParent: "Fish",
+    className: "Fish",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      }
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Salmon = {
-  required: false,
-  serializedName: 'salmon',
+  serializedName: "salmon",
   type: {
-    name: 'Composite',
-    className: 'Salmon',
+    name: "Composite",
+    className: "Salmon",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       location: {
-        required: false,
-        serializedName: 'location',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "location",
+  type: {
+    name: "String"
+  }
+},
       iswild: {
-        required: false,
-        serializedName: 'iswild',
-        type: {
-          name: 'Boolean'
-        }
-      }
+  serializedName: "iswild",
+  type: {
+    name: "Boolean"
+  }
+}
     }
   }
 };
 
 export const SmartSalmon = {
-  required: false,
-  serializedName: 'smart_salmon',
+  serializedName: "smart_salmon",
   type: {
-    name: 'Composite',
-    className: 'SmartSalmon',
+    name: "Composite",
+    className: "SmartSalmon",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       location: {
-        required: false,
-        serializedName: 'location',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "location",
+  type: {
+    name: "String"
+  }
+},
       iswild: {
-        required: false,
-        serializedName: 'iswild',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  serializedName: "iswild",
+  type: {
+    name: "Boolean"
+  }
+},
       additionalProperties: {
-        required: false,
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Object'
-              }
-          }
-        }
-      },
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ObjectElementType",
+  type: {
+    name: "Object"
+  }
+}
+  }
+},
       collegeDegree: {
-        required: false,
-        serializedName: 'college_degree',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "college_degree",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Shark = {
-  required: false,
-  serializedName: 'shark',
+  serializedName: "shark",
   type: {
-    name: 'Composite',
-    className: 'Shark',
+    name: "Composite",
+    className: "Shark",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       age: {
-        required: false,
-        serializedName: 'age',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "age",
+  type: {
+    name: "Number"
+  }
+},
       birthday: {
-        required: true,
-        serializedName: 'birthday',
-        type: {
-          name: 'DateTime'
-        }
-      }
+  required: true,
+  serializedName: "birthday",
+  type: {
+    name: "DateTime"
+  }
+}
     }
   }
 };
 
 export const Sawshark = {
-  required: false,
-  serializedName: 'sawshark',
+  serializedName: "sawshark",
   type: {
-    name: 'Composite',
-    className: 'Sawshark',
+    name: "Composite",
+    className: "Sawshark",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       age: {
-        required: false,
-        serializedName: 'age',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "age",
+  type: {
+    name: "Number"
+  }
+},
       birthday: {
-        required: true,
-        serializedName: 'birthday',
-        type: {
-          name: 'DateTime'
-        }
-      },
+  required: true,
+  serializedName: "birthday",
+  type: {
+    name: "DateTime"
+  }
+},
       picture: {
-        required: false,
-        serializedName: 'picture',
-        type: {
-          name: 'ByteArray'
-        }
-      }
+  serializedName: "picture",
+  type: {
+    name: "ByteArray"
+  }
+}
     }
   }
 };
 
 export const Goblinshark = {
-  required: false,
-  serializedName: 'goblin',
+  serializedName: "goblin",
   type: {
-    name: 'Composite',
-    className: 'Goblinshark',
+    name: "Composite",
+    className: "Goblinshark",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       age: {
-        required: false,
-        serializedName: 'age',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "age",
+  type: {
+    name: "Number"
+  }
+},
       birthday: {
-        required: true,
-        serializedName: 'birthday',
-        type: {
-          name: 'DateTime'
-        }
-      },
+  required: true,
+  serializedName: "birthday",
+  type: {
+    name: "DateTime"
+  }
+},
       jawsize: {
-        required: false,
-        serializedName: 'jawsize',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "jawsize",
+  type: {
+    name: "Number"
+  }
+},
       color: {
-        required: false,
-        serializedName: 'color',
-        defaultValue: 'gray',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "color",
+  defaultValue: 'gray',
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const Cookiecuttershark = {
-  required: false,
-  serializedName: 'cookiecuttershark',
+  serializedName: "cookiecuttershark",
   type: {
-    name: 'Composite',
-    className: 'Cookiecuttershark',
+    name: "Composite",
+    className: "Cookiecuttershark",
     modelProperties: {
       species: {
-        required: false,
-        serializedName: 'species',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "species",
+  type: {
+    name: "String"
+  }
+},
       length: {
-        required: true,
-        serializedName: 'length',
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  serializedName: "length",
+  type: {
+    name: "Number"
+  }
+},
       siblings: {
-        required: false,
-        serializedName: 'siblings',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'FishElementType',
-              type: {
-                name: 'Composite',
-                polymorphicDiscriminator: {
-                  serializedName: 'fishtype',
-                  clientName: 'fishtype'
-                },
-                uberParent: 'Fish',
-                className: 'Fish'
-              }
-          }
-        }
-      },
+  serializedName: "siblings",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "FishElementType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "fishtype",
+      clientName: "fishtype"
+    },
+    uberParent: "Fish",
+    className: "Fish"
+  }
+}
+  }
+},
       fishtype: {
-        required: true,
-        serializedName: 'fishtype',
-        type: {
-          name: 'String'
-        }
-      },
+  required: true,
+  serializedName: "fishtype",
+  type: {
+    name: "String"
+  }
+},
       age: {
-        required: false,
-        serializedName: 'age',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "age",
+  type: {
+    name: "Number"
+  }
+},
       birthday: {
-        required: true,
-        serializedName: 'birthday',
-        type: {
-          name: 'DateTime'
-        }
-      }
+  required: true,
+  serializedName: "birthday",
+  type: {
+    name: "DateTime"
+  }
+}
     }
   }
 };
 
 export const IntWrapper = {
-  required: false,
-  serializedName: 'int-wrapper',
+  serializedName: "int-wrapper",
   type: {
-    name: 'Composite',
-    className: 'IntWrapper',
+    name: "Composite",
+    className: "IntWrapper",
     modelProperties: {
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "field1",
+  type: {
+    name: "Number"
+  }
+},
       field2: {
-        required: false,
-        serializedName: 'field2',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "field2",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const LongWrapper = {
-  required: false,
-  serializedName: 'long-wrapper',
+  serializedName: "long-wrapper",
   type: {
-    name: 'Composite',
-    className: 'LongWrapper',
+    name: "Composite",
+    className: "LongWrapper",
     modelProperties: {
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "field1",
+  type: {
+    name: "Number"
+  }
+},
       field2: {
-        required: false,
-        serializedName: 'field2',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "field2",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const FloatWrapper = {
-  required: false,
-  serializedName: 'float-wrapper',
+  serializedName: "float-wrapper",
   type: {
-    name: 'Composite',
-    className: 'FloatWrapper',
+    name: "Composite",
+    className: "FloatWrapper",
     modelProperties: {
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "field1",
+  type: {
+    name: "Number"
+  }
+},
       field2: {
-        required: false,
-        serializedName: 'field2',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "field2",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const DoubleWrapper = {
-  required: false,
-  serializedName: 'double-wrapper',
+  serializedName: "double-wrapper",
   type: {
-    name: 'Composite',
-    className: 'DoubleWrapper',
+    name: "Composite",
+    className: "DoubleWrapper",
     modelProperties: {
       field1: {
-        required: false,
-        serializedName: 'field1',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "field1",
+  type: {
+    name: "Number"
+  }
+},
       field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: {
-        required: false,
-        serializedName: 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const BooleanWrapper = {
-  required: false,
-  serializedName: 'boolean-wrapper',
+  serializedName: "boolean-wrapper",
   type: {
-    name: 'Composite',
-    className: 'BooleanWrapper',
+    name: "Composite",
+    className: "BooleanWrapper",
     modelProperties: {
       fieldTrue: {
-        required: false,
-        serializedName: 'field_true',
-        type: {
-          name: 'Boolean'
-        }
-      },
+  serializedName: "field_true",
+  type: {
+    name: "Boolean"
+  }
+},
       fieldFalse: {
-        required: false,
-        serializedName: 'field_false',
-        type: {
-          name: 'Boolean'
-        }
-      }
+  serializedName: "field_false",
+  type: {
+    name: "Boolean"
+  }
+}
     }
   }
 };
 
 export const StringWrapper = {
-  required: false,
-  serializedName: 'string-wrapper',
+  serializedName: "string-wrapper",
   type: {
-    name: 'Composite',
-    className: 'StringWrapper',
+    name: "Composite",
+    className: "StringWrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "field",
+  type: {
+    name: "String"
+  }
+},
       empty: {
-        required: false,
-        serializedName: 'empty',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "empty",
+  type: {
+    name: "String"
+  }
+},
       nullProperty: {
-        required: false,
-        serializedName: 'null',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "null",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const DateWrapper = {
-  required: false,
-  serializedName: 'date-wrapper',
+  serializedName: "date-wrapper",
   type: {
-    name: 'Composite',
-    className: 'DateWrapper',
+    name: "Composite",
+    className: "DateWrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'Date'
-        }
-      },
+  serializedName: "field",
+  type: {
+    name: "Date"
+  }
+},
       leap: {
-        required: false,
-        serializedName: 'leap',
-        type: {
-          name: 'Date'
-        }
-      }
+  serializedName: "leap",
+  type: {
+    name: "Date"
+  }
+}
     }
   }
 };
 
 export const DatetimeWrapper = {
-  required: false,
-  serializedName: 'datetime-wrapper',
+  serializedName: "datetime-wrapper",
   type: {
-    name: 'Composite',
-    className: 'DatetimeWrapper',
+    name: "Composite",
+    className: "DatetimeWrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'DateTime'
-        }
-      },
+  serializedName: "field",
+  type: {
+    name: "DateTime"
+  }
+},
       now: {
-        required: false,
-        serializedName: 'now',
-        type: {
-          name: 'DateTime'
-        }
-      }
+  serializedName: "now",
+  type: {
+    name: "DateTime"
+  }
+}
     }
   }
 };
 
 export const Datetimerfc1123Wrapper = {
-  required: false,
-  serializedName: 'datetimerfc1123-wrapper',
+  serializedName: "datetimerfc1123-wrapper",
   type: {
-    name: 'Composite',
-    className: 'Datetimerfc1123Wrapper',
+    name: "Composite",
+    className: "Datetimerfc1123Wrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      },
+  serializedName: "field",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+},
       now: {
-        required: false,
-        serializedName: 'now',
-        type: {
-          name: 'DateTimeRfc1123'
-        }
-      }
+  serializedName: "now",
+  type: {
+    name: "DateTimeRfc1123"
+  }
+}
     }
   }
 };
 
 export const DurationWrapper = {
-  required: false,
-  serializedName: 'duration-wrapper',
+  serializedName: "duration-wrapper",
   type: {
-    name: 'Composite',
-    className: 'DurationWrapper',
+    name: "Composite",
+    className: "DurationWrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'TimeSpan'
-        }
-      }
+  serializedName: "field",
+  type: {
+    name: "TimeSpan"
+  }
+}
     }
   }
 };
 
 export const ByteWrapper = {
-  required: false,
-  serializedName: 'byte-wrapper',
+  serializedName: "byte-wrapper",
   type: {
-    name: 'Composite',
-    className: 'ByteWrapper',
+    name: "Composite",
+    className: "ByteWrapper",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'ByteArray'
-        }
-      }
+  serializedName: "field",
+  type: {
+    name: "ByteArray"
+  }
+}
     }
   }
 };
 
 export const ArrayWrapper = {
-  required: false,
-  serializedName: 'array-wrapper',
+  serializedName: "array-wrapper",
   type: {
-    name: 'Composite',
-    className: 'ArrayWrapper',
+    name: "Composite",
+    className: "ArrayWrapper",
     modelProperties: {
       arrayProperty: {
-        required: false,
-        serializedName: 'array',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "array",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const DictionaryWrapper = {
-  required: false,
-  serializedName: 'dictionary-wrapper',
+  serializedName: "dictionary-wrapper",
   type: {
-    name: 'Composite',
-    className: 'DictionaryWrapper',
+    name: "Composite",
+    className: "DictionaryWrapper",
     modelProperties: {
       defaultProgram: {
-        required: false,
-        serializedName: 'defaultProgram',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "defaultProgram",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ReadonlyObj = {
-  required: false,
-  serializedName: 'readonly-obj',
+  serializedName: "readonly-obj",
   type: {
-    name: 'Composite',
-    className: 'ReadonlyObj',
+    name: "Composite",
+    className: "ReadonlyObj",
     modelProperties: {
       id: {
-        required: false,
-        readOnly: true,
-        serializedName: 'id',
-        type: {
-          name: 'String'
-        }
-      },
+  readOnly: true,
+  serializedName: "id",
+  type: {
+    name: "String"
+  }
+},
       size: {
-        required: false,
-        serializedName: 'size',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "size",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };
 
 export const AzureCompositeModelCreateOptionalParams = {
-  required: false,
-  serializedName: 'CreateOptions',
+  serializedName: "CreateOptions",
   type: {
-    name: 'Composite',
-    className: 'AzureCompositeModelCreateOptionalParams',
+    name: "Composite",
+    className: "AzureCompositeModelCreateOptionalParams",
     modelProperties: {
       productDictionaryOfArray: {
-        required: false,
-        serializedName: 'productDictionaryOfArray',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productDictionaryOfArray",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ArrayElementType",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const AzureCompositeModelUpdateOptionalParams = {
-  required: false,
-  serializedName: 'UpdateOptions',
+  serializedName: "UpdateOptions",
   type: {
-    name: 'Composite',
-    className: 'AzureCompositeModelUpdateOptionalParams',
+    name: "Composite",
+    className: "AzureCompositeModelUpdateOptionalParams",
     modelProperties: {
       productArrayOfDictionary: {
-        required: false,
-        serializedName: 'productArrayOfDictionary',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
-                }
-              }
-          }
-        }
-      }
+  serializedName: "productArrayOfDictionary",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "ObjectElementType",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "ProductElementType",
+  type: {
+    name: "Composite",
+    className: "Product"
+  }
+}
+  }
+}
+  }
+}
     }
   }
 };
 
 export const PrimitivePutDurationOptionalParams = {
-  required: false,
-  serializedName: 'PutDurationOptions',
+  serializedName: "PutDurationOptions",
   type: {
-    name: 'Composite',
-    className: 'PrimitivePutDurationOptionalParams',
+    name: "Composite",
+    className: "PrimitivePutDurationOptionalParams",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'TimeSpan'
-        }
-      }
+  serializedName: "field",
+  type: {
+    name: "TimeSpan"
+  }
+}
     }
   }
 };
 
 export const PrimitivePutByteOptionalParams = {
-  required: false,
-  serializedName: 'PutByteOptions',
+  serializedName: "PutByteOptions",
   type: {
-    name: 'Composite',
-    className: 'PrimitivePutByteOptionalParams',
+    name: "Composite",
+    className: "PrimitivePutByteOptionalParams",
     modelProperties: {
       field: {
-        required: false,
-        serializedName: 'field',
-        type: {
-          name: 'ByteArray'
-        }
-      }
+  serializedName: "field",
+  type: {
+    name: "ByteArray"
+  }
+}
     }
   }
 };
 
 export const ArrayModelPutValidOptionalParams = {
-  required: false,
-  serializedName: 'PutValidOptions',
+  serializedName: "PutValidOptions",
   type: {
-    name: 'Composite',
-    className: 'ArrayModelPutValidOptionalParams',
+    name: "Composite",
+    className: "ArrayModelPutValidOptionalParams",
     modelProperties: {
       arrayProperty: {
-        required: false,
-        serializedName: 'array',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "array",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ArrayModelPutEmptyOptionalParams = {
-  required: false,
-  serializedName: 'PutEmptyOptions',
+  serializedName: "PutEmptyOptions",
   type: {
-    name: 'Composite',
-    className: 'ArrayModelPutEmptyOptionalParams',
+    name: "Composite",
+    className: "ArrayModelPutEmptyOptionalParams",
     modelProperties: {
       arrayProperty: {
-        required: false,
-        serializedName: 'array',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "array",
+  type: {
+    name: "Sequence",
+    element: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const DictionaryPutValidOptionalParams = {
-  required: false,
-  serializedName: 'PutValidOptions',
+  serializedName: "PutValidOptions",
   type: {
-    name: 'Composite',
-    className: 'DictionaryPutValidOptionalParams',
+    name: "Composite",
+    className: "DictionaryPutValidOptionalParams",
     modelProperties: {
       defaultProgram: {
-        required: false,
-        serializedName: 'defaultProgram',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "defaultProgram",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const DictionaryPutEmptyOptionalParams = {
-  required: false,
-  serializedName: 'PutEmptyOptions',
+  serializedName: "PutEmptyOptions",
   type: {
-    name: 'Composite',
-    className: 'DictionaryPutEmptyOptionalParams',
+    name: "Composite",
+    className: "DictionaryPutEmptyOptionalParams",
     modelProperties: {
       defaultProgram: {
-        required: false,
-        serializedName: 'defaultProgram',
-        type: {
-          name: 'Dictionary',
-          value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      }
+  serializedName: "defaultProgram",
+  type: {
+    name: "Dictionary",
+    value: {
+  serializedName: "stringElementType",
+  type: {
+    name: "String"
+  }
+}
+  }
+}
     }
   }
 };
 
 export const ReadonlypropertyPutValidOptionalParams = {
-  required: false,
-  serializedName: 'PutValidOptions',
+  serializedName: "PutValidOptions",
   type: {
-    name: 'Composite',
-    className: 'ReadonlypropertyPutValidOptionalParams',
+    name: "Composite",
+    className: "ReadonlypropertyPutValidOptionalParams",
     modelProperties: {
       size: {
-        required: false,
-        serializedName: 'size',
-        type: {
-          name: 'Number'
-        }
-      }
+  serializedName: "size",
+  type: {
+    name: "Number"
+  }
+}
     }
   }
 };

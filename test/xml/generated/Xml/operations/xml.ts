@@ -68,7 +68,7 @@ export class Xml {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -83,7 +83,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Slideshow;
+            const resultMapper = Mappers.Slideshow;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -161,7 +161,7 @@ export class Xml {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -232,7 +232,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.AppleBarrel;
+            const resultMapper = Mappers.AppleBarrel;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -310,7 +310,7 @@ export class Xml {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -441,7 +441,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Slideshow;
+            const resultMapper = Mappers.Slideshow;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -586,7 +586,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.AppleBarrel;
+            const resultMapper = Mappers.AppleBarrel;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -731,20 +731,18 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              xmlElementName: 'bananas',
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              xmlElementName: "bananas",
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BananaElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Banana'
-                    }
-                }
+              serializedName: "BananaElementType",
+              type: {
+                name: "Composite",
+                className: "Banana"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -785,19 +783,18 @@ export class Xml {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        xmlElementName: 'banana',
+        xmlElementName: "banana",
         required: true,
-        serializedName: 'bananas',
+        serializedName: "bananas",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'BananaElementType',
-              type: {
-                name: 'Composite',
-                className: 'Banana'
-              }
-          }
+        serializedName: "BananaElementType",
+        type: {
+          name: "Composite",
+          className: "Banana"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -898,20 +895,18 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              xmlElementName: 'bananas',
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              xmlElementName: "bananas",
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BananaElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Banana'
-                    }
-                }
+              serializedName: "BananaElementType",
+              type: {
+                name: "Composite",
+                className: "Banana"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -952,19 +947,18 @@ export class Xml {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        xmlElementName: 'banana',
+        xmlElementName: "banana",
         required: true,
-        serializedName: 'bananas',
+        serializedName: "bananas",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'BananaElementType',
-              type: {
-                name: 'Composite',
-                className: 'Banana'
-              }
-          }
+        serializedName: "BananaElementType",
+        type: {
+          name: "Composite",
+          className: "Banana"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1065,20 +1059,18 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              xmlElementName: 'bananas',
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              xmlElementName: "bananas",
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BananaElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Banana'
-                    }
-                }
+              serializedName: "BananaElementType",
+              type: {
+                name: "Composite",
+                className: "Banana"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['banana'] : [], 'operationRes.parsedBody');
@@ -1119,19 +1111,18 @@ export class Xml {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        xmlElementName: 'banana',
+        xmlElementName: "banana",
         required: true,
-        serializedName: 'bananas',
+        serializedName: "bananas",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'BananaElementType',
-              type: {
-                name: 'Composite',
-                className: 'Banana'
-              }
-          }
+        serializedName: "BananaElementType",
+        type: {
+          name: "Composite",
+          className: "Banana"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1232,7 +1223,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Banana;
+            const resultMapper = Mappers.Banana;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1357,7 +1348,15 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'list',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           isXML: true
@@ -1388,7 +1387,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.ListContainersResponse;
+            const resultMapper = Mappers.ListContainersResponse;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1441,11 +1440,27 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'properties',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "restype",
+          defaultValue: 'service',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           isXML: true
@@ -1476,7 +1491,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageServiceProperties;
+            const resultMapper = Mappers.StorageServiceProperties;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1541,11 +1556,27 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'properties',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "restype",
+          defaultValue: 'service',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -1617,11 +1648,27 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'acl',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "restype",
+          defaultValue: 'container',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           isXML: true
@@ -1652,20 +1699,18 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              xmlElementName: 'SignedIdentifiers',
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              xmlElementName: "SignedIdentifiers",
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'SignedIdentifierElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'SignedIdentifier'
-                    }
-                }
+              serializedName: "SignedIdentifierElementType",
+              type: {
+                name: "Composite",
+                className: "SignedIdentifier"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, typeof parsedResponse === 'object' ? parsedResponse['SignedIdentifier'] : [], 'operationRes.parsedBody');
@@ -1708,19 +1753,18 @@ export class Xml {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        xmlElementName: 'SignedIdentifiers',
+        xmlElementName: "SignedIdentifiers",
         required: true,
-        serializedName: 'properties',
+        serializedName: "properties",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'SignedIdentifierElementType',
-              type: {
-                name: 'Composite',
-                className: 'SignedIdentifier'
-              }
-          }
+        serializedName: "SignedIdentifierElementType",
+        type: {
+          name: "Composite",
+          className: "SignedIdentifier"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1739,11 +1783,27 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'acl',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "restype",
+          defaultValue: 'container',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -1815,11 +1875,27 @@ export class Xml {
           queryParameters: [
             {
               parameterName: "comp",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "comp",
+          defaultValue: 'list',
+          type: {
+            name: "String"
+          }
+        }
             },
             {
               parameterName: "restype",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          isConstant: true,
+          serializedName: "restype",
+          defaultValue: 'container',
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           isXML: true
@@ -1850,7 +1926,7 @@ export class Xml {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.ListBlobsResponse;
+            const resultMapper = Mappers.ListBlobsResponse;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

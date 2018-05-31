@@ -57,9 +57,9 @@ export class Explicit {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -75,7 +75,6 @@ export class Explicit {
           path: "reqopt/requied/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -93,7 +92,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -106,7 +105,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -152,10 +151,9 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -171,7 +169,6 @@ export class Explicit {
           path: "reqopt/optional/integer/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -189,7 +186,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -273,7 +270,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -286,7 +283,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -368,7 +365,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -429,7 +426,13 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+          required: true,
+          serializedName: "headerParameter",
+          type: {
+            name: "Number"
+          }
+        }
             }
           ]
         });
@@ -448,7 +451,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -461,7 +464,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -521,7 +524,12 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+          serializedName: "headerParameter",
+          type: {
+            name: "Number"
+          }
+        }
             }
           ]
         });
@@ -540,7 +548,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -589,9 +597,9 @@ export class Explicit {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'String'
+          name: "String"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -607,7 +615,6 @@ export class Explicit {
           path: "reqopt/requied/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -625,7 +632,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -638,7 +645,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -684,10 +691,9 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'String'
+          name: "String"
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -703,7 +709,6 @@ export class Explicit {
           path: "reqopt/optional/string/parameter",
           requestBodyMapper: requestModelMapper,
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -721,7 +726,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -805,7 +810,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -818,7 +823,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -900,7 +905,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -961,7 +966,13 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "headerParameter",
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -980,7 +991,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -993,7 +1004,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1053,7 +1064,12 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "bodyParameter",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "bodyParameter",
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -1072,7 +1088,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1150,7 +1166,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1163,7 +1179,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1231,7 +1247,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1315,7 +1331,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1328,7 +1344,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1402,7 +1418,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1456,16 +1472,15 @@ export class Explicit {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1498,7 +1513,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1511,7 +1526,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1561,17 +1576,15 @@ export class Explicit {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
+        serializedName: "bodyParameter",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
+        serializedName: "stringElementType",
+        type: {
+          name: "String"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -1604,7 +1617,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1693,7 +1706,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1706,7 +1719,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1792,7 +1805,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1857,7 +1870,20 @@ export class Explicit {
           path: "reqopt/requied/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter"
+              parameterName: "headerParameter",
+              mapper: {
+          required: true,
+          serializedName: "headerParameter",
+          type: {
+            name: "Sequence",
+            element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+          }
+        }
             }
           ]
         });
@@ -1876,7 +1902,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1889,7 +1915,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1952,7 +1978,19 @@ export class Explicit {
           path: "reqopt/optional/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter"
+              parameterName: "headerParameter",
+              mapper: {
+          serializedName: "headerParameter",
+          type: {
+            name: "Sequence",
+            element: {
+          serializedName: "stringElementType",
+          type: {
+            name: "String"
+          }
+        }
+          }
+        }
             }
           ]
         });
@@ -1971,7 +2009,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

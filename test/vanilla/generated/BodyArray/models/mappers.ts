@@ -10,51 +10,45 @@
 
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       integer: {
-        required: false,
-        serializedName: 'integer',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "integer",
+  type: {
+    name: "Number"
+  }
+},
       string: {
-        required: false,
-        serializedName: 'string',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "string",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

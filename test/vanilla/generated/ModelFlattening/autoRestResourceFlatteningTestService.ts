@@ -82,18 +82,16 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'ResourceArray',
+        serializedName: "ResourceArray",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ResourceElementType',
-              type: {
-                name: 'Composite',
-                className: 'Resource'
-              }
-          }
+        serializedName: "ResourceElementType",
+        type: {
+          name: "Composite",
+          className: "Resource"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -126,7 +124,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -186,7 +184,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -201,19 +199,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'FlattenedProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'FlattenedProduct'
-                    }
-                }
+              serializedName: "FlattenedProductElementType",
+              type: {
+                name: "Composite",
+                className: "FlattenedProduct"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -256,18 +252,16 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'ResourceArray',
+        serializedName: "ResourceArray",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'WrappedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'WrappedProduct'
-              }
-          }
+        serializedName: "WrappedProductElementType",
+        type: {
+          name: "Composite",
+          className: "WrappedProduct"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -300,7 +294,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -361,7 +355,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -376,19 +370,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductWrapperElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'ProductWrapper'
-                    }
-                }
+              serializedName: "ProductWrapperElementType",
+              type: {
+                name: "Composite",
+                className: "ProductWrapper"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -430,18 +422,16 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
     let operationRes: msRest.HttpOperationResponse;
     try {
       let requestModelMapper = {
-        required: false,
-        serializedName: 'ResourceDictionary',
+        serializedName: "ResourceDictionary",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'FlattenedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'FlattenedProduct'
-              }
-          }
+        serializedName: "FlattenedProductElementType",
+        type: {
+          name: "Composite",
+          className: "FlattenedProduct"
+        }
+      }
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -474,7 +464,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -534,7 +524,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -549,19 +539,17 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Dictionary',
+                name: "Dictionary",
                 value: {
-                    required: false,
-                    serializedName: 'FlattenedProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'FlattenedProduct'
-                    }
-                }
+              serializedName: "FlattenedProductElementType",
+              type: {
+                name: "Composite",
+                className: "FlattenedProduct"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -634,7 +622,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -694,7 +682,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -709,7 +697,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.ResourceCollection;
+            const resultMapper = Mappers.ResourceCollection;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -779,7 +767,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -794,7 +782,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
+            const resultMapper = Mappers.SimpleProduct;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -907,7 +895,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -922,7 +910,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
+            const resultMapper = Mappers.SimpleProduct;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1053,7 +1041,13 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "name",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          required: true,
+          serializedName: "name",
+          type: {
+            name: "String"
+          }
+        }
             }
           ],
           requestBodyMapper: requestModelMapper,
@@ -1075,7 +1069,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1090,7 +1084,7 @@ class AutoRestResourceFlatteningTestService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.SimpleProduct;
+            const resultMapper = Mappers.SimpleProduct;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

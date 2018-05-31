@@ -14,198 +14,177 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       constantId: {
-        required: true,
-        isConstant: true,
-        serializedName: 'constantId',
-        defaultValue: 1,
-        type: {
-          name: 'Number'
-        }
-      },
+  required: true,
+  isConstant: true,
+  serializedName: "constantId",
+  defaultValue: 1,
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const OdataFilter = {
-  required: false,
-  serializedName: 'OdataFilter',
+  serializedName: "OdataFilter",
   type: {
-    name: 'Composite',
-    className: 'OdataFilter',
+    name: "Composite",
+    className: "OdataFilter",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "id",
+  type: {
+    name: "Number"
+  }
+},
       name: {
-        required: false,
-        serializedName: 'name',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "name",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderCustomNamedRequestIdParamGroupingParameters = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdParamGroupingParameters',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdParamGroupingParameters",
     modelProperties: {
       fooClientRequestId: {
-        required: true,
-        type: {
-          name: 'String'
-        }
-      }
+  required: true,
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
-  required: false,
-  serializedName: 'GetMethodLocalNullOptions',
+  serializedName: "GetMethodLocalNullOptions",
   type: {
-    name: 'Composite',
-    className: 'ApiVersionLocalGetMethodLocalNullOptionalParams',
+    name: "Composite",
+    className: "ApiVersionLocalGetMethodLocalNullOptionalParams",
     modelProperties: {
       apiVersion: {
-        required: false,
-        serializedName: 'api-version',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "api-version",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
-  required: false,
-  serializedName: 'GetMethodQueryNullOptions',
+  serializedName: "GetMethodQueryNullOptions",
   type: {
-    name: 'Composite',
-    className: 'SkipUrlEncodingGetMethodQueryNullOptionalParams',
+    name: "Composite",
+    className: "SkipUrlEncodingGetMethodQueryNullOptionalParams",
     modelProperties: {
       q1: {
-        required: false,
-        serializedName: 'q1',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "q1",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const OdataGetWithFilterOptionalParams = {
-  required: false,
-  serializedName: 'GetWithFilterOptions',
+  serializedName: "GetWithFilterOptions",
   type: {
-    name: 'Composite',
-    className: 'OdataGetWithFilterOptionalParams',
+    name: "Composite",
+    className: "OdataGetWithFilterOptionalParams",
     modelProperties: {
       filter: {
-        required: false,
-        serializedName: '$filter',
-        type: {
-          name: 'String'
-        }
-      },
+  serializedName: "$filter",
+  type: {
+    name: "String"
+  }
+},
       top: {
-        required: false,
-        serializedName: '$top',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "$top",
+  type: {
+    name: "Number"
+  }
+},
       orderby: {
-        required: false,
-        serializedName: '$orderby',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "$orderby",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderCustomNamedRequestIdHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestid-headers',
+  serializedName: "header-customnamedrequestid-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "foo-request-id",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestidparamgrouping-headers',
+  serializedName: "header-customnamedrequestidparamgrouping-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdParamGroupingHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "foo-request-id",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const HeaderCustomNamedRequestIdHeadHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestidhead-headers',
+  serializedName: "header-customnamedrequestidhead-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdHeadHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdHeadHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "foo-request-id",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

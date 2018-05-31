@@ -233,10 +233,8 @@ namespace AutoRest.TypeScript.Model
         public virtual string ConstructModelMapper()
         {
             bool isXML = CodeModel?.ShouldGenerateXmlSerialization == true;
-            var modelMapper = this.ConstructMapper(SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: CodeModel?.HeaderTypes.Contains(this) != true, xmlName: isXML ? XmlName : null);
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("export const {0} = {{{1}}};", Name, modelMapper);
-            return builder.ToString();
+            string modelMapper = ClientModelExtensions.ConstructMapper(this, SerializedName, null, isPageable: false, expandComposite: true, isXML: isXML, isCaseSensitive: CodeModel?.HeaderTypes.Contains(this) != true, xmlName: isXML ? XmlName : null);
+            return $"export const {Name} = {modelMapper};";
         }
 
         /// <summary>

@@ -68,7 +68,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -83,12 +83,15 @@ export class EnumModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Enum',
-                allowedValues: [ 'red color', 'green-color', 'blue_color' ]
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -145,10 +148,14 @@ export class EnumModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'stringBody',
+        serializedName: "stringBody",
         type: {
-          name: 'Enum',
-          allowedValues: [ 'red color', 'green-color', 'blue_color' ]
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green-color",
+            "blue_color"
+          ]
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -181,7 +188,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -241,7 +248,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -256,12 +263,15 @@ export class EnumModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Enum',
-                allowedValues: [ 'red color', 'green-color', 'blue_color' ]
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
@@ -318,10 +328,14 @@ export class EnumModel {
     try {
       let requestModelMapper = {
         required: true,
-        serializedName: 'enumStringBody',
+        serializedName: "enumStringBody",
         type: {
-          name: 'Enum',
-          allowedValues: [ 'red color', 'green-color', 'blue_color' ]
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green-color",
+            "blue_color"
+          ]
         }
       };
       operationRes = await client.sendOperationRequest(
@@ -354,7 +368,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -413,7 +427,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -428,7 +442,7 @@ export class EnumModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.RefColorConstant;
+            const resultMapper = Mappers.RefColorConstant;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -514,7 +528,7 @@ export class EnumModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

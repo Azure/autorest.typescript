@@ -103,7 +103,12 @@ class AutoRestReportService extends msRest.ServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
-              type: msRest.OperationParameterType.String
+              mapper: {
+          serializedName: "qualifier",
+          type: {
+            name: "String"
+          }
+        }
             }
           ]
         });
@@ -122,7 +127,7 @@ class AutoRestReportService extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -137,18 +142,16 @@ class AutoRestReportService extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Dictionary',
+                name: "Dictionary",
                 value: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
-                }
+              serializedName: "numberElementType",
+              type: {
+                name: "Number"
+              }
+            }
               }
             };
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');

@@ -10,44 +10,39 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const AutoRestParameterizedHostTestClientOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'AutoRestParameterizedHostTestClientOptions',
+    name: "Composite",
+    className: "AutoRestParameterizedHostTestClientOptions",
     modelProperties: {
       host: {
-        required: false,
-        serializedName: 'host',
-        defaultValue: 'host',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "host",
+  defaultValue: 'host',
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };

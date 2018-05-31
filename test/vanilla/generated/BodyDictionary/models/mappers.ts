@@ -10,51 +10,45 @@
 
 
 export const Widget = {
-  required: false,
-  serializedName: 'Widget',
+  serializedName: "Widget",
   type: {
-    name: 'Composite',
-    className: 'Widget',
+    name: "Composite",
+    className: "Widget",
     modelProperties: {
       integer: {
-        required: false,
-        serializedName: 'integer',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "integer",
+  type: {
+    name: "Number"
+  }
+},
       string: {
-        required: false,
-        serializedName: 'string',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "string",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
-        type: {
-          name: 'Number'
-        }
-      },
+  serializedName: "status",
+  type: {
+    name: "Number"
+  }
+},
       message: {
-        required: false,
-        serializedName: 'message',
-        type: {
-          name: 'String'
-        }
-      }
+  serializedName: "message",
+  type: {
+    name: "String"
+  }
+}
     }
   }
 };
