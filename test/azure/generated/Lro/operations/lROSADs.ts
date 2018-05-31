@@ -1072,8 +1072,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1187,8 +1187,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1302,8 +1302,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1418,8 +1418,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1514,8 +1514,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -1595,8 +1595,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -1678,8 +1678,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -1763,8 +1763,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1851,8 +1851,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1941,8 +1941,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2030,8 +2030,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2146,8 +2146,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2248,8 +2248,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2345,8 +2345,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -2424,8 +2424,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -2510,8 +2510,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2600,8 +2600,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2689,8 +2689,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2790,8 +2790,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2892,8 +2892,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2989,8 +2989,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3071,8 +3071,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3154,8 +3154,8 @@ export class LROSADs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3240,8 +3240,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -3330,8 +3330,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -3420,8 +3420,8 @@ export class LROSADs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

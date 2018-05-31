@@ -57,8 +57,8 @@ export class Inheritance {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,

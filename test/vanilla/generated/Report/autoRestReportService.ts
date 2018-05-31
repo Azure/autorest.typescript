@@ -94,9 +94,9 @@ class AutoRestReportService extends msRest.ServiceClient {
         msRest.createOperationArguments(
           {
             qualifier
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "GET",
           baseUrl: this.baseUri,
           path: "report",

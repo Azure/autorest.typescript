@@ -347,8 +347,8 @@ export class LRORetrys {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -463,8 +463,8 @@ export class LRORetrys {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -562,8 +562,8 @@ export class LRORetrys {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -673,8 +673,8 @@ export class LRORetrys {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -756,8 +756,8 @@ export class LRORetrys {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -843,8 +843,8 @@ export class LRORetrys {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -933,8 +933,8 @@ export class LRORetrys {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

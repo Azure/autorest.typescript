@@ -45,8 +45,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/null"
@@ -125,8 +125,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/invalid"
@@ -205,8 +205,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/overflow"
@@ -285,8 +285,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/underflow"
@@ -386,9 +386,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc",
@@ -450,8 +450,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc/lowercase"
@@ -530,8 +530,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc/uppercase"
@@ -632,9 +632,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset",
@@ -697,8 +697,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset/lowercase"
@@ -778,8 +778,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset/uppercase"
@@ -880,9 +880,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset",
@@ -945,8 +945,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset/uppercase"
@@ -1026,8 +1026,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset/lowercase"
@@ -1127,9 +1127,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc",
@@ -1191,8 +1191,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc"
@@ -1292,9 +1292,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset",
@@ -1356,8 +1356,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset"
@@ -1457,9 +1457,9 @@ export class Datetime {
         msRest.createOperationArguments(
           {
             datetimeBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset",
@@ -1521,8 +1521,8 @@ export class Datetime {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset"

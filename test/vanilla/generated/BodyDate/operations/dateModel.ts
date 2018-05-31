@@ -45,8 +45,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/null"
@@ -125,8 +125,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/invaliddate"
@@ -205,8 +205,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/overflowdate"
@@ -285,8 +285,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/underflowdate"
@@ -386,9 +386,9 @@ export class DateModel {
         msRest.createOperationArguments(
           {
             dateBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/max",
@@ -450,8 +450,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/max"
@@ -551,9 +551,9 @@ export class DateModel {
         msRest.createOperationArguments(
           {
             dateBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/min",
@@ -615,8 +615,8 @@ export class DateModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "date/min"

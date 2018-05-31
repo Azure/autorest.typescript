@@ -46,8 +46,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/300"
@@ -113,8 +113,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/300"
@@ -205,8 +205,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301"
@@ -272,8 +272,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301"
@@ -360,9 +360,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301",
@@ -428,8 +428,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302"
@@ -495,8 +495,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302"
@@ -583,9 +583,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302",
@@ -671,9 +671,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/303",
@@ -743,8 +743,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307"
@@ -810,8 +810,8 @@ export class HttpRedirects {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307"
@@ -896,9 +896,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
@@ -987,9 +987,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
@@ -1078,9 +1078,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
@@ -1169,9 +1169,9 @@ export class HttpRedirects {
         msRest.createOperationArguments(
           {
             booleanValue
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",

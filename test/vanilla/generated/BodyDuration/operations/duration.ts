@@ -45,8 +45,8 @@ export class Duration {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "duration/null"
@@ -145,9 +145,9 @@ export class Duration {
         msRest.createOperationArguments(
           {
             durationBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "duration/positiveduration",
@@ -209,8 +209,8 @@ export class Duration {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "duration/positiveduration"
@@ -289,8 +289,8 @@ export class Duration {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "duration/invalid"

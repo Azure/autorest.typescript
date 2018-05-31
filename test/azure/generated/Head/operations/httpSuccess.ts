@@ -56,8 +56,8 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -134,8 +134,8 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -212,8 +212,8 @@ export class HttpSuccess {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,

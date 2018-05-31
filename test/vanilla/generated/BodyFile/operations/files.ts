@@ -46,8 +46,8 @@ export class Files {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "files/stream/nonempty"
@@ -108,8 +108,8 @@ export class Files {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "files/stream/verylarge"
@@ -170,8 +170,8 @@ export class Files {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "files/stream/empty"

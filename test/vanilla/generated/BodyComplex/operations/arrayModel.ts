@@ -46,8 +46,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid"
@@ -142,9 +142,9 @@ export class ArrayModel {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid",
@@ -205,8 +205,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty"
@@ -301,9 +301,9 @@ export class ArrayModel {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty",
@@ -365,8 +365,8 @@ export class ArrayModel {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/array/notprovided"

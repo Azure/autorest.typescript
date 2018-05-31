@@ -1630,8 +1630,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1730,8 +1730,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1831,8 +1831,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1932,8 +1932,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2048,8 +2048,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2149,8 +2149,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2265,8 +2265,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2366,8 +2366,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2468,8 +2468,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2570,8 +2570,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2672,8 +2672,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2774,8 +2774,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2876,8 +2876,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -2976,8 +2976,8 @@ export class LROs {
           {
             sku,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -3075,8 +3075,8 @@ export class LROs {
           {
             sku,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -3187,8 +3187,8 @@ export class LROs {
           {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             product
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -3299,8 +3299,8 @@ export class LROs {
           {
             "this.client.acceptLanguage": this.client.acceptLanguage,
             product
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -3397,8 +3397,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3509,8 +3509,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3621,8 +3621,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3730,8 +3730,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3809,8 +3809,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -3908,8 +3908,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4007,8 +4007,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4094,8 +4094,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4181,8 +4181,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4264,8 +4264,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4347,8 +4347,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4430,8 +4430,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -4513,8 +4513,8 @@ export class LROs {
         msRest.createOperationArguments(
           {
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -4626,8 +4626,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -4715,8 +4715,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -4817,8 +4817,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -4923,8 +4923,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -5029,8 +5029,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -5119,8 +5119,8 @@ export class LROs {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

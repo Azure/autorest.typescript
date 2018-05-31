@@ -238,8 +238,8 @@ export class LROsCustomHeader {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -342,8 +342,8 @@ export class LROsCustomHeader {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -459,8 +459,8 @@ export class LROsCustomHeader {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -551,8 +551,8 @@ export class LROsCustomHeader {
           {
             product,
             "this.client.acceptLanguage": this.client.acceptLanguage
-          }
-          ,options),
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,

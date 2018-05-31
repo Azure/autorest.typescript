@@ -46,8 +46,8 @@ export class Readonlyproperty {
     try {
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options)
-        ,{
+        msRest.createOperationArguments({}, options),
+        {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "complex/readonlyproperty/valid"
@@ -143,9 +143,9 @@ export class Readonlyproperty {
         msRest.createOperationArguments(
           {
             complexBody
-          }
-          ,options)
-        ,{
+          },
+          options),
+        {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/readonlyproperty/valid",
