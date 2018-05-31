@@ -4,6 +4,8 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.typescript", "src\autorest.typescript.csproj", "{9E857E16-E227-4311-8799-CFA9D292D0B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "autorest.typescript.tests", "unittests\autorest.typescript.tests.csproj", "{F5378F5E-D7E6-4EF4-B193-E67C71505F59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +28,23 @@ Global
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x64.Build.0 = Release|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x86.Build.0 = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|x64.Build.0 = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|x64.Build.0 = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EA3A5CA-6FBE-4683-ADE0-88193C3DC6FC}
 	EndGlobalSection
 EndGlobal
