@@ -11,6 +11,7 @@
 @EmptyLine
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 @if (Model.MethodTemplateModels.Any())
 {
@@ -23,15 +24,13 @@ const packageVersion = "@Model.PackageVersion";
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
 export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
-@if (Model.MethodGroupModels.Any())
+@foreach (var property in Model.Properties.Where(p => p.Name != "generateClientRequestId"))
 {
   @EmptyLine
-  @:// Operation groups
-foreach (var methodGroup in Model.MethodGroupModels)
-{
-  @:@(methodGroup.NameForProperty): operations.@(methodGroup.TypeName);
+  @:@(property.Name): @(property.ModelType.TSType(false));
 }
-}
+  baseUri: string;
+  serializer: msRest.Serializer;
   @EmptyLine
   /**
    * @@class
