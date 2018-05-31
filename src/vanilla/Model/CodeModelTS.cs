@@ -27,6 +27,9 @@ namespace AutoRest.TypeScript.Model
         private string _optionalParameterTypeForClientConstructor;
 
         [JsonIgnore]
+        public string ContextName => Name + "Context";
+
+        [JsonIgnore]
         public string SchemeHostAndPort
         {
             get

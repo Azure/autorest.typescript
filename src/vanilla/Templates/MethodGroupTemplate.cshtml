@@ -1,5 +1,6 @@
 ﻿@using System.Linq;
 @using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.Core.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
 /*
 @Header(" * ")
@@ -11,18 +12,18 @@ import * as msRest from "ms-rest-js";
 @:import * as Models from "../models";
 }
 import * as Mappers from "../models/mappers";
-import { @(Model.CodeModel.Name) } from "../@(Model.CodeModel.Name.Substring(0, 1).ToLower() + Model.CodeModel.Name.Substring(1))";
+import { @(Model.CodeModelTS.ContextName) } from "../@(Model.CodeModelTS.ContextName.ToCamelCase())";
 @EmptyLine
 const WebResource = msRest.WebResource;
 @EmptyLine
 /** Class representing a @(Model.TypeName). */
 export class @(Model.TypeName) {
-  private readonly client: @(Model.CodeModel.Name);
+  private readonly client: @(Model.CodeModelTS.ContextName);
   /**
    * Create a @Model.TypeName.
    * @@param {@Model.CodeModel.Name} client Reference to the service client.
    */
-  constructor(client: @(Model.CodeModel.Name)) {
+  constructor(client: @(Model.CodeModelTS.ContextName)) {
     this.client = client;
   }
 @EmptyLine
