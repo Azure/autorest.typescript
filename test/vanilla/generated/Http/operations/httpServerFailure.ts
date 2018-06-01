@@ -44,9 +44,10 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "HEAD",
           baseUrl: this.client.baseUri,
@@ -67,7 +68,7 @@ export class HttpServerFailure {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -80,7 +81,7 @@ export class HttpServerFailure {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -115,9 +116,10 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -138,7 +140,7 @@ export class HttpServerFailure {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -151,7 +153,7 @@ export class HttpServerFailure {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -196,27 +198,25 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
-        type: {
-          name: 'Boolean'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -234,7 +234,7 @@ export class HttpServerFailure {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -247,7 +247,7 @@ export class HttpServerFailure {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -292,27 +292,25 @@ export class HttpServerFailure {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: false,
-        serializedName: 'booleanValue',
-        type: {
-          name: 'Boolean'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          booleanValue
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            booleanValue
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "booleanValue",
+            type: {
+              name: "Boolean"
+            }
+          },
           requestBodyName: "booleanValue",
-          requestBodyType: msRest.OperationParameterType.Boolean,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -330,7 +328,7 @@ export class HttpServerFailure {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -343,7 +341,7 @@ export class HttpServerFailure {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {

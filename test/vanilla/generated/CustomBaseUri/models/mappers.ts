@@ -10,24 +10,21 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,17 +32,15 @@ export const ErrorModel = {
 };
 
 export const AutoRestParameterizedHostTestClientOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'AutoRestParameterizedHostTestClientOptions',
+    name: "Composite",
+    className: "AutoRestParameterizedHostTestClientOptions",
     modelProperties: {
       host: {
-        required: false,
-        serializedName: 'host',
+        serializedName: "host",
         defaultValue: 'host',
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

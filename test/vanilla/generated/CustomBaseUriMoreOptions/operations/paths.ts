@@ -74,18 +74,19 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          vault,
+          secret,
+          "this.client.dnsSuffix": this.client.dnsSuffix,
+          keyName,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          keyVersion
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            vault,
-            secret,
-            "this.client.dnsSuffix": this.client.dnsSuffix,
-            keyName,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            keyVersion
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -93,34 +94,69 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "vault",
-              type: msRest.OperationParameterType.String,
-              skipEncoding: true
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "vault",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "secret",
-              type: msRest.OperationParameterType.String,
-              skipEncoding: true
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "secret",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.dnsSuffix",
-              urlParameterName: "dnsSuffix",
-              type: msRest.OperationParameterType.String,
-              skipEncoding: true
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "dnsSuffix",
+                defaultValue: 'host',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "keyName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "keyName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "keyVersion",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "keyVersion",
+                defaultValue: 'v1',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -139,7 +175,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

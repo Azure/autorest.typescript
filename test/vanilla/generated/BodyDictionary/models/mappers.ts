@@ -10,24 +10,21 @@
 
 
 export const Widget = {
-  required: false,
-  serializedName: 'Widget',
+  serializedName: "Widget",
   type: {
-    name: 'Composite',
-    className: 'Widget',
+    name: "Composite",
+    className: "Widget",
     modelProperties: {
       integer: {
-        required: false,
-        serializedName: 'integer',
+        serializedName: "integer",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       string: {
-        required: false,
-        serializedName: 'string',
+        serializedName: "string",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,24 +32,21 @@ export const Widget = {
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

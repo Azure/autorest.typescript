@@ -44,9 +44,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -67,7 +68,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -82,17 +83,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -131,9 +130,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -154,7 +154,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -169,17 +169,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -218,9 +216,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -241,7 +240,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -256,17 +255,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -320,32 +317,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/empty",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -364,7 +360,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -400,9 +396,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -423,7 +420,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -438,17 +435,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             };
@@ -502,32 +497,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'booleanElementType',
-              type: {
-                name: 'Boolean'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/tfft",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "booleanElementType",
+                type: {
+                  name: "Boolean"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -546,7 +540,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -582,9 +576,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -605,7 +600,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -620,17 +615,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             };
@@ -669,9 +662,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -692,7 +686,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -707,17 +701,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'booleanElementType',
-                    type: {
-                      name: 'Boolean'
-                    }
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             };
@@ -756,9 +748,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -779,7 +772,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -794,17 +787,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -858,32 +849,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -902,7 +892,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -938,9 +928,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -961,7 +952,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -976,17 +967,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1025,9 +1014,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1048,7 +1038,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1063,17 +1053,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1112,9 +1100,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1135,7 +1124,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1150,17 +1139,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1214,32 +1201,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.-1.3.300",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1258,7 +1244,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1294,9 +1280,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1317,7 +1304,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1332,17 +1319,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1381,9 +1366,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1404,7 +1390,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1419,17 +1405,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1468,9 +1452,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1491,7 +1476,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1506,17 +1491,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1570,32 +1553,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1614,7 +1596,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1650,9 +1632,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1673,7 +1656,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1688,17 +1671,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1737,9 +1718,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1760,7 +1742,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1775,17 +1757,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1824,9 +1804,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1847,7 +1828,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1862,17 +1843,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -1926,32 +1905,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'numberElementType',
-              type: {
-                name: 'Number'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "numberElementType",
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -1970,7 +1948,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2006,9 +1984,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2029,7 +2008,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2044,17 +2023,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -2093,9 +2070,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2116,7 +2094,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2131,17 +2109,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };
@@ -2180,9 +2156,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2203,7 +2180,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2218,17 +2195,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             };
@@ -2282,32 +2257,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2326,7 +2300,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2362,9 +2336,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2385,7 +2360,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2400,17 +2375,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             };
@@ -2449,9 +2422,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2472,7 +2446,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2487,17 +2461,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             };
@@ -2538,9 +2510,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2561,7 +2534,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2576,17 +2549,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
                 }
               }
             };
@@ -2642,32 +2613,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "Uuid"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2686,7 +2656,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2722,9 +2692,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2745,7 +2716,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2760,17 +2731,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
                 }
               }
             };
@@ -2809,9 +2778,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -2832,7 +2802,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2847,17 +2817,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             };
@@ -2912,32 +2880,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'Date'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "Date"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -2956,7 +2923,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2992,9 +2959,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3015,7 +2983,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3030,17 +2998,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             };
@@ -3079,9 +3045,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3102,7 +3069,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3117,17 +3084,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'Date'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             };
@@ -3167,9 +3132,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3190,7 +3156,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3205,17 +3171,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             };
@@ -3271,32 +3235,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'DateTime'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTime"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3315,7 +3278,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3351,9 +3314,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3374,7 +3338,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3389,17 +3353,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             };
@@ -3438,9 +3400,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3461,7 +3424,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3476,17 +3439,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTime'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             };
@@ -3526,9 +3487,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3549,7 +3511,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3564,17 +3526,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'DateElementType',
-                    type: {
-                      name: 'DateTimeRfc1123'
-                    }
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
                 }
               }
             };
@@ -3630,32 +3590,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'DateElementType',
-              type: {
-                name: 'DateTimeRfc1123'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time-rfc1123/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "DateElementType",
+                type: {
+                  name: "DateTimeRfc1123"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3674,7 +3633,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3710,9 +3669,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3733,7 +3693,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3748,17 +3708,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'TimeSpan'
-                    }
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
                 }
               }
             };
@@ -3812,32 +3770,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'TimeSpan'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/duration/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "TimeSpan"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -3856,7 +3813,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3893,9 +3850,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -3916,7 +3874,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -3931,17 +3889,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'ByteArray'
-                    }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             };
@@ -3996,32 +3952,31 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'BufferElementType',
-              type: {
-                name: 'ByteArray'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "BufferElementType",
+                type: {
+                  name: "ByteArray"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -4040,7 +3995,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4077,9 +4032,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4100,7 +4056,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4115,17 +4071,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'ByteArray'
-                    }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             };
@@ -4165,9 +4119,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4188,7 +4143,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4203,17 +4158,15 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'BufferElementType',
-                    type: {
-                      name: 'Base64Url'
-                    }
+                  serializedName: "BufferElementType",
+                  type: {
+                    name: "Base64Url"
+                  }
                 }
               }
             };
@@ -4252,9 +4205,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4275,7 +4229,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4290,18 +4244,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             };
@@ -4340,9 +4292,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4363,7 +4316,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4378,18 +4331,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             };
@@ -4429,9 +4380,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4452,7 +4404,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4467,18 +4419,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             };
@@ -4518,9 +4468,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4541,7 +4492,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4556,18 +4507,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             };
@@ -4607,9 +4556,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4630,7 +4580,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4645,18 +4595,16 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ProductElementType',
-                    type: {
-                      name: 'Composite',
-                      className: 'Product'
-                    }
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             };
@@ -4698,33 +4646,32 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'Product'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/complex/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ProductElementType",
+                type: {
+                  name: "Composite",
+                  className: "Product"
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -4743,7 +4690,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4779,9 +4726,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4802,7 +4750,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4817,24 +4765,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -4873,9 +4818,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4896,7 +4842,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -4911,24 +4857,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -4967,9 +4910,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -4990,7 +4934,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5005,24 +4949,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5061,9 +5002,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5084,7 +5026,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5099,24 +5041,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5156,9 +5095,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5179,7 +5119,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5194,24 +5134,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ArrayElementType',
-                    type: {
-                      name: 'Sequence',
-                      element: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5270,39 +5207,37 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ArrayElementType',
-              type: {
-                name: 'Sequence',
-                element: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/array/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ArrayElementType",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -5321,7 +5256,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5357,9 +5292,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5380,7 +5316,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5395,24 +5331,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5451,9 +5384,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5474,7 +5408,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5489,24 +5423,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5547,9 +5478,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5570,7 +5502,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5585,24 +5517,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5643,9 +5572,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5666,7 +5596,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5681,24 +5611,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5739,9 +5666,10 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -5762,7 +5690,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -5777,24 +5705,21 @@ export class ArrayModel {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Sequence',
+                name: "Sequence",
                 element: {
-                    required: false,
-                    serializedName: 'ObjectElementType',
-                    type: {
-                      name: 'Dictionary',
-                      value: {
-                          required: false,
-                          serializedName: 'stringElementType',
-                          type: {
-                            name: 'String'
-                          }
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
                       }
                     }
+                  }
                 }
               }
             };
@@ -5854,39 +5779,37 @@ export class ArrayModel {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'arrayBody',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'ObjectElementType',
-              type: {
-                name: 'Dictionary',
-                value: {
-                    required: false,
-                    serializedName: 'stringElementType',
-                    type: {
-                      name: 'String'
-                    }
-                }
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayBody
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayBody
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/valid",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "arrayBody",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "ObjectElementType",
+                type: {
+                  name: "Dictionary",
+                  value: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
+            }
+          },
           requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8"
         });
@@ -5905,7 +5828,7 @@ export class ArrayModel {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

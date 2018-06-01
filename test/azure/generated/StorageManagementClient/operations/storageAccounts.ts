@@ -66,17 +66,17 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountCheckNameAvailabilityParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -84,25 +84,40 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountCheckNameAvailabilityParameters,
           requestBodyName: "accountName",
           contentType: "application/json; charset=utf-8"
         });
@@ -120,7 +135,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -135,7 +150,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.CheckNameAvailabilityResult;
+            const resultMapper = Mappers.CheckNameAvailabilityResult;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -197,7 +212,7 @@ export class StorageAccounts {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.StorageAccount;
+          const resultMapper = Mappers.StorageAccount;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -257,17 +272,18 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -275,30 +291,57 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -316,7 +359,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -381,17 +424,18 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -399,30 +443,57 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -440,7 +511,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -455,7 +526,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccount;
+            const resultMapper = Mappers.StorageAccount;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -533,19 +604,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountUpdateParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          parameters,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -553,33 +624,60 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountUpdateParameters,
           requestBodyName: "parameters",
           contentType: "application/json; charset=utf-8"
         });
@@ -597,7 +695,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -612,7 +710,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccount;
+            const resultMapper = Mappers.StorageAccount;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -673,17 +771,18 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -691,30 +790,57 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -732,7 +858,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -747,7 +873,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccountKeys;
+            const resultMapper = Mappers.StorageAccountKeys;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -798,15 +924,16 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -814,22 +941,37 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -847,7 +989,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -862,7 +1004,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccountListResult;
+            const resultMapper = Mappers.StorageAccountListResult;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -920,16 +1062,17 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -937,26 +1080,47 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -974,7 +1138,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -989,7 +1153,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccountListResult;
+            const resultMapper = Mappers.StorageAccountListResult;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1065,19 +1229,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountRegenerateKeyParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          regenerateKeyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            regenerateKeyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1085,33 +1249,60 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountRegenerateKeyParameters,
           requestBodyName: "regenerateKeyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1129,7 +1320,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1144,7 +1335,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccountKeys;
+            const resultMapper = Mappers.StorageAccountKeys;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -1217,19 +1408,19 @@ export class StorageAccounts {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StorageAccountCreateParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          accountName,
+          parameters,
+          "this.client.apiVersion": this.client.apiVersion,
+          "this.client.subscriptionId": this.client.subscriptionId,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            accountName,
-            parameters,
-            "this.client.apiVersion": this.client.apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -1237,33 +1428,60 @@ export class StorageAccounts {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.client.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StorageAccountCreateParameters,
           requestBodyName: "parameters",
           contentType: "application/json; charset=utf-8"
         });
@@ -1281,7 +1499,7 @@ export class StorageAccounts {
             if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.CloudError;
+            const resultMapper = Mappers.CloudError;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1296,7 +1514,7 @@ export class StorageAccounts {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.StorageAccount;
+            const resultMapper = Mappers.StorageAccount;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

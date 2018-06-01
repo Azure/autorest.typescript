@@ -54,14 +54,15 @@ export class ApiVersionLocal {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -69,15 +70,27 @@ export class ApiVersionLocal {
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2.0',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -96,7 +109,7 @@ export class ApiVersionLocal {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -146,14 +159,15 @@ export class ApiVersionLocal {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -161,15 +175,24 @@ export class ApiVersionLocal {
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "api-version",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -188,7 +211,7 @@ export class ApiVersionLocal {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -234,14 +257,15 @@ export class ApiVersionLocal {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -249,15 +273,27 @@ export class ApiVersionLocal {
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2.0',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -276,7 +312,7 @@ export class ApiVersionLocal {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -322,14 +358,15 @@ export class ApiVersionLocal {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          apiVersion,
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            apiVersion,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -337,15 +374,27 @@ export class ApiVersionLocal {
           queryParameters: [
             {
               parameterName: "apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2.0',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -364,7 +413,7 @@ export class ApiVersionLocal {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

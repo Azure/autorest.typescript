@@ -58,13 +58,14 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -72,7 +73,19 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
+              mapper: {
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -91,7 +104,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -141,13 +154,14 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -155,7 +169,19 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
+              mapper: {
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -174,7 +200,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -225,13 +251,14 @@ export class Queries {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -239,7 +266,19 @@ export class Queries {
           queryParameters: [
             {
               parameterName: "arrayQuery",
-              collectionFormat: msRest.QueryCollectionFormat.Multi
+              collectionFormat: msRest.QueryCollectionFormat.Multi,
+              mapper: {
+                serializedName: "arrayQuery",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -258,7 +297,7 @@ export class Queries {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

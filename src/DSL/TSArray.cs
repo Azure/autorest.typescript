@@ -65,7 +65,7 @@ namespace AutoRest.TypeScript.DSL
         public void Value(Action<TSValue> valueAction)
         {
             SetCurrentState(State.Element);
-            valueAction.Invoke(new TSValue(builder));
+            builder.Value(valueAction);
         }
 
         /// <summary>

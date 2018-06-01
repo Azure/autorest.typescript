@@ -10,24 +10,21 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,16 +32,14 @@ export const ErrorModel = {
 };
 
 export const AutoRestUrlTestServiceOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'AutoRestUrlTestServiceOptions',
+    name: "Composite",
+    className: "AutoRestUrlTestServiceOptions",
     modelProperties: {
       globalStringQuery: {
-        required: false,
-        serializedName: 'globalStringQuery',
+        serializedName: "globalStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -52,17 +47,15 @@ export const AutoRestUrlTestServiceOptions = {
 };
 
 export const QueriesGetBooleanNullOptionalParams = {
-  required: false,
-  serializedName: 'GetBooleanNullOptions',
+  serializedName: "GetBooleanNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesGetBooleanNullOptionalParams',
+    name: "Composite",
+    className: "QueriesGetBooleanNullOptionalParams",
     modelProperties: {
       boolQuery: {
-        required: false,
-        serializedName: 'boolQuery',
+        serializedName: "boolQuery",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -70,17 +63,15 @@ export const QueriesGetBooleanNullOptionalParams = {
 };
 
 export const QueriesGetIntNullOptionalParams = {
-  required: false,
-  serializedName: 'GetIntNullOptions',
+  serializedName: "GetIntNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesGetIntNullOptionalParams',
+    name: "Composite",
+    className: "QueriesGetIntNullOptionalParams",
     modelProperties: {
       intQuery: {
-        required: false,
-        serializedName: 'intQuery',
+        serializedName: "intQuery",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -88,17 +79,15 @@ export const QueriesGetIntNullOptionalParams = {
 };
 
 export const QueriesGetLongNullOptionalParams = {
-  required: false,
-  serializedName: 'GetLongNullOptions',
+  serializedName: "GetLongNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesGetLongNullOptionalParams',
+    name: "Composite",
+    className: "QueriesGetLongNullOptionalParams",
     modelProperties: {
       longQuery: {
-        required: false,
-        serializedName: 'longQuery',
+        serializedName: "longQuery",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -106,17 +95,15 @@ export const QueriesGetLongNullOptionalParams = {
 };
 
 export const QueriesFloatNullOptionalParams = {
-  required: false,
-  serializedName: 'FloatNullOptions',
+  serializedName: "FloatNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesFloatNullOptionalParams',
+    name: "Composite",
+    className: "QueriesFloatNullOptionalParams",
     modelProperties: {
       floatQuery: {
-        required: false,
-        serializedName: 'floatQuery',
+        serializedName: "floatQuery",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -124,17 +111,15 @@ export const QueriesFloatNullOptionalParams = {
 };
 
 export const QueriesDoubleNullOptionalParams = {
-  required: false,
-  serializedName: 'DoubleNullOptions',
+  serializedName: "DoubleNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesDoubleNullOptionalParams',
+    name: "Composite",
+    className: "QueriesDoubleNullOptionalParams",
     modelProperties: {
       doubleQuery: {
-        required: false,
-        serializedName: 'doubleQuery',
+        serializedName: "doubleQuery",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -142,17 +127,15 @@ export const QueriesDoubleNullOptionalParams = {
 };
 
 export const QueriesStringNullOptionalParams = {
-  required: false,
-  serializedName: 'StringNullOptions',
+  serializedName: "StringNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesStringNullOptionalParams',
+    name: "Composite",
+    className: "QueriesStringNullOptionalParams",
     modelProperties: {
       stringQuery: {
-        required: false,
-        serializedName: 'stringQuery',
+        serializedName: "stringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -160,18 +143,20 @@ export const QueriesStringNullOptionalParams = {
 };
 
 export const QueriesEnumValidOptionalParams = {
-  required: false,
-  serializedName: 'EnumValidOptions',
+  serializedName: "EnumValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesEnumValidOptionalParams',
+    name: "Composite",
+    className: "QueriesEnumValidOptionalParams",
     modelProperties: {
       enumQuery: {
-        required: false,
-        serializedName: 'enumQuery',
+        serializedName: "enumQuery",
         type: {
-          name: 'Enum',
-          allowedValues: [ 'red color', 'green color', 'blue color' ]
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
         }
       }
     }
@@ -179,18 +164,20 @@ export const QueriesEnumValidOptionalParams = {
 };
 
 export const QueriesEnumNullOptionalParams = {
-  required: false,
-  serializedName: 'EnumNullOptions',
+  serializedName: "EnumNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesEnumNullOptionalParams',
+    name: "Composite",
+    className: "QueriesEnumNullOptionalParams",
     modelProperties: {
       enumQuery: {
-        required: false,
-        serializedName: 'enumQuery',
+        serializedName: "enumQuery",
         type: {
-          name: 'Enum',
-          allowedValues: [ 'red color', 'green color', 'blue color' ]
+          name: "Enum",
+          allowedValues: [
+            "red color",
+            "green color",
+            "blue color"
+          ]
         }
       }
     }
@@ -198,17 +185,15 @@ export const QueriesEnumNullOptionalParams = {
 };
 
 export const QueriesByteMultiByteOptionalParams = {
-  required: false,
-  serializedName: 'ByteMultiByteOptions',
+  serializedName: "ByteMultiByteOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesByteMultiByteOptionalParams',
+    name: "Composite",
+    className: "QueriesByteMultiByteOptionalParams",
     modelProperties: {
       byteQuery: {
-        required: false,
-        serializedName: 'byteQuery',
+        serializedName: "byteQuery",
         type: {
-          name: 'ByteArray'
+          name: "ByteArray"
         }
       }
     }
@@ -216,17 +201,15 @@ export const QueriesByteMultiByteOptionalParams = {
 };
 
 export const QueriesByteNullOptionalParams = {
-  required: false,
-  serializedName: 'ByteNullOptions',
+  serializedName: "ByteNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesByteNullOptionalParams',
+    name: "Composite",
+    className: "QueriesByteNullOptionalParams",
     modelProperties: {
       byteQuery: {
-        required: false,
-        serializedName: 'byteQuery',
+        serializedName: "byteQuery",
         type: {
-          name: 'ByteArray'
+          name: "ByteArray"
         }
       }
     }
@@ -234,17 +217,15 @@ export const QueriesByteNullOptionalParams = {
 };
 
 export const QueriesDateNullOptionalParams = {
-  required: false,
-  serializedName: 'DateNullOptions',
+  serializedName: "DateNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesDateNullOptionalParams',
+    name: "Composite",
+    className: "QueriesDateNullOptionalParams",
     modelProperties: {
       dateQuery: {
-        required: false,
-        serializedName: 'dateQuery',
+        serializedName: "dateQuery",
         type: {
-          name: 'Date'
+          name: "Date"
         }
       }
     }
@@ -252,17 +233,15 @@ export const QueriesDateNullOptionalParams = {
 };
 
 export const QueriesDateTimeNullOptionalParams = {
-  required: false,
-  serializedName: 'DateTimeNullOptions',
+  serializedName: "DateTimeNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesDateTimeNullOptionalParams',
+    name: "Composite",
+    className: "QueriesDateTimeNullOptionalParams",
     modelProperties: {
       dateTimeQuery: {
-        required: false,
-        serializedName: 'dateTimeQuery',
+        serializedName: "dateTimeQuery",
         type: {
-          name: 'DateTime'
+          name: "DateTime"
         }
       }
     }
@@ -270,23 +249,20 @@ export const QueriesDateTimeNullOptionalParams = {
 };
 
 export const QueriesArrayStringCsvValidOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringCsvValidOptions',
+  serializedName: "ArrayStringCsvValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringCsvValidOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringCsvValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -295,23 +271,20 @@ export const QueriesArrayStringCsvValidOptionalParams = {
 };
 
 export const QueriesArrayStringCsvNullOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringCsvNullOptions',
+  serializedName: "ArrayStringCsvNullOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringCsvNullOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringCsvNullOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -320,23 +293,20 @@ export const QueriesArrayStringCsvNullOptionalParams = {
 };
 
 export const QueriesArrayStringCsvEmptyOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringCsvEmptyOptions',
+  serializedName: "ArrayStringCsvEmptyOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringCsvEmptyOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringCsvEmptyOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -345,23 +315,20 @@ export const QueriesArrayStringCsvEmptyOptionalParams = {
 };
 
 export const QueriesArrayStringSsvValidOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringSsvValidOptions',
+  serializedName: "ArrayStringSsvValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringSsvValidOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringSsvValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -370,23 +337,20 @@ export const QueriesArrayStringSsvValidOptionalParams = {
 };
 
 export const QueriesArrayStringTsvValidOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringTsvValidOptions',
+  serializedName: "ArrayStringTsvValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringTsvValidOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringTsvValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -395,23 +359,20 @@ export const QueriesArrayStringTsvValidOptionalParams = {
 };
 
 export const QueriesArrayStringPipesValidOptionalParams = {
-  required: false,
-  serializedName: 'ArrayStringPipesValidOptions',
+  serializedName: "ArrayStringPipesValidOptions",
   type: {
-    name: 'Composite',
-    className: 'QueriesArrayStringPipesValidOptionalParams',
+    name: "Composite",
+    className: "QueriesArrayStringPipesValidOptionalParams",
     modelProperties: {
       arrayQuery: {
-        required: false,
-        serializedName: 'arrayQuery',
+        serializedName: "arrayQuery",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       }
@@ -420,24 +381,21 @@ export const QueriesArrayStringPipesValidOptionalParams = {
 };
 
 export const PathItemsGetAllWithValuesOptionalParams = {
-  required: false,
-  serializedName: 'GetAllWithValuesOptions',
+  serializedName: "GetAllWithValuesOptions",
   type: {
-    name: 'Composite',
-    className: 'PathItemsGetAllWithValuesOptionalParams',
+    name: "Composite",
+    className: "PathItemsGetAllWithValuesOptionalParams",
     modelProperties: {
       localStringQuery: {
-        required: false,
-        serializedName: 'localStringQuery',
+        serializedName: "localStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       pathItemStringQuery: {
-        required: false,
-        serializedName: 'pathItemStringQuery',
+        serializedName: "pathItemStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -445,24 +403,21 @@ export const PathItemsGetAllWithValuesOptionalParams = {
 };
 
 export const PathItemsGetGlobalQueryNullOptionalParams = {
-  required: false,
-  serializedName: 'GetGlobalQueryNullOptions',
+  serializedName: "GetGlobalQueryNullOptions",
   type: {
-    name: 'Composite',
-    className: 'PathItemsGetGlobalQueryNullOptionalParams',
+    name: "Composite",
+    className: "PathItemsGetGlobalQueryNullOptionalParams",
     modelProperties: {
       localStringQuery: {
-        required: false,
-        serializedName: 'localStringQuery',
+        serializedName: "localStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       pathItemStringQuery: {
-        required: false,
-        serializedName: 'pathItemStringQuery',
+        serializedName: "pathItemStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -470,24 +425,21 @@ export const PathItemsGetGlobalQueryNullOptionalParams = {
 };
 
 export const PathItemsGetGlobalAndLocalQueryNullOptionalParams = {
-  required: false,
-  serializedName: 'GetGlobalAndLocalQueryNullOptions',
+  serializedName: "GetGlobalAndLocalQueryNullOptions",
   type: {
-    name: 'Composite',
-    className: 'PathItemsGetGlobalAndLocalQueryNullOptionalParams',
+    name: "Composite",
+    className: "PathItemsGetGlobalAndLocalQueryNullOptionalParams",
     modelProperties: {
       localStringQuery: {
-        required: false,
-        serializedName: 'localStringQuery',
+        serializedName: "localStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       pathItemStringQuery: {
-        required: false,
-        serializedName: 'pathItemStringQuery',
+        serializedName: "pathItemStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -495,24 +447,21 @@ export const PathItemsGetGlobalAndLocalQueryNullOptionalParams = {
 };
 
 export const PathItemsGetLocalPathItemQueryNullOptionalParams = {
-  required: false,
-  serializedName: 'GetLocalPathItemQueryNullOptions',
+  serializedName: "GetLocalPathItemQueryNullOptions",
   type: {
-    name: 'Composite',
-    className: 'PathItemsGetLocalPathItemQueryNullOptionalParams',
+    name: "Composite",
+    className: "PathItemsGetLocalPathItemQueryNullOptionalParams",
     modelProperties: {
       localStringQuery: {
-        required: false,
-        serializedName: 'localStringQuery',
+        serializedName: "localStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       pathItemStringQuery: {
-        required: false,
-        serializedName: 'pathItemStringQuery',
+        serializedName: "pathItemStringQuery",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

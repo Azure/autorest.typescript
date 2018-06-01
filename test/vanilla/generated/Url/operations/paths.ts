@@ -45,13 +45,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -59,7 +60,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "boolPath",
-              type: msRest.OperationParameterType.Boolean
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "boolPath",
+                defaultValue: true,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -78,7 +87,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -115,13 +124,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          boolPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            boolPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -129,7 +139,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "boolPath",
-              type: msRest.OperationParameterType.Boolean
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "boolPath",
+                defaultValue: false,
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -148,7 +166,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -185,13 +203,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            intPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -199,7 +218,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "intPath",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "intPath",
+                defaultValue: 1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -218,7 +245,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -255,13 +282,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          intPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            intPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -269,7 +297,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "intPath",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "intPath",
+                defaultValue: -1000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -288,7 +324,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -325,13 +361,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            longPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -339,7 +376,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "longPath",
-              type: msRest.OperationParameterType.Long
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "longPath",
+                defaultValue: 10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -358,7 +403,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -395,13 +440,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          longPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            longPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -409,7 +455,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "longPath",
-              type: msRest.OperationParameterType.Long
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "longPath",
+                defaultValue: -10000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -428,7 +482,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -465,13 +519,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -479,7 +534,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "floatPath",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "floatPath",
+                defaultValue: 103400000000000000000,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -498,7 +561,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -535,13 +598,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          floatPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            floatPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -549,7 +613,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "floatPath",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "floatPath",
+                defaultValue: -1.034e-20,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -568,7 +640,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -605,13 +677,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doublePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            doublePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -619,7 +692,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "doublePath",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "doublePath",
+                defaultValue: 9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -638,7 +719,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -675,13 +756,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          doublePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            doublePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -689,7 +771,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "doublePath",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "doublePath",
+                defaultValue: -9999999.999,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -708,7 +798,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -745,13 +835,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -759,7 +850,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: '啊齄丂狛狜隣郎隣兀﨩',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -778,7 +877,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -815,13 +914,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -829,7 +929,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: 'begin!*\'();:@ &=+$,/?#[]end',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -848,7 +956,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -885,13 +993,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -899,7 +1008,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "stringPath",
+                defaultValue: '',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -918,7 +1035,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -964,13 +1081,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          stringPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            stringPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -978,7 +1096,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "stringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "stringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -997,7 +1121,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1049,20 +1173,33 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath"
+              parameterName: "enumPath",
+              mapper: {
+                required: true,
+                serializedName: "enumPath",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1081,7 +1218,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1133,20 +1270,33 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          enumPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            enumPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/string/null/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath"
+              parameterName: "enumPath",
+              mapper: {
+                required: true,
+                serializedName: "enumPath",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "red color",
+                    "green color",
+                    "blue color"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -1165,7 +1315,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1212,13 +1362,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1226,7 +1377,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray
+              mapper: {
+                required: true,
+                serializedName: "bytePath",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1245,7 +1402,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1282,13 +1439,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1296,7 +1454,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "bytePath",
+                defaultValue: new Buffer(''),
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1315,7 +1481,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1361,13 +1527,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bytePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bytePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1375,7 +1542,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "bytePath",
-              type: msRest.OperationParameterType.ByteArray
+              mapper: {
+                required: true,
+                serializedName: "bytePath",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -1394,7 +1567,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1431,13 +1604,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            datePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1445,7 +1619,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "datePath",
-              type: msRest.OperationParameterType.Date
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "datePath",
+                defaultValue: new Date('2012-01-01'),
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1464,7 +1646,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1512,13 +1694,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          datePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            datePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1526,7 +1709,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "datePath",
-              type: msRest.OperationParameterType.Date
+              mapper: {
+                required: true,
+                serializedName: "datePath",
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1545,7 +1734,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1582,13 +1771,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1596,7 +1786,15 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "dateTimePath",
-              type: msRest.OperationParameterType.DateTime
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "dateTimePath",
+                defaultValue: new Date('2012-01-01T01:01:01Z'),
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1615,7 +1813,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1663,13 +1861,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          dateTimePath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            dateTimePath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1677,7 +1876,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "dateTimePath",
-              type: msRest.OperationParameterType.DateTime
+              mapper: {
+                required: true,
+                serializedName: "dateTimePath",
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1696,7 +1901,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1742,13 +1947,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          base64UrlPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            base64UrlPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1756,7 +1962,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "base64UrlPath",
-              type: msRest.OperationParameterType.Base64Url
+              mapper: {
+                required: true,
+                serializedName: "base64UrlPath",
+                type: {
+                  name: "Base64Url"
+                }
+              }
             }
           ]
         });
@@ -1775,7 +1987,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1828,20 +2040,34 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          arrayPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            arrayPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
           path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
-              parameterName: "arrayPath"
+              parameterName: "arrayPath",
+              mapper: {
+                required: true,
+                serializedName: "arrayPath",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -1860,7 +2086,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1907,13 +2133,14 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          unixTimeUrlPath
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            unixTimeUrlPath
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -1921,7 +2148,13 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "unixTimeUrlPath",
-              type: msRest.OperationParameterType.UnixTime
+              mapper: {
+                required: true,
+                serializedName: "unixTimeUrlPath",
+                type: {
+                  name: "UnixTime"
+                }
+              }
             }
           ]
         });
@@ -1940,7 +2173,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

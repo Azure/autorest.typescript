@@ -14,24 +14,21 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const SampleResourceGroup = {
-  required: false,
-  serializedName: 'SampleResourceGroup',
+  serializedName: "SampleResourceGroup",
   type: {
-    name: 'Composite',
-    className: 'SampleResourceGroup',
+    name: "Composite",
+    className: "SampleResourceGroup",
     modelProperties: {
       name: {
-        required: false,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -39,24 +36,21 @@ export const SampleResourceGroup = {
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       code: {
-        required: false,
-        serializedName: 'code',
+        serializedName: "code",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

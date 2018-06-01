@@ -3,13 +3,7 @@
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodTS>
 let operationRes: msRest.HttpOperationResponse;
 try {
-@if (Model.RequestBody != null)
-{
-<text>
-  @(Model.ConstructRequestBodyMapper)
-</text>
-}
-  operationRes = @(Model.GenerateSendOperationRequest());
+  @(Model.GenerateSendOperationRequest());
   let statusCode = operationRes.status;
   if (@(Model.FailureStatusCodePredicate)) {
     let error = new msRest.RestError(operationRes.bodyAsText as string);

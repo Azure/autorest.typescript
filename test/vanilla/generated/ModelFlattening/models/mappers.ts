@@ -10,32 +10,28 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       parentError: {
-        required: false,
-        serializedName: 'parentError',
+        serializedName: "parentError",
         type: {
-          name: 'Composite',
-          className: 'ErrorModel'
+          name: "Composite",
+          className: "ErrorModel"
         }
       }
     }
@@ -43,55 +39,48 @@ export const ErrorModel = {
 };
 
 export const Resource = {
-  required: false,
-  serializedName: 'Resource',
+  serializedName: "Resource",
   type: {
-    name: 'Composite',
-    className: 'Resource',
+    name: "Composite",
+    className: "Resource",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       type: {
-        required: false,
         readOnly: true,
-        serializedName: 'type',
+        serializedName: "type",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       tags: {
-        required: false,
-        serializedName: 'tags',
+        serializedName: "tags",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       name: {
-        required: false,
         readOnly: true,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -99,84 +88,73 @@ export const Resource = {
 };
 
 export const FlattenedProduct = {
-  required: false,
-  serializedName: 'FlattenedProduct',
+  serializedName: "FlattenedProduct",
   type: {
-    name: 'Composite',
-    className: 'FlattenedProduct',
+    name: "Composite",
+    className: "FlattenedProduct",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       type: {
-        required: false,
         readOnly: true,
-        serializedName: 'type',
+        serializedName: "type",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       tags: {
-        required: false,
-        serializedName: 'tags',
+        serializedName: "tags",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       name: {
-        required: false,
         readOnly: true,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       pname: {
-        required: false,
-        serializedName: 'properties.p\\.name',
+        serializedName: "properties.p\\.name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       flattenedProductType: {
-        required: false,
-        serializedName: 'properties.type',
+        serializedName: "properties.type",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningStateValues: {
-        required: false,
         readOnly: true,
-        serializedName: 'properties.provisioningStateValues',
+        serializedName: "properties.provisioningStateValues",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -184,47 +162,41 @@ export const FlattenedProduct = {
 };
 
 export const ResourceCollection = {
-  required: false,
-  serializedName: 'ResourceCollection',
+  serializedName: "ResourceCollection",
   type: {
-    name: 'Composite',
-    className: 'ResourceCollection',
+    name: "Composite",
+    className: "ResourceCollection",
     modelProperties: {
       productresource: {
-        required: false,
-        serializedName: 'productresource',
+        serializedName: "productresource",
         type: {
-          name: 'Composite',
-          className: 'FlattenedProduct'
+          name: "Composite",
+          className: "FlattenedProduct"
         }
       },
       arrayofresources: {
-        required: false,
-        serializedName: 'arrayofresources',
+        serializedName: "arrayofresources",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'FlattenedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'FlattenedProduct'
-              }
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
           }
         }
       },
       dictionaryofresources: {
-        required: false,
-        serializedName: 'dictionaryofresources',
+        serializedName: "dictionaryofresources",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'FlattenedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'FlattenedProduct'
-              }
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
           }
         }
       }
@@ -233,24 +205,22 @@ export const ResourceCollection = {
 };
 
 export const BaseProduct = {
-  required: false,
-  serializedName: 'BaseProduct',
+  serializedName: "BaseProduct",
   type: {
-    name: 'Composite',
-    className: 'BaseProduct',
+    name: "Composite",
+    className: "BaseProduct",
     modelProperties: {
       productId: {
         required: true,
-        serializedName: 'base_product_id',
+        serializedName: "base_product_id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       description: {
-        required: false,
-        serializedName: 'base_product_description',
+        serializedName: "base_product_description",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -258,54 +228,50 @@ export const BaseProduct = {
 };
 
 export const SimpleProduct = {
-  required: false,
-  serializedName: 'SimpleProduct',
+  serializedName: "SimpleProduct",
   type: {
-    name: 'Composite',
-    className: 'SimpleProduct',
+    name: "Composite",
+    className: "SimpleProduct",
     modelProperties: {
       productId: {
         required: true,
-        serializedName: 'base_product_id',
+        serializedName: "base_product_id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       description: {
-        required: false,
-        serializedName: 'base_product_description',
+        serializedName: "base_product_description",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       maxProductDisplayName: {
         required: true,
-        serializedName: 'details.max_product_display_name',
+        serializedName: "details.max_product_display_name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       capacity: {
         required: true,
         isConstant: true,
-        serializedName: 'details.max_product_capacity',
+        serializedName: "details.max_product_capacity",
         defaultValue: 'Large',
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       genericValue: {
-        required: false,
-        serializedName: 'details.max_product_image.generic_value',
+        serializedName: "details.max_product_image.generic_value",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       odatavalue: {
-        required: false,
-        serializedName: 'details.max_product_image.@odata\\.value',
+        serializedName: "details.max_product_image.@odata\\.value",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -313,17 +279,15 @@ export const SimpleProduct = {
 };
 
 export const GenericUrl = {
-  required: false,
-  serializedName: 'GenericUrl',
+  serializedName: "GenericUrl",
   type: {
-    name: 'Composite',
-    className: 'GenericUrl',
+    name: "Composite",
+    className: "GenericUrl",
     modelProperties: {
       genericValue: {
-        required: false,
-        serializedName: 'generic_value',
+        serializedName: "generic_value",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -331,17 +295,15 @@ export const GenericUrl = {
 };
 
 export const WrappedProduct = {
-  required: false,
-  serializedName: 'WrappedProduct',
+  serializedName: "WrappedProduct",
   type: {
-    name: 'Composite',
-    className: 'WrappedProduct',
+    name: "Composite",
+    className: "WrappedProduct",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'value',
+        serializedName: "value",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -349,17 +311,15 @@ export const WrappedProduct = {
 };
 
 export const ProductWrapper = {
-  required: false,
-  serializedName: 'ProductWrapper',
+  serializedName: "ProductWrapper",
   type: {
-    name: 'Composite',
-    className: 'ProductWrapper',
+    name: "Composite",
+    className: "ProductWrapper",
     modelProperties: {
       value: {
-        required: false,
-        serializedName: 'property.value',
+        serializedName: "property.value",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -367,45 +327,41 @@ export const ProductWrapper = {
 };
 
 export const FlattenParameterGroup = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'FlattenParameterGroup',
+    name: "Composite",
+    className: "FlattenParameterGroup",
     modelProperties: {
       name: {
         required: true,
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       productId: {
         required: true,
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       description: {
-        required: false,
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       maxProductDisplayName: {
         required: true,
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       genericValue: {
-        required: false,
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       odatavalue: {
-        required: false,
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -413,24 +369,21 @@ export const FlattenParameterGroup = {
 };
 
 export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
-  required: false,
-  serializedName: 'PutArrayOptions',
+  serializedName: "PutArrayOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePutArrayOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePutArrayOptionalParams",
     modelProperties: {
       resourceArray: {
-        required: false,
-        serializedName: 'ResourceArray',
+        serializedName: "ResourceArray",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'ResourceElementType',
-              type: {
-                name: 'Composite',
-                className: 'Resource'
-              }
+            serializedName: "ResourceElementType",
+            type: {
+              name: "Composite",
+              className: "Resource"
+            }
           }
         }
       }
@@ -439,24 +392,21 @@ export const AutoRestResourceFlatteningTestServicePutArrayOptionalParams = {
 };
 
 export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams = {
-  required: false,
-  serializedName: 'PutWrappedArrayOptions',
+  serializedName: "PutWrappedArrayOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams",
     modelProperties: {
       resourceArray: {
-        required: false,
-        serializedName: 'ResourceArray',
+        serializedName: "ResourceArray",
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'WrappedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'WrappedProduct'
-              }
+            serializedName: "WrappedProductElementType",
+            type: {
+              name: "Composite",
+              className: "WrappedProduct"
+            }
           }
         }
       }
@@ -465,24 +415,21 @@ export const AutoRestResourceFlatteningTestServicePutWrappedArrayOptionalParams 
 };
 
 export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = {
-  required: false,
-  serializedName: 'PutDictionaryOptions',
+  serializedName: "PutDictionaryOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams",
     modelProperties: {
       resourceDictionary: {
-        required: false,
-        serializedName: 'ResourceDictionary',
+        serializedName: "ResourceDictionary",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'FlattenedProductElementType',
-              type: {
-                name: 'Composite',
-                className: 'FlattenedProduct'
-              }
+            serializedName: "FlattenedProductElementType",
+            type: {
+              name: "Composite",
+              className: "FlattenedProduct"
+            }
           }
         }
       }
@@ -491,18 +438,16 @@ export const AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams = 
 };
 
 export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams = {
-  required: false,
-  serializedName: 'PutResourceCollectionOptions',
+  serializedName: "PutResourceCollectionOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams",
     modelProperties: {
       resourceComplexObject: {
-        required: false,
-        serializedName: 'ResourceComplexObject',
+        serializedName: "ResourceComplexObject",
         type: {
-          name: 'Composite',
-          className: 'ResourceCollection'
+          name: "Composite",
+          className: "ResourceCollection"
         }
       }
     }
@@ -510,18 +455,16 @@ export const AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalP
 };
 
 export const AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams = {
-  required: false,
-  serializedName: 'PutSimpleProductOptions',
+  serializedName: "PutSimpleProductOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams",
     modelProperties: {
       simpleBodyProduct: {
-        required: false,
-        serializedName: 'SimpleBodyProduct',
+        serializedName: "SimpleBodyProduct",
         type: {
-          name: 'Composite',
-          className: 'SimpleProduct'
+          name: "Composite",
+          className: "SimpleProduct"
         }
       }
     }
@@ -529,31 +472,27 @@ export const AutoRestResourceFlatteningTestServicePutSimpleProductOptionalParams
 };
 
 export const AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams = {
-  required: false,
-  serializedName: 'PostFlattenedSimpleProductOptions',
+  serializedName: "PostFlattenedSimpleProductOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams',
+    name: "Composite",
+    className: "AutoRestResourceFlatteningTestServicePostFlattenedSimpleProductOptionalParams",
     modelProperties: {
       description: {
-        required: false,
-        serializedName: 'base_product_description',
+        serializedName: "base_product_description",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       genericValue: {
-        required: false,
-        serializedName: 'details.max_product_image.generic_value',
+        serializedName: "details.max_product_image.generic_value",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       odatavalue: {
-        required: false,
-        serializedName: 'details.max_product_image.@odata\\.value',
+        serializedName: "details.max_product_image.@odata\\.value",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

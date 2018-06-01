@@ -55,27 +55,26 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'Number'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "Number"
+            }
+          },
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -93,7 +92,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -106,7 +105,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -151,27 +150,25 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'Number'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "Number"
+            }
+          },
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -189,7 +186,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -242,19 +239,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.IntWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.IntWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -273,7 +270,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -286,7 +283,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -337,19 +334,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.IntOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.IntOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -368,7 +365,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -415,13 +412,14 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -429,7 +427,13 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -448,7 +452,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -461,7 +465,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -507,13 +511,14 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -521,7 +526,12 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "headerParameter",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -540,7 +550,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -587,27 +597,26 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'String'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -625,7 +634,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -638,7 +647,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -683,27 +692,25 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'String'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "String"
+            }
+          },
           requestBodyName: "bodyParameter",
-          requestBodyType: msRest.OperationParameterType.String,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -721,7 +728,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -774,19 +781,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StringWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StringWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -805,7 +812,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -818,7 +825,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -869,19 +876,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.StringOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.StringOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -900,7 +907,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -947,13 +954,14 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -961,7 +969,13 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "headerParameter",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -980,7 +994,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -993,7 +1007,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1039,13 +1053,14 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1053,7 +1068,12 @@ export class Explicit {
           headerParameters: [
             {
               parameterName: "bodyParameter",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "bodyParameter",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1072,7 +1092,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1119,19 +1139,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1150,7 +1170,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1163,7 +1183,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1200,19 +1220,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1231,7 +1251,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1284,19 +1304,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ClassWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ClassWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1315,7 +1335,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1328,7 +1348,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1371,19 +1391,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ClassOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ClassOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1402,7 +1422,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1454,32 +1474,31 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "bodyParameter",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1498,7 +1517,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1511,7 +1530,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1560,32 +1579,30 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: false,
-        serializedName: 'bodyParameter',
-        type: {
-          name: 'Sequence',
-          element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
-          }
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/parameter",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            serializedName: "bodyParameter",
+            type: {
+              name: "Sequence",
+              element: {
+                serializedName: "stringElementType",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          },
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1604,7 +1621,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1662,19 +1679,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ArrayWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1693,7 +1710,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1706,7 +1723,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1761,19 +1778,19 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.ArrayOptionalWrapper;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/property",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.ArrayOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -1792,7 +1809,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1844,20 +1861,34 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter"
+              parameterName: "headerParameter",
+              mapper: {
+                required: true,
+                serializedName: "headerParameter",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -1876,7 +1907,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1889,7 +1920,7 @@ export class Explicit {
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = Mappers.ErrorModel;
+          const resultMapper = Mappers.ErrorModel;
           operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
@@ -1939,20 +1970,33 @@ export class Explicit {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          headerParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            headerParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter"
+              parameterName: "headerParameter",
+              mapper: {
+                serializedName: "headerParameter",
+                type: {
+                  name: "Sequence",
+                  element: {
+                    serializedName: "stringElementType",
+                    type: {
+                      name: "String"
+                    }
+                  }
+                }
+              }
             }
           ]
         });
@@ -1971,7 +2015,7 @@ export class Explicit {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

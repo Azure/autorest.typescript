@@ -13,7 +13,6 @@ namespace AutoRest.TypeScript.DSL
     /// </summary>
     public class TSArgumentList : TSValue, IDisposable
     {
-        private bool hasArguments;
         private List<TSPosition> argumentPositions;
 
         /// <summary>

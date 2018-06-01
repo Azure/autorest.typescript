@@ -55,13 +55,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          userAgent
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            userAgent
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -69,8 +70,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "userAgent",
-              headerName: "User-Agent",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "User-Agent",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -89,7 +95,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -125,9 +131,10 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -148,7 +155,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -199,13 +206,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          contentType
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            contentType
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -213,8 +221,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "contentType",
-              headerName: "Content-Type",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "Content-Type",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -233,7 +246,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -269,9 +282,10 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -292,7 +306,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -349,14 +363,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -364,11 +379,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -387,7 +414,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -434,13 +461,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -448,7 +476,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -467,7 +501,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -524,14 +558,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -539,11 +574,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Long
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -562,7 +609,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -609,13 +656,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -623,7 +671,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -642,7 +696,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -699,14 +753,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -714,11 +769,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -737,7 +804,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -784,13 +851,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -798,7 +866,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -817,7 +891,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -874,14 +948,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -889,11 +964,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Double
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ]
         });
@@ -912,7 +999,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -959,13 +1046,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -973,7 +1061,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -992,7 +1086,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1049,14 +1143,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1064,11 +1159,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Boolean
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Boolean"
+                }
+              }
             }
           ]
         });
@@ -1087,7 +1194,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1134,13 +1241,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1148,7 +1256,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1167,7 +1281,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1224,14 +1338,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1239,11 +1354,22 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "value",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1262,7 +1388,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1310,13 +1436,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1324,7 +1451,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1343,7 +1476,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1402,14 +1535,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1417,11 +1551,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.Date
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "Date"
+                }
+              }
             }
           ]
         });
@@ -1440,7 +1586,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1487,13 +1633,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1501,7 +1648,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1520,7 +1673,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1579,14 +1732,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1594,11 +1748,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.DateTime
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "DateTime"
+                }
+              }
             }
           ]
         });
@@ -1617,7 +1783,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1665,13 +1831,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1679,7 +1846,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1698,7 +1871,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1757,14 +1930,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1772,11 +1946,22 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.DateTimeRfc1123
+              mapper: {
+                serializedName: "value",
+                type: {
+                  name: "DateTimeRfc1123"
+                }
+              }
             }
           ]
         });
@@ -1795,7 +1980,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1843,13 +2028,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1857,7 +2043,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -1876,7 +2068,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -1934,14 +2126,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1949,11 +2142,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.TimeSpan
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "TimeSpan"
+                }
+              }
             }
           ]
         });
@@ -1972,7 +2177,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2019,13 +2224,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2033,7 +2239,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2052,7 +2264,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2109,14 +2321,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2124,11 +2337,23 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "value",
-              type: msRest.OperationParameterType.ByteArray
+              mapper: {
+                required: true,
+                serializedName: "value",
+                type: {
+                  name: "ByteArray"
+                }
+              }
             }
           ]
         });
@@ -2147,7 +2372,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2194,13 +2419,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2208,7 +2434,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2227,7 +2459,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2286,14 +2518,15 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario,
+          value
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario,
-            value
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2301,10 +2534,27 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
-              parameterName: "value"
+              parameterName: "value",
+              mapper: {
+                serializedName: "value",
+                type: {
+                  name: "Enum",
+                  allowedValues: [
+                    "White",
+                    "black",
+                    "GREY"
+                  ]
+                }
+              }
             }
           ]
         });
@@ -2323,7 +2573,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2370,13 +2620,14 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          scenario
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            scenario
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2384,7 +2635,13 @@ export class Header {
           headerParameters: [
             {
               parameterName: "scenario",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "scenario",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -2403,7 +2660,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -2444,9 +2701,10 @@ export class Header {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments({}, options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2467,7 +2725,7 @@ export class Header {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

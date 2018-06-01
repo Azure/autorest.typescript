@@ -14,55 +14,48 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const Resource = {
-  required: false,
-  serializedName: 'Resource',
+  serializedName: "Resource",
   type: {
-    name: 'Composite',
-    className: 'Resource',
+    name: "Composite",
+    className: "Resource",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       type: {
-        required: false,
         readOnly: true,
-        serializedName: 'type',
+        serializedName: "type",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       tags: {
-        required: false,
-        serializedName: 'tags',
+        serializedName: "tags",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       name: {
-        required: false,
         readOnly: true,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -70,24 +63,21 @@ export const Resource = {
 };
 
 export const Sku = {
-  required: false,
-  serializedName: 'Sku',
+  serializedName: "Sku",
   type: {
-    name: 'Composite',
-    className: 'Sku',
+    name: "Composite",
+    className: "Sku",
     modelProperties: {
       name: {
-        required: false,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       id: {
-        required: false,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -95,70 +85,61 @@ export const Sku = {
 };
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       type: {
-        required: false,
         readOnly: true,
-        serializedName: 'type',
+        serializedName: "type",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       tags: {
-        required: false,
-        serializedName: 'tags',
+        serializedName: "tags",
         type: {
-          name: 'Dictionary',
+          name: "Dictionary",
           value: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       name: {
-        required: false,
         readOnly: true,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningStateValues: {
-        required: false,
         readOnly: true,
-        serializedName: 'properties.provisioningStateValues',
+        serializedName: "properties.provisioningStateValues",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -166,18 +147,16 @@ export const Product = {
 };
 
 export const SubResource = {
-  required: false,
-  serializedName: 'SubResource',
+  serializedName: "SubResource",
   type: {
-    name: 'Composite',
-    className: 'SubResource',
+    name: "Composite",
+    className: "SubResource",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -185,33 +164,29 @@ export const SubResource = {
 };
 
 export const SubProduct = {
-  required: false,
-  serializedName: 'SubProduct',
+  serializedName: "SubProduct",
   type: {
-    name: 'Composite',
-    className: 'SubProduct',
+    name: "Composite",
+    className: "SubProduct",
     modelProperties: {
       id: {
-        required: false,
         readOnly: true,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       provisioningStateValues: {
-        required: false,
         readOnly: true,
-        serializedName: 'properties.provisioningStateValues',
+        serializedName: "properties.provisioningStateValues",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -219,24 +194,21 @@ export const SubProduct = {
 };
 
 export const OperationResultError = {
-  required: false,
-  serializedName: 'OperationResult_error',
+  serializedName: "OperationResult_error",
   type: {
-    name: 'Composite',
-    className: 'OperationResultError',
+    name: "Composite",
+    className: "OperationResultError",
     modelProperties: {
       code: {
-        required: false,
-        serializedName: 'code',
+        serializedName: "code",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -244,25 +216,22 @@ export const OperationResultError = {
 };
 
 export const OperationResult = {
-  required: false,
-  serializedName: 'OperationResult',
+  serializedName: "OperationResult",
   type: {
-    name: 'Composite',
-    className: 'OperationResult',
+    name: "Composite",
+    className: "OperationResult",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       error: {
-        required: false,
-        serializedName: 'error',
+        serializedName: "error",
         type: {
-          name: 'Composite',
-          className: 'OperationResultError'
+          name: "Composite",
+          className: "OperationResultError"
         }
       }
     }
@@ -270,18 +239,16 @@ export const OperationResult = {
 };
 
 export const LROsPut200SucceededOptionalParams = {
-  required: false,
-  serializedName: 'Put200SucceededOptions',
+  serializedName: "Put200SucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPut200SucceededOptionalParams',
+    name: "Composite",
+    className: "LROsPut200SucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -289,18 +256,16 @@ export const LROsPut200SucceededOptionalParams = {
 };
 
 export const LROsPut200SucceededNoStateOptionalParams = {
-  required: false,
-  serializedName: 'Put200SucceededNoStateOptions',
+  serializedName: "Put200SucceededNoStateOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPut200SucceededNoStateOptionalParams',
+    name: "Composite",
+    className: "LROsPut200SucceededNoStateOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -308,18 +273,16 @@ export const LROsPut200SucceededNoStateOptionalParams = {
 };
 
 export const LROsPut202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'Put202Retry200Options',
+  serializedName: "Put202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPut202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsPut202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -327,18 +290,16 @@ export const LROsPut202Retry200OptionalParams = {
 };
 
 export const LROsPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'Put201CreatingSucceeded200Options',
+  serializedName: "Put201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LROsPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -346,18 +307,16 @@ export const LROsPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LROsPut200UpdatingSucceeded204OptionalParams = {
-  required: false,
-  serializedName: 'Put200UpdatingSucceeded204Options',
+  serializedName: "Put200UpdatingSucceeded204Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPut200UpdatingSucceeded204OptionalParams',
+    name: "Composite",
+    className: "LROsPut200UpdatingSucceeded204OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -365,18 +324,16 @@ export const LROsPut200UpdatingSucceeded204OptionalParams = {
 };
 
 export const LROsPut201CreatingFailed200OptionalParams = {
-  required: false,
-  serializedName: 'Put201CreatingFailed200Options',
+  serializedName: "Put201CreatingFailed200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPut201CreatingFailed200OptionalParams',
+    name: "Composite",
+    className: "LROsPut201CreatingFailed200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -384,18 +341,16 @@ export const LROsPut201CreatingFailed200OptionalParams = {
 };
 
 export const LROsPut200Acceptedcanceled200OptionalParams = {
-  required: false,
-  serializedName: 'Put200Acceptedcanceled200Options',
+  serializedName: "Put200Acceptedcanceled200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPut200Acceptedcanceled200OptionalParams',
+    name: "Composite",
+    className: "LROsPut200Acceptedcanceled200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -403,18 +358,16 @@ export const LROsPut200Acceptedcanceled200OptionalParams = {
 };
 
 export const LROsPutNoHeaderInRetryOptionalParams = {
-  required: false,
-  serializedName: 'PutNoHeaderInRetryOptions',
+  serializedName: "PutNoHeaderInRetryOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutNoHeaderInRetryOptionalParams',
+    name: "Composite",
+    className: "LROsPutNoHeaderInRetryOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -422,18 +375,16 @@ export const LROsPutNoHeaderInRetryOptionalParams = {
 };
 
 export const LROsPutAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRetrySucceededOptions',
+  serializedName: "PutAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -441,18 +392,16 @@ export const LROsPutAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsPutAsyncNoRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncNoRetrySucceededOptions',
+  serializedName: "PutAsyncNoRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncNoRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -460,18 +409,16 @@ export const LROsPutAsyncNoRetrySucceededOptionalParams = {
 };
 
 export const LROsPutAsyncRetryFailedOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRetryFailedOptions',
+  serializedName: "PutAsyncRetryFailedOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncRetryFailedOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncRetryFailedOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -479,18 +426,16 @@ export const LROsPutAsyncRetryFailedOptionalParams = {
 };
 
 export const LROsPutAsyncNoRetrycanceledOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncNoRetrycanceledOptions',
+  serializedName: "PutAsyncNoRetrycanceledOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoRetrycanceledOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncNoRetrycanceledOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -498,18 +443,16 @@ export const LROsPutAsyncNoRetrycanceledOptionalParams = {
 };
 
 export const LROsPutAsyncNoHeaderInRetryOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncNoHeaderInRetryOptions',
+  serializedName: "PutAsyncNoHeaderInRetryOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoHeaderInRetryOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncNoHeaderInRetryOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -517,18 +460,16 @@ export const LROsPutAsyncNoHeaderInRetryOptionalParams = {
 };
 
 export const LROsPutNonResourceOptionalParams = {
-  required: false,
-  serializedName: 'PutNonResourceOptions',
+  serializedName: "PutNonResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutNonResourceOptionalParams',
+    name: "Composite",
+    className: "LROsPutNonResourceOptionalParams",
     modelProperties: {
       sku: {
-        required: false,
-        serializedName: 'sku',
+        serializedName: "sku",
         type: {
-          name: 'Composite',
-          className: 'Sku'
+          name: "Composite",
+          className: "Sku"
         }
       }
     }
@@ -536,18 +477,16 @@ export const LROsPutNonResourceOptionalParams = {
 };
 
 export const LROsPutAsyncNonResourceOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncNonResourceOptions',
+  serializedName: "PutAsyncNonResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNonResourceOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncNonResourceOptionalParams",
     modelProperties: {
       sku: {
-        required: false,
-        serializedName: 'sku',
+        serializedName: "sku",
         type: {
-          name: 'Composite',
-          className: 'Sku'
+          name: "Composite",
+          className: "Sku"
         }
       }
     }
@@ -555,17 +494,15 @@ export const LROsPutAsyncNonResourceOptionalParams = {
 };
 
 export const LROsPutSubResourceOptionalParams = {
-  required: false,
-  serializedName: 'PutSubResourceOptions',
+  serializedName: "PutSubResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutSubResourceOptionalParams',
+    name: "Composite",
+    className: "LROsPutSubResourceOptionalParams",
     modelProperties: {
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -573,17 +510,15 @@ export const LROsPutSubResourceOptionalParams = {
 };
 
 export const LROsPutAsyncSubResourceOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncSubResourceOptions',
+  serializedName: "PutAsyncSubResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncSubResourceOptionalParams',
+    name: "Composite",
+    className: "LROsPutAsyncSubResourceOptionalParams",
     modelProperties: {
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -591,18 +526,16 @@ export const LROsPutAsyncSubResourceOptionalParams = {
 };
 
 export const LROsPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'Post202Retry200Options',
+  serializedName: "Post202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -610,18 +543,16 @@ export const LROsPost202Retry200OptionalParams = {
 };
 
 export const LROsPost202NoRetry204OptionalParams = {
-  required: false,
-  serializedName: 'Post202NoRetry204Options',
+  serializedName: "Post202NoRetry204Options",
   type: {
-    name: 'Composite',
-    className: 'LROsPost202NoRetry204OptionalParams',
+    name: "Composite",
+    className: "LROsPost202NoRetry204OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -629,18 +560,16 @@ export const LROsPost202NoRetry204OptionalParams = {
 };
 
 export const LROsPostAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRetrySucceededOptions',
+  serializedName: "PostAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsPostAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -648,18 +577,16 @@ export const LROsPostAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsPostAsyncNoRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncNoRetrySucceededOptions',
+  serializedName: "PostAsyncNoRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncNoRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsPostAsyncNoRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -667,18 +594,16 @@ export const LROsPostAsyncNoRetrySucceededOptionalParams = {
 };
 
 export const LROsPostAsyncRetryFailedOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRetryFailedOptions',
+  serializedName: "PostAsyncRetryFailedOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetryFailedOptionalParams',
+    name: "Composite",
+    className: "LROsPostAsyncRetryFailedOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -686,18 +611,16 @@ export const LROsPostAsyncRetryFailedOptionalParams = {
 };
 
 export const LROsPostAsyncRetrycanceledOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRetrycanceledOptions',
+  serializedName: "PostAsyncRetrycanceledOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetrycanceledOptionalParams',
+    name: "Composite",
+    className: "LROsPostAsyncRetrycanceledOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -705,18 +628,16 @@ export const LROsPostAsyncRetrycanceledOptionalParams = {
 };
 
 export const LROsBeginPut200SucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPut200SucceededOptions',
+  serializedName: "BeginPut200SucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut200SucceededOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut200SucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -724,18 +645,16 @@ export const LROsBeginPut200SucceededOptionalParams = {
 };
 
 export const LROsBeginPut200SucceededNoStateOptionalParams = {
-  required: false,
-  serializedName: 'BeginPut200SucceededNoStateOptions',
+  serializedName: "BeginPut200SucceededNoStateOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut200SucceededNoStateOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut200SucceededNoStateOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -743,18 +662,16 @@ export const LROsBeginPut200SucceededNoStateOptionalParams = {
 };
 
 export const LROsBeginPut202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut202Retry200Options',
+  serializedName: "BeginPut202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -762,18 +679,16 @@ export const LROsBeginPut202Retry200OptionalParams = {
 };
 
 export const LROsBeginPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut201CreatingSucceeded200Options',
+  serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -781,18 +696,16 @@ export const LROsBeginPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LROsBeginPut200UpdatingSucceeded204OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut200UpdatingSucceeded204Options',
+  serializedName: "BeginPut200UpdatingSucceeded204Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut200UpdatingSucceeded204OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut200UpdatingSucceeded204OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -800,18 +713,16 @@ export const LROsBeginPut200UpdatingSucceeded204OptionalParams = {
 };
 
 export const LROsBeginPut201CreatingFailed200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut201CreatingFailed200Options',
+  serializedName: "BeginPut201CreatingFailed200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut201CreatingFailed200OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut201CreatingFailed200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -819,18 +730,16 @@ export const LROsBeginPut201CreatingFailed200OptionalParams = {
 };
 
 export const LROsBeginPut200Acceptedcanceled200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut200Acceptedcanceled200Options',
+  serializedName: "BeginPut200Acceptedcanceled200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPut200Acceptedcanceled200OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPut200Acceptedcanceled200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -838,18 +747,16 @@ export const LROsBeginPut200Acceptedcanceled200OptionalParams = {
 };
 
 export const LROsBeginPutNoHeaderInRetryOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutNoHeaderInRetryOptions',
+  serializedName: "BeginPutNoHeaderInRetryOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutNoHeaderInRetryOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutNoHeaderInRetryOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -857,18 +764,16 @@ export const LROsBeginPutNoHeaderInRetryOptionalParams = {
 };
 
 export const LROsBeginPutAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRetrySucceededOptions',
+  serializedName: "BeginPutAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -876,18 +781,16 @@ export const LROsBeginPutAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsBeginPutAsyncNoRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncNoRetrySucceededOptions',
+  serializedName: "BeginPutAsyncNoRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncNoRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncNoRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -895,18 +798,16 @@ export const LROsBeginPutAsyncNoRetrySucceededOptionalParams = {
 };
 
 export const LROsBeginPutAsyncRetryFailedOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRetryFailedOptions',
+  serializedName: "BeginPutAsyncRetryFailedOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncRetryFailedOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncRetryFailedOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -914,18 +815,16 @@ export const LROsBeginPutAsyncRetryFailedOptionalParams = {
 };
 
 export const LROsBeginPutAsyncNoRetrycanceledOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncNoRetrycanceledOptions',
+  serializedName: "BeginPutAsyncNoRetrycanceledOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncNoRetrycanceledOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncNoRetrycanceledOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -933,18 +832,16 @@ export const LROsBeginPutAsyncNoRetrycanceledOptionalParams = {
 };
 
 export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncNoHeaderInRetryOptions',
+  serializedName: "BeginPutAsyncNoHeaderInRetryOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncNoHeaderInRetryOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncNoHeaderInRetryOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -952,18 +849,16 @@ export const LROsBeginPutAsyncNoHeaderInRetryOptionalParams = {
 };
 
 export const LROsBeginPutNonResourceOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutNonResourceOptions',
+  serializedName: "BeginPutNonResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutNonResourceOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutNonResourceOptionalParams",
     modelProperties: {
       sku: {
-        required: false,
-        serializedName: 'sku',
+        serializedName: "sku",
         type: {
-          name: 'Composite',
-          className: 'Sku'
+          name: "Composite",
+          className: "Sku"
         }
       }
     }
@@ -971,18 +866,16 @@ export const LROsBeginPutNonResourceOptionalParams = {
 };
 
 export const LROsBeginPutAsyncNonResourceOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncNonResourceOptions',
+  serializedName: "BeginPutAsyncNonResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncNonResourceOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncNonResourceOptionalParams",
     modelProperties: {
       sku: {
-        required: false,
-        serializedName: 'sku',
+        serializedName: "sku",
         type: {
-          name: 'Composite',
-          className: 'Sku'
+          name: "Composite",
+          className: "Sku"
         }
       }
     }
@@ -990,17 +883,15 @@ export const LROsBeginPutAsyncNonResourceOptionalParams = {
 };
 
 export const LROsBeginPutSubResourceOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutSubResourceOptions',
+  serializedName: "BeginPutSubResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutSubResourceOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutSubResourceOptionalParams",
     modelProperties: {
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1008,17 +899,15 @@ export const LROsBeginPutSubResourceOptionalParams = {
 };
 
 export const LROsBeginPutAsyncSubResourceOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncSubResourceOptions',
+  serializedName: "BeginPutAsyncSubResourceOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPutAsyncSubResourceOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPutAsyncSubResourceOptionalParams",
     modelProperties: {
       provisioningState: {
-        required: false,
-        serializedName: 'properties.provisioningState',
+        serializedName: "properties.provisioningState",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1026,18 +915,16 @@ export const LROsBeginPutAsyncSubResourceOptionalParams = {
 };
 
 export const LROsBeginPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202Retry200Options',
+  serializedName: "BeginPost202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1045,18 +932,16 @@ export const LROsBeginPost202Retry200OptionalParams = {
 };
 
 export const LROsBeginPost202NoRetry204OptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202NoRetry204Options',
+  serializedName: "BeginPost202NoRetry204Options",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPost202NoRetry204OptionalParams',
+    name: "Composite",
+    className: "LROsBeginPost202NoRetry204OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1064,18 +949,16 @@ export const LROsBeginPost202NoRetry204OptionalParams = {
 };
 
 export const LROsBeginPostAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRetrySucceededOptions',
+  serializedName: "BeginPostAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPostAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPostAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1083,18 +966,16 @@ export const LROsBeginPostAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsBeginPostAsyncNoRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncNoRetrySucceededOptions',
+  serializedName: "BeginPostAsyncNoRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPostAsyncNoRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPostAsyncNoRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1102,18 +983,16 @@ export const LROsBeginPostAsyncNoRetrySucceededOptionalParams = {
 };
 
 export const LROsBeginPostAsyncRetryFailedOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRetryFailedOptions',
+  serializedName: "BeginPostAsyncRetryFailedOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPostAsyncRetryFailedOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPostAsyncRetryFailedOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1121,18 +1000,16 @@ export const LROsBeginPostAsyncRetryFailedOptionalParams = {
 };
 
 export const LROsBeginPostAsyncRetrycanceledOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRetrycanceledOptions',
+  serializedName: "BeginPostAsyncRetrycanceledOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsBeginPostAsyncRetrycanceledOptionalParams',
+    name: "Composite",
+    className: "LROsBeginPostAsyncRetrycanceledOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1140,18 +1017,16 @@ export const LROsBeginPostAsyncRetrycanceledOptionalParams = {
 };
 
 export const LRORetrysPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'Put201CreatingSucceeded200Options',
+  serializedName: "Put201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LRORetrysPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1159,18 +1034,16 @@ export const LRORetrysPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetrySucceededOptions',
+  serializedName: "PutAsyncRelativeRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPutAsyncRelativeRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LRORetrysPutAsyncRelativeRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1178,18 +1051,16 @@ export const LRORetrysPutAsyncRelativeRetrySucceededOptionalParams = {
 };
 
 export const LRORetrysPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'Post202Retry200Options',
+  serializedName: "Post202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LRORetrysPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1197,18 +1068,16 @@ export const LRORetrysPost202Retry200OptionalParams = {
 };
 
 export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRelativeRetrySucceededOptions',
+  serializedName: "PostAsyncRelativeRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPostAsyncRelativeRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LRORetrysPostAsyncRelativeRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1216,18 +1085,16 @@ export const LRORetrysPostAsyncRelativeRetrySucceededOptionalParams = {
 };
 
 export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut201CreatingSucceeded200Options',
+  serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysBeginPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LRORetrysBeginPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1235,18 +1102,16 @@ export const LRORetrysBeginPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetrySucceededOptions',
+  serializedName: "BeginPutAsyncRelativeRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1254,18 +1119,16 @@ export const LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams = {
 };
 
 export const LRORetrysBeginPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202Retry200Options',
+  serializedName: "BeginPost202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysBeginPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LRORetrysBeginPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1273,18 +1136,16 @@ export const LRORetrysBeginPost202Retry200OptionalParams = {
 };
 
 export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRelativeRetrySucceededOptions',
+  serializedName: "BeginPostAsyncRelativeRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1292,18 +1153,16 @@ export const LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams = {
 };
 
 export const LROSADsPutNonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'PutNonRetry400Options',
+  serializedName: "PutNonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutNonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPutNonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1311,18 +1170,16 @@ export const LROSADsPutNonRetry400OptionalParams = {
 };
 
 export const LROSADsPutNonRetry201Creating400OptionalParams = {
-  required: false,
-  serializedName: 'PutNonRetry201Creating400Options',
+  serializedName: "PutNonRetry201Creating400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutNonRetry201Creating400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPutNonRetry201Creating400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1330,18 +1187,16 @@ export const LROSADsPutNonRetry201Creating400OptionalParams = {
 };
 
 export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams = {
-  required: false,
-  serializedName: 'PutNonRetry201Creating400InvalidJsonOptions',
+  serializedName: "PutNonRetry201Creating400InvalidJsonOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1349,18 +1204,16 @@ export const LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams = {
 };
 
 export const LROSADsPutAsyncRelativeRetry400OptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetry400Options',
+  serializedName: "PutAsyncRelativeRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1368,18 +1221,16 @@ export const LROSADsPutAsyncRelativeRetry400OptionalParams = {
 };
 
 export const LROSADsPostNonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'PostNonRetry400Options',
+  serializedName: "PostNonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostNonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPostNonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1387,18 +1238,16 @@ export const LROSADsPostNonRetry400OptionalParams = {
 };
 
 export const LROSADsPost202NonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'Post202NonRetry400Options',
+  serializedName: "Post202NonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202NonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPost202NonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1406,18 +1255,16 @@ export const LROSADsPost202NonRetry400OptionalParams = {
 };
 
 export const LROSADsPostAsyncRelativeRetry400OptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRelativeRetry400Options',
+  serializedName: "PostAsyncRelativeRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1425,18 +1272,16 @@ export const LROSADsPostAsyncRelativeRetry400OptionalParams = {
 };
 
 export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams = {
-  required: false,
-  serializedName: 'PutError201NoProvisioningStatePayloadOptions',
+  serializedName: "PutError201NoProvisioningStatePayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutError201NoProvisioningStatePayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutError201NoProvisioningStatePayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1444,18 +1289,16 @@ export const LROSADsPutError201NoProvisioningStatePayloadOptionalParams = {
 };
 
 export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetryNoStatusOptions',
+  serializedName: "PutAsyncRelativeRetryNoStatusOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryNoStatusOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryNoStatusOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1463,18 +1306,16 @@ export const LROSADsPutAsyncRelativeRetryNoStatusOptionalParams = {
 };
 
 export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetryNoStatusPayloadOptions',
+  serializedName: "PutAsyncRelativeRetryNoStatusPayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1482,18 +1323,16 @@ export const LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
 };
 
 export const LROSADsPost202NoLocationOptionalParams = {
-  required: false,
-  serializedName: 'Post202NoLocationOptions',
+  serializedName: "Post202NoLocationOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202NoLocationOptionalParams',
+    name: "Composite",
+    className: "LROSADsPost202NoLocationOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1501,18 +1340,16 @@ export const LROSADsPost202NoLocationOptionalParams = {
 };
 
 export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRelativeRetryNoPayloadOptions',
+  serializedName: "PostAsyncRelativeRetryNoPayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1520,18 +1357,16 @@ export const LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams = {
 };
 
 export const LROSADsPut200InvalidJsonOptionalParams = {
-  required: false,
-  serializedName: 'Put200InvalidJsonOptions',
+  serializedName: "Put200InvalidJsonOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPut200InvalidJsonOptionalParams',
+    name: "Composite",
+    className: "LROSADsPut200InvalidJsonOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1539,18 +1374,16 @@ export const LROSADsPut200InvalidJsonOptionalParams = {
 };
 
 export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetryInvalidHeaderOptions',
+  serializedName: "PutAsyncRelativeRetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1558,18 +1391,16 @@ export const LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRelativeRetryInvalidJsonPollingOptions',
+  serializedName: "PutAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1577,18 +1408,16 @@ export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
 };
 
 export const LROSADsPost202RetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'Post202RetryInvalidHeaderOptions',
+  serializedName: "Post202RetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202RetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsPost202RetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1596,18 +1425,16 @@ export const LROSADsPost202RetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRelativeRetryInvalidHeaderOptions',
+  serializedName: "PostAsyncRelativeRetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1615,18 +1442,16 @@ export const LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRelativeRetryInvalidJsonPollingOptions',
+  serializedName: "PostAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1634,18 +1459,16 @@ export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
 };
 
 export const LROSADsBeginPutNonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPutNonRetry400Options',
+  serializedName: "BeginPutNonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutNonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutNonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1653,18 +1476,16 @@ export const LROSADsBeginPutNonRetry400OptionalParams = {
 };
 
 export const LROSADsBeginPutNonRetry201Creating400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPutNonRetry201Creating400Options',
+  serializedName: "BeginPutNonRetry201Creating400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutNonRetry201Creating400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutNonRetry201Creating400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1672,18 +1493,16 @@ export const LROSADsBeginPutNonRetry201Creating400OptionalParams = {
 };
 
 export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutNonRetry201Creating400InvalidJsonOptions',
+  serializedName: "BeginPutNonRetry201Creating400InvalidJsonOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1691,18 +1510,16 @@ export const LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams = {
 };
 
 export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetry400Options',
+  serializedName: "BeginPutAsyncRelativeRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutAsyncRelativeRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutAsyncRelativeRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1710,18 +1527,16 @@ export const LROSADsBeginPutAsyncRelativeRetry400OptionalParams = {
 };
 
 export const LROSADsBeginPostNonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPostNonRetry400Options',
+  serializedName: "BeginPostNonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPostNonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPostNonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1729,18 +1544,16 @@ export const LROSADsBeginPostNonRetry400OptionalParams = {
 };
 
 export const LROSADsBeginPost202NonRetry400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202NonRetry400Options',
+  serializedName: "BeginPost202NonRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPost202NonRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPost202NonRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1748,18 +1561,16 @@ export const LROSADsBeginPost202NonRetry400OptionalParams = {
 };
 
 export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRelativeRetry400Options',
+  serializedName: "BeginPostAsyncRelativeRetry400Options",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPostAsyncRelativeRetry400OptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPostAsyncRelativeRetry400OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1767,18 +1578,16 @@ export const LROSADsBeginPostAsyncRelativeRetry400OptionalParams = {
 };
 
 export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutError201NoProvisioningStatePayloadOptions',
+  serializedName: "BeginPutError201NoProvisioningStatePayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1786,18 +1595,16 @@ export const LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams = {
 };
 
 export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetryNoStatusOptions',
+  serializedName: "BeginPutAsyncRelativeRetryNoStatusOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1805,18 +1612,16 @@ export const LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams = {
 };
 
 export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetryNoStatusPayloadOptions',
+  serializedName: "BeginPutAsyncRelativeRetryNoStatusPayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1824,18 +1629,16 @@ export const LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams = {
 };
 
 export const LROSADsBeginPost202NoLocationOptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202NoLocationOptions',
+  serializedName: "BeginPost202NoLocationOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPost202NoLocationOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPost202NoLocationOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1843,18 +1646,16 @@ export const LROSADsBeginPost202NoLocationOptionalParams = {
 };
 
 export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRelativeRetryNoPayloadOptions',
+  serializedName: "BeginPostAsyncRelativeRetryNoPayloadOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1862,18 +1663,16 @@ export const LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams = {
 };
 
 export const LROSADsBeginPut200InvalidJsonOptionalParams = {
-  required: false,
-  serializedName: 'BeginPut200InvalidJsonOptions',
+  serializedName: "BeginPut200InvalidJsonOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPut200InvalidJsonOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPut200InvalidJsonOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1881,18 +1680,16 @@ export const LROSADsBeginPut200InvalidJsonOptionalParams = {
 };
 
 export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetryInvalidHeaderOptions',
+  serializedName: "BeginPutAsyncRelativeRetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1900,18 +1697,16 @@ export const LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRelativeRetryInvalidJsonPollingOptions',
+  serializedName: "BeginPutAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1919,18 +1714,16 @@ export const LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams =
 };
 
 export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202RetryInvalidHeaderOptions',
+  serializedName: "BeginPost202RetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPost202RetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPost202RetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1938,18 +1731,16 @@ export const LROSADsBeginPost202RetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRelativeRetryInvalidHeaderOptions',
+  serializedName: "BeginPostAsyncRelativeRetryInvalidHeaderOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1957,18 +1748,16 @@ export const LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams = {
 };
 
 export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRelativeRetryInvalidJsonPollingOptions',
+  serializedName: "BeginPostAsyncRelativeRetryInvalidJsonPollingOptions",
   type: {
-    name: 'Composite',
-    className: 'LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams',
+    name: "Composite",
+    className: "LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1976,18 +1765,16 @@ export const LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams 
 };
 
 export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PutAsyncRetrySucceededOptions',
+  serializedName: "PutAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPutAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderPutAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -1995,18 +1782,16 @@ export const LROsCustomHeaderPutAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'Put201CreatingSucceeded200Options',
+  serializedName: "Put201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2014,18 +1799,16 @@ export const LROsCustomHeaderPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LROsCustomHeaderPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'Post202Retry200Options',
+  serializedName: "Post202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2033,18 +1816,16 @@ export const LROsCustomHeaderPost202Retry200OptionalParams = {
 };
 
 export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'PostAsyncRetrySucceededOptions',
+  serializedName: "PostAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPostAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderPostAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2052,18 +1833,16 @@ export const LROsCustomHeaderPostAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPutAsyncRetrySucceededOptions',
+  serializedName: "BeginPutAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2071,18 +1850,16 @@ export const LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPut201CreatingSucceeded200Options',
+  serializedName: "BeginPut201CreatingSucceeded200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2090,18 +1867,16 @@ export const LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams = {
 };
 
 export const LROsCustomHeaderBeginPost202Retry200OptionalParams = {
-  required: false,
-  serializedName: 'BeginPost202Retry200Options',
+  serializedName: "BeginPost202Retry200Options",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderBeginPost202Retry200OptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderBeginPost202Retry200OptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2109,18 +1884,16 @@ export const LROsCustomHeaderBeginPost202Retry200OptionalParams = {
 };
 
 export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams = {
-  required: false,
-  serializedName: 'BeginPostAsyncRetrySucceededOptions',
+  serializedName: "BeginPostAsyncRetrySucceededOptions",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams',
+    name: "Composite",
+    className: "LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams",
     modelProperties: {
       product: {
-        required: false,
-        serializedName: 'product',
+        serializedName: "product",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -2128,17 +1901,15 @@ export const LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams = {
 };
 
 export const LROsPutNoHeaderInRetryHeaders = {
-  required: false,
-  serializedName: 'lros-putnoheaderinretry-headers',
+  serializedName: "lros-putnoheaderinretry-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutNoHeaderInRetryHeaders',
+    name: "Composite",
+    className: "LROsPutNoHeaderInRetryHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2146,31 +1917,27 @@ export const LROsPutNoHeaderInRetryHeaders = {
 };
 
 export const LROsPutAsyncRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-putasyncretrysucceeded-headers',
+  serializedName: "lros-putasyncretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsPutAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2178,24 +1945,21 @@ export const LROsPutAsyncRetrySucceededHeaders = {
 };
 
 export const LROsPutAsyncNoRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-putasyncnoretrysucceeded-headers',
+  serializedName: "lros-putasyncnoretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsPutAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2203,31 +1967,27 @@ export const LROsPutAsyncNoRetrySucceededHeaders = {
 };
 
 export const LROsPutAsyncRetryFailedHeaders = {
-  required: false,
-  serializedName: 'lros-putasyncretryfailed-headers',
+  serializedName: "lros-putasyncretryfailed-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncRetryFailedHeaders',
+    name: "Composite",
+    className: "LROsPutAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2235,24 +1995,21 @@ export const LROsPutAsyncRetryFailedHeaders = {
 };
 
 export const LROsPutAsyncNoRetrycanceledHeaders = {
-  required: false,
-  serializedName: 'lros-putasyncnoretrycanceled-headers',
+  serializedName: "lros-putasyncnoretrycanceled-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoRetrycanceledHeaders',
+    name: "Composite",
+    className: "LROsPutAsyncNoRetrycanceledHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2260,17 +2017,15 @@ export const LROsPutAsyncNoRetrycanceledHeaders = {
 };
 
 export const LROsPutAsyncNoHeaderInRetryHeaders = {
-  required: false,
-  serializedName: 'lros-putasyncnoheaderinretry-headers',
+  serializedName: "lros-putasyncnoheaderinretry-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPutAsyncNoHeaderInRetryHeaders',
+    name: "Composite",
+    className: "LROsPutAsyncNoHeaderInRetryHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2278,24 +2033,21 @@ export const LROsPutAsyncNoHeaderInRetryHeaders = {
 };
 
 export const LROsDeleteProvisioning202Accepted200SucceededHeaders = {
-  required: false,
-  serializedName: 'lros-deleteprovisioning202accepted200succeeded-headers',
+  serializedName: "lros-deleteprovisioning202accepted200succeeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteProvisioning202Accepted200SucceededHeaders',
+    name: "Composite",
+    className: "LROsDeleteProvisioning202Accepted200SucceededHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2303,24 +2055,21 @@ export const LROsDeleteProvisioning202Accepted200SucceededHeaders = {
 };
 
 export const LROsDeleteProvisioning202DeletingFailed200Headers = {
-  required: false,
-  serializedName: 'lros-deleteprovisioning202deletingfailed200-headers',
+  serializedName: "lros-deleteprovisioning202deletingfailed200-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteProvisioning202DeletingFailed200Headers',
+    name: "Composite",
+    className: "LROsDeleteProvisioning202DeletingFailed200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2328,24 +2077,21 @@ export const LROsDeleteProvisioning202DeletingFailed200Headers = {
 };
 
 export const LROsDeleteProvisioning202Deletingcanceled200Headers = {
-  required: false,
-  serializedName: 'lros-deleteprovisioning202deletingcanceled200-headers',
+  serializedName: "lros-deleteprovisioning202deletingcanceled200-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteProvisioning202Deletingcanceled200Headers',
+    name: "Composite",
+    className: "LROsDeleteProvisioning202Deletingcanceled200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2353,24 +2099,21 @@ export const LROsDeleteProvisioning202Deletingcanceled200Headers = {
 };
 
 export const LROsDelete202Retry200Headers = {
-  required: false,
-  serializedName: 'lros-delete202retry200-headers',
+  serializedName: "lros-delete202retry200-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDelete202Retry200Headers',
+    name: "Composite",
+    className: "LROsDelete202Retry200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2378,24 +2121,21 @@ export const LROsDelete202Retry200Headers = {
 };
 
 export const LROsDelete202NoRetry204Headers = {
-  required: false,
-  serializedName: 'lros-delete202noretry204-headers',
+  serializedName: "lros-delete202noretry204-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDelete202NoRetry204Headers',
+    name: "Composite",
+    className: "LROsDelete202NoRetry204Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2403,17 +2143,15 @@ export const LROsDelete202NoRetry204Headers = {
 };
 
 export const LROsDeleteNoHeaderInRetryHeaders = {
-  required: false,
-  serializedName: 'lros-deletenoheaderinretry-headers',
+  serializedName: "lros-deletenoheaderinretry-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteNoHeaderInRetryHeaders',
+    name: "Composite",
+    className: "LROsDeleteNoHeaderInRetryHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2421,17 +2159,15 @@ export const LROsDeleteNoHeaderInRetryHeaders = {
 };
 
 export const LROsDeleteAsyncNoHeaderInRetryHeaders = {
-  required: false,
-  serializedName: 'lros-deleteasyncnoheaderinretry-headers',
+  serializedName: "lros-deleteasyncnoheaderinretry-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteAsyncNoHeaderInRetryHeaders',
+    name: "Composite",
+    className: "LROsDeleteAsyncNoHeaderInRetryHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -2439,31 +2175,27 @@ export const LROsDeleteAsyncNoHeaderInRetryHeaders = {
 };
 
 export const LROsDeleteAsyncRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-deleteasyncretrysucceeded-headers',
+  serializedName: "lros-deleteasyncretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteAsyncRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsDeleteAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2471,31 +2203,27 @@ export const LROsDeleteAsyncRetrySucceededHeaders = {
 };
 
 export const LROsDeleteAsyncNoRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-deleteasyncnoretrysucceeded-headers',
+  serializedName: "lros-deleteasyncnoretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteAsyncNoRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsDeleteAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2503,31 +2231,27 @@ export const LROsDeleteAsyncNoRetrySucceededHeaders = {
 };
 
 export const LROsDeleteAsyncRetryFailedHeaders = {
-  required: false,
-  serializedName: 'lros-deleteasyncretryfailed-headers',
+  serializedName: "lros-deleteasyncretryfailed-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteAsyncRetryFailedHeaders',
+    name: "Composite",
+    className: "LROsDeleteAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2535,31 +2259,27 @@ export const LROsDeleteAsyncRetryFailedHeaders = {
 };
 
 export const LROsDeleteAsyncRetrycanceledHeaders = {
-  required: false,
-  serializedName: 'lros-deleteasyncretrycanceled-headers',
+  serializedName: "lros-deleteasyncretrycanceled-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsDeleteAsyncRetrycanceledHeaders',
+    name: "Composite",
+    className: "LROsDeleteAsyncRetrycanceledHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2567,24 +2287,21 @@ export const LROsDeleteAsyncRetrycanceledHeaders = {
 };
 
 export const LROsPost202Retry200Headers = {
-  required: false,
-  serializedName: 'lros-post202retry200-headers',
+  serializedName: "lros-post202retry200-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPost202Retry200Headers',
+    name: "Composite",
+    className: "LROsPost202Retry200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2592,24 +2309,21 @@ export const LROsPost202Retry200Headers = {
 };
 
 export const LROsPost202NoRetry204Headers = {
-  required: false,
-  serializedName: 'lros-post202noretry204-headers',
+  serializedName: "lros-post202noretry204-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPost202NoRetry204Headers',
+    name: "Composite",
+    className: "LROsPost202NoRetry204Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2617,31 +2331,27 @@ export const LROsPost202NoRetry204Headers = {
 };
 
 export const LROsPostAsyncRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-postasyncretrysucceeded-headers',
+  serializedName: "lros-postasyncretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsPostAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2649,31 +2359,27 @@ export const LROsPostAsyncRetrySucceededHeaders = {
 };
 
 export const LROsPostAsyncNoRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lros-postasyncnoretrysucceeded-headers',
+  serializedName: "lros-postasyncnoretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncNoRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsPostAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2681,31 +2387,27 @@ export const LROsPostAsyncNoRetrySucceededHeaders = {
 };
 
 export const LROsPostAsyncRetryFailedHeaders = {
-  required: false,
-  serializedName: 'lros-postasyncretryfailed-headers',
+  serializedName: "lros-postasyncretryfailed-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetryFailedHeaders',
+    name: "Composite",
+    className: "LROsPostAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2713,31 +2415,27 @@ export const LROsPostAsyncRetryFailedHeaders = {
 };
 
 export const LROsPostAsyncRetrycanceledHeaders = {
-  required: false,
-  serializedName: 'lros-postasyncretrycanceled-headers',
+  serializedName: "lros-postasyncretrycanceled-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsPostAsyncRetrycanceledHeaders',
+    name: "Composite",
+    className: "LROsPostAsyncRetrycanceledHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2745,31 +2443,27 @@ export const LROsPostAsyncRetrycanceledHeaders = {
 };
 
 export const LRORetrysPutAsyncRelativeRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lroretrys-putasyncrelativeretrysucceeded-headers',
+  serializedName: "lroretrys-putasyncrelativeretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPutAsyncRelativeRetrySucceededHeaders',
+    name: "Composite",
+    className: "LRORetrysPutAsyncRelativeRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2777,24 +2471,21 @@ export const LRORetrysPutAsyncRelativeRetrySucceededHeaders = {
 };
 
 export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders = {
-  required: false,
-  serializedName: 'lroretrys-deleteprovisioning202accepted200succeeded-headers',
+  serializedName: "lroretrys-deleteprovisioning202accepted200succeeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysDeleteProvisioning202Accepted200SucceededHeaders',
+    name: "Composite",
+    className: "LRORetrysDeleteProvisioning202Accepted200SucceededHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2802,24 +2493,21 @@ export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders = {
 };
 
 export const LRORetrysDelete202Retry200Headers = {
-  required: false,
-  serializedName: 'lroretrys-delete202retry200-headers',
+  serializedName: "lroretrys-delete202retry200-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysDelete202Retry200Headers',
+    name: "Composite",
+    className: "LRORetrysDelete202Retry200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2827,31 +2515,27 @@ export const LRORetrysDelete202Retry200Headers = {
 };
 
 export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lroretrys-deleteasyncrelativeretrysucceeded-headers',
+  serializedName: "lroretrys-deleteasyncrelativeretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysDeleteAsyncRelativeRetrySucceededHeaders',
+    name: "Composite",
+    className: "LRORetrysDeleteAsyncRelativeRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2859,24 +2543,21 @@ export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders = {
 };
 
 export const LRORetrysPost202Retry200Headers = {
-  required: false,
-  serializedName: 'lroretrys-post202retry200-headers',
+  serializedName: "lroretrys-post202retry200-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPost202Retry200Headers',
+    name: "Composite",
+    className: "LRORetrysPost202Retry200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2884,31 +2565,27 @@ export const LRORetrysPost202Retry200Headers = {
 };
 
 export const LRORetrysPostAsyncRelativeRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lroretrys-postasyncrelativeretrysucceeded-headers',
+  serializedName: "lroretrys-postasyncrelativeretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LRORetrysPostAsyncRelativeRetrySucceededHeaders',
+    name: "Composite",
+    className: "LRORetrysPostAsyncRelativeRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2916,31 +2593,27 @@ export const LRORetrysPostAsyncRelativeRetrySucceededHeaders = {
 };
 
 export const LROSADsPutAsyncRelativeRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-putasyncrelativeretry400-headers',
+  serializedName: "lrosads-putasyncrelativeretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetry400Headers',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetry400Headers",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2948,24 +2621,21 @@ export const LROSADsPutAsyncRelativeRetry400Headers = {
 };
 
 export const LROSADsDeleteNonRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-deletenonretry400-headers',
+  serializedName: "lrosads-deletenonretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDeleteNonRetry400Headers',
+    name: "Composite",
+    className: "LROSADsDeleteNonRetry400Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2973,24 +2643,21 @@ export const LROSADsDeleteNonRetry400Headers = {
 };
 
 export const LROSADsDelete202NonRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-delete202nonretry400-headers',
+  serializedName: "lrosads-delete202nonretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDelete202NonRetry400Headers',
+    name: "Composite",
+    className: "LROSADsDelete202NonRetry400Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -2998,31 +2665,27 @@ export const LROSADsDelete202NonRetry400Headers = {
 };
 
 export const LROSADsDeleteAsyncRelativeRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-deleteasyncrelativeretry400-headers',
+  serializedName: "lrosads-deleteasyncrelativeretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDeleteAsyncRelativeRetry400Headers',
+    name: "Composite",
+    className: "LROSADsDeleteAsyncRelativeRetry400Headers",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3030,24 +2693,21 @@ export const LROSADsDeleteAsyncRelativeRetry400Headers = {
 };
 
 export const LROSADsPostNonRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-postnonretry400-headers',
+  serializedName: "lrosads-postnonretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostNonRetry400Headers',
+    name: "Composite",
+    className: "LROSADsPostNonRetry400Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3055,24 +2715,21 @@ export const LROSADsPostNonRetry400Headers = {
 };
 
 export const LROSADsPost202NonRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-post202nonretry400-headers',
+  serializedName: "lrosads-post202nonretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202NonRetry400Headers',
+    name: "Composite",
+    className: "LROSADsPost202NonRetry400Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3080,31 +2737,27 @@ export const LROSADsPost202NonRetry400Headers = {
 };
 
 export const LROSADsPostAsyncRelativeRetry400Headers = {
-  required: false,
-  serializedName: 'lrosads-postasyncrelativeretry400-headers',
+  serializedName: "lrosads-postasyncrelativeretry400-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetry400Headers',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetry400Headers",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3112,31 +2765,27 @@ export const LROSADsPostAsyncRelativeRetry400Headers = {
 };
 
 export const LROSADsPutAsyncRelativeRetryNoStatusHeaders = {
-  required: false,
-  serializedName: 'lrosads-putasyncrelativeretrynostatus-headers',
+  serializedName: "lrosads-putasyncrelativeretrynostatus-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryNoStatusHeaders',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryNoStatusHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3144,31 +2793,27 @@ export const LROSADsPutAsyncRelativeRetryNoStatusHeaders = {
 };
 
 export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders = {
-  required: false,
-  serializedName: 'lrosads-putasyncrelativeretrynostatuspayload-headers',
+  serializedName: "lrosads-putasyncrelativeretrynostatuspayload-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3176,31 +2821,27 @@ export const LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders = {
 };
 
 export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders = {
-  required: false,
-  serializedName: 'lrosads-deleteasyncrelativeretrynostatus-headers',
+  serializedName: "lrosads-deleteasyncrelativeretrynostatus-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDeleteAsyncRelativeRetryNoStatusHeaders',
+    name: "Composite",
+    className: "LROSADsDeleteAsyncRelativeRetryNoStatusHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3208,24 +2849,21 @@ export const LROSADsDeleteAsyncRelativeRetryNoStatusHeaders = {
 };
 
 export const LROSADsPost202NoLocationHeaders = {
-  required: false,
-  serializedName: 'lrosads-post202nolocation-headers',
+  serializedName: "lrosads-post202nolocation-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202NoLocationHeaders',
+    name: "Composite",
+    className: "LROSADsPost202NoLocationHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3233,31 +2871,27 @@ export const LROSADsPost202NoLocationHeaders = {
 };
 
 export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders = {
-  required: false,
-  serializedName: 'lrosads-postasyncrelativeretrynopayload-headers',
+  serializedName: "lrosads-postasyncrelativeretrynopayload-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryNoPayloadHeaders',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryNoPayloadHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3265,31 +2899,27 @@ export const LROSADsPostAsyncRelativeRetryNoPayloadHeaders = {
 };
 
 export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders = {
-  required: false,
-  serializedName: 'lrosads-putasyncrelativeretryinvalidheader-headers',
+  serializedName: "lrosads-putasyncrelativeretryinvalidheader-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3297,31 +2927,27 @@ export const LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders = {
 };
 
 export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders = {
-  required: false,
-  serializedName: 'lrosads-putasyncrelativeretryinvalidjsonpolling-headers',
+  serializedName: "lrosads-putasyncrelativeretryinvalidjsonpolling-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders',
+    name: "Composite",
+    className: "LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3329,24 +2955,21 @@ export const LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders = {
 };
 
 export const LROSADsDelete202RetryInvalidHeaderHeaders = {
-  required: false,
-  serializedName: 'lrosads-delete202retryinvalidheader-headers',
+  serializedName: "lrosads-delete202retryinvalidheader-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDelete202RetryInvalidHeaderHeaders',
+    name: "Composite",
+    className: "LROSADsDelete202RetryInvalidHeaderHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3354,31 +2977,27 @@ export const LROSADsDelete202RetryInvalidHeaderHeaders = {
 };
 
 export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders = {
-  required: false,
-  serializedName: 'lrosads-deleteasyncrelativeretryinvalidheader-headers',
+  serializedName: "lrosads-deleteasyncrelativeretryinvalidheader-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders',
+    name: "Composite",
+    className: "LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3386,31 +3005,27 @@ export const LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders = {
 };
 
 export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders = {
-  required: false,
-  serializedName: 'lrosads-deleteasyncrelativeretryinvalidjsonpolling-headers',
+  serializedName: "lrosads-deleteasyncrelativeretryinvalidjsonpolling-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders',
+    name: "Composite",
+    className: "LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3418,24 +3033,21 @@ export const LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders = {
 };
 
 export const LROSADsPost202RetryInvalidHeaderHeaders = {
-  required: false,
-  serializedName: 'lrosads-post202retryinvalidheader-headers',
+  serializedName: "lrosads-post202retryinvalidheader-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPost202RetryInvalidHeaderHeaders',
+    name: "Composite",
+    className: "LROSADsPost202RetryInvalidHeaderHeaders",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3443,31 +3055,27 @@ export const LROSADsPost202RetryInvalidHeaderHeaders = {
 };
 
 export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders = {
-  required: false,
-  serializedName: 'lrosads-postasyncrelativeretryinvalidheader-headers',
+  serializedName: "lrosads-postasyncrelativeretryinvalidheader-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3475,31 +3083,27 @@ export const LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders = {
 };
 
 export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders = {
-  required: false,
-  serializedName: 'lrosads-postasyncrelativeretryinvalidjsonpolling-headers',
+  serializedName: "lrosads-postasyncrelativeretryinvalidjsonpolling-headers",
   type: {
-    name: 'Composite',
-    className: 'LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders',
+    name: "Composite",
+    className: "LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3507,31 +3111,27 @@ export const LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders = {
 };
 
 export const LROsCustomHeaderPutAsyncRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lroscustomheader-putasyncretrysucceeded-headers',
+  serializedName: "lroscustomheader-putasyncretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPutAsyncRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsCustomHeaderPutAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3539,24 +3139,21 @@ export const LROsCustomHeaderPutAsyncRetrySucceededHeaders = {
 };
 
 export const LROsCustomHeaderPost202Retry200Headers = {
-  required: false,
-  serializedName: 'lroscustomheader-post202retry200-headers',
+  serializedName: "lroscustomheader-post202retry200-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPost202Retry200Headers',
+    name: "Composite",
+    className: "LROsCustomHeaderPost202Retry200Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -3564,31 +3161,27 @@ export const LROsCustomHeaderPost202Retry200Headers = {
 };
 
 export const LROsCustomHeaderPostAsyncRetrySucceededHeaders = {
-  required: false,
-  serializedName: 'lroscustomheader-postasyncretrysucceeded-headers',
+  serializedName: "lroscustomheader-postasyncretrysucceeded-headers",
   type: {
-    name: 'Composite',
-    className: 'LROsCustomHeaderPostAsyncRetrySucceededHeaders',
+    name: "Composite",
+    className: "LROsCustomHeaderPostAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
-        required: false,
-        serializedName: 'azure-asyncoperation',
+        serializedName: "azure-asyncoperation",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       retryAfter: {
-        required: false,
-        serializedName: 'retry-after',
+        serializedName: "retry-after",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }

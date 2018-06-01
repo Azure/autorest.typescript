@@ -10,24 +10,21 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,17 +32,15 @@ export const ErrorModel = {
 };
 
 export const AutoRestParameterizedCustomHostTestClientOptions = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'AutoRestParameterizedCustomHostTestClientOptions',
+    name: "Composite",
+    className: "AutoRestParameterizedCustomHostTestClientOptions",
     modelProperties: {
       dnsSuffix: {
-        required: false,
-        serializedName: 'dnsSuffix',
+        serializedName: "dnsSuffix",
         defaultValue: 'host',
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -53,18 +48,16 @@ export const AutoRestParameterizedCustomHostTestClientOptions = {
 };
 
 export const PathsGetEmptyOptionalParams = {
-  required: false,
-  serializedName: 'GetEmptyOptions',
+  serializedName: "GetEmptyOptions",
   type: {
-    name: 'Composite',
-    className: 'PathsGetEmptyOptionalParams',
+    name: "Composite",
+    className: "PathsGetEmptyOptionalParams",
     modelProperties: {
       keyVersion: {
-        required: false,
-        serializedName: 'keyVersion',
+        serializedName: "keyVersion",
         defaultValue: 'v1',
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

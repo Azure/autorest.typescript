@@ -97,15 +97,16 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.subscriptionId": this.subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.subscriptionId": this.subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -113,19 +114,39 @@ class ComplexModelClient extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "subscriptionId",
+                defaultValue: '123456',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -144,7 +165,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -159,7 +180,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.CatalogArray;
+            const resultMapper = Mappers.CatalogArray;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -220,17 +241,17 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogDictionaryOfArray;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion,
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion,
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -238,21 +259,40 @@ class ComplexModelClient extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -271,7 +311,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -286,7 +326,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.CatalogDictionary;
+            const resultMapper = Mappers.CatalogDictionary;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -347,17 +387,17 @@ class ComplexModelClient extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.CatalogArrayOfDictionary;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          subscriptionId,
+          resourceGroupName,
+          "this.apiVersion": this.apiVersion,
+          bodyParameter
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            subscriptionId,
-            resourceGroupName,
-            "this.apiVersion": this.apiVersion,
-            bodyParameter
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -365,21 +405,40 @@ class ComplexModelClient extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "api-version",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "api-version",
+                defaultValue: '2014-04-01-preview',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8"
         });
@@ -398,7 +457,7 @@ class ComplexModelClient extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -413,7 +472,7 @@ class ComplexModelClient extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.CatalogArray;
+            const resultMapper = Mappers.CatalogArray;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

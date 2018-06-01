@@ -10,24 +10,21 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,17 +32,15 @@ export const ErrorModel = {
 };
 
 export const AutoRestReportServiceGetReportOptionalParams = {
-  required: false,
-  serializedName: 'GetReportOptions',
+  serializedName: "GetReportOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestReportServiceGetReportOptionalParams',
+    name: "Composite",
+    className: "AutoRestReportServiceGetReportOptionalParams",
     modelProperties: {
       qualifier: {
-        required: false,
-        serializedName: 'qualifier',
+        serializedName: "qualifier",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

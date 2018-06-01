@@ -60,14 +60,15 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          fileContent,
+          fileName
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            fileContent,
-            fileName
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -75,11 +76,23 @@ export class Formdata {
           formDataParameters: [
             {
               parameterName: "fileContent",
-              type: msRest.OperationParameterType.Stream
+              mapper: {
+                required: true,
+                serializedName: "fileContent",
+                type: {
+                  name: "Stream"
+                }
+              }
             },
             {
               parameterName: "fileName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "fileName",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           contentType: "multipart/form-data"
@@ -100,7 +113,7 @@ export class Formdata {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -148,27 +161,26 @@ export class Formdata {
     httpRequest.rawResponse = true;
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'fileContent',
-        type: {
-          name: 'Stream'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          fileContent
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            fileContent
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "fileContent",
+            type: {
+              name: "Stream"
+            }
+          },
           requestBodyName: "fileContent",
-          requestBodyType: msRest.OperationParameterType.Stream,
           contentType: "application/octet-stream"
         });
       let statusCode = operationRes.status;
@@ -187,7 +199,7 @@ export class Formdata {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

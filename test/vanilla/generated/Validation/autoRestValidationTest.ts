@@ -149,16 +149,17 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.subscriptionId": this.subscriptionId,
+          resourceGroupName,
+          id,
+          "this.apiVersion": this.apiVersion
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.subscriptionId": this.subscriptionId,
-            resourceGroupName,
-            id,
-            "this.apiVersion": this.apiVersion
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -166,23 +167,58 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                constraints: {
+                  MaxLength: 10,
+                  MinLength: 3,
+                  Pattern: /[a-zA-Z0-9]+/
+                },
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "id",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                serializedName: "id",
+                constraints: {
+                  InclusiveMaximum: 1000,
+                  InclusiveMinimum: 100,
+                  MultipleOf: 10
+                },
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "apiVersion",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "apiVersion",
+                constraints: {
+                  Pattern: /\d{2}-\d{2}-\d{4}/
+                },
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -201,7 +237,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -216,7 +252,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Product;
+            const resultMapper = Mappers.Product;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -311,18 +347,18 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.subscriptionId": this.subscriptionId,
+          resourceGroupName,
+          id,
+          body,
+          "this.apiVersion": this.apiVersion
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.subscriptionId": this.subscriptionId,
-            resourceGroupName,
-            id,
-            body,
-            "this.apiVersion": this.apiVersion
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PUT",
           baseUrl: this.baseUri,
@@ -330,26 +366,61 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "this.subscriptionId",
-              urlParameterName: "subscriptionId",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "subscriptionId",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                constraints: {
+                  MaxLength: 10,
+                  MinLength: 3,
+                  Pattern: /[a-zA-Z0-9]+/
+                },
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "id",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                required: true,
+                serializedName: "id",
+                constraints: {
+                  InclusiveMaximum: 1000,
+                  InclusiveMinimum: 100,
+                  MultipleOf: 10
+                },
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "this.apiVersion",
-              queryParameterName: "apiVersion",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "apiVersion",
+                constraints: {
+                  Pattern: /\d{2}-\d{2}-\d{4}/
+                },
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "body",
           contentType: "application/json; charset=utf-8"
         });
@@ -368,7 +439,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -383,7 +454,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Product;
+            const resultMapper = Mappers.Product;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -419,13 +490,14 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          constantParam
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            constantParam
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -433,7 +505,15 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "constantParam",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "constantParam",
+                defaultValue: 'constant',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -486,15 +566,15 @@ class AutoRestValidationTest extends msRest.ServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.Product;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          constantParam,
+          body
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            constantParam,
-            body
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.baseUri,
@@ -502,10 +582,18 @@ class AutoRestValidationTest extends msRest.ServiceClient {
           urlParameters: [
             {
               parameterName: "constantParam",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                isConstant: true,
+                serializedName: "constantParam",
+                defaultValue: 'constant',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.Product,
           requestBodyName: "body",
           contentType: "application/json; charset=utf-8"
         });
@@ -535,7 +623,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = Mappers.Product;
+            const resultMapper = Mappers.Product;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {

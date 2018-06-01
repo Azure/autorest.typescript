@@ -95,24 +95,18 @@ export class ParameterGrouping {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = {
-        required: true,
-        serializedName: 'body',
-        type: {
-          name: 'Number'
-        }
-      };
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          body,
+          customHeader,
+          query,
+          path
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            body,
-            customHeader,
-            query,
-            path
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -120,29 +114,56 @@ export class ParameterGrouping {
           urlParameters: [
             {
               parameterName: "path",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "path",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "query",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "query",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "customHeader",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "customHeader",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: {
+            required: true,
+            serializedName: "body",
+            type: {
+              name: "Number"
+            }
+          },
           requestBodyName: "body",
-          requestBodyType: msRest.OperationParameterType.Int,
           contentType: "application/json; charset=utf-8"
         });
       let statusCode = operationRes.status;
@@ -160,7 +181,7 @@ export class ParameterGrouping {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -226,15 +247,16 @@ export class ParameterGrouping {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          customHeader,
+          query
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            customHeader,
-            query
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -242,18 +264,34 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "query",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "query",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "customHeader",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "customHeader",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -272,7 +310,7 @@ export class ParameterGrouping {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -355,17 +393,18 @@ export class ParameterGrouping {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          headerOne,
+          queryOne,
+          headerTwo,
+          queryTwo
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            headerOne,
-            queryOne,
-            headerTwo,
-            queryTwo
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -373,30 +412,53 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "queryOne",
-              queryParameterName: "query-one",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "query-one",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             },
             {
               parameterName: "queryTwo",
-              queryParameterName: "query-two",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "query-two",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "headerOne",
-              headerName: "header-one",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "header-one",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "headerTwo",
-              headerName: "header-two",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "header-two",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -415,7 +477,7 @@ export class ParameterGrouping {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -481,15 +543,16 @@ export class ParameterGrouping {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          headerOne,
+          queryOne
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            "this.client.acceptLanguage": this.client.acceptLanguage,
-            headerOne,
-            queryOne
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -497,20 +560,34 @@ export class ParameterGrouping {
           queryParameters: [
             {
               parameterName: "queryOne",
-              queryParameterName: "query-one",
-              type: msRest.OperationParameterType.Int
+              mapper: {
+                serializedName: "query-one",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.client.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "headerOne",
-              headerName: "header-one",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "header-one",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -529,7 +606,7 @@ export class ParameterGrouping {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

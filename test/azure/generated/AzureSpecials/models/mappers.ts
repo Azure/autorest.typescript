@@ -14,33 +14,30 @@ export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       constantId: {
         required: true,
         isConstant: true,
-        serializedName: 'constantId',
+        serializedName: "constantId",
         defaultValue: 1,
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -48,24 +45,21 @@ export const ErrorModel = {
 };
 
 export const OdataFilter = {
-  required: false,
-  serializedName: 'OdataFilter',
+  serializedName: "OdataFilter",
   type: {
-    name: 'Composite',
-    className: 'OdataFilter',
+    name: "Composite",
+    className: "OdataFilter",
     modelProperties: {
       id: {
-        required: false,
-        serializedName: 'id',
+        serializedName: "id",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       name: {
-        required: false,
-        serializedName: 'name',
+        serializedName: "name",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -73,15 +67,14 @@ export const OdataFilter = {
 };
 
 export const HeaderCustomNamedRequestIdParamGroupingParameters = {
-  required: false,
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdParamGroupingParameters',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdParamGroupingParameters",
     modelProperties: {
       fooClientRequestId: {
         required: true,
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -89,17 +82,15 @@ export const HeaderCustomNamedRequestIdParamGroupingParameters = {
 };
 
 export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
-  required: false,
-  serializedName: 'GetMethodLocalNullOptions',
+  serializedName: "GetMethodLocalNullOptions",
   type: {
-    name: 'Composite',
-    className: 'ApiVersionLocalGetMethodLocalNullOptionalParams',
+    name: "Composite",
+    className: "ApiVersionLocalGetMethodLocalNullOptionalParams",
     modelProperties: {
       apiVersion: {
-        required: false,
-        serializedName: 'api-version',
+        serializedName: "api-version",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -107,17 +98,15 @@ export const ApiVersionLocalGetMethodLocalNullOptionalParams = {
 };
 
 export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
-  required: false,
-  serializedName: 'GetMethodQueryNullOptions',
+  serializedName: "GetMethodQueryNullOptions",
   type: {
-    name: 'Composite',
-    className: 'SkipUrlEncodingGetMethodQueryNullOptionalParams',
+    name: "Composite",
+    className: "SkipUrlEncodingGetMethodQueryNullOptionalParams",
     modelProperties: {
       q1: {
-        required: false,
-        serializedName: 'q1',
+        serializedName: "q1",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -125,31 +114,27 @@ export const SkipUrlEncodingGetMethodQueryNullOptionalParams = {
 };
 
 export const OdataGetWithFilterOptionalParams = {
-  required: false,
-  serializedName: 'GetWithFilterOptions',
+  serializedName: "GetWithFilterOptions",
   type: {
-    name: 'Composite',
-    className: 'OdataGetWithFilterOptionalParams',
+    name: "Composite",
+    className: "OdataGetWithFilterOptionalParams",
     modelProperties: {
       filter: {
-        required: false,
-        serializedName: '$filter',
+        serializedName: "$filter",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       top: {
-        required: false,
-        serializedName: '$top',
+        serializedName: "$top",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       orderby: {
-        required: false,
-        serializedName: '$orderby',
+        serializedName: "$orderby",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -157,17 +142,15 @@ export const OdataGetWithFilterOptionalParams = {
 };
 
 export const HeaderCustomNamedRequestIdHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestid-headers',
+  serializedName: "header-customnamedrequestid-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
+        serializedName: "foo-request-id",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -175,17 +158,15 @@ export const HeaderCustomNamedRequestIdHeaders = {
 };
 
 export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestidparamgrouping-headers',
+  serializedName: "header-customnamedrequestidparamgrouping-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdParamGroupingHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
+        serializedName: "foo-request-id",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -193,17 +174,15 @@ export const HeaderCustomNamedRequestIdParamGroupingHeaders = {
 };
 
 export const HeaderCustomNamedRequestIdHeadHeaders = {
-  required: false,
-  serializedName: 'header-customnamedrequestidhead-headers',
+  serializedName: "header-customnamedrequestidhead-headers",
   type: {
-    name: 'Composite',
-    className: 'HeaderCustomNamedRequestIdHeadHeaders',
+    name: "Composite",
+    className: "HeaderCustomNamedRequestIdHeadHeaders",
     modelProperties: {
       fooRequestId: {
-        required: false,
-        serializedName: 'foo-request-id',
+        serializedName: "foo-request-id",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

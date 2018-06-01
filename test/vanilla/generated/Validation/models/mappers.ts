@@ -10,26 +10,24 @@
 
 
 export const ChildProduct = {
-  required: false,
-  serializedName: 'ChildProduct',
+  serializedName: "ChildProduct",
   type: {
-    name: 'Composite',
-    className: 'ChildProduct',
+    name: "Composite",
+    className: "ChildProduct",
     modelProperties: {
       constProperty: {
         required: true,
         isConstant: true,
-        serializedName: 'constProperty',
+        serializedName: "constProperty",
         defaultValue: 'constant',
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       count: {
-        required: false,
-        serializedName: 'count',
+        serializedName: "count",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       }
     }
@@ -37,28 +35,27 @@ export const ChildProduct = {
 };
 
 export const ConstantProduct = {
-  required: false,
-  serializedName: 'ConstantProduct',
+  serializedName: "ConstantProduct",
   type: {
-    name: 'Composite',
-    className: 'ConstantProduct',
+    name: "Composite",
+    className: "ConstantProduct",
     modelProperties: {
       constProperty: {
         required: true,
         isConstant: true,
-        serializedName: 'constProperty',
+        serializedName: "constProperty",
         defaultValue: 'constant',
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       constProperty2: {
         required: true,
         isConstant: true,
-        serializedName: 'constProperty2',
+        serializedName: "constProperty2",
         defaultValue: 'constant2',
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -66,95 +63,91 @@ export const ConstantProduct = {
 };
 
 export const Product = {
-  required: false,
-  serializedName: 'Product',
+  serializedName: "Product",
   type: {
-    name: 'Composite',
-    className: 'Product',
+    name: "Composite",
+    className: "Product",
     modelProperties: {
       displayNames: {
-        required: false,
-        serializedName: 'display_names',
+        serializedName: "display_names",
         constraints: {
           MaxItems: 6,
           MinItems: 0,
           UniqueItems: true
         },
         type: {
-          name: 'Sequence',
+          name: "Sequence",
           element: {
-              required: false,
-              serializedName: 'stringElementType',
-              type: {
-                name: 'String'
-              }
+            serializedName: "stringElementType",
+            type: {
+              name: "String"
+            }
           }
         }
       },
       capacity: {
-        required: false,
-        serializedName: 'capacity',
+        serializedName: "capacity",
         constraints: {
           ExclusiveMaximum: 100,
           ExclusiveMinimum: 0
         },
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       image: {
-        required: false,
-        serializedName: 'image',
+        serializedName: "image",
         constraints: {
-          Pattern: 'http://\w+'
+          Pattern: /http:\/\/\w+/
         },
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       child: {
         required: true,
-        serializedName: 'child',
+        serializedName: "child",
         defaultValue: {},
         type: {
-          name: 'Composite',
-          className: 'ChildProduct'
+          name: "Composite",
+          className: "ChildProduct"
         }
       },
       constChild: {
         required: true,
         isConstant: true,
-        serializedName: 'constChild',
+        serializedName: "constChild",
         defaultValue: {},
         type: {
-          name: 'Composite',
-          className: 'ConstantProduct'
+          name: "Composite",
+          className: "ConstantProduct"
         }
       },
       constInt: {
         required: true,
         isConstant: true,
-        serializedName: 'constInt',
+        serializedName: "constInt",
         defaultValue: 0,
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       constString: {
         required: true,
         isConstant: true,
-        serializedName: 'constString',
+        serializedName: "constString",
         defaultValue: 'constant',
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       constStringAsEnum: {
-        required: false,
-        serializedName: 'constStringAsEnum',
+        serializedName: "constStringAsEnum",
         type: {
-          name: 'Enum',
-          allowedValues: [ 'constant_string_as_enum' ]
+          name: "Enum",
+          allowedValues: [
+            "constant_string_as_enum"
+          ]
         }
       }
     }
@@ -162,31 +155,27 @@ export const Product = {
 };
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       code: {
-        required: false,
-        serializedName: 'code',
+        serializedName: "code",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       fields: {
-        required: false,
-        serializedName: 'fields',
+        serializedName: "fields",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -194,18 +183,16 @@ export const ErrorModel = {
 };
 
 export const AutoRestValidationTestValidationOfBodyOptionalParams = {
-  required: false,
-  serializedName: 'ValidationOfBodyOptions',
+  serializedName: "ValidationOfBodyOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestValidationTestValidationOfBodyOptionalParams',
+    name: "Composite",
+    className: "AutoRestValidationTestValidationOfBodyOptionalParams",
     modelProperties: {
       body: {
-        required: false,
-        serializedName: 'body',
+        serializedName: "body",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }
@@ -213,18 +200,16 @@ export const AutoRestValidationTestValidationOfBodyOptionalParams = {
 };
 
 export const AutoRestValidationTestPostWithConstantInBodyOptionalParams = {
-  required: false,
-  serializedName: 'PostWithConstantInBodyOptions',
+  serializedName: "PostWithConstantInBodyOptions",
   type: {
-    name: 'Composite',
-    className: 'AutoRestValidationTestPostWithConstantInBodyOptionalParams',
+    name: "Composite",
+    className: "AutoRestValidationTestPostWithConstantInBodyOptionalParams",
     modelProperties: {
       body: {
-        required: false,
-        serializedName: 'body',
+        serializedName: "body",
         type: {
-          name: 'Composite',
-          className: 'Product'
+          name: "Composite",
+          className: "Product"
         }
       }
     }

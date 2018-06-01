@@ -10,24 +10,21 @@
 
 
 export const ErrorModel = {
-  required: false,
-  serializedName: 'Error',
+  serializedName: "Error",
   type: {
-    name: 'Composite',
-    className: 'ErrorModel',
+    name: "Composite",
+    className: "ErrorModel",
     modelProperties: {
       status: {
-        required: false,
-        serializedName: 'status',
+        serializedName: "status",
         type: {
-          name: 'Number'
+          name: "Number"
         }
       },
       message: {
-        required: false,
-        serializedName: 'message',
+        serializedName: "message",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -35,17 +32,15 @@ export const ErrorModel = {
 };
 
 export const A = {
-  required: false,
-  serializedName: 'A',
+  serializedName: "A",
   type: {
-    name: 'Composite',
-    className: 'A',
+    name: "Composite",
+    className: "A",
     modelProperties: {
       statusCode: {
-        required: false,
-        serializedName: 'statusCode',
+        serializedName: "statusCode",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -53,24 +48,21 @@ export const A = {
 };
 
 export const B = {
-  required: false,
-  serializedName: 'B',
+  serializedName: "B",
   type: {
-    name: 'Composite',
-    className: 'B',
+    name: "Composite",
+    className: "B",
     modelProperties: {
       statusCode: {
-        required: false,
-        serializedName: 'statusCode',
+        serializedName: "statusCode",
         type: {
-          name: 'String'
+          name: "String"
         }
       },
       textStatusCode: {
-        required: false,
-        serializedName: 'textStatusCode',
+        serializedName: "textStatusCode",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -78,17 +70,15 @@ export const B = {
 };
 
 export const C = {
-  required: false,
-  serializedName: 'C',
+  serializedName: "C",
   type: {
-    name: 'Composite',
-    className: 'C',
+    name: "Composite",
+    className: "C",
     modelProperties: {
       httpCode: {
-        required: false,
-        serializedName: 'httpCode',
+        serializedName: "httpCode",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -96,17 +86,15 @@ export const C = {
 };
 
 export const D = {
-  required: false,
-  serializedName: 'D',
+  serializedName: "D",
   type: {
-    name: 'Composite',
-    className: 'D',
+    name: "Composite",
+    className: "D",
     modelProperties: {
       httpStatusCode: {
-        required: false,
-        serializedName: 'httpStatusCode',
+        serializedName: "httpStatusCode",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -114,17 +102,15 @@ export const D = {
 };
 
 export const HttpSuccessPut200OptionalParams = {
-  required: false,
-  serializedName: 'Put200Options',
+  serializedName: "Put200Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPut200OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPut200OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -132,17 +118,15 @@ export const HttpSuccessPut200OptionalParams = {
 };
 
 export const HttpSuccessPatch200OptionalParams = {
-  required: false,
-  serializedName: 'Patch200Options',
+  serializedName: "Patch200Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPatch200OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPatch200OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -150,17 +134,15 @@ export const HttpSuccessPatch200OptionalParams = {
 };
 
 export const HttpSuccessPost200OptionalParams = {
-  required: false,
-  serializedName: 'Post200Options',
+  serializedName: "Post200Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPost200OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPost200OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -168,17 +150,15 @@ export const HttpSuccessPost200OptionalParams = {
 };
 
 export const HttpSuccessDelete200OptionalParams = {
-  required: false,
-  serializedName: 'Delete200Options',
+  serializedName: "Delete200Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessDelete200OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessDelete200OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -186,17 +166,15 @@ export const HttpSuccessDelete200OptionalParams = {
 };
 
 export const HttpSuccessPut201OptionalParams = {
-  required: false,
-  serializedName: 'Put201Options',
+  serializedName: "Put201Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPut201OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPut201OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -204,17 +182,15 @@ export const HttpSuccessPut201OptionalParams = {
 };
 
 export const HttpSuccessPost201OptionalParams = {
-  required: false,
-  serializedName: 'Post201Options',
+  serializedName: "Post201Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPost201OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPost201OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -222,17 +198,15 @@ export const HttpSuccessPost201OptionalParams = {
 };
 
 export const HttpSuccessPut202OptionalParams = {
-  required: false,
-  serializedName: 'Put202Options',
+  serializedName: "Put202Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPut202OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPut202OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -240,17 +214,15 @@ export const HttpSuccessPut202OptionalParams = {
 };
 
 export const HttpSuccessPatch202OptionalParams = {
-  required: false,
-  serializedName: 'Patch202Options',
+  serializedName: "Patch202Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPatch202OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPatch202OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -258,17 +230,15 @@ export const HttpSuccessPatch202OptionalParams = {
 };
 
 export const HttpSuccessPost202OptionalParams = {
-  required: false,
-  serializedName: 'Post202Options',
+  serializedName: "Post202Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPost202OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPost202OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -276,17 +246,15 @@ export const HttpSuccessPost202OptionalParams = {
 };
 
 export const HttpSuccessDelete202OptionalParams = {
-  required: false,
-  serializedName: 'Delete202Options',
+  serializedName: "Delete202Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessDelete202OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessDelete202OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -294,17 +262,15 @@ export const HttpSuccessDelete202OptionalParams = {
 };
 
 export const HttpSuccessPut204OptionalParams = {
-  required: false,
-  serializedName: 'Put204Options',
+  serializedName: "Put204Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPut204OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPut204OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -312,17 +278,15 @@ export const HttpSuccessPut204OptionalParams = {
 };
 
 export const HttpSuccessPatch204OptionalParams = {
-  required: false,
-  serializedName: 'Patch204Options',
+  serializedName: "Patch204Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPatch204OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPatch204OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -330,17 +294,15 @@ export const HttpSuccessPatch204OptionalParams = {
 };
 
 export const HttpSuccessPost204OptionalParams = {
-  required: false,
-  serializedName: 'Post204Options',
+  serializedName: "Post204Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessPost204OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessPost204OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -348,17 +310,15 @@ export const HttpSuccessPost204OptionalParams = {
 };
 
 export const HttpSuccessDelete204OptionalParams = {
-  required: false,
-  serializedName: 'Delete204Options',
+  serializedName: "Delete204Options",
   type: {
-    name: 'Composite',
-    className: 'HttpSuccessDelete204OptionalParams',
+    name: "Composite",
+    className: "HttpSuccessDelete204OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -366,17 +326,15 @@ export const HttpSuccessDelete204OptionalParams = {
 };
 
 export const HttpRedirectsPut301OptionalParams = {
-  required: false,
-  serializedName: 'Put301Options',
+  serializedName: "Put301Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPut301OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPut301OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -384,17 +342,15 @@ export const HttpRedirectsPut301OptionalParams = {
 };
 
 export const HttpRedirectsPatch302OptionalParams = {
-  required: false,
-  serializedName: 'Patch302Options',
+  serializedName: "Patch302Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPatch302OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPatch302OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -402,17 +358,15 @@ export const HttpRedirectsPatch302OptionalParams = {
 };
 
 export const HttpRedirectsPost303OptionalParams = {
-  required: false,
-  serializedName: 'Post303Options',
+  serializedName: "Post303Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPost303OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPost303OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -420,17 +374,15 @@ export const HttpRedirectsPost303OptionalParams = {
 };
 
 export const HttpRedirectsPut307OptionalParams = {
-  required: false,
-  serializedName: 'Put307Options',
+  serializedName: "Put307Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPut307OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPut307OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -438,17 +390,15 @@ export const HttpRedirectsPut307OptionalParams = {
 };
 
 export const HttpRedirectsPatch307OptionalParams = {
-  required: false,
-  serializedName: 'Patch307Options',
+  serializedName: "Patch307Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPatch307OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPatch307OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -456,17 +406,15 @@ export const HttpRedirectsPatch307OptionalParams = {
 };
 
 export const HttpRedirectsPost307OptionalParams = {
-  required: false,
-  serializedName: 'Post307Options',
+  serializedName: "Post307Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPost307OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsPost307OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -474,17 +422,15 @@ export const HttpRedirectsPost307OptionalParams = {
 };
 
 export const HttpRedirectsDelete307OptionalParams = {
-  required: false,
-  serializedName: 'Delete307Options',
+  serializedName: "Delete307Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsDelete307OptionalParams',
+    name: "Composite",
+    className: "HttpRedirectsDelete307OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -492,17 +438,15 @@ export const HttpRedirectsDelete307OptionalParams = {
 };
 
 export const HttpClientFailurePut400OptionalParams = {
-  required: false,
-  serializedName: 'Put400Options',
+  serializedName: "Put400Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePut400OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePut400OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -510,17 +454,15 @@ export const HttpClientFailurePut400OptionalParams = {
 };
 
 export const HttpClientFailurePatch400OptionalParams = {
-  required: false,
-  serializedName: 'Patch400Options',
+  serializedName: "Patch400Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePatch400OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePatch400OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -528,17 +470,15 @@ export const HttpClientFailurePatch400OptionalParams = {
 };
 
 export const HttpClientFailurePost400OptionalParams = {
-  required: false,
-  serializedName: 'Post400Options',
+  serializedName: "Post400Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePost400OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePost400OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -546,17 +486,15 @@ export const HttpClientFailurePost400OptionalParams = {
 };
 
 export const HttpClientFailureDelete400OptionalParams = {
-  required: false,
-  serializedName: 'Delete400Options',
+  serializedName: "Delete400Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailureDelete400OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailureDelete400OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -564,17 +502,15 @@ export const HttpClientFailureDelete400OptionalParams = {
 };
 
 export const HttpClientFailurePut404OptionalParams = {
-  required: false,
-  serializedName: 'Put404Options',
+  serializedName: "Put404Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePut404OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePut404OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -582,17 +518,15 @@ export const HttpClientFailurePut404OptionalParams = {
 };
 
 export const HttpClientFailurePatch405OptionalParams = {
-  required: false,
-  serializedName: 'Patch405Options',
+  serializedName: "Patch405Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePatch405OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePatch405OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -600,17 +534,15 @@ export const HttpClientFailurePatch405OptionalParams = {
 };
 
 export const HttpClientFailurePost406OptionalParams = {
-  required: false,
-  serializedName: 'Post406Options',
+  serializedName: "Post406Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePost406OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePost406OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -618,17 +550,15 @@ export const HttpClientFailurePost406OptionalParams = {
 };
 
 export const HttpClientFailureDelete407OptionalParams = {
-  required: false,
-  serializedName: 'Delete407Options',
+  serializedName: "Delete407Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailureDelete407OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailureDelete407OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -636,17 +566,15 @@ export const HttpClientFailureDelete407OptionalParams = {
 };
 
 export const HttpClientFailurePut409OptionalParams = {
-  required: false,
-  serializedName: 'Put409Options',
+  serializedName: "Put409Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePut409OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePut409OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -654,17 +582,15 @@ export const HttpClientFailurePut409OptionalParams = {
 };
 
 export const HttpClientFailurePut413OptionalParams = {
-  required: false,
-  serializedName: 'Put413Options',
+  serializedName: "Put413Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePut413OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePut413OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -672,17 +598,15 @@ export const HttpClientFailurePut413OptionalParams = {
 };
 
 export const HttpClientFailurePatch414OptionalParams = {
-  required: false,
-  serializedName: 'Patch414Options',
+  serializedName: "Patch414Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePatch414OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePatch414OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -690,17 +614,15 @@ export const HttpClientFailurePatch414OptionalParams = {
 };
 
 export const HttpClientFailurePost415OptionalParams = {
-  required: false,
-  serializedName: 'Post415Options',
+  serializedName: "Post415Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailurePost415OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailurePost415OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -708,17 +630,15 @@ export const HttpClientFailurePost415OptionalParams = {
 };
 
 export const HttpClientFailureDelete417OptionalParams = {
-  required: false,
-  serializedName: 'Delete417Options',
+  serializedName: "Delete417Options",
   type: {
-    name: 'Composite',
-    className: 'HttpClientFailureDelete417OptionalParams',
+    name: "Composite",
+    className: "HttpClientFailureDelete417OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -726,17 +646,15 @@ export const HttpClientFailureDelete417OptionalParams = {
 };
 
 export const HttpServerFailurePost505OptionalParams = {
-  required: false,
-  serializedName: 'Post505Options',
+  serializedName: "Post505Options",
   type: {
-    name: 'Composite',
-    className: 'HttpServerFailurePost505OptionalParams',
+    name: "Composite",
+    className: "HttpServerFailurePost505OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -744,17 +662,15 @@ export const HttpServerFailurePost505OptionalParams = {
 };
 
 export const HttpServerFailureDelete505OptionalParams = {
-  required: false,
-  serializedName: 'Delete505Options',
+  serializedName: "Delete505Options",
   type: {
-    name: 'Composite',
-    className: 'HttpServerFailureDelete505OptionalParams',
+    name: "Composite",
+    className: "HttpServerFailureDelete505OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -762,17 +678,15 @@ export const HttpServerFailureDelete505OptionalParams = {
 };
 
 export const HttpRetryPut500OptionalParams = {
-  required: false,
-  serializedName: 'Put500Options',
+  serializedName: "Put500Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryPut500OptionalParams',
+    name: "Composite",
+    className: "HttpRetryPut500OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -780,17 +694,15 @@ export const HttpRetryPut500OptionalParams = {
 };
 
 export const HttpRetryPatch500OptionalParams = {
-  required: false,
-  serializedName: 'Patch500Options',
+  serializedName: "Patch500Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryPatch500OptionalParams',
+    name: "Composite",
+    className: "HttpRetryPatch500OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -798,17 +710,15 @@ export const HttpRetryPatch500OptionalParams = {
 };
 
 export const HttpRetryPost503OptionalParams = {
-  required: false,
-  serializedName: 'Post503Options',
+  serializedName: "Post503Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryPost503OptionalParams',
+    name: "Composite",
+    className: "HttpRetryPost503OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -816,17 +726,15 @@ export const HttpRetryPost503OptionalParams = {
 };
 
 export const HttpRetryDelete503OptionalParams = {
-  required: false,
-  serializedName: 'Delete503Options',
+  serializedName: "Delete503Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryDelete503OptionalParams',
+    name: "Composite",
+    className: "HttpRetryDelete503OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -834,17 +742,15 @@ export const HttpRetryDelete503OptionalParams = {
 };
 
 export const HttpRetryPut504OptionalParams = {
-  required: false,
-  serializedName: 'Put504Options',
+  serializedName: "Put504Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryPut504OptionalParams',
+    name: "Composite",
+    className: "HttpRetryPut504OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -852,17 +758,15 @@ export const HttpRetryPut504OptionalParams = {
 };
 
 export const HttpRetryPatch504OptionalParams = {
-  required: false,
-  serializedName: 'Patch504Options',
+  serializedName: "Patch504Options",
   type: {
-    name: 'Composite',
-    className: 'HttpRetryPatch504OptionalParams',
+    name: "Composite",
+    className: "HttpRetryPatch504OptionalParams",
     modelProperties: {
       booleanValue: {
-        required: false,
-        serializedName: 'booleanValue',
+        serializedName: "booleanValue",
         type: {
-          name: 'Boolean'
+          name: "Boolean"
         }
       }
     }
@@ -870,17 +774,15 @@ export const HttpRetryPatch504OptionalParams = {
 };
 
 export const HttpRedirectsHead300Headers = {
-  required: false,
-  serializedName: 'httpredirects-head300-headers',
+  serializedName: "httpredirects-head300-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsHead300Headers',
+    name: "Composite",
+    className: "HttpRedirectsHead300Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -888,17 +790,15 @@ export const HttpRedirectsHead300Headers = {
 };
 
 export const HttpRedirectsGet300Headers = {
-  required: false,
-  serializedName: 'httpredirects-get300-headers',
+  serializedName: "httpredirects-get300-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsGet300Headers',
+    name: "Composite",
+    className: "HttpRedirectsGet300Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -906,17 +806,15 @@ export const HttpRedirectsGet300Headers = {
 };
 
 export const HttpRedirectsHead301Headers = {
-  required: false,
-  serializedName: 'httpredirects-head301-headers',
+  serializedName: "httpredirects-head301-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsHead301Headers',
+    name: "Composite",
+    className: "HttpRedirectsHead301Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -924,17 +822,15 @@ export const HttpRedirectsHead301Headers = {
 };
 
 export const HttpRedirectsGet301Headers = {
-  required: false,
-  serializedName: 'httpredirects-get301-headers',
+  serializedName: "httpredirects-get301-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsGet301Headers',
+    name: "Composite",
+    className: "HttpRedirectsGet301Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -942,17 +838,15 @@ export const HttpRedirectsGet301Headers = {
 };
 
 export const HttpRedirectsPut301Headers = {
-  required: false,
-  serializedName: 'httpredirects-put301-headers',
+  serializedName: "httpredirects-put301-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPut301Headers',
+    name: "Composite",
+    className: "HttpRedirectsPut301Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -960,17 +854,15 @@ export const HttpRedirectsPut301Headers = {
 };
 
 export const HttpRedirectsHead302Headers = {
-  required: false,
-  serializedName: 'httpredirects-head302-headers',
+  serializedName: "httpredirects-head302-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsHead302Headers',
+    name: "Composite",
+    className: "HttpRedirectsHead302Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -978,17 +870,15 @@ export const HttpRedirectsHead302Headers = {
 };
 
 export const HttpRedirectsGet302Headers = {
-  required: false,
-  serializedName: 'httpredirects-get302-headers',
+  serializedName: "httpredirects-get302-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsGet302Headers',
+    name: "Composite",
+    className: "HttpRedirectsGet302Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -996,17 +886,15 @@ export const HttpRedirectsGet302Headers = {
 };
 
 export const HttpRedirectsPatch302Headers = {
-  required: false,
-  serializedName: 'httpredirects-patch302-headers',
+  serializedName: "httpredirects-patch302-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPatch302Headers',
+    name: "Composite",
+    className: "HttpRedirectsPatch302Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1014,17 +902,15 @@ export const HttpRedirectsPatch302Headers = {
 };
 
 export const HttpRedirectsPost303Headers = {
-  required: false,
-  serializedName: 'httpredirects-post303-headers',
+  serializedName: "httpredirects-post303-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPost303Headers',
+    name: "Composite",
+    className: "HttpRedirectsPost303Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1032,17 +918,15 @@ export const HttpRedirectsPost303Headers = {
 };
 
 export const HttpRedirectsHead307Headers = {
-  required: false,
-  serializedName: 'httpredirects-head307-headers',
+  serializedName: "httpredirects-head307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsHead307Headers',
+    name: "Composite",
+    className: "HttpRedirectsHead307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1050,17 +934,15 @@ export const HttpRedirectsHead307Headers = {
 };
 
 export const HttpRedirectsGet307Headers = {
-  required: false,
-  serializedName: 'httpredirects-get307-headers',
+  serializedName: "httpredirects-get307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsGet307Headers',
+    name: "Composite",
+    className: "HttpRedirectsGet307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1068,17 +950,15 @@ export const HttpRedirectsGet307Headers = {
 };
 
 export const HttpRedirectsPut307Headers = {
-  required: false,
-  serializedName: 'httpredirects-put307-headers',
+  serializedName: "httpredirects-put307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPut307Headers',
+    name: "Composite",
+    className: "HttpRedirectsPut307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1086,17 +966,15 @@ export const HttpRedirectsPut307Headers = {
 };
 
 export const HttpRedirectsPatch307Headers = {
-  required: false,
-  serializedName: 'httpredirects-patch307-headers',
+  serializedName: "httpredirects-patch307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPatch307Headers',
+    name: "Composite",
+    className: "HttpRedirectsPatch307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1104,17 +982,15 @@ export const HttpRedirectsPatch307Headers = {
 };
 
 export const HttpRedirectsPost307Headers = {
-  required: false,
-  serializedName: 'httpredirects-post307-headers',
+  serializedName: "httpredirects-post307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsPost307Headers',
+    name: "Composite",
+    className: "HttpRedirectsPost307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }
@@ -1122,17 +998,15 @@ export const HttpRedirectsPost307Headers = {
 };
 
 export const HttpRedirectsDelete307Headers = {
-  required: false,
-  serializedName: 'httpredirects-delete307-headers',
+  serializedName: "httpredirects-delete307-headers",
   type: {
-    name: 'Composite',
-    className: 'HttpRedirectsDelete307Headers',
+    name: "Composite",
+    className: "HttpRedirectsDelete307Headers",
     modelProperties: {
       location: {
-        required: false,
-        serializedName: 'location',
+        serializedName: "location",
         type: {
-          name: 'String'
+          name: "String"
         }
       }
     }

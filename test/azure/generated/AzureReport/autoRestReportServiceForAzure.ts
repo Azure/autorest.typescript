@@ -119,14 +119,15 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          qualifier,
+          "this.acceptLanguage": this.acceptLanguage
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            qualifier,
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -134,14 +135,24 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
           queryParameters: [
             {
               parameterName: "qualifier",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "qualifier",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           headerParameters: [
             {
               parameterName: "this.acceptLanguage",
-              headerName: "accept-language",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -160,7 +171,7 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -175,17 +186,15 @@ class AutoRestReportServiceForAzure extends msRestAzure.AzureServiceClient {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
-            let resultMapper = {
-              required: false,
-              serializedName: 'parsedResponse',
+            const resultMapper = {
+              serializedName: "parsedResponse",
               type: {
-                name: 'Dictionary',
+                name: "Dictionary",
                 value: {
-                    required: false,
-                    serializedName: 'numberElementType',
-                    type: {
-                      name: 'Number'
-                    }
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             };

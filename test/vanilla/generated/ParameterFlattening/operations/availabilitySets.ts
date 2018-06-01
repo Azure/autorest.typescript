@@ -80,16 +80,16 @@ export class AvailabilitySets {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      let requestModelMapper = Mappers.AvailabilitySetUpdateParameters;
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          resourceGroupName,
+          avset,
+          tags1
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            avset,
-            tags1
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -97,15 +97,29 @@ export class AvailabilitySets {
           urlParameters: [
             {
               parameterName: "resourceGroupName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "resourceGroupName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "avset",
-              urlParameterName: "availabilitySetName",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "availabilitySetName",
+                constraints: {
+                  MaxLength: 80
+                },
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
-          requestBodyMapper: requestModelMapper,
+          requestBodyMapper: Mappers.AvailabilitySetUpdateParameters,
           requestBodyName: "tags1",
           contentType: "application/json; charset=utf-8"
         });

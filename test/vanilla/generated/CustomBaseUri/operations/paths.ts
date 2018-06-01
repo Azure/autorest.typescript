@@ -56,14 +56,15 @@ export class Paths {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          accountName,
+          "this.client.host": this.client.host
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            accountName,
-            "this.client.host": this.client.host
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -71,14 +72,26 @@ export class Paths {
           urlParameters: [
             {
               parameterName: "accountName",
-              type: msRest.OperationParameterType.String,
-              skipEncoding: true
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "accountName",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.host",
-              urlParameterName: "host",
-              type: msRest.OperationParameterType.String,
-              skipEncoding: true
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "host",
+                defaultValue: 'host',
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -97,7 +110,7 @@ export class Paths {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {

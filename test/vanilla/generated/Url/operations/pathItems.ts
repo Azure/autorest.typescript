@@ -79,18 +79,19 @@ export class PathItems {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          localStringPath,
+          localStringQuery,
+          pathItemStringPath,
+          pathItemStringQuery,
+          "this.client.globalStringPath": this.client.globalStringPath,
+          "this.client.globalStringQuery": this.client.globalStringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -98,31 +99,62 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "localStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "pathItemStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringPath",
-              urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "globalStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "localStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "pathItemStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringQuery",
-              queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "globalStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -141,7 +173,7 @@ export class PathItems {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -211,18 +243,19 @@ export class PathItems {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          localStringPath,
+          localStringQuery,
+          pathItemStringPath,
+          pathItemStringQuery,
+          "this.client.globalStringPath": this.client.globalStringPath,
+          "this.client.globalStringQuery": this.client.globalStringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -230,31 +263,62 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "localStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "pathItemStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringPath",
-              urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "globalStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "localStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "pathItemStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringQuery",
-              queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "globalStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -273,7 +337,7 @@ export class PathItems {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -343,18 +407,19 @@ export class PathItems {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          localStringPath,
+          localStringQuery,
+          pathItemStringPath,
+          pathItemStringQuery,
+          "this.client.globalStringPath": this.client.globalStringPath,
+          "this.client.globalStringQuery": this.client.globalStringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -362,31 +427,62 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "localStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "pathItemStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringPath",
-              urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "globalStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "localStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "pathItemStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringQuery",
-              queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "globalStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -405,7 +501,7 @@ export class PathItems {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -475,18 +571,19 @@ export class PathItems {
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          localStringPath,
+          localStringQuery,
+          pathItemStringPath,
+          pathItemStringQuery,
+          "this.client.globalStringPath": this.client.globalStringPath,
+          "this.client.globalStringQuery": this.client.globalStringQuery
+        },
+        options);
       operationRes = await client.sendOperationRequest(
         httpRequest,
-        msRest.createOperationArguments(
-          {
-            localStringPath,
-            localStringQuery,
-            pathItemStringPath,
-            pathItemStringQuery,
-            "this.client.globalStringPath": this.client.globalStringPath,
-            "this.client.globalStringQuery": this.client.globalStringQuery
-          },
-          options),
+        operationArguments,
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -494,31 +591,62 @@ export class PathItems {
           urlParameters: [
             {
               parameterName: "localStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "localStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "pathItemStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringPath",
-              urlParameterName: "globalStringPath",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                required: true,
+                serializedName: "globalStringPath",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ],
           queryParameters: [
             {
               parameterName: "localStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "localStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "pathItemStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "pathItemStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             },
             {
               parameterName: "this.client.globalStringQuery",
-              queryParameterName: "globalStringQuery",
-              type: msRest.OperationParameterType.String
+              mapper: {
+                serializedName: "globalStringQuery",
+                type: {
+                  name: "String"
+                }
+              }
             }
           ]
         });
@@ -537,7 +665,7 @@ export class PathItems {
             error.message = internalError ? internalError.message : parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            let resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.ErrorModel;
             error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
