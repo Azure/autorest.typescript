@@ -21,6 +21,9 @@ namespace AutoRest.TypeScript.Model
         }
 
         [JsonIgnore]
+        public CodeModelTS CodeModelTS => (CodeModelTS) CodeModel;
+
+        [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
         [JsonIgnore]

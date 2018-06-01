@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestDateTimeTestService } from "../autoRestDateTimeTestService";
+import { AutoRestDateTimeTestServiceContext } from "../autoRestDateTimeTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Datetime. */
 export class Datetime {
-  private readonly client: AutoRestDateTimeTestService;
+  private readonly client: AutoRestDateTimeTestServiceContext;
   /**
    * Create a Datetime.
-   * @param {AutoRestDateTimeTestService} client Reference to the service client.
+   * @param {AutoRestDateTimeTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestDateTimeTestService) {
+  constructor(client: AutoRestDateTimeTestServiceContext) {
     this.client = client;
   }
 

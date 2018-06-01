@@ -12,16 +12,12 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestRFC1123DateTimeTestServiceContext } from "./autoRestRFC1123DateTimeTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestRFC1123DateTimeTestService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServiceContext {
 
   // Operation groups
   datetimerfc1123: operations.Datetimerfc1123;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,27 +37,8 @@ class AutoRestRFC1123DateTimeTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.datetimerfc1123 = new operations.Datetimerfc1123(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

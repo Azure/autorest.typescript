@@ -12,23 +12,14 @@ import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
+import { AutoRestHeadTestServiceContext } from "./autoRestHeadTestServiceContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
-class AutoRestHeadTestService extends msRestAzure.AzureServiceClient {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
+class AutoRestHeadTestService extends AutoRestHeadTestServiceContext {
 
   // Operation groups
   httpSuccess: operations.HttpSuccess;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -56,39 +47,8 @@ class AutoRestHeadTestService extends msRestAzure.AzureServiceClient {
    *
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
-    if (credentials === null || credentials === undefined) {
-      throw new Error('\'credentials\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(credentials, options);
-
-    this.acceptLanguage = 'en-US';
-    this.longRunningOperationRetryTimeout = 30;
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = 'http://localhost:3000';
-    }
-    this.credentials = credentials;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
-      this.acceptLanguage = options.acceptLanguage;
-    }
-    if(options.longRunningOperationRetryTimeout !== null && options.longRunningOperationRetryTimeout !== undefined) {
-      this.longRunningOperationRetryTimeout = options.longRunningOperationRetryTimeout;
-    }
+    super(credentials, baseUri, options);
     this.httpSuccess = new operations.HttpSuccess(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

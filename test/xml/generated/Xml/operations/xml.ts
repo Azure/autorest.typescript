@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATXMLService } from "../autoRestSwaggerBATXMLService";
+import { AutoRestSwaggerBATXMLServiceContext } from "../autoRestSwaggerBATXMLServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Xml. */
 export class Xml {
-  private readonly client: AutoRestSwaggerBATXMLService;
+  private readonly client: AutoRestSwaggerBATXMLServiceContext;
   /**
    * Create a Xml.
-   * @param {AutoRestSwaggerBATXMLService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATXMLServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATXMLService) {
+  constructor(client: AutoRestSwaggerBATXMLServiceContext) {
     this.client = client;
   }
 

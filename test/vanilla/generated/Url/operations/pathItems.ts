@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestUrlTestService } from "../autoRestUrlTestService";
+import { AutoRestUrlTestServiceContext } from "../autoRestUrlTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a PathItems. */
 export class PathItems {
-  private readonly client: AutoRestUrlTestService;
+  private readonly client: AutoRestUrlTestServiceContext;
   /**
    * Create a PathItems.
-   * @param {AutoRestUrlTestService} client Reference to the service client.
+   * @param {AutoRestUrlTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestUrlTestService) {
+  constructor(client: AutoRestUrlTestServiceContext) {
     this.client = client;
   }
 

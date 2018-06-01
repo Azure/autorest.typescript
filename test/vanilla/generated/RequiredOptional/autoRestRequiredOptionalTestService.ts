@@ -8,33 +8,21 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestRequiredOptionalTestServiceContext } from "./autoRestRequiredOptionalTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
-  requiredGlobalPath: string;
-  requiredGlobalQuery: string;
-  optionalGlobalQuery?: number;
-  baseUri: string;
+class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestServiceContext {
 
   // Operation groups
   implicit: operations.Implicit;
   explicit: operations.Explicit;
-  serializer: msRest.Serializer;
 
   /**
    * @class
    * Initializes a new instance of the AutoRestRequiredOptionalTestService class.
    * @constructor
-   *
-   * @param {string} requiredGlobalPath - number of items to skip
-   *
-   * @param {string} requiredGlobalQuery - number of items to skip
    *
    * @param {string} [baseUri] - The base URI of the service.
    *
@@ -51,39 +39,9 @@ class AutoRestRequiredOptionalTestService extends msRest.ServiceClient {
    *
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, baseUri?: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
-    if (requiredGlobalPath === null || requiredGlobalPath === undefined) {
-      throw new Error('\'requiredGlobalPath\' cannot be null.');
-    }
-    if (requiredGlobalQuery === null || requiredGlobalQuery === undefined) {
-      throw new Error('\'requiredGlobalQuery\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-    this.requiredGlobalPath = requiredGlobalPath;
-    this.requiredGlobalQuery = requiredGlobalQuery;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.optionalGlobalQuery !== null && options.optionalGlobalQuery !== undefined) {
-      this.optionalGlobalQuery = options.optionalGlobalQuery;
-    }
+    super(requiredGlobalPath, requiredGlobalQuery, baseUri, options);
     this.implicit = new operations.Implicit(this);
     this.explicit = new operations.Explicit(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

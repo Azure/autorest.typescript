@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATService } from "../autoRestSwaggerBATService";
+import { AutoRestSwaggerBATServiceContext } from "../autoRestSwaggerBATServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a EnumModel. */
 export class EnumModel {
-  private readonly client: AutoRestSwaggerBATService;
+  private readonly client: AutoRestSwaggerBATServiceContext;
   /**
    * Create a EnumModel.
-   * @param {AutoRestSwaggerBATService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATService) {
+  constructor(client: AutoRestSwaggerBATServiceContext) {
     this.client = client;
   }
 

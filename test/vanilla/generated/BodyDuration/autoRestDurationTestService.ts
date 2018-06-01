@@ -12,16 +12,12 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestDurationTestServiceContext } from "./autoRestDurationTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestDurationTestService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestDurationTestService extends AutoRestDurationTestServiceContext {
 
   // Operation groups
   duration: operations.Duration;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,27 +37,8 @@ class AutoRestDurationTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.duration = new operations.Duration(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

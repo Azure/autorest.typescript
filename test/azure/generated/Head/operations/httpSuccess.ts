@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestHeadTestService } from "../autoRestHeadTestService";
+import { AutoRestHeadTestServiceContext } from "../autoRestHeadTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
-  private readonly client: AutoRestHeadTestService;
+  private readonly client: AutoRestHeadTestServiceContext;
   /**
    * Create a HttpSuccess.
-   * @param {AutoRestHeadTestService} client Reference to the service client.
+   * @param {AutoRestHeadTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestHeadTestService) {
+  constructor(client: AutoRestHeadTestServiceContext) {
     this.client = client;
   }
 

@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestIntegerTestService } from "../autoRestIntegerTestService";
+import { AutoRestIntegerTestServiceContext } from "../autoRestIntegerTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a IntModel. */
 export class IntModel {
-  private readonly client: AutoRestIntegerTestService;
+  private readonly client: AutoRestIntegerTestServiceContext;
   /**
    * Create a IntModel.
-   * @param {AutoRestIntegerTestService} client Reference to the service client.
+   * @param {AutoRestIntegerTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestIntegerTestService) {
+  constructor(client: AutoRestIntegerTestServiceContext) {
     this.client = client;
   }
 

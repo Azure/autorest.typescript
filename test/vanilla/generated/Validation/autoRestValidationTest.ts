@@ -11,25 +11,15 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
+import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestValidationTest extends msRest.ServiceClient {
-  subscriptionId: string;
-  apiVersion: string;
-  baseUri: string;
-  serializer: msRest.Serializer;
+class AutoRestValidationTest extends AutoRestValidationTestContext {
 
   /**
    * @class
    * Initializes a new instance of the AutoRestValidationTest class.
    * @constructor
-   *
-   * @param {string} subscriptionId - Subscription ID.
-   *
-   * @param {string} apiVersion - Required string following pattern \d{2}-\d{2}-\d{4}
    *
    * @param {string} [baseUri] - The base URI of the service.
    *
@@ -44,34 +34,7 @@ class AutoRestValidationTest extends msRest.ServiceClient {
    *
    */
   constructor(subscriptionId: string, apiVersion: string, baseUri?: string, options?: msRest.ServiceClientOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
-    }
-    if (apiVersion === null || apiVersion === undefined) {
-      throw new Error('\'apiVersion\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-    this.subscriptionId = subscriptionId;
-    this.apiVersion = apiVersion;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
+    super(subscriptionId, apiVersion, baseUri, options);
   }
   // methods on the client.
 

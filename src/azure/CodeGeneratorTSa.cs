@@ -28,7 +28,7 @@ namespace AutoRest.TypeScript.Azure
 
 
         /// <summary>
-        /// Generate Azure TypeScript client code 
+        /// Generate Azure TypeScript client code
         /// </summary>
         /// <param name="cm"></param>
         /// <returns></returns>
@@ -46,6 +46,7 @@ namespace AutoRest.TypeScript.Azure
             // Service client
             var serviceClientTemplate = new AzureServiceClientTemplate { Model = codeModel };
             await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");
+            await Write(new AzureServiceClientContextTemplate { Model = codeModel }, codeModel.ContextName.ToCamelCase() + ".ts");
             var modelIndexTemplate = new AzureModelIndexTemplate { Model = codeModel };
             await Write(modelIndexTemplate, Path.Combine("models", "index.ts"));
             var mapperIndexTemplate = new AzureMapperIndexTemplate { Model = codeModel };
@@ -56,7 +57,7 @@ namespace AutoRest.TypeScript.Azure
             {
                 var methodGroupIndexTemplate = new MethodGroupIndexTemplate { Model = codeModel };
                 await Write(methodGroupIndexTemplate, Path.Combine("operations", "index.ts"));
-                
+
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
                     var methodGroupTemplate = new AzureMethodGroupTemplate { Model = methodGroupModel };

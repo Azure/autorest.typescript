@@ -8,21 +8,15 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestParameterizedHostTestClientContext } from "./autoRestParameterizedHostTestClientContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
-  host?: string;
-  baseUri: string;
+class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
 
   // Operation groups
   paths: operations.Paths;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -42,28 +36,8 @@ class AutoRestParameterizedHostTestClient extends msRest.ServiceClient {
    *
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.host = 'host';
-    this.baseUri = "http://{accountName}{host}";
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.host !== null && options.host !== undefined) {
-      this.host = options.host;
-    }
+    super(options);
     this.paths = new operations.Paths(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

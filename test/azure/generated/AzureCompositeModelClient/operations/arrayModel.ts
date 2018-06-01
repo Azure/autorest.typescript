@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AzureCompositeModel } from "../azureCompositeModel";
+import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a ArrayModel. */
 export class ArrayModel {
-  private readonly client: AzureCompositeModel;
+  private readonly client: AzureCompositeModelContext;
   /**
    * Create a ArrayModel.
-   * @param {AzureCompositeModel} client Reference to the service client.
+   * @param {AzureCompositeModelContext} client Reference to the service client.
    */
-  constructor(client: AzureCompositeModel) {
+  constructor(client: AzureCompositeModelContext) {
     this.client = client;
   }
 

@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestSwaggerBATArrayService } from "../autoRestSwaggerBATArrayService";
+import { AutoRestSwaggerBATArrayServiceContext } from "../autoRestSwaggerBATArrayServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a ArrayModel. */
 export class ArrayModel {
-  private readonly client: AutoRestSwaggerBATArrayService;
+  private readonly client: AutoRestSwaggerBATArrayServiceContext;
   /**
    * Create a ArrayModel.
-   * @param {AutoRestSwaggerBATArrayService} client Reference to the service client.
+   * @param {AutoRestSwaggerBATArrayServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestSwaggerBATArrayService) {
+  constructor(client: AutoRestSwaggerBATArrayServiceContext) {
     this.client = client;
   }
 

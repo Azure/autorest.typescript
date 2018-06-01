@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { StorageManagementClient } from "../storageManagementClient";
+import { StorageManagementClientContext } from "../storageManagementClientContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a UsageOperations. */
 export class UsageOperations {
-  private readonly client: StorageManagementClient;
+  private readonly client: StorageManagementClientContext;
   /**
    * Create a UsageOperations.
-   * @param {StorageManagementClient} client Reference to the service client.
+   * @param {StorageManagementClientContext} client Reference to the service client.
    */
-  constructor(client: StorageManagementClient) {
+  constructor(client: StorageManagementClientContext) {
     this.client = client;
   }
 

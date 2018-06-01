@@ -11,18 +11,18 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/mappers";
-import { AutoRestParameterGroupingTestService } from "../autoRestParameterGroupingTestService";
+import { AutoRestParameterGroupingTestServiceContext } from "../autoRestParameterGroupingTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a ParameterGrouping. */
 export class ParameterGrouping {
-  private readonly client: AutoRestParameterGroupingTestService;
+  private readonly client: AutoRestParameterGroupingTestServiceContext;
   /**
    * Create a ParameterGrouping.
-   * @param {AutoRestParameterGroupingTestService} client Reference to the service client.
+   * @param {AutoRestParameterGroupingTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestParameterGroupingTestService) {
+  constructor(client: AutoRestParameterGroupingTestServiceContext) {
     this.client = client;
   }
 

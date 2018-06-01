@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.IO;
@@ -26,7 +26,7 @@ namespace AutoRest.TypeScript
         public override string UsageInstructions => $"The {ClientRuntimePackage} or higher npm package is required to execute the generated code.";
 
         /// <summary>
-        ///     Generate TypeScript client code 
+        ///     Generate TypeScript client code
         /// </summary>
         /// <param name="serviceClient"></param>
         /// <returns></returns>
@@ -44,6 +44,7 @@ namespace AutoRest.TypeScript
             // Service client
             var serviceClientTemplate = new ServiceClientTemplate {Model = codeModel};
             await Write(serviceClientTemplate, codeModel.Name.ToCamelCase() + ".ts");
+            await Write(new ServiceClientContextTemplate {Model = codeModel }, codeModel.ContextName.ToCamelCase() + ".ts");
 
             //Models
             if (codeModel.ModelTypes.Any())

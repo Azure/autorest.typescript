@@ -12,16 +12,12 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "./autoRestUrlMutliCollectionFormatTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestUrlMutliCollectionFormatTestService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollectionFormatTestServiceContext {
 
   // Operation groups
   queries: operations.Queries;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,27 +37,8 @@ class AutoRestUrlMutliCollectionFormatTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.queries = new operations.Queries(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

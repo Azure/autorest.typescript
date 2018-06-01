@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestParameterizedHostTestClient } from "../autoRestParameterizedHostTestClient";
+import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Paths. */
 export class Paths {
-  private readonly client: AutoRestParameterizedHostTestClient;
+  private readonly client: AutoRestParameterizedHostTestClientContext;
   /**
    * Create a Paths.
-   * @param {AutoRestParameterizedHostTestClient} client Reference to the service client.
+   * @param {AutoRestParameterizedHostTestClientContext} client Reference to the service client.
    */
-  constructor(client: AutoRestParameterizedHostTestClient) {
+  constructor(client: AutoRestParameterizedHostTestClientContext) {
     this.client = client;
   }
 

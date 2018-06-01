@@ -8,29 +8,20 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestParameterizedCustomHostTestClientContext } from "./autoRestParameterizedCustomHostTestClientContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestParameterizedCustomHostTestClient extends msRest.ServiceClient {
-  subscriptionId: string;
-  dnsSuffix?: string;
-  baseUri: string;
+class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCustomHostTestClientContext {
 
   // Operation groups
   paths: operations.Paths;
-  serializer: msRest.Serializer;
 
   /**
    * @class
    * Initializes a new instance of the AutoRestParameterizedCustomHostTestClient class.
    * @constructor
-   *
-   * @param {string} subscriptionId - The subscription id with value 'test12'.
    *
    * @param {object} [options] - The parameter options
    *
@@ -45,32 +36,8 @@ class AutoRestParameterizedCustomHostTestClient extends msRest.ServiceClient {
    *
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
-    if (subscriptionId === null || subscriptionId === undefined) {
-      throw new Error('\'subscriptionId\' cannot be null.');
-    }
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.dnsSuffix = 'host';
-    this.baseUri = "{vault}{secret}{dnsSuffix}";
-    this.subscriptionId = subscriptionId;
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
-      this.dnsSuffix = options.dnsSuffix;
-    }
+    super(subscriptionId, options);
     this.paths = new operations.Paths(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

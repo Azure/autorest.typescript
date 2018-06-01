@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestRFC1123DateTimeTestService } from "../autoRestRFC1123DateTimeTestService";
+import { AutoRestRFC1123DateTimeTestServiceContext } from "../autoRestRFC1123DateTimeTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Datetimerfc1123. */
 export class Datetimerfc1123 {
-  private readonly client: AutoRestRFC1123DateTimeTestService;
+  private readonly client: AutoRestRFC1123DateTimeTestServiceContext;
   /**
    * Create a Datetimerfc1123.
-   * @param {AutoRestRFC1123DateTimeTestService} client Reference to the service client.
+   * @param {AutoRestRFC1123DateTimeTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestRFC1123DateTimeTestService) {
+  constructor(client: AutoRestRFC1123DateTimeTestServiceContext) {
     this.client = client;
   }
 

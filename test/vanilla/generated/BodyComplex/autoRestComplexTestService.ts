@@ -12,13 +12,9 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestComplexTestServiceContext } from "./autoRestComplexTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestComplexTestService extends msRest.ServiceClient {
-  apiVersion: string;
-  baseUri: string;
+class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
 
   // Operation groups
   basic: operations.BasicOperations;
@@ -29,7 +25,6 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
   polymorphism: operations.Polymorphism;
   polymorphicrecursive: operations.Polymorphicrecursive;
   readonlyproperty: operations.Readonlyproperty;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -49,26 +44,7 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.apiVersion = '2014-04-01-preview';
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);
@@ -77,7 +53,6 @@ class AutoRestComplexTestService extends msRest.ServiceClient {
     this.polymorphism = new operations.Polymorphism(this);
     this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
     this.readonlyproperty = new operations.Readonlyproperty(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

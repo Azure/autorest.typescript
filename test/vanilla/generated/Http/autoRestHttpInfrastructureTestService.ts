@@ -12,12 +12,9 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestHttpInfrastructureTestServiceContext } from "./autoRestHttpInfrastructureTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTestServiceContext {
 
   // Operation groups
   httpFailure: operations.HttpFailure;
@@ -27,7 +24,6 @@ class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
   httpServerFailure: operations.HttpServerFailure;
   httpRetry: operations.HttpRetry;
   multipleResponses: operations.MultipleResponses;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -47,25 +43,7 @@ class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost:3000";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.httpFailure = new operations.HttpFailure(this);
     this.httpSuccess = new operations.HttpSuccess(this);
     this.httpRedirects = new operations.HttpRedirects(this);
@@ -73,7 +51,6 @@ class AutoRestHttpInfrastructureTestService extends msRest.ServiceClient {
     this.httpServerFailure = new operations.HttpServerFailure(this);
     this.httpRetry = new operations.HttpRetry(this);
     this.multipleResponses = new operations.MultipleResponses(this);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }
 

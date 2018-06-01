@@ -12,16 +12,12 @@ import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
+import { AutoRestSwaggerBATXMLServiceContext } from "./autoRestSwaggerBATXMLServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
-class AutoRestSwaggerBATXMLService extends msRest.ServiceClient {
-  baseUri: string;
+class AutoRestSwaggerBATXMLService extends AutoRestSwaggerBATXMLServiceContext {
 
   // Operation groups
   xml: operations.Xml;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,27 +37,8 @@ class AutoRestSwaggerBATXMLService extends msRest.ServiceClient {
    *
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
-
-    if (!options) {
-      options = {};
-    }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, true)
-      };
-    }
-
-    super(undefined, options);
-
-    this.baseUri = baseUri as string;
-    if (!this.baseUri) {
-      this.baseUri = "http://localhost";
-    }
-
-    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
+    super(baseUri, options);
     this.xml = new operations.Xml(this);
-    this.serializer = new msRest.Serializer(Mappers, true);
   }
 }
 

@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestParameterFlattening } from "../autoRestParameterFlattening";
+import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a AvailabilitySets. */
 export class AvailabilitySets {
-  private readonly client: AutoRestParameterFlattening;
+  private readonly client: AutoRestParameterFlatteningContext;
   /**
    * Create a AvailabilitySets.
-   * @param {AutoRestParameterFlattening} client Reference to the service client.
+   * @param {AutoRestParameterFlatteningContext} client Reference to the service client.
    */
-  constructor(client: AutoRestParameterFlattening) {
+  constructor(client: AutoRestParameterFlatteningContext) {
     this.client = client;
   }
 

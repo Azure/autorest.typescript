@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestBoolTestService } from "../autoRestBoolTestService";
+import { AutoRestBoolTestServiceContext } from "../autoRestBoolTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Bool. */
 export class Bool {
-  private readonly client: AutoRestBoolTestService;
+  private readonly client: AutoRestBoolTestServiceContext;
   /**
    * Create a Bool.
-   * @param {AutoRestBoolTestService} client Reference to the service client.
+   * @param {AutoRestBoolTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestBoolTestService) {
+  constructor(client: AutoRestBoolTestServiceContext) {
     this.client = client;
   }
 

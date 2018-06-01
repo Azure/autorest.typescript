@@ -10,18 +10,18 @@
 
 import * as msRest from "ms-rest-js";
 import * as Mappers from "../models/mappers";
-import { AutoRestDurationTestService } from "../autoRestDurationTestService";
+import { AutoRestDurationTestServiceContext } from "../autoRestDurationTestServiceContext";
 
 const WebResource = msRest.WebResource;
 
 /** Class representing a Duration. */
 export class Duration {
-  private readonly client: AutoRestDurationTestService;
+  private readonly client: AutoRestDurationTestServiceContext;
   /**
    * Create a Duration.
-   * @param {AutoRestDurationTestService} client Reference to the service client.
+   * @param {AutoRestDurationTestServiceContext} client Reference to the service client.
    */
-  constructor(client: AutoRestDurationTestService) {
+  constructor(client: AutoRestDurationTestServiceContext) {
     this.client = client;
   }
 
