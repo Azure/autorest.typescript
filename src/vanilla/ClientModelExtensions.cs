@@ -1,16 +1,15 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using AutoRest.TypeScript.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using static AutoRest.Core.Utilities.DependencyInjection;
 
 namespace AutoRest.TypeScript
@@ -673,8 +672,8 @@ namespace AutoRest.TypeScript
 
             value.Object(mapper =>
             {
-                bool wroteXmlName = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
-                if (wroteXmlName)
+                bool addXmlNameFromParameterValue = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
+                if (addXmlNameFromParameterValue)
                 {
                     mapper.QuotedStringProperty("xmlName", xmlName);
                 }
@@ -700,7 +699,7 @@ namespace AutoRest.TypeScript
                             mapper.BooleanProperty("xmlIsWrapped", true);
                         }
 
-                        if (!wroteXmlName && !string.IsNullOrEmpty(property.XmlName))
+                        if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(property.XmlName))
                         {
                             mapper.QuotedStringProperty("xmlName", property.XmlName);
                         }
