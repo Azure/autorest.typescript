@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
 
   /**

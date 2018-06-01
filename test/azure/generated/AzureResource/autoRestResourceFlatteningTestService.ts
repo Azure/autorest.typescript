@@ -15,17 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestResourceFlatteningTestServiceContext } from "./autoRestResourceFlatteningTestServiceContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTestServiceContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class
@@ -54,7 +45,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

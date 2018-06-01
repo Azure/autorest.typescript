@@ -15,17 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestLongRunningOperationTestServiceContext } from "./autoRestLongRunningOperationTestServiceContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperationTestServiceContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   lROs: operations.LROs;
@@ -64,7 +55,6 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
     this.lRORetrys = new operations.LRORetrys(this);
     this.lROSADs = new operations.LROSADs(this);
     this.lROsCustomHeader = new operations.LROsCustomHeader(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

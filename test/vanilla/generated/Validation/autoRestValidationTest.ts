@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestValidationTest extends AutoRestValidationTestContext {
 
   /**

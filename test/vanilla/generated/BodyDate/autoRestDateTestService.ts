@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestDateTestServiceContext } from "./autoRestDateTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestDateTestService extends AutoRestDateTestServiceContext {
 
   // Operation groups

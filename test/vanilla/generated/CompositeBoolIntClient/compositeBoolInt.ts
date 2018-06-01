@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { CompositeBoolIntContext } from "./compositeBoolIntContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class CompositeBoolInt extends CompositeBoolIntContext {
 
   // Operation groups

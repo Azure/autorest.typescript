@@ -8,9 +8,9 @@
  * regenerated.
  */
 
+import * as Models from "./models";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 
 const packageName = "";
@@ -67,8 +67,9 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
         serializer: new msRest.Serializer(Mappers, false)
       };
     }
-
     super(credentials, options);
+
+    this.serializer = new msRest.Serializer(Mappers);
 
     this.host = 'host';
     this.acceptLanguage = 'en-US';

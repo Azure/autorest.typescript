@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestSwaggerBATHeaderServiceContext } from "./autoRestSwaggerBATHeaderServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceContext {
 
   // Operation groups

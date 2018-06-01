@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestRFC1123DateTimeTestServiceContext } from "./autoRestRFC1123DateTimeTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServiceContext {
 
   // Operation groups

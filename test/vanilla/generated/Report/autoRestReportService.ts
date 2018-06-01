@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestReportService extends AutoRestReportServiceContext {
 
   /**

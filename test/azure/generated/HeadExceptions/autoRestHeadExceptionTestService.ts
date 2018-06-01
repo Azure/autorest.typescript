@@ -15,17 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestHeadExceptionTestServiceContext } from "./autoRestHeadExceptionTestServiceContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   headException: operations.HeadException;
@@ -58,7 +49,6 @@ class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceC
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
     this.headException = new operations.HeadException(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

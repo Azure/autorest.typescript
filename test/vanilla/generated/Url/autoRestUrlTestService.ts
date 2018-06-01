@@ -8,14 +8,10 @@
  * regenerated.
  */
 
-import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestUrlTestServiceContext } from "./autoRestUrlTestServiceContext";
-
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
 

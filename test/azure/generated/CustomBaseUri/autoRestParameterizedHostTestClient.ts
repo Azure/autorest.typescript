@@ -11,23 +11,11 @@
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestParameterizedHostTestClientContext } from "./autoRestParameterizedHostTestClientContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  host: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   paths: operations.Paths;
@@ -60,7 +48,6 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(credentials, options);
     this.paths = new operations.Paths(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

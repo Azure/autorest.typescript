@@ -15,17 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestParameterGroupingTestServiceContext } from "./autoRestParameterGroupingTestServiceContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTestServiceContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   parameterGrouping: operations.ParameterGrouping;
@@ -58,7 +49,6 @@ class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTest
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
     this.parameterGrouping = new operations.ParameterGrouping(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

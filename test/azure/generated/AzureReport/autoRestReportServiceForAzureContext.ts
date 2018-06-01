@@ -10,9 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-const WebResource = msRest.WebResource;
 
 const packageName = "";
 const packageVersion = "";
@@ -66,8 +64,9 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
         serializer: new msRest.Serializer(Mappers, false)
       };
     }
-
     super(credentials, options);
+
+    this.serializer = new msRest.Serializer(Mappers);
 
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;

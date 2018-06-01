@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import { ComplexModelClientContext } from "./complexModelClientContext";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
-
 class ComplexModelClient extends ComplexModelClientContext {
 
   /**

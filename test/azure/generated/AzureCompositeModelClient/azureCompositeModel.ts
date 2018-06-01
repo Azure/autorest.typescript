@@ -16,19 +16,8 @@ import { AzureCompositeModelContext } from "./azureCompositeModelContext";
 import * as operations from "./operations";
 const WebResource = msRest.WebResource;
 
-const packageName = "";
-const packageVersion = "";
 
 class AzureCompositeModel extends AzureCompositeModelContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  subscriptionId: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   basic: operations.BasicOperations;
@@ -75,7 +64,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     this.polymorphism = new operations.Polymorphism(this);
     this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
     this.readonlyproperty = new operations.Readonlyproperty(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

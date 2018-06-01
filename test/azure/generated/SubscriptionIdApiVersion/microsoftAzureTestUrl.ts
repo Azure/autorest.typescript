@@ -15,21 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { MicrosoftAzureTestUrlContext } from "./microsoftAzureTestUrlContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  subscriptionId: string;
-
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   group: operations.Group;
@@ -64,7 +51,6 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, subscriptionId, baseUri, options);
     this.group = new operations.Group(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "./autoRestUrlMutliCollectionFormatTestServiceContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollectionFormatTestServiceContext {
 
   // Operation groups

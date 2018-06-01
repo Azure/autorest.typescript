@@ -14,9 +14,6 @@ import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestParameterFlatteningContext } from "./autoRestParameterFlatteningContext";
 
-const packageName = "";
-const packageVersion = "";
-
 class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
 
   // Operation groups

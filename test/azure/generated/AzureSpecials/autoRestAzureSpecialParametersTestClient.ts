@@ -15,21 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestAzureSpecialParametersTestClientContext } from "./autoRestAzureSpecialParametersTestClientContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParametersTestClientContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  subscriptionId: string;
-
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   xMsClientRequestId: operations.XMsClientRequestId;
@@ -78,7 +65,6 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
     this.skipUrlEncoding = new operations.SkipUrlEncoding(this);
     this.odata = new operations.Odata(this);
     this.header = new operations.Header(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

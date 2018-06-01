@@ -15,21 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { StorageManagementClientContext } from "./storageManagementClientContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class StorageManagementClient extends StorageManagementClientContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  subscriptionId: string;
-
-  apiVersion: string;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   storageAccounts: operations.StorageAccounts;
@@ -66,7 +53,6 @@ class StorageManagementClient extends StorageManagementClientContext {
     super(credentials, subscriptionId, baseUri, options);
     this.storageAccounts = new operations.StorageAccounts(this);
     this.usage = new operations.UsageOperations(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 

@@ -15,17 +15,8 @@ import * as msRestAzure from "ms-rest-azure-js";
 import { AutoRestPagingTestServiceContext } from "./autoRestPagingTestServiceContext";
 import * as operations from "./operations";
 
-const packageName = "";
-const packageVersion = "";
 
 class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
-
-  credentials: msRest.ServiceClientCredentials;
-
-  acceptLanguage: string;
-
-  longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   // Operation groups
   paging: operations.Paging;
@@ -58,7 +49,6 @@ class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
     this.paging = new operations.Paging(this);
-    this.serializer = new msRest.Serializer(Mappers);
   }
 }
 
