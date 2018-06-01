@@ -12,7 +12,13 @@
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
+@{
+bool usesAzureOptionsType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions";
+if (usesAzureOptionsType)
+{
+@:import * as msRestAzure from "ms-rest-azure-js";
+}
+}
 import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 @if (Model.MethodGroupModels.Any()) {
 @:import * as operations from "./operations";
@@ -22,19 +28,10 @@ import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 @:const WebResource = msRest.WebResource;
 }
 @EmptyLine
-const packageName = "@Model.PackageName";
-const packageVersion = "@Model.PackageVersion";
 @{var requiredParameters = Model.Properties.Where(p => p.IsRequired && !p.IsConstant && string.IsNullOrEmpty(p.DefaultValue));}
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant && !p.Name.EqualsIgnoreCase("apiVersion"));}
 @EmptyLine
 class @(Model.Name) extends @(Model.ContextName) {
-
-@foreach (var property in Model.Properties.Where(p => p.Name != "generateClientRequestId"))
-{
-  @EmptyLine
-  @:@(property.Name): @(property.ModelType.TSType(false));
-}
-  baseUri: string;
 @if (Model.MethodGroupModels.Any())
 {
   @EmptyLine
@@ -82,7 +79,6 @@ foreach (var methodGroup in Model.MethodGroupModels)
   {
     @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
   }
-    this.serializer = new msRest.Serializer(Mappers);
   }
 @foreach (var method in Model.MethodTemplateModels)
 {

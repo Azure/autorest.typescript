@@ -8,7 +8,13 @@
 @Header(" * ")
  */
 @EmptyLine
-import * as msRest from "ms-rest-js";
+@{
+bool usesBaseOptionsType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions";
+if (usesBaseOptionsType)
+{
+@:import * as msRest from "ms-rest-js";
+}
+}
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 @if (Model.MethodGroupModels.Any()) {
@@ -19,9 +25,6 @@ import { @(Model.ContextName) } from "./@(Model.ContextName.ToCamelCase())";
 {
 @:const WebResource = msRest.WebResource;
 }
-@EmptyLine
-const packageName = "@Model.PackageName";
-const packageVersion = "@Model.PackageVersion";
 @{var optionalParameters = Model.Properties.Where(p => (!p.IsRequired || p.IsRequired && !string.IsNullOrEmpty(p.DefaultValue)) && !p.IsConstant);}
 @EmptyLine
 class @(Model.Name) extends @(Model.ContextName) {

@@ -9,14 +9,16 @@
 @Header(" * ")
  */
 @EmptyLine
+@{
+bool usesCustomOptionsType = Model.OptionalParameterTypeForClientConstructor != "AzureServiceClientOptions";
+if (usesCustomOptionsType)
+{
+@:import * as Models from "./models";
+}
+}
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-@if (Model.MethodTemplateModels.Any())
-{
-@:const WebResource = msRest.WebResource;
-}
 @EmptyLine
 const packageName = "@Model.PackageName";
 const packageVersion = "@Model.PackageVersion";
@@ -80,8 +82,9 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
         serializer: new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()))
       };
     }
-    @EmptyLine
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
+    @EmptyLine
+    this.serializer = new msRest.Serializer(Mappers);
     @EmptyLine
 @foreach (var property in Model.Properties.Where(p => p.DefaultValue != null && p.Name != "generateClientRequestId"))
 {
