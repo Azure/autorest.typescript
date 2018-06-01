@@ -3,7 +3,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es6",
     "lib": [
       "dom",
       "es2015"
