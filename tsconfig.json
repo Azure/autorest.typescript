@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "sourceMap": true,
-    "target": "es2017",
+    "importHelpers": true,
+    "target": "es6",
     "lib": [
       "dom",
       "es2015"
