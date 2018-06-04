@@ -33,7 +33,7 @@ If you want to generate metadata files provide `--generate-metadata=true`
 autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true
 ```
 
-###Azure Service Client
+### Azure Service Client
 For generating a client for an azure service, provide `--typescript.azure-arm=true`:
 ```
 autorest --typescript --output-folder=<path-to-the-output-folder(usually upto lib folder of your project)> --license-header=MICROSOFT_MIT_NO_VERSION --input-file=<path-to-swagger-spec> --package-name=<your-package-name> --package-version<your-package-version> --generate-metadata=true --typescript.azure-arm=true
