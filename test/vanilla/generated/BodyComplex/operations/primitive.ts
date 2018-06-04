@@ -1644,8 +1644,8 @@ export class Primitive {
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
     try {
-      if (field && !Buffer.isBuffer(field)) {
-        throw new Error('field must be of type buffer.');
+      if (field && !(field instanceof Uint8Array)) {
+        throw new Error('field must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);

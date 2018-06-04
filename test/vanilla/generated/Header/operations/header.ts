@@ -2293,7 +2293,8 @@ export class Header {
    * @param {string} scenario Send a post request with header values "scenario":
    * "valid"
    *
-   * @param {Buffer} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @param {Uint8Array} value Send a post request with header values
+   * "啊齄丂狛狜隣郎隣兀﨩"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -2303,15 +2304,15 @@ export class Header {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async paramByteWithHttpOperationResponse(scenario: string, value: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
       if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
         throw new Error('scenario cannot be null or undefined and it must be of type string.');
       }
-      if (!Buffer.isBuffer(value)) {
-        throw new Error('value cannot be null or undefined and it must be of type buffer.');
+      if (!(value instanceof Uint8Array)) {
+        throw new Error('value cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -3907,7 +3908,8 @@ export class Header {
    * @param {string} scenario Send a post request with header values "scenario":
    * "valid"
    *
-   * @param {Buffer} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @param {Uint8Array} value Send a post request with header values
+   * "啊齄丂狛狜隣郎隣兀﨩"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -3923,11 +3925,11 @@ export class Header {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  paramByte(scenario: string, value: Buffer): Promise<void>;
-  paramByte(scenario: string, value: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  paramByte(scenario: string, value: Buffer, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  paramByte(scenario: string, value: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  paramByte(scenario: string, value: Uint8Array): Promise<void>;
+  paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  paramByte(scenario: string, value: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  paramByte(scenario: string, value: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  paramByte(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

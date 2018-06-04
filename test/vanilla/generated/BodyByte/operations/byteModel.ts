@@ -36,7 +36,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -116,7 +116,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -196,7 +196,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getNonAsciiWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -268,8 +268,8 @@ export class ByteModel {
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {Buffer} byteBody Base64-encoded non-ascii byte string hex(FF FE FD
-   * FC FB FA F9 F8 F7 F6)
+   * @param {Uint8Array} byteBody Base64-encoded non-ascii byte string hex(FF FE
+   * FD FC FB FA F9 F8 F7 F6)
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -279,12 +279,12 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putNonAsciiWithHttpOperationResponse(byteBody: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
-      if (!Buffer.isBuffer(byteBody)) {
-        throw new Error('byteBody cannot be null or undefined and it must be of type buffer.');
+      if (!(byteBody instanceof Uint8Array)) {
+        throw new Error('byteBody cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -360,7 +360,7 @@ export class ByteModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -440,25 +440,25 @@ export class ByteModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNull(): Promise<Buffer>;
-  getNull(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getNull(callback: msRest.ServiceCallback<Buffer>): void;
-  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getNull(): Promise<Uint8Array>;
+  getNull(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getNull(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -467,7 +467,7 @@ export class ByteModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }
@@ -484,25 +484,25 @@ export class ByteModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEmpty(): Promise<Buffer>;
-  getEmpty(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getEmpty(callback: msRest.ServiceCallback<Buffer>): void;
-  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getEmpty(): Promise<Uint8Array>;
+  getEmpty(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getEmpty(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getEmpty(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getEmpty(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getEmptyWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -511,7 +511,7 @@ export class ByteModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }
@@ -528,25 +528,25 @@ export class ByteModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNonAscii(): Promise<Buffer>;
-  getNonAscii(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getNonAscii(callback: msRest.ServiceCallback<Buffer>): void;
-  getNonAscii(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getNonAscii(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getNonAscii(): Promise<Uint8Array>;
+  getNonAscii(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getNonAscii(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNonAscii(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNonAscii(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getNonAsciiWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -555,7 +555,7 @@ export class ByteModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }
@@ -564,8 +564,8 @@ export class ByteModel {
   /**
    * Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
    *
-   * @param {Buffer} byteBody Base64-encoded non-ascii byte string hex(FF FE FD
-   * FC FB FA F9 F8 F7 F6)
+   * @param {Uint8Array} byteBody Base64-encoded non-ascii byte string hex(FF FE
+   * FD FC FB FA F9 F8 F7 F6)
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -581,11 +581,11 @@ export class ByteModel {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putNonAscii(byteBody: Buffer): Promise<void>;
-  putNonAscii(byteBody: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  putNonAscii(byteBody: Buffer, callback: msRest.ServiceCallback<void>): void;
-  putNonAscii(byteBody: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putNonAscii(byteBody: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putNonAscii(byteBody: Uint8Array): Promise<void>;
+  putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  putNonAscii(byteBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  putNonAscii(byteBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putNonAscii(byteBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -619,25 +619,25 @@ export class ByteModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getInvalid(): Promise<Buffer>;
-  getInvalid(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getInvalid(callback: msRest.ServiceCallback<Buffer>): void;
-  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getInvalid(): Promise<Uint8Array>;
+  getInvalid(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getInvalid(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getInvalid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getInvalid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getInvalidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -646,7 +646,7 @@ export class ByteModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }

@@ -263,9 +263,9 @@ export interface Shark extends Fish {
  */
 export interface Sawshark extends Shark {
   /**
-   * @member {Buffer} [picture]
+   * @member {Uint8Array} [picture]
    */
-  picture?: Buffer;
+  picture?: Uint8Array;
 }
 
 /**
@@ -450,9 +450,9 @@ export interface DurationWrapper {
  */
 export interface ByteWrapper {
   /**
-   * @member {Buffer} [field]
+   * @member {Uint8Array} [field]
    */
-  field?: Buffer;
+  field?: Uint8Array;
 }
 
 /**
@@ -545,9 +545,9 @@ export interface PrimitivePutDurationOptionalParams extends msRest.RequestOption
  */
 export interface PrimitivePutByteOptionalParams extends msRest.RequestOptionsBase {
   /**
-   * @member {Buffer} [field]
+   * @member {Uint8Array} [field]
    */
-  field?: Buffer;
+  field?: Uint8Array;
 }
 
 /**
