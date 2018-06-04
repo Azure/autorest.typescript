@@ -60,6 +60,14 @@ const readStreamCountBytes = async function (stream: NodeJS.ReadableStream): Pro
   });
 }
 
+function stringToByteArray(str: string): Uint8Array {
+  if (msRest.isNode) {
+    return Buffer.from(str, "utf-8");
+  } else {
+    return new TextEncoder().encode(str);
+  }
+}
+
 var clientOptions: msRest.ServiceClientOptions = { noRetryPolicy: true };
 var baseUri = 'http://localhost:3000';
 describe('typescript', function () {
@@ -442,7 +450,13 @@ describe('typescript', function () {
         testClient.string.getBase64Encoded(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          result.toString('utf8').should.equal('a string that gets encoded with base64');
+
+          const expected = 'a string that gets encoded with base64';
+          if (msRest.isNode) {
+            (result as Buffer).toString("utf8").should.equal(expected);
+          } else {
+            new TextDecoder("utf8").decode(result).should.equal(expected);
+          }
           done();
         });
       });
@@ -459,9 +473,15 @@ describe('typescript', function () {
         testClient.string.getBase64UrlEncoded(function (error, result) {
           should.not.exist(error);
           should.exist(result);
-          result.toString('utf8').should.equal('a string that gets encoded with base64url');
-          var buff = new Buffer('a string that gets encoded with base64url', 'utf8');
-          testClient.string.putBase64UrlEncoded(buff, function (error, result) {
+
+          const decodedString = 'a string that gets encoded with base64url';
+          if (msRest.isNode) {
+            (result as Buffer).toString("utf8").should.equal(decodedString);
+          } else {
+            new TextDecoder("utf8").decode(result).should.equal(decodedString);
+          }
+
+          testClient.string.putBase64UrlEncoded(stringToByteArray(decodedString), function (error, result) {
             should.not.exist(error);
             should.not.exist(result);
             done();
@@ -472,14 +492,15 @@ describe('typescript', function () {
 
     describe('Byte Client', function () {
       var testClient = new AutoRestSwaggerBATByteService(baseUri, clientOptions);
-      var bytes = new Buffer([255, 254, 253, 252, 251, 250, 249, 248, 247, 246]);
+      var bytes = new Uint8Array([255, 254, 253, 252, 251, 250, 249, 248, 247, 246]);
       it('should support valid null and empty value', function (done) {
         testClient.byteModel.getNull(function (error, result) {
           should.not.exist(result);
           should.not.exist(error);
           testClient.byteModel.getEmpty(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, new Buffer('', 'base64'));
+            result.should.be.instanceof(Uint8Array);
+            result.length.should.equal(0);
             done();
           });
         });
@@ -489,7 +510,13 @@ describe('typescript', function () {
       it('should get invalid byte value', function (done) {
         testClient.byteModel.getInvalid(function (error, result) {
           should.not.exist(error);
-          assert.deepEqual(result, new Buffer(':::SWAGGER::::', 'base64'));
+          // Base64 decoding of the string ':::SWAGGER::::'
+          const expected = new Uint8Array([73, 96, 6, 24, 68]);
+          result.length.should.equal(expected.length);
+          for (let i = 0; i < result.length; i++) {
+            console.log(result[i]);
+            result[i].should.equal(expected[i]);
+          }
           done();
         });
       });
@@ -499,7 +526,10 @@ describe('typescript', function () {
           should.not.exist(error);
           testClient.byteModel.getNonAscii(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, bytes);
+            result.length.should.equal(bytes.length);
+            for (let i = 0; i < bytes.length; i++) {
+              result[i].should.equal(bytes[i]);
+            }
             done();
           });
         });
@@ -937,9 +967,9 @@ describe('typescript', function () {
         });
 
         it('should get base64url arrays', function (done) {
-          var base64Url1 = new Buffer('a string that gets encoded with base64url', 'utf8');
-          var base64Url2 = new Buffer('test string', 'utf8');
-          var base64Url3 = new Buffer('Lorem ipsum', 'utf8');
+          var base64Url1 = stringToByteArray('a string that gets encoded with base64url');
+          var base64Url2 = stringToByteArray('test string');
+          var base64Url3 = stringToByteArray('Lorem ipsum');
           var arr = [base64Url1, base64Url2, base64Url3];
           testClient.arrayModel.getBase64Url(function (error, result) {
             should.not.exist(error);
@@ -1139,13 +1169,21 @@ describe('typescript', function () {
         });
 
         it('should get and put byte arrays', function (done) {
-          var bytes1 = new Buffer([255, 255, 255, 250]);
-          var bytes2 = new Buffer([1, 2, 3]);
-          var bytes3 = new Buffer([37, 41, 67]);
+          var bytes1 = new Uint8Array([255, 255, 255, 250]);
+          var bytes2 = new Uint8Array([1, 2, 3]);
+          var bytes3 = new Uint8Array([37, 41, 67]);
           var testArray = [bytes1, bytes2, bytes3];
           testClient.arrayModel.getByteValid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testArray);
+
+            result.length.should.equal(testArray.length);
+            for (let i = 0; i < testArray.length; i++) {
+              for (let j = 0; j < testArray[i].length; j++) {
+                result[i].length.should.equal(testArray[i].length);
+                result[i][j].should.equal(testArray[i][j]);
+              }
+            }
+
             testClient.arrayModel.putByteValid(testArray, function (error, result) {
               should.not.exist(error);
               done();
@@ -1154,11 +1192,17 @@ describe('typescript', function () {
         });
 
         it('should get byte arrays with null values', function (done) {
-          var testArray = [new Buffer([171, 172, 173]), null];
           testClient.arrayModel.getByteInvalidNull(function (error, result) {
             should.not.exist(error);
             should.exist(result);
-            assert.deepEqual(result, testArray);
+
+            result.length.should.equal(2);
+            result[0].length.should.equal(3);
+            result[0][0].should.equal(171);
+            result[0][1].should.equal(172);
+            result[0][2].should.equal(173);
+            should(result[1]).be.null;
+
             done();
           });
         });
@@ -1332,10 +1376,10 @@ describe('typescript', function () {
         });
 
         it('should get base64url dictionaries', function (done) {
-          var base64Url1 = new Buffer('a string that gets encoded with base64url', 'utf8');
-          var base64Url2 = new Buffer('test string', 'utf8');
-          var base64Url3 = new Buffer('Lorem ipsum', 'utf8');
-          var dict: { [propertyName: string]: Buffer } = { "0": base64Url1, "1": base64Url2, "2": base64Url3 };
+          var base64Url1 = stringToByteArray('a string that gets encoded with base64url');
+          var base64Url2 = stringToByteArray('test string');
+          var base64Url3 = stringToByteArray('Lorem ipsum');
+          var dict: { [propertyName: string]: Uint8Array } = { "0": base64Url1, "1": base64Url2, "2": base64Url3 };
           testClient.dictionary.getBase64Url(function (error, result) {
             should.not.exist(error);
             assert.deepEqual(result, dict);
@@ -1617,13 +1661,29 @@ describe('typescript', function () {
         });
 
         it('should get and put byte dictionaries', function (done) {
-          var bytes1 = new Buffer([255, 255, 255, 250]);
-          var bytes2 = new Buffer([1, 2, 3]);
-          var bytes3 = new Buffer([37, 41, 67]);
-          var testDictionary: { [propertyName: string]: Buffer } = { 0: bytes1, 1: bytes2, 2: bytes3 };
+          var bytes1 = new Uint8Array([255, 255, 255, 250]);
+          var bytes2 = new Uint8Array([1, 2, 3]);
+          var bytes3 = new Uint8Array([37, 41, 67]);
+          var testDictionary: { [propertyName: string]: Uint8Array } = { 0: bytes1, 1: bytes2, 2: bytes3 };
           testClient.dictionary.getByteValid(function (error, result) {
             should.not.exist(error);
-            assert.deepEqual(result, testDictionary);
+
+            result[0].length.should.equal(4);
+            result[0][0].should.equal(255);
+            result[0][1].should.equal(255);
+            result[0][2].should.equal(255);
+            result[0][3].should.equal(250);
+
+            result[1].length.should.equal(3);
+            result[1][0].should.equal(1);
+            result[1][1].should.equal(2);
+            result[1][2].should.equal(3);
+
+            result[2].length.should.equal(3);
+            result[2][0].should.equal(37);
+            result[2][1].should.equal(41);
+            result[2][2].should.equal(67);
+
             testClient.dictionary.putByteValid(testDictionary, function (error, result) {
               should.not.exist(error);
               done();
@@ -1632,11 +1692,17 @@ describe('typescript', function () {
         });
 
         it('should get byte dictionaries with null values', function (done) {
-          var testDictionary: { [propertyName: string]: Buffer } = { 0: new Buffer([171, 172, 173]), 1: null };
+          var testDictionary: { [propertyName: string]: Uint8Array } = { 0: new Uint8Array([171, 172, 173]), 1: null };
           testClient.dictionary.getByteInvalidNull(function (error, result) {
             should.not.exist(error);
             should.exist(result);
-            assert.deepEqual(result, testDictionary);
+
+            result[0].length.should.equal(3);
+            result[0][0].should.equal(171);
+            result[0][1].should.equal(172);
+            result[0][2].should.equal(173);
+            should(result[1]).be.null;
+
             done();
           });
         });
@@ -1928,7 +1994,7 @@ describe('typescript', function () {
           should.not.exist(result);
           testClient.paths.byteEmpty(function (error, result) {
             should.not.exist(error);
-            testClient.paths.byteMultiByte(new Buffer('啊齄丂狛狜隣郎隣兀﨩'), function (error, result) {
+            testClient.paths.byteMultiByte(stringToByteArray('啊齄丂狛狜隣郎隣兀﨩'), function (error, result) {
               should.not.exist(error);
               done();
             });
@@ -1949,7 +2015,7 @@ describe('typescript', function () {
       });
 
       it('should work when path has base64url encoded string', function (done) {
-        testClient.paths.base64Url(new Buffer('lorem', 'utf8'), function (error, result) {
+        testClient.paths.base64Url(stringToByteArray('lorem'), function (error, result) {
           should.not.exist(error);
           should.not.exist(result);
           done();
@@ -2138,7 +2204,7 @@ describe('typescript', function () {
       it('should work when query has byte values', function (done) {
         testClient.queries.byteEmpty(function (error, result) {
           should.not.exist(error);
-          testClient.queries.byteMultiByte({ byteQuery: new Buffer('啊齄丂狛狜隣郎隣兀﨩') }, function (error, result) {
+          testClient.queries.byteMultiByte({ byteQuery: stringToByteArray('啊齄丂狛狜隣郎隣兀﨩') }, function (error, result) {
             should.not.exist(error);
             done();
           });

@@ -162,11 +162,18 @@ describe('typescript', function () {
       });
 
       it('should send and receive byte array type headers', async function () {
-        const bytes = new Buffer('啊齄丂狛狜隣郎隣兀﨩');
+        const value = '啊齄丂狛狜隣郎隣兀﨩';
+        const bytes = msRest.isNode
+          ? Buffer.from(value, "utf8")
+          : new TextEncoder().encode(value);
         await testClient.header.paramByte('valid', bytes);
 
         const response = await testClient.header.responseByteWithHttpOperationResponse('valid');
-        response.parsedHeaders.value.equals(bytes).should.be.exactly(true);
+
+        response.parsedHeaders.value.length.should.equal(bytes.length);
+        for (let i = 0; i < bytes.length; i++) {
+          response.parsedHeaders.value[i].should.equal(bytes[i]);
+        }
       });
     });
   });

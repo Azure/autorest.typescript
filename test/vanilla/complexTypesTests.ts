@@ -194,10 +194,10 @@ describe('typescript', function () {
       });
 
       it('should get and put valid byte properties', function (done) {
-        var byteBuffer = new Buffer([255, 254, 253, 252, 0, 250, 249, 248, 247, 246]);
+        var byteBuffer = new Uint8Array([255, 254, 253, 252, 0, 250, 249, 248, 247, 246]);
         testClient.primitive.getByte(function (error, result) {
           should.not.exist(error);
-          assert.deepEqual(result.field, byteBuffer);
+          assert.deepEqual([].slice.apply(result.field), [].slice.apply(byteBuffer));
           testClient.primitive.putByte({ field: byteBuffer }, function (error, result) {
             should.not.exist(error);
             done();
@@ -316,7 +316,7 @@ describe('typescript', function () {
     });
 
     describe('Complex Types with Polymorphism Operations', function () {
-      var fish = {
+      var getFish = () => ({
         'fishtype': 'salmon',
         'location': 'alaska',
         'iswild': true,
@@ -335,7 +335,7 @@ describe('typescript', function () {
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z'),
             'length': 10.0,
-            'picture': new Buffer([255, 255, 255, 255, 254]),
+            'picture': new Uint8Array([255, 255, 255, 255, 254]),
             'species': 'dangerous'
           },
           {
@@ -348,26 +348,41 @@ describe('typescript', function () {
             'jawsize': 5
           }
         ]
-      };
+      });
       var testClient = new AutoRestComplexTestService(baseUri, clientOptions);
       it('should get valid polymorphic properties', function (done) {
         testClient.polymorphism.getValid(function (error, result) {
           should.not.exist(error);
-          assert.deepEqual(result, fish);
-          testClient.polymorphism.putValid(fish, function (error, result) {
+
+          const actualBytes = (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+          should.exist(actualBytes);
+          actualBytes.length.should.equal(5);
+          actualBytes[0].should.equal(255);
+          actualBytes[1].should.equal(255);
+          actualBytes[2].should.equal(255);
+          actualBytes[3].should.equal(255);
+          actualBytes[4].should.equal(254);
+
+          // Working around the fact that Uint8Array doesn't work with deepEqual
+          delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+          const expectedFish = getFish();
+          delete expectedFish.siblings[1].picture;
+          assert.deepEqual(result, expectedFish);
+
+          testClient.polymorphism.putValid(getFish(), function (error, result) {
             should.not.exist(error);
             done();
           });
         });
       });
-      var badfish = {
+      var getBadfish = () => ({
         'fishtype': 'sawshark',
         'species': 'snaggle toothed',
         'length': 18.5,
         'age': 2,
         'birthday': new Date('2013-06-01T01:00:00Z'),
         'location': 'alaska',
-        'picture': new Buffer([255, 255, 255, 255, 254]),
+        'picture': new Uint8Array([255, 255, 255, 255, 254]),
         'siblings': [
           {
             'fishtype': 'shark',
@@ -379,14 +394,14 @@ describe('typescript', function () {
           {
             'fishtype': 'sawshark',
             'species': 'dangerous',
-            'picture': new Buffer([255, 255, 255, 255, 254]),
+            'picture': new Uint8Array([255, 255, 255, 255, 254]),
             'length': 10,
             'age': 105
           }
         ]
-      };
+      });
       it('should throw when required fields are omitted from polymorphic types', function (done) {
-        testClient.polymorphism.putValidMissingRequired(badfish, function (error, result) {
+        testClient.polymorphism.putValidMissingRequired(getBadfish(), function (error, result) {
           should.exist(error);
           error.message.should.containEql('birthday');
           error.message.should.containEql('cannot be null or undefined');
@@ -394,7 +409,7 @@ describe('typescript', function () {
         });
       });
 
-      var rawSalmon: AutoRestComplexTestServiceModels.SmartSalmon = {
+      var getRawSalmon: () => AutoRestComplexTestServiceModels.SmartSalmon = () => ({
         "species": "king",
         "length": 1,
         "siblings": [
@@ -411,7 +426,7 @@ describe('typescript', function () {
             "fishtype": "sawshark",
             "age": 105,
             "birthday": new Date("1900-01-05T01:00:00.000Z"),
-            "picture": new Buffer([255, 255, 255, 255, 254])
+            "picture": new Uint8Array([255, 255, 255, 255, 254])
           },
           <AutoRestComplexTestServiceModels.Goblinshark>{
             "species": "scary",
@@ -426,12 +441,26 @@ describe('typescript', function () {
         "fishtype": "smart_salmon",
         "location": "alaska",
         "iswild": true
-      };
+      });
       // Still need to support additionalProperties: true.
       //Today Autorest converts additionalProperties: <boolean value> into a dictionary all the time.
       it('should get complicated polymorphic types', function (done) {
         testClient.polymorphism.getComplicated(function (err, result, req, res) {
           should.not.exist(err);
+
+          const picture = (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+          should.exist(picture);
+          picture.length.should.equal(5);
+          picture[0].should.equal(255);
+          picture[1].should.equal(255);
+          picture[2].should.equal(255);
+          picture[3].should.equal(255);
+          picture[4].should.equal(254);
+          delete (result.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+
+          const rawSalmon = getRawSalmon();
+          delete (rawSalmon.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+
           assert.deepEqual(result, rawSalmon);
           done();
         });
@@ -439,17 +468,16 @@ describe('typescript', function () {
 
       // This test will fail until we support addtionalProperties with boolean value in Autorest.
       it.skip('should put complicated polymorphic types', function (done) {
-        testClient.polymorphism.putComplicated(rawSalmon, function (err, result, req, res) {
+        testClient.polymorphism.putComplicated(getRawSalmon(), function (err, result, req, res) {
           should.not.exist(err);
-          console.dir(result, { depth: null });
-          assert.deepEqual(result, rawSalmon);
+          assert.deepEqual(result, getRawSalmon());
           done();
         });
       });
     });
 
     describe('Complex Types with recursive definitions', function () {
-      var bigfish = <AutoRestComplexTestServiceModels.Fish>{
+      var getBigfish = () => (<AutoRestComplexTestServiceModels.Fish>{
         'fishtype': 'salmon',
         'location': 'alaska',
         'iswild': true,
@@ -481,7 +509,7 @@ describe('typescript', function () {
                     'fishtype': 'sawshark',
                     'age': 105,
                     'birthday': new Date('1900-01-05T01:00:00Z'),
-                    'picture': new Buffer([255, 255, 255, 255, 254]),
+                    'picture': new Uint8Array([255, 255, 255, 255, 254]),
                     'species': 'dangerous',
                     'length': 10
                   }
@@ -491,7 +519,7 @@ describe('typescript', function () {
                 'fishtype': 'sawshark',
                 'age': 105,
                 'birthday': new Date('1900-01-05T01:00:00Z'),
-                'picture': new Buffer([255, 255, 255, 255, 254]),
+                'picture': new Uint8Array([255, 255, 255, 255, 254]),
                 'species': 'dangerous',
                 'length': 10,
                 'siblings': []
@@ -502,19 +530,41 @@ describe('typescript', function () {
             'fishtype': 'sawshark',
             'age': 105,
             'birthday': new Date('1900-01-05T01:00:00Z'),
-            'picture': new Buffer([255, 255, 255, 255, 254]),
+            'picture': new Uint8Array([255, 255, 255, 255, 254]),
             'species': 'dangerous',
             'length': 10,
             'siblings': []
           }
         ]
-      };
+      });
       var testClient = new AutoRestComplexTestService(baseUri, clientOptions);
       it('should get and put valid basic type properties', function (done) {
         testClient.polymorphicrecursive.getValid(function (error, result) {
           should.not.exist(error);
+
+          function checkSawshark(sawshark) {
+            const actualBytes = sawshark.picture;
+            should.exist(actualBytes);
+            actualBytes.length.should.equal(5);
+            actualBytes[0].should.equal(255);
+            actualBytes[1].should.equal(255);
+            actualBytes[2].should.equal(255);
+            actualBytes[3].should.equal(255);
+            actualBytes[4].should.equal(254);
+            delete sawshark.picture;
+          }
+
+          checkSawshark(result.siblings[0].siblings[0].siblings[1]);
+          checkSawshark(result.siblings[0].siblings[1]);
+          checkSawshark(result.siblings[1]);
+
+          const bigfish = getBigfish();
+          delete (bigfish.siblings[0].siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+          delete (bigfish.siblings[0].siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+          delete (bigfish.siblings[1] as AutoRestComplexTestServiceModels.Sawshark).picture;
+
           assert.deepEqual(result, bigfish);
-          testClient.polymorphicrecursive.putValid(bigfish, function (error, result) {
+          testClient.polymorphicrecursive.putValid(getBigfish(), function (error, result) {
             should.not.exist(error);
             done();
           });
