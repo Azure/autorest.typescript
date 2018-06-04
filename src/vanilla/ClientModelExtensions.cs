@@ -172,11 +172,11 @@ namespace AutoRest.TypeScript
             {
                 if (isRequired)
                 {
-                    builder.AppendLine("if (!Buffer.isBuffer({0})) {{", valueReference, lowercaseTypeName);
+                    builder.AppendLine("if (!({0} instanceof Uint8Array)) {{", valueReference, lowercaseTypeName);
                     return ConstructValidationCheck(builder, requiredTypeErrorMessage, valueReference, primary.Name).ToString();
                 }
 
-                builder.AppendLine("if ({0} && !Buffer.isBuffer({0})) {{", valueReference, lowercaseTypeName);
+                builder.AppendLine("if ({0} && !({0} instanceof Uint8Array)) {{", valueReference, lowercaseTypeName);
                 return ConstructValidationCheck(builder, typeErrorMessage, valueReference, primary.Name).ToString();
             }
             else if (primary.KnownPrimaryType == KnownPrimaryType.DateTime || primary.KnownPrimaryType == KnownPrimaryType.Date ||
@@ -239,7 +239,7 @@ namespace AutoRest.TypeScript
             else if (primary.KnownPrimaryType == KnownPrimaryType.Object)
                 return "any";   // TODO: test this
             else if (primary.KnownPrimaryType == KnownPrimaryType.ByteArray || primary.KnownPrimaryType == KnownPrimaryType.Base64Url)
-                return "Buffer";
+                return "Uint8Array";
             else if (primary.KnownPrimaryType == KnownPrimaryType.Stream)
                 return "msRest.HttpRequestBody";
             else if (primary.KnownPrimaryType == KnownPrimaryType.TimeSpan)

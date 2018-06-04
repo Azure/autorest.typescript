@@ -27,7 +27,7 @@ namespace AutoRest.TypeScript.Model
                 {
                     case KnownPrimaryType.Base64Url:
                     case KnownPrimaryType.ByteArray:
-                        return "Buffer";
+                        return "Uint8Array";
 
                     case KnownPrimaryType.Boolean:
                         return "boolean";
