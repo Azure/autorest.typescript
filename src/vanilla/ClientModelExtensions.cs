@@ -140,7 +140,7 @@ namespace AutoRest.TypeScript
                     return ConstructValidationCheck(builder, requiredTypeErrorMessage, valueReference, primary.Name).ToString();
                 }
 
-                builder.AppendLine("if ({0} !== null && {0} !== undefined && msRest.isStream({0})) {{", valueReference);
+                builder.AppendLine("if ({0} !== null && {0} !== undefined) {{", valueReference);
                 return ConstructValidationCheck(builder, typeErrorMessage, valueReference, primary.Name).ToString();
             }
             else if (primary.KnownPrimaryType == KnownPrimaryType.String)
