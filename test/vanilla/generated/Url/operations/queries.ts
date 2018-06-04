@@ -1838,7 +1838,7 @@ export class Queries {
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    let byteQuery = new Uint8Array([]);
+    let byteQuery = new Uint8Array(0);
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1863,7 +1863,7 @@ export class Queries {
                 required: true,
                 isConstant: true,
                 serializedName: "byteQuery",
-                defaultValue: new Uint8Array([]),
+                defaultValue: new Uint8Array(0),
                 type: {
                   name: "ByteArray"
                 }

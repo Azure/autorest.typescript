@@ -1433,7 +1433,7 @@ export class Paths {
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    let bytePath = new Uint8Array([]);
+    let bytePath = new Uint8Array(0);
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1458,7 +1458,7 @@ export class Paths {
                 required: true,
                 isConstant: true,
                 serializedName: "bytePath",
-                defaultValue: new Uint8Array([]),
+                defaultValue: new Uint8Array(0),
                 type: {
                   name: "ByteArray"
                 }
