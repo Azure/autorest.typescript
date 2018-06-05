@@ -7,13 +7,13 @@ for (const localDependency of localDependencies) {
 let refreshNodeModules = false;
 for (const localDependency of localDependencies) {
   const version = dependencies.getNpmPackageVersion(localDependency, "latest");
-  if (dependencies.updatePackageJsonDependency(localDependency, `^${version}`)) {
+  if (dependencies.updatePackageJsonDependency(localDependency, `~${version}`)) {
     refreshNodeModules = true;
   }
   if (localDependency === "ms-rest-js") {
-    dependencies.updateGeneratedPackageJsonMsRestJsDependencyVersion(`^${version}`);
+    dependencies.updateGeneratedPackageJsonMsRestJsDependencyVersion(`~${version}`);
   } else if (localDependency === "ms-rest-azure-js") {
-    dependencies.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(`^${version}`);
+    dependencies.updateGeneratedPackageJsonMsRestAzureJsDependencyVersion(`~${version}`);
   }
 }
 if (refreshNodeModules) {
