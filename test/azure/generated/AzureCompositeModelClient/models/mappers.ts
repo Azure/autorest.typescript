@@ -236,18 +236,7 @@ export const Dog = {
     name: "Composite",
     className: "Dog",
     modelProperties: {
-      id: {
-        serializedName: "id",
-        type: {
-          name: "Number"
-        }
-      },
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
+      ...Pet.type.modelProperties,
       food: {
         serializedName: "food",
         type: {
@@ -264,18 +253,7 @@ export const Cat = {
     name: "Composite",
     className: "Cat",
     modelProperties: {
-      id: {
-        serializedName: "id",
-        type: {
-          name: "Number"
-        }
-      },
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
+      ...Pet.type.modelProperties,
       color: {
         serializedName: "color",
         type: {
@@ -305,37 +283,7 @@ export const Siamese = {
     name: "Composite",
     className: "Siamese",
     modelProperties: {
-      id: {
-        serializedName: "id",
-        type: {
-          name: "Number"
-        }
-      },
-      name: {
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      color: {
-        serializedName: "color",
-        type: {
-          name: "String"
-        }
-      },
-      hates: {
-        serializedName: "hates",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "DogElementType",
-            type: {
-              name: "Composite",
-              className: "Dog"
-            }
-          }
-        }
-      },
+      ...Cat.type.modelProperties,
       breed: {
         serializedName: "breed",
         type: {
@@ -405,44 +353,7 @@ export const Salmon = {
     name: "Composite",
     className: "Salmon",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
+      ...Fish.type.modelProperties,
       location: {
         serializedName: "location",
         type: {
@@ -465,56 +376,7 @@ export const SmartSalmon = {
     name: "Composite",
     className: "SmartSalmon",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      iswild: {
-        serializedName: "iswild",
-        type: {
-          name: "Boolean"
-        }
-      },
+      ...Salmon.type.modelProperties,
       additionalProperties: {
         type: {
           name: "Dictionary",
@@ -542,44 +404,7 @@ export const Shark = {
     name: "Composite",
     className: "Shark",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
+      ...Fish.type.modelProperties,
       age: {
         serializedName: "age",
         type: {
@@ -603,57 +428,7 @@ export const Sawshark = {
     name: "Composite",
     className: "Sawshark",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
-      age: {
-        serializedName: "age",
-        type: {
-          name: "Number"
-        }
-      },
-      birthday: {
-        required: true,
-        serializedName: "birthday",
-        type: {
-          name: "DateTime"
-        }
-      },
+      ...Shark.type.modelProperties,
       picture: {
         serializedName: "picture",
         type: {
@@ -670,57 +445,7 @@ export const Goblinshark = {
     name: "Composite",
     className: "Goblinshark",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
-      age: {
-        serializedName: "age",
-        type: {
-          name: "Number"
-        }
-      },
-      birthday: {
-        required: true,
-        serializedName: "birthday",
-        type: {
-          name: "DateTime"
-        }
-      },
+      ...Shark.type.modelProperties,
       jawsize: {
         serializedName: "jawsize",
         type: {
@@ -744,57 +469,7 @@ export const Cookiecuttershark = {
     name: "Composite",
     className: "Cookiecuttershark",
     modelProperties: {
-      species: {
-        serializedName: "species",
-        type: {
-          name: "String"
-        }
-      },
-      length: {
-        required: true,
-        serializedName: "length",
-        type: {
-          name: "Number"
-        }
-      },
-      siblings: {
-        serializedName: "siblings",
-        type: {
-          name: "Sequence",
-          element: {
-            serializedName: "FishElementType",
-            type: {
-              name: "Composite",
-              polymorphicDiscriminator: {
-                serializedName: "fishtype",
-                clientName: "fishtype"
-              },
-              uberParent: "Fish",
-              className: "Fish"
-            }
-          }
-        }
-      },
-      fishtype: {
-        required: true,
-        serializedName: "fishtype",
-        type: {
-          name: "String"
-        }
-      },
-      age: {
-        serializedName: "age",
-        type: {
-          name: "Number"
-        }
-      },
-      birthday: {
-        required: true,
-        serializedName: "birthday",
-        type: {
-          name: "DateTime"
-        }
-      }
+      ...Shark.type.modelProperties
     }
   }
 };
