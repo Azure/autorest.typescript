@@ -60,8 +60,8 @@ task 'test/chrome-unit', 'run browser unit tests', [], (done) ->
 
 # CI job
 task 'testci', "more", [], (done) ->
-  # reset AutoRest
-  await autorest ["--reset"], defer code, stderr, stdout
+  # install latest AutoRest
+  await autorest ["--latest"], defer code, stderr, stdout
 
   ## TEST SUITE
   global.verbose = true
