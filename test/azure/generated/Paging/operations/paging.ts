@@ -1394,6 +1394,52 @@ export class Paging {
     return Promise.resolve(operationRes);
   }
 
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginGetMultiplePagesLROWithHttpOperationResponse(options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.ProductResult;
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
   /**
    * A paging operation that doesn't return a full URL, just a fragment
    *
@@ -1695,6 +1741,161 @@ export class Paging {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.OdataProductResult;
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    let client = this.client;
+    let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
+    let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
+    // Validate
+    try {
+      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
+        throw new Error('clientRequestId must be of type string.');
+      }
+      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
+        throw new Error('this.client.acceptLanguage must be of type string.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    let maxresults: any;
+    let timeout: any;
+    try {
+      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
+      {
+        maxresults = pagingGetMultiplePagesLROOptions.maxresults;
+        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
+          throw new Error('maxresults must be of type number.');
+        }
+      }
+      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
+      {
+        timeout = pagingGetMultiplePagesLROOptions.timeout;
+        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
+          throw new Error('timeout must be of type number.');
+        }
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "paging/multiple/lro",
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              mapper: {
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            {
+              parameterName: "maxresults",
+              mapper: {
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
+            },
+            {
+              parameterName: "timeout",
+              mapper: {
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          ]
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.ProductResult;
             operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
@@ -2949,6 +3150,230 @@ export class Paging {
     return Promise.resolve(operationRes);
   }
 
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {string} nextPageLink The NextLink from the previous successful call
+   * to List operation.
+   *
+   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.ProductResult;
+          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {string} nextPageLink The NextLink from the previous successful call
+   * to List operation.
+   *
+   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
+    let client = this.client;
+    let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
+    let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
+    // Validate
+    try {
+      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
+        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
+      }
+      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
+        throw new Error('clientRequestId must be of type string.');
+      }
+      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
+        throw new Error('this.client.acceptLanguage must be of type string.');
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    let maxresults: any;
+    let timeout: any;
+    try {
+      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
+      {
+        maxresults = pagingGetMultiplePagesLROOptions.maxresults;
+        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
+          throw new Error('maxresults must be of type number.');
+        }
+      }
+      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
+      {
+        timeout = pagingGetMultiplePagesLROOptions.timeout;
+        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
+          throw new Error('timeout must be of type number.');
+        }
+      }
+    } catch (error) {
+      return Promise.reject(error);
+    }
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          nextPageLink,
+          clientRequestId,
+          "this.client.acceptLanguage": this.client.acceptLanguage,
+          maxresults,
+          timeout
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: "http://localhost:3000",
+          path: "{nextLink}",
+          urlParameters: [
+            {
+              parameterName: "nextPageLink",
+              skipEncoding: true,
+              mapper: {
+                required: true,
+                serializedName: "nextLink",
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          ],
+          headerParameters: [
+            {
+              parameterName: "clientRequestId",
+              mapper: {
+                serializedName: "client-request-id",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            {
+              parameterName: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            {
+              parameterName: "maxresults",
+              mapper: {
+                serializedName: "maxresults",
+                type: {
+                  name: "Number"
+                }
+              }
+            },
+            {
+              parameterName: "timeout",
+              mapper: {
+                serializedName: "timeout",
+                defaultValue: 30,
+                type: {
+                  name: "Number"
+                }
+              }
+            }
+          ]
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.ProductResult;
+            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
   /**
    * A paging operation that finishes on the first call without a nextlink
    *
@@ -3466,6 +3891,52 @@ export class Paging {
   }
 
   /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.ProductResult} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getMultiplePagesLRO(): Promise<Models.ProductResult>;
+  getMultiplePagesLRO(options: Models.PagingGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
+  getMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesLRO(options: Models.PagingGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesLRO(options?: Models.PagingGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
+    if (!callback) {
+      return this.getMultiplePagesLROWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getMultiplePagesLROWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.ProductResult;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
    * A paging operation that doesn't return a full URL, just a fragment
    *
    * @param {string} apiVersion Sets the api version to use.
@@ -3563,6 +4034,52 @@ export class Paging {
           return cb(err);
         }
         let result = data.parsedBody as Models.OdataProductResult;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.ProductResult} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginGetMultiplePagesLRO(): Promise<Models.ProductResult>;
+  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<Models.ProductResult>;
+  beginGetMultiplePagesLRO(callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  beginGetMultiplePagesLRO(options: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  beginGetMultiplePagesLRO(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
+    if (!callback) {
+      return this.beginGetMultiplePagesLROWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginGetMultiplePagesLROWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.ProductResult;
         return cb(err, result, data.request, data);
       });
     }
@@ -3999,6 +4516,104 @@ export class Paging {
       });
     } else {
       msRest.promiseToCallback(this.getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.ProductResult;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {string} nextPageLink The NextLink from the previous successful call
+   * to List operation.
+   *
+   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.ProductResult} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  getMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;
+  getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
+  getMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesLRONext(nextPageLink: string, options: Models.PagingGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  getMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
+    if (!callback) {
+      return this.getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.ProductResult;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * A long-running paging operation that includes a nextLink that has 10 pages
+   *
+   * @param {string} nextPageLink The NextLink from the previous successful call
+   * to List operation.
+   *
+   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional
+   * Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.ProductResult} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginGetMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;
+  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<Models.ProductResult>;
+  beginGetMultiplePagesLRONext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  beginGetMultiplePagesLRONext(nextPageLink: string, options: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback: msRest.ServiceCallback<Models.ProductResult>): void;
+  beginGetMultiplePagesLRONext(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams, callback?: msRest.ServiceCallback<Models.ProductResult>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.ProductResult>;
+    if (!callback) {
+      return this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.ProductResult);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }

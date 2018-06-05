@@ -155,6 +155,26 @@ export const CustomParameterGroup = {
   }
 };
 
+export const PagingGetMultiplePagesLROOptions = {
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesLROOptions",
+    modelProperties: {
+      maxresults: {
+        type: {
+          name: "Number"
+        }
+      },
+      timeout: {
+        defaultValue: 30,
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
 export const PagingGetMultiplePagesWithOffsetNextOptions = {
   type: {
     name: "Composite",
@@ -237,6 +257,52 @@ export const PagingGetMultiplePagesWithOffsetOptionalParams = {
   }
 };
 
+export const PagingGetMultiplePagesLROOptionalParams = {
+  serializedName: "GetMultiplePagesLROOptions",
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesLROOptionalParams",
+    modelProperties: {
+      clientRequestId: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      pagingGetMultiplePagesLROOptions: {
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "PagingGetMultiplePagesLROOptions"
+        }
+      }
+    }
+  }
+};
+
+export const PagingBeginGetMultiplePagesLROOptionalParams = {
+  serializedName: "BeginGetMultiplePagesLROOptions",
+  type: {
+    name: "Composite",
+    className: "PagingBeginGetMultiplePagesLROOptionalParams",
+    modelProperties: {
+      clientRequestId: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      pagingGetMultiplePagesLROOptions: {
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "PagingGetMultiplePagesLROOptions"
+        }
+      }
+    }
+  }
+};
+
 export const PagingGetMultiplePagesNextOptionalParams = {
   serializedName: "GetMultiplePagesNextOptions",
   type: {
@@ -300,6 +366,52 @@ export const PagingGetMultiplePagesWithOffsetNextOptionalParams = {
         type: {
           name: "Composite",
           className: "PagingGetMultiplePagesWithOffsetNextOptions"
+        }
+      }
+    }
+  }
+};
+
+export const PagingGetMultiplePagesLRONextOptionalParams = {
+  serializedName: "GetMultiplePagesLRONextOptions",
+  type: {
+    name: "Composite",
+    className: "PagingGetMultiplePagesLRONextOptionalParams",
+    modelProperties: {
+      clientRequestId: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      pagingGetMultiplePagesLROOptions: {
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "PagingGetMultiplePagesLROOptions"
+        }
+      }
+    }
+  }
+};
+
+export const PagingBeginGetMultiplePagesLRONextOptionalParams = {
+  serializedName: "BeginGetMultiplePagesLRONextOptions",
+  type: {
+    name: "Composite",
+    className: "PagingBeginGetMultiplePagesLRONextOptionalParams",
+    modelProperties: {
+      clientRequestId: {
+        serializedName: "client-request-id",
+        type: {
+          name: "String"
+        }
+      },
+      pagingGetMultiplePagesLROOptions: {
+        serializedName: "",
+        type: {
+          name: "Composite",
+          className: "PagingGetMultiplePagesLROOptions"
         }
       }
     }
