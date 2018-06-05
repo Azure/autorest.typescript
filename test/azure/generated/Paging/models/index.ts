@@ -138,6 +138,26 @@ export interface CustomParameterGroup {
 
 /**
  * @interface
+ * An interface representing PagingGetMultiplePagesLROOptions.
+ * Additional parameters for getMultiplePagesLRO operation.
+ *
+ */
+export interface PagingGetMultiplePagesLROOptions {
+  /**
+   * @member {number} [maxresults] Sets the maximum number of items to return
+   * in the response.
+   */
+  maxresults?: number;
+  /**
+   * @member {number} [timeout] Sets the maximum time that the server can spend
+   * processing the request, in seconds. The default is 30 seconds. Default
+   * value: 30 .
+   */
+  timeout?: number;
+}
+
+/**
+ * @interface
  * An interface representing PagingGetMultiplePagesWithOffsetNextOptions.
  * Additional parameters for getMultiplePagesWithOffsetNext operation.
  *
@@ -211,6 +231,44 @@ export interface PagingGetMultiplePagesWithOffsetOptionalParams extends msRest.R
 
 /**
  * @interface
+ * An interface representing PagingGetMultiplePagesLROOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface PagingGetMultiplePagesLROOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {string} [clientRequestId]
+   */
+  clientRequestId?: string;
+  /**
+   * @member {PagingGetMultiplePagesLROOptions}
+   * [pagingGetMultiplePagesLROOptions] Additional parameters for the operation
+   */
+  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
+}
+
+/**
+ * @interface
+ * An interface representing PagingBeginGetMultiplePagesLROOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface PagingBeginGetMultiplePagesLROOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {string} [clientRequestId]
+   */
+  clientRequestId?: string;
+  /**
+   * @member {PagingGetMultiplePagesLROOptions}
+   * [pagingGetMultiplePagesLROOptions] Additional parameters for the operation
+   */
+  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
+}
+
+/**
+ * @interface
  * An interface representing PagingGetMultiplePagesNextOptionalParams.
  * Optional Parameters.
  *
@@ -266,6 +324,44 @@ export interface PagingGetMultiplePagesWithOffsetNextOptionalParams extends msRe
    * the operation
    */
   pagingGetMultiplePagesWithOffsetNextOptions?: PagingGetMultiplePagesWithOffsetNextOptions;
+}
+
+/**
+ * @interface
+ * An interface representing PagingGetMultiplePagesLRONextOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface PagingGetMultiplePagesLRONextOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {string} [clientRequestId]
+   */
+  clientRequestId?: string;
+  /**
+   * @member {PagingGetMultiplePagesLROOptions}
+   * [pagingGetMultiplePagesLROOptions] Additional parameters for the operation
+   */
+  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
+}
+
+/**
+ * @interface
+ * An interface representing PagingBeginGetMultiplePagesLRONextOptionalParams.
+ * Optional Parameters.
+ *
+ * @extends RequestOptionsBase
+ */
+export interface PagingBeginGetMultiplePagesLRONextOptionalParams extends msRest.RequestOptionsBase {
+  /**
+   * @member {string} [clientRequestId]
+   */
+  clientRequestId?: string;
+  /**
+   * @member {PagingGetMultiplePagesLROOptions}
+   * [pagingGetMultiplePagesLROOptions] Additional parameters for the operation
+   */
+  pagingGetMultiplePagesLROOptions?: PagingGetMultiplePagesLROOptions;
 }
 
 
