@@ -775,7 +775,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBase64EncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getBase64EncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -855,7 +855,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -927,7 +927,7 @@ export class String {
   /**
    * Put value that is base64url encoded
    *
-   * @param {Buffer} stringBody
+   * @param {Uint8Array} stringBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -937,12 +937,12 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putBase64UrlEncodedWithHttpOperationResponse(stringBody: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
-      if (!Buffer.isBuffer(stringBody)) {
-        throw new Error('stringBody cannot be null or undefined and it must be of type buffer.');
+      if (!(stringBody instanceof Uint8Array)) {
+        throw new Error('stringBody cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -1018,7 +1018,7 @@ export class String {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getNullBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer>> {
+  async getNullBase64UrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -1508,25 +1508,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getBase64Encoded(): Promise<Buffer>;
-  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getBase64Encoded(callback: msRest.ServiceCallback<Buffer>): void;
-  getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getBase64Encoded(): Promise<Uint8Array>;
+  getBase64Encoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getBase64Encoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64Encoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getBase64EncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1535,7 +1535,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }
@@ -1552,25 +1552,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getBase64UrlEncoded(): Promise<Buffer>;
-  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getBase64UrlEncoded(callback: msRest.ServiceCallback<Buffer>): void;
-  getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getBase64UrlEncoded(): Promise<Uint8Array>;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getBase64UrlEncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1579,7 +1579,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }
@@ -1588,7 +1588,7 @@ export class String {
   /**
    * Put value that is base64url encoded
    *
-   * @param {Buffer} stringBody
+   * @param {Uint8Array} stringBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1604,11 +1604,11 @@ export class String {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putBase64UrlEncoded(stringBody: Buffer): Promise<void>;
-  putBase64UrlEncoded(stringBody: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  putBase64UrlEncoded(stringBody: Buffer, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(stringBody: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putBase64UrlEncoded(stringBody: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putBase64UrlEncoded(stringBody: Uint8Array): Promise<void>;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  putBase64UrlEncoded(stringBody: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putBase64UrlEncoded(stringBody: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -1642,25 +1642,25 @@ export class String {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getNullBase64UrlEncoded(): Promise<Buffer>;
-  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Buffer>;
-  getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Buffer>): void;
-  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer>): void;
-  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer>): any {
+  getNullBase64UrlEncoded(): Promise<Uint8Array>;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase): Promise<Uint8Array>;
+  getNullBase64UrlEncoded(callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array>): void;
+  getNullBase64UrlEncoded(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array>;
     if (!callback) {
       return this.getNullBase64UrlEncodedWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -1669,7 +1669,7 @@ export class String {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer;
+        let result = data.parsedBody as Uint8Array;
         return cb(err, result, data.request, data);
       });
     }

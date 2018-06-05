@@ -3835,7 +3835,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Buffer }>> {
+  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Uint8Array }>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -3886,7 +3886,7 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "ByteArray"
                   }
@@ -3914,7 +3914,7 @@ export class Dictionary {
    * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2":
    * hex (25, 29, 43)} with each elementencoded in base 64
    *
-   * @param {{ [propertyName: string]: Buffer }} arrayBody
+   * @param {{ [propertyName: string]: Uint8Array }} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -3924,7 +3924,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Buffer }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -3932,8 +3932,8 @@ export class Dictionary {
         throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
       }
       for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && !Buffer.isBuffer(arrayBody[valueElement])) {
-          throw new Error('arrayBody[valueElement] must be of type buffer.');
+        if (arrayBody[valueElement] && !(arrayBody[valueElement] instanceof Uint8Array)) {
+          throw new Error('arrayBody[valueElement] must be of type uint8array.');
         }
       }
     } catch (error) {
@@ -3962,7 +3962,7 @@ export class Dictionary {
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "BufferElementType",
+                serializedName: "Uint8ArrayElementType",
                 type: {
                   name: "ByteArray"
                 }
@@ -4017,7 +4017,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Buffer }>> {
+  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Uint8Array }>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -4068,7 +4068,7 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "ByteArray"
                   }
@@ -4104,7 +4104,7 @@ export class Dictionary {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Buffer }>> {
+  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Uint8Array }>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -4155,7 +4155,7 @@ export class Dictionary {
               type: {
                 name: "Dictionary",
                 value: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "Base64Url"
                   }
@@ -7776,25 +7776,25 @@ export class Dictionary {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {{ [propertyName: string]: Buffer }} [result]   - The deserialized result object if an error did not occur.
+   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getByteValid(): Promise<{ [propertyName: string]: Buffer }>;
-  getByteValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Buffer }>;
-  getByteValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): any {
+  getByteValid(): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteValid(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteValid(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
+    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
     if (!callback) {
       return this.getByteValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7803,7 +7803,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
         return cb(err, result, data.request, data);
       });
     }
@@ -7813,7 +7813,7 @@ export class Dictionary {
    * Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2":
    * hex (25, 29, 43)} with each elementencoded in base 64
    *
-   * @param {{ [propertyName: string]: Buffer }} arrayBody
+   * @param {{ [propertyName: string]: Uint8Array }} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -7829,11 +7829,11 @@ export class Dictionary {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putByteValid(arrayBody: { [propertyName: string]: Buffer }): Promise<void>;
-  putByteValid(arrayBody: { [propertyName: string]: Buffer }, options: msRest.RequestOptionsBase): Promise<void>;
-  putByteValid(arrayBody: { [propertyName: string]: Buffer }, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: { [propertyName: string]: Buffer }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: { [propertyName: string]: Buffer }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }): Promise<void>;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase): Promise<void>;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -7868,25 +7868,25 @@ export class Dictionary {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {{ [propertyName: string]: Buffer }} [result]   - The deserialized result object if an error did not occur.
+   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getByteInvalidNull(): Promise<{ [propertyName: string]: Buffer }>;
-  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Buffer }>;
-  getByteInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): any {
+  getByteInvalidNull(): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getByteInvalidNull(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
+    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
     if (!callback) {
       return this.getByteInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7895,7 +7895,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
         return cb(err, result, data.request, data);
       });
     }
@@ -7913,25 +7913,25 @@ export class Dictionary {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {{ [propertyName: string]: Buffer }} [result]   - The deserialized result object if an error did not occur.
+   *                      {{ [propertyName: string]: Uint8Array }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getBase64Url(): Promise<{ [propertyName: string]: Buffer }>;
-  getBase64Url(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Buffer }>;
-  getBase64Url(callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Buffer }>): any {
+  getBase64Url(): Promise<{ [propertyName: string]: Uint8Array }>;
+  getBase64Url(options: msRest.RequestOptionsBase): Promise<{ [propertyName: string]: Uint8Array }>;
+  getBase64Url(callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): void;
+  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Buffer }>;
+    let cb = callback as msRest.ServiceCallback<{ [propertyName: string]: Uint8Array }>;
     if (!callback) {
       return this.getBase64UrlWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Buffer });
+        return Promise.resolve(operationRes.parsedBody as { [propertyName: string]: Uint8Array });
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7940,7 +7940,7 @@ export class Dictionary {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as { [propertyName: string]: Buffer };
+        let result = data.parsedBody as { [propertyName: string]: Uint8Array };
         return cb(err, result, data.request, data);
       });
     }

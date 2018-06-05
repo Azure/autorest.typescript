@@ -50,7 +50,7 @@ const config: webpack.Configuration = {
     tls: false,
     tty: false,
     v8: false,
-    Buffer: true,
+    Buffer: false,
     process: true
   }
 };

@@ -1757,8 +1757,8 @@ export class Queries {
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
     // Validate
     try {
-      if (byteQuery && !Buffer.isBuffer(byteQuery)) {
-        throw new Error('byteQuery must be of type buffer.');
+      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
+        throw new Error('byteQuery must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -1838,7 +1838,7 @@ export class Queries {
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    let byteQuery = new Buffer('');
+    let byteQuery = new Uint8Array(0);
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1863,7 +1863,7 @@ export class Queries {
                 required: true,
                 isConstant: true,
                 serializedName: "byteQuery",
-                defaultValue: new Buffer(''),
+                defaultValue: new Uint8Array(0),
                 type: {
                   name: "ByteArray"
                 }
@@ -1920,8 +1920,8 @@ export class Queries {
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
     // Validate
     try {
-      if (byteQuery && !Buffer.isBuffer(byteQuery)) {
-        throw new Error('byteQuery must be of type buffer.');
+      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
+        throw new Error('byteQuery must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);

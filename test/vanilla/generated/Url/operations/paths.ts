@@ -1336,8 +1336,8 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {Buffer} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
-   * array
+   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
+   * byte array
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1347,12 +1347,12 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async byteMultiByteWithHttpOperationResponse(bytePath: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
-      if (!Buffer.isBuffer(bytePath)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type buffer.');
+      if (!(bytePath instanceof Uint8Array)) {
+        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -1433,7 +1433,7 @@ export class Paths {
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    let bytePath = new Buffer('');
+    let bytePath = new Uint8Array(0);
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1458,7 +1458,7 @@ export class Paths {
                 required: true,
                 isConstant: true,
                 serializedName: "bytePath",
-                defaultValue: new Buffer(''),
+                defaultValue: new Uint8Array(0),
                 type: {
                   name: "ByteArray"
                 }
@@ -1502,7 +1502,7 @@ export class Paths {
   /**
    * Get null as byte array (should throw)
    *
-   * @param {Buffer} bytePath null as byte array (should throw)
+   * @param {Uint8Array} bytePath null as byte array (should throw)
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1512,12 +1512,12 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async byteNullWithHttpOperationResponse(bytePath: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
-      if (!Buffer.isBuffer(bytePath)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type buffer.');
+      if (!(bytePath instanceof Uint8Array)) {
+        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -1922,7 +1922,7 @@ export class Paths {
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
    *
-   * @param {Buffer} base64UrlPath base64url encoded value
+   * @param {Uint8Array} base64UrlPath base64url encoded value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -1932,12 +1932,12 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async base64UrlWithHttpOperationResponse(base64UrlPath: Buffer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
-      if (!Buffer.isBuffer(base64UrlPath)) {
-        throw new Error('base64UrlPath cannot be null or undefined and it must be of type buffer.');
+      if (!(base64UrlPath instanceof Uint8Array)) {
+        throw new Error('base64UrlPath cannot be null or undefined and it must be of type uint8array.');
       }
     } catch (error) {
       return Promise.reject(error);
@@ -2906,8 +2906,8 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {Buffer} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte
-   * array
+   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
+   * byte array
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -2923,11 +2923,11 @@ export class Paths {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  byteMultiByte(bytePath: Buffer): Promise<void>;
-  byteMultiByte(bytePath: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  byteMultiByte(bytePath: Buffer, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(bytePath: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteMultiByte(bytePath: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  byteMultiByte(bytePath: Uint8Array): Promise<void>;
+  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  byteMultiByte(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  byteMultiByte(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -2997,7 +2997,7 @@ export class Paths {
   /**
    * Get null as byte array (should throw)
    *
-   * @param {Buffer} bytePath null as byte array (should throw)
+   * @param {Uint8Array} bytePath null as byte array (should throw)
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -3013,11 +3013,11 @@ export class Paths {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  byteNull(bytePath: Buffer): Promise<void>;
-  byteNull(bytePath: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  byteNull(bytePath: Buffer, callback: msRest.ServiceCallback<void>): void;
-  byteNull(bytePath: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  byteNull(bytePath: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  byteNull(bytePath: Uint8Array): Promise<void>;
+  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  byteNull(bytePath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  byteNull(bytePath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -3225,7 +3225,7 @@ export class Paths {
   /**
    * Get 'lorem' encoded value as 'bG9yZW0' (base64url)
    *
-   * @param {Buffer} base64UrlPath base64url encoded value
+   * @param {Uint8Array} base64UrlPath base64url encoded value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -3241,11 +3241,11 @@ export class Paths {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  base64Url(base64UrlPath: Buffer): Promise<void>;
-  base64Url(base64UrlPath: Buffer, options: msRest.RequestOptionsBase): Promise<void>;
-  base64Url(base64UrlPath: Buffer, callback: msRest.ServiceCallback<void>): void;
-  base64Url(base64UrlPath: Buffer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  base64Url(base64UrlPath: Buffer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  base64Url(base64UrlPath: Uint8Array): Promise<void>;
+  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase): Promise<void>;
+  base64Url(base64UrlPath: Uint8Array, callback: msRest.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  base64Url(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;

@@ -151,7 +151,9 @@ namespace AutoRest.TypeScript
                     case KnownPrimaryType.TimeSpan:
                         return $"'{defaultValue}'";
                     case KnownPrimaryType.ByteArray:
-                        return $"new Buffer('{defaultValue}')";
+                        // Note: this doesn't support non-empty default values.
+                        // It's non-trivial to convert a string to a Uint8Array in an environment-agnostic way.
+                        return $"new Uint8Array(0)";
                 }
             }
             return defaultValue;

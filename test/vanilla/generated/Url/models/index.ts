@@ -162,10 +162,10 @@ export interface QueriesEnumNullOptionalParams extends msRest.RequestOptionsBase
  */
 export interface QueriesByteMultiByteOptionalParams extends msRest.RequestOptionsBase {
   /**
-   * @member {Buffer} [byteQuery] '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
-   * byte array
+   * @member {Uint8Array} [byteQuery] '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8
+   * encoded byte array
    */
-  byteQuery?: Buffer;
+  byteQuery?: Uint8Array;
 }
 
 /**
@@ -177,10 +177,10 @@ export interface QueriesByteMultiByteOptionalParams extends msRest.RequestOption
  */
 export interface QueriesByteNullOptionalParams extends msRest.RequestOptionsBase {
   /**
-   * @member {Buffer} [byteQuery] null as byte array (no query parameters in
-   * uri)
+   * @member {Uint8Array} [byteQuery] null as byte array (no query parameters
+   * in uri)
    */
-  byteQuery?: Buffer;
+  byteQuery?: Uint8Array;
 }
 
 /**

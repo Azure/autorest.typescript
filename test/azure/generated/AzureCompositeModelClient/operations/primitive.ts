@@ -2068,8 +2068,8 @@ export class Primitive {
     let field = (options && options.field !== undefined) ? options.field : undefined;
     // Validate
     try {
-      if (field && !Buffer.isBuffer(field)) {
-        throw new Error('field must be of type buffer.');
+      if (field && !(field instanceof Uint8Array)) {
+        throw new Error('field must be of type uint8array.');
       }
       if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
         throw new Error('this.client.acceptLanguage must be of type string.');

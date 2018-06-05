@@ -242,9 +242,9 @@ export interface HeaderResponseDurationHeaders {
  */
 export interface HeaderResponseByteHeaders {
   /**
-   * @member {Buffer} [value] response with header values "啊齄丂狛狜隣郎隣兀﨩"
+   * @member {Uint8Array} [value] response with header values "啊齄丂狛狜隣郎隣兀﨩"
    */
-  value?: Buffer;
+  value?: Uint8Array;
 }
 
 /**

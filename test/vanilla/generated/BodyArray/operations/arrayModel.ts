@@ -3843,7 +3843,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
+  async getByteValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -3894,7 +3894,7 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "ByteArray"
                   }
@@ -3922,7 +3922,7 @@ export class ArrayModel {
    * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with
    * each elementencoded in base 64
    *
-   * @param {Buffer[]} arrayBody
+   * @param {Uint8Array[]} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -3932,7 +3932,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async putByteValidWithHttpOperationResponse(arrayBody: Buffer[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async putByteValidWithHttpOperationResponse(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     // Validate
     try {
@@ -3940,8 +3940,8 @@ export class ArrayModel {
         throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
       }
       for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && !Buffer.isBuffer(arrayBody[i])) {
-          throw new Error('arrayBody[i] must be of type buffer.');
+        if (arrayBody[i] && !(arrayBody[i] instanceof Uint8Array)) {
+          throw new Error('arrayBody[i] must be of type uint8array.');
         }
       }
     } catch (error) {
@@ -3970,7 +3970,7 @@ export class ArrayModel {
             type: {
               name: "Sequence",
               element: {
-                serializedName: "BufferElementType",
+                serializedName: "Uint8ArrayElementType",
                 type: {
                   name: "ByteArray"
                 }
@@ -4025,7 +4025,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
+  async getByteInvalidNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -4076,7 +4076,7 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "ByteArray"
                   }
@@ -4112,7 +4112,7 @@ export class ArrayModel {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Buffer[]>> {
+  async getBase64UrlWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Uint8Array[]>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -4163,7 +4163,7 @@ export class ArrayModel {
               type: {
                 name: "Sequence",
                 element: {
-                  serializedName: "BufferElementType",
+                  serializedName: "Uint8ArrayElementType",
                   type: {
                     name: "Base64Url"
                   }
@@ -7782,25 +7782,25 @@ export class ArrayModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer[]} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getByteValid(): Promise<Buffer[]>;
-  getByteValid(options: msRest.RequestOptionsBase): Promise<Buffer[]>;
-  getByteValid(callback: msRest.ServiceCallback<Buffer[]>): void;
-  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer[]>): void;
-  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer[]>): any {
+  getByteValid(): Promise<Uint8Array[]>;
+  getByteValid(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getByteValid(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer[]>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
     if (!callback) {
       return this.getByteValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer[]);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7809,7 +7809,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer[];
+        let result = data.parsedBody as Uint8Array[];
         return cb(err, result, data.request, data);
       });
     }
@@ -7819,7 +7819,7 @@ export class ArrayModel {
    * Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with
    * each elementencoded in base 64
    *
-   * @param {Buffer[]} arrayBody
+   * @param {Uint8Array[]} arrayBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
@@ -7835,11 +7835,11 @@ export class ArrayModel {
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  putByteValid(arrayBody: Buffer[]): Promise<void>;
-  putByteValid(arrayBody: Buffer[], options: msRest.RequestOptionsBase): Promise<void>;
-  putByteValid(arrayBody: Buffer[], callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: Buffer[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  putByteValid(arrayBody: Buffer[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  putByteValid(arrayBody: Uint8Array[]): Promise<void>;
+  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase): Promise<void>;
+  putByteValid(arrayBody: Uint8Array[], callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: Uint8Array[], options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  putByteValid(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
@@ -7874,25 +7874,25 @@ export class ArrayModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer[]} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getByteInvalidNull(): Promise<Buffer[]>;
-  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Buffer[]>;
-  getByteInvalidNull(callback: msRest.ServiceCallback<Buffer[]>): void;
-  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer[]>): void;
-  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer[]>): any {
+  getByteInvalidNull(): Promise<Uint8Array[]>;
+  getByteInvalidNull(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getByteInvalidNull(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteInvalidNull(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getByteInvalidNull(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer[]>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
     if (!callback) {
       return this.getByteInvalidNullWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer[]);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7901,7 +7901,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer[];
+        let result = data.parsedBody as Uint8Array[];
         return cb(err, result, data.request, data);
       });
     }
@@ -7919,25 +7919,25 @@ export class ArrayModel {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {Buffer[]} [result]   - The deserialized result object if an error did not occur.
+   *                      {Uint8Array[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getBase64Url(): Promise<Buffer[]>;
-  getBase64Url(options: msRest.RequestOptionsBase): Promise<Buffer[]>;
-  getBase64Url(callback: msRest.ServiceCallback<Buffer[]>): void;
-  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Buffer[]>): void;
-  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Buffer[]>): any {
+  getBase64Url(): Promise<Uint8Array[]>;
+  getBase64Url(options: msRest.RequestOptionsBase): Promise<Uint8Array[]>;
+  getBase64Url(callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getBase64Url(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Uint8Array[]>): void;
+  getBase64Url(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Uint8Array[]>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<Buffer[]>;
+    let cb = callback as msRest.ServiceCallback<Uint8Array[]>;
     if (!callback) {
       return this.getBase64UrlWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Buffer[]);
+        return Promise.resolve(operationRes.parsedBody as Uint8Array[]);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
@@ -7946,7 +7946,7 @@ export class ArrayModel {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as Buffer[];
+        let result = data.parsedBody as Uint8Array[];
         return cb(err, result, data.request, data);
       });
     }
