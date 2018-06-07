@@ -871,7 +871,12 @@ namespace AutoRest.TypeScript
                         {
                             mapper.ObjectProperty("modelProperties", modelProperties =>
                             {
-                                foreach (Property prop in composite.ComposedProperties)
+
+                                if (composite.BaseModelType != null && composite.BaseModelType.ComposedProperties.Any())
+                                {
+                                    modelProperties.Spread(composite.BaseModelType.Name + ".type.modelProperties");
+                                }
+                                foreach (Property prop in composite.Properties)
                                 {
                                     var serializedPropertyName = prop.SerializedName;
                                     if (isPageable)

@@ -90,45 +90,7 @@ export const Product = {
     name: "Composite",
     className: "Product",
     modelProperties: {
-      id: {
-        readOnly: true,
-        serializedName: "id",
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        readOnly: true,
-        serializedName: "type",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        readOnly: true,
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
+      ...Resource.type.modelProperties,
       provisioningState: {
         serializedName: "properties.provisioningState",
         type: {
@@ -169,13 +131,7 @@ export const SubProduct = {
     name: "Composite",
     className: "SubProduct",
     modelProperties: {
-      id: {
-        readOnly: true,
-        serializedName: "id",
-        type: {
-          name: "String"
-        }
-      },
+      ...SubResource.type.modelProperties,
       provisioningState: {
         serializedName: "properties.provisioningState",
         type: {

@@ -53,12 +53,7 @@ export const B = {
     name: "Composite",
     className: "B",
     modelProperties: {
-      statusCode: {
-        serializedName: "statusCode",
-        type: {
-          name: "String"
-        }
-      },
+      ...A.type.modelProperties,
       textStatusCode: {
         serializedName: "textStatusCode",
         type: {

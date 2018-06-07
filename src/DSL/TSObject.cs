@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 
@@ -103,6 +103,17 @@ namespace AutoRest.TypeScript.DSL
             }
             builder.Text(": ");
             builder.Value(propertyValueAction);
+        }
+
+        /// <summary>
+        /// Spreads the properties of the given object expression into this TSObject.
+        /// </summary>
+        /// <param name="objectExpression">The object expression to spread in this object.</param>
+        public void Spread(string objectExpression)
+        {
+            SetCurrentState(State.Property);
+            builder.Text("...");
+            builder.Text(objectExpression);
         }
 
         /// <summary>
