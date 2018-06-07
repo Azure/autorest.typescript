@@ -26,55 +26,55 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
-        public ISet<CompositeType> OperationModels
+        public ISet<string> OperationModelNames
         {
             get
             {
-                ISet<CompositeType> models = new HashSet<CompositeType>();
+                ISet<string> modelNames = new HashSet<string>();
                 while (true)
                 {
-                    int initialCount = models.Count;
+                    int initialCount = modelNames.Count;
                     foreach (Method method in Methods)
                     {
                         if (method.Body != null)
                         {
-                            ModelsClosure(models, method.Body.ModelType);
+                            ModelsClosure(modelNames, method.Body.ModelType);
                         }
                         foreach (Response response in method.Responses.Values)
                         {
-                            ModelsClosure(models, response.Body);
-                            ModelsClosure(models, response.Headers);
+                            ModelsClosure(modelNames, response.Body);
+                            ModelsClosure(modelNames, response.Headers);
                         }
                         if (method.DefaultResponse != null)
                         {
-                            ModelsClosure(models, method.DefaultResponse.Body);
-                            ModelsClosure(models, method.DefaultResponse.Headers);
+                            ModelsClosure(modelNames, method.DefaultResponse.Body);
+                            ModelsClosure(modelNames, method.DefaultResponse.Headers);
                         }
                     }
 
                     foreach (CompositeType model in CodeModel.ModelTypes)
                     {
-                        if (models.Contains(model.BaseModelType))
+                        if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
                         {
-                            models.Add(model);
+                            modelNames.Add(model.Name);
                         }
                     }
 
-                    if (initialCount == models.Count)
+                    if (initialCount == modelNames.Count)
                     {
                         break;
                     }
                 }
 
-                return models;
+                return modelNames;
             }
         }
 
-        public static void ModelsClosure(ISet<CompositeType> closure, IModelType model)
+        public static void ModelsClosure(ISet<string> closure, IModelType model)
         {
-            if (model is CompositeType composite && !closure.Contains(composite))
+            if (model is CompositeType composite && !closure.Contains(composite.Name))
             {
-                closure.Add(composite);
+                closure.Add(composite.Name);
                 if (composite.BaseModelType != null)
                 {
                     ModelsClosure(closure, composite.BaseModelType);
