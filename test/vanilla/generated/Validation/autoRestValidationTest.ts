@@ -15,6 +15,7 @@ import { AutoRestValidationTestContext } from "./autoRestValidationTestContext";
 const WebResource = msRest.WebResource;
 
 class AutoRestValidationTest extends AutoRestValidationTestContext {
+  serializer = new msRest.Serializer(Mappers);
 
   /**
    * @class
@@ -35,7 +36,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   constructor(subscriptionId: string, apiVersion: string, baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(subscriptionId, apiVersion, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

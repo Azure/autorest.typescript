@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class StorageManagementClient extends StorageManagementClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   storageAccounts: operations.StorageAccounts;
@@ -51,7 +52,6 @@ class StorageManagementClient extends StorageManagementClientContext {
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, subscriptionId, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.storageAccounts = new operations.StorageAccounts(this);
     this.usage = new operations.UsageOperations(this);
   }

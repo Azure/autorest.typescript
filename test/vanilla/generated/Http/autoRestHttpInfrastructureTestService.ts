@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestHttpInfrastructureTestServiceContext } from "./autoRestHttpInfrastructureTestServiceContext";
 
 class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   httpFailure: operations.HttpFailure;
@@ -44,7 +45,6 @@ class AutoRestHttpInfrastructureTestService extends AutoRestHttpInfrastructureTe
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.httpFailure = new operations.HttpFailure(this);
     this.httpSuccess = new operations.HttpSuccess(this);
     this.httpRedirects = new operations.HttpRedirects(this);

@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestIntegerTestServiceContext } from "./autoRestIntegerTestServiceContext";
 
 class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   intModel: operations.IntModel;
@@ -38,7 +39,6 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.intModel = new operations.IntModel(this);
   }
 }

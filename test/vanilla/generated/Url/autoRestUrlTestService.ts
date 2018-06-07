@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestUrlTestServiceContext } from "./autoRestUrlTestServiceContext";
 
 class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   paths: operations.Paths;
@@ -42,7 +43,6 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
    */
   constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
     super(globalStringPath, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);

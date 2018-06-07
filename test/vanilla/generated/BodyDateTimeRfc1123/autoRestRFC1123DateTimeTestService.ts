@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestRFC1123DateTimeTestServiceContext } from "./autoRestRFC1123DateTimeTestServiceContext";
 
 class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   datetimerfc1123: operations.Datetimerfc1123;
@@ -38,7 +39,6 @@ class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServ
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.datetimerfc1123 = new operations.Datetimerfc1123(this);
   }
 }

@@ -15,6 +15,8 @@ export {
   LROsCustomHeaderPutAsyncRetrySucceededHeaders,
   CloudError,
   LROsCustomHeaderPost202Retry200Headers,
-  LROsCustomHeaderPostAsyncRetrySucceededHeaders
+  LROsCustomHeaderPostAsyncRetrySucceededHeaders,
+  SubResource,
+  SubProduct
 } from "../models/mappers";
 

@@ -22,7 +22,6 @@ export {
   Sku,
   SubProduct,
   SubResource,
-  BaseResource,
   LROsDeleteProvisioning202Accepted200SucceededHeaders,
   LROsDeleteProvisioning202DeletingFailed200Headers,
   LROsDeleteProvisioning202Deletingcanceled200Headers,

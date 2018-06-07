@@ -32,6 +32,8 @@ export {
   LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders,
   LROSADsPost202RetryInvalidHeaderHeaders,
   LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders,
-  LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders
+  LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders,
+  SubResource,
+  SubProduct
 } from "../models/mappers";
 

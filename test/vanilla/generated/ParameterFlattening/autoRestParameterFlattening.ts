@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestParameterFlatteningContext } from "./autoRestParameterFlatteningContext";
 
 class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   availabilitySets: operations.AvailabilitySets;
@@ -38,7 +39,6 @@ class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.availabilitySets = new operations.AvailabilitySets(this);
   }
 }

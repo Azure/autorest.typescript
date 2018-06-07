@@ -18,6 +18,8 @@ export {
   LRORetrysDelete202Retry200Headers,
   LRORetrysDeleteAsyncRelativeRetrySucceededHeaders,
   LRORetrysPost202Retry200Headers,
-  LRORetrysPostAsyncRelativeRetrySucceededHeaders
+  LRORetrysPostAsyncRelativeRetrySucceededHeaders,
+  SubResource,
+  SubProduct
 } from "../models/mappers";
 

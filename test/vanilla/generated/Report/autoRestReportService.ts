@@ -15,6 +15,7 @@ import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 const WebResource = msRest.WebResource;
 
 class AutoRestReportService extends AutoRestReportServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   /**
    * @class
@@ -35,7 +36,6 @@ class AutoRestReportService extends AutoRestReportServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

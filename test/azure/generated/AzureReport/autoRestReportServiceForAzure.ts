@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 
 
 class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext {
+  serializer = new msRest.Serializer(Mappers);
 
   /**
    * @class
@@ -45,7 +46,6 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

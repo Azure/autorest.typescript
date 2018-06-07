@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperationTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   lROs: operations.LROs;
@@ -51,7 +52,6 @@ class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperati
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.lROs = new operations.LROs(this);
     this.lRORetrys = new operations.LRORetrys(this);
     this.lROSADs = new operations.LROSADs(this);

@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestParameterizedHostTestClientContext } from "./autoRestParameterizedHostTestClientContext";
 
 class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   paths: operations.Paths;
@@ -38,7 +39,6 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
    */
   constructor(options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.paths = new operations.Paths(this);
   }
 }

@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATByteServiceContext } from "./autoRestSwaggerBATByteServiceContext";
 
 class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   byteModel: operations.ByteModel;
@@ -38,7 +39,6 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.byteModel = new operations.ByteModel(this);
   }
 }

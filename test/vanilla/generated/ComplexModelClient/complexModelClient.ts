@@ -15,6 +15,7 @@ import { ComplexModelClientContext } from "./complexModelClientContext";
 const WebResource = msRest.WebResource;
 
 class ComplexModelClient extends ComplexModelClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   /**
    * @class
@@ -35,7 +36,6 @@ class ComplexModelClient extends ComplexModelClientContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
   }
   // methods on the client.
 

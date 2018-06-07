@@ -23,6 +23,7 @@ export {
   StorageAccountUpdateParameters,
   StorageAccountKeys,
   StorageAccountListResult,
-  StorageAccountRegenerateKeyParameters
+  StorageAccountRegenerateKeyParameters,
+  SubResource
 } from "../models/mappers";
 

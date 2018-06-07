@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATServiceContext } from "./autoRestSwaggerBATServiceContext";
 
 class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   string: operations.String;
@@ -39,7 +40,6 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.string = new operations.String(this);
     this.enumModel = new operations.EnumModel(this);
   }

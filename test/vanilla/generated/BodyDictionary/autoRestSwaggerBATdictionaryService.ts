@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATdictionaryServiceContext } from "./autoRestSwaggerBATdictionaryServiceContext";
 
 class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionaryServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   dictionary: operations.Dictionary;
@@ -38,7 +39,6 @@ class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionarySe
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.dictionary = new operations.Dictionary(this);
   }
 }

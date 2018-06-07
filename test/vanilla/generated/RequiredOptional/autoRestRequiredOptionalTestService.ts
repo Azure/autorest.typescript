@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestRequiredOptionalTestServiceContext } from "./autoRestRequiredOptionalTestServiceContext";
 
 class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   implicit: operations.Implicit;
@@ -41,7 +42,6 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, baseUri?: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     super(requiredGlobalPath, requiredGlobalQuery, baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.implicit = new operations.Implicit(this);
     this.explicit = new operations.Explicit(this);
   }

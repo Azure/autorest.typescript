@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestNumberTestServiceContext } from "./autoRestNumberTestServiceContext";
 
 class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   number: operations.Number;
@@ -38,7 +39,6 @@ class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
-    this.serializer = new msRest.Serializer(Mappers);
     this.number = new operations.Number(this);
   }
 }
