@@ -38,6 +38,7 @@ class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceConte
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.arrayModel = new operations.ArrayModel(this);
   }
 }

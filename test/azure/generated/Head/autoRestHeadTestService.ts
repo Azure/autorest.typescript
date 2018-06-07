@@ -48,6 +48,7 @@ class AutoRestHeadTestService extends AutoRestHeadTestServiceContext {
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.httpSuccess = new operations.HttpSuccess(this);
   }
 }

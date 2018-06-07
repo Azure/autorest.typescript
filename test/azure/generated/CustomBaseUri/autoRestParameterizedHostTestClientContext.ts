@@ -11,7 +11,6 @@
 import * as Models from "./models";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import * as Mappers from "./models/mappers";
 
 const packageName = "";
 const packageVersion = "";
@@ -26,7 +25,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 
   /**
    * @class
@@ -61,15 +60,7 @@ export class AutoRestParameterizedHostTestClientContext extends msRestAzure.Azur
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
     super(credentials, options);
-
-    this.serializer = new msRest.Serializer(Mappers);
 
     this.host = 'host';
     this.acceptLanguage = 'en-US';

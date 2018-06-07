@@ -48,6 +48,7 @@ class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceC
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.headException = new operations.HeadException(this);
   }
 }

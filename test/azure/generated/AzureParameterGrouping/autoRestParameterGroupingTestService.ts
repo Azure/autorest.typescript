@@ -48,6 +48,7 @@ class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTest
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.parameterGrouping = new operations.ParameterGrouping(this);
   }
 }

@@ -39,6 +39,7 @@ class AutoRestSwaggerBATService extends AutoRestSwaggerBATServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.string = new operations.String(this);
     this.enumModel = new operations.EnumModel(this);
   }

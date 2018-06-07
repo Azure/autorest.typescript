@@ -38,6 +38,7 @@ class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.byteModel = new operations.ByteModel(this);
   }
 }

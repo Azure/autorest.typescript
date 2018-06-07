@@ -18,7 +18,7 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
   subscriptionId: string;
   apiVersion: string;
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 
   /**
    * @class
@@ -42,12 +42,6 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -59,6 +53,5 @@ export class ComplexModelClientContext extends msRest.ServiceClient {
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

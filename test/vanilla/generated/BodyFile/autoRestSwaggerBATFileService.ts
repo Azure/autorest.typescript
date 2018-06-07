@@ -38,6 +38,7 @@ class AutoRestSwaggerBATFileService extends AutoRestSwaggerBATFileServiceContext
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.files = new operations.Files(this);
   }
 }

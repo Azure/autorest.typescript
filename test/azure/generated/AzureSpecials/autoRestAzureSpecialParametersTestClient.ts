@@ -57,6 +57,7 @@ class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParam
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, subscriptionId, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.xMsClientRequestId = new operations.XMsClientRequestId(this);
     this.subscriptionInCredentials = new operations.SubscriptionInCredentials(this);
     this.subscriptionInMethod = new operations.SubscriptionInMethod(this);

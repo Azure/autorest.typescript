@@ -19,7 +19,7 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
   subscriptionId: string;
   dnsSuffix?: string;
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 
   /**
    * @class
@@ -48,12 +48,6 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -65,6 +59,5 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
     if(options.dnsSuffix !== null && options.dnsSuffix !== undefined) {
       this.dnsSuffix = options.dnsSuffix;
     }
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

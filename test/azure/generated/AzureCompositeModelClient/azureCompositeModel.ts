@@ -56,6 +56,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.basic = new operations.BasicOperations(this);
     this.primitive = new operations.Primitive(this);
     this.arrayModel = new operations.ArrayModel(this);
@@ -167,7 +168,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -185,7 +187,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -200,7 +202,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.CatalogArray;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -330,7 +332,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -348,7 +351,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -363,7 +366,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.CatalogDictionary;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -493,7 +496,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -511,7 +515,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -526,7 +530,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.CatalogArray;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

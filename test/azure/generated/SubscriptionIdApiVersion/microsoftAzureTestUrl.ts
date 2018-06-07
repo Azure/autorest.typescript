@@ -50,6 +50,7 @@ class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
    */
   constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, subscriptionId, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.group = new operations.Group(this);
   }
 }

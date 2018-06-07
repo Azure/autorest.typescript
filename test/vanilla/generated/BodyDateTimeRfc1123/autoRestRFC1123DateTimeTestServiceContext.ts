@@ -16,7 +16,7 @@ const packageVersion = "";
 
 export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceClient {
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 
   /**
    * @class
@@ -40,12 +40,6 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -55,6 +49,5 @@ export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceCli
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

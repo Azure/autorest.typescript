@@ -38,6 +38,7 @@ class AutoRestSwaggerBATFormDataService extends AutoRestSwaggerBATFormDataServic
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.formdata = new operations.Formdata(this);
   }
 }

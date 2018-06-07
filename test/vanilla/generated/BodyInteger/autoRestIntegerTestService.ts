@@ -38,6 +38,7 @@ class AutoRestIntegerTestService extends AutoRestIntegerTestServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.intModel = new operations.IntModel(this);
   }
 }

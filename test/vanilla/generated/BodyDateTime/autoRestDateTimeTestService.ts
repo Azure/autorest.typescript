@@ -38,6 +38,7 @@ class AutoRestDateTimeTestService extends AutoRestDateTimeTestServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.datetime = new operations.Datetime(this);
   }
 }

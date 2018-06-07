@@ -19,7 +19,7 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
   globalStringPath: string;
   globalStringQuery?: string;
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 
   /**
    * @class
@@ -50,12 +50,6 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -69,6 +63,5 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
     if(options.globalStringQuery !== null && options.globalStringQuery !== undefined) {
       this.globalStringQuery = options.globalStringQuery;
     }
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

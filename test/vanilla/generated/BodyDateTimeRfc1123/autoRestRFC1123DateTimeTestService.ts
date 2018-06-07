@@ -38,6 +38,7 @@ class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServ
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.datetimerfc1123 = new operations.Datetimerfc1123(this);
   }
 }

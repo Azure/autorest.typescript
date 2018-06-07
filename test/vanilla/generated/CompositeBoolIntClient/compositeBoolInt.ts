@@ -39,6 +39,7 @@ class CompositeBoolInt extends CompositeBoolIntContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.bool = new operations.Bool(this);
     this.intModel = new operations.IntModel(this);
   }

@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -40,6 +41,7 @@ class AutoRestRequiredOptionalTestService extends AutoRestRequiredOptionalTestSe
    */
   constructor(requiredGlobalPath: string, requiredGlobalQuery: string, baseUri?: string, options?: Models.AutoRestRequiredOptionalTestServiceOptions) {
     super(requiredGlobalPath, requiredGlobalQuery, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.implicit = new operations.Implicit(this);
     this.explicit = new operations.Explicit(this);
   }

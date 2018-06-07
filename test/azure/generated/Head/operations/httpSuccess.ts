@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/httpSuccessMappers";
 import { AutoRestHeadTestServiceContext } from "../autoRestHeadTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a HttpSuccess. */
 export class HttpSuccess {
   private readonly client: AutoRestHeadTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a HttpSuccess.
    * @param {AutoRestHeadTestServiceContext} client Reference to the service client.
@@ -74,7 +75,8 @@ export class HttpSuccess {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 404) {
@@ -91,7 +93,7 @@ export class HttpSuccess {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -158,7 +160,8 @@ export class HttpSuccess {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204 && statusCode !== 404) {
@@ -175,7 +178,7 @@ export class HttpSuccess {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -242,7 +245,8 @@ export class HttpSuccess {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204 && statusCode !== 404) {
@@ -259,7 +263,7 @@ export class HttpSuccess {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +

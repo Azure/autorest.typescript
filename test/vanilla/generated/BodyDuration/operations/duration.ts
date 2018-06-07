@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/durationMappers";
 import { AutoRestDurationTestServiceContext } from "../autoRestDurationTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Duration. */
 export class Duration {
   private readonly client: AutoRestDurationTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Duration.
    * @param {AutoRestDurationTestServiceContext} client Reference to the service client.
@@ -50,7 +51,8 @@ export class Duration {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "duration/null"
+          path: "duration/null",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -68,7 +70,7 @@ export class Duration {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -88,7 +90,7 @@ export class Duration {
                 name: "TimeSpan"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -153,7 +155,8 @@ export class Duration {
             }
           },
           requestBodyName: "durationBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -171,7 +174,7 @@ export class Duration {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -213,7 +216,8 @@ export class Duration {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "duration/positiveduration"
+          path: "duration/positiveduration",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -231,7 +235,7 @@ export class Duration {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -251,7 +255,7 @@ export class Duration {
                 name: "TimeSpan"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -293,7 +297,8 @@ export class Duration {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "duration/invalid"
+          path: "duration/invalid",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -311,7 +316,7 @@ export class Duration {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -331,7 +336,7 @@ export class Duration {
                 name: "TimeSpan"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

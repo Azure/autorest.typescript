@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/queriesMappers";
 import { AutoRestUrlMutliCollectionFormatTestServiceContext } from "../autoRestUrlMutliCollectionFormatTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -18,6 +18,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Queries. */
 export class Queries {
   private readonly client: AutoRestUrlMutliCollectionFormatTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Queries.
    * @param {AutoRestUrlMutliCollectionFormatTestServiceContext} client Reference to the service client.
@@ -87,7 +88,8 @@ export class Queries {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -105,7 +107,7 @@ export class Queries {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -183,7 +185,8 @@ export class Queries {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -201,7 +204,7 @@ export class Queries {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -280,7 +283,8 @@ export class Queries {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -298,7 +302,7 @@ export class Queries {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +

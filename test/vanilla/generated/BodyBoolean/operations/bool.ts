@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/boolMappers";
 import { AutoRestBoolTestServiceContext } from "../autoRestBoolTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Bool. */
 export class Bool {
   private readonly client: AutoRestBoolTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Bool.
    * @param {AutoRestBoolTestServiceContext} client Reference to the service client.
@@ -50,7 +51,8 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "bool/true"
+          path: "bool/true",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -68,7 +70,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -88,7 +90,7 @@ export class Bool {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -153,7 +155,8 @@ export class Bool {
             }
           },
           requestBodyName: "boolBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -171,7 +174,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -213,7 +216,8 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "bool/false"
+          path: "bool/false",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -231,7 +235,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -251,7 +255,7 @@ export class Bool {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -316,7 +320,8 @@ export class Bool {
             }
           },
           requestBodyName: "boolBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -334,7 +339,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -376,7 +381,8 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "bool/null"
+          path: "bool/null",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -394,7 +400,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -414,7 +420,7 @@ export class Bool {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -456,7 +462,8 @@ export class Bool {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "bool/invalid"
+          path: "bool/invalid",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -474,7 +481,7 @@ export class Bool {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -494,7 +501,7 @@ export class Bool {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

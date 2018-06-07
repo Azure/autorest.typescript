@@ -38,6 +38,7 @@ class AutoRestSwaggerBATHeaderService extends AutoRestSwaggerBATHeaderServiceCon
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.header = new operations.Header(this);
   }
 }

@@ -38,6 +38,7 @@ class AutoRestNumberTestService extends AutoRestNumberTestServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.number = new operations.Number(this);
   }
 }

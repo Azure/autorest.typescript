@@ -38,6 +38,7 @@ class AutoRestParameterFlattening extends AutoRestParameterFlatteningContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.availabilitySets = new operations.AvailabilitySets(this);
   }
 }

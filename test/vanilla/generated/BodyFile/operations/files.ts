@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/filesMappers";
 import { AutoRestSwaggerBATFileServiceContext } from "../autoRestSwaggerBATFileServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Files. */
 export class Files {
   private readonly client: AutoRestSwaggerBATFileServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Files.
    * @param {AutoRestSwaggerBATFileServiceContext} client Reference to the service client.
@@ -51,7 +52,8 @@ export class Files {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "files/stream/nonempty"
+          path: "files/stream/nonempty",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
 
@@ -70,7 +72,7 @@ export class Files {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -114,7 +116,8 @@ export class Files {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "files/stream/verylarge"
+          path: "files/stream/verylarge",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
 
@@ -133,7 +136,7 @@ export class Files {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -177,7 +180,8 @@ export class Files {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "files/stream/empty"
+          path: "files/stream/empty",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
 
@@ -196,7 +200,7 @@ export class Files {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +

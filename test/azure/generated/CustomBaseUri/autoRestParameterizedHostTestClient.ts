@@ -47,6 +47,7 @@ class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestC
    */
   constructor(credentials: msRest.ServiceClientCredentials, options?: Models.AutoRestParameterizedHostTestClientOptions) {
     super(credentials, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.paths = new operations.Paths(this);
   }
 }

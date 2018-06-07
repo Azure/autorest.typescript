@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/lRORetrysMappers";
 import { AutoRestLongRunningOperationTestServiceContext } from "../autoRestLongRunningOperationTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -18,6 +18,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a LRORetrys. */
 export class LRORetrys {
   private readonly client: AutoRestLongRunningOperationTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a LRORetrys.
    * @param {AutoRestLongRunningOperationTestServiceContext} client Reference to the service client.
@@ -61,7 +62,7 @@ export class LRORetrys {
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           const resultMapper = Mappers.Product;
-          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -109,7 +110,7 @@ export class LRORetrys {
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           const resultMapper = Mappers.Product;
-          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -157,7 +158,7 @@ export class LRORetrys {
       try {
         if (parsedResponse !== null && parsedResponse !== undefined) {
           const resultMapper = Mappers.Product;
-          operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
         let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -367,7 +368,8 @@ export class LRORetrys {
           ],
           requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 201) {
@@ -384,7 +386,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -399,7 +401,7 @@ export class LRORetrys {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.Product;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -414,7 +416,7 @@ export class LRORetrys {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.Product;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -488,7 +490,8 @@ export class LRORetrys {
           ],
           requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -505,7 +508,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -520,7 +523,7 @@ export class LRORetrys {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.Product;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -528,7 +531,7 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -590,7 +593,8 @@ export class LRORetrys {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {
@@ -607,7 +611,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -622,7 +626,7 @@ export class LRORetrys {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.Product;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -630,7 +634,7 @@ export class LRORetrys {
           deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 202) {
@@ -638,7 +642,7 @@ export class LRORetrys {
         try {
           if (parsedResponse !== null && parsedResponse !== undefined) {
             const resultMapper = Mappers.Product;
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -646,7 +650,7 @@ export class LRORetrys {
           deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -707,7 +711,8 @@ export class LRORetrys {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -724,7 +729,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -735,7 +740,7 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 202) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -796,7 +801,8 @@ export class LRORetrys {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -813,7 +819,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -824,7 +830,7 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 202) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -891,7 +897,8 @@ export class LRORetrys {
           ],
           requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -908,7 +915,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -919,7 +926,7 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 202) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -986,7 +993,8 @@ export class LRORetrys {
           ],
           requestBodyMapper: Mappers.Product,
           requestBodyName: "product",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 202) {
@@ -1003,7 +1011,7 @@ export class LRORetrys {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.CloudError;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -1014,7 +1022,7 @@ export class LRORetrys {
       }
       // Deserialize Response
       if (statusCode === 202) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {

@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/formdataMappers";
 import { AutoRestSwaggerBATFormDataServiceContext } from "../autoRestSwaggerBATFormDataServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Formdata. */
 export class Formdata {
   private readonly client: AutoRestSwaggerBATFormDataServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Formdata.
    * @param {AutoRestSwaggerBATFormDataServiceContext} client Reference to the service client.
@@ -95,7 +96,8 @@ export class Formdata {
               }
             }
           ],
-          contentType: "multipart/form-data"
+          contentType: "multipart/form-data",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
 
@@ -114,7 +116,7 @@ export class Formdata {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -181,7 +183,8 @@ export class Formdata {
             }
           },
           requestBodyName: "fileContent",
-          contentType: "application/octet-stream"
+          contentType: "application/octet-stream",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
 
@@ -200,7 +203,7 @@ export class Formdata {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +

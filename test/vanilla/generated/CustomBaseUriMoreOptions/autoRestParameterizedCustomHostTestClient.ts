@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -37,6 +38,7 @@ class AutoRestParameterizedCustomHostTestClient extends AutoRestParameterizedCus
    */
   constructor(subscriptionId: string, options?: Models.AutoRestParameterizedCustomHostTestClientOptions) {
     super(subscriptionId, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.paths = new operations.Paths(this);
   }
 }

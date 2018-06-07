@@ -48,6 +48,7 @@ class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
    */
   constructor(credentials: msRest.ServiceClientCredentials, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     super(credentials, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.paging = new operations.Paging(this);
   }
 }

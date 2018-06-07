@@ -8,6 +8,7 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
@@ -41,6 +42,7 @@ class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
    */
   constructor(globalStringPath: string, baseUri?: string, options?: Models.AutoRestUrlTestServiceOptions) {
     super(globalStringPath, baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.paths = new operations.Paths(this);
     this.queries = new operations.Queries(this);
     this.pathItems = new operations.PathItems(this);

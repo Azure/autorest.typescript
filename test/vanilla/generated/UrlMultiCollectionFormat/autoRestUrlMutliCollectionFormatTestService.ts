@@ -38,6 +38,7 @@ class AutoRestUrlMutliCollectionFormatTestService extends AutoRestUrlMutliCollec
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.queries = new operations.Queries(this);
   }
 }

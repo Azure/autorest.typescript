@@ -38,6 +38,7 @@ class AutoRestSwaggerBATXMLService extends AutoRestSwaggerBATXMLServiceContext {
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers, true);
     this.xml = new operations.Xml(this);
   }
 }

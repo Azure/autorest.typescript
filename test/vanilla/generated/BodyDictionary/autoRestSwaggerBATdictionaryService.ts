@@ -38,6 +38,7 @@ class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionarySe
    */
   constructor(baseUri?: string, options?: msRest.ServiceClientOptions) {
     super(baseUri, options);
+    this.serializer = new msRest.Serializer(Mappers);
     this.dictionary = new operations.Dictionary(this);
   }
 }
