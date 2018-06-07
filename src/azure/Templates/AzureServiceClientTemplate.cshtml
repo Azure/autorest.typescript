@@ -75,6 +75,8 @@ foreach (var methodGroup in Model.MethodGroupModels)
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "AzureServiceClientOptions" ? "msRestAzure.AzureServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
     super(@(!string.IsNullOrEmpty(Model.RequiredConstructorParameters) ? Model.RequiredConstructorParameters + ", " : "")options);
+@{ var serializerArgs = Model.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers"; }
+    this.serializer = new msRest.Serializer(@serializerArgs);
   @foreach (var methodGroup in Model.MethodGroupModels)
   {
     @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);

@@ -26,6 +26,74 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
+        public ISet<CompositeType> OperationModels
+        {
+            get
+            {
+                ISet<CompositeType> models = new HashSet<CompositeType>();
+                while (true)
+                {
+                    int initialCount = models.Count;
+                    foreach (Method method in Methods)
+                    {
+                        if (method.Body != null)
+                        {
+                            ModelsClosure(models, method.Body.ModelType);
+                        }
+                        foreach (Response response in method.Responses.Values)
+                        {
+                            ModelsClosure(models, response.Body);
+                            ModelsClosure(models, response.Headers);
+                        }
+                        if (method.DefaultResponse != null)
+                        {
+                            ModelsClosure(models, method.DefaultResponse.Body);
+                            ModelsClosure(models, method.DefaultResponse.Headers);
+                        }
+                    }
+
+                    foreach (CompositeType model in CodeModel.ModelTypes)
+                    {
+                        if (models.Contains(model.BaseModelType))
+                        {
+                            models.Add(model);
+                        }
+                    }
+
+                    if (initialCount == models.Count)
+                    {
+                        break;
+                    }
+                }
+
+                return models;
+            }
+        }
+
+        public static void ModelsClosure(ISet<CompositeType> closure, IModelType model)
+        {
+            if (model is CompositeType composite && !closure.Contains(composite))
+            {
+                closure.Add(composite);
+                if (composite.BaseModelType != null)
+                {
+                    ModelsClosure(closure, composite.BaseModelType);
+                }
+                foreach (Property property in composite.Properties)
+                {
+                    ModelsClosure(closure, property.ModelType);
+                }
+            }
+            else if (model is SequenceType sequence)
+            {
+                ModelsClosure(closure, sequence.ElementType);
+            }
+            else if (model is DictionaryType dictionary)
+            {
+                ModelsClosure(closure, dictionary.ValueType);
+            }
+        }
+
         [JsonIgnore]
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
             MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());

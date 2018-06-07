@@ -18,7 +18,6 @@ if (usesCustomOptionsType)
 }
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import * as Mappers from "./models/mappers";
 @EmptyLine
 const packageName = "@Model.PackageName";
 const packageVersion = "@Model.PackageVersion";
@@ -32,7 +31,7 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
   @:@(property.Name): @(property.ModelType.TSType(false));
 }
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
   @EmptyLine
   /**
    * @@class
@@ -76,15 +75,7 @@ export class @(Model.ContextName) extends msRestAzure.AzureServiceClient {
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()))
-      };
-    }
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
-    @EmptyLine
-    this.serializer = new msRest.Serializer(Mappers);
     @EmptyLine
 @foreach (var property in Model.Properties.Where(p => p.DefaultValue != null && p.Name != "generateClientRequestId"))
 {

@@ -37,7 +37,7 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
     }
 }
   baseUri: string;
-  serializer: msRest.Serializer;
+  serializer?: msRest.Serializer;
 @EmptyLine
   /**
    * @@class
@@ -89,12 +89,6 @@ export class @(Model.ContextName) extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()))
-      };
-    }
 @EmptyLine
     super(@(requiredParameters.Any(p => p.ModelType.IsPrimaryType(KnownPrimaryType.Credentials)) ? "credentials" : "undefined"), options);
     @EmptyLine
@@ -138,6 +132,5 @@ else
     }
 </text>
 }
-    this.serializer = new msRest.Serializer(Mappers, @(Model.ShouldGenerateXmlSerialization.ToString().ToLower()));
   }
 }

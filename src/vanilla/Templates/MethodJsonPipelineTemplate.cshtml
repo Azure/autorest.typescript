@@ -42,7 +42,7 @@ try {
 @:    @(Model.DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"))
 }
 @if (responsePair.Value.Headers != null) {
-@:    operationRes.parsedHeaders = client.serializer.deserialize(Mappers.@(responsePair.Value.Headers.Name), operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+@:    operationRes.parsedHeaders = this.serializer.deserialize(Mappers.@(responsePair.Value.Headers.Name), operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
 }
   }
       </text>

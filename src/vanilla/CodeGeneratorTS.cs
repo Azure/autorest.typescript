@@ -63,8 +63,11 @@ namespace AutoRest.TypeScript
 
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
+                    await Write(
+                        new MethodGroupMappersTemplate { Model = methodGroupModel },
+                        Path.Combine("models", methodGroupModel.TypeName.ToCamelCase() + "Mappers.ts"));
                     var methodGroupTemplate = new MethodGroupTemplate {Model = methodGroupModel};
-                    await Write(methodGroupTemplate, Path.Combine("operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));
+                    await Write(methodGroupTemplate, Path.Combine("operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));;
                 }
             }
 

@@ -8,13 +8,7 @@
 @Header(" * ")
  */
 @EmptyLine
-@{
-bool usesBaseOptionsType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions";
-if (usesBaseOptionsType)
-{
-@:import * as msRest from "ms-rest-js";
-}
-}
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 @if (Model.MethodGroupModels.Any()) {
@@ -74,6 +68,8 @@ class @(Model.Name) extends @(Model.ContextName) {
 @{ var clientOptionType = Model.OptionalParameterTypeForClientConstructor == "ServiceClientOptions" ? "msRest.ServiceClientOptions" : Model.OptionalParameterTypeForClientConstructor;}
   constructor(@(!string.IsNullOrEmpty(Model.RequiredConstructorParametersTS) ? Model.RequiredConstructorParametersTS + ", " : "")options?: @clientOptionType) {
     super(@(!string.IsNullOrEmpty(Model.RequiredConstructorParameters) ? Model.RequiredConstructorParameters + ", " : "")options);
+@{ var serializerArgs = Model.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers"; }
+    this.serializer = new msRest.Serializer(@serializerArgs);
 @foreach (var methodGroup in Model.MethodGroupModels)
 {
 <text>
