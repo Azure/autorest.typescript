@@ -1219,7 +1219,7 @@ export class StorageAccounts {
     } catch (error) {
       return Promise.reject(error);
     }
-    let regenerateKeyParameter: any
+    let regenerateKeyParameter: any;
     if (keyName !== null && keyName !== undefined) {
       regenerateKeyParameter = {};
       regenerateKeyParameter.keyName = keyName;

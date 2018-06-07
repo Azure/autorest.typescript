@@ -127,7 +127,7 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (defaultProgram !== null && defaultProgram !== undefined) {
       complexBody = {};
       complexBody.defaultProgram = defaultProgram;
@@ -287,7 +287,7 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (defaultProgram !== null && defaultProgram !== undefined) {
       complexBody = {};
       complexBody.defaultProgram = defaultProgram;

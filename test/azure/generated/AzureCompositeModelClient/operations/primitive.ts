@@ -1881,7 +1881,7 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (field !== null && field !== undefined) {
       complexBody = {};
       complexBody.field = field;
@@ -2077,7 +2077,7 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (field !== null && field !== undefined) {
       complexBody = {};
       complexBody.field = field;

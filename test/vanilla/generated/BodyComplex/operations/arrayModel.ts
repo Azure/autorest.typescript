@@ -127,7 +127,7 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (arrayProperty !== null && arrayProperty !== undefined) {
       complexBody = {};
       complexBody.arrayProperty = arrayProperty;
@@ -287,7 +287,7 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
+    let complexBody: any;
     if (arrayProperty !== null && arrayProperty !== undefined) {
       complexBody = {};
       complexBody.arrayProperty = arrayProperty;

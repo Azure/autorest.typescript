@@ -638,31 +638,23 @@ namespace AutoRest.TypeScript.Model
 
         public virtual string BuildFlattenParameterMappings()
         {
-            var builder = new IndentedStringBuilder("  ");
-            foreach (var transformation in InputParameterTransformation)
+            TSBuilder builder = new TSBuilder();
+            foreach (ParameterTransformation transformation in InputParameterTransformation)
             {
-                builder.AppendLine("let {0}: any",
-                        transformation.OutputParameter.Name);
-
-                builder.AppendLine("if ({0}) {{", BuildNullCheckExpression(transformation))
-                       .Indent();
-
-                if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) &&
-                    transformation.OutputParameter.ModelType is CompositeType)
+                builder.Line($"let {transformation.OutputParameter.Name}: any;");
+                builder.If(BuildNullCheckExpression(transformation), ifBody =>
                 {
-                    builder.AppendLine("{0} = {{}};",
-                        transformation.OutputParameter.Name);
-                }
+                    if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) && transformation.OutputParameter.ModelType is CompositeType)
+                    {
+                        builder.Line($"{transformation.OutputParameter.Name} = {{}};");
+                    }
 
-                foreach (var mapping in transformation.ParameterMappings)
-                {
-                    builder.AppendLine("{0};", mapping.CreateCode(transformation.OutputParameter));
-                }
-
-                builder.Outdent()
-                       .AppendLine("}");
+                    foreach (ParameterMapping mapping in transformation.ParameterMappings)
+                    {
+                        builder.Line($"{mapping.CreateCode(transformation.OutputParameter)};");
+                    }
+                });
             }
-
             return builder.ToString();
         }
 
