@@ -167,7 +167,8 @@ export class Dictionary {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody
+          complexBody,
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -191,7 +192,18 @@ export class Dictionary {
           ],
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "defaultProgram"
+              ],
+              targetPath: [
+                "defaultProgram"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -367,7 +379,8 @@ export class Dictionary {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody
+          complexBody,
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -391,7 +404,18 @@ export class Dictionary {
           ],
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "defaultProgram"
+              ],
+              targetPath: [
+                "defaultProgram"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

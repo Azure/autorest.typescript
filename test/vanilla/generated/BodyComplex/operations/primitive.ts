@@ -1506,7 +1506,8 @@ export class Primitive {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1518,7 +1519,18 @@ export class Primitive {
           path: "complex/primitive/duration",
           requestBodyMapper: Mappers.DurationWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "field"
+              ],
+              targetPath: [
+                "field"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1662,7 +1674,8 @@ export class Primitive {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1674,7 +1687,18 @@ export class Primitive {
           path: "complex/primitive/byte",
           requestBodyMapper: Mappers.ByteWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "field"
+              ],
+              targetPath: [
+                "field"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

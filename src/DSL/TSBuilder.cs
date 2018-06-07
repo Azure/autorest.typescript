@@ -374,6 +374,15 @@ namespace AutoRest.TypeScript.DSL
         }
 
         /// <summary>
+        /// Add a // comment to this TSBuilder.
+        /// </summary>
+        /// <param name="line"></param>
+        public void LineComment(string line)
+        {
+            Line($"// {line}");
+        }
+
+        /// <summary>
         /// Add a /** */ comment to this TSBuilder. If no non-null and non-empty lines are provided, then nothing will be added.
         /// </summary>
         /// <param name="lines">The lines to add. Null lines will be ignored.</param>

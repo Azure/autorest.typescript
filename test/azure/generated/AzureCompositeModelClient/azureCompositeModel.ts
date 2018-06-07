@@ -270,7 +270,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
-          bodyParameter
+          bodyParameter,
+          productDictionaryOfArray
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -330,7 +331,18 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "productDictionaryOfArray"
+              ],
+              targetPath: [
+                "productDictionaryOfArray"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -433,7 +445,8 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
-          bodyParameter
+          bodyParameter,
+          productArrayOfDictionary
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -493,7 +506,18 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "productArrayOfDictionary"
+              ],
+              targetPath: [
+                "productArrayOfDictionary"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

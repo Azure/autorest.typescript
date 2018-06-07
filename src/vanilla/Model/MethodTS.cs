@@ -651,7 +651,18 @@ namespace AutoRest.TypeScript.Model
 
                     foreach (ParameterMapping mapping in transformation.ParameterMappings)
                     {
-                        builder.Line($"{mapping.CreateCode(transformation.OutputParameter)};");
+                        builder.Text(transformation.OutputParameter.Name);
+                        if (!string.IsNullOrEmpty(mapping.OutputParameterProperty))
+                        {
+                            builder.Text($".{mapping.OutputParameterProperty}");
+                        }
+
+                        builder.Text($" = {mapping.InputParameter.Name}");
+                        if (!string.IsNullOrEmpty(mapping.InputParameterProperty))
+                        {
+                            builder.Text($".{mapping.InputParameterProperty}");
+                        }
+                        builder.Line(";");
                     }
                 });
             }
@@ -744,21 +755,26 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        private IEnumerable<Property> OptionsParameterProperties
+        {
+            get
+            {
+                CompositeType optionsParameterModelType = (CompositeType)OptionsParameterTemplateModel.ModelType;
+                return optionsParameterModelType.Properties.Where(property => property.Name != "customHeaders");
+            }
+        }
+
         public string BuildOptionalMappings()
         {
-            IEnumerable<Core.Model.Property> optionalParameters =
-                ((CompositeType)OptionsParameterTemplateModel.ModelType)
-                .Properties.Where(p => p.Name != "customHeaders");
-            var builder = new IndentedStringBuilder("  ");
-            foreach (var optionalParam in optionalParameters)
+            TSBuilder builder = new TSBuilder();
+            foreach (Property optionalParam in OptionsParameterProperties)
             {
                 string defaultValue = "undefined";
                 if (!string.IsNullOrWhiteSpace(optionalParam.DefaultValue))
                 {
                     defaultValue = optionalParam.DefaultValue;
                 }
-                builder.AppendLine("let {0} = ({1} && {1}.{2} !== undefined) ? {1}.{2} : {3};",
-                    optionalParam.Name, OptionsParameterTemplateModel.Name, optionalParam.Name, defaultValue);
+                builder.Line("let {0} = ({1} && {1}.{2} !== undefined) ? {1}.{2} : {3};", optionalParam.Name, OptionsParameterTemplateModel.Name, optionalParam.Name, defaultValue);
             }
             return builder.ToString();
         }
@@ -860,9 +876,34 @@ namespace AutoRest.TypeScript.Model
         {
             operationArguments.Object(obj =>
             {
+                List<ParameterTransformation> parameterTransformations = InputParameterTransformation;
+                //ISet<string> outputParameterNames = parameterTransformations.Select(transformation => transformation.OutputParameter.Name.ToString()).ToHashSet();
+
+                List<string> operationArgumentNames = new List<string>();
                 foreach (Parameter parameter in LogicalParameters)
                 {
-                    obj.TextProperty(parameter.Name, parameter.Name);
+                    string parameterName = parameter.Name;
+                    //if (!outputParameterNames.Contains(parameterName))
+                    {
+                        operationArgumentNames.Add(parameterName);
+                    }
+                }
+
+                IEnumerable<Property> optionsPropertiesToAdd = OptionsParameterProperties.Where(optionsProperty => !obj.ContainsProperty(optionsProperty.Name));
+                if (optionsPropertiesToAdd != null)
+                {
+                    foreach (Property optionsProperty in optionsPropertiesToAdd)
+                    {
+                        if (!operationArgumentNames.Contains(optionsProperty.Name))
+                        {
+                            operationArgumentNames.Add(optionsProperty.Name);
+                        }
+                    }
+                }
+
+                foreach (string operationArgumentName in operationArgumentNames)
+                {
+                    obj.TextProperty(operationArgumentName, operationArgumentName);
                 }
             });
             operationArguments.Text("options");
@@ -915,9 +956,47 @@ namespace AutoRest.TypeScript.Model
                 }
             }
 
+            GenerateParameterTransformations(operationSpec, InputParameterTransformation);
+
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
                 operationSpec.BooleanProperty("isXML", true);
+            }
+        }
+
+        private static void GenerateParameterTransformations(TSObject operationSpec, IEnumerable<ParameterTransformation> parameterTransformations)
+        {
+            if (parameterTransformations.Any())
+            {
+                operationSpec.ArrayProperty("parameterTransformations", parameterTransformationsArray =>
+                {
+                    foreach (ParameterTransformation parameterTransformation in parameterTransformations)
+                    {
+                        foreach (ParameterMapping parameterTransformationMapping in parameterTransformation.ParameterMappings)
+                        {
+                            parameterTransformationsArray.Object(parameterTransformationObject =>
+                            {
+                                parameterTransformationObject.ArrayProperty("sourcePath", sourcePathArray =>
+                                {
+                                    sourcePathArray.QuotedString(parameterTransformation.OutputParameter.Name);
+                                    if (!string.IsNullOrEmpty(parameterTransformationMapping.OutputParameterProperty))
+                                    {
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.OutputParameterProperty);
+                                    }
+                                });
+
+                                parameterTransformationObject.ArrayProperty("targetPath", sourcePathArray =>
+                                {
+                                    sourcePathArray.QuotedString(parameterTransformationMapping.InputParameter.Name);
+                                    if (!string.IsNullOrEmpty(parameterTransformationMapping.InputParameterProperty))
+                                    {
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.InputParameterProperty);
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
             }
         }
 

@@ -847,7 +847,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          simpleBodyProduct
+          simpleBodyProduct,
+          description,
+          genericValue,
+          odatavalue
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -859,7 +862,54 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "model-flatten/customFlattening",
           requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "productId"
+              ],
+              targetPath: [
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "description"
+              ],
+              targetPath: [
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "genericValue"
+              ],
+              targetPath: [
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "odatavalue"
+              ],
+              targetPath: [
+                "odatavalue"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1033,7 +1083,108 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           ],
           requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "name"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "name"
+              ]
+            },
+            {
+              sourcePath: [
+                "productId"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "description"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "genericValue"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "odatavalue"
+              ],
+              targetPath: [
+                "flattenParameterGroup",
+                "odatavalue"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "productId"
+              ],
+              targetPath: [
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "description"
+              ],
+              targetPath: [
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "genericValue"
+              ],
+              targetPath: [
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "simpleBodyProduct",
+                "odatavalue"
+              ],
+              targetPath: [
+                "odatavalue"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

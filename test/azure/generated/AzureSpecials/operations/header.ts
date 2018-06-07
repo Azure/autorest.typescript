@@ -211,6 +211,17 @@ export class Header {
                 }
               }
             }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "fooClientRequestId"
+              ],
+              targetPath: [
+                "headerCustomNamedRequestIdParamGroupingParameters",
+                "fooClientRequestId"
+              ]
+            }
           ]
         });
       let statusCode = operationRes.status;

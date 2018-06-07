@@ -139,7 +139,8 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          arrayProperty
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -151,7 +152,18 @@ export class ArrayModel {
           path: "complex/array/valid",
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "arrayProperty"
+              ],
+              targetPath: [
+                "arrayProperty"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -299,7 +311,8 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          arrayProperty
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -311,7 +324,18 @@ export class ArrayModel {
           path: "complex/array/empty",
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "arrayProperty"
+              ],
+              targetPath: [
+                "arrayProperty"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -3,6 +3,8 @@
 // 
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoRest.TypeScript.DSL
 {
@@ -13,10 +15,12 @@ namespace AutoRest.TypeScript.DSL
     {
         private readonly TSBuilder builder;
         private State currentState = State.Start;
+        private IList<string> propertyNames = new List<string>();
 
         private enum State
         {
             Start,
+            LineComment,
             BlockComment,
             Property
         }
@@ -42,6 +46,7 @@ namespace AutoRest.TypeScript.DSL
                     builder.Line();
                     break;
 
+                case State.LineComment:
                 case State.BlockComment:
                     break;
 
@@ -54,6 +59,25 @@ namespace AutoRest.TypeScript.DSL
             }
 
             currentState = value;
+        }
+
+        /// <summary>
+        /// Get whether or not a property with the provided propertyName has already been added to this TSObject.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to check.</param>
+        public bool ContainsProperty(string propertyName)
+        {
+            return propertyNames.Contains(propertyName);
+        }
+
+        /// <summary>
+        /// Add a line comment to this TSObject.
+        /// </summary>
+        /// <param name="line">The line to add as a line comment to this TSObject.</param>
+        public void LineComment(string line)
+        {
+            SetCurrentState(State.LineComment);
+            builder.LineComment(line);
         }
 
         /// <summary>
@@ -103,6 +127,8 @@ namespace AutoRest.TypeScript.DSL
             }
             builder.Text(": ");
             builder.Value(propertyValueAction);
+
+            propertyNames.Add(propertyName);
         }
 
         /// <summary>
@@ -135,6 +161,7 @@ namespace AutoRest.TypeScript.DSL
             {
                 SetCurrentState(State.Property);
                 builder.Text(propertyName);
+                propertyNames.Add(propertyName);
             }
             else
             {

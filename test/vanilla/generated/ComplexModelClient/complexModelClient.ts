@@ -219,7 +219,8 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter
+          bodyParameter,
+          productDictionaryOfArray
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -267,7 +268,18 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "productDictionaryOfArray"
+              ],
+              targetPath: [
+                "productDictionaryOfArray"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -365,7 +377,8 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter
+          bodyParameter,
+          productArrayOfDictionary
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -413,7 +426,18 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "productArrayOfDictionary"
+              ],
+              targetPath: [
+                "productArrayOfDictionary"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

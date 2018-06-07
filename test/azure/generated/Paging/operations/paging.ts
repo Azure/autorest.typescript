@@ -180,7 +180,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -228,6 +229,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -336,7 +357,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetOdataMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -384,6 +406,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -566,6 +608,35 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "offset"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "offset"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -1345,6 +1416,26 @@ export class Paging {
                 }
               }
             }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "apiVersion"
+              ],
+              targetPath: [
+                "customParameterGroup",
+                "apiVersion"
+              ]
+            },
+            {
+              sourcePath: [
+                "tenant"
+              ],
+              targetPath: [
+                "customParameterGroup",
+                "tenant"
+              ]
+            }
           ]
         });
       let statusCode = operationRes.status;
@@ -1709,6 +1800,26 @@ export class Paging {
                 }
               }
             }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "apiVersion"
+              ],
+              targetPath: [
+                "customParameterGroup",
+                "apiVersion"
+              ]
+            },
+            {
+              sourcePath: [
+                "tenant"
+              ],
+              targetPath: [
+                "customParameterGroup",
+                "tenant"
+              ]
+            }
           ]
         });
       let statusCode = operationRes.status;
@@ -1815,7 +1926,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetMultiplePagesLROOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1863,6 +1975,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -2095,7 +2227,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2156,6 +2289,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -2271,7 +2424,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetOdataMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2332,6 +2486,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -2446,7 +2620,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetMultiplePagesWithOffsetNextOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2507,6 +2682,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "timeout"
+              ]
             }
           ]
         });
@@ -3263,7 +3458,8 @@ export class Paging {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
-          timeout
+          timeout,
+          pagingGetMultiplePagesLROOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -3324,6 +3520,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "maxresults"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "timeout"
+              ],
+              targetPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ]
             }
           ]
         });

@@ -139,7 +139,8 @@ export class Dictionary {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -151,7 +152,18 @@ export class Dictionary {
           path: "complex/dictionary/typed/valid",
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "defaultProgram"
+              ],
+              targetPath: [
+                "defaultProgram"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -299,7 +311,8 @@ export class Dictionary {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          complexBody,
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -311,7 +324,18 @@ export class Dictionary {
           path: "complex/dictionary/typed/empty",
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "defaultProgram"
+              ],
+              targetPath: [
+                "defaultProgram"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

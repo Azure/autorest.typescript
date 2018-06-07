@@ -1894,7 +1894,8 @@ export class Primitive {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody
+          complexBody,
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1918,7 +1919,18 @@ export class Primitive {
           ],
           requestBodyMapper: Mappers.DurationWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "field"
+              ],
+              targetPath: [
+                "field"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -2090,7 +2102,8 @@ export class Primitive {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody
+          complexBody,
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2114,7 +2127,18 @@ export class Primitive {
           ],
           requestBodyMapper: Mappers.ByteWrapper,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "field"
+              ],
+              targetPath: [
+                "field"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

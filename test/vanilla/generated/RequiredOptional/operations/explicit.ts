@@ -253,7 +253,18 @@ export class Explicit {
           path: "reqopt/requied/integer/property",
           requestBodyMapper: Mappers.IntWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -336,7 +347,8 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          bodyParameter,
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -348,7 +360,18 @@ export class Explicit {
           path: "reqopt/optional/integer/property",
           requestBodyMapper: Mappers.IntOptionalWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -795,7 +818,18 @@ export class Explicit {
           path: "reqopt/requied/string/property",
           requestBodyMapper: Mappers.StringWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -878,7 +912,8 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          bodyParameter,
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -890,7 +925,18 @@ export class Explicit {
           path: "reqopt/optional/string/property",
           requestBodyMapper: Mappers.StringOptionalWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1318,7 +1364,18 @@ export class Explicit {
           path: "reqopt/requied/class/property",
           requestBodyMapper: Mappers.ClassWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1393,7 +1450,8 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          bodyParameter,
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1405,7 +1463,18 @@ export class Explicit {
           path: "reqopt/optional/class/property",
           requestBodyMapper: Mappers.ClassOptionalWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -1693,7 +1762,18 @@ export class Explicit {
           path: "reqopt/requied/array/property",
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode < 200 || statusCode >= 300) {
@@ -1780,7 +1860,8 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          bodyParameter,
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1792,7 +1873,18 @@ export class Explicit {
           path: "reqopt/optional/array/property",
           requestBodyMapper: Mappers.ArrayOptionalWrapper,
           requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "bodyParameter",
+                "value"
+              ],
+              targetPath: [
+                "value"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

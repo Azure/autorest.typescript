@@ -164,7 +164,45 @@ export class ParameterGrouping {
             }
           },
           requestBodyName: "body",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "body"
+              ],
+              targetPath: [
+                "parameterGroupingPostRequiredParameters",
+                "body"
+              ]
+            },
+            {
+              sourcePath: [
+                "customHeader"
+              ],
+              targetPath: [
+                "parameterGroupingPostRequiredParameters",
+                "customHeader"
+              ]
+            },
+            {
+              sourcePath: [
+                "query"
+              ],
+              targetPath: [
+                "parameterGroupingPostRequiredParameters",
+                "query"
+              ]
+            },
+            {
+              sourcePath: [
+                "path"
+              ],
+              targetPath: [
+                "parameterGroupingPostRequiredParameters",
+                "path"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -251,7 +289,8 @@ export class ParameterGrouping {
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
           customHeader,
-          query
+          query,
+          parameterGroupingPostOptionalParameters
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -292,6 +331,26 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "customHeader"
+              ],
+              targetPath: [
+                "parameterGroupingPostOptionalParameters",
+                "customHeader"
+              ]
+            },
+            {
+              sourcePath: [
+                "query"
+              ],
+              targetPath: [
+                "parameterGroupingPostOptionalParameters",
+                "query"
+              ]
             }
           ]
         });
@@ -399,7 +458,9 @@ export class ParameterGrouping {
           headerOne,
           queryOne,
           headerTwo,
-          queryTwo
+          queryTwo,
+          firstParameterGroup,
+          parameterGroupingPostMultiParamGroupsSecondParamGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -459,6 +520,44 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "headerOne"
+              ],
+              targetPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "queryOne"
+              ],
+              targetPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "headerTwo"
+              ],
+              targetPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "headerTwo"
+              ]
+            },
+            {
+              sourcePath: [
+                "queryTwo"
+              ],
+              targetPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "queryTwo"
+              ]
             }
           ]
         });
@@ -547,7 +646,8 @@ export class ParameterGrouping {
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
           headerOne,
-          queryOne
+          queryOne,
+          firstParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -588,6 +688,26 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "headerOne"
+              ],
+              targetPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "queryOne"
+              ],
+              targetPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ]
             }
           ]
         });

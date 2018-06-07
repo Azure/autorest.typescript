@@ -168,7 +168,8 @@ export class Readonlyproperty {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody
+          complexBody,
+          size
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -192,7 +193,18 @@ export class Readonlyproperty {
           ],
           requestBodyMapper: Mappers.ReadonlyObj,
           requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "complexBody",
+                "size"
+              ],
+              targetPath: [
+                "size"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

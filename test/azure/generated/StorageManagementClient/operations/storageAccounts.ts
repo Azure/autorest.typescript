@@ -1236,7 +1236,8 @@ export class StorageAccounts {
           "this.client.apiVersion": this.client.apiVersion,
           "this.client.subscriptionId": this.client.subscriptionId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          regenerateKeyParameter
+          regenerateKeyParameter,
+          keyName
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1304,7 +1305,18 @@ export class StorageAccounts {
           ],
           requestBodyMapper: Mappers.StorageAccountRegenerateKeyParameters,
           requestBodyName: "regenerateKeyParameter",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "regenerateKeyParameter",
+                "keyName"
+              ],
+              targetPath: [
+                "keyName"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

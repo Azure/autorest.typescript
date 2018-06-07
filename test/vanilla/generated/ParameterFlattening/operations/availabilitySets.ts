@@ -121,7 +121,18 @@ export class AvailabilitySets {
           ],
           requestBodyMapper: Mappers.AvailabilitySetUpdateParameters,
           requestBodyName: "tags1",
-          contentType: "application/json; charset=utf-8"
+          contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "tags1",
+                "tags"
+              ],
+              targetPath: [
+                "tags"
+              ]
+            }
+          ]
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
