@@ -16,7 +16,6 @@ const packageVersion = "";
 export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
   apiVersion: string;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

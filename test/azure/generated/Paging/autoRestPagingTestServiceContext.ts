@@ -22,7 +22,6 @@ export class AutoRestPagingTestServiceContext extends msRestAzure.AzureServiceCl
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

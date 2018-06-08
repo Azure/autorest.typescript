@@ -18,7 +18,6 @@ export class AutoRestUrlTestServiceContext extends msRest.ServiceClient {
   globalStringPath: string;
   globalStringQuery?: string;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

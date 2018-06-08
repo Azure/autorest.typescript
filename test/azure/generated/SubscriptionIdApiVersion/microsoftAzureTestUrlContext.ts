@@ -26,7 +26,6 @@ export class MicrosoftAzureTestUrlContext extends msRestAzure.AzureServiceClient
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

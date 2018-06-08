@@ -15,7 +15,6 @@ const packageVersion = "";
 
 export class AutoRestRFC1123DateTimeTestServiceContext extends msRest.ServiceClient {
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

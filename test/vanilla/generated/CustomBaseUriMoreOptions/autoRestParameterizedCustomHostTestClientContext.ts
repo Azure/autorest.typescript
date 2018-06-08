@@ -18,7 +18,6 @@ export class AutoRestParameterizedCustomHostTestClientContext extends msRest.Ser
   subscriptionId: string;
   dnsSuffix?: string;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

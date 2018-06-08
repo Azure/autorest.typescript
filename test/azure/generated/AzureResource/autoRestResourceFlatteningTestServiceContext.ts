@@ -22,7 +22,6 @@ export class AutoRestResourceFlatteningTestServiceContext extends msRestAzure.Az
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

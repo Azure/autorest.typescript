@@ -22,7 +22,6 @@ export class AutoRestParameterGroupingTestServiceContext extends msRestAzure.Azu
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

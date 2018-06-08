@@ -22,7 +22,6 @@ export class AutoRestReportServiceForAzureContext extends msRestAzure.AzureServi
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

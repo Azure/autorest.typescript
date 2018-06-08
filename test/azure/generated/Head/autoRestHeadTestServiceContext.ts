@@ -22,7 +22,6 @@ export class AutoRestHeadTestServiceContext extends msRestAzure.AzureServiceClie
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

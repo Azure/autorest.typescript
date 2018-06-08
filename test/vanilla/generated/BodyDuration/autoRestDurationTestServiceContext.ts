@@ -15,7 +15,6 @@ const packageVersion = "";
 
 export class AutoRestDurationTestServiceContext extends msRest.ServiceClient {
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

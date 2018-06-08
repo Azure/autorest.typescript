@@ -19,7 +19,6 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
   requiredGlobalQuery: string;
   optionalGlobalQuery?: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class

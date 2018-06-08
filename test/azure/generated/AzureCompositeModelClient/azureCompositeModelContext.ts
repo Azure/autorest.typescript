@@ -24,7 +24,6 @@ export class AzureCompositeModelContext extends msRestAzure.AzureServiceClient {
 
   longRunningOperationRetryTimeout: number;
   baseUri: string;
-  serializer?: msRest.Serializer;
 
   /**
    * @class
