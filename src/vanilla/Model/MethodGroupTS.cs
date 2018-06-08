@@ -26,6 +26,17 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
+        public string MappersModuleName => TypeName.ToCamelCase() + "Mappers";
+
+        public string SerializerPropertyDeclaration
+        {
+            get
+            {
+                var serializerParams = CodeModel.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers";
+                return $"private readonly serializer = new msRest.Serializer({serializerParams});";
+            }
+        }
+
         public ISet<string> OperationModelNames
         {
             get
@@ -38,17 +49,17 @@ namespace AutoRest.TypeScript.Model
                     {
                         if (method.Body != null)
                         {
-                            ModelsClosure(modelNames, method.Body.ModelType);
+                            CollectReferencedModelNames(modelNames, method.Body.ModelType);
                         }
                         foreach (Response response in method.Responses.Values)
                         {
-                            ModelsClosure(modelNames, response.Body);
-                            ModelsClosure(modelNames, response.Headers);
+                            CollectReferencedModelNames(modelNames, response.Body);
+                            CollectReferencedModelNames(modelNames, response.Headers);
                         }
                         if (method.DefaultResponse != null)
                         {
-                            ModelsClosure(modelNames, method.DefaultResponse.Body);
-                            ModelsClosure(modelNames, method.DefaultResponse.Headers);
+                            CollectReferencedModelNames(modelNames, method.DefaultResponse.Body);
+                            CollectReferencedModelNames(modelNames, method.DefaultResponse.Headers);
                         }
                     }
 
@@ -56,7 +67,7 @@ namespace AutoRest.TypeScript.Model
                     {
                         if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
                         {
-                            modelNames.Add(model.Name);
+                            CollectReferencedModelNames(modelNames, model);
                         }
                     }
 
@@ -70,27 +81,27 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        public static void ModelsClosure(ISet<string> closure, IModelType model)
+        public static void CollectReferencedModelNames(ISet<string> closure, IModelType model)
         {
             if (model is CompositeType composite && !closure.Contains(composite.Name))
             {
                 closure.Add(composite.Name);
                 if (composite.BaseModelType != null)
                 {
-                    ModelsClosure(closure, composite.BaseModelType);
+                    CollectReferencedModelNames(closure, composite.BaseModelType);
                 }
                 foreach (Property property in composite.Properties)
                 {
-                    ModelsClosure(closure, property.ModelType);
+                    CollectReferencedModelNames(closure, property.ModelType);
                 }
             }
             else if (model is SequenceType sequence)
             {
-                ModelsClosure(closure, sequence.ElementType);
+                CollectReferencedModelNames(closure, sequence.ElementType);
             }
             else if (model is DictionaryType dictionary)
             {
-                ModelsClosure(closure, dictionary.ValueType);
+                CollectReferencedModelNames(closure, dictionary.ValueType);
             }
         }
 
