@@ -42,27 +42,29 @@ namespace AutoRest.TypeScript.Model
             get
             {
                 ISet<string> modelNames = new HashSet<string>();
-                while (true)
+                foreach (Method method in Methods)
                 {
-                    int initialCount = modelNames.Count;
-                    foreach (Method method in Methods)
+                    if (method.Body != null)
                     {
-                        if (method.Body != null)
-                        {
-                            CollectReferencedModelNames(modelNames, method.Body.ModelType);
-                        }
-                        foreach (Response response in method.Responses.Values)
-                        {
-                            CollectReferencedModelNames(modelNames, response.Body);
-                            CollectReferencedModelNames(modelNames, response.Headers);
-                        }
-                        if (method.DefaultResponse != null)
-                        {
-                            CollectReferencedModelNames(modelNames, method.DefaultResponse.Body);
-                            CollectReferencedModelNames(modelNames, method.DefaultResponse.Headers);
-                        }
+                        CollectReferencedModelNames(modelNames, method.Body.ModelType);
                     }
+                    foreach (Response response in method.Responses.Values)
+                    {
+                        CollectReferencedModelNames(modelNames, response.Body);
+                        CollectReferencedModelNames(modelNames, response.Headers);
+                    }
+                    if (method.DefaultResponse != null)
+                    {
+                        CollectReferencedModelNames(modelNames, method.DefaultResponse.Body);
+                        CollectReferencedModelNames(modelNames, method.DefaultResponse.Headers);
+                    }
+                }
 
+                int initialCount;
+                do
+                {
+                    initialCount = modelNames.Count;
+                    // Search for polymorphic subtypes
                     foreach (CompositeType model in CodeModel.ModelTypes)
                     {
                         if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
@@ -70,12 +72,7 @@ namespace AutoRest.TypeScript.Model
                             CollectReferencedModelNames(modelNames, model);
                         }
                     }
-
-                    if (initialCount == modelNames.Count)
-                    {
-                        break;
-                    }
-                }
+                } while (initialCount != modelNames.Count);
 
                 return modelNames;
             }
