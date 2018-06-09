@@ -8,12 +8,14 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as operations from "./operations";
 import { AutoRestUrlTestServiceContext } from "./autoRestUrlTestServiceContext";
 
 class AutoRestUrlTestService extends AutoRestUrlTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   paths: operations.Paths;

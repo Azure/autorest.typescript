@@ -10,7 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 
 const packageName = "";
 const packageVersion = "";
@@ -18,7 +17,6 @@ const packageVersion = "";
 export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceClient {
   host?: string;
   baseUri: string;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -42,12 +40,6 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -58,6 +50,5 @@ export class AutoRestParameterizedHostTestClientContext extends msRest.ServiceCl
     if(options.host !== null && options.host !== undefined) {
       this.host = options.host;
     }
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

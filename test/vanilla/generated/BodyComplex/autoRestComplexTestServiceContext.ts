@@ -9,7 +9,6 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "./models/mappers";
 
 const packageName = "";
 const packageVersion = "";
@@ -17,7 +16,6 @@ const packageVersion = "";
 export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
   apiVersion: string;
   baseUri: string;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -41,12 +39,6 @@ export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -57,6 +49,5 @@ export class AutoRestComplexTestServiceContext extends msRest.ServiceClient {
     }
 
     this.addUserAgentInfo(`${packageName}/${packageVersion}`);
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

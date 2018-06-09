@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestHeadTestService extends AutoRestHeadTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   httpSuccess: operations.HttpSuccess;

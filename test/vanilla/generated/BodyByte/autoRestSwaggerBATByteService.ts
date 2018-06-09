@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATByteServiceContext } from "./autoRestSwaggerBATByteServiceContext";
 
 class AutoRestSwaggerBATByteService extends AutoRestSwaggerBATByteServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   byteModel: operations.ByteModel;

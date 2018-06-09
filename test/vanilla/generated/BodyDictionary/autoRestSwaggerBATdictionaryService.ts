@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATdictionaryServiceContext } from "./autoRestSwaggerBATdictionaryServiceContext";
 
 class AutoRestSwaggerBATdictionaryService extends AutoRestSwaggerBATdictionaryServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   dictionary: operations.Dictionary;

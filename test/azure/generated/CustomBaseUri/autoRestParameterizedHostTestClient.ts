@@ -16,6 +16,7 @@ import * as operations from "./operations";
 
 
 class AutoRestParameterizedHostTestClient extends AutoRestParameterizedHostTestClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   paths: operations.Paths;

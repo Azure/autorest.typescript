@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestPagingTestService extends AutoRestPagingTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   paging: operations.Paging;

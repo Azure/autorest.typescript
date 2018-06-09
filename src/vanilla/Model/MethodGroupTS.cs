@@ -26,6 +26,82 @@ namespace AutoRest.TypeScript.Model
         [JsonIgnore]
         public IEnumerable<MethodTS> MethodTemplateModels => Methods.Cast<MethodTS>();
 
+        public string MappersModuleName => TypeName.ToCamelCase() + "Mappers";
+
+        public string SerializerPropertyDeclaration
+        {
+            get
+            {
+                var serializerParams = CodeModel.ShouldGenerateXmlSerialization ? "Mappers, true" : "Mappers";
+                return $"private readonly serializer = new msRest.Serializer({serializerParams});";
+            }
+        }
+
+        public ISet<string> OperationModelNames
+        {
+            get
+            {
+                ISet<string> modelNames = new HashSet<string>();
+                foreach (Method method in Methods)
+                {
+                    if (method.Body != null)
+                    {
+                        CollectReferencedModelNames(modelNames, method.Body.ModelType);
+                    }
+                    foreach (Response response in method.Responses.Values)
+                    {
+                        CollectReferencedModelNames(modelNames, response.Body);
+                        CollectReferencedModelNames(modelNames, response.Headers);
+                    }
+                    if (method.DefaultResponse != null)
+                    {
+                        CollectReferencedModelNames(modelNames, method.DefaultResponse.Body);
+                        CollectReferencedModelNames(modelNames, method.DefaultResponse.Headers);
+                    }
+                }
+
+                int initialCount;
+                do
+                {
+                    initialCount = modelNames.Count;
+                    // Search for polymorphic subtypes
+                    foreach (CompositeType model in CodeModel.ModelTypes)
+                    {
+                        if (model.BaseModelType != null && modelNames.Contains(model.BaseModelType.Name))
+                        {
+                            CollectReferencedModelNames(modelNames, model);
+                        }
+                    }
+                } while (initialCount != modelNames.Count);
+
+                return modelNames;
+            }
+        }
+
+        public static void CollectReferencedModelNames(ISet<string> closure, IModelType model)
+        {
+            if (model is CompositeType composite && !closure.Contains(composite.Name))
+            {
+                closure.Add(composite.Name);
+                if (composite.BaseModelType != null)
+                {
+                    CollectReferencedModelNames(closure, composite.BaseModelType);
+                }
+                foreach (Property property in composite.Properties)
+                {
+                    CollectReferencedModelNames(closure, property.ModelType);
+                }
+            }
+            else if (model is SequenceType sequence)
+            {
+                CollectReferencedModelNames(closure, sequence.ElementType);
+            }
+            else if (model is DictionaryType dictionary)
+            {
+                CollectReferencedModelNames(closure, dictionary.ValueType);
+            }
+        }
+
         [JsonIgnore]
         public virtual IEnumerable<MethodTS> MethodWrappableTemplateModels =>
             MethodTemplateModels.Where(method => !method.ReturnType.Body.IsStream());

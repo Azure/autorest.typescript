@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestParameterGroupingTestService extends AutoRestParameterGroupingTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   parameterGrouping: operations.ParameterGrouping;

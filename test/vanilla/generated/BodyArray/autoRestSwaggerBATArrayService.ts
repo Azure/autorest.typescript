@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestSwaggerBATArrayServiceContext } from "./autoRestSwaggerBATArrayServiceContext";
 
 class AutoRestSwaggerBATArrayService extends AutoRestSwaggerBATArrayServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   arrayModel: operations.ArrayModel;

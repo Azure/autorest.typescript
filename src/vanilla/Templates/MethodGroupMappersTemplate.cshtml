@@ -1,0 +1,16 @@
+﻿@using System.Linq
+@using AutoRest.TypeScript.vanilla.Templates
+@using AutoRest.Core.Utilities
+@inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
+/*
+@Header(" * ")
+ */
+@EmptyLine
+export {
+@if (!string.IsNullOrWhiteSpace(Model.CodeModelTS.PolymorphicDictionary))
+{
+@:  discriminators,
+}
+  @(string.Join(",\n", Model.OperationModelNames))
+} from "../models/mappers";
+@EmptyLine

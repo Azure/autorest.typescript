@@ -13,7 +13,7 @@ import * as msRest from "ms-rest-js";
 {
 @:import * as Models from "../models";
 }
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/@(Model.MappersModuleName)";
 import { @(Model.CodeModelTS.ContextName) } from "../@(Model.CodeModelTS.ContextName.ToCamelCase())";
 @EmptyLine
 const WebResource = msRest.WebResource;
@@ -21,6 +21,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a @(Model.TypeName). */
 export class @(Model.TypeName) {
   private readonly client: @(Model.CodeModelTS.ContextName);
+  @Model.SerializerPropertyDeclaration
   /**
    * Create a @Model.TypeName.
    * @@param {@Model.CodeModelTS.ContextName} client Reference to the service client.
