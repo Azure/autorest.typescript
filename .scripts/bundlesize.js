@@ -26,11 +26,8 @@ async function getBundleSize() {
       if (stderr) {
         console.error(stderr);
       }
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
+      // Even if webpack errors, we still just want to see what it put on disk
+      resolve();
     });
   });
   const status = await stat(join(__dirname, "../testBundle.js"));

@@ -4,7 +4,6 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
