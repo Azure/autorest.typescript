@@ -27,7 +27,7 @@ namespace AutoRest.TypeScript.Azure
                 throw new InvalidCastException("Code Model is not a TypeScript Azure code model.");
             }
 
-            // MethodNames are normalized explicitly to provide a consitent method name while 
+            // MethodNames are normalized explicitly to provide a consitent method name while
             // generating cloned methods for long running operations with reserved words. For
             // example - beginDeleteMethod() insteadof beginDelete() as delete is a reserved word.
             // Namer.NormalizeMethodNames(serviceClient);
@@ -88,7 +88,7 @@ namespace AutoRest.TypeScript.Azure
                         compositType.Extensions[AzureExtensions.PageableExtension] = true;
                         var pageTemplateModel = new PageCompositeTypeTSa(nextLinkName, itemName).LoadFrom(compositType);
                         // var pageTemplateModel = new PageTemplateModel(compositType, serviceClient, nextLinkName, itemName);
-                        if (!codeModel.PageTemplateModels.Any(ptm => ptm.StructurallyEquals(pageTemplateModel)))
+                        if (!codeModel.PageTemplateModels.Any(ptm => ptm.Name == pageTemplateModel.Name))
                         {
                             codeModel.PageTemplateModels.Add(pageTemplateModel);
                         }
