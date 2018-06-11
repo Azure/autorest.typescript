@@ -256,6 +256,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (productDictionaryOfArray !== null && productDictionaryOfArray !== undefined) {
+      bodyParameter = {};
+      bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -267,6 +272,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
+          bodyParameter,
           productDictionaryOfArray
         },
         options);
@@ -426,6 +432,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (productArrayOfDictionary !== null && productArrayOfDictionary !== undefined) {
+      bodyParameter = {};
+      bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -437,6 +448,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
+          bodyParameter,
           productArrayOfDictionary
         },
         options);

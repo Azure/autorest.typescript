@@ -142,6 +142,7 @@ export class Readonlyproperty {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          complexBody,
           size
         },
         options);

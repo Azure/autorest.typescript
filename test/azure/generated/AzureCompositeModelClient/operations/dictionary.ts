@@ -156,6 +156,11 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
+    let complexBody: any;
+    if (defaultProgram !== null && defaultProgram !== undefined) {
+      complexBody = {};
+      complexBody.defaultProgram = defaultProgram;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -164,6 +169,7 @@ export class Dictionary {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
+          complexBody,
           defaultProgram
         },
         options);
@@ -364,6 +370,11 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
+    let complexBody: any;
+    if (defaultProgram !== null && defaultProgram !== undefined) {
+      complexBody = {};
+      complexBody.defaultProgram = defaultProgram;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -372,6 +383,7 @@ export class Dictionary {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
+          complexBody,
           defaultProgram
         },
         options);

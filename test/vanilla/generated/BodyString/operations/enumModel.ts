@@ -508,6 +508,7 @@ export class EnumModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          enumStringBody,
           field1
         },
         options);

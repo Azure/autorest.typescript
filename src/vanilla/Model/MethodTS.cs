@@ -598,7 +598,7 @@ namespace AutoRest.TypeScript.Model
             {
                 if (AreWeFlatteningParameters())
                 {
-                    // return BuildFlattenParameterMappings();
+                    return BuildFlattenParameterMappings();
                 }
                 else
                 {
@@ -899,7 +899,9 @@ namespace AutoRest.TypeScript.Model
 
                 foreach (string operationArgumentName in operationArgumentNames)
                 {
-                    if (!obj.ContainsProperty(operationArgumentName) && !unflattenedParameterNames.Contains(operationArgumentName) && operationArgumentName != "options")
+                    if (!obj.ContainsProperty(operationArgumentName) &&
+                        // !unflattenedParameterNames.Contains(operationArgumentName) &&
+                        operationArgumentName != "options")
                     {
                         obj.TextProperty(operationArgumentName, operationArgumentName);
                     }

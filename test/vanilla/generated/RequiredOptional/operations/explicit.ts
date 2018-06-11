@@ -232,6 +232,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -239,6 +244,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -334,6 +340,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -341,6 +352,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -792,6 +804,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -799,6 +816,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -894,6 +912,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -901,6 +924,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -1333,6 +1357,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1340,6 +1369,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -1427,6 +1457,11 @@ export class Explicit {
   async postOptionalClassPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
+  let bodyParameter: any;
+  if (value !== null && value !== undefined) {
+    bodyParameter = {};
+    bodyParameter.value = value;
+  }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1434,6 +1469,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -1724,6 +1760,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1731,6 +1772,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
@@ -1830,6 +1872,11 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
+    let bodyParameter: any;
+    if (value !== null && value !== undefined) {
+      bodyParameter = {};
+      bodyParameter.value = value;
+    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1837,6 +1884,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
+          bodyParameter,
           value
         },
         options);
