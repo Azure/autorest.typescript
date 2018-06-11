@@ -1514,11 +1514,6 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (field !== null && field !== undefined) {
-      complexBody = {};
-      complexBody.field = field;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1526,7 +1521,7 @@ export class Primitive {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1539,6 +1534,17 @@ export class Primitive {
           requestBodyMapper: Mappers.DurationWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "field"
+              ],
+              targetPath: [
+                "complexBody",
+                "field"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1672,11 +1678,6 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (field !== null && field !== undefined) {
-      complexBody = {};
-      complexBody.field = field;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1684,7 +1685,7 @@ export class Primitive {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          field
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1697,6 +1698,17 @@ export class Primitive {
           requestBodyMapper: Mappers.ByteWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "field"
+              ],
+              targetPath: [
+                "complexBody",
+                "field"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

@@ -129,11 +129,6 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (defaultProgram !== null && defaultProgram !== undefined) {
-      complexBody = {};
-      complexBody.defaultProgram = defaultProgram;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,7 +136,7 @@ export class Dictionary {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -154,6 +149,17 @@ export class Dictionary {
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "defaultProgram"
+              ],
+              targetPath: [
+                "complexBody",
+                "defaultProgram"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -291,11 +297,6 @@ export class Dictionary {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (defaultProgram !== null && defaultProgram !== undefined) {
-      complexBody = {};
-      complexBody.defaultProgram = defaultProgram;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -303,7 +304,7 @@ export class Dictionary {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          defaultProgram
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -316,6 +317,17 @@ export class Dictionary {
           requestBodyMapper: Mappers.DictionaryWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "defaultProgram"
+              ],
+              targetPath: [
+                "complexBody",
+                "defaultProgram"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

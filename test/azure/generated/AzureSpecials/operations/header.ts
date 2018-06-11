@@ -182,7 +182,7 @@ export class Header {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          fooClientRequestId
+          headerCustomNamedRequestIdParamGroupingParameters
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -212,6 +212,17 @@ export class Header {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "headerCustomNamedRequestIdParamGroupingParameters",
+                "fooClientRequestId"
+              ],
+              targetPath: [
+                "fooClientRequestId"
+              ]
             }
           ],
           serializer: this.serializer

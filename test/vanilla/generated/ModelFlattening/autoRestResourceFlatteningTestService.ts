@@ -857,7 +857,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          simpleBodyProduct
+          productId,
+          description,
+          maxProductDisplayName,
+          genericValue,
+          odatavalue
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -870,6 +874,53 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "productId"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "description"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "genericValue"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "odatavalue"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "odatavalue"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1014,13 +1065,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          name,
-          productId,
-          description,
-          maxProductDisplayName,
-          genericValue,
-          odatavalue,
-          simpleBodyProduct
+          flattenParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1045,6 +1090,107 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           requestBodyMapper: Mappers.SimpleProduct,
           requestBodyName: "simpleBodyProduct",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "name"
+              ],
+              targetPath: [
+                "name"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "productId"
+              ],
+              targetPath: [
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "description"
+              ],
+              targetPath: [
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "genericValue"
+              ],
+              targetPath: [
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "odatavalue"
+              ],
+              targetPath: [
+                "odatavalue"
+              ]
+            },
+            {
+              sourcePath: [
+                "productId"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "description"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "genericValue"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "odatavalue"
+              ],
+              targetPath: [
+                "simpleBodyProduct",
+                "odatavalue"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

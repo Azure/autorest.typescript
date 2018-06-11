@@ -1227,11 +1227,6 @@ export class StorageAccounts {
     } catch (error) {
       return Promise.reject(error);
     }
-    let regenerateKeyParameter: any
-    if (keyName !== null && keyName !== undefined) {
-      regenerateKeyParameter = {};
-      regenerateKeyParameter.keyName = keyName;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1244,7 +1239,7 @@ export class StorageAccounts {
           "this.client.apiVersion": this.client.apiVersion,
           "this.client.subscriptionId": this.client.subscriptionId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          regenerateKeyParameter
+          keyName
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1313,6 +1308,17 @@ export class StorageAccounts {
           requestBodyMapper: Mappers.StorageAccountRegenerateKeyParameters,
           requestBodyName: "regenerateKeyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "keyName"
+              ],
+              targetPath: [
+                "regenerateKeyParameter",
+                "keyName"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

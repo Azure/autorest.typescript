@@ -256,11 +256,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (productDictionaryOfArray !== null && productDictionaryOfArray !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -272,7 +267,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
-          bodyParameter
+          productDictionaryOfArray
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -333,6 +328,17 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "productDictionaryOfArray"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "productDictionaryOfArray"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -420,11 +426,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (productArrayOfDictionary !== null && productArrayOfDictionary !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -436,7 +437,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           resourceGroupName,
           apiVersion,
           "this.acceptLanguage": this.acceptLanguage,
-          bodyParameter
+          productArrayOfDictionary
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -497,6 +498,17 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "productArrayOfDictionary"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "productArrayOfDictionary"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

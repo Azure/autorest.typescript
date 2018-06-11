@@ -596,11 +596,7 @@ namespace AutoRest.TypeScript.Model
             var builder = new IndentedStringBuilder("  ");
             if (InputParameterTransformation.Count > 0)
             {
-                if (AreWeFlatteningParameters())
-                {
-                    return BuildFlattenParameterMappings();
-                }
-                else
+                if (!AreWeFlatteningParameters())
                 {
                     return BuildGroupedParameterMappings();
                 }
@@ -634,36 +630,6 @@ namespace AutoRest.TypeScript.Model
             }
 
             return result;
-        }
-
-        public virtual string BuildFlattenParameterMappings()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            foreach (var transformation in InputParameterTransformation)
-            {
-                builder.AppendLine("let {0}: any",
-                        transformation.OutputParameter.Name);
-
-                builder.AppendLine("if ({0}) {{", BuildNullCheckExpression(transformation))
-                       .Indent();
-
-                if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) &&
-                    transformation.OutputParameter.ModelType is CompositeType)
-                {
-                    builder.AppendLine("{0} = {{}};",
-                        transformation.OutputParameter.Name);
-                }
-
-                foreach (var mapping in transformation.ParameterMappings)
-                {
-                    builder.AppendLine("{0};", mapping.CreateCode(transformation.OutputParameter));
-                }
-
-                builder.Outdent()
-                       .AppendLine("}");
-            }
-
-            return builder.ToString();
         }
 
         public virtual string BuildGroupedParameterMappings()
@@ -752,21 +718,26 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
+        private IEnumerable<Property> OptionsParameterProperties
+        {
+            get
+            {
+                CompositeType optionsParameterModelType = (CompositeType)OptionsParameterTemplateModel.ModelType;
+                return optionsParameterModelType.Properties.Where(property => property.Name != "customHeaders");
+            }
+        }
+
         public string BuildOptionalMappings()
         {
-            IEnumerable<Core.Model.Property> optionalParameters =
-                ((CompositeType)OptionsParameterTemplateModel.ModelType)
-                .Properties.Where(p => p.Name != "customHeaders");
-            var builder = new IndentedStringBuilder("  ");
-            foreach (var optionalParam in optionalParameters)
+            TSBuilder builder = new TSBuilder();
+            foreach (Property optionalParam in OptionsParameterProperties)
             {
                 string defaultValue = "undefined";
                 if (!string.IsNullOrWhiteSpace(optionalParam.DefaultValue))
                 {
                     defaultValue = optionalParam.DefaultValue;
                 }
-                builder.AppendLine("let {0} = ({1} && {1}.{2} !== undefined) ? {1}.{2} : {3};",
-                    optionalParam.Name, OptionsParameterTemplateModel.Name, optionalParam.Name, defaultValue);
+                builder.Line("let {0} = ({1} && {1}.{2} !== undefined) ? {1}.{2} : {3};", optionalParam.Name, OptionsParameterTemplateModel.Name, optionalParam.Name, defaultValue);
             }
             return builder.ToString();
         }
@@ -868,9 +839,34 @@ namespace AutoRest.TypeScript.Model
         {
             operationArguments.Object(obj =>
             {
+                List<string> operationArgumentNames = new List<string>();
                 foreach (Parameter parameter in LogicalParameters)
                 {
-                    obj.TextProperty(parameter.Name, parameter.Name);
+                    operationArgumentNames.Add(parameter.Name);
+                }
+
+                foreach (Parameter parameter in ParameterTemplateModels)
+                {
+                    operationArgumentNames.Add(parameter.Name);
+                }
+
+                foreach (Property optionsProperty in OptionsParameterProperties)
+                {
+                    operationArgumentNames.Add(optionsProperty.Name);
+                }
+
+                ISet<string> unflattenedParameterNames = InputParameterTransformation
+                    .Select(parameterTransformation => parameterTransformation.OutputParameter.Name.ToString())
+                    .ToHashSet();
+
+                foreach (string operationArgumentName in operationArgumentNames)
+                {
+                    if (!obj.ContainsProperty(operationArgumentName) &&
+                        !unflattenedParameterNames.Contains(operationArgumentName) &&
+                        operationArgumentName != "options")
+                    {
+                        obj.TextProperty(operationArgumentName, operationArgumentName);
+                    }
                 }
             });
             operationArguments.Text("options");
@@ -923,12 +919,54 @@ namespace AutoRest.TypeScript.Model
                 }
             }
 
+            GenerateParameterTransformations(operationSpec, InputParameterTransformation);
+
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
                 operationSpec.BooleanProperty("isXML", true);
             }
 
             operationSpec.TextProperty("serializer", "this.serializer");
+        }
+
+        private static void GenerateParameterTransformations(TSObject operationSpec, IEnumerable<ParameterTransformation> parameterTransformations)
+        {
+            if (parameterTransformations.Any())
+            {
+                operationSpec.ArrayProperty("parameterTransformations", parameterTransformationsArray =>
+                {
+                    foreach (ParameterTransformation parameterTransformation in parameterTransformations)
+                    {
+                        foreach (ParameterMapping parameterTransformationMapping in parameterTransformation.ParameterMappings)
+                        {
+                            parameterTransformationsArray.Object(parameterTransformationObject =>
+                            {
+                                Parameter inputParameter = parameterTransformationMapping.InputParameter;
+                                bool hasInputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.InputParameterProperty);
+                                parameterTransformationObject.ArrayProperty("sourcePath", sourcePathArray =>
+                                {
+                                    sourcePathArray.QuotedString(inputParameter.Name);
+                                    if (hasInputParameterProperty)
+                                    {
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.InputParameterProperty);
+                                    }
+                                });
+
+                                Parameter outputParameter = parameterTransformation.OutputParameter;
+                                bool hasOutputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.OutputParameterProperty);
+                                parameterTransformationObject.ArrayProperty("targetPath", sourcePathArray =>
+                                {
+                                    sourcePathArray.QuotedString(outputParameter.Name);
+                                    if (hasOutputParameterProperty)
+                                    {
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.OutputParameterProperty);
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+            }
         }
 
         private static void AddSkipEncodingProperty(TSObject parameterObject, Parameter parameter)

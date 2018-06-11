@@ -206,11 +206,6 @@ class ComplexModelClient extends ComplexModelClientContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (productDictionaryOfArray !== null && productDictionaryOfArray !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -221,7 +216,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter
+          productDictionaryOfArray
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -270,6 +265,17 @@ class ComplexModelClient extends ComplexModelClientContext {
           requestBodyMapper: Mappers.CatalogDictionaryOfArray,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "productDictionaryOfArray"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "productDictionaryOfArray"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -353,11 +359,6 @@ class ComplexModelClient extends ComplexModelClientContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (productArrayOfDictionary !== null && productArrayOfDictionary !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -368,7 +369,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter
+          productArrayOfDictionary
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -417,6 +418,17 @@ class ComplexModelClient extends ComplexModelClientContext {
           requestBodyMapper: Mappers.CatalogArrayOfDictionary,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "productArrayOfDictionary"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "productArrayOfDictionary"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

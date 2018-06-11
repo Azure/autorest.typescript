@@ -232,11 +232,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -244,7 +239,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -257,6 +252,17 @@ export class Explicit {
           requestBodyMapper: Mappers.IntWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -328,11 +334,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -340,7 +341,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -353,6 +354,17 @@ export class Explicit {
           requestBodyMapper: Mappers.IntOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -780,11 +792,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -792,7 +799,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -805,6 +812,17 @@ export class Explicit {
           requestBodyMapper: Mappers.StringWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -876,11 +894,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -888,7 +901,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -901,6 +914,17 @@ export class Explicit {
           requestBodyMapper: Mappers.StringOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1309,11 +1333,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1321,7 +1340,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1334,6 +1353,17 @@ export class Explicit {
           requestBodyMapper: Mappers.ClassWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1397,11 +1427,6 @@ export class Explicit {
   async postOptionalClassPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-  let bodyParameter: any
-  if (value !== null && value !== undefined) {
-    bodyParameter = {};
-    bodyParameter.value = value;
-  }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1409,7 +1434,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1422,6 +1447,17 @@ export class Explicit {
           requestBodyMapper: Mappers.ClassOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1688,11 +1724,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1700,7 +1731,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1713,6 +1744,17 @@ export class Explicit {
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1788,11 +1830,6 @@ export class Explicit {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any
-    if (value !== null && value !== undefined) {
-      bodyParameter = {};
-      bodyParameter.value = value;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1800,7 +1837,7 @@ export class Explicit {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          bodyParameter
+          value
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1813,6 +1850,17 @@ export class Explicit {
           requestBodyMapper: Mappers.ArrayOptionalWrapper,
           requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "value"
+              ],
+              targetPath: [
+                "bodyParameter",
+                "value"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

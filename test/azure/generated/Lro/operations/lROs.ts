@@ -3274,7 +3274,7 @@ export class LROs {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          product
+          provisioningState
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -3299,6 +3299,17 @@ export class LROs {
           requestBodyMapper: Mappers.SubProduct,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "provisioningState"
+              ],
+              targetPath: [
+                "product",
+                "provisioningState"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -3392,7 +3403,7 @@ export class LROs {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          product
+          provisioningState
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -3417,6 +3428,17 @@ export class LROs {
           requestBodyMapper: Mappers.SubProduct,
           requestBodyName: "product",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "provisioningState"
+              ],
+              targetPath: [
+                "product",
+                "provisioningState"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

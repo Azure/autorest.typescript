@@ -99,10 +99,7 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          body,
-          customHeader,
-          query,
-          path
+          parameterGroupingPostRequiredParameters
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -166,6 +163,44 @@ export class ParameterGrouping {
           },
           requestBodyName: "body",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "parameterGroupingPostRequiredParameters",
+                "body"
+              ],
+              targetPath: [
+                "body"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostRequiredParameters",
+                "customHeader"
+              ],
+              targetPath: [
+                "customHeader"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostRequiredParameters",
+                "query"
+              ],
+              targetPath: [
+                "query"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostRequiredParameters",
+                "path"
+              ],
+              targetPath: [
+                "path"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -252,8 +287,7 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          customHeader,
-          query
+          parameterGroupingPostOptionalParameters
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -294,6 +328,26 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "parameterGroupingPostOptionalParameters",
+                "customHeader"
+              ],
+              targetPath: [
+                "customHeader"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostOptionalParameters",
+                "query"
+              ],
+              targetPath: [
+                "query"
+              ]
             }
           ],
           serializer: this.serializer
@@ -399,10 +453,8 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          headerOne,
-          queryOne,
-          headerTwo,
-          queryTwo
+          firstParameterGroup,
+          parameterGroupingPostMultiParamGroupsSecondParamGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -462,6 +514,44 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
+              targetPath: [
+                "headerOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
+              targetPath: [
+                "queryOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "headerTwo"
+              ],
+              targetPath: [
+                "headerTwo"
+              ]
+            },
+            {
+              sourcePath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "queryTwo"
+              ],
+              targetPath: [
+                "queryTwo"
+              ]
             }
           ],
           serializer: this.serializer
@@ -550,8 +640,7 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          headerOne,
-          queryOne
+          firstParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -592,6 +681,26 @@ export class ParameterGrouping {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
+              targetPath: [
+                "headerOne"
+              ]
+            },
+            {
+              sourcePath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
+              targetPath: [
+                "queryOne"
+              ]
             }
           ],
           serializer: this.serializer

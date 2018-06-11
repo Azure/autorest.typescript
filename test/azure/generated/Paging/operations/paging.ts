@@ -181,8 +181,7 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -230,6 +229,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -338,8 +357,7 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetOdataMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -387,6 +405,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -508,9 +546,7 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          offset,
-          timeout
+          pagingGetMultiplePagesWithOffsetOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -570,6 +606,35 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "offset"
+              ],
+              targetPath: [
+                "offset"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -1310,8 +1375,7 @@ export class Paging {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          apiVersion,
-          tenant
+          customParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1355,6 +1419,26 @@ export class Paging {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "customParameterGroup",
+                "apiVersion"
+              ],
+              targetPath: [
+                "apiVersion"
+              ]
+            },
+            {
+              sourcePath: [
+                "customParameterGroup",
+                "tenant"
+              ],
+              targetPath: [
+                "tenant"
+              ]
             }
           ],
           serializer: this.serializer
@@ -1665,8 +1749,7 @@ export class Paging {
         {
           nextLink,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          apiVersion,
-          tenant
+          customParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1721,6 +1804,26 @@ export class Paging {
                   name: "String"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "customParameterGroup",
+                "apiVersion"
+              ],
+              targetPath: [
+                "apiVersion"
+              ]
+            },
+            {
+              sourcePath: [
+                "customParameterGroup",
+                "tenant"
+              ],
+              targetPath: [
+                "tenant"
+              ]
             }
           ],
           serializer: this.serializer
@@ -1828,8 +1931,7 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetMultiplePagesLROOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1877,6 +1979,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -2110,8 +2232,7 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2172,6 +2293,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -2287,8 +2428,7 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetOdataMultiplePagesOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2349,6 +2489,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -2463,8 +2623,7 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetMultiplePagesWithOffsetNextOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -2525,6 +2684,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer
@@ -3286,8 +3465,7 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout
+          pagingGetMultiplePagesLROOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -3348,6 +3526,26 @@ export class Paging {
                   name: "Number"
                 }
               }
+            }
+          ],
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ],
+              targetPath: [
+                "maxresults"
+              ]
+            },
+            {
+              sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ],
+              targetPath: [
+                "timeout"
+              ]
             }
           ],
           serializer: this.serializer

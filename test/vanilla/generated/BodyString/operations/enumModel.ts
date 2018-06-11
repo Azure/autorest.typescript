@@ -508,7 +508,7 @@ export class EnumModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          enumStringBody
+          field1
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -521,6 +521,17 @@ export class EnumModel {
           requestBodyMapper: Mappers.RefColorConstant,
           requestBodyName: "enumStringBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "field1"
+              ],
+              targetPath: [
+                "enumStringBody",
+                "field1"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

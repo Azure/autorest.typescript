@@ -129,11 +129,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,7 +136,7 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          arrayProperty
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -154,6 +149,17 @@ export class ArrayModel {
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "arrayProperty"
+              ],
+              targetPath: [
+                "complexBody",
+                "arrayProperty"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -291,11 +297,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -303,7 +304,7 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody
+          arrayProperty
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -316,6 +317,17 @@ export class ArrayModel {
           requestBodyMapper: Mappers.ArrayWrapper,
           requestBodyName: "complexBody",
           contentType: "application/json; charset=utf-8",
+          parameterTransformations: [
+            {
+              sourcePath: [
+                "arrayProperty"
+              ],
+              targetPath: [
+                "complexBody",
+                "arrayProperty"
+              ]
+            }
+          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
