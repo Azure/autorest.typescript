@@ -101,7 +101,8 @@ export class ParameterGrouping {
           body,
           customHeader,
           query,
-          path
+          path,
+          parameterGroupingPostRequiredParameters
         },
         options);
       operationRes = await client.sendOperationRequest(

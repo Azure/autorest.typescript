@@ -180,7 +180,8 @@ export class Header {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          fooClientRequestId
+          fooClientRequestId,
+          headerCustomNamedRequestIdParamGroupingParameters
         },
         options);
       operationRes = await client.sendOperationRequest(

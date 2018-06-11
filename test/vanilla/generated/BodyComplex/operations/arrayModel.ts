@@ -127,11 +127,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -139,7 +134,6 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody,
           arrayProperty
         },
         options);
@@ -299,11 +293,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -311,7 +300,6 @@ export class ArrayModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody,
           arrayProperty
         },
         options);

@@ -70,11 +70,6 @@ export class AvailabilitySets {
     } catch (error) {
       return Promise.reject(error);
     }
-    let tags1: any;
-    if (tags !== null && tags !== undefined) {
-      tags1 = {};
-      tags1.tags = tags;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -84,7 +79,7 @@ export class AvailabilitySets {
         {
           resourceGroupName,
           avset,
-          tags1
+          tags
         },
         options);
       operationRes = await client.sendOperationRequest(

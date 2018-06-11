@@ -847,8 +847,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          simpleBodyProduct,
+          productId,
           description,
+          maxProductDisplayName,
           genericValue,
           odatavalue
         },
@@ -1059,7 +1060,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           maxProductDisplayName,
           genericValue,
           odatavalue,
-          simpleBodyProduct
+          flattenParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(

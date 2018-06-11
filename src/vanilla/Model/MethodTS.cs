@@ -598,7 +598,7 @@ namespace AutoRest.TypeScript.Model
             {
                 if (AreWeFlatteningParameters())
                 {
-                    return BuildFlattenParameterMappings();
+                    // return BuildFlattenParameterMappings();
                 }
                 else
                 {
@@ -876,37 +876,46 @@ namespace AutoRest.TypeScript.Model
         {
             operationArguments.Object(obj =>
             {
-                List<ParameterTransformation> parameterTransformations = InputParameterTransformation;
-                //ISet<string> outputParameterNames = parameterTransformations.Select(transformation => transformation.OutputParameter.Name.ToString()).ToHashSet();
-
                 List<string> operationArgumentNames = new List<string>();
                 foreach (Parameter parameter in LogicalParameters)
                 {
-                    string parameterName = parameter.Name;
-                    //if (!outputParameterNames.Contains(parameterName))
-                    {
-                        operationArgumentNames.Add(parameterName);
-                    }
+                    operationArgumentNames.Add(parameter.Name);
                 }
 
-                IEnumerable<Property> optionsPropertiesToAdd = OptionsParameterProperties.Where(optionsProperty => !obj.ContainsProperty(optionsProperty.Name));
-                if (optionsPropertiesToAdd != null)
+                foreach (Parameter parameter in ParameterTemplateModels)
                 {
-                    foreach (Property optionsProperty in optionsPropertiesToAdd)
-                    {
-                        if (!operationArgumentNames.Contains(optionsProperty.Name))
-                        {
-                            operationArgumentNames.Add(optionsProperty.Name);
-                        }
-                    }
+                    operationArgumentNames.Add(parameter.Name);
                 }
+
+                foreach (Property optionsProperty in OptionsParameterProperties)
+                {
+                    operationArgumentNames.Add(optionsProperty.Name);
+                }
+
+                ISet<string> unflattenedParameterNames = InputParameterTransformation
+                    .Where(IsUnflatteningParameterTransformation)
+                    .Select(GetOutputParameterName)
+                    .ToHashSet();
 
                 foreach (string operationArgumentName in operationArgumentNames)
                 {
-                    obj.TextProperty(operationArgumentName, operationArgumentName);
+                    if (!obj.ContainsProperty(operationArgumentName) && !unflattenedParameterNames.Contains(operationArgumentName) && operationArgumentName != "options")
+                    {
+                        obj.TextProperty(operationArgumentName, operationArgumentName);
+                    }
                 }
             });
             operationArguments.Text("options");
+        }
+
+        private static bool IsUnflatteningParameterTransformation(ParameterTransformation parameterTransformation)
+        {
+            return parameterTransformation.ParameterMappings.Any(parameterMapping => !string.IsNullOrEmpty(parameterMapping.OutputParameterProperty));
+        }
+
+        private static string GetOutputParameterName(ParameterTransformation parameterTransformation)
+        {
+            return parameterTransformation.OutputParameter.Name.ToString();
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)

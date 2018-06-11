@@ -168,7 +168,6 @@ export class Readonlyproperty {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           size
         },
         options);

@@ -548,7 +548,8 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage,
           maxresults,
           offset,
-          timeout
+          timeout,
+          pagingGetMultiplePagesWithOffsetOptions
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1371,7 +1372,8 @@ export class Paging {
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
           apiVersion,
-          tenant
+          tenant,
+          customParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -1744,7 +1746,8 @@ export class Paging {
           nextLink,
           "this.client.acceptLanguage": this.client.acceptLanguage,
           apiVersion,
-          tenant
+          tenant,
+          customParameterGroup
         },
         options);
       operationRes = await client.sendOperationRequest(
