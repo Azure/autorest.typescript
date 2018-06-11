@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestRFC1123DateTimeTestServiceContext } from "./autoRestRFC1123DateTimeTestServiceContext";
 
 class AutoRestRFC1123DateTimeTestService extends AutoRestRFC1123DateTimeTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   datetimerfc1123: operations.Datetimerfc1123;

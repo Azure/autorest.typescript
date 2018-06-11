@@ -60,6 +60,8 @@ namespace AutoRest.TypeScript.Azure
 
                 foreach (var methodGroupModel in codeModel.MethodGroupModels)
                 {
+                    var mappersTemplate = new MethodGroupMappersTemplate { Model = methodGroupModel };
+                    await Write(mappersTemplate, Path.Combine("models", methodGroupModel.MappersModuleName + ".ts"));
                     var methodGroupTemplate = new AzureMethodGroupTemplate { Model = methodGroupModel };
                     await Write(methodGroupTemplate, Path.Combine("operations", methodGroupModel.TypeName.ToCamelCase() + ".ts"));
                 }

@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestDateTestServiceContext } from "./autoRestDateTestServiceContext";
 
 class AutoRestDateTestService extends AutoRestDateTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   dateModel: operations.DateModel;

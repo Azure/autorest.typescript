@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/httpFailureMappers";
 import { AutoRestHttpInfrastructureTestServiceContext } from "../autoRestHttpInfrastructureTestServiceContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a HttpFailure. */
 export class HttpFailure {
   private readonly client: AutoRestHttpInfrastructureTestServiceContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a HttpFailure.
    * @param {AutoRestHttpInfrastructureTestServiceContext} client Reference to the service client.
@@ -50,7 +51,8 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "http/failure/emptybody/error"
+          path: "http/failure/emptybody/error",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -68,7 +70,7 @@ export class HttpFailure {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -88,7 +90,7 @@ export class HttpFailure {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -130,7 +132,8 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "http/failure/nomodel/error"
+          path: "http/failure/nomodel/error",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -164,7 +167,7 @@ export class HttpFailure {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
@@ -206,7 +209,8 @@ export class HttpFailure {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "http/failure/nomodel/empty"
+          path: "http/failure/nomodel/empty",
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -240,7 +244,7 @@ export class HttpFailure {
                 name: "Boolean"
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

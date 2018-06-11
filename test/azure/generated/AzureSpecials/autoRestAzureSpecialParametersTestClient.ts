@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestAzureSpecialParametersTestClient extends AutoRestAzureSpecialParametersTestClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   xMsClientRequestId: operations.XMsClientRequestId;

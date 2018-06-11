@@ -15,6 +15,7 @@ import * as operations from "./operations";
 import { AutoRestComplexTestServiceContext } from "./autoRestComplexTestServiceContext";
 
 class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   basic: operations.BasicOperations;

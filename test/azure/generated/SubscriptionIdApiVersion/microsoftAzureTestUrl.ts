@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class MicrosoftAzureTestUrl extends MicrosoftAzureTestUrlContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   group: operations.Group;

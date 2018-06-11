@@ -15,6 +15,7 @@ import { AutoRestReportServiceContext } from "./autoRestReportServiceContext";
 const WebResource = msRest.WebResource;
 
 class AutoRestReportService extends AutoRestReportServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   /**
    * @class
@@ -88,7 +89,8 @@ class AutoRestReportService extends AutoRestReportServiceContext {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -106,7 +108,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -132,7 +134,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
                 }
               }
             };
-            operationRes.parsedBody = client.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
           let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);

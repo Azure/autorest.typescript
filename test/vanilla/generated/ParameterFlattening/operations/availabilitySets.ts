@@ -9,7 +9,7 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/availabilitySetsMappers";
 import { AutoRestParameterFlatteningContext } from "../autoRestParameterFlatteningContext";
 
 const WebResource = msRest.WebResource;
@@ -17,6 +17,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a AvailabilitySets. */
 export class AvailabilitySets {
   private readonly client: AutoRestParameterFlatteningContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a AvailabilitySets.
    * @param {AutoRestParameterFlatteningContext} client Reference to the service client.
@@ -127,7 +128,8 @@ export class AvailabilitySets {
                 "tags"
               ]
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {

@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestLongRunningOperationTestService extends AutoRestLongRunningOperationTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   lROs: operations.LROs;

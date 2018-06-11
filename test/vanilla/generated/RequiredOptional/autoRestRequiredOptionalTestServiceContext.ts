@@ -10,7 +10,6 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 
 const packageName = "";
 const packageVersion = "";
@@ -20,7 +19,6 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
   requiredGlobalQuery: string;
   optionalGlobalQuery?: number;
   baseUri: string;
-  serializer: msRest.Serializer;
 
   /**
    * @class
@@ -56,12 +54,6 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
     if (!options) {
       options = {};
     }
-    if (!options.serializer) {
-      options = {
-        ...options,
-        serializer: new msRest.Serializer(Mappers, false)
-      };
-    }
 
     super(undefined, options);
 
@@ -76,6 +68,5 @@ export class AutoRestRequiredOptionalTestServiceContext extends msRest.ServiceCl
     if(options.optionalGlobalQuery !== null && options.optionalGlobalQuery !== undefined) {
       this.optionalGlobalQuery = options.optionalGlobalQuery;
     }
-    this.serializer = new msRest.Serializer(Mappers, false);
   }
 }

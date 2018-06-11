@@ -4,23 +4,19 @@
 'use strict';
 
 import * as should from 'should';
-import * as assert from 'assert';
 import * as msRest from 'ms-rest-js';
 import * as msRestAzure from 'ms-rest-azure-js';
 
 import { AutoRestLongRunningOperationTestService, AutoRestLongRunningOperationTestServiceModels } from './generated/Lro/autoRestLongRunningOperationTestService';
-import * as Mappers from "./generated/Lro/models/mappers";
 
-var dummySubscriptionId = 'a878ae02-6106-429z-9397-58091ee45g98';
 var dummyToken = 'dummy12321343423';
 var credentials = new msRest.TokenCredentials(dummyToken);
 
-const serializer = new msRest.Serializer(Mappers, false);
 var clientOptions: msRestAzure.AzureServiceClientOptions = {
   requestOptions: { jar: true } as any,
   requestPolicyCreators: [
     msRest.exponentialRetryPolicy(3, 0, 0, 0),
-    msRest.serializationPolicy(serializer)
+    msRest.serializationPolicy()
   ],
   noRetryPolicy: true,
   longRunningOperationRetryTimeout: 0

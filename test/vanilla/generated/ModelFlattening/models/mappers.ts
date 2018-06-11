@@ -93,45 +93,7 @@ export const FlattenedProduct = {
     name: "Composite",
     className: "FlattenedProduct",
     modelProperties: {
-      id: {
-        readOnly: true,
-        serializedName: "id",
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        readOnly: true,
-        serializedName: "type",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: {
-            serializedName: "stringElementType",
-            type: {
-              name: "String"
-            }
-          }
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        readOnly: true,
-        serializedName: "name",
-        type: {
-          name: "String"
-        }
-      },
+      ...Resource.type.modelProperties,
       pname: {
         serializedName: "properties.p\\.name",
         type: {
@@ -233,19 +195,7 @@ export const SimpleProduct = {
     name: "Composite",
     className: "SimpleProduct",
     modelProperties: {
-      productId: {
-        required: true,
-        serializedName: "base_product_id",
-        type: {
-          name: "String"
-        }
-      },
-      description: {
-        serializedName: "base_product_description",
-        type: {
-          name: "String"
-        }
-      },
+      ...BaseProduct.type.modelProperties,
       maxProductDisplayName: {
         required: true,
         serializedName: "details.max_product_display_name",

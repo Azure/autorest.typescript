@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class AutoRestHeadExceptionTestService extends AutoRestHeadExceptionTestServiceContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   headException: operations.HeadException;

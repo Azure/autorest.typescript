@@ -452,11 +452,11 @@ namespace AutoRest.TypeScript.Model
 
             if (CodeModel.ShouldGenerateXmlSerialization && type is SequenceType st)
             {
-                builder.Line("{2} = client.serializer.deserialize(resultMapper, typeof {0} === 'object' ? {0}['{1}'] : [], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
+                builder.Line("{2} = this.serializer.deserialize(resultMapper, typeof {0} === 'object' ? {0}['{1}'] : [], '{2}');", responseVariable, st.ElementType.XmlName, valueReference);
             }
             else
             {
-                builder.Line("{1} = client.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
+                builder.Line("{1} = this.serializer.deserialize(resultMapper, {0}, '{1}');", responseVariable, valueReference);
             }
             return builder.ToString();
         }
@@ -971,6 +971,8 @@ namespace AutoRest.TypeScript.Model
             {
                 operationSpec.BooleanProperty("isXML", true);
             }
+
+            operationSpec.TextProperty("serializer", "this.serializer");
         }
 
         private static void GenerateParameterTransformations(TSObject operationSpec, IEnumerable<ParameterTransformation> parameterTransformations)

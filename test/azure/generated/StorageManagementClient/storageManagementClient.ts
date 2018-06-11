@@ -17,6 +17,7 @@ import * as operations from "./operations";
 
 
 class StorageManagementClient extends StorageManagementClientContext {
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   storageAccounts: operations.StorageAccounts;

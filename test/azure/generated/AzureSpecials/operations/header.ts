@@ -10,7 +10,7 @@
 
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
-import * as Mappers from "../models/mappers";
+import * as Mappers from "../models/headerMappers";
 import { AutoRestAzureSpecialParametersTestClientContext } from "../autoRestAzureSpecialParametersTestClientContext";
 
 const WebResource = msRest.WebResource;
@@ -18,6 +18,7 @@ const WebResource = msRest.WebResource;
 /** Class representing a Header. */
 export class Header {
   private readonly client: AutoRestAzureSpecialParametersTestClientContext;
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a Header.
    * @param {AutoRestAzureSpecialParametersTestClientContext} client Reference to the service client.
@@ -92,7 +93,8 @@ export class Header {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -110,7 +112,7 @@ export class Header {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -121,7 +123,7 @@ export class Header {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -223,7 +225,8 @@ export class Header {
                 "fooClientRequestId"
               ]
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
@@ -241,7 +244,7 @@ export class Header {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -252,7 +255,7 @@ export class Header {
       }
       // Deserialize Response
       if (statusCode === 200) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
@@ -328,7 +331,8 @@ export class Header {
                 }
               }
             }
-          ]
+          ],
+          serializer: this.serializer
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 404) {
@@ -346,7 +350,7 @@ export class Header {
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
             const resultMapper = Mappers.ErrorModel;
-            error.body = client.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
@@ -358,11 +362,11 @@ export class Header {
       operationRes.parsedBody = (statusCode === 200);
       // Deserialize Response
       if (statusCode === 200) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
       // Deserialize Response
       if (statusCode === 404) {
-        operationRes.parsedHeaders = client.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
+        operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
 
     } catch(err) {
