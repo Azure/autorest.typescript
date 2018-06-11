@@ -856,8 +856,7 @@ namespace AutoRest.TypeScript.Model
                 }
 
                 ISet<string> unflattenedParameterNames = InputParameterTransformation
-                    //.Where(IsUnflatteningParameterTransformation)
-                    .Select(GetOutputParameterName)
+                    .Select(parameterTransformation => parameterTransformation.OutputParameter.Name.ToString())
                     .ToHashSet();
 
                 foreach (string operationArgumentName in operationArgumentNames)
@@ -871,16 +870,6 @@ namespace AutoRest.TypeScript.Model
                 }
             });
             operationArguments.Text("options");
-        }
-
-        private static bool IsUnflatteningParameterTransformation(ParameterTransformation parameterTransformation)
-        {
-            return parameterTransformation.ParameterMappings.Any(parameterMapping => !string.IsNullOrEmpty(parameterMapping.OutputParameterProperty));
-        }
-
-        private static string GetOutputParameterName(ParameterTransformation parameterTransformation)
-        {
-            return parameterTransformation.OutputParameter.Name.ToString();
         }
 
         public void GenerateOperationSpec(TSObject operationSpec)
