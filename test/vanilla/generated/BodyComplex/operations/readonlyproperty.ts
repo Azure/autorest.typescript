@@ -142,7 +142,6 @@ export class Readonlyproperty {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          complexBody,
           size
         },
         options);
@@ -159,10 +158,10 @@ export class Readonlyproperty {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "size"
               ],
               targetPath: [
+                "complexBody",
                 "size"
               ]
             }

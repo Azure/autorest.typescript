@@ -181,8 +181,6 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetMultiplePagesOptions
         },
         options);
@@ -236,19 +234,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesOptions",
                 "timeout"
               ]
             }
@@ -359,8 +357,6 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetOdataMultiplePagesOptions
         },
         options);
@@ -414,19 +410,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetOdataMultiplePagesOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetOdataMultiplePagesOptions",
                 "timeout"
               ]
             }
@@ -550,9 +546,6 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          offset,
-          timeout,
           pagingGetMultiplePagesWithOffsetOptions
         },
         options);
@@ -618,28 +611,28 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
                 "offset"
               ],
               targetPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
                 "offset"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
                 "timeout"
               ]
             }
@@ -1382,8 +1375,6 @@ export class Paging {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          apiVersion,
-          tenant,
           customParameterGroup
         },
         options);
@@ -1433,19 +1424,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "customParameterGroup",
                 "apiVersion"
               ],
               targetPath: [
-                "customParameterGroup",
                 "apiVersion"
               ]
             },
             {
               sourcePath: [
+                "customParameterGroup",
                 "tenant"
               ],
               targetPath: [
-                "customParameterGroup",
                 "tenant"
               ]
             }
@@ -1758,8 +1749,6 @@ export class Paging {
         {
           nextLink,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          apiVersion,
-          tenant,
           customParameterGroup
         },
         options);
@@ -1820,19 +1809,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "customParameterGroup",
                 "apiVersion"
               ],
               targetPath: [
-                "customParameterGroup",
                 "apiVersion"
               ]
             },
             {
               sourcePath: [
+                "customParameterGroup",
                 "tenant"
               ],
               targetPath: [
-                "customParameterGroup",
                 "tenant"
               ]
             }
@@ -1942,8 +1931,6 @@ export class Paging {
         {
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetMultiplePagesLROOptions
         },
         options);
@@ -1997,19 +1984,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesLROOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesLROOptions",
                 "timeout"
               ]
             }
@@ -2245,8 +2232,6 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetMultiplePagesOptions
         },
         options);
@@ -2313,19 +2298,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesOptions",
                 "timeout"
               ]
             }
@@ -2443,8 +2428,6 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetOdataMultiplePagesOptions
         },
         options);
@@ -2511,19 +2494,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetOdataMultiplePagesOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetOdataMultiplePagesOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetOdataMultiplePagesOptions",
                 "timeout"
               ]
             }
@@ -2640,8 +2623,6 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetMultiplePagesWithOffsetNextOptions
         },
         options);
@@ -2708,19 +2689,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
                 "timeout"
               ]
             }
@@ -3484,8 +3465,6 @@ export class Paging {
           nextPageLink,
           clientRequestId,
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          maxresults,
-          timeout,
           pagingGetMultiplePagesLROOptions
         },
         options);
@@ -3552,19 +3531,19 @@ export class Paging {
           parameterTransformations: [
             {
               sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
                 "maxresults"
               ],
               targetPath: [
-                "pagingGetMultiplePagesLROOptions",
                 "maxresults"
               ]
             },
             {
               sourcePath: [
+                "pagingGetMultiplePagesLROOptions",
                 "timeout"
               ],
               targetPath: [
-                "pagingGetMultiplePagesLROOptions",
                 "timeout"
               ]
             }

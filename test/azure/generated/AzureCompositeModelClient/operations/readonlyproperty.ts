@@ -170,7 +170,6 @@ export class Readonlyproperty {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           size
         },
         options);
@@ -199,10 +198,10 @@ export class Readonlyproperty {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "size"
               ],
               targetPath: [
+                "complexBody",
                 "size"
               ]
             }

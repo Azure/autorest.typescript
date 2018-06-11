@@ -99,10 +99,6 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          body,
-          customHeader,
-          query,
-          path,
           parameterGroupingPostRequiredParameters
         },
         options);
@@ -170,37 +166,37 @@ export class ParameterGrouping {
           parameterTransformations: [
             {
               sourcePath: [
+                "parameterGroupingPostRequiredParameters",
                 "body"
               ],
               targetPath: [
-                "parameterGroupingPostRequiredParameters",
                 "body"
               ]
             },
             {
               sourcePath: [
+                "parameterGroupingPostRequiredParameters",
                 "customHeader"
               ],
               targetPath: [
-                "parameterGroupingPostRequiredParameters",
                 "customHeader"
               ]
             },
             {
               sourcePath: [
+                "parameterGroupingPostRequiredParameters",
                 "query"
               ],
               targetPath: [
-                "parameterGroupingPostRequiredParameters",
                 "query"
               ]
             },
             {
               sourcePath: [
+                "parameterGroupingPostRequiredParameters",
                 "path"
               ],
               targetPath: [
-                "parameterGroupingPostRequiredParameters",
                 "path"
               ]
             }
@@ -291,8 +287,6 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          customHeader,
-          query,
           parameterGroupingPostOptionalParameters
         },
         options);
@@ -339,19 +333,19 @@ export class ParameterGrouping {
           parameterTransformations: [
             {
               sourcePath: [
+                "parameterGroupingPostOptionalParameters",
                 "customHeader"
               ],
               targetPath: [
-                "parameterGroupingPostOptionalParameters",
                 "customHeader"
               ]
             },
             {
               sourcePath: [
+                "parameterGroupingPostOptionalParameters",
                 "query"
               ],
               targetPath: [
-                "parameterGroupingPostOptionalParameters",
                 "query"
               ]
             }
@@ -459,10 +453,6 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          headerOne,
-          queryOne,
-          headerTwo,
-          queryTwo,
           firstParameterGroup,
           parameterGroupingPostMultiParamGroupsSecondParamGroup
         },
@@ -529,37 +519,37 @@ export class ParameterGrouping {
           parameterTransformations: [
             {
               sourcePath: [
+                "firstParameterGroup",
                 "headerOne"
               ],
               targetPath: [
-                "firstParameterGroup",
                 "headerOne"
               ]
             },
             {
               sourcePath: [
+                "firstParameterGroup",
                 "queryOne"
               ],
               targetPath: [
-                "firstParameterGroup",
                 "queryOne"
               ]
             },
             {
               sourcePath: [
-                "headerTwo"
-              ],
-              targetPath: [
                 "parameterGroupingPostMultiParamGroupsSecondParamGroup",
                 "headerTwo"
+              ],
+              targetPath: [
+                "headerTwo"
               ]
             },
             {
               sourcePath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
                 "queryTwo"
               ],
               targetPath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
                 "queryTwo"
               ]
             }
@@ -650,8 +640,6 @@ export class ParameterGrouping {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          headerOne,
-          queryOne,
           firstParameterGroup
         },
         options);
@@ -698,19 +686,19 @@ export class ParameterGrouping {
           parameterTransformations: [
             {
               sourcePath: [
+                "firstParameterGroup",
                 "headerOne"
               ],
               targetPath: [
-                "firstParameterGroup",
                 "headerOne"
               ]
             },
             {
               sourcePath: [
+                "firstParameterGroup",
                 "queryOne"
               ],
               targetPath: [
-                "firstParameterGroup",
                 "queryOne"
               ]
             }

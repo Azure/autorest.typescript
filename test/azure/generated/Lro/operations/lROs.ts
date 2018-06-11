@@ -3274,7 +3274,6 @@ export class LROs {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          product,
           provisioningState
         },
         options);
@@ -3303,10 +3302,10 @@ export class LROs {
           parameterTransformations: [
             {
               sourcePath: [
-                "product",
                 "provisioningState"
               ],
               targetPath: [
+                "product",
                 "provisioningState"
               ]
             }
@@ -3404,7 +3403,6 @@ export class LROs {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          product,
           provisioningState
         },
         options);
@@ -3433,10 +3431,10 @@ export class LROs {
           parameterTransformations: [
             {
               sourcePath: [
-                "product",
                 "provisioningState"
               ],
               targetPath: [
+                "product",
                 "provisioningState"
               ]
             }

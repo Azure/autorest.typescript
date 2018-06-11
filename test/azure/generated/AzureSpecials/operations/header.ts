@@ -182,7 +182,6 @@ export class Header {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          fooClientRequestId,
           headerCustomNamedRequestIdParamGroupingParameters
         },
         options);
@@ -218,10 +217,10 @@ export class Header {
           parameterTransformations: [
             {
               sourcePath: [
+                "headerCustomNamedRequestIdParamGroupingParameters",
                 "fooClientRequestId"
               ],
               targetPath: [
-                "headerCustomNamedRequestIdParamGroupingParameters",
                 "fooClientRequestId"
               ]
             }

@@ -596,11 +596,7 @@ namespace AutoRest.TypeScript.Model
             var builder = new IndentedStringBuilder("  ");
             if (InputParameterTransformation.Count > 0)
             {
-                if (AreWeFlatteningParameters())
-                {
-                    return BuildFlattenParameterMappings();
-                }
-                else
+                if (!AreWeFlatteningParameters())
                 {
                     return BuildGroupedParameterMappings();
                 }
@@ -634,39 +630,6 @@ namespace AutoRest.TypeScript.Model
             }
 
             return result;
-        }
-
-        public virtual string BuildFlattenParameterMappings()
-        {
-            TSBuilder builder = new TSBuilder();
-            foreach (ParameterTransformation transformation in InputParameterTransformation)
-            {
-                builder.Line($"let {transformation.OutputParameter.Name}: any;");
-                builder.If(BuildNullCheckExpression(transformation), ifBody =>
-                {
-                    if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) && transformation.OutputParameter.ModelType is CompositeType)
-                    {
-                        builder.Line($"{transformation.OutputParameter.Name} = {{}};");
-                    }
-
-                    foreach (ParameterMapping mapping in transformation.ParameterMappings)
-                    {
-                        builder.Text(transformation.OutputParameter.Name);
-                        if (!string.IsNullOrEmpty(mapping.OutputParameterProperty))
-                        {
-                            builder.Text($".{mapping.OutputParameterProperty}");
-                        }
-
-                        builder.Text($" = {mapping.InputParameter.Name}");
-                        if (!string.IsNullOrEmpty(mapping.InputParameterProperty))
-                        {
-                            builder.Text($".{mapping.InputParameterProperty}");
-                        }
-                        builder.Line(";");
-                    }
-                });
-            }
-            return builder.ToString();
         }
 
         public virtual string BuildGroupedParameterMappings()
@@ -893,14 +856,14 @@ namespace AutoRest.TypeScript.Model
                 }
 
                 ISet<string> unflattenedParameterNames = InputParameterTransformation
-                    .Where(IsUnflatteningParameterTransformation)
+                    //.Where(IsUnflatteningParameterTransformation)
                     .Select(GetOutputParameterName)
                     .ToHashSet();
 
                 foreach (string operationArgumentName in operationArgumentNames)
                 {
                     if (!obj.ContainsProperty(operationArgumentName) &&
-                        // !unflattenedParameterNames.Contains(operationArgumentName) &&
+                        !unflattenedParameterNames.Contains(operationArgumentName) &&
                         operationArgumentName != "options")
                     {
                         obj.TextProperty(operationArgumentName, operationArgumentName);
@@ -989,21 +952,25 @@ namespace AutoRest.TypeScript.Model
                         {
                             parameterTransformationsArray.Object(parameterTransformationObject =>
                             {
+                                Parameter inputParameter = parameterTransformationMapping.InputParameter;
+                                bool hasInputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.InputParameterProperty);
                                 parameterTransformationObject.ArrayProperty("sourcePath", sourcePathArray =>
                                 {
-                                    sourcePathArray.QuotedString(parameterTransformation.OutputParameter.Name);
-                                    if (!string.IsNullOrEmpty(parameterTransformationMapping.OutputParameterProperty))
+                                    sourcePathArray.QuotedString(inputParameter.Name);
+                                    if (hasInputParameterProperty)
                                     {
-                                        sourcePathArray.QuotedString(parameterTransformationMapping.OutputParameterProperty);
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.InputParameterProperty);
                                     }
                                 });
 
+                                Parameter outputParameter = parameterTransformation.OutputParameter;
+                                bool hasOutputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.OutputParameterProperty);
                                 parameterTransformationObject.ArrayProperty("targetPath", sourcePathArray =>
                                 {
-                                    sourcePathArray.QuotedString(parameterTransformationMapping.InputParameter.Name);
-                                    if (!string.IsNullOrEmpty(parameterTransformationMapping.InputParameterProperty))
+                                    sourcePathArray.QuotedString(outputParameter.Name);
+                                    if (hasOutputParameterProperty)
                                     {
-                                        sourcePathArray.QuotedString(parameterTransformationMapping.InputParameterProperty);
+                                        sourcePathArray.QuotedString(parameterTransformationMapping.OutputParameterProperty);
                                     }
                                 });
                             });

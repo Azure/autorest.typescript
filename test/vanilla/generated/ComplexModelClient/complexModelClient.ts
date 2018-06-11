@@ -206,11 +206,6 @@ class ComplexModelClient extends ComplexModelClientContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any;
-    if (productDictionaryOfArray !== null && productDictionaryOfArray !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productDictionaryOfArray = productDictionaryOfArray;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -221,7 +216,6 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter,
           productDictionaryOfArray
         },
         options);
@@ -274,10 +268,10 @@ class ComplexModelClient extends ComplexModelClientContext {
           parameterTransformations: [
             {
               sourcePath: [
-                "bodyParameter",
                 "productDictionaryOfArray"
               ],
               targetPath: [
+                "bodyParameter",
                 "productDictionaryOfArray"
               ]
             }
@@ -365,11 +359,6 @@ class ComplexModelClient extends ComplexModelClientContext {
     } catch (error) {
       return Promise.reject(error);
     }
-    let bodyParameter: any;
-    if (productArrayOfDictionary !== null && productArrayOfDictionary !== undefined) {
-      bodyParameter = {};
-      bodyParameter.productArrayOfDictionary = productArrayOfDictionary;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -380,7 +369,6 @@ class ComplexModelClient extends ComplexModelClientContext {
           subscriptionId,
           resourceGroupName,
           "this.apiVersion": this.apiVersion,
-          bodyParameter,
           productArrayOfDictionary
         },
         options);
@@ -433,10 +421,10 @@ class ComplexModelClient extends ComplexModelClientContext {
           parameterTransformations: [
             {
               sourcePath: [
-                "bodyParameter",
                 "productArrayOfDictionary"
               ],
               targetPath: [
+                "bodyParameter",
                 "productArrayOfDictionary"
               ]
             }

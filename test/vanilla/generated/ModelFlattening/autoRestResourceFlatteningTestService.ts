@@ -857,7 +857,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          simpleBodyProduct,
           productId,
           description,
           maxProductDisplayName,
@@ -878,46 +877,46 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           parameterTransformations: [
             {
               sourcePath: [
-                "simpleBodyProduct",
                 "productId"
               ],
               targetPath: [
+                "simpleBodyProduct",
                 "productId"
               ]
             },
             {
               sourcePath: [
-                "simpleBodyProduct",
                 "description"
               ],
               targetPath: [
+                "simpleBodyProduct",
                 "description"
               ]
             },
             {
               sourcePath: [
-                "simpleBodyProduct",
                 "maxProductDisplayName"
               ],
               targetPath: [
+                "simpleBodyProduct",
                 "maxProductDisplayName"
               ]
             },
             {
               sourcePath: [
-                "simpleBodyProduct",
                 "genericValue"
               ],
               targetPath: [
+                "simpleBodyProduct",
                 "genericValue"
               ]
             },
             {
               sourcePath: [
-                "simpleBodyProduct",
                 "odatavalue"
               ],
               targetPath: [
+                "simpleBodyProduct",
                 "odatavalue"
               ]
             }
@@ -1066,13 +1065,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          name,
-          productId,
-          description,
-          maxProductDisplayName,
-          genericValue,
-          odatavalue,
-          simpleBodyProduct,
           flattenParameterGroup
         },
         options);
@@ -1101,11 +1093,56 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           parameterTransformations: [
             {
               sourcePath: [
-                "name"
-              ],
-              targetPath: [
                 "flattenParameterGroup",
                 "name"
+              ],
+              targetPath: [
+                "name"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "productId"
+              ],
+              targetPath: [
+                "productId"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "description"
+              ],
+              targetPath: [
+                "description"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "maxProductDisplayName"
+              ],
+              targetPath: [
+                "maxProductDisplayName"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "genericValue"
+              ],
+              targetPath: [
+                "genericValue"
+              ]
+            },
+            {
+              sourcePath: [
+                "flattenParameterGroup",
+                "odatavalue"
+              ],
+              targetPath: [
+                "odatavalue"
               ]
             },
             {
@@ -1113,7 +1150,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
                 "productId"
               ],
               targetPath: [
-                "flattenParameterGroup",
+                "simpleBodyProduct",
                 "productId"
               ]
             },
@@ -1122,7 +1159,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
                 "description"
               ],
               targetPath: [
-                "flattenParameterGroup",
+                "simpleBodyProduct",
                 "description"
               ]
             },
@@ -1131,7 +1168,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
                 "maxProductDisplayName"
               ],
               targetPath: [
-                "flattenParameterGroup",
+                "simpleBodyProduct",
                 "maxProductDisplayName"
               ]
             },
@@ -1140,7 +1177,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
                 "genericValue"
               ],
               targetPath: [
-                "flattenParameterGroup",
+                "simpleBodyProduct",
                 "genericValue"
               ]
             },
@@ -1149,52 +1186,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
                 "odatavalue"
               ],
               targetPath: [
-                "flattenParameterGroup",
-                "odatavalue"
-              ]
-            },
-            {
-              sourcePath: [
                 "simpleBodyProduct",
-                "productId"
-              ],
-              targetPath: [
-                "productId"
-              ]
-            },
-            {
-              sourcePath: [
-                "simpleBodyProduct",
-                "description"
-              ],
-              targetPath: [
-                "description"
-              ]
-            },
-            {
-              sourcePath: [
-                "simpleBodyProduct",
-                "maxProductDisplayName"
-              ],
-              targetPath: [
-                "maxProductDisplayName"
-              ]
-            },
-            {
-              sourcePath: [
-                "simpleBodyProduct",
-                "genericValue"
-              ],
-              targetPath: [
-                "genericValue"
-              ]
-            },
-            {
-              sourcePath: [
-                "simpleBodyProduct",
-                "odatavalue"
-              ],
-              targetPath: [
                 "odatavalue"
               ]
             }

@@ -156,11 +156,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -169,7 +164,6 @@ export class ArrayModel {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           arrayProperty
         },
         options);
@@ -198,10 +192,10 @@ export class ArrayModel {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "arrayProperty"
               ],
               targetPath: [
+                "complexBody",
                 "arrayProperty"
               ]
             }
@@ -370,11 +364,6 @@ export class ArrayModel {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (arrayProperty !== null && arrayProperty !== undefined) {
-      complexBody = {};
-      complexBody.arrayProperty = arrayProperty;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -383,7 +372,6 @@ export class ArrayModel {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           arrayProperty
         },
         options);
@@ -412,10 +400,10 @@ export class ArrayModel {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "arrayProperty"
               ],
               targetPath: [
+                "complexBody",
                 "arrayProperty"
               ]
             }

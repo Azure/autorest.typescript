@@ -508,7 +508,6 @@ export class EnumModel {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          enumStringBody,
           field1
         },
         options);
@@ -525,10 +524,10 @@ export class EnumModel {
           parameterTransformations: [
             {
               sourcePath: [
-                "enumStringBody",
                 "field1"
               ],
               targetPath: [
+                "enumStringBody",
                 "field1"
               ]
             }

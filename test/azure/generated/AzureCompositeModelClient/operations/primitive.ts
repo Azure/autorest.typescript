@@ -1901,11 +1901,6 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (field !== null && field !== undefined) {
-      complexBody = {};
-      complexBody.field = field;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1914,7 +1909,6 @@ export class Primitive {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           field
         },
         options);
@@ -1943,10 +1937,10 @@ export class Primitive {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "field"
               ],
               targetPath: [
+                "complexBody",
                 "field"
               ]
             }
@@ -2111,11 +2105,6 @@ export class Primitive {
     } catch (error) {
       return Promise.reject(error);
     }
-    let complexBody: any;
-    if (field !== null && field !== undefined) {
-      complexBody = {};
-      complexBody.field = field;
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2124,7 +2113,6 @@ export class Primitive {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           "this.client.acceptLanguage": this.client.acceptLanguage,
-          complexBody,
           field
         },
         options);
@@ -2153,10 +2141,10 @@ export class Primitive {
           parameterTransformations: [
             {
               sourcePath: [
-                "complexBody",
                 "field"
               ],
               targetPath: [
+                "complexBody",
                 "field"
               ]
             }
