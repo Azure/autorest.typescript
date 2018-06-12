@@ -146,7 +146,7 @@ export class BasicOperations {
           path: "complex/basic/valid",
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,

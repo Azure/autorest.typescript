@@ -67,7 +67,7 @@ export class Readonlyproperty {
           path: "complex/readonlyproperty/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -182,7 +182,7 @@ export class Readonlyproperty {
           path: "complex/readonlyproperty/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

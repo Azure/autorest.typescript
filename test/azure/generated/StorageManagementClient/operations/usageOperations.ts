@@ -76,7 +76,7 @@ export class UsageOperations {
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
           urlParameters: [
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -88,7 +88,7 @@ export class UsageOperations {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -100,7 +100,7 @@ export class UsageOperations {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

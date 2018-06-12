@@ -247,7 +247,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/putasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -357,7 +357,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/put/201/creating/succeeded/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -480,7 +480,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/post/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -578,7 +578,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/postasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

@@ -70,7 +70,7 @@ export class Header {
           path: "header/param/existingkey",
           headerParameters: [
             {
-              parameterName: "userAgent",
+              parameterPath: "userAgent",
               mapper: {
                 required: true,
                 serializedName: "User-Agent",
@@ -223,7 +223,7 @@ export class Header {
           path: "header/param/protectedkey",
           headerParameters: [
             {
-              parameterName: "contentType",
+              parameterPath: "contentType",
               mapper: {
                 required: true,
                 serializedName: "Content-Type",
@@ -383,7 +383,7 @@ export class Header {
           path: "header/param/prim/integer",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -393,7 +393,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -481,7 +481,7 @@ export class Header {
           path: "header/response/prim/integer",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -580,7 +580,7 @@ export class Header {
           path: "header/param/prim/long",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -590,7 +590,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -678,7 +678,7 @@ export class Header {
           path: "header/response/prim/long",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -777,7 +777,7 @@ export class Header {
           path: "header/param/prim/float",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -787,7 +787,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -875,7 +875,7 @@ export class Header {
           path: "header/response/prim/float",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -974,7 +974,7 @@ export class Header {
           path: "header/param/prim/double",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -984,7 +984,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1072,7 +1072,7 @@ export class Header {
           path: "header/response/prim/double",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1171,7 +1171,7 @@ export class Header {
           path: "header/param/prim/bool",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1181,7 +1181,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1269,7 +1269,7 @@ export class Header {
           path: "header/response/prim/bool",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1368,7 +1368,7 @@ export class Header {
           path: "header/param/prim/string",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1378,7 +1378,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -1466,7 +1466,7 @@ export class Header {
           path: "header/response/prim/string",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1567,7 +1567,7 @@ export class Header {
           path: "header/param/prim/date",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1577,7 +1577,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1665,7 +1665,7 @@ export class Header {
           path: "header/response/prim/date",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1766,7 +1766,7 @@ export class Header {
           path: "header/param/prim/datetime",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1776,7 +1776,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1865,7 +1865,7 @@ export class Header {
           path: "header/response/prim/datetime",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1966,7 +1966,7 @@ export class Header {
           path: "header/param/prim/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1976,7 +1976,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -2064,7 +2064,7 @@ export class Header {
           path: "header/response/prim/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2164,7 +2164,7 @@ export class Header {
           path: "header/param/prim/duration",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2174,7 +2174,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -2262,7 +2262,7 @@ export class Header {
           path: "header/response/prim/duration",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2362,7 +2362,7 @@ export class Header {
           path: "header/param/prim/byte",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2372,7 +2372,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -2460,7 +2460,7 @@ export class Header {
           path: "header/response/prim/byte",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2561,7 +2561,7 @@ export class Header {
           path: "header/param/prim/enum",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2571,7 +2571,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -2663,7 +2663,7 @@ export class Header {
           path: "header/response/prim/enum",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",

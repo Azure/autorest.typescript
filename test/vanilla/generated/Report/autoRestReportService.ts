@@ -81,7 +81,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
           path: "report",
           queryParameters: [
             {
-              parameterName: "qualifier",
+              parameterPath: "qualifier",
               mapper: {
                 serializedName: "qualifier",
                 type: {

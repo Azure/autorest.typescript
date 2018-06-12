@@ -72,7 +72,7 @@ export class Paths {
           path: "customuri",
           urlParameters: [
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -83,7 +83,7 @@ export class Paths {
               }
             },
             {
-              parameterName: "this.client.host",
+              parameterPath: "this.client.host",
               skipEncoding: true,
               mapper: {
                 required: true,

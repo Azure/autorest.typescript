@@ -67,7 +67,7 @@ export class XMsClientRequestId {
           path: "azurespecials/overwrite/x-ms-client-request-id/method/",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -159,7 +159,7 @@ export class XMsClientRequestId {
           path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
           headerParameters: [
             {
-              parameterName: "xMsClientRequestId",
+              parameterPath: "xMsClientRequestId",
               mapper: {
                 required: true,
                 serializedName: "x-ms-client-request-id",
@@ -169,7 +169,7 @@ export class XMsClientRequestId {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

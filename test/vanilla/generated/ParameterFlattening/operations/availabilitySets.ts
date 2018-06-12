@@ -92,7 +92,7 @@ export class AvailabilitySets {
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -102,7 +102,7 @@ export class AvailabilitySets {
               }
             },
             {
-              parameterName: "avset",
+              parameterPath: "avset",
               mapper: {
                 required: true,
                 serializedName: "availabilitySetName",

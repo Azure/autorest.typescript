@@ -60,7 +60,7 @@ export class Queries {
           path: "queries/bool/true",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -140,7 +140,7 @@ export class Queries {
           path: "queries/bool/false",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -228,7 +228,7 @@ export class Queries {
           path: "queries/bool/null",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 serializedName: "boolQuery",
                 type: {
@@ -305,7 +305,7 @@ export class Queries {
           path: "queries/int/1000000",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -385,7 +385,7 @@ export class Queries {
           path: "queries/int/-1000000",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -473,7 +473,7 @@ export class Queries {
           path: "queries/int/null",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 serializedName: "intQuery",
                 type: {
@@ -550,7 +550,7 @@ export class Queries {
           path: "queries/long/10000000000",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -630,7 +630,7 @@ export class Queries {
           path: "queries/long/-10000000000",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -718,7 +718,7 @@ export class Queries {
           path: "queries/long/null",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 serializedName: "longQuery",
                 type: {
@@ -795,7 +795,7 @@ export class Queries {
           path: "queries/float/1.034E+20",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -875,7 +875,7 @@ export class Queries {
           path: "queries/float/-1.034E-20",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -963,7 +963,7 @@ export class Queries {
           path: "queries/float/null",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 serializedName: "floatQuery",
                 type: {
@@ -1040,7 +1040,7 @@ export class Queries {
           path: "queries/double/9999999.999",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1120,7 +1120,7 @@ export class Queries {
           path: "queries/double/-9999999.999",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1208,7 +1208,7 @@ export class Queries {
           path: "queries/double/null",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 serializedName: "doubleQuery",
                 type: {
@@ -1285,7 +1285,7 @@ export class Queries {
           path: "queries/string/unicode/",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1365,7 +1365,7 @@ export class Queries {
           path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1445,7 +1445,7 @@ export class Queries {
           path: "queries/string/empty",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1533,7 +1533,7 @@ export class Queries {
           path: "queries/string/null",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 serializedName: "stringQuery",
                 type: {
@@ -1621,7 +1621,7 @@ export class Queries {
           path: "queries/enum/green%20color",
           queryParameters: [
             {
-              parameterName: "enumQuery",
+              parameterPath: "enumQuery",
               mapper: {
                 serializedName: "enumQuery",
                 type: {
@@ -1714,7 +1714,7 @@ export class Queries {
           path: "queries/enum/null",
           queryParameters: [
             {
-              parameterName: "enumQuery",
+              parameterPath: "enumQuery",
               mapper: {
                 serializedName: "enumQuery",
                 type: {
@@ -1804,7 +1804,7 @@ export class Queries {
           path: "queries/byte/multibyte",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 serializedName: "byteQuery",
                 type: {
@@ -1881,7 +1881,7 @@ export class Queries {
           path: "queries/byte/empty",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1969,7 +1969,7 @@ export class Queries {
           path: "queries/byte/null",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 serializedName: "byteQuery",
                 type: {
@@ -2046,7 +2046,7 @@ export class Queries {
           path: "queries/date/2012-01-01",
           queryParameters: [
             {
-              parameterName: "dateQuery",
+              parameterPath: "dateQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -2135,7 +2135,7 @@ export class Queries {
           path: "queries/date/null",
           queryParameters: [
             {
-              parameterName: "dateQuery",
+              parameterPath: "dateQuery",
               mapper: {
                 serializedName: "dateQuery",
                 type: {
@@ -2212,7 +2212,7 @@ export class Queries {
           path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
           queryParameters: [
             {
-              parameterName: "dateTimeQuery",
+              parameterPath: "dateTimeQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -2301,7 +2301,7 @@ export class Queries {
           path: "queries/datetime/null",
           queryParameters: [
             {
-              parameterName: "dateTimeQuery",
+              parameterPath: "dateTimeQuery",
               mapper: {
                 serializedName: "dateTimeQuery",
                 type: {
@@ -2392,7 +2392,7 @@ export class Queries {
           path: "queries/array/csv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2489,7 +2489,7 @@ export class Queries {
           path: "queries/array/csv/string/null",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2586,7 +2586,7 @@ export class Queries {
           path: "queries/array/csv/string/empty",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2684,7 +2684,7 @@ export class Queries {
           path: "queries/array/ssv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Ssv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2782,7 +2782,7 @@ export class Queries {
           path: "queries/array/tsv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Tsv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2880,7 +2880,7 @@ export class Queries {
           path: "queries/array/pipes/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Pipes,
               mapper: {
                 serializedName: "arrayQuery",

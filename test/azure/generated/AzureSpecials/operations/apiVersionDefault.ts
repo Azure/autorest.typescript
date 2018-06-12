@@ -70,7 +70,7 @@ export class ApiVersionDefault {
           path: "azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -82,7 +82,7 @@ export class ApiVersionDefault {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -171,7 +171,7 @@ export class ApiVersionDefault {
           path: "azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview",
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -183,7 +183,7 @@ export class ApiVersionDefault {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -272,7 +272,7 @@ export class ApiVersionDefault {
           path: "azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -284,7 +284,7 @@ export class ApiVersionDefault {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -373,7 +373,7 @@ export class ApiVersionDefault {
           path: "azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview",
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -385,7 +385,7 @@ export class ApiVersionDefault {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

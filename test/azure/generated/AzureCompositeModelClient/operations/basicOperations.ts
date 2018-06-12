@@ -67,7 +67,7 @@ export class BasicOperations {
           path: "complex/basic/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -175,7 +175,7 @@ export class BasicOperations {
           path: "complex/basic/valid",
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -189,7 +189,7 @@ export class BasicOperations {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -277,7 +277,7 @@ export class BasicOperations {
           path: "complex/basic/invalid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -377,7 +377,7 @@ export class BasicOperations {
           path: "complex/basic/empty",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -477,7 +477,7 @@ export class BasicOperations {
           path: "complex/basic/null",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -577,7 +577,7 @@ export class BasicOperations {
           path: "complex/basic/notprovided",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

@@ -121,7 +121,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -133,7 +133,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -145,7 +145,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -159,7 +159,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -279,7 +279,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -289,7 +289,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -301,7 +301,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -315,7 +315,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -449,7 +449,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -459,7 +459,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -471,7 +471,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -485,7 +485,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

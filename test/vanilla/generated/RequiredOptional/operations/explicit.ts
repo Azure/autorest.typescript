@@ -443,7 +443,7 @@ export class Explicit {
           path: "reqopt/requied/integer/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -543,7 +543,7 @@ export class Explicit {
           path: "reqopt/optional/integer/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 serializedName: "headerParameter",
                 type: {
@@ -1003,7 +1003,7 @@ export class Explicit {
           path: "reqopt/requied/string/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -1103,7 +1103,7 @@ export class Explicit {
           path: "reqopt/optional/string/header",
           headerParameters: [
             {
-              parameterName: "bodyParameter",
+              parameterPath: "bodyParameter",
               mapper: {
                 serializedName: "bodyParameter",
                 type: {
@@ -1944,7 +1944,7 @@ export class Explicit {
           path: "reqopt/requied/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -2054,7 +2054,7 @@ export class Explicit {
           path: "reqopt/optional/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 serializedName: "headerParameter",
                 type: {

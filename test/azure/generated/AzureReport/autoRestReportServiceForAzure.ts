@@ -95,7 +95,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
           path: "report/azure",
           queryParameters: [
             {
-              parameterName: "qualifier",
+              parameterPath: "qualifier",
               mapper: {
                 serializedName: "qualifier",
                 type: {
@@ -106,7 +106,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

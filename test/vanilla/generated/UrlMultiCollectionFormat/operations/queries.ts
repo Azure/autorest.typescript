@@ -73,7 +73,7 @@ export class Queries {
           path: "queries/array/multi/string/null",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
                 serializedName: "arrayQuery",
@@ -170,7 +170,7 @@ export class Queries {
           path: "queries/array/multi/string/empty",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
                 serializedName: "arrayQuery",
@@ -268,7 +268,7 @@ export class Queries {
           path: "queries/array/multi/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Multi,
               mapper: {
                 serializedName: "arrayQuery",

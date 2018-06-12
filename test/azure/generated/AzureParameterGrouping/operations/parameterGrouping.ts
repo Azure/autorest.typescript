@@ -111,7 +111,7 @@ export class ParameterGrouping {
           path: "parameterGrouping/postRequired/{path}",
           urlParameters: [
             {
-              parameterName: "path",
+              parameterPath: "path",
               mapper: {
                 required: true,
                 serializedName: "path",
@@ -123,7 +123,7 @@ export class ParameterGrouping {
           ],
           queryParameters: [
             {
-              parameterName: "query",
+              parameterPath: "query",
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -135,7 +135,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -145,7 +145,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "customHeader",
+              parameterPath: "customHeader",
               mapper: {
                 serializedName: "customHeader",
                 type: {
@@ -299,7 +299,7 @@ export class ParameterGrouping {
           path: "parameterGrouping/postOptional",
           queryParameters: [
             {
-              parameterName: "query",
+              parameterPath: "query",
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -311,7 +311,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -321,7 +321,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "customHeader",
+              parameterPath: "customHeader",
               mapper: {
                 serializedName: "customHeader",
                 type: {
@@ -466,7 +466,7 @@ export class ParameterGrouping {
           path: "parameterGrouping/postMultipleParameterGroups",
           queryParameters: [
             {
-              parameterName: "queryOne",
+              parameterPath: "queryOne",
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -476,7 +476,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "queryTwo",
+              parameterPath: "queryTwo",
               mapper: {
                 serializedName: "query-two",
                 defaultValue: 30,
@@ -488,7 +488,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -498,7 +498,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerOne",
+              parameterPath: "headerOne",
               mapper: {
                 serializedName: "header-one",
                 type: {
@@ -507,7 +507,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerTwo",
+              parameterPath: "headerTwo",
               mapper: {
                 serializedName: "header-two",
                 type: {
@@ -652,7 +652,7 @@ export class ParameterGrouping {
           path: "parameterGrouping/sharedParameterGroupObject",
           queryParameters: [
             {
-              parameterName: "queryOne",
+              parameterPath: "queryOne",
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -664,7 +664,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -674,7 +674,7 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerOne",
+              parameterPath: "headerOne",
               mapper: {
                 serializedName: "header-one",
                 type: {

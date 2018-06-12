@@ -74,7 +74,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
-              parameterName: "unencodedPathParam",
+              parameterPath: "unencodedPathParam",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -87,7 +87,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -179,7 +179,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
-              parameterName: "unencodedPathParam",
+              parameterPath: "unencodedPathParam",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -192,7 +192,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -279,7 +279,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
           urlParameters: [
             {
-              parameterName: "unencodedPathParam",
+              parameterPath: "unencodedPathParam",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -294,7 +294,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -387,7 +387,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/method/query/valid",
           queryParameters: [
             {
-              parameterName: "q1",
+              parameterPath: "q1",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -400,7 +400,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -491,7 +491,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/method/query/null",
           queryParameters: [
             {
-              parameterName: "q1",
+              parameterPath: "q1",
               skipEncoding: true,
               mapper: {
                 serializedName: "q1",
@@ -503,7 +503,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -596,7 +596,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/path/query/valid",
           queryParameters: [
             {
-              parameterName: "q1",
+              parameterPath: "q1",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -609,7 +609,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -697,7 +697,7 @@ export class SkipUrlEncoding {
           path: "azurespecials/skipUrlEncoding/swagger/query/valid",
           queryParameters: [
             {
-              parameterName: "q1",
+              parameterPath: "q1",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -712,7 +712,7 @@ export class SkipUrlEncoding {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

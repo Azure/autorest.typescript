@@ -69,7 +69,7 @@ export class Implicit {
           path: "reqopt/implicit/required/path/{pathParameter}",
           urlParameters: [
             {
-              parameterName: "pathParameter",
+              parameterPath: "pathParameter",
               mapper: {
                 required: true,
                 serializedName: "pathParameter",
@@ -168,7 +168,7 @@ export class Implicit {
           path: "reqopt/implicit/optional/query",
           queryParameters: [
             {
-              parameterName: "queryParameter",
+              parameterPath: "queryParameter",
               mapper: {
                 serializedName: "queryParameter",
                 type: {
@@ -254,7 +254,7 @@ export class Implicit {
           path: "reqopt/implicit/optional/header",
           headerParameters: [
             {
-              parameterName: "queryParameter",
+              parameterPath: "queryParameter",
               mapper: {
                 serializedName: "queryParameter",
                 type: {
@@ -421,7 +421,7 @@ export class Implicit {
           path: "reqopt/global/required/path/{required-global-path}",
           urlParameters: [
             {
-              parameterName: "this.client.requiredGlobalPath",
+              parameterPath: "this.client.requiredGlobalPath",
               mapper: {
                 required: true,
                 serializedName: "required-global-path",
@@ -518,7 +518,7 @@ export class Implicit {
           path: "reqopt/global/required/query",
           queryParameters: [
             {
-              parameterName: "this.client.requiredGlobalQuery",
+              parameterPath: "this.client.requiredGlobalQuery",
               mapper: {
                 required: true,
                 serializedName: "required-global-query",
@@ -615,7 +615,7 @@ export class Implicit {
           path: "reqopt/global/optional/query",
           queryParameters: [
             {
-              parameterName: "this.client.optionalGlobalQuery",
+              parameterPath: "this.client.optionalGlobalQuery",
               mapper: {
                 serializedName: "optional-global-query",
                 type: {

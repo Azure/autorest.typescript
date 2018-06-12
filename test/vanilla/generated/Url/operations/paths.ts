@@ -60,7 +60,7 @@ export class Paths {
           path: "paths/bool/true/{boolPath}",
           urlParameters: [
             {
-              parameterName: "boolPath",
+              parameterPath: "boolPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -140,7 +140,7 @@ export class Paths {
           path: "paths/bool/false/{boolPath}",
           urlParameters: [
             {
-              parameterName: "boolPath",
+              parameterPath: "boolPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -220,7 +220,7 @@ export class Paths {
           path: "paths/int/1000000/{intPath}",
           urlParameters: [
             {
-              parameterName: "intPath",
+              parameterPath: "intPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -300,7 +300,7 @@ export class Paths {
           path: "paths/int/-1000000/{intPath}",
           urlParameters: [
             {
-              parameterName: "intPath",
+              parameterPath: "intPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -380,7 +380,7 @@ export class Paths {
           path: "paths/long/10000000000/{longPath}",
           urlParameters: [
             {
-              parameterName: "longPath",
+              parameterPath: "longPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -460,7 +460,7 @@ export class Paths {
           path: "paths/long/-10000000000/{longPath}",
           urlParameters: [
             {
-              parameterName: "longPath",
+              parameterPath: "longPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -540,7 +540,7 @@ export class Paths {
           path: "paths/float/1.034E+20/{floatPath}",
           urlParameters: [
             {
-              parameterName: "floatPath",
+              parameterPath: "floatPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -620,7 +620,7 @@ export class Paths {
           path: "paths/float/-1.034E-20/{floatPath}",
           urlParameters: [
             {
-              parameterName: "floatPath",
+              parameterPath: "floatPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -700,7 +700,7 @@ export class Paths {
           path: "paths/double/9999999.999/{doublePath}",
           urlParameters: [
             {
-              parameterName: "doublePath",
+              parameterPath: "doublePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -780,7 +780,7 @@ export class Paths {
           path: "paths/double/-9999999.999/{doublePath}",
           urlParameters: [
             {
-              parameterName: "doublePath",
+              parameterPath: "doublePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -860,7 +860,7 @@ export class Paths {
           path: "paths/string/unicode/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -940,7 +940,7 @@ export class Paths {
           path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1020,7 +1020,7 @@ export class Paths {
           path: "paths/string/empty/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1109,7 +1109,7 @@ export class Paths {
           path: "paths/string/null/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 serializedName: "stringPath",
@@ -1202,7 +1202,7 @@ export class Paths {
           path: "paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
+              parameterPath: "enumPath",
               mapper: {
                 required: true,
                 serializedName: "enumPath",
@@ -1300,7 +1300,7 @@ export class Paths {
           path: "paths/string/null/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
+              parameterPath: "enumPath",
               mapper: {
                 required: true,
                 serializedName: "enumPath",
@@ -1393,7 +1393,7 @@ export class Paths {
           path: "paths/byte/multibyte/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 serializedName: "bytePath",
@@ -1471,7 +1471,7 @@ export class Paths {
           path: "paths/byte/empty/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1560,7 +1560,7 @@ export class Paths {
           path: "paths/byte/null/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 serializedName: "bytePath",
@@ -1638,7 +1638,7 @@ export class Paths {
           path: "paths/date/2012-01-01/{datePath}",
           urlParameters: [
             {
-              parameterName: "datePath",
+              parameterPath: "datePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1729,7 +1729,7 @@ export class Paths {
           path: "paths/date/null/{datePath}",
           urlParameters: [
             {
-              parameterName: "datePath",
+              parameterPath: "datePath",
               mapper: {
                 required: true,
                 serializedName: "datePath",
@@ -1807,7 +1807,7 @@ export class Paths {
           path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
           urlParameters: [
             {
-              parameterName: "dateTimePath",
+              parameterPath: "dateTimePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1898,7 +1898,7 @@ export class Paths {
           path: "paths/datetime/null/{dateTimePath}",
           urlParameters: [
             {
-              parameterName: "dateTimePath",
+              parameterPath: "dateTimePath",
               mapper: {
                 required: true,
                 serializedName: "dateTimePath",
@@ -1985,7 +1985,7 @@ export class Paths {
           path: "paths/string/bG9yZW0/{base64UrlPath}",
           urlParameters: [
             {
-              parameterName: "base64UrlPath",
+              parameterPath: "base64UrlPath",
               mapper: {
                 required: true,
                 serializedName: "base64UrlPath",
@@ -2079,7 +2079,7 @@ export class Paths {
           path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
-              parameterName: "arrayPath",
+              parameterPath: "arrayPath",
               mapper: {
                 required: true,
                 serializedName: "arrayPath",
@@ -2173,7 +2173,7 @@ export class Paths {
           path: "paths/int/1460505600/{unixTimeUrlPath}",
           urlParameters: [
             {
-              parameterName: "unixTimeUrlPath",
+              parameterPath: "unixTimeUrlPath",
               mapper: {
                 required: true,
                 serializedName: "unixTimeUrlPath",

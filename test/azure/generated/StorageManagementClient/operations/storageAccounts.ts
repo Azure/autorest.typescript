@@ -84,7 +84,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
           urlParameters: [
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -96,7 +96,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -108,7 +108,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -292,7 +292,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -302,7 +302,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -312,7 +312,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -324,7 +324,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -336,7 +336,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -445,7 +445,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -455,7 +455,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -465,7 +465,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -477,7 +477,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -489,7 +489,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -627,7 +627,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -637,7 +637,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -647,7 +647,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -659,7 +659,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -671,7 +671,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -794,7 +794,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -804,7 +804,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -814,7 +814,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -826,7 +826,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -838,7 +838,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -946,7 +946,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
           urlParameters: [
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -958,7 +958,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -970,7 +970,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1086,7 +1086,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -1096,7 +1096,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -1108,7 +1108,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -1120,7 +1120,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1251,7 +1251,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -1261,7 +1261,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -1271,7 +1271,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -1283,7 +1283,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -1295,7 +1295,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1442,7 +1442,7 @@ export class StorageAccounts {
           path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -1452,7 +1452,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "accountName",
+              parameterPath: "accountName",
               mapper: {
                 required: true,
                 serializedName: "accountName",
@@ -1462,7 +1462,7 @@ export class StorageAccounts {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -1474,7 +1474,7 @@ export class StorageAccounts {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -1486,7 +1486,7 @@ export class StorageAccounts {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

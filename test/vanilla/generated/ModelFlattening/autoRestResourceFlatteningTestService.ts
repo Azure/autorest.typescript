@@ -1077,7 +1077,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "model-flatten/customFlattening/parametergrouping/{name}/",
           urlParameters: [
             {
-              parameterName: "name",
+              parameterPath: "name",
               mapper: {
                 required: true,
                 serializedName: "name",

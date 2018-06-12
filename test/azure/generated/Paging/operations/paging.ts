@@ -67,7 +67,7 @@ export class Paging {
           path: "paging/single",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -193,7 +193,7 @@ export class Paging {
           path: "paging/multiple",
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -202,7 +202,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -212,7 +212,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -221,7 +221,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -369,7 +369,7 @@ export class Paging {
           path: "paging/multiple/odata",
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -378,7 +378,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -388,7 +388,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -397,7 +397,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -558,7 +558,7 @@ export class Paging {
           path: "paging/multiple/withpath/{offset}",
           urlParameters: [
             {
-              parameterName: "offset",
+              parameterPath: "offset",
               mapper: {
                 required: true,
                 serializedName: "offset",
@@ -570,7 +570,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -579,7 +579,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -589,7 +589,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -598,7 +598,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -727,7 +727,7 @@ export class Paging {
           path: "paging/multiple/retryfirst",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -828,7 +828,7 @@ export class Paging {
           path: "paging/multiple/retrysecond",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -927,7 +927,7 @@ export class Paging {
           path: "paging/single/failure",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1026,7 +1026,7 @@ export class Paging {
           path: "paging/multiple/failure",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1125,7 +1125,7 @@ export class Paging {
           path: "paging/multiple/failureuri",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1236,7 +1236,7 @@ export class Paging {
           path: "paging/multiple/fragment/{tenant}",
           urlParameters: [
             {
-              parameterName: "tenant",
+              parameterPath: "tenant",
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1248,7 +1248,7 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1260,7 +1260,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1387,7 +1387,7 @@ export class Paging {
           path: "paging/multiple/fragmentwithgrouping/{tenant}",
           urlParameters: [
             {
-              parameterName: "tenant",
+              parameterPath: "tenant",
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1399,7 +1399,7 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1411,7 +1411,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1594,7 +1594,7 @@ export class Paging {
           path: "paging/multiple/fragment/{tenant}/{nextLink}",
           urlParameters: [
             {
-              parameterName: "tenant",
+              parameterPath: "tenant",
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1604,7 +1604,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "nextLink",
+              parameterPath: "nextLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -1617,7 +1617,7 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1629,7 +1629,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1761,7 +1761,7 @@ export class Paging {
           path: "paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextLink",
+              parameterPath: "nextLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -1772,7 +1772,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "tenant",
+              parameterPath: "tenant",
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1784,7 +1784,7 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1796,7 +1796,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1943,7 +1943,7 @@ export class Paging {
           path: "paging/multiple/lro",
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -1952,7 +1952,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1962,7 +1962,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -1971,7 +1971,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2097,7 +2097,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2110,7 +2110,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2244,7 +2244,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2257,7 +2257,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -2266,7 +2266,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2276,7 +2276,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2285,7 +2285,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2440,7 +2440,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2453,7 +2453,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -2462,7 +2462,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2472,7 +2472,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2481,7 +2481,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2635,7 +2635,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2648,7 +2648,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -2657,7 +2657,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2667,7 +2667,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2676,7 +2676,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2803,7 +2803,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2816,7 +2816,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2924,7 +2924,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -2937,7 +2937,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3043,7 +3043,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -3056,7 +3056,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3162,7 +3162,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -3175,7 +3175,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3281,7 +3281,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -3294,7 +3294,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3477,7 +3477,7 @@ export class Paging {
           path: "{nextLink}",
           urlParameters: [
             {
-              parameterName: "nextPageLink",
+              parameterPath: "nextPageLink",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -3490,7 +3490,7 @@ export class Paging {
           ],
           headerParameters: [
             {
-              parameterName: "clientRequestId",
+              parameterPath: "clientRequestId",
               mapper: {
                 serializedName: "client-request-id",
                 type: {
@@ -3499,7 +3499,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3509,7 +3509,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "maxresults",
+              parameterPath: "maxresults",
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -3518,7 +3518,7 @@ export class Paging {
               }
             },
             {
-              parameterName: "timeout",
+              parameterPath: "timeout",
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,

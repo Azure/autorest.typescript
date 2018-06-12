@@ -130,7 +130,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -140,7 +140,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -155,7 +155,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "id",
+              parameterPath: "id",
               mapper: {
                 required: true,
                 serializedName: "id",
@@ -172,7 +172,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "apiVersion",
@@ -330,7 +330,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -340,7 +340,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -355,7 +355,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "id",
+              parameterPath: "id",
               mapper: {
                 required: true,
                 serializedName: "id",
@@ -372,7 +372,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "apiVersion",
@@ -470,7 +470,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
-              parameterName: "constantParam",
+              parameterPath: "constantParam",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -548,7 +548,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
-              parameterName: "constantParam",
+              parameterPath: "constantParam",
               mapper: {
                 required: true,
                 isConstant: true,

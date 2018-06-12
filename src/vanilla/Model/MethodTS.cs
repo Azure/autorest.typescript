@@ -891,8 +891,10 @@ namespace AutoRest.TypeScript.Model
             }
 
             Parameter[] logicalParameters = LogicalParameters.ToArray();
-            GenerateParameters(operationSpec, "urlParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Path), AddSkipEncodingProperty);
-            GenerateParameters(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query),
+            ParameterTransformation[] parameterTransformations = InputParameterTransformation.ToArray();
+
+            GenerateParameters(operationSpec, "urlParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Path), AddSkipEncodingProperty);
+            GenerateParameters(operationSpec, "queryParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Query),
                 (TSObject queryParameterObject, Parameter queryParameter) =>
                 {
                     AddSkipEncodingProperty(queryParameterObject, queryParameter);
@@ -901,7 +903,7 @@ namespace AutoRest.TypeScript.Model
                         queryParameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{queryParameter.CollectionFormat}");
                     }
                 });
-            GenerateParameters(operationSpec, "headerParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Header));
+            GenerateParameters(operationSpec, "headerParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
             if (RequestBody != null)
             {
@@ -914,12 +916,12 @@ namespace AutoRest.TypeScript.Model
                 IEnumerable<Parameter> formDataParameters = logicalParameters.Where(p => p.Location == ParameterLocation.FormData);
                 if (formDataParameters.Any())
                 {
-                    GenerateParameters(operationSpec, "formDataParameters", formDataParameters);
+                    GenerateParameters(operationSpec, "formDataParameters", parameterTransformations, formDataParameters);
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
 
-            GenerateParameterTransformations(operationSpec, InputParameterTransformation);
+            GenerateParameterTransformations(operationSpec, parameterTransformations);
 
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
@@ -977,7 +979,7 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private static void GenerateParameters(TSObject operationSpec, string propertyName, IEnumerable<Parameter> parameters, Action<TSObject, Parameter> extraParameterProperties = null)
+        private static void GenerateParameters(TSObject operationSpec, string propertyName, IEnumerable<ParameterTransformation> parameterTransformations, IEnumerable<Parameter> parameters, Action<TSObject, Parameter> extraParameterProperties = null)
         {
             if (parameters != null && parameters.Any())
             {
@@ -987,7 +989,30 @@ namespace AutoRest.TypeScript.Model
                     {
                         parameterArray.Object(parameterObject =>
                         {
-                            parameterObject.QuotedStringProperty("parameterName", parameter.Name);
+                            string[] parameterPath = new string[] { parameter.Name };
+                            //ParameterTransformation parameterTransformation = null;
+                            //if (parameterTransformations != null)
+                            //{
+                            //    foreach (ParameterTransformation pt in parameterTransformations)
+                            //    {
+
+                            //    }
+                            //}
+
+                            if (parameterPath.Length == 1)
+                            {
+                                parameterObject.QuotedStringProperty("parameterPath", parameterPath[0]);
+                            }
+                            else
+                            {
+                                parameterObject.ArrayProperty("parameterPath", parameterPathArray =>
+                                {
+                                    foreach (string parameterPathPart in parameterPath)
+                                    {
+                                        parameterPathArray.QuotedString(parameterPathPart);
+                                    }
+                                });
+                            }
                             extraParameterProperties?.Invoke(parameterObject, parameter);
                             parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, parameter.ModelType, parameter.SerializedName, parameter, false, false, false));
                         });

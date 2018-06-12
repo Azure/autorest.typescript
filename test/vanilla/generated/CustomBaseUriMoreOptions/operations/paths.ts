@@ -94,7 +94,7 @@ export class Paths {
           path: "customuri/{subscriptionId}/{keyName}",
           urlParameters: [
             {
-              parameterName: "vault",
+              parameterPath: "vault",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -105,7 +105,7 @@ export class Paths {
               }
             },
             {
-              parameterName: "secret",
+              parameterPath: "secret",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -116,7 +116,7 @@ export class Paths {
               }
             },
             {
-              parameterName: "this.client.dnsSuffix",
+              parameterPath: "this.client.dnsSuffix",
               skipEncoding: true,
               mapper: {
                 required: true,
@@ -128,7 +128,7 @@ export class Paths {
               }
             },
             {
-              parameterName: "keyName",
+              parameterPath: "keyName",
               mapper: {
                 required: true,
                 serializedName: "keyName",
@@ -138,7 +138,7 @@ export class Paths {
               }
             },
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -150,7 +150,7 @@ export class Paths {
           ],
           queryParameters: [
             {
-              parameterName: "keyVersion",
+              parameterPath: "keyVersion",
               mapper: {
                 serializedName: "keyVersion",
                 defaultValue: 'v1',

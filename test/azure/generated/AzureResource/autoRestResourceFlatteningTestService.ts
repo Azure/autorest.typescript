@@ -92,7 +92,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -193,7 +193,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -309,7 +309,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -410,7 +410,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -527,7 +527,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -616,7 +616,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

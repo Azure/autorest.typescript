@@ -67,7 +67,7 @@ export class Polymorphicrecursive {
           path: "complex/polymorphicrecursive/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -225,7 +225,7 @@ export class Polymorphicrecursive {
           path: "complex/polymorphicrecursive/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

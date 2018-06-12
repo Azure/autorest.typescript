@@ -76,7 +76,7 @@ export class Formdata {
           path: "formdata/stream/uploadfile",
           formDataParameters: [
             {
-              parameterName: "fileContent",
+              parameterPath: "fileContent",
               mapper: {
                 required: true,
                 serializedName: "fileContent",
@@ -86,7 +86,7 @@ export class Formdata {
               }
             },
             {
-              parameterName: "fileName",
+              parameterPath: "fileName",
               mapper: {
                 required: true,
                 serializedName: "fileName",

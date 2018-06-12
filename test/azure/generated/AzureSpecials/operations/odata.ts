@@ -83,7 +83,7 @@ export class Odata {
           path: "azurespecials/odata/filter",
           queryParameters: [
             {
-              parameterName: "filter",
+              parameterPath: "filter",
               mapper: {
                 serializedName: "$filter",
                 type: {
@@ -92,7 +92,7 @@ export class Odata {
               }
             },
             {
-              parameterName: "top",
+              parameterPath: "top",
               mapper: {
                 serializedName: "$top",
                 type: {
@@ -101,7 +101,7 @@ export class Odata {
               }
             },
             {
-              parameterName: "orderby",
+              parameterPath: "orderby",
               mapper: {
                 serializedName: "$orderby",
                 type: {
@@ -112,7 +112,7 @@ export class Odata {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

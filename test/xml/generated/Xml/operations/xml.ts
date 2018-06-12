@@ -1375,7 +1375,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1469,7 +1469,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1481,7 +1481,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1586,7 +1586,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1598,7 +1598,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1680,7 +1680,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1692,7 +1692,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1802,7 +1802,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1814,7 +1814,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1910,7 +1910,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1922,7 +1922,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,

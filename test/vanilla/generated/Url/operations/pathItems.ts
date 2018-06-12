@@ -99,7 +99,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -109,7 +109,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -119,7 +119,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -131,7 +131,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -140,7 +140,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -149,7 +149,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -264,7 +264,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -274,7 +274,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -284,7 +284,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -296,7 +296,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -305,7 +305,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -314,7 +314,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -429,7 +429,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -439,7 +439,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -449,7 +449,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -461,7 +461,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -470,7 +470,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -479,7 +479,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -594,7 +594,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -604,7 +604,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -614,7 +614,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -626,7 +626,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -635,7 +635,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -644,7 +644,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {

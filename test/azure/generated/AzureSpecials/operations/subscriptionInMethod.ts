@@ -74,7 +74,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -86,7 +86,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -179,7 +179,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -191,7 +191,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -284,7 +284,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -296,7 +296,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -389,7 +389,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -401,7 +401,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

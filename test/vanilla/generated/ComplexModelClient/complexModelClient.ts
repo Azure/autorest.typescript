@@ -87,7 +87,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -99,7 +99,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -111,7 +111,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -228,7 +228,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -238,7 +238,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -250,7 +250,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -381,7 +381,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -391,7 +391,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -403,7 +403,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,

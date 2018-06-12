@@ -74,7 +74,7 @@ export class Header {
           path: "azurespecials/customNamedRequestId",
           headerParameters: [
             {
-              parameterName: "fooClientRequestId",
+              parameterPath: "fooClientRequestId",
               mapper: {
                 required: true,
                 serializedName: "foo-client-request-id",
@@ -84,7 +84,7 @@ export class Header {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -194,7 +194,7 @@ export class Header {
           path: "azurespecials/customNamedRequestIdParamGrouping",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -204,7 +204,7 @@ export class Header {
               }
             },
             {
-              parameterName: "fooClientRequestId",
+              parameterPath: "fooClientRequestId",
               mapper: {
                 required: true,
                 serializedName: "foo-client-request-id",
@@ -311,7 +311,7 @@ export class Header {
           path: "azurespecials/customNamedRequestIdHead",
           headerParameters: [
             {
-              parameterName: "fooClientRequestId",
+              parameterPath: "fooClientRequestId",
               mapper: {
                 required: true,
                 serializedName: "foo-client-request-id",
@@ -321,7 +321,7 @@ export class Header {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
