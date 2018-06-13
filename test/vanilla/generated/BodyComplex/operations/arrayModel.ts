@@ -146,20 +146,13 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              arrayProperty: "arrayProperty"
+            },
+            mapper: Mappers.ArrayWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "arrayProperty"
-              ],
-              targetPath: [
-                "complexBody",
-                "arrayProperty"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -314,20 +307,13 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              arrayProperty: "arrayProperty"
+            },
+            mapper: Mappers.ArrayWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "arrayProperty"
-              ],
-              targetPath: [
-                "complexBody",
-                "arrayProperty"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

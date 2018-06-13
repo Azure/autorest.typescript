@@ -195,8 +195,10 @@ export class Polymorphicrecursive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphicrecursive/valid",
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

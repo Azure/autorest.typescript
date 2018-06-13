@@ -147,13 +147,15 @@ export class String {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/null",
-          requestBodyMapper: {
-            serializedName: "stringBody",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              serializedName: "stringBody",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -311,14 +313,16 @@ export class String {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/empty",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -479,14 +483,16 @@ export class String {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/mbcs",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -649,14 +655,16 @@ export class String {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/whitespace",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -976,14 +984,16 @@ export class String {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/base64UrlEncoding",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "Base64Url"
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "Base64Url"
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

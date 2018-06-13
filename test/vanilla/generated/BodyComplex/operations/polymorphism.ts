@@ -175,8 +175,10 @@ export class Polymorphism {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/valid",
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -331,8 +333,10 @@ export class Polymorphism {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/complicated",
-          requestBodyMapper: Mappers.Salmon,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Salmon
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -409,8 +413,10 @@ export class Polymorphism {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingdiscriminator",
-          requestBodyMapper: Mappers.Salmon,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Salmon
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -529,8 +535,10 @@ export class Polymorphism {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphism/missingrequired/invalid",
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

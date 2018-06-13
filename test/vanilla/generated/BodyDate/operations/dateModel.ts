@@ -391,14 +391,16 @@ export class DateModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/max",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "dateBody",
-            type: {
-              name: "Date"
+          requestBody: {
+            parameterPath: "dateBody",
+            mapper: {
+              required: true,
+              serializedName: "dateBody",
+              type: {
+                name: "Date"
+              }
             }
           },
-          requestBodyName: "dateBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -557,14 +559,16 @@ export class DateModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "date/min",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "dateBody",
-            type: {
-              name: "Date"
+          requestBody: {
+            parameterPath: "dateBody",
+            mapper: {
+              required: true,
+              serializedName: "dateBody",
+              type: {
+                name: "Date"
+              }
             }
           },
-          requestBodyName: "dateBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

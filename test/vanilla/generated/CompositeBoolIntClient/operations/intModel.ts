@@ -552,14 +552,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/max/32",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -636,14 +638,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/max/64",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -720,14 +724,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/min/32",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -804,14 +810,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/min/64",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -970,14 +978,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/unixtime",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "UnixTime"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "UnixTime"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

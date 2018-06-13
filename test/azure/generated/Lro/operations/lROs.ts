@@ -1649,8 +1649,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1755,8 +1757,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1862,8 +1866,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1969,8 +1975,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2091,8 +2099,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2198,8 +2208,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2320,8 +2332,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2427,8 +2441,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2535,8 +2551,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2643,8 +2661,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2751,8 +2771,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2859,8 +2881,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2967,8 +2991,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3073,8 +3099,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Sku,
-          requestBodyName: "sku",
+          requestBody: {
+            parameterPath: "sku",
+            mapper: Mappers.Sku
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3178,8 +3206,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Sku,
-          requestBodyName: "sku",
+          requestBody: {
+            parameterPath: "sku",
+            mapper: Mappers.Sku
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3296,20 +3326,13 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.SubProduct,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: {
+              provisioningState: "provisioningState"
+            },
+            mapper: Mappers.SubProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "provisioningState"
-              ],
-              targetPath: [
-                "product",
-                "provisioningState"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -3425,20 +3448,13 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.SubProduct,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: {
+              provisioningState: "provisioningState"
+            },
+            mapper: Mappers.SubProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "provisioningState"
-              ],
-              targetPath: [
-                "product",
-                "provisioningState"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -4860,8 +4876,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4955,8 +4973,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5063,8 +5083,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5175,8 +5197,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5287,8 +5311,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5383,8 +5409,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

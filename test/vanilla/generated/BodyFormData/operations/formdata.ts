@@ -175,14 +175,16 @@ export class Formdata {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "formdata/stream/uploadfile",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "fileContent",
-            type: {
-              name: "Stream"
+          requestBody: {
+            parameterPath: "fileContent",
+            mapper: {
+              required: true,
+              serializedName: "fileContent",
+              type: {
+                name: "Stream"
+              }
             }
           },
-          requestBodyName: "fileContent",
           contentType: "application/octet-stream",
           serializer: this.serializer
         });

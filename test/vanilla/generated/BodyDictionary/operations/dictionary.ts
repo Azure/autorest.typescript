@@ -246,20 +246,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/empty",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -776,20 +778,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/tfft",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "booleanElementType",
-                type: {
-                  name: "Boolean"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1132,20 +1136,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1488,20 +1494,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1844,20 +1852,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2200,20 +2210,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2556,20 +2568,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2915,20 +2929,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "Date"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3274,20 +3290,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTime"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3634,20 +3652,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time-rfc1123/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3817,20 +3837,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/duration/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "TimeSpan"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4001,20 +4023,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/byte/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "Uint8ArrayElementType",
-                type: {
-                  name: "ByteArray"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "Uint8ArrayElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4704,21 +4728,23 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "WidgetElementType",
-                type: {
-                  name: "Composite",
-                  className: "Widget"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5273,26 +5299,28 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "ArrayElementType",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5852,26 +5880,28 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "ObjectElementType",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

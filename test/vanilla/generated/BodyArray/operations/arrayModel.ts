@@ -333,20 +333,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/empty",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -515,20 +517,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/tfft",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "booleanElementType",
-                type: {
-                  name: "Boolean"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -871,20 +875,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1227,20 +1233,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1583,20 +1591,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1939,20 +1949,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2295,20 +2307,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2655,20 +2669,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "Uuid"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2925,20 +2941,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "Date"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3284,20 +3302,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTime"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3643,20 +3663,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time-rfc1123/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3825,20 +3847,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/duration/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "TimeSpan"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4009,20 +4033,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "Uint8ArrayElementType",
-                type: {
-                  name: "ByteArray"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "Uint8ArrayElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4711,21 +4737,23 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/complex/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "Product"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5278,26 +5306,28 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/array/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ArrayElementType",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5856,26 +5886,28 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ObjectElementType",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

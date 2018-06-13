@@ -68,14 +68,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -164,13 +166,15 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -249,20 +253,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/property",
-          requestBodyMapper: Mappers.IntWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.IntWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -351,20 +348,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/property",
-          requestBodyMapper: Mappers.IntOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.IntOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -628,14 +618,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -724,13 +716,15 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -809,20 +803,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/property",
-          requestBodyMapper: Mappers.StringWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.StringWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -911,20 +898,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/property",
-          requestBodyMapper: Mappers.StringOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.StringOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1188,8 +1168,10 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/parameter",
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1270,8 +1252,10 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/parameter",
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1350,20 +1334,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/property",
-          requestBodyMapper: Mappers.ClassWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ClassWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1444,20 +1421,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/property",
-          requestBodyMapper: Mappers.ClassOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ClassOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1539,20 +1509,22 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1645,19 +1617,21 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1741,20 +1715,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/property",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ArrayWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1847,20 +1814,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/property",
-          requestBodyMapper: Mappers.ArrayOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ArrayOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

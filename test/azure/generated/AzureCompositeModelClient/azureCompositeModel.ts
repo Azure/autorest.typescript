@@ -325,20 +325,13 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              productDictionaryOfArray: "productDictionaryOfArray"
+            },
+            mapper: Mappers.CatalogDictionaryOfArray
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productDictionaryOfArray"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productDictionaryOfArray"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -495,20 +488,13 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              productArrayOfDictionary: "productArrayOfDictionary"
+            },
+            mapper: Mappers.CatalogArrayOfDictionary
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productArrayOfDictionary"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productArrayOfDictionary"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

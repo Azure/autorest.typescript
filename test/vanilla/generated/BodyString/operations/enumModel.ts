@@ -161,19 +161,21 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "Enum",
-              allowedValues: [
-                "red color",
-                "green-color",
-                "blue_color"
-              ]
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -344,19 +346,21 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "enumStringBody",
-            type: {
-              name: "Enum",
-              allowedValues: [
-                "red color",
-                "green-color",
-                "blue_color"
-              ]
+          requestBody: {
+            parameterPath: "enumStringBody",
+            mapper: {
+              required: true,
+              serializedName: "enumStringBody",
+              type: {
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
+              }
             }
           },
-          requestBodyName: "enumStringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -518,20 +522,13 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant",
-          requestBodyMapper: Mappers.RefColorConstant,
-          requestBodyName: "enumStringBody",
+          requestBody: {
+            parameterPath: {
+              field1: "field1"
+            },
+            mapper: Mappers.RefColorConstant
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field1"
-              ],
-              targetPath: [
-                "enumStringBody",
-                "field1"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

@@ -385,8 +385,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "body",
+          requestBody: {
+            parameterPath: "body",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -560,8 +562,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "body",
+          requestBody: {
+            parameterPath: "body",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

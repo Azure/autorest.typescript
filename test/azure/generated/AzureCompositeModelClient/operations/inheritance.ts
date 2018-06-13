@@ -186,8 +186,10 @@ export class Inheritance {
               }
             }
           ],
-          requestBodyMapper: Mappers.Siamese,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Siamese
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

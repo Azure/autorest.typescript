@@ -213,13 +213,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -308,13 +310,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -403,13 +407,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -498,13 +504,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -812,13 +820,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/404",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -907,13 +917,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/405",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1002,13 +1014,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/406",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1097,13 +1111,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/407",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1192,13 +1208,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/409",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1506,13 +1524,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/413",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1601,13 +1621,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/414",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1696,13 +1718,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/415",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1864,13 +1888,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/417",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

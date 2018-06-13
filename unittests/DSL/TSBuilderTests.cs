@@ -180,5 +180,36 @@ namespace AutoRest.TypeScript.DSL
             builder.InsertNewLine(0);
             Assert.Equal("\n", builder.ToString());
         }
+
+        [Fact]
+        public void AddPropertyToParentObjectWhileBuildingChildObject()
+        {
+            TSBuilder builder = new TSBuilder();
+            Exception exception = null;
+            try
+            {
+                builder.Object((TSObject parentObject) =>
+                {
+                    parentObject.ObjectProperty("child", (TSObject childObject) =>
+                    {
+                        childObject.TextProperty("a", "A");
+                        parentObject.TextProperty("b", "B");
+                    });
+                });
+            }
+            catch (Exception e)
+            {
+                exception = e;
+            }
+            if (exception == null)
+            {
+                Assert.True(false, "Expected an exception to be thrown.");
+            }
+            else
+            {
+                Assert.Equal(typeof(InvalidOperationException), exception.GetType());
+                Assert.Equal("Cannot add a property to a TSObject while constructing its child property (\"child\").", exception.Message);
+            }
+        }
     }
 }

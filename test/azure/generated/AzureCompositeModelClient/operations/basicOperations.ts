@@ -199,8 +199,10 @@ export class BasicOperations {
               }
             }
           ],
-          requestBodyMapper: Mappers.Basic,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Basic
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

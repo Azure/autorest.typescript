@@ -146,8 +146,10 @@ export class Inheritance {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/inheritance/valid",
-          requestBodyMapper: Mappers.Siamese,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Siamese
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

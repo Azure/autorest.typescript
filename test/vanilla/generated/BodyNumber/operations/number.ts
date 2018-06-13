@@ -390,14 +390,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/float/3.402823e+20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -555,14 +557,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/2.5976931e+101",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -720,14 +724,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/99999999.99",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -885,14 +891,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/double/-99999999.99",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1050,14 +1058,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/2.5976931e+101",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1215,14 +1225,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/99999999.99",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1380,14 +1392,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/big/decimal/-99999999.99",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1545,14 +1559,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/float/3.402823e-20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1710,14 +1726,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/double/2.5976931e-101",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1875,14 +1893,16 @@ export class Number {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "number/small/decimal/2.5976931e-101",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "numberBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "numberBody",
+            mapper: {
+              required: true,
+              serializedName: "numberBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "numberBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

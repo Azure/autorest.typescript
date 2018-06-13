@@ -391,14 +391,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -639,14 +641,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -889,14 +893,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1138,14 +1144,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1304,14 +1312,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1470,14 +1480,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

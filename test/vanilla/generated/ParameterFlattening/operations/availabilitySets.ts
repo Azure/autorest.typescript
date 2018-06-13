@@ -115,20 +115,13 @@ export class AvailabilitySets {
               }
             }
           ],
-          requestBodyMapper: Mappers.AvailabilitySetUpdateParameters,
-          requestBodyName: "tags1",
+          requestBody: {
+            parameterPath: {
+              tags: "tags"
+            },
+            mapper: Mappers.AvailabilitySetUpdateParameters
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "tags"
-              ],
-              targetPath: [
-                "tags1",
-                "tags"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

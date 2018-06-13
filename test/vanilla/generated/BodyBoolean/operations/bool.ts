@@ -147,14 +147,16 @@ export class Bool {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "bool/true",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "boolBody",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "boolBody",
+            mapper: {
+              required: true,
+              serializedName: "boolBody",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "boolBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -312,14 +314,16 @@ export class Bool {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "bool/false",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "boolBody",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "boolBody",
+            mapper: {
+              required: true,
+              serializedName: "boolBody",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "boolBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

@@ -391,14 +391,16 @@ export class Datetimerfc1123 {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetimerfc1123/max",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTimeRfc1123"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -638,14 +640,16 @@ export class Datetimerfc1123 {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetimerfc1123/min",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTimeRfc1123"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

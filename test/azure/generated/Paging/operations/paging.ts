@@ -212,7 +212,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -221,7 +224,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -229,26 +235,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -388,7 +374,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -397,7 +386,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -405,26 +397,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -558,7 +530,10 @@ export class Paging {
           path: "paging/multiple/withpath/{offset}",
           urlParameters: [
             {
-              parameterPath: "offset",
+              parameterPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "offset"
+              ],
               mapper: {
                 required: true,
                 serializedName: "offset",
@@ -589,7 +564,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -598,7 +576,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesWithOffsetOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -606,35 +587,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "offset"
-              ],
-              targetPath: [
-                "offset"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesWithOffsetOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -1387,7 +1339,10 @@ export class Paging {
           path: "paging/multiple/fragmentwithgrouping/{tenant}",
           urlParameters: [
             {
-              parameterPath: "tenant",
+              parameterPath: [
+                "customParameterGroup",
+                "tenant"
+              ],
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1399,7 +1354,10 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterPath: "apiVersion",
+              parameterPath: [
+                "customParameterGroup",
+                "apiVersion"
+              ],
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1419,26 +1377,6 @@ export class Paging {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "customParameterGroup",
-                "apiVersion"
-              ],
-              targetPath: [
-                "apiVersion"
-              ]
-            },
-            {
-              sourcePath: [
-                "customParameterGroup",
-                "tenant"
-              ],
-              targetPath: [
-                "tenant"
-              ]
             }
           ],
           serializer: this.serializer
@@ -1772,7 +1710,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "tenant",
+              parameterPath: [
+                "customParameterGroup",
+                "tenant"
+              ],
               mapper: {
                 required: true,
                 serializedName: "tenant",
@@ -1784,7 +1725,10 @@ export class Paging {
           ],
           queryParameters: [
             {
-              parameterPath: "apiVersion",
+              parameterPath: [
+                "customParameterGroup",
+                "apiVersion"
+              ],
               mapper: {
                 required: true,
                 serializedName: "api_version",
@@ -1804,26 +1748,6 @@ export class Paging {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "customParameterGroup",
-                "apiVersion"
-              ],
-              targetPath: [
-                "apiVersion"
-              ]
-            },
-            {
-              sourcePath: [
-                "customParameterGroup",
-                "tenant"
-              ],
-              targetPath: [
-                "tenant"
-              ]
             }
           ],
           serializer: this.serializer
@@ -1962,7 +1886,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -1971,7 +1898,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -1979,26 +1909,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesLROOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesLROOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -2276,7 +2186,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2285,7 +2198,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2293,26 +2209,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -2472,7 +2368,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2481,7 +2380,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetOdataMultiplePagesOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2489,26 +2391,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetOdataMultiplePagesOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -2667,7 +2549,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -2676,7 +2561,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesWithOffsetNextOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -2684,26 +2572,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesWithOffsetNextOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer
@@ -3509,7 +3377,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "maxresults",
+              parameterPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "maxresults"
+              ],
               mapper: {
                 serializedName: "maxresults",
                 type: {
@@ -3518,7 +3389,10 @@ export class Paging {
               }
             },
             {
-              parameterPath: "timeout",
+              parameterPath: [
+                "pagingGetMultiplePagesLROOptions",
+                "timeout"
+              ],
               mapper: {
                 serializedName: "timeout",
                 defaultValue: 30,
@@ -3526,26 +3400,6 @@ export class Paging {
                   name: "Number"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesLROOptions",
-                "maxresults"
-              ],
-              targetPath: [
-                "maxresults"
-              ]
-            },
-            {
-              sourcePath: [
-                "pagingGetMultiplePagesLROOptions",
-                "timeout"
-              ],
-              targetPath: [
-                "timeout"
-              ]
             }
           ],
           serializer: this.serializer

@@ -118,8 +118,10 @@ export class StorageAccounts {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageAccountCheckNameAvailabilityParameters,
-          requestBodyName: "accountName",
+          requestBody: {
+            parameterPath: "accountName",
+            mapper: Mappers.StorageAccountCheckNameAvailabilityParameters
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -681,8 +683,10 @@ export class StorageAccounts {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageAccountUpdateParameters,
-          requestBodyName: "parameters",
+          requestBody: {
+            parameterPath: "parameters",
+            mapper: Mappers.StorageAccountUpdateParameters
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1305,20 +1309,13 @@ export class StorageAccounts {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageAccountRegenerateKeyParameters,
-          requestBodyName: "regenerateKeyParameter",
+          requestBody: {
+            parameterPath: {
+              keyName: "keyName"
+            },
+            mapper: Mappers.StorageAccountRegenerateKeyParameters
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "keyName"
-              ],
-              targetPath: [
-                "regenerateKeyParameter",
-                "keyName"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1496,8 +1493,10 @@ export class StorageAccounts {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageAccountCreateParameters,
-          requestBodyName: "parameters",
+          requestBody: {
+            parameterPath: "parameters",
+            mapper: Mappers.StorageAccountCreateParameters
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

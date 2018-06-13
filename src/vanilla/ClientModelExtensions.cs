@@ -865,13 +865,12 @@ namespace AutoRest.TypeScript
                             typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
                         }
 
-                        mapper.QuotedStringProperty("className", composite.Name);
+                        typeObject.QuotedStringProperty("className", composite.Name);
 
                         if (expandComposite)
                         {
-                            mapper.ObjectProperty("modelProperties", modelProperties =>
+                            typeObject.ObjectProperty("modelProperties", modelProperties =>
                             {
-
                                 if (composite.BaseModelType != null && composite.BaseModelType.ComposedProperties.Any())
                                 {
                                     modelProperties.Spread(composite.BaseModelType.Name + ".type.modelProperties");

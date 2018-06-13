@@ -147,14 +147,16 @@ export class Duration {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "duration/positiveduration",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "durationBody",
-            type: {
-              name: "TimeSpan"
+          requestBody: {
+            parameterPath: "durationBody",
+            mapper: {
+              required: true,
+              serializedName: "durationBody",
+              type: {
+                name: "TimeSpan"
+              }
             }
           },
-          requestBodyName: "durationBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

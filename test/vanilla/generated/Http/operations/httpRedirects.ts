@@ -367,13 +367,15 @@ export class HttpRedirects {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/301",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -593,13 +595,15 @@ export class HttpRedirects {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/302",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -680,13 +684,15 @@ export class HttpRedirects {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/303",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -908,13 +914,15 @@ export class HttpRedirects {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -998,13 +1006,15 @@ export class HttpRedirects {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1088,13 +1098,15 @@ export class HttpRedirects {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1178,13 +1190,15 @@ export class HttpRedirects {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/redirect/307",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

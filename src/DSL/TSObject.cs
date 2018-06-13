@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AutoRest.TypeScript.DSL
 {
@@ -14,6 +13,7 @@ namespace AutoRest.TypeScript.DSL
     public class TSObject : IDisposable
     {
         private readonly TSBuilder builder;
+        private string propertyBeingConstructed;
         private State currentState = State.Start;
         private IList<string> propertyNames = new List<string>();
 
@@ -116,6 +116,11 @@ namespace AutoRest.TypeScript.DSL
         /// <param name="propertyValueAction">The action to invoke to add the property's value.</param>
         public void Property(string propertyName, Action<TSValue> propertyValueAction)
         {
+            if (!string.IsNullOrEmpty(propertyBeingConstructed))
+            {
+                throw new InvalidOperationException($"Cannot add a property to a TSObject while constructing its child property (\"{propertyBeingConstructed}\").");
+            }
+
             SetCurrentState(State.Property);
             if (PropertyNameNeedsToBeQuoted(propertyName))
             {
@@ -126,7 +131,15 @@ namespace AutoRest.TypeScript.DSL
                 builder.Text(propertyName);
             }
             builder.Text(": ");
-            builder.Value(propertyValueAction);
+            propertyBeingConstructed = propertyName;
+            try
+            {
+                builder.Value(propertyValueAction);
+            }
+            finally
+            {
+                propertyBeingConstructed = null;
+            }
 
             propertyNames.Add(propertyName);
         }

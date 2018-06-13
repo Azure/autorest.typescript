@@ -102,20 +102,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: {
-            serializedName: "ResourceArray",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ResourceElementType",
-                type: {
-                  name: "Composite",
-                  className: "Resource"
+          requestBody: {
+            parameterPath: "resourceArray",
+            mapper: {
+              serializedName: "ResourceArray",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ResourceElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Resource"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -319,20 +321,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: {
-            serializedName: "ResourceDictionary",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "FlattenedProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "FlattenedProduct"
+          requestBody: {
+            parameterPath: "resourceDictionary",
+            mapper: {
+              serializedName: "ResourceDictionary",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -537,8 +541,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: Mappers.ResourceCollection,
-          requestBodyName: "resourceComplexObject",
+          requestBody: {
+            parameterPath: "resourceComplexObject",
+            mapper: Mappers.ResourceCollection
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

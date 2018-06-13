@@ -310,14 +310,16 @@ export class ByteModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "byte/nonAscii",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "byteBody",
-            type: {
-              name: "ByteArray"
+          requestBody: {
+            parameterPath: "byteBody",
+            mapper: {
+              required: true,
+              serializedName: "byteBody",
+              type: {
+                name: "ByteArray"
+              }
             }
           },
-          requestBodyName: "byteBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

@@ -144,8 +144,10 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
-          requestBodyMapper: Mappers.Slideshow,
-          requestBodyName: "slideshow",
+          requestBody: {
+            parameterPath: "slideshow",
+            mapper: Mappers.Slideshow
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -296,8 +298,10 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
-          requestBodyMapper: Mappers.AppleBarrel,
-          requestBodyName: "wrappedLists",
+          requestBody: {
+            parameterPath: "wrappedLists",
+            mapper: Mappers.AppleBarrel
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -510,8 +514,10 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
-          requestBodyMapper: Mappers.Slideshow,
-          requestBodyName: "slideshow",
+          requestBody: {
+            parameterPath: "slideshow",
+            mapper: Mappers.Slideshow
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -658,8 +664,10 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
-          requestBodyMapper: Mappers.AppleBarrel,
-          requestBodyName: "appleBarrel",
+          requestBody: {
+            parameterPath: "appleBarrel",
+            mapper: Mappers.AppleBarrel
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -811,22 +819,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -978,22 +988,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1145,22 +1157,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1307,8 +1321,10 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
-          requestBodyMapper: Mappers.Banana,
-          requestBodyName: "banana",
+          requestBody: {
+            parameterPath: "banana",
+            mapper: Mappers.Banana
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1610,8 +1626,10 @@ export class Xml {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageServiceProperties,
-          requestBodyName: "properties",
+          requestBody: {
+            parameterPath: "properties",
+            mapper: Mappers.StorageServiceProperties
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1826,22 +1844,24 @@ export class Xml {
               }
             }
           ],
-          requestBodyMapper: {
-            xmlElementName: "SignedIdentifiers",
-            required: true,
-            serializedName: "properties",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "SignedIdentifierElementType",
-                type: {
-                  name: "Composite",
-                  className: "SignedIdentifier"
+          requestBody: {
+            parameterPath: "properties",
+            mapper: {
+              xmlElementName: "SignedIdentifiers",
+              required: true,
+              serializedName: "properties",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "SignedIdentifierElementType",
+                  type: {
+                    name: "Composite",
+                    className: "SignedIdentifier"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer

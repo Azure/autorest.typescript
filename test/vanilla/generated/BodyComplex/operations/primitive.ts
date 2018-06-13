@@ -143,8 +143,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/integer",
-          requestBodyMapper: Mappers.IntWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.IntWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -297,8 +299,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/long",
-          requestBodyMapper: Mappers.LongWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.LongWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -451,8 +455,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/float",
-          requestBodyMapper: Mappers.FloatWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.FloatWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -606,8 +612,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/double",
-          requestBodyMapper: Mappers.DoubleWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.DoubleWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -760,8 +768,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/bool",
-          requestBodyMapper: Mappers.BooleanWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.BooleanWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -914,8 +924,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/string",
-          requestBodyMapper: Mappers.StringWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.StringWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1068,8 +1080,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/date",
-          requestBodyMapper: Mappers.DateWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.DateWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1223,8 +1237,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetime",
-          requestBodyMapper: Mappers.DatetimeWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.DatetimeWrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1378,8 +1394,10 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetimerfc1123",
-          requestBodyMapper: Mappers.Datetimerfc1123Wrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Datetimerfc1123Wrapper
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1531,20 +1549,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/duration",
-          requestBodyMapper: Mappers.DurationWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: Mappers.DurationWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1695,20 +1706,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/byte",
-          requestBodyMapper: Mappers.ByteWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: Mappers.ByteWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

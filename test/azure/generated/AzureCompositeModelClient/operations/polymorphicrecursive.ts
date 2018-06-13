@@ -235,8 +235,10 @@ export class Polymorphicrecursive {
               }
             }
           ],
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

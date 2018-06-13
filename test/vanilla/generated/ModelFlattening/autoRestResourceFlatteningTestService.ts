@@ -71,20 +71,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/array",
-          requestBodyMapper: {
-            serializedName: "ResourceArray",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ResourceElementType",
-                type: {
-                  name: "Composite",
-                  className: "Resource"
+          requestBody: {
+            parameterPath: "resourceArray",
+            mapper: {
+              serializedName: "ResourceArray",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ResourceElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Resource"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -244,20 +246,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/wrappedarray",
-          requestBodyMapper: {
-            serializedName: "ResourceArray",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "WrappedProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "WrappedProduct"
+          requestBody: {
+            parameterPath: "resourceArray",
+            mapper: {
+              serializedName: "ResourceArray",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "WrappedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "WrappedProduct"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -417,20 +421,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/dictionary",
-          requestBodyMapper: {
-            serializedName: "ResourceDictionary",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "FlattenedProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "FlattenedProduct"
+          requestBody: {
+            parameterPath: "resourceDictionary",
+            mapper: {
+              serializedName: "ResourceDictionary",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -590,8 +596,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/resourcecollection",
-          requestBodyMapper: Mappers.ResourceCollection,
-          requestBodyName: "resourceComplexObject",
+          requestBody: {
+            parameterPath: "resourceComplexObject",
+            mapper: Mappers.ResourceCollection
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -738,8 +746,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "PUT",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
-          requestBodyMapper: Mappers.SimpleProduct,
-          requestBodyName: "simpleBodyProduct",
+          requestBody: {
+            parameterPath: "simpleBodyProduct",
+            mapper: Mappers.SimpleProduct
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -871,56 +881,17 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           httpMethod: "POST",
           baseUrl: this.baseUri,
           path: "model-flatten/customFlattening",
-          requestBodyMapper: Mappers.SimpleProduct,
-          requestBodyName: "simpleBodyProduct",
+          requestBody: {
+            parameterPath: {
+              productId: "productId",
+              description: "description",
+              maxProductDisplayName: "maxProductDisplayName",
+              genericValue: "genericValue",
+              odatavalue: "odatavalue"
+            },
+            mapper: Mappers.SimpleProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productId"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "productId"
-              ]
-            },
-            {
-              sourcePath: [
-                "description"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "description"
-              ]
-            },
-            {
-              sourcePath: [
-                "maxProductDisplayName"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "maxProductDisplayName"
-              ]
-            },
-            {
-              sourcePath: [
-                "genericValue"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "genericValue"
-              ]
-            },
-            {
-              sourcePath: [
-                "odatavalue"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "odatavalue"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1077,7 +1048,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "model-flatten/customFlattening/parametergrouping/{name}/",
           urlParameters: [
             {
-              parameterPath: "name",
+              parameterPath: [
+                "flattenParameterGroup",
+                "name"
+              ],
               mapper: {
                 required: true,
                 serializedName: "name",
@@ -1087,110 +1061,32 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: Mappers.SimpleProduct,
-          requestBodyName: "simpleBodyProduct",
+          requestBody: {
+            parameterPath: {
+              productId: [
+                "flattenParameterGroup",
+                "productId"
+              ],
+              description: [
+                "flattenParameterGroup",
+                "description"
+              ],
+              maxProductDisplayName: [
+                "flattenParameterGroup",
+                "maxProductDisplayName"
+              ],
+              genericValue: [
+                "flattenParameterGroup",
+                "genericValue"
+              ],
+              odatavalue: [
+                "flattenParameterGroup",
+                "odatavalue"
+              ]
+            },
+            mapper: Mappers.SimpleProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "name"
-              ],
-              targetPath: [
-                "name"
-              ]
-            },
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "productId"
-              ],
-              targetPath: [
-                "productId"
-              ]
-            },
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "description"
-              ],
-              targetPath: [
-                "description"
-              ]
-            },
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "maxProductDisplayName"
-              ],
-              targetPath: [
-                "maxProductDisplayName"
-              ]
-            },
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "genericValue"
-              ],
-              targetPath: [
-                "genericValue"
-              ]
-            },
-            {
-              sourcePath: [
-                "flattenParameterGroup",
-                "odatavalue"
-              ],
-              targetPath: [
-                "odatavalue"
-              ]
-            },
-            {
-              sourcePath: [
-                "productId"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "productId"
-              ]
-            },
-            {
-              sourcePath: [
-                "description"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "description"
-              ]
-            },
-            {
-              sourcePath: [
-                "maxProductDisplayName"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "maxProductDisplayName"
-              ]
-            },
-            {
-              sourcePath: [
-                "genericValue"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "genericValue"
-              ]
-            },
-            {
-              sourcePath: [
-                "odatavalue"
-              ],
-              targetPath: [
-                "simpleBodyProduct",
-                "odatavalue"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

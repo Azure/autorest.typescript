@@ -215,8 +215,10 @@ export class Polymorphism {
               }
             }
           ],
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -411,8 +413,10 @@ export class Polymorphism {
               }
             }
           ],
-          requestBodyMapper: Mappers.Salmon,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Salmon
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -505,8 +509,10 @@ export class Polymorphism {
               }
             }
           ],
-          requestBodyMapper: Mappers.Salmon,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Salmon
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -641,8 +647,10 @@ export class Polymorphism {
               }
             }
           ],
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: Mappers.Fish
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

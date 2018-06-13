@@ -111,7 +111,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postRequired/{path}",
           urlParameters: [
             {
-              parameterPath: "path",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "path"
+              ],
               mapper: {
                 required: true,
                 serializedName: "path",
@@ -123,7 +126,10 @@ export class ParameterGrouping {
           ],
           queryParameters: [
             {
-              parameterPath: "query",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "query"
+              ],
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -145,7 +151,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "customHeader",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "customHeader"
+              ],
               mapper: {
                 serializedName: "customHeader",
                 type: {
@@ -154,53 +163,20 @@ export class ParameterGrouping {
               }
             }
           ],
-          requestBodyMapper: {
-            required: true,
-            serializedName: "body",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: [
+              "parameterGroupingPostRequiredParameters",
+              "body"
+            ],
+            mapper: {
+              required: true,
+              serializedName: "body",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "body",
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "body"
-              ],
-              targetPath: [
-                "body"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "customHeader"
-              ],
-              targetPath: [
-                "customHeader"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "query"
-              ],
-              targetPath: [
-                "query"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "path"
-              ],
-              targetPath: [
-                "path"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -299,7 +275,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postOptional",
           queryParameters: [
             {
-              parameterPath: "query",
+              parameterPath: [
+                "parameterGroupingPostOptionalParameters",
+                "query"
+              ],
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -321,33 +300,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "customHeader",
+              parameterPath: [
+                "parameterGroupingPostOptionalParameters",
+                "customHeader"
+              ],
               mapper: {
                 serializedName: "customHeader",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "parameterGroupingPostOptionalParameters",
-                "customHeader"
-              ],
-              targetPath: [
-                "customHeader"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostOptionalParameters",
-                "query"
-              ],
-              targetPath: [
-                "query"
-              ]
             }
           ],
           serializer: this.serializer
@@ -466,7 +428,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postMultipleParameterGroups",
           queryParameters: [
             {
-              parameterPath: "queryOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -476,7 +441,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "queryTwo",
+              parameterPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "queryTwo"
+              ],
               mapper: {
                 serializedName: "query-two",
                 defaultValue: 30,
@@ -498,7 +466,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "headerOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
               mapper: {
                 serializedName: "header-one",
                 type: {
@@ -507,51 +478,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "headerTwo",
+              parameterPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "headerTwo"
+              ],
               mapper: {
                 serializedName: "header-two",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              targetPath: [
-                "headerOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              targetPath: [
-                "queryOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "headerTwo"
-              ],
-              targetPath: [
-                "headerTwo"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "queryTwo"
-              ],
-              targetPath: [
-                "queryTwo"
-              ]
             }
           ],
           serializer: this.serializer
@@ -652,7 +588,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/sharedParameterGroupObject",
           queryParameters: [
             {
-              parameterPath: "queryOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -674,33 +613,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterPath: "headerOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
               mapper: {
                 serializedName: "header-one",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              targetPath: [
-                "headerOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              targetPath: [
-                "queryOne"
-              ]
             }
           ],
           serializer: this.serializer

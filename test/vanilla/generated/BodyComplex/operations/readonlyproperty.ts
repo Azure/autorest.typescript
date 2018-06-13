@@ -152,20 +152,13 @@ export class Readonlyproperty {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/readonlyproperty/valid",
-          requestBodyMapper: Mappers.ReadonlyObj,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              size: "size"
+            },
+            mapper: Mappers.ReadonlyObj
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "size"
-              ],
-              targetPath: [
-                "complexBody",
-                "size"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

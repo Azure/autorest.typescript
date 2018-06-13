@@ -204,7 +204,10 @@ export class Header {
               }
             },
             {
-              parameterPath: "fooClientRequestId",
+              parameterPath: [
+                "headerCustomNamedRequestIdParamGroupingParameters",
+                "fooClientRequestId"
+              ],
               mapper: {
                 required: true,
                 serializedName: "foo-client-request-id",
@@ -212,17 +215,6 @@ export class Header {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "headerCustomNamedRequestIdParamGroupingParameters",
-                "fooClientRequestId"
-              ],
-              targetPath: [
-                "fooClientRequestId"
-              ]
             }
           ],
           serializer: this.serializer

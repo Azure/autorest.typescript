@@ -338,13 +338,15 @@ export class Implicit {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "reqopt/implicit/optional/body",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

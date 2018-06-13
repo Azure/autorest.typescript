@@ -146,20 +146,13 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/valid",
-          requestBodyMapper: Mappers.DictionaryWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              defaultProgram: "defaultProgram"
+            },
+            mapper: Mappers.DictionaryWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "defaultProgram"
-              ],
-              targetPath: [
-                "complexBody",
-                "defaultProgram"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -314,20 +307,13 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/dictionary/typed/empty",
-          requestBodyMapper: Mappers.DictionaryWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: {
+              defaultProgram: "defaultProgram"
+            },
+            mapper: Mappers.DictionaryWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "defaultProgram"
-              ],
-              targetPath: [
-                "complexBody",
-                "defaultProgram"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
