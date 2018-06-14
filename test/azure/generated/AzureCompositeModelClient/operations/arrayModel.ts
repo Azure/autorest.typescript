@@ -40,14 +40,6 @@ export class ArrayModel {
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,21 +133,6 @@ export class ArrayModel {
   async putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayProperty)) {
-        for (let i = 0; i < arrayProperty.length; i++) {
-          if (arrayProperty[i] !== null && arrayProperty[i] !== undefined && typeof arrayProperty[i].valueOf() !== 'string') {
-            throw new Error('arrayProperty[i] must be of type string.');
-          }
-        }
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -190,7 +167,10 @@ export class ArrayModel {
             parameterPath: {
               arrayProperty: "arrayProperty"
             },
-            mapper: Mappers.ArrayWrapper
+            mapper: {
+              ...Mappers.ArrayWrapper,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -241,14 +221,6 @@ export class ArrayModel {
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -342,21 +314,6 @@ export class ArrayModel {
   async putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayProperty)) {
-        for (let i = 0; i < arrayProperty.length; i++) {
-          if (arrayProperty[i] !== null && arrayProperty[i] !== undefined && typeof arrayProperty[i].valueOf() !== 'string') {
-            throw new Error('arrayProperty[i] must be of type string.');
-          }
-        }
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -391,7 +348,10 @@ export class ArrayModel {
             parameterPath: {
               arrayProperty: "arrayProperty"
             },
-            mapper: Mappers.ArrayWrapper
+            mapper: {
+              ...Mappers.ArrayWrapper,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -443,14 +403,6 @@ export class ArrayModel {
    */
   async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ArrayWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

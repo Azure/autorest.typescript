@@ -122,14 +122,6 @@ export class String {
   async putNullWithHttpOperationResponse(options?: Models.StringPutNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let stringBody = (options && options.stringBody !== undefined) ? options.stringBody : undefined;
-    // Validate
-    try {
-      if (stringBody !== null && stringBody !== undefined && typeof stringBody.valueOf() !== 'string') {
-        throw new Error('stringBody must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -288,14 +280,6 @@ export class String {
    */
   async putEmptyWithHttpOperationResponse(stringBody: Models.StringBody1, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringBody === null || stringBody === undefined || typeof stringBody.valueOf() !== 'string') {
-        throw new Error('stringBody cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -458,14 +442,6 @@ export class String {
    */
   async putMbcsWithHttpOperationResponse(stringBody: Models.StringBody2, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringBody === null || stringBody === undefined || typeof stringBody.valueOf() !== 'string') {
-        throw new Error('stringBody cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -630,14 +606,6 @@ export class String {
    */
   async putWhitespaceWithHttpOperationResponse(stringBody: Models.StringBody3, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringBody === null || stringBody === undefined || typeof stringBody.valueOf() !== 'string') {
-        throw new Error('stringBody cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -959,14 +927,6 @@ export class String {
    */
   async putBase64UrlEncodedWithHttpOperationResponse(stringBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(stringBody instanceof Uint8Array)) {
-        throw new Error('stringBody cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

@@ -188,14 +188,6 @@ export class HttpServerFailure {
   async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -285,14 +277,6 @@ export class HttpServerFailure {
   async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

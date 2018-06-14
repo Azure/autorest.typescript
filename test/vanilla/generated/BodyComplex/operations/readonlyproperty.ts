@@ -118,23 +118,6 @@ export class Readonlyproperty {
   async putValidWithHttpOperationResponse(options?: Models.ReadonlypropertyPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let size = (options && options.size !== undefined) ? options.size : undefined;
-    // Validate
-    try {
-      if (size !== null && size !== undefined && typeof size !== 'number') {
-        throw new Error('size must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let complexBody: any = {};
-    try {
-      if (size !== null && size !== undefined)
-      {
-        complexBody.size = size;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -156,7 +139,10 @@ export class Readonlyproperty {
             parameterPath: {
               size: "size"
             },
-            mapper: Mappers.ReadonlyObj
+            mapper: {
+              ...Mappers.ReadonlyObj,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

@@ -365,15 +365,6 @@ export class Datetime {
    */
   async putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -615,15 +606,6 @@ export class Datetime {
    */
   async putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -867,15 +849,6 @@ export class Datetime {
    */
   async putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1118,15 +1091,6 @@ export class Datetime {
    */
   async putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1286,15 +1250,6 @@ export class Datetime {
    */
   async putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1454,15 +1409,6 @@ export class Datetime {
    */
   async putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

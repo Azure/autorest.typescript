@@ -44,17 +44,6 @@ export class Formdata {
    */
   async uploadFileWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (fileContent === null || fileContent === undefined) {
-        throw new Error('fileContent cannot be null or undefined and it must be of type msrest.httprequestbody.');
-      }
-      if (fileName === null || fileName === undefined || typeof fileName.valueOf() !== 'string') {
-        throw new Error('fileName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -149,14 +138,6 @@ export class Formdata {
    */
   async uploadFileViaBodyWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (fileContent === null || fileContent === undefined) {
-        throw new Error('fileContent cannot be null or undefined and it must be of type msrest.httprequestbody.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

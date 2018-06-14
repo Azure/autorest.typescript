@@ -42,14 +42,6 @@ export class Implicit {
    */
   async getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (pathParameter === null || pathParameter === undefined || typeof pathParameter.valueOf() !== 'string') {
-        throw new Error('pathParameter cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,14 +133,6 @@ export class Implicit {
   async putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
-    // Validate
-    try {
-      if (queryParameter !== null && queryParameter !== undefined && typeof queryParameter.valueOf() !== 'string') {
-        throw new Error('queryParameter must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -227,14 +211,6 @@ export class Implicit {
   async putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
-    // Validate
-    try {
-      if (queryParameter !== null && queryParameter !== undefined && typeof queryParameter.valueOf() !== 'string') {
-        throw new Error('queryParameter must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -313,14 +289,6 @@ export class Implicit {
   async putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-    // Validate
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined && typeof bodyParameter.valueOf() !== 'string') {
-        throw new Error('bodyParameter must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -396,14 +364,6 @@ export class Implicit {
    */
   async getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.requiredGlobalPath === null || this.client.requiredGlobalPath === undefined || typeof this.client.requiredGlobalPath.valueOf() !== 'string') {
-        throw new Error('this.client.requiredGlobalPath cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -493,14 +453,6 @@ export class Implicit {
    */
   async getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.requiredGlobalQuery === null || this.client.requiredGlobalQuery === undefined || typeof this.client.requiredGlobalQuery.valueOf() !== 'string') {
-        throw new Error('this.client.requiredGlobalQuery cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -590,14 +542,6 @@ export class Implicit {
    */
   async getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.optionalGlobalQuery !== null && this.client.optionalGlobalQuery !== undefined && typeof this.client.optionalGlobalQuery !== 'number') {
-        throw new Error('this.client.optionalGlobalQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

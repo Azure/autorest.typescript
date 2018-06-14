@@ -41,17 +41,6 @@ export class Paths {
    */
   async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.host === null || this.client.host === undefined || typeof this.client.host.valueOf() !== 'string') {
-        throw new Error('this.client.host cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

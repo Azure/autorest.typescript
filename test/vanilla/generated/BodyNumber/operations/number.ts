@@ -365,14 +365,6 @@ export class Number {
    */
   async putBigFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -532,14 +524,6 @@ export class Number {
    */
   async putBigDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -699,14 +683,6 @@ export class Number {
    */
   async putBigDoublePositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -866,14 +842,6 @@ export class Number {
    */
   async putBigDoubleNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1033,14 +1001,6 @@ export class Number {
    */
   async putBigDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1200,14 +1160,6 @@ export class Number {
    */
   async putBigDecimalPositiveDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1367,14 +1319,6 @@ export class Number {
    */
   async putBigDecimalNegativeDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1534,14 +1478,6 @@ export class Number {
    */
   async putSmallFloatWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1701,14 +1637,6 @@ export class Number {
    */
   async putSmallDoubleWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1868,14 +1796,6 @@ export class Number {
    */
   async putSmallDecimalWithHttpOperationResponse(numberBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (numberBody === null || numberBody === undefined || typeof numberBody !== 'number') {
-        throw new Error('numberBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

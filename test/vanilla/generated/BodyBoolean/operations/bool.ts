@@ -122,14 +122,6 @@ export class Bool {
    */
   async putTrueWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (boolBody === null || boolBody === undefined || typeof boolBody !== 'boolean') {
-        throw new Error('boolBody cannot be null or undefined and it must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -289,14 +281,6 @@ export class Bool {
    */
   async putFalseWithHttpOperationResponse(boolBody: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (boolBody === null || boolBody === undefined || typeof boolBody !== 'boolean') {
-        throw new Error('boolBody cannot be null or undefined and it must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

@@ -43,17 +43,6 @@ export class SkipUrlEncoding {
    */
   async getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (unencodedPathParam === null || unencodedPathParam === undefined || typeof unencodedPathParam.valueOf() !== 'string') {
-        throw new Error('unencodedPathParam cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -148,17 +137,6 @@ export class SkipUrlEncoding {
    */
   async getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (unencodedPathParam === null || unencodedPathParam === undefined || typeof unencodedPathParam.valueOf() !== 'string') {
-        throw new Error('unencodedPathParam cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -251,14 +229,6 @@ export class SkipUrlEncoding {
   async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let unencodedPathParam = 'path1/path2/path3';
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -356,17 +326,6 @@ export class SkipUrlEncoding {
    */
   async getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (q1 === null || q1 === undefined || typeof q1.valueOf() !== 'string') {
-        throw new Error('q1 cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -460,17 +419,6 @@ export class SkipUrlEncoding {
   async getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let q1 = (options && options.q1 !== undefined) ? options.q1 : undefined;
-    // Validate
-    try {
-      if (q1 !== null && q1 !== undefined && typeof q1.valueOf() !== 'string') {
-        throw new Error('q1 must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -565,17 +513,6 @@ export class SkipUrlEncoding {
    */
   async getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (q1 === null || q1 === undefined || typeof q1.valueOf() !== 'string') {
-        throw new Error('q1 cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -669,14 +606,6 @@ export class SkipUrlEncoding {
   async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let q1 = 'value1&q2=value2&q3=value3';
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

@@ -1611,14 +1611,6 @@ export class LROs {
   async beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1719,14 +1711,6 @@ export class LROs {
   async beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1828,14 +1812,6 @@ export class LROs {
   async beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1937,14 +1913,6 @@ export class LROs {
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2061,14 +2029,6 @@ export class LROs {
   async beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2170,14 +2130,6 @@ export class LROs {
   async beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2294,14 +2246,6 @@ export class LROs {
   async beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2403,14 +2347,6 @@ export class LROs {
   async beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2513,14 +2449,6 @@ export class LROs {
   async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2623,14 +2551,6 @@ export class LROs {
   async beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2733,14 +2653,6 @@ export class LROs {
   async beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2843,14 +2755,6 @@ export class LROs {
   async beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2953,14 +2857,6 @@ export class LROs {
   async beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3061,14 +2957,6 @@ export class LROs {
   async beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3168,14 +3056,6 @@ export class LROs {
   async beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3275,27 +3155,6 @@ export class LROs {
   async beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
-    // Validate
-    try {
-      if (provisioningState !== null && provisioningState !== undefined && typeof provisioningState.valueOf() !== 'string') {
-        throw new Error('provisioningState must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let product: any;
-    try {
-      if (provisioningState !== null && provisioningState !== undefined)
-      {
-        product = {};
-        product.provisioningState = provisioningState;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3397,27 +3256,6 @@ export class LROs {
   async beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
-    // Validate
-    try {
-      if (provisioningState !== null && provisioningState !== undefined && typeof provisioningState.valueOf() !== 'string') {
-        throw new Error('provisioningState must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let product: any;
-    try {
-      if (provisioningState !== null && provisioningState !== undefined)
-      {
-        product = {};
-        product.provisioningState = provisioningState;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3520,14 +3358,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3639,14 +3469,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3758,14 +3580,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3874,14 +3688,6 @@ export class LROs {
    */
   async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3960,14 +3766,6 @@ export class LROs {
    */
   async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4066,14 +3864,6 @@ export class LROs {
    */
   async beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4172,14 +3962,6 @@ export class LROs {
    */
   async beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4266,14 +4048,6 @@ export class LROs {
    */
   async beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4360,14 +4134,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4450,14 +4216,6 @@ export class LROs {
    */
   async beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4540,14 +4298,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4630,14 +4380,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4720,14 +4462,6 @@ export class LROs {
    */
   async beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4838,14 +4572,6 @@ export class LROs {
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4935,14 +4661,6 @@ export class LROs {
   async beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5045,14 +4763,6 @@ export class LROs {
   async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5159,14 +4869,6 @@ export class LROs {
   async beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5273,14 +4975,6 @@ export class LROs {
   async beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5371,14 +5065,6 @@ export class LROs {
   async beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

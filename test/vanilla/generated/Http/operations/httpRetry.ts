@@ -102,14 +102,6 @@ export class HttpRetry {
   async put500WithHttpOperationResponse(options?: Models.HttpRetryPut500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -186,14 +178,6 @@ export class HttpRetry {
   async patch500WithHttpOperationResponse(options?: Models.HttpRetryPatch500OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -331,14 +315,6 @@ export class HttpRetry {
   async post503WithHttpOperationResponse(options?: Models.HttpRetryPost503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -415,14 +391,6 @@ export class HttpRetry {
   async delete503WithHttpOperationResponse(options?: Models.HttpRetryDelete503OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -499,14 +467,6 @@ export class HttpRetry {
   async put504WithHttpOperationResponse(options?: Models.HttpRetryPut504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -583,14 +543,6 @@ export class HttpRetry {
   async patch504WithHttpOperationResponse(options?: Models.HttpRetryPatch504OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

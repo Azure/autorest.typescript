@@ -1082,14 +1082,6 @@ export class Paths {
    */
   async stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringPath === null || stringPath === undefined || typeof stringPath.valueOf() !== 'string') {
-        throw new Error('stringPath cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1170,19 +1162,6 @@ export class Paths {
    */
   async enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (enumPath) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumPath; })) {
-          throw new Error(enumPath + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('enumPath cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1268,19 +1247,6 @@ export class Paths {
    */
   async enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (enumPath) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumPath; })) {
-          throw new Error(enumPath + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('enumPath cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1366,14 +1332,6 @@ export class Paths {
    */
   async byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(bytePath instanceof Uint8Array)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1533,14 +1491,6 @@ export class Paths {
    */
   async byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(bytePath instanceof Uint8Array)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1701,15 +1651,6 @@ export class Paths {
    */
   async dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datePath || !(datePath instanceof Date ||
-          (typeof (datePath as string).valueOf() === 'string' && !isNaN(Date.parse(datePath as string))))) {
-            throw new Error('datePath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1870,15 +1811,6 @@ export class Paths {
    */
   async dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!dateTimePath || !(dateTimePath instanceof Date ||
-          (typeof (dateTimePath as string).valueOf() === 'string' && !isNaN(Date.parse(dateTimePath as string))))) {
-            throw new Error('dateTimePath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1958,14 +1890,6 @@ export class Paths {
    */
   async base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(base64UrlPath instanceof Uint8Array)) {
-        throw new Error('base64UrlPath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2047,19 +1971,6 @@ export class Paths {
    */
   async arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayPath)) {
-        throw new Error('arrayPath cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayPath.length; i++) {
-        if (arrayPath[i] !== null && arrayPath[i] !== undefined && typeof arrayPath[i].valueOf() !== 'string') {
-          throw new Error('arrayPath[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2145,15 +2056,6 @@ export class Paths {
    */
   async unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!unixTimeUrlPath || !(unixTimeUrlPath instanceof Date ||
-          (typeof (unixTimeUrlPath as string).valueOf() === 'string' && !isNaN(Date.parse(unixTimeUrlPath as string))))) {
-            throw new Error('unixTimeUrlPath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

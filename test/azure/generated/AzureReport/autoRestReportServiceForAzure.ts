@@ -64,17 +64,6 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
-    // Validate
-    try {
-      if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
-        throw new Error('qualifier must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

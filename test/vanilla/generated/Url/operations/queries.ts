@@ -201,14 +201,6 @@ export class Queries {
   async getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let boolQuery = (options && options.boolQuery !== undefined) ? options.boolQuery : undefined;
-    // Validate
-    try {
-      if (boolQuery !== null && boolQuery !== undefined && typeof boolQuery !== 'boolean') {
-        throw new Error('boolQuery must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -446,14 +438,6 @@ export class Queries {
   async getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let intQuery = (options && options.intQuery !== undefined) ? options.intQuery : undefined;
-    // Validate
-    try {
-      if (intQuery !== null && intQuery !== undefined && typeof intQuery !== 'number') {
-        throw new Error('intQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -691,14 +675,6 @@ export class Queries {
   async getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let longQuery = (options && options.longQuery !== undefined) ? options.longQuery : undefined;
-    // Validate
-    try {
-      if (longQuery !== null && longQuery !== undefined && typeof longQuery !== 'number') {
-        throw new Error('longQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -936,14 +912,6 @@ export class Queries {
   async floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let floatQuery = (options && options.floatQuery !== undefined) ? options.floatQuery : undefined;
-    // Validate
-    try {
-      if (floatQuery !== null && floatQuery !== undefined && typeof floatQuery !== 'number') {
-        throw new Error('floatQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1181,14 +1149,6 @@ export class Queries {
   async doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let doubleQuery = (options && options.doubleQuery !== undefined) ? options.doubleQuery : undefined;
-    // Validate
-    try {
-      if (doubleQuery !== null && doubleQuery !== undefined && typeof doubleQuery !== 'number') {
-        throw new Error('doubleQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1506,14 +1466,6 @@ export class Queries {
   async stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let stringQuery = (options && options.stringQuery !== undefined) ? options.stringQuery : undefined;
-    // Validate
-    try {
-      if (stringQuery !== null && stringQuery !== undefined && typeof stringQuery.valueOf() !== 'string') {
-        throw new Error('stringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1591,17 +1543,6 @@ export class Queries {
   async enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-    // Validate
-    try {
-      if (enumQuery) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumQuery; })) {
-          throw new Error(enumQuery + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1684,17 +1625,6 @@ export class Queries {
   async enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-    // Validate
-    try {
-      if (enumQuery) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumQuery; })) {
-          throw new Error(enumQuery + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1777,14 +1707,6 @@ export class Queries {
   async byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-    // Validate
-    try {
-      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
-        throw new Error('byteQuery must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1942,14 +1864,6 @@ export class Queries {
   async byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-    // Validate
-    try {
-      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
-        throw new Error('byteQuery must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2107,15 +2021,6 @@ export class Queries {
   async dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let dateQuery = (options && options.dateQuery !== undefined) ? options.dateQuery : undefined;
-    // Validate
-    try {
-      if (dateQuery && !(dateQuery instanceof Date ||
-          (typeof (dateQuery as string).valueOf() === 'string' && !isNaN(Date.parse(dateQuery as string))))) {
-            throw new Error('dateQuery must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2273,15 +2178,6 @@ export class Queries {
   async dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let dateTimeQuery = (options && options.dateTimeQuery !== undefined) ? options.dateTimeQuery : undefined;
-    // Validate
-    try {
-      if (dateTimeQuery && !(dateTimeQuery instanceof Date ||
-          (typeof (dateTimeQuery as string).valueOf() === 'string' && !isNaN(Date.parse(dateTimeQuery as string))))) {
-            throw new Error('dateTimeQuery must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2361,18 +2257,6 @@ export class Queries {
   async arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2458,18 +2342,6 @@ export class Queries {
   async arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2555,18 +2427,6 @@ export class Queries {
   async arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2653,18 +2513,6 @@ export class Queries {
   async arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2751,18 +2599,6 @@ export class Queries {
   async arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2849,18 +2685,6 @@ export class Queries {
   async arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

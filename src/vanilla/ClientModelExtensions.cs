@@ -634,7 +634,19 @@ namespace AutoRest.TypeScript
             IModelType requestBodyModelType = requestBody.ModelType;
             if (requestBodyModelType is CompositeType)
             {
-                value.Text($"Mappers.{requestBodyModelType.Name}");
+                string mapperReference = $"Mappers.{requestBodyModelType.Name}";
+                if (!requestBody.IsRequired)
+                {
+                    value.Text(mapperReference);
+                }
+                else
+                {
+                    value.Object(mapperObject =>
+                    {
+                        mapperObject.Spread(mapperReference);
+                        mapperObject.BooleanProperty("required", true);
+                    });
+                }
             }
             else
             {

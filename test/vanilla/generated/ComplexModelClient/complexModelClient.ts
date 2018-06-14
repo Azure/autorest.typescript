@@ -58,14 +58,6 @@ class ComplexModelClient extends ComplexModelClientContext {
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -195,17 +187,6 @@ class ComplexModelClient extends ComplexModelClientContext {
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
     let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -266,7 +247,10 @@ class ComplexModelClient extends ComplexModelClientContext {
             parameterPath: {
               productDictionaryOfArray: "productDictionaryOfArray"
             },
-            mapper: Mappers.CatalogDictionaryOfArray
+            mapper: {
+              ...Mappers.CatalogDictionaryOfArray,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -341,17 +325,6 @@ class ComplexModelClient extends ComplexModelClientContext {
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -412,7 +385,10 @@ class ComplexModelClient extends ComplexModelClientContext {
             parameterPath: {
               productArrayOfDictionary: "productArrayOfDictionary"
             },
-            mapper: Mappers.CatalogArrayOfDictionary
+            mapper: {
+              ...Mappers.CatalogArrayOfDictionary,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

@@ -45,23 +45,6 @@ export class StorageAccounts {
    */
   async checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CheckNameAvailabilityResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (accountName === null || accountName === undefined) {
-        throw new Error('accountName cannot be null or undefined.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -120,7 +103,10 @@ export class StorageAccounts {
           ],
           requestBody: {
             parameterPath: "accountName",
-            mapper: Mappers.StorageAccountCheckNameAvailabilityParameters
+            mapper: {
+              ...Mappers.StorageAccountCheckNameAvailabilityParameters,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -251,26 +237,6 @@ export class StorageAccounts {
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -404,26 +370,6 @@ export class StorageAccounts {
    */
   async getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -582,29 +528,6 @@ export class StorageAccounts {
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (parameters === null || parameters === undefined) {
-        throw new Error('parameters cannot be null or undefined.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -685,7 +608,10 @@ export class StorageAccounts {
           ],
           requestBody: {
             parameterPath: "parameters",
-            mapper: Mappers.StorageAccountUpdateParameters
+            mapper: {
+              ...Mappers.StorageAccountUpdateParameters,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -755,26 +681,6 @@ export class StorageAccounts {
    */
   async listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -915,20 +821,6 @@ export class StorageAccounts {
    */
   async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1051,23 +943,6 @@ export class StorageAccounts {
    */
   async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1205,32 +1080,6 @@ export class StorageAccounts {
   async regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
     let client = this.client;
     let keyName = (options && options.keyName !== undefined) ? options.keyName : undefined;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (keyName) {
-        let allowedValues = [ 'key1', 'key2' ];
-        if (!allowedValues.some( function(item) { return item === keyName; })) {
-          throw new Error(keyName + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1313,7 +1162,10 @@ export class StorageAccounts {
             parameterPath: {
               keyName: "keyName"
             },
-            mapper: Mappers.StorageAccountRegenerateKeyParameters
+            mapper: {
+              ...Mappers.StorageAccountRegenerateKeyParameters,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -1392,29 +1244,6 @@ export class StorageAccounts {
    */
   async beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (accountName === null || accountName === undefined || typeof accountName.valueOf() !== 'string') {
-        throw new Error('accountName cannot be null or undefined and it must be of type string.');
-      }
-      if (parameters === null || parameters === undefined) {
-        throw new Error('parameters cannot be null or undefined.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1495,7 +1324,10 @@ export class StorageAccounts {
           ],
           requestBody: {
             parameterPath: "parameters",
-            mapper: Mappers.StorageAccountCreateParameters
+            mapper: {
+              ...Mappers.StorageAccountCreateParameters,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

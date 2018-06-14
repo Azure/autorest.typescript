@@ -44,23 +44,6 @@ export class Odata {
     let filter = (options && options.filter !== undefined) ? options.filter : undefined;
     let top = (options && options.top !== undefined) ? options.top : undefined;
     let orderby = (options && options.orderby !== undefined) ? options.orderby : undefined;
-    // Validate
-    try {
-      if (filter !== null && filter !== undefined && typeof filter.valueOf() !== 'string') {
-        throw new Error('filter must be of type string.');
-      }
-      if (top !== null && top !== undefined && typeof top !== 'number') {
-        throw new Error('top must be of type number.');
-      }
-      if (orderby !== null && orderby !== undefined && typeof orderby.valueOf() !== 'string') {
-        throw new Error('orderby must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

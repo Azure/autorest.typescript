@@ -119,14 +119,6 @@ export class Xml {
    */
   async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (slideshow === null || slideshow === undefined) {
-        throw new Error('slideshow cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -146,7 +138,10 @@ export class Xml {
           path: "xml/simple",
           requestBody: {
             parameterPath: "slideshow",
-            mapper: Mappers.Slideshow
+            mapper: {
+              ...Mappers.Slideshow,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
@@ -273,14 +268,6 @@ export class Xml {
    */
   async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (wrappedLists === null || wrappedLists === undefined) {
-        throw new Error('wrappedLists cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -300,7 +287,10 @@ export class Xml {
           path: "xml/wrapped-lists",
           requestBody: {
             parameterPath: "wrappedLists",
-            mapper: Mappers.AppleBarrel
+            mapper: {
+              ...Mappers.AppleBarrel,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
@@ -489,14 +479,6 @@ export class Xml {
    */
   async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (slideshow === null || slideshow === undefined) {
-        throw new Error('slideshow cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -516,7 +498,10 @@ export class Xml {
           path: "xml/empty-list",
           requestBody: {
             parameterPath: "slideshow",
-            mapper: Mappers.Slideshow
+            mapper: {
+              ...Mappers.Slideshow,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
@@ -639,14 +624,6 @@ export class Xml {
    */
   async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (appleBarrel === null || appleBarrel === undefined) {
-        throw new Error('appleBarrel cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -666,7 +643,10 @@ export class Xml {
           path: "xml/empty-wrapped-lists",
           requestBody: {
             parameterPath: "appleBarrel",
-            mapper: Mappers.AppleBarrel
+            mapper: {
+              ...Mappers.AppleBarrel,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
@@ -1296,14 +1276,6 @@ export class Xml {
    */
   async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (banana === null || banana === undefined) {
-        throw new Error('banana cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1323,7 +1295,10 @@ export class Xml {
           path: "xml/empty-child-element",
           requestBody: {
             parameterPath: "banana",
-            mapper: Mappers.Banana
+            mapper: {
+              ...Mappers.Banana,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
@@ -1573,14 +1548,6 @@ export class Xml {
     let client = this.client;
     let comp = 'properties';
     let restype = 'service';
-    // Validate
-    try {
-      if (properties === null || properties === undefined) {
-        throw new Error('properties cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1628,7 +1595,10 @@ export class Xml {
           ],
           requestBody: {
             parameterPath: "properties",
-            mapper: Mappers.StorageServiceProperties
+            mapper: {
+              ...Mappers.StorageServiceProperties,
+              required: true
+            }
           },
           contentType: "application/xml; charset=utf-8",
           isXML: true,

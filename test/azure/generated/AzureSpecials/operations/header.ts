@@ -43,17 +43,6 @@ export class Header {
    */
   async customNamedRequestIdWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (fooClientRequestId === null || fooClientRequestId === undefined || typeof fooClientRequestId.valueOf() !== 'string') {
-        throw new Error('fooClientRequestId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -151,29 +140,6 @@ export class Header {
    */
   async customNamedRequestIdParamGroupingWithHttpOperationResponse(headerCustomNamedRequestIdParamGroupingParameters: Models.HeaderCustomNamedRequestIdParamGroupingParameters, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdParamGroupingResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (headerCustomNamedRequestIdParamGroupingParameters === null || headerCustomNamedRequestIdParamGroupingParameters === undefined) {
-        throw new Error('headerCustomNamedRequestIdParamGroupingParameters cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let fooClientRequestId: any;
-    try {
-      if (headerCustomNamedRequestIdParamGroupingParameters !== null && headerCustomNamedRequestIdParamGroupingParameters !== undefined)
-      {
-        fooClientRequestId = headerCustomNamedRequestIdParamGroupingParameters.fooClientRequestId;
-        if (fooClientRequestId === null || fooClientRequestId === undefined || typeof fooClientRequestId.valueOf() !== 'string') {
-          throw new Error('fooClientRequestId cannot be null or undefined and it must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -272,17 +238,6 @@ export class Header {
    */
   async customNamedRequestIdHeadWithHttpOperationResponse(fooClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderCustomNamedRequestIdHeadResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (fooClientRequestId === null || fooClientRequestId === undefined || typeof fooClientRequestId.valueOf() !== 'string') {
-        throw new Error('fooClientRequestId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

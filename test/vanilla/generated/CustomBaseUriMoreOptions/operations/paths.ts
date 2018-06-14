@@ -47,29 +47,6 @@ export class Paths {
   async getEmptyWithHttpOperationResponse(vault: string, secret: string, keyName: string, options?: Models.PathsGetEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let keyVersion = (options && options.keyVersion !== undefined) ? options.keyVersion : 'v1';
-    // Validate
-    try {
-      if (vault === null || vault === undefined || typeof vault.valueOf() !== 'string') {
-        throw new Error('vault cannot be null or undefined and it must be of type string.');
-      }
-      if (secret === null || secret === undefined || typeof secret.valueOf() !== 'string') {
-        throw new Error('secret cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.dnsSuffix === null || this.client.dnsSuffix === undefined || typeof this.client.dnsSuffix.valueOf() !== 'string') {
-        throw new Error('this.client.dnsSuffix cannot be null or undefined and it must be of type string.');
-      }
-      if (keyName === null || keyName === undefined || typeof keyName.valueOf() !== 'string') {
-        throw new Error('keyName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (keyVersion !== null && keyVersion !== undefined && typeof keyVersion.valueOf() !== 'string') {
-        throw new Error('keyVersion must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

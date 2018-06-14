@@ -42,18 +42,6 @@ export class Queries {
   async arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -139,18 +127,6 @@ export class Queries {
   async arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -237,18 +213,6 @@ export class Queries {
   async arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

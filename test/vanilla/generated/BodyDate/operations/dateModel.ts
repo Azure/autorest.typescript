@@ -365,15 +365,6 @@ export class DateModel {
    */
   async putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!dateBody || !(dateBody instanceof Date ||
-          (typeof (dateBody as string).valueOf() === 'string' && !isNaN(Date.parse(dateBody as string))))) {
-            throw new Error('dateBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -533,15 +524,6 @@ export class DateModel {
    */
   async putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!dateBody || !(dateBody instanceof Date ||
-          (typeof (dateBody as string).valueOf() === 'string' && !isNaN(Date.parse(dateBody as string))))) {
-            throw new Error('dateBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

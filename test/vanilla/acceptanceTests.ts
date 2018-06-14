@@ -1965,8 +1965,8 @@ describe('typescript', function () {
       }
 
       if (!msRest.isNode) {
-        it('browser should report upload/download progress', async function() {
-          const content = new Uint8Array(1024*1024*1);
+        it('browser should report upload/download progress', async function () {
+          const content = new Uint8Array(1024 * 1024 * 1);
           let uploadNotified = false;
           let downloadNotified = false;
           const response = await testClient.formdata.uploadFileViaBodyWithHttpOperationResponse(content, {
@@ -2056,9 +2056,10 @@ describe('typescript', function () {
       it('should work when path has enum', function (done) {
         testClient.paths.enumValid(<AutoRestUrlTestServiceModels.UriColor>'', function (error, result) {
           should.exist(error);
-          error.message.should.match(/.*cannot be null or undefined.*/ig);
+          error.message.should.equal(` is not a valid value for enumPath. The valid values are: ["red color","green color","blue color"].`);
           testClient.paths.enumNull(<AutoRestUrlTestServiceModels.UriColor>null, function (error, result) {
             should.exist(error);
+            error.message.should.equal(`enumPath cannot be null or undefined.`);
             testClient.paths.enumValid(AutoRestUrlTestServiceModels.UriColor.Greencolor, function (error, result) {
               should.not.exist(error);
               done();

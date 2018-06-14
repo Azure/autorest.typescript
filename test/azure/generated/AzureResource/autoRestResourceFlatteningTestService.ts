@@ -64,14 +64,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -168,14 +160,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -283,14 +267,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -387,14 +363,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -503,14 +471,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -595,14 +555,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

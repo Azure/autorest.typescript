@@ -342,14 +342,6 @@ export class HttpRedirects {
   async put301WithHttpOperationResponse(options?: Models.HttpRedirectsPut301OptionalParams): Promise<Models.HttpRedirectsPut301Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -570,14 +562,6 @@ export class HttpRedirects {
   async patch302WithHttpOperationResponse(options?: Models.HttpRedirectsPatch302OptionalParams): Promise<Models.HttpRedirectsPatch302Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -659,14 +643,6 @@ export class HttpRedirects {
   async post303WithHttpOperationResponse(options?: Models.HttpRedirectsPost303OptionalParams): Promise<Models.HttpRedirectsPost303Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -889,14 +865,6 @@ export class HttpRedirects {
   async put307WithHttpOperationResponse(options?: Models.HttpRedirectsPut307OptionalParams): Promise<Models.HttpRedirectsPut307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -981,14 +949,6 @@ export class HttpRedirects {
   async patch307WithHttpOperationResponse(options?: Models.HttpRedirectsPatch307OptionalParams): Promise<Models.HttpRedirectsPatch307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1073,14 +1033,6 @@ export class HttpRedirects {
   async post307WithHttpOperationResponse(options?: Models.HttpRedirectsPost307OptionalParams): Promise<Models.HttpRedirectsPost307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1165,14 +1117,6 @@ export class HttpRedirects {
   async delete307WithHttpOperationResponse(options?: Models.HttpRedirectsDelete307OptionalParams): Promise<Models.HttpRedirectsDelete307Response> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

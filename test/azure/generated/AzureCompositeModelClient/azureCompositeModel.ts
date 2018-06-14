@@ -88,17 +88,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -242,20 +231,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -329,7 +304,10 @@ class AzureCompositeModel extends AzureCompositeModelContext {
             parameterPath: {
               productDictionaryOfArray: "productDictionaryOfArray"
             },
-            mapper: Mappers.CatalogDictionaryOfArray
+            mapper: {
+              ...Mappers.CatalogDictionaryOfArray,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -405,20 +383,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -492,7 +456,10 @@ class AzureCompositeModel extends AzureCompositeModelContext {
             parameterPath: {
               productArrayOfDictionary: "productArrayOfDictionary"
             },
-            mapper: Mappers.CatalogArrayOfDictionary
+            mapper: {
+              ...Mappers.CatalogArrayOfDictionary,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

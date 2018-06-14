@@ -150,14 +150,6 @@ export class Polymorphism {
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -177,7 +169,10 @@ export class Polymorphism {
           path: "complex/polymorphism/valid",
           requestBody: {
             parameterPath: "complexBody",
-            mapper: Mappers.Fish
+            mapper: {
+              ...Mappers.Fish,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -308,14 +303,6 @@ export class Polymorphism {
    */
   async putComplicatedWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -335,7 +322,10 @@ export class Polymorphism {
           path: "complex/polymorphism/complicated",
           requestBody: {
             parameterPath: "complexBody",
-            mapper: Mappers.Salmon
+            mapper: {
+              ...Mappers.Salmon,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -388,14 +378,6 @@ export class Polymorphism {
    */
   async putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Salmon>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -415,7 +397,10 @@ export class Polymorphism {
           path: "complex/polymorphism/missingdiscriminator",
           requestBody: {
             parameterPath: "complexBody",
-            mapper: Mappers.Salmon
+            mapper: {
+              ...Mappers.Salmon,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
@@ -510,14 +495,6 @@ export class Polymorphism {
    */
   async putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -537,7 +514,10 @@ export class Polymorphism {
           path: "complex/polymorphism/missingrequired/invalid",
           requestBody: {
             parameterPath: "complexBody",
-            mapper: Mappers.Fish
+            mapper: {
+              ...Mappers.Fish,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

@@ -118,14 +118,6 @@ export class BasicOperations {
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Basic, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -160,7 +152,10 @@ export class BasicOperations {
           ],
           requestBody: {
             parameterPath: "complexBody",
-            mapper: Mappers.Basic
+            mapper: {
+              ...Mappers.Basic,
+              required: true
+            }
           },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer

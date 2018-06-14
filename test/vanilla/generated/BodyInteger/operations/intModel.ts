@@ -527,14 +527,6 @@ export class IntModel {
    */
   async putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -613,14 +605,6 @@ export class IntModel {
    */
   async putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -699,14 +683,6 @@ export class IntModel {
    */
   async putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -785,14 +761,6 @@ export class IntModel {
    */
   async putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -952,15 +920,6 @@ export class IntModel {
    */
   async putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!intBody || !(intBody instanceof Date ||
-          (typeof (intBody as string).valueOf() === 'string' && !isNaN(Date.parse(intBody as string))))) {
-            throw new Error('intBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

@@ -826,40 +826,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
     let description = (options && options.description !== undefined) ? options.description : undefined;
     let genericValue = (options && options.genericValue !== undefined) ? options.genericValue : undefined;
     let odatavalue = (options && options.odatavalue !== undefined) ? options.odatavalue : undefined;
-    // Validate
-    try {
-      if (productId === null || productId === undefined || typeof productId.valueOf() !== 'string') {
-        throw new Error('productId cannot be null or undefined and it must be of type string.');
-      }
-      if (description !== null && description !== undefined && typeof description.valueOf() !== 'string') {
-        throw new Error('description must be of type string.');
-      }
-      if (maxProductDisplayName === null || maxProductDisplayName === undefined || typeof maxProductDisplayName.valueOf() !== 'string') {
-        throw new Error('maxProductDisplayName cannot be null or undefined and it must be of type string.');
-      }
-      if (genericValue !== null && genericValue !== undefined && typeof genericValue.valueOf() !== 'string') {
-        throw new Error('genericValue must be of type string.');
-      }
-      if (odatavalue !== null && odatavalue !== undefined && typeof odatavalue.valueOf() !== 'string') {
-        throw new Error('odatavalue must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let simpleBodyProduct: any;
-    try {
-      if ((productId !== null && productId !== undefined) || (description !== null && description !== undefined) || (maxProductDisplayName !== null && maxProductDisplayName !== undefined) || (genericValue !== null && genericValue !== undefined) || (odatavalue !== null && odatavalue !== undefined))
-      {
-        simpleBodyProduct = {};
-        simpleBodyProduct.productId = productId;
-        simpleBodyProduct.description = description;
-        simpleBodyProduct.maxProductDisplayName = maxProductDisplayName;
-        simpleBodyProduct.genericValue = genericValue;
-        simpleBodyProduct.odatavalue = odatavalue;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -959,76 +925,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async putSimpleProductWithGroupingWithHttpOperationResponse(flattenParameterGroup: Models.FlattenParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SimpleProduct>> {
     let client = this;
-    // Validate
-    try {
-      if (flattenParameterGroup === null || flattenParameterGroup === undefined) {
-        throw new Error('flattenParameterGroup cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let name: any;
-    let productId: any;
-    let description: any;
-    let maxProductDisplayName: any;
-    let genericValue: any;
-    let odatavalue: any;
-    let simpleBodyProduct: any;
-    try {
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        name = flattenParameterGroup.name;
-        if (name === null || name === undefined || typeof name.valueOf() !== 'string') {
-          throw new Error('name cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        productId = flattenParameterGroup.productId;
-        if (productId === null || productId === undefined || typeof productId.valueOf() !== 'string') {
-          throw new Error('productId cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        description = flattenParameterGroup.description;
-        if (description !== null && description !== undefined && typeof description.valueOf() !== 'string') {
-          throw new Error('description must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        maxProductDisplayName = flattenParameterGroup.maxProductDisplayName;
-        if (maxProductDisplayName === null || maxProductDisplayName === undefined || typeof maxProductDisplayName.valueOf() !== 'string') {
-          throw new Error('maxProductDisplayName cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        genericValue = flattenParameterGroup.genericValue;
-        if (genericValue !== null && genericValue !== undefined && typeof genericValue.valueOf() !== 'string') {
-          throw new Error('genericValue must be of type string.');
-        }
-      }
-      if (flattenParameterGroup !== null && flattenParameterGroup !== undefined)
-      {
-        odatavalue = flattenParameterGroup.odatavalue;
-        if (odatavalue !== null && odatavalue !== undefined && typeof odatavalue.valueOf() !== 'string') {
-          throw new Error('odatavalue must be of type string.');
-        }
-      }
-      if ((productId !== null && productId !== undefined) || (description !== null && description !== undefined) || (maxProductDisplayName !== null && maxProductDisplayName !== undefined) || (genericValue !== null && genericValue !== undefined) || (odatavalue !== null && odatavalue !== undefined))
-      {
-        simpleBodyProduct = {};
-        simpleBodyProduct.productId = productId;
-        simpleBodyProduct.description = description;
-        simpleBodyProduct.maxProductDisplayName = maxProductDisplayName;
-        simpleBodyProduct.genericValue = genericValue;
-        simpleBodyProduct.odatavalue = odatavalue;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

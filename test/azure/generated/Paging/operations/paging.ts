@@ -40,14 +40,6 @@ export class Paging {
    */
   async getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,37 +133,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
-    // Validate
-    try {
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -303,37 +264,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
-    // Validate
-    try {
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
-      {
-        maxresults = pagingGetOdataMultiplePagesOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
-      {
-        timeout = pagingGetOdataMultiplePagesOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -467,48 +397,6 @@ export class Paging {
   async getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
-    // Validate
-    try {
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (pagingGetMultiplePagesWithOffsetOptions === null || pagingGetMultiplePagesWithOffsetOptions === undefined) {
-        throw new Error('pagingGetMultiplePagesWithOffsetOptions cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let offset: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesWithOffsetOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
-      {
-        offset = pagingGetMultiplePagesWithOffsetOptions.offset;
-        if (offset === null || offset === undefined || typeof offset !== 'number') {
-          throw new Error('offset cannot be null or undefined and it must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesWithOffsetOptions !== null && pagingGetMultiplePagesWithOffsetOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesWithOffsetOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -652,14 +540,6 @@ export class Paging {
    */
   async getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -753,14 +633,6 @@ export class Paging {
    */
   async getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -852,14 +724,6 @@ export class Paging {
    */
   async getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -951,14 +815,6 @@ export class Paging {
    */
   async getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1050,14 +906,6 @@ export class Paging {
    */
   async getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1153,20 +1001,6 @@ export class Paging {
    */
   async getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
-        throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
-        throw new Error('tenant cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1288,37 +1122,6 @@ export class Paging {
    */
   async getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (customParameterGroup === null || customParameterGroup === undefined) {
-        throw new Error('customParameterGroup cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let apiVersion: any;
-    let tenant: any;
-    try {
-      if (customParameterGroup !== null && customParameterGroup !== undefined)
-      {
-        apiVersion = customParameterGroup.apiVersion;
-        if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
-          throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (customParameterGroup !== null && customParameterGroup !== undefined)
-      {
-        tenant = customParameterGroup.tenant;
-        if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
-          throw new Error('tenant cannot be null or undefined and it must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1493,23 +1296,6 @@ export class Paging {
    */
   async nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
-        throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
-        throw new Error('tenant cannot be null or undefined and it must be of type string.');
-      }
-      if (nextLink === null || nextLink === undefined || typeof nextLink.valueOf() !== 'string') {
-        throw new Error('nextLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1644,40 +1430,6 @@ export class Paging {
    */
   async nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextLink === null || nextLink === undefined || typeof nextLink.valueOf() !== 'string') {
-        throw new Error('nextLink cannot be null or undefined and it must be of type string.');
-      }
-      if (customParameterGroup === null || customParameterGroup === undefined) {
-        throw new Error('customParameterGroup cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let apiVersion: any;
-    let tenant: any;
-    try {
-      if (customParameterGroup !== null && customParameterGroup !== undefined)
-      {
-        apiVersion = customParameterGroup.apiVersion;
-        if (apiVersion === null || apiVersion === undefined || typeof apiVersion.valueOf() !== 'string') {
-          throw new Error('apiVersion cannot be null or undefined and it must be of type string.');
-        }
-      }
-      if (customParameterGroup !== null && customParameterGroup !== undefined)
-      {
-        tenant = customParameterGroup.tenant;
-        if (tenant === null || tenant === undefined || typeof tenant.valueOf() !== 'string') {
-          throw new Error('tenant cannot be null or undefined and it must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1815,37 +1567,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
-    // Validate
-    try {
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesLROOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesLROOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1976,17 +1697,6 @@ export class Paging {
    */
   async getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2098,40 +1808,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesOptions !== null && pagingGetMultiplePagesOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2280,40 +1956,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
-      {
-        maxresults = pagingGetOdataMultiplePagesOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetOdataMultiplePagesOptions !== null && pagingGetOdataMultiplePagesOptions !== undefined)
-      {
-        timeout = pagingGetOdataMultiplePagesOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2461,40 +2103,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesWithOffsetNextOptions = (options && options.pagingGetMultiplePagesWithOffsetNextOptions !== undefined) ? options.pagingGetMultiplePagesWithOffsetNextOptions : undefined;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesWithOffsetNextOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesWithOffsetNextOptions !== null && pagingGetMultiplePagesWithOffsetNextOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesWithOffsetNextOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2640,17 +2248,6 @@ export class Paging {
    */
   async getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2761,17 +2358,6 @@ export class Paging {
    */
   async getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2880,17 +2466,6 @@ export class Paging {
    */
   async getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2999,17 +2574,6 @@ export class Paging {
    */
   async getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3118,17 +2682,6 @@ export class Paging {
    */
   async getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3289,40 +2842,6 @@ export class Paging {
     let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
-    // Validate
-    try {
-      if (nextPageLink === null || nextPageLink === undefined || typeof nextPageLink.valueOf() !== 'string') {
-        throw new Error('nextPageLink cannot be null or undefined and it must be of type string.');
-      }
-      if (clientRequestId !== null && clientRequestId !== undefined && typeof clientRequestId.valueOf() !== 'string') {
-        throw new Error('clientRequestId must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let maxresults: any;
-    let timeout: any;
-    try {
-      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
-      {
-        maxresults = pagingGetMultiplePagesLROOptions.maxresults;
-        if (maxresults !== null && maxresults !== undefined && typeof maxresults !== 'number') {
-          throw new Error('maxresults must be of type number.');
-        }
-      }
-      if (pagingGetMultiplePagesLROOptions !== null && pagingGetMultiplePagesLROOptions !== undefined)
-      {
-        timeout = pagingGetMultiplePagesLROOptions.timeout;
-        if (timeout !== null && timeout !== undefined && typeof timeout !== 'number') {
-          throw new Error('timeout must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();

@@ -27,7 +27,7 @@ describe('typescript', function () {
       it('should throw error on null path parameter', function (done) {
         testClient.implicit.getRequiredPath(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('pathParameter cannot be null or undefined and it must be of type string.');
+          error.message.should.equal('pathParameter cannot be null or undefined.');
           done();
         });
       });
@@ -56,7 +56,7 @@ describe('typescript', function () {
       it('should throw error on null values for required integer parameters', function (done) {
         testClient.explicit.postRequiredIntegerParameter(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('bodyParameter cannot be null or undefined and it must be of type number.');
+          error.message.should.equal(`bodyParameter cannot be null or undefined.`);
           done();
         });
       });
@@ -68,7 +68,7 @@ describe('typescript', function () {
         });
       });
       it('should throw error on null values for required integer properties', function (done) {
-        testClient.explicit.postRequiredIntegerProperty(<any>{ 'value': null }, function (error, result) {
+        testClient.explicit.postRequiredIntegerProperty(null, function (error, result) {
           should.exist(error);
           error.message.should.containEql('value');
           error.message.should.containEql('cannot be null or undefined');
@@ -85,7 +85,7 @@ describe('typescript', function () {
       it('should throw error on null values for required integer header', function (done) {
         testClient.explicit.postRequiredIntegerHeader(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('headerParameter cannot be null or undefined and it must be of type number.');
+          error.message.should.equal('headerParameter cannot be null or undefined.');
           done();
         });
       });
@@ -99,7 +99,7 @@ describe('typescript', function () {
       it('should throw error on null values for required string parameters', function (done) {
         testClient.explicit.postRequiredStringParameter(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('bodyParameter cannot be null or undefined and it must be of type string.');
+          error.message.should.equal('bodyParameter cannot be null or undefined.');
           done();
         });
       });
@@ -111,10 +111,9 @@ describe('typescript', function () {
         });
       });
       it('should throw error on null values for required string properties', function (done) {
-        testClient.explicit.postRequiredStringProperty(<any>{ 'value': null }, function (error, result) {
+        testClient.explicit.postRequiredStringProperty(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('value');
-          error.message.should.containEql('cannot be null or undefined');
+          error.message.should.equal('value cannot be null or undefined.');
           done();
         });
       });
@@ -128,7 +127,7 @@ describe('typescript', function () {
       it('should throw error on null values for required string header', function (done) {
         testClient.explicit.postRequiredStringHeader(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('headerParameter cannot be null or undefined and it must be of type string.');
+          error.message.should.containEql('headerParameter cannot be null or undefined.');
           done();
         });
       });
@@ -142,7 +141,7 @@ describe('typescript', function () {
       it('should throw error on null values for required class parameters', function (done) {
         testClient.explicit.postRequiredClassParameter(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('bodyParameter cannot be null or undefined.');
+          error.message.should.equal('bodyParameter cannot be null or undefined.');
           done();
         });
       });
@@ -154,10 +153,9 @@ describe('typescript', function () {
         });
       });
       it('should throw error on null values for required class properties', function (done) {
-        testClient.explicit.postRequiredClassProperty(<any>{ 'value': null }, function (error, result) {
+        testClient.explicit.postRequiredClassProperty(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('value');
-          error.message.should.containEql('cannot be null or undefined');
+          error.message.should.equal('value cannot be null or undefined.');
           done();
         });
       });
@@ -171,7 +169,7 @@ describe('typescript', function () {
       it('should throw error on null values for required array parameters', function (done) {
         testClient.explicit.postRequiredArrayParameter(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('bodyParameter cannot be null or undefined and it must be of type array.');
+          error.message.should.equal('bodyParameter cannot be null or undefined.');
           done();
         });
       });
@@ -183,10 +181,9 @@ describe('typescript', function () {
         });
       });
       it('should throw error on null values for required array properties', function (done) {
-        testClient.explicit.postRequiredArrayProperty(<any>{ 'value': null }, function (error, result) {
+        testClient.explicit.postRequiredArrayProperty(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('value');
-          error.message.should.containEql('cannot be null or undefined');
+          error.message.should.equal('value cannot be null or undefined.');
           done();
         });
       });
@@ -200,7 +197,7 @@ describe('typescript', function () {
       it('should throw error on null values for required array header', function (done) {
         testClient.explicit.postRequiredArrayHeader(null, function (error, result) {
           should.exist(error);
-          error.message.should.containEql('headerParameter cannot be null or undefined and it must be of type array.');
+          error.message.should.containEql('headerParameter cannot be null or undefined.');
           done();
         });
       });
@@ -215,7 +212,7 @@ describe('typescript', function () {
         testClient.requiredGlobalPath = null;
         testClient.implicit.getRequiredGlobalPath(function (error, result) {
           should.exist(error);
-          error.message.should.containEql('this.client.requiredGlobalPath cannot be null or undefined and it must be of type string.');
+          error.message.should.containEql('this.client.requiredGlobalPath cannot be null or undefined.');
           done();
         });
       });
@@ -223,7 +220,7 @@ describe('typescript', function () {
         testClient.requiredGlobalQuery = null;
         testClient.implicit.getRequiredGlobalQuery(function (error, result) {
           should.exist(error);
-          error.message.should.containEql('this.client.requiredGlobalQuery cannot be null or undefined and it must be of type string.');
+          error.message.should.containEql('this.client.requiredGlobalQuery cannot be null or undefined.');
           done();
         });
       });

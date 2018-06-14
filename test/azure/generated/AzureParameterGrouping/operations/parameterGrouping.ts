@@ -44,53 +44,6 @@ export class ParameterGrouping {
    */
   async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (parameterGroupingPostRequiredParameters === null || parameterGroupingPostRequiredParameters === undefined) {
-        throw new Error('parameterGroupingPostRequiredParameters cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let body: any;
-    let customHeader: any;
-    let query: any;
-    let path: any;
-    try {
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        body = parameterGroupingPostRequiredParameters.body;
-        if (body === null || body === undefined || typeof body !== 'number') {
-          throw new Error('body cannot be null or undefined and it must be of type number.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        customHeader = parameterGroupingPostRequiredParameters.customHeader;
-        if (customHeader !== null && customHeader !== undefined && typeof customHeader.valueOf() !== 'string') {
-          throw new Error('customHeader must be of type string.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        query = parameterGroupingPostRequiredParameters.query;
-        if (query !== null && query !== undefined && typeof query !== 'number') {
-          throw new Error('query must be of type number.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        path = parameterGroupingPostRequiredParameters.path;
-        if (path === null || path === undefined || typeof path.valueOf() !== 'string') {
-          throw new Error('path cannot be null or undefined and it must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -227,34 +180,6 @@ export class ParameterGrouping {
   async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let parameterGroupingPostOptionalParameters = (options && options.parameterGroupingPostOptionalParameters !== undefined) ? options.parameterGroupingPostOptionalParameters : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let customHeader: any;
-    let query: any;
-    try {
-      if (parameterGroupingPostOptionalParameters !== null && parameterGroupingPostOptionalParameters !== undefined)
-      {
-        customHeader = parameterGroupingPostOptionalParameters.customHeader;
-        if (customHeader !== null && customHeader !== undefined && typeof customHeader.valueOf() !== 'string') {
-          throw new Error('customHeader must be of type string.');
-        }
-      }
-      if (parameterGroupingPostOptionalParameters !== null && parameterGroupingPostOptionalParameters !== undefined)
-      {
-        query = parameterGroupingPostOptionalParameters.query;
-        if (query !== null && query !== undefined && typeof query !== 'number') {
-          throw new Error('query must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -363,50 +288,6 @@ export class ParameterGrouping {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
     let parameterGroupingPostMultiParamGroupsSecondParamGroup = (options && options.parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined) ? options.parameterGroupingPostMultiParamGroupsSecondParamGroup : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let headerOne: any;
-    let queryOne: any;
-    let headerTwo: any;
-    let queryTwo: any;
-    try {
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        headerOne = firstParameterGroup.headerOne;
-        if (headerOne !== null && headerOne !== undefined && typeof headerOne.valueOf() !== 'string') {
-          throw new Error('headerOne must be of type string.');
-        }
-      }
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        queryOne = firstParameterGroup.queryOne;
-        if (queryOne !== null && queryOne !== undefined && typeof queryOne !== 'number') {
-          throw new Error('queryOne must be of type number.');
-        }
-      }
-      if (parameterGroupingPostMultiParamGroupsSecondParamGroup !== null && parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined)
-      {
-        headerTwo = parameterGroupingPostMultiParamGroupsSecondParamGroup.headerTwo;
-        if (headerTwo !== null && headerTwo !== undefined && typeof headerTwo.valueOf() !== 'string') {
-          throw new Error('headerTwo must be of type string.');
-        }
-      }
-      if (parameterGroupingPostMultiParamGroupsSecondParamGroup !== null && parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined)
-      {
-        queryTwo = parameterGroupingPostMultiParamGroupsSecondParamGroup.queryTwo;
-        if (queryTwo !== null && queryTwo !== undefined && typeof queryTwo !== 'number') {
-          throw new Error('queryTwo must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -540,34 +421,6 @@ export class ParameterGrouping {
   async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let headerOne: any;
-    let queryOne: any;
-    try {
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        headerOne = firstParameterGroup.headerOne;
-        if (headerOne !== null && headerOne !== undefined && typeof headerOne.valueOf() !== 'string') {
-          throw new Error('headerOne must be of type string.');
-        }
-      }
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        queryOne = firstParameterGroup.queryOne;
-        if (queryOne !== null && queryOne !== undefined && typeof queryOne !== 'number') {
-          throw new Error('queryOne must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
