@@ -1,11 +1,11 @@
 ﻿@using System
 @using System.Linq
 @using System.Collections.Generic
-@using AutoRest.Core.Model
 @using AutoRest.TypeScript.Model
 @inherits AutoRest.Core.Template<CompositeTypeTS>
 
-@{var propertyList = new List<AutoRest.Core.Model.Property>(Model.Properties.Where(p => !p.IsConstant)); }
+@{var propertyList = new List<AutoRest.Core.Model.Property>(Model.Properties.Where(p => !p.IsConstant));
+  var propertiesAdded = new HashSet<string>();}
 /**
  * @@interface
  * An interface representing @(Model.Name).
@@ -33,6 +33,9 @@
     }
     for (int i = 0; i < propertyList.Count; i++)
     {
+        @if (!propertiesAdded.Contains(propertyList[i].Name))
+        {
+            @{ propertiesAdded.Add(propertyList[i].Name); }
   @:/**
   @:@(CompositeTypeTS.ConstructPropertyDocumentation(
                   WrapComment(" * ", "@member {" + propertyList[i].ModelType.TSType(true)
@@ -40,6 +43,7 @@
                                                   + " " + CompositeTypeTS.GetPropertyDocumentationString(propertyList[i]))))
    @:*/
   @:@(CompositeTypeTS.PropertyTS(propertyList[i], true));
+        }
     }
 
 @:}

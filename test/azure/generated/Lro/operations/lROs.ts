@@ -1431,6 +1431,100 @@ export class LROs {
 
 
   /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.Product;
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.Product;
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+
+  /**
    * Long running post request, service returns a 202 to the initial request,
    * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -4747,6 +4841,192 @@ export class LROs {
   }
 
   /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    let client = this.client;
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "lro/LROPostDoubleHeadersFinalLocationGet",
+          headerParameters: [
+            {
+              parameterPath: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          ],
+          serializer: this.serializer
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.Product;
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    let client = this.client;
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "lro/LROPostDoubleHeadersFinalAzureHeaderGet",
+          headerParameters: [
+            {
+              parameterPath: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          ],
+          serializer: this.serializer
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.Product;
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Long running post request, service returns a 202 to the initial request,
    * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -6637,6 +6917,100 @@ export class LROs {
   }
 
   /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  postDoubleHeadersFinalLocationGet(): Promise<Models.Product>;
+  postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  postDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  postDoubleHeadersFinalAzureHeaderGet(): Promise<Models.Product>;
+  postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  postDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
    * Long running post request, service returns a 202 to the initial request,
    * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -8322,6 +8696,100 @@ export class LROs {
       });
     } else {
       msRest.promiseToCallback(this.beginPost202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginPostDoubleHeadersFinalLocationGet(): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginPostDoubleHeadersFinalAzureHeaderGet(): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }

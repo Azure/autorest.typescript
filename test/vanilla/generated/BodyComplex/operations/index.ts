@@ -16,6 +16,7 @@ import { Inheritance } from "./inheritance";
 import { Polymorphism } from "./polymorphism";
 import { Polymorphicrecursive } from "./polymorphicrecursive";
 import { Readonlyproperty } from "./readonlyproperty";
+import { Flattencomplex } from "./flattencomplex";
 
 export { BasicOperations, Primitive, ArrayModel, Dictionary, Inheritance, Polymorphism,
-Polymorphicrecursive, Readonlyproperty };
+Polymorphicrecursive, Readonlyproperty, Flattencomplex };

@@ -29,6 +29,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   polymorphism: operations.Polymorphism;
   polymorphicrecursive: operations.Polymorphicrecursive;
   readonlyproperty: operations.Readonlyproperty;
+  flattencomplex: operations.Flattencomplex;
 
   /**
    * @class
@@ -65,6 +66,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     this.polymorphism = new operations.Polymorphism(this);
     this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
     this.readonlyproperty = new operations.Readonlyproperty(this);
+    this.flattencomplex = new operations.Flattencomplex(this);
   }
   // methods on the client.
 

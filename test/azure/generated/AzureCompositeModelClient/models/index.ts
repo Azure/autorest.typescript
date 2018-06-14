@@ -494,6 +494,37 @@ export interface ReadonlyObj {
 
 /**
  * @interface
+ * An interface representing MyBaseType.
+ */
+export interface MyBaseType {
+  /**
+   * @member {string} [propB1]
+   */
+  propB1?: string;
+  /**
+   * @member {string} kind Polymorphic Discriminator
+   */
+  kind: string;
+  /**
+   * @member {string} [propBH1]
+   */
+  propBH1?: string;
+}
+
+/**
+ * @interface
+ * An interface representing MyDerivedType.
+ * @extends MyBaseType
+ */
+export interface MyDerivedType extends MyBaseType {
+  /**
+   * @member {string} [propD1]
+   */
+  propD1?: string;
+}
+
+/**
+ * @interface
  * An interface representing AzureCompositeModelCreateOptionalParams.
  * Optional Parameters.
  *
@@ -653,4 +684,18 @@ export enum GoblinSharkColor {
   Pink = 'pink',
   Gray = 'gray',
   Brown = 'brown',
+}
+
+/**
+ * Defines values for MyKind.
+ * Possible values include: 'Kind1'
+ * There could be more values for this enum apart from the ones defined here.If
+ * you want to set a value that is not from the known values then you can do
+ * the following:
+ * let param: MyKind = <MyKind>"someUnknownValueThatWillStillBeValid";
+ * @readonly
+ * @enum {string}
+ */
+export enum MyKind {
+  Kind1 = 'Kind1',
 }

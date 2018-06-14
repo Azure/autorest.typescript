@@ -906,7 +906,14 @@ namespace AutoRest.TypeScript
                                         }
                                     }
 
-                                    modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                    if (modelProperties.ContainsProperty(prop.Name))
+                                    {
+                                        // throw new InvalidOperationException($"Mapper \"{serializedName}\" contains multiple modelProperties with the name \"{prop.Name}\".");
+                                    }
+                                    else
+                                    {
+                                        modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                    }
                                 }
                             });
                         }
