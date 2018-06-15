@@ -1,0 +1,3 @@
+[submodule "autorest.common"]
+	path = autorest.common
+	url = https://github.com/azure/autorest.common
