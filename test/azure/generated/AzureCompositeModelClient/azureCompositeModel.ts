@@ -29,6 +29,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   polymorphism: operations.Polymorphism;
   polymorphicrecursive: operations.Polymorphicrecursive;
   readonlyproperty: operations.Readonlyproperty;
+  flattencomplex: operations.Flattencomplex;
 
   /**
    * @class
@@ -65,6 +66,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     this.polymorphism = new operations.Polymorphism(this);
     this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
     this.readonlyproperty = new operations.Readonlyproperty(this);
+    this.flattencomplex = new operations.Flattencomplex(this);
   }
   // methods on the client.
 
@@ -88,17 +90,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -121,7 +112,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -133,7 +124,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -145,7 +136,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -159,7 +150,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -242,20 +233,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -279,7 +256,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -289,7 +266,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -301,7 +278,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -315,7 +292,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -325,20 +302,16 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productDictionaryOfArray"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productDictionaryOfArray"
-              ]
+          requestBody: {
+            parameterPath: {
+              productDictionaryOfArray: "productDictionaryOfArray"
+            },
+            mapper: {
+              ...Mappers.CatalogDictionaryOfArray,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -412,20 +385,6 @@ class AzureCompositeModel extends AzureCompositeModelContext {
     let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
     let apiVersion = '2014-04-01-preview';
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -449,7 +408,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -459,7 +418,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -471,7 +430,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -485,7 +444,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           ],
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -495,20 +454,16 @@ class AzureCompositeModel extends AzureCompositeModelContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productArrayOfDictionary"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productArrayOfDictionary"
-              ]
+          requestBody: {
+            parameterPath: {
+              productArrayOfDictionary: "productArrayOfDictionary"
+            },
+            mapper: {
+              ...Mappers.CatalogArrayOfDictionary,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

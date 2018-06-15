@@ -117,18 +117,6 @@ export class ArrayModel {
   async putValidWithHttpOperationResponse(options?: Models.ArrayModelPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayProperty)) {
-        for (let i = 0; i < arrayProperty.length; i++) {
-          if (arrayProperty[i] !== null && arrayProperty[i] !== undefined && typeof arrayProperty[i].valueOf() !== 'string') {
-            throw new Error('arrayProperty[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -146,20 +134,16 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/valid",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "arrayProperty"
-              ],
-              targetPath: [
-                "complexBody",
-                "arrayProperty"
-              ]
+          requestBody: {
+            parameterPath: {
+              arrayProperty: "arrayProperty"
+            },
+            mapper: {
+              ...Mappers.ArrayWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -285,18 +269,6 @@ export class ArrayModel {
   async putEmptyWithHttpOperationResponse(options?: Models.ArrayModelPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayProperty = (options && options.arrayProperty !== undefined) ? options.arrayProperty : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayProperty)) {
-        for (let i = 0; i < arrayProperty.length; i++) {
-          if (arrayProperty[i] !== null && arrayProperty[i] !== undefined && typeof arrayProperty[i].valueOf() !== 'string') {
-            throw new Error('arrayProperty[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -314,20 +286,16 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/array/empty",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "arrayProperty"
-              ],
-              targetPath: [
-                "complexBody",
-                "arrayProperty"
-              ]
+          requestBody: {
+            parameterPath: {
+              arrayProperty: "arrayProperty"
+            },
+            mapper: {
+              ...Mappers.ArrayWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

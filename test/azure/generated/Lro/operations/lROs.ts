@@ -1431,6 +1431,100 @@ export class LROs {
 
 
   /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.Product;
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    let client = this.client;
+    // Send request
+    let initialResult: msRest.HttpOperationResponse;
+    try {
+      initialResult = await this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+      let httpRequest = operationRes.request;
+
+      // Deserialize Response
+      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+      try {
+        if (parsedResponse !== null && parsedResponse !== undefined) {
+          const resultMapper = Mappers.Product;
+          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+        }
+      } catch (error) {
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
+        return Promise.reject(deserializationError);
+      }
+  } catch (err) {
+      return Promise.reject(err);
+    }
+    return Promise.resolve(operationRes);
+  }
+
+
+  /**
    * Long running post request, service returns a 202 to the initial request,
    * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -1611,14 +1705,6 @@ export class LROs {
   async beginPut200SucceededWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1639,7 +1725,7 @@ export class LROs {
           path: "lro/put/200/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1649,8 +1735,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1717,14 +1805,6 @@ export class LROs {
   async beginPut200SucceededNoStateWithHttpOperationResponse(options?: Models.LROsBeginPut200SucceededNoStateOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1745,7 +1825,7 @@ export class LROs {
           path: "lro/put/200/succeeded/nostate",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1755,8 +1835,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1824,14 +1906,6 @@ export class LROs {
   async beginPut202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPut202Retry200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1852,7 +1926,7 @@ export class LROs {
           path: "lro/put/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1862,8 +1936,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1931,14 +2007,6 @@ export class LROs {
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1959,7 +2027,7 @@ export class LROs {
           path: "lro/put/201/creating/succeeded/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1969,8 +2037,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2053,14 +2123,6 @@ export class LROs {
   async beginPut200UpdatingSucceeded204WithHttpOperationResponse(options?: Models.LROsBeginPut200UpdatingSucceeded204OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2081,7 +2143,7 @@ export class LROs {
           path: "lro/put/200/updating/succeeded/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2091,8 +2153,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2160,14 +2224,6 @@ export class LROs {
   async beginPut201CreatingFailed200WithHttpOperationResponse(options?: Models.LROsBeginPut201CreatingFailed200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2188,7 +2244,7 @@ export class LROs {
           path: "lro/put/201/created/failed/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2198,8 +2254,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2282,14 +2340,6 @@ export class LROs {
   async beginPut200Acceptedcanceled200WithHttpOperationResponse(options?: Models.LROsBeginPut200Acceptedcanceled200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2310,7 +2360,7 @@ export class LROs {
           path: "lro/put/200/accepted/canceled/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2320,8 +2370,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2389,14 +2441,6 @@ export class LROs {
   async beginPutNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutNoHeaderInRetryOptionalParams): Promise<Models.LROsPutNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2417,7 +2461,7 @@ export class LROs {
           path: "lro/put/noheader/202/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2427,8 +2471,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2497,14 +2543,6 @@ export class LROs {
   async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2525,7 +2563,7 @@ export class LROs {
           path: "lro/putasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2535,8 +2573,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2605,14 +2645,6 @@ export class LROs {
   async beginPutAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPutAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2633,7 +2665,7 @@ export class LROs {
           path: "lro/putasync/noretry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2643,8 +2675,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2713,14 +2747,6 @@ export class LROs {
   async beginPutAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncRetryFailedOptionalParams): Promise<Models.LROsPutAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2741,7 +2767,7 @@ export class LROs {
           path: "lro/putasync/retry/failed",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2751,8 +2777,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2821,14 +2849,6 @@ export class LROs {
   async beginPutAsyncNoRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoRetrycanceledOptionalParams): Promise<Models.LROsPutAsyncNoRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2849,7 +2869,7 @@ export class LROs {
           path: "lro/putasync/noretry/canceled",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2859,8 +2879,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2929,14 +2951,6 @@ export class LROs {
   async beginPutAsyncNoHeaderInRetryWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNoHeaderInRetryOptionalParams): Promise<Models.LROsPutAsyncNoHeaderInRetryResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2957,7 +2971,7 @@ export class LROs {
           path: "lro/putasync/noheader/201/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2967,8 +2981,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3035,14 +3051,6 @@ export class LROs {
   async beginPutNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3063,7 +3071,7 @@ export class LROs {
           path: "lro/putnonresource/202/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3073,8 +3081,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Sku,
-          requestBodyName: "sku",
+          requestBody: {
+            parameterPath: "sku",
+            mapper: Mappers.Sku
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3140,14 +3150,6 @@ export class LROs {
   async beginPutAsyncNonResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncNonResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
     let sku = (options && options.sku !== undefined) ? options.sku : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3168,7 +3170,7 @@ export class LROs {
           path: "lro/putnonresourceasync/202/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3178,8 +3180,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Sku,
-          requestBodyName: "sku",
+          requestBody: {
+            parameterPath: "sku",
+            mapper: Mappers.Sku
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3245,27 +3249,6 @@ export class LROs {
   async beginPutSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
-    // Validate
-    try {
-      if (provisioningState !== null && provisioningState !== undefined && typeof provisioningState.valueOf() !== 'string') {
-        throw new Error('provisioningState must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let product: any;
-    try {
-      if (provisioningState !== null && provisioningState !== undefined)
-      {
-        product = {};
-        product.provisioningState = provisioningState;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3286,7 +3269,7 @@ export class LROs {
           path: "lro/putsubresource/202/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3296,20 +3279,13 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.SubProduct,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: {
+              provisioningState: "provisioningState"
+            },
+            mapper: Mappers.SubProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "provisioningState"
-              ],
-              targetPath: [
-                "product",
-                "provisioningState"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -3374,27 +3350,6 @@ export class LROs {
   async beginPutAsyncSubResourceWithHttpOperationResponse(options?: Models.LROsBeginPutAsyncSubResourceOptionalParams): Promise<msRest.HttpOperationResponse<Models.SubProduct>> {
     let client = this.client;
     let provisioningState = (options && options.provisioningState !== undefined) ? options.provisioningState : undefined;
-    // Validate
-    try {
-      if (provisioningState !== null && provisioningState !== undefined && typeof provisioningState.valueOf() !== 'string') {
-        throw new Error('provisioningState must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let product: any;
-    try {
-      if (provisioningState !== null && provisioningState !== undefined)
-      {
-        product = {};
-        product.provisioningState = provisioningState;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3415,7 +3370,7 @@ export class LROs {
           path: "lro/putsubresourceasync/202/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3425,20 +3380,13 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.SubProduct,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: {
+              provisioningState: "provisioningState"
+            },
+            mapper: Mappers.SubProduct
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "provisioningState"
-              ],
-              targetPath: [
-                "product",
-                "provisioningState"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -3504,14 +3452,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Accepted200SucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3531,7 +3471,7 @@ export class LROs {
           path: "lro/delete/provisioning/202/accepted/200/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3623,14 +3563,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202DeletingFailed200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202DeletingFailed200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3650,7 +3582,7 @@ export class LROs {
           path: "lro/delete/provisioning/202/deleting/200/failed",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3742,14 +3674,6 @@ export class LROs {
    */
   async beginDeleteProvisioning202Deletingcanceled200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteProvisioning202Deletingcanceled200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3769,7 +3693,7 @@ export class LROs {
           path: "lro/delete/provisioning/202/deleting/200/canceled",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3858,14 +3782,6 @@ export class LROs {
    */
   async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3885,7 +3801,7 @@ export class LROs {
           path: "lro/delete/204/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3944,14 +3860,6 @@ export class LROs {
    */
   async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202Retry200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3971,7 +3879,7 @@ export class LROs {
           path: "lro/delete/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4050,14 +3958,6 @@ export class LROs {
    */
   async beginDelete202NoRetry204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDelete202NoRetry204Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4077,7 +3977,7 @@ export class LROs {
           path: "lro/delete/202/noretry/204",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4156,14 +4056,6 @@ export class LROs {
    */
   async beginDeleteNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteNoHeaderInRetryResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4183,7 +4075,7 @@ export class LROs {
           path: "lro/delete/noheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4250,14 +4142,6 @@ export class LROs {
    */
   async beginDeleteAsyncNoHeaderInRetryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoHeaderInRetryResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4277,7 +4161,7 @@ export class LROs {
           path: "lro/deleteasync/noheader/202/204",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4344,14 +4228,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrySucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4371,7 +4247,7 @@ export class LROs {
           path: "lro/deleteasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4434,14 +4310,6 @@ export class LROs {
    */
   async beginDeleteAsyncNoRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncNoRetrySucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4461,7 +4329,7 @@ export class LROs {
           path: "lro/deleteasync/noretry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4524,14 +4392,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetryFailedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetryFailedResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4551,7 +4411,7 @@ export class LROs {
           path: "lro/deleteasync/retry/failed",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4614,14 +4474,6 @@ export class LROs {
    */
   async beginDeleteAsyncRetrycanceledWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROsDeleteAsyncRetrycanceledResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4641,7 +4493,7 @@ export class LROs {
           path: "lro/deleteasync/retry/canceled",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4704,14 +4556,6 @@ export class LROs {
    */
   async beginPost200WithPayloadWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Sku>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4731,7 +4575,7 @@ export class LROs {
           path: "lro/post/payload/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4822,14 +4666,6 @@ export class LROs {
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsBeginPost202Retry200OptionalParams): Promise<Models.LROsPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4850,7 +4686,7 @@ export class LROs {
           path: "lro/post/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4860,8 +4696,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4917,14 +4755,6 @@ export class LROs {
   async beginPost202NoRetry204WithHttpOperationResponse(options?: Models.LROsBeginPost202NoRetry204OptionalParams): Promise<Models.LROsPost202NoRetry204Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4945,7 +4775,7 @@ export class LROs {
           path: "lro/post/202/noretry/204",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -4955,8 +4785,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5009,6 +4841,192 @@ export class LROs {
   }
 
   /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    let client = this.client;
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "lro/LROPostDoubleHeadersFinalLocationGet",
+          headerParameters: [
+            {
+              parameterPath: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          ],
+          serializer: this.serializer
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.Product;
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @returns {Promise} A promise is returned
+   *
+   * @resolve {HttpOperationResponse} - The deserialized result object.
+   *
+   * @reject {Error|ServiceError} - The error object.
+   */
+  async beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
+    let client = this.client;
+
+    // Create HTTP transport objects
+    const httpRequest = new WebResource();
+    let operationRes: msRest.HttpOperationResponse;
+    try {
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
+        {
+          "this.client.acceptLanguage": this.client.acceptLanguage
+        },
+        options);
+      operationRes = await client.sendOperationRequest(
+        httpRequest,
+        operationArguments,
+        {
+          httpMethod: "POST",
+          baseUrl: this.client.baseUri,
+          path: "lro/LROPostDoubleHeadersFinalAzureHeaderGet",
+          headerParameters: [
+            {
+              parameterPath: "this.client.acceptLanguage",
+              mapper: {
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
+                type: {
+                  name: "String"
+                }
+              }
+            }
+          ],
+          serializer: this.serializer
+        });
+      let statusCode = operationRes.status;
+      if (statusCode !== 202) {
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
+        error.statusCode = operationRes.status;
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
+        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedErrorResponse) {
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
+          }
+          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
+            const resultMapper = Mappers.CloudError;
+            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
+          }
+        } catch (defaultError) {
+          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
+                           `- "${operationRes.bodyAsText}" for the default response.`;
+          return Promise.reject(error);
+        }
+        return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 202) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.Product;
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
+      }
+
+    } catch(err) {
+      return Promise.reject(err);
+    }
+
+    return Promise.resolve(operationRes);
+  }
+
+  /**
    * Long running post request, service returns a 202 to the initial request,
    * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
    * indicated in the Azure-AsyncOperation header for operation status
@@ -5025,14 +5043,6 @@ export class LROs {
   async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5053,7 +5063,7 @@ export class LROs {
           path: "lro/postasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -5063,8 +5073,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5137,14 +5149,6 @@ export class LROs {
   async beginPostAsyncNoRetrySucceededWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncNoRetrySucceededOptionalParams): Promise<Models.LROsPostAsyncNoRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5165,7 +5169,7 @@ export class LROs {
           path: "lro/postasync/noretry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -5175,8 +5179,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5249,14 +5255,6 @@ export class LROs {
   async beginPostAsyncRetryFailedWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetryFailedOptionalParams): Promise<Models.LROsPostAsyncRetryFailedResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5277,7 +5275,7 @@ export class LROs {
           path: "lro/postasync/retry/failed",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -5287,8 +5285,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5345,14 +5345,6 @@ export class LROs {
   async beginPostAsyncRetrycanceledWithHttpOperationResponse(options?: Models.LROsBeginPostAsyncRetrycanceledOptionalParams): Promise<Models.LROsPostAsyncRetrycanceledResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5373,7 +5365,7 @@ export class LROs {
           path: "lro/postasync/retry/canceled",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -5383,8 +5375,10 @@ export class LROs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -6913,6 +6907,100 @@ export class LROs {
       });
     } else {
       msRest.promiseToCallback(this.post202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  postDoubleHeadersFinalLocationGet(): Promise<Models.Product>;
+  postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  postDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.postDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  postDoubleHeadersFinalAzureHeaderGet(): Promise<Models.Product>;
+  postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  postDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  postDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.postDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -8608,6 +8696,100 @@ export class LROs {
       });
     } else {
       msRest.promiseToCallback(this.beginPost202NoRetry204WithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginPostDoubleHeadersFinalLocationGet(): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalLocationGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalLocationGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalLocationGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalLocationGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
+        if (err) {
+          return cb(err);
+        }
+        let result = data.parsedBody as Models.Product;
+        return cb(err, result, data.request, data);
+      });
+    }
+  }
+
+  /**
+   * Long running post request, service returns a 202 to the initial request with
+   * both Location and Azure-Async header. Poll Azure-Async and it's success.
+   * Should NOT poll Location to get the final object
+   *
+   * @param {RequestOptionsBase} [options] Optional Parameters.
+   *
+   * @param {ServiceCallback} callback - The callback.
+   *
+   * @returns {ServiceCallback} callback(err, result, request, operationRes)
+   *
+   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+   *
+   *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.Product} for more information.
+   *
+   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+   *
+   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
+   */
+  beginPostDoubleHeadersFinalAzureHeaderGet(): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase): Promise<Models.Product>;
+  beginPostDoubleHeadersFinalAzureHeaderGet(callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Product>): void;
+  beginPostDoubleHeadersFinalAzureHeaderGet(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Product>): any {
+    if (!callback && typeof options === 'function') {
+      callback = options;
+      options = undefined;
+    }
+    let cb = callback as msRest.ServiceCallback<Models.Product>;
+    if (!callback) {
+      return this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.Product);
+      }).catch((err: Error) => {
+        return Promise.reject(err);
+      });
+    } else {
+      msRest.promiseToCallback(this.beginPostDoubleHeadersFinalAzureHeaderGetWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }

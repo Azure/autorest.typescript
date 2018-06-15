@@ -1053,14 +1053,6 @@ export class LROSADs {
   async beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1081,7 +1073,7 @@ export class LROSADs {
           path: "lro/nonretryerror/put/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1091,8 +1083,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1174,14 +1168,6 @@ export class LROSADs {
   async beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1202,7 +1188,7 @@ export class LROSADs {
           path: "lro/nonretryerror/put/201/creating/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1212,8 +1198,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1295,14 +1283,6 @@ export class LROSADs {
   async beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1323,7 +1303,7 @@ export class LROSADs {
           path: "lro/nonretryerror/put/201/creating/400/invalidjson",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1333,8 +1313,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1417,14 +1399,6 @@ export class LROSADs {
   async beginPutAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1445,7 +1419,7 @@ export class LROSADs {
           path: "lro/nonretryerror/putasync/retry/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1455,8 +1429,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1521,14 +1497,6 @@ export class LROSADs {
    */
   async beginDeleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1548,7 +1516,7 @@ export class LROSADs {
           path: "lro/nonretryerror/delete/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1609,14 +1577,6 @@ export class LROSADs {
    */
   async beginDelete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1636,7 +1596,7 @@ export class LROSADs {
           path: "lro/nonretryerror/delete/202/retry/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1699,14 +1659,6 @@ export class LROSADs {
    */
   async beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1726,7 +1678,7 @@ export class LROSADs {
           path: "lro/nonretryerror/deleteasync/retry/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1789,14 +1741,6 @@ export class LROSADs {
   async beginPostNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1817,7 +1761,7 @@ export class LROSADs {
           path: "lro/nonretryerror/post/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1827,8 +1771,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1883,14 +1829,6 @@ export class LROSADs {
   async beginPost202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1911,7 +1849,7 @@ export class LROSADs {
           path: "lro/nonretryerror/post/202/retry/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1921,8 +1859,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1979,14 +1919,6 @@ export class LROSADs {
   async beginPostAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2007,7 +1939,7 @@ export class LROSADs {
           path: "lro/nonretryerror/postasync/retry/400",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2017,8 +1949,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2074,14 +2008,6 @@ export class LROSADs {
   async beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2102,7 +2028,7 @@ export class LROSADs {
           path: "lro/error/put/201/noprovisioningstatepayload",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2112,8 +2038,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2196,14 +2124,6 @@ export class LROSADs {
   async beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2224,7 +2144,7 @@ export class LROSADs {
           path: "lro/error/putasync/retry/nostatus",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2234,8 +2154,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2304,14 +2226,6 @@ export class LROSADs {
   async beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2332,7 +2246,7 @@ export class LROSADs {
           path: "lro/error/putasync/retry/nostatuspayload",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2342,8 +2256,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2409,14 +2325,6 @@ export class LROSADs {
    */
   async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2436,7 +2344,7 @@ export class LROSADs {
           path: "lro/error/delete/204/nolocation",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2495,14 +2403,6 @@ export class LROSADs {
    */
   async beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2522,7 +2422,7 @@ export class LROSADs {
           path: "lro/error/deleteasync/retry/nostatus",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2586,14 +2486,6 @@ export class LROSADs {
   async beginPost202NoLocationWithHttpOperationResponse(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2614,7 +2506,7 @@ export class LROSADs {
           path: "lro/error/post/202/nolocation",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2624,8 +2516,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2682,14 +2576,6 @@ export class LROSADs {
   async beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2710,7 +2596,7 @@ export class LROSADs {
           path: "lro/error/postasync/retry/nopayload",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2720,8 +2606,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2777,14 +2665,6 @@ export class LROSADs {
   async beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2805,7 +2685,7 @@ export class LROSADs {
           path: "lro/error/put/200/invalidjson",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2815,8 +2695,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2884,14 +2766,6 @@ export class LROSADs {
   async beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2912,7 +2786,7 @@ export class LROSADs {
           path: "lro/error/putasync/retry/invalidheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2922,8 +2796,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2992,14 +2868,6 @@ export class LROSADs {
   async beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3020,7 +2888,7 @@ export class LROSADs {
           path: "lro/error/putasync/retry/invalidjsonpolling",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3030,8 +2898,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3097,14 +2967,6 @@ export class LROSADs {
    */
   async beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3124,7 +2986,7 @@ export class LROSADs {
           path: "lro/error/delete/202/retry/invalidheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3186,14 +3048,6 @@ export class LROSADs {
    */
   async beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3213,7 +3067,7 @@ export class LROSADs {
           path: "lro/error/deleteasync/retry/invalidheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3276,14 +3130,6 @@ export class LROSADs {
    */
   async beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3303,7 +3149,7 @@ export class LROSADs {
           path: "lro/error/deleteasync/retry/invalidjsonpolling",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3367,14 +3213,6 @@ export class LROSADs {
   async beginPost202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3395,7 +3233,7 @@ export class LROSADs {
           path: "lro/error/post/202/retry/invalidheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3405,8 +3243,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3463,14 +3303,6 @@ export class LROSADs {
   async beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3491,7 +3323,7 @@ export class LROSADs {
           path: "lro/error/postasync/retry/invalidheader",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3501,8 +3333,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3559,14 +3393,6 @@ export class LROSADs {
   async beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3587,7 +3413,7 @@ export class LROSADs {
           path: "lro/error/postasync/retry/invalidjsonpolling",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -3597,8 +3423,10 @@ export class LROSADs {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

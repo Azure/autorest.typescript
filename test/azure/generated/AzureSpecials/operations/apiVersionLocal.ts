@@ -42,14 +42,6 @@ export class ApiVersionLocal {
   async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -70,7 +62,7 @@ export class ApiVersionLocal {
           path: "azurespecials/apiVersion/method/string/none/query/local/2.0",
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -84,7 +76,7 @@ export class ApiVersionLocal {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -145,17 +137,6 @@ export class ApiVersionLocal {
   async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = (options && options.apiVersion !== undefined) ? options.apiVersion : undefined;
-    // Validate
-    try {
-      if (apiVersion !== null && apiVersion !== undefined && typeof apiVersion.valueOf() !== 'string') {
-        throw new Error('apiVersion must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -176,7 +157,7 @@ export class ApiVersionLocal {
           path: "azurespecials/apiVersion/method/string/none/query/local/null",
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 serializedName: "api-version",
                 type: {
@@ -187,7 +168,7 @@ export class ApiVersionLocal {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -247,14 +228,6 @@ export class ApiVersionLocal {
   async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -275,7 +248,7 @@ export class ApiVersionLocal {
           path: "azurespecials/apiVersion/path/string/none/query/local/2.0",
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -289,7 +262,7 @@ export class ApiVersionLocal {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -349,14 +322,6 @@ export class ApiVersionLocal {
   async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2.0';
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -377,7 +342,7 @@ export class ApiVersionLocal {
           path: "azurespecials/apiVersion/swagger/string/none/query/local/2.0",
           queryParameters: [
             {
-              parameterName: "apiVersion",
+              parameterPath: "apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -391,7 +356,7 @@ export class ApiVersionLocal {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

@@ -118,14 +118,6 @@ export class Primitive {
    */
   async putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -143,8 +135,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/integer",
-          requestBodyMapper: Mappers.IntWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.IntWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -272,14 +269,6 @@ export class Primitive {
    */
   async putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -297,8 +286,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/long",
-          requestBodyMapper: Mappers.LongWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.LongWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -426,14 +420,6 @@ export class Primitive {
    */
   async putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -451,8 +437,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/float",
-          requestBodyMapper: Mappers.FloatWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.FloatWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -581,14 +572,6 @@ export class Primitive {
    */
   async putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -606,8 +589,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/double",
-          requestBodyMapper: Mappers.DoubleWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DoubleWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -735,14 +723,6 @@ export class Primitive {
    */
   async putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -760,8 +740,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/bool",
-          requestBodyMapper: Mappers.BooleanWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.BooleanWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -889,14 +874,6 @@ export class Primitive {
    */
   async putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -914,8 +891,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/string",
-          requestBodyMapper: Mappers.StringWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.StringWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1043,14 +1025,6 @@ export class Primitive {
    */
   async putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1068,8 +1042,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/date",
-          requestBodyMapper: Mappers.DateWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DateWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1198,14 +1177,6 @@ export class Primitive {
    */
   async putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1223,8 +1194,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetime",
-          requestBodyMapper: Mappers.DatetimeWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DatetimeWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1353,14 +1329,6 @@ export class Primitive {
    */
   async putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1378,8 +1346,13 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/datetimerfc1123",
-          requestBodyMapper: Mappers.Datetimerfc1123Wrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.Datetimerfc1123Wrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1506,14 +1479,6 @@ export class Primitive {
   async putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
-    // Validate
-    try {
-      if(field && !msRest.isDuration(field)) {
-        throw new Error('field must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1531,20 +1496,16 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/duration",
-          requestBodyMapper: Mappers.DurationWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: {
+              ...Mappers.DurationWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1670,14 +1631,6 @@ export class Primitive {
   async putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
-    // Validate
-    try {
-      if (field && !(field instanceof Uint8Array)) {
-        throw new Error('field must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1695,20 +1648,16 @@ export class Primitive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/primitive/byte",
-          requestBodyMapper: Mappers.ByteWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: {
+              ...Mappers.ByteWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

@@ -188,14 +188,6 @@ export class HttpClientFailure {
   async put400WithHttpOperationResponse(options?: Models.HttpClientFailurePut400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -213,13 +205,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -283,14 +277,6 @@ export class HttpClientFailure {
   async patch400WithHttpOperationResponse(options?: Models.HttpClientFailurePatch400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -308,13 +294,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -378,14 +366,6 @@ export class HttpClientFailure {
   async post400WithHttpOperationResponse(options?: Models.HttpClientFailurePost400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -403,13 +383,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -473,14 +455,6 @@ export class HttpClientFailure {
   async delete400WithHttpOperationResponse(options?: Models.HttpClientFailureDelete400OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -498,13 +472,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/400",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -787,14 +763,6 @@ export class HttpClientFailure {
   async put404WithHttpOperationResponse(options?: Models.HttpClientFailurePut404OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -812,13 +780,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/404",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -882,14 +852,6 @@ export class HttpClientFailure {
   async patch405WithHttpOperationResponse(options?: Models.HttpClientFailurePatch405OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -907,13 +869,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/405",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -977,14 +941,6 @@ export class HttpClientFailure {
   async post406WithHttpOperationResponse(options?: Models.HttpClientFailurePost406OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1002,13 +958,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/406",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1072,14 +1030,6 @@ export class HttpClientFailure {
   async delete407WithHttpOperationResponse(options?: Models.HttpClientFailureDelete407OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1097,13 +1047,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/407",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1167,14 +1119,6 @@ export class HttpClientFailure {
   async put409WithHttpOperationResponse(options?: Models.HttpClientFailurePut409OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1192,13 +1136,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/409",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1481,14 +1427,6 @@ export class HttpClientFailure {
   async put413WithHttpOperationResponse(options?: Models.HttpClientFailurePut413OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1506,13 +1444,15 @@ export class HttpClientFailure {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/413",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1576,14 +1516,6 @@ export class HttpClientFailure {
   async patch414WithHttpOperationResponse(options?: Models.HttpClientFailurePatch414OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1601,13 +1533,15 @@ export class HttpClientFailure {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/414",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1671,14 +1605,6 @@ export class HttpClientFailure {
   async post415WithHttpOperationResponse(options?: Models.HttpClientFailurePost415OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1696,13 +1622,15 @@ export class HttpClientFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/415",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1839,14 +1767,6 @@ export class HttpClientFailure {
   async delete417WithHttpOperationResponse(options?: Models.HttpClientFailureDelete417OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1864,13 +1784,15 @@ export class HttpClientFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/client/417",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

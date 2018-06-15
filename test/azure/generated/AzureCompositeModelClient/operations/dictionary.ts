@@ -40,14 +40,6 @@ export class Dictionary {
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -67,7 +59,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -141,21 +133,6 @@ export class Dictionary {
   async putValidWithHttpOperationResponse(options?: Models.DictionaryPutValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let defaultProgram = (options && options.defaultProgram !== undefined) ? options.defaultProgram : undefined;
-    // Validate
-    try {
-      if (defaultProgram && typeof defaultProgram === 'object') {
-        for(let valueElement in defaultProgram) {
-          if (defaultProgram[valueElement] !== null && defaultProgram[valueElement] !== undefined && typeof defaultProgram[valueElement].valueOf() !== 'string') {
-            throw new Error('defaultProgram[valueElement] must be of type string.');
-          }
-        }
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -176,7 +153,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -186,20 +163,16 @@ export class Dictionary {
               }
             }
           ],
-          requestBodyMapper: Mappers.DictionaryWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "defaultProgram"
-              ],
-              targetPath: [
-                "complexBody",
-                "defaultProgram"
-              ]
+          requestBody: {
+            parameterPath: {
+              defaultProgram: "defaultProgram"
+            },
+            mapper: {
+              ...Mappers.DictionaryWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -248,14 +221,6 @@ export class Dictionary {
    */
   async getEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -275,7 +240,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/empty",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -349,21 +314,6 @@ export class Dictionary {
   async putEmptyWithHttpOperationResponse(options?: Models.DictionaryPutEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let defaultProgram = (options && options.defaultProgram !== undefined) ? options.defaultProgram : undefined;
-    // Validate
-    try {
-      if (defaultProgram && typeof defaultProgram === 'object') {
-        for(let valueElement in defaultProgram) {
-          if (defaultProgram[valueElement] !== null && defaultProgram[valueElement] !== undefined && typeof defaultProgram[valueElement].valueOf() !== 'string') {
-            throw new Error('defaultProgram[valueElement] must be of type string.');
-          }
-        }
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -384,7 +334,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/empty",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -394,20 +344,16 @@ export class Dictionary {
               }
             }
           ],
-          requestBodyMapper: Mappers.DictionaryWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "defaultProgram"
-              ],
-              targetPath: [
-                "complexBody",
-                "defaultProgram"
-              ]
+          requestBody: {
+            parameterPath: {
+              defaultProgram: "defaultProgram"
+            },
+            mapper: {
+              ...Mappers.DictionaryWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -456,14 +402,6 @@ export class Dictionary {
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -483,7 +421,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/null",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -557,14 +495,6 @@ export class Dictionary {
    */
   async getNotProvidedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DictionaryWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -584,7 +514,7 @@ export class Dictionary {
           path: "complex/dictionary/typed/notprovided",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

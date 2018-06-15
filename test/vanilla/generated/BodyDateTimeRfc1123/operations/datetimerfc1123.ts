@@ -365,15 +365,6 @@ export class Datetimerfc1123 {
    */
   async putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -391,14 +382,16 @@ export class Datetimerfc1123 {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetimerfc1123/max",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTimeRfc1123"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -612,15 +605,6 @@ export class Datetimerfc1123 {
    */
   async putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -638,14 +622,16 @@ export class Datetimerfc1123 {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetimerfc1123/min",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTimeRfc1123"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

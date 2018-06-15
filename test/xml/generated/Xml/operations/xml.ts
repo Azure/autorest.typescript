@@ -119,14 +119,6 @@ export class Xml {
    */
   async putSimpleWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (slideshow === null || slideshow === undefined) {
-        throw new Error('slideshow cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -144,8 +136,13 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/simple",
-          requestBodyMapper: Mappers.Slideshow,
-          requestBodyName: "slideshow",
+          requestBody: {
+            parameterPath: "slideshow",
+            mapper: {
+              ...Mappers.Slideshow,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -271,14 +268,6 @@ export class Xml {
    */
   async putWrappedListsWithHttpOperationResponse(wrappedLists: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (wrappedLists === null || wrappedLists === undefined) {
-        throw new Error('wrappedLists cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -296,8 +285,13 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/wrapped-lists",
-          requestBodyMapper: Mappers.AppleBarrel,
-          requestBodyName: "wrappedLists",
+          requestBody: {
+            parameterPath: "wrappedLists",
+            mapper: {
+              ...Mappers.AppleBarrel,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -485,14 +479,6 @@ export class Xml {
    */
   async putEmptyListWithHttpOperationResponse(slideshow: Models.Slideshow, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (slideshow === null || slideshow === undefined) {
-        throw new Error('slideshow cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -510,8 +496,13 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-list",
-          requestBodyMapper: Mappers.Slideshow,
-          requestBodyName: "slideshow",
+          requestBody: {
+            parameterPath: "slideshow",
+            mapper: {
+              ...Mappers.Slideshow,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -633,14 +624,6 @@ export class Xml {
    */
   async putEmptyWrappedListsWithHttpOperationResponse(appleBarrel: Models.AppleBarrel, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (appleBarrel === null || appleBarrel === undefined) {
-        throw new Error('appleBarrel cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -658,8 +641,13 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-wrapped-lists",
-          requestBodyMapper: Mappers.AppleBarrel,
-          requestBodyName: "appleBarrel",
+          requestBody: {
+            parameterPath: "appleBarrel",
+            mapper: {
+              ...Mappers.AppleBarrel,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -811,22 +799,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -978,22 +968,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/root-list-single-item",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1145,22 +1137,24 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-root-list",
-          requestBodyMapper: {
-            xmlElementName: "banana",
-            required: true,
-            serializedName: "bananas",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "BananaElementType",
-                type: {
-                  name: "Composite",
-                  className: "Banana"
+          requestBody: {
+            parameterPath: "bananas",
+            mapper: {
+              xmlElementName: "banana",
+              required: true,
+              serializedName: "bananas",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "BananaElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Banana"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bananas",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1282,14 +1276,6 @@ export class Xml {
    */
   async putEmptyChildElementWithHttpOperationResponse(banana: Models.Banana, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (banana === null || banana === undefined) {
-        throw new Error('banana cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1307,8 +1293,13 @@ export class Xml {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "xml/empty-child-element",
-          requestBodyMapper: Mappers.Banana,
-          requestBodyName: "banana",
+          requestBody: {
+            parameterPath: "banana",
+            mapper: {
+              ...Mappers.Banana,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1375,7 +1366,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1469,7 +1460,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1481,7 +1472,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1557,14 +1548,6 @@ export class Xml {
     let client = this.client;
     let comp = 'properties';
     let restype = 'service';
-    // Validate
-    try {
-      if (properties === null || properties === undefined) {
-        throw new Error('properties cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1586,7 +1569,7 @@ export class Xml {
           path: "xml/",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1598,7 +1581,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1610,8 +1593,13 @@ export class Xml {
               }
             }
           ],
-          requestBodyMapper: Mappers.StorageServiceProperties,
-          requestBodyName: "properties",
+          requestBody: {
+            parameterPath: "properties",
+            mapper: {
+              ...Mappers.StorageServiceProperties,
+              required: true
+            }
+          },
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1680,7 +1668,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1692,7 +1680,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1802,7 +1790,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1814,7 +1802,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1826,22 +1814,24 @@ export class Xml {
               }
             }
           ],
-          requestBodyMapper: {
-            xmlElementName: "SignedIdentifiers",
-            required: true,
-            serializedName: "properties",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "SignedIdentifierElementType",
-                type: {
-                  name: "Composite",
-                  className: "SignedIdentifier"
+          requestBody: {
+            parameterPath: "properties",
+            mapper: {
+              xmlElementName: "SignedIdentifiers",
+              required: true,
+              serializedName: "properties",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "SignedIdentifierElementType",
+                  type: {
+                    name: "Composite",
+                    className: "SignedIdentifier"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "properties",
           contentType: "application/xml; charset=utf-8",
           isXML: true,
           serializer: this.serializer
@@ -1910,7 +1900,7 @@ export class Xml {
           path: "xml/mycontainer",
           queryParameters: [
             {
-              parameterName: "comp",
+              parameterPath: "comp",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1922,7 +1912,7 @@ export class Xml {
               }
             },
             {
-              parameterName: "restype",
+              parameterPath: "restype",
               mapper: {
                 required: true,
                 isConstant: true,

@@ -131,19 +131,6 @@ export class EnumModel {
    */
   async putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringBody) {
-        let allowedValues = [ 'red color', 'green-color', 'blue_color' ];
-        if (!allowedValues.some( function(item) { return item === stringBody; })) {
-          throw new Error(stringBody + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('stringBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -161,19 +148,21 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/notExpandable",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "stringBody",
-            type: {
-              name: "Enum",
-              allowedValues: [
-                "red color",
-                "green-color",
-                "blue_color"
-              ]
+          requestBody: {
+            parameterPath: "stringBody",
+            mapper: {
+              required: true,
+              serializedName: "stringBody",
+              type: {
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
+              }
             }
           },
-          requestBodyName: "stringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -314,19 +303,6 @@ export class EnumModel {
    */
   async putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (enumStringBody) {
-        let allowedValues = [ 'red color', 'green-color', 'blue_color' ];
-        if (!allowedValues.some( function(item) { return item === enumStringBody; })) {
-          throw new Error(enumStringBody + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('enumStringBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -344,19 +320,21 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/Referenced",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "enumStringBody",
-            type: {
-              name: "Enum",
-              allowedValues: [
-                "red color",
-                "green-color",
-                "blue_color"
-              ]
+          requestBody: {
+            parameterPath: "enumStringBody",
+            mapper: {
+              required: true,
+              serializedName: "enumStringBody",
+              type: {
+                name: "Enum",
+                allowedValues: [
+                  "red color",
+                  "green-color",
+                  "blue_color"
+                ]
+              }
             }
           },
-          requestBodyName: "enumStringBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -484,23 +462,6 @@ export class EnumModel {
   async putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field1 = (options && options.field1 !== undefined) ? options.field1 : undefined;
-    // Validate
-    try {
-      if (field1 !== null && field1 !== undefined && typeof field1.valueOf() !== 'string') {
-        throw new Error('field1 must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let enumStringBody: any = {};
-    try {
-      if (field1 !== null && field1 !== undefined)
-      {
-        enumStringBody.field1 = field1;
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -518,20 +479,16 @@ export class EnumModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "string/enum/ReferencedConstant",
-          requestBodyMapper: Mappers.RefColorConstant,
-          requestBodyName: "enumStringBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field1"
-              ],
-              targetPath: [
-                "enumStringBody",
-                "field1"
-              ]
+          requestBody: {
+            parameterPath: {
+              field1: "field1"
+            },
+            mapper: {
+              ...Mappers.RefColorConstant,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

@@ -219,14 +219,6 @@ export class LROsCustomHeader {
   async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -247,7 +239,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/putasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -257,8 +249,10 @@ export class LROsCustomHeader {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -329,14 +323,6 @@ export class LROsCustomHeader {
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -357,7 +343,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/put/201/creating/succeeded/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -367,8 +353,10 @@ export class LROsCustomHeader {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -452,14 +440,6 @@ export class LROsCustomHeader {
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -480,7 +460,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/post/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -490,8 +470,10 @@ export class LROsCustomHeader {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -550,14 +532,6 @@ export class LROsCustomHeader {
   async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -578,7 +552,7 @@ export class LROsCustomHeader {
           path: "lro/customheader/postasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -588,8 +562,10 @@ export class LROsCustomHeader {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

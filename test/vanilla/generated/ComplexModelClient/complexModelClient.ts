@@ -58,14 +58,6 @@ class ComplexModelClient extends ComplexModelClientContext {
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -87,7 +79,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -99,7 +91,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -111,7 +103,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -195,17 +187,6 @@ class ComplexModelClient extends ComplexModelClientContext {
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
     let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -228,7 +209,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -238,7 +219,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -250,7 +231,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -262,20 +243,16 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogDictionaryOfArray,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productDictionaryOfArray"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productDictionaryOfArray"
-              ]
+          requestBody: {
+            parameterPath: {
+              productDictionaryOfArray: "productDictionaryOfArray"
+            },
+            mapper: {
+              ...Mappers.CatalogDictionaryOfArray,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -348,17 +325,6 @@ class ComplexModelClient extends ComplexModelClientContext {
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
     let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -381,7 +347,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/Microsoft.Cache/Redis",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -391,7 +357,7 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -403,7 +369,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -415,20 +381,16 @@ class ComplexModelClient extends ComplexModelClientContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.CatalogArrayOfDictionary,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "productArrayOfDictionary"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "productArrayOfDictionary"
-              ]
+          requestBody: {
+            parameterPath: {
+              productArrayOfDictionary: "productArrayOfDictionary"
+            },
+            mapper: {
+              ...Mappers.CatalogArrayOfDictionary,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

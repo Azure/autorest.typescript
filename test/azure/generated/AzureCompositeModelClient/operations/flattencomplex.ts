@@ -9,28 +9,25 @@
  */
 
 import * as msRest from "ms-rest-js";
-import * as Mappers from "../models/pathsMappers";
-import { AutoRestParameterizedHostTestClientContext } from "../autoRestParameterizedHostTestClientContext";
+import * as Models from "../models";
+import * as Mappers from "../models/flattencomplexMappers";
+import { AzureCompositeModelContext } from "../azureCompositeModelContext";
 
 const WebResource = msRest.WebResource;
 
-/** Class representing a Paths. */
-export class Paths {
-  private readonly client: AutoRestParameterizedHostTestClientContext;
+/** Class representing a Flattencomplex. */
+export class Flattencomplex {
+  private readonly client: AzureCompositeModelContext;
   private readonly serializer = new msRest.Serializer(Mappers);
   /**
-   * Create a Paths.
-   * @param {AutoRestParameterizedHostTestClientContext} client Reference to the service client.
+   * Create a Flattencomplex.
+   * @param {AzureCompositeModelContext} client Reference to the service client.
    */
-  constructor(client: AutoRestParameterizedHostTestClientContext) {
+  constructor(client: AzureCompositeModelContext) {
     this.client = client;
   }
 
   /**
-   * Get a 200 to test a valid base uri
-   *
-   * @param {string} accountName Account Name
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
@@ -39,7 +36,7 @@ export class Paths {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEmptyWithHttpOperationResponse(accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.MyBaseType>> {
     let client = this.client;
 
     // Create HTTP transport objects
@@ -48,8 +45,7 @@ export class Paths {
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
-          accountName,
-          "this.client.host": this.client.host
+          "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
       operationRes = await client.sendOperationRequest(
@@ -58,26 +54,13 @@ export class Paths {
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
-          path: "customuri",
-          urlParameters: [
+          path: "complex/flatten/valid",
+          headerParameters: [
             {
-              parameterPath: "accountName",
-              skipEncoding: true,
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
-                required: true,
-                serializedName: "accountName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.host",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "host",
-                defaultValue: 'host',
+                serializedName: "accept-language",
+                defaultValue: 'en-US',
                 type: {
                   name: "String"
                 }
@@ -95,13 +78,12 @@ export class Paths {
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
-            let internalError = null;
-            if (parsedErrorResponse.error) internalError = parsedErrorResponse.error;
-            error.code = internalError ? internalError.code : parsedErrorResponse.code;
-            error.message = internalError ? internalError.message : parsedErrorResponse.message;
+            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
+            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
+            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
           }
           if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.ErrorModel;
+            const resultMapper = Mappers.CloudError;
             error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
           }
         } catch (defaultError) {
@@ -110,6 +92,21 @@ export class Paths {
           return Promise.reject(error);
         }
         return Promise.reject(error);
+      }
+      // Deserialize Response
+      if (statusCode === 200) {
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        try {
+          if (parsedResponse !== null && parsedResponse !== undefined) {
+            const resultMapper = Mappers.MyBaseType;
+            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+          }
+        } catch (error) {
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
+        }
       }
 
     } catch(err) {
@@ -120,10 +117,6 @@ export class Paths {
   }
 
   /**
-   * Get a 200 to test a valid base uri
-   *
-   * @param {string} accountName Account Name
-   *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @param {ServiceCallback} callback - The callback.
@@ -132,34 +125,35 @@ export class Paths {
    *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
+   *                      {Models.MyBaseType} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link Models.MyBaseType} for more information.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
-  getEmpty(accountName: string): Promise<void>;
-  getEmpty(accountName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  getEmpty(accountName: string, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(accountName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  getEmpty(accountName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
+  getValid(): Promise<Models.MyBaseType>;
+  getValid(options: msRest.RequestOptionsBase): Promise<Models.MyBaseType>;
+  getValid(callback: msRest.ServiceCallback<Models.MyBaseType>): void;
+  getValid(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.MyBaseType>): void;
+  getValid(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.MyBaseType>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as msRest.ServiceCallback<void>;
+    let cb = callback as msRest.ServiceCallback<Models.MyBaseType>;
     if (!callback) {
-      return this.getEmptyWithHttpOperationResponse(accountName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
+      return this.getValidWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
+        return Promise.resolve(operationRes.parsedBody as Models.MyBaseType);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      msRest.promiseToCallback(this.getEmptyWithHttpOperationResponse(accountName, options))((err: Error, data: msRest.HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getValidWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
-        let result = data.parsedBody as void;
+        let result = data.parsedBody as Models.MyBaseType;
         return cb(err, result, data.request, data);
       });
     }

@@ -285,14 +285,6 @@ export class ByteModel {
    */
   async putNonAsciiWithHttpOperationResponse(byteBody: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(byteBody instanceof Uint8Array)) {
-        throw new Error('byteBody cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -310,14 +302,16 @@ export class ByteModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "byte/nonAscii",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "byteBody",
-            type: {
-              name: "ByteArray"
+          requestBody: {
+            parameterPath: "byteBody",
+            mapper: {
+              required: true,
+              serializedName: "byteBody",
+              type: {
+                name: "ByteArray"
+              }
             }
           },
-          requestBodyName: "byteBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

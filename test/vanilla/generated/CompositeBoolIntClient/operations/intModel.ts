@@ -527,14 +527,6 @@ export class IntModel {
    */
   async putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -552,14 +544,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/max/32",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -611,14 +605,6 @@ export class IntModel {
    */
   async putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -636,14 +622,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/max/64",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -695,14 +683,6 @@ export class IntModel {
    */
   async putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -720,14 +700,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/min/32",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -779,14 +761,6 @@ export class IntModel {
    */
   async putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (intBody === null || intBody === undefined || typeof intBody !== 'number') {
-        throw new Error('intBody cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -804,14 +778,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/min/64",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -944,15 +920,6 @@ export class IntModel {
    */
   async putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!intBody || !(intBody instanceof Date ||
-          (typeof (intBody as string).valueOf() === 'string' && !isNaN(Date.parse(intBody as string))))) {
-            throw new Error('intBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -970,14 +937,16 @@ export class IntModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "int/unixtime",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "intBody",
-            type: {
-              name: "UnixTime"
+          requestBody: {
+            parameterPath: "intBody",
+            mapper: {
+              required: true,
+              serializedName: "intBody",
+              type: {
+                name: "UnixTime"
+              }
             }
           },
-          requestBodyName: "intBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

@@ -634,7 +634,19 @@ namespace AutoRest.TypeScript
             IModelType requestBodyModelType = requestBody.ModelType;
             if (requestBodyModelType is CompositeType)
             {
-                value.Text($"Mappers.{requestBodyModelType.Name}");
+                string mapperReference = $"Mappers.{requestBodyModelType.Name}";
+                if (!requestBody.IsRequired)
+                {
+                    value.Text(mapperReference);
+                }
+                else
+                {
+                    value.Object(mapperObject =>
+                    {
+                        mapperObject.Spread(mapperReference);
+                        mapperObject.BooleanProperty("required", true);
+                    });
+                }
             }
             else
             {
@@ -865,13 +877,12 @@ namespace AutoRest.TypeScript
                             typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
                         }
 
-                        mapper.QuotedStringProperty("className", composite.Name);
+                        typeObject.QuotedStringProperty("className", composite.Name);
 
                         if (expandComposite)
                         {
-                            mapper.ObjectProperty("modelProperties", modelProperties =>
+                            typeObject.ObjectProperty("modelProperties", modelProperties =>
                             {
-
                                 if (composite.BaseModelType != null && composite.BaseModelType.ComposedProperties.Any())
                                 {
                                     modelProperties.Spread(composite.BaseModelType.Name + ".type.modelProperties");
@@ -895,7 +906,14 @@ namespace AutoRest.TypeScript
                                         }
                                     }
 
-                                    modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                    if (modelProperties.ContainsProperty(prop.Name))
+                                    {
+                                        // throw new InvalidOperationException($"Mapper \"{serializedName}\" contains multiple modelProperties with the name \"{prop.Name}\".");
+                                    }
+                                    else
+                                    {
+                                        modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                    }
                                 }
                             });
                         }

@@ -60,7 +60,7 @@ export class Paths {
           path: "paths/bool/true/{boolPath}",
           urlParameters: [
             {
-              parameterName: "boolPath",
+              parameterPath: "boolPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -140,7 +140,7 @@ export class Paths {
           path: "paths/bool/false/{boolPath}",
           urlParameters: [
             {
-              parameterName: "boolPath",
+              parameterPath: "boolPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -220,7 +220,7 @@ export class Paths {
           path: "paths/int/1000000/{intPath}",
           urlParameters: [
             {
-              parameterName: "intPath",
+              parameterPath: "intPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -300,7 +300,7 @@ export class Paths {
           path: "paths/int/-1000000/{intPath}",
           urlParameters: [
             {
-              parameterName: "intPath",
+              parameterPath: "intPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -380,7 +380,7 @@ export class Paths {
           path: "paths/long/10000000000/{longPath}",
           urlParameters: [
             {
-              parameterName: "longPath",
+              parameterPath: "longPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -460,7 +460,7 @@ export class Paths {
           path: "paths/long/-10000000000/{longPath}",
           urlParameters: [
             {
-              parameterName: "longPath",
+              parameterPath: "longPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -540,7 +540,7 @@ export class Paths {
           path: "paths/float/1.034E+20/{floatPath}",
           urlParameters: [
             {
-              parameterName: "floatPath",
+              parameterPath: "floatPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -620,7 +620,7 @@ export class Paths {
           path: "paths/float/-1.034E-20/{floatPath}",
           urlParameters: [
             {
-              parameterName: "floatPath",
+              parameterPath: "floatPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -700,7 +700,7 @@ export class Paths {
           path: "paths/double/9999999.999/{doublePath}",
           urlParameters: [
             {
-              parameterName: "doublePath",
+              parameterPath: "doublePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -780,7 +780,7 @@ export class Paths {
           path: "paths/double/-9999999.999/{doublePath}",
           urlParameters: [
             {
-              parameterName: "doublePath",
+              parameterPath: "doublePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -860,7 +860,7 @@ export class Paths {
           path: "paths/string/unicode/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -940,7 +940,7 @@ export class Paths {
           path: "paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1020,7 +1020,7 @@ export class Paths {
           path: "paths/string/empty/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1082,14 +1082,6 @@ export class Paths {
    */
   async stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (stringPath === null || stringPath === undefined || typeof stringPath.valueOf() !== 'string') {
-        throw new Error('stringPath cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1109,7 +1101,7 @@ export class Paths {
           path: "paths/string/null/{stringPath}",
           urlParameters: [
             {
-              parameterName: "stringPath",
+              parameterPath: "stringPath",
               mapper: {
                 required: true,
                 serializedName: "stringPath",
@@ -1170,19 +1162,6 @@ export class Paths {
    */
   async enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (enumPath) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumPath; })) {
-          throw new Error(enumPath + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('enumPath cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1202,7 +1181,7 @@ export class Paths {
           path: "paths/enum/green%20color/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
+              parameterPath: "enumPath",
               mapper: {
                 required: true,
                 serializedName: "enumPath",
@@ -1268,19 +1247,6 @@ export class Paths {
    */
   async enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (enumPath) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumPath; })) {
-          throw new Error(enumPath + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      } else {
-        throw new Error('enumPath cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1300,7 +1266,7 @@ export class Paths {
           path: "paths/string/null/{enumPath}",
           urlParameters: [
             {
-              parameterName: "enumPath",
+              parameterPath: "enumPath",
               mapper: {
                 required: true,
                 serializedName: "enumPath",
@@ -1366,14 +1332,6 @@ export class Paths {
    */
   async byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(bytePath instanceof Uint8Array)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1393,7 +1351,7 @@ export class Paths {
           path: "paths/byte/multibyte/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 serializedName: "bytePath",
@@ -1471,7 +1429,7 @@ export class Paths {
           path: "paths/byte/empty/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1533,14 +1491,6 @@ export class Paths {
    */
   async byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(bytePath instanceof Uint8Array)) {
-        throw new Error('bytePath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1560,7 +1510,7 @@ export class Paths {
           path: "paths/byte/null/{bytePath}",
           urlParameters: [
             {
-              parameterName: "bytePath",
+              parameterPath: "bytePath",
               mapper: {
                 required: true,
                 serializedName: "bytePath",
@@ -1638,7 +1588,7 @@ export class Paths {
           path: "paths/date/2012-01-01/{datePath}",
           urlParameters: [
             {
-              parameterName: "datePath",
+              parameterPath: "datePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1701,15 +1651,6 @@ export class Paths {
    */
   async dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datePath || !(datePath instanceof Date ||
-          (typeof (datePath as string).valueOf() === 'string' && !isNaN(Date.parse(datePath as string))))) {
-            throw new Error('datePath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1729,7 +1670,7 @@ export class Paths {
           path: "paths/date/null/{datePath}",
           urlParameters: [
             {
-              parameterName: "datePath",
+              parameterPath: "datePath",
               mapper: {
                 required: true,
                 serializedName: "datePath",
@@ -1807,7 +1748,7 @@ export class Paths {
           path: "paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
           urlParameters: [
             {
-              parameterName: "dateTimePath",
+              parameterPath: "dateTimePath",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1870,15 +1811,6 @@ export class Paths {
    */
   async dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!dateTimePath || !(dateTimePath instanceof Date ||
-          (typeof (dateTimePath as string).valueOf() === 'string' && !isNaN(Date.parse(dateTimePath as string))))) {
-            throw new Error('dateTimePath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1898,7 +1830,7 @@ export class Paths {
           path: "paths/datetime/null/{dateTimePath}",
           urlParameters: [
             {
-              parameterName: "dateTimePath",
+              parameterPath: "dateTimePath",
               mapper: {
                 required: true,
                 serializedName: "dateTimePath",
@@ -1958,14 +1890,6 @@ export class Paths {
    */
   async base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!(base64UrlPath instanceof Uint8Array)) {
-        throw new Error('base64UrlPath cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1985,7 +1909,7 @@ export class Paths {
           path: "paths/string/bG9yZW0/{base64UrlPath}",
           urlParameters: [
             {
-              parameterName: "base64UrlPath",
+              parameterPath: "base64UrlPath",
               mapper: {
                 required: true,
                 serializedName: "base64UrlPath",
@@ -2047,19 +1971,6 @@ export class Paths {
    */
   async arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayPath)) {
-        throw new Error('arrayPath cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayPath.length; i++) {
-        if (arrayPath[i] !== null && arrayPath[i] !== undefined && typeof arrayPath[i].valueOf() !== 'string') {
-          throw new Error('arrayPath[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2079,7 +1990,7 @@ export class Paths {
           path: "paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
           urlParameters: [
             {
-              parameterName: "arrayPath",
+              parameterPath: "arrayPath",
               mapper: {
                 required: true,
                 serializedName: "arrayPath",
@@ -2145,15 +2056,6 @@ export class Paths {
    */
   async unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!unixTimeUrlPath || !(unixTimeUrlPath instanceof Date ||
-          (typeof (unixTimeUrlPath as string).valueOf() === 'string' && !isNaN(Date.parse(unixTimeUrlPath as string))))) {
-            throw new Error('unixTimeUrlPath cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2173,7 +2075,7 @@ export class Paths {
           path: "paths/int/1460505600/{unixTimeUrlPath}",
           urlParameters: [
             {
-              parameterName: "unixTimeUrlPath",
+              parameterPath: "unixTimeUrlPath",
               mapper: {
                 required: true,
                 serializedName: "unixTimeUrlPath",

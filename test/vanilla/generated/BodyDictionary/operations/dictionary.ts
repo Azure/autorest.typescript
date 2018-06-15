@@ -216,19 +216,6 @@ export class Dictionary {
    */
   async putEmptyWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement].valueOf() !== 'string') {
-          throw new Error('arrayBody[valueElement] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -246,20 +233,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/empty",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -746,19 +735,6 @@ export class Dictionary {
    */
   async putBooleanTfftWithHttpOperationResponse(arrayBody: { [propertyName: string]: boolean }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement] !== 'boolean') {
-          throw new Error('arrayBody[valueElement] must be of type boolean.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -776,20 +752,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/boolean/tfft",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "booleanElementType",
-                type: {
-                  name: "Boolean"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1102,19 +1080,6 @@ export class Dictionary {
    */
   async putIntegerValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement] !== 'number') {
-          throw new Error('arrayBody[valueElement] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1132,20 +1097,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/integer/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1458,19 +1425,6 @@ export class Dictionary {
    */
   async putLongValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement] !== 'number') {
-          throw new Error('arrayBody[valueElement] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1488,20 +1442,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/long/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1814,19 +1770,6 @@ export class Dictionary {
    */
   async putFloatValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement] !== 'number') {
-          throw new Error('arrayBody[valueElement] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1844,20 +1787,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2170,19 +2115,6 @@ export class Dictionary {
    */
   async putDoubleValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: number }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement] !== 'number') {
-          throw new Error('arrayBody[valueElement] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2200,20 +2132,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2526,19 +2460,6 @@ export class Dictionary {
    */
   async putStringValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] !== null && arrayBody[valueElement] !== undefined && typeof arrayBody[valueElement].valueOf() !== 'string') {
-          throw new Error('arrayBody[valueElement] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2556,20 +2477,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2884,20 +2807,6 @@ export class Dictionary {
    */
   async putDateValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && !(arrayBody[valueElement] instanceof Date ||
-            (typeof (arrayBody[valueElement] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[valueElement] as string))))) {
-              throw new Error('arrayBody[valueElement] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2915,20 +2824,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "Date"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3243,20 +3154,6 @@ export class Dictionary {
    */
   async putDateTimeValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && !(arrayBody[valueElement] instanceof Date ||
-            (typeof (arrayBody[valueElement] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[valueElement] as string))))) {
-              throw new Error('arrayBody[valueElement] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3274,20 +3171,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTime"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3603,20 +3502,6 @@ export class Dictionary {
    */
   async putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: { [key: string]: Date } | { [key: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && !(arrayBody[valueElement] instanceof Date ||
-            (typeof (arrayBody[valueElement] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[valueElement] as string))))) {
-              throw new Error('arrayBody[valueElement] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3634,20 +3519,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/date-time-rfc1123/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3787,19 +3674,6 @@ export class Dictionary {
    */
   async putDurationValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if(arrayBody[valueElement] && !msRest.isDuration(arrayBody[valueElement])) {
-          throw new Error('arrayBody[valueElement] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3817,20 +3691,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/duration/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "TimeSpan"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3971,19 +3847,6 @@ export class Dictionary {
    */
   async putByteValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: Uint8Array }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && !(arrayBody[valueElement] instanceof Uint8Array)) {
-          throw new Error('arrayBody[valueElement] must be of type uint8array.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4001,20 +3864,22 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/prim/byte/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "Uint8ArrayElementType",
-                type: {
-                  name: "ByteArray"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "Uint8ArrayElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4704,21 +4569,23 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/complex/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "WidgetElementType",
-                type: {
-                  name: "Composite",
-                  className: "Widget"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "WidgetElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Widget"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5239,23 +5106,6 @@ export class Dictionary {
    */
   async putArrayValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string[] }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (Array.isArray(arrayBody[valueElement])) {
-          for (let i = 0; i < arrayBody[valueElement].length; i++) {
-            if (arrayBody[valueElement][i] !== null && arrayBody[valueElement][i] !== undefined && typeof arrayBody[valueElement][i].valueOf() !== 'string') {
-              throw new Error('arrayBody[valueElement][i] must be of type string.');
-            }
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5273,26 +5123,28 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/array/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "ArrayElementType",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5818,23 +5670,6 @@ export class Dictionary {
    */
   async putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: { [propertyName: string]: string } }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (arrayBody === null || arrayBody === undefined || typeof arrayBody !== 'object') {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in arrayBody) {
-        if (arrayBody[valueElement] && typeof arrayBody[valueElement] === 'object') {
-          for(let valueElement1 in arrayBody[valueElement]) {
-            if (arrayBody[valueElement][valueElement1] !== null && arrayBody[valueElement][valueElement1] !== undefined && typeof arrayBody[valueElement][valueElement1].valueOf() !== 'string') {
-              throw new Error('arrayBody[valueElement][valueElement1] must be of type string.');
-            }
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5852,26 +5687,28 @@ export class Dictionary {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "dictionary/dictionary/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "ObjectElementType",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

@@ -83,7 +83,7 @@ describe('typescript', function () {
     it('should use the subscriptionId parameter when it is present', function (done) {
       testClient.subscriptionInMethod.postMethodLocalNull(null, function (error, result) {
         should.exist(error);
-        error.message.should.match(/subscriptionId cannot be null or undefined and it must be of type string./ig);
+        error.message.should.equal("subscriptionId cannot be null or undefined.");
         testClient.subscriptionInMethod.postMethodLocalValid(dummySubscriptionId, function (error, result, request, response) {
           should.not.exist(error);
           response.status.should.equal(200);

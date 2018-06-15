@@ -40,14 +40,6 @@ export class XMsClientRequestId {
    */
   async getWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -67,7 +59,7 @@ export class XMsClientRequestId {
           path: "azurespecials/overwrite/x-ms-client-request-id/method/",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -128,17 +120,6 @@ export class XMsClientRequestId {
    */
   async paramGetWithHttpOperationResponse(xMsClientRequestId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (xMsClientRequestId === null || xMsClientRequestId === undefined || typeof xMsClientRequestId.valueOf() !== 'string') {
-        throw new Error('xMsClientRequestId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -159,7 +140,7 @@ export class XMsClientRequestId {
           path: "azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
           headerParameters: [
             {
-              parameterName: "xMsClientRequestId",
+              parameterPath: "xMsClientRequestId",
               mapper: {
                 required: true,
                 serializedName: "x-ms-client-request-id",
@@ -169,7 +150,7 @@ export class XMsClientRequestId {
               }
             },
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

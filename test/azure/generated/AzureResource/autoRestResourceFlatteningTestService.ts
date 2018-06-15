@@ -64,14 +64,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -92,7 +84,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -102,20 +94,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: {
-            serializedName: "ResourceArray",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ResourceElementType",
-                type: {
-                  name: "Composite",
-                  className: "Resource"
+          requestBody: {
+            parameterPath: "resourceArray",
+            mapper: {
+              serializedName: "ResourceArray",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ResourceElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Resource"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceArray",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -166,14 +160,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -193,7 +179,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/array",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -281,14 +267,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -309,7 +287,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -319,20 +297,22 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: {
-            serializedName: "ResourceDictionary",
-            type: {
-              name: "Dictionary",
-              value: {
-                serializedName: "FlattenedProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "FlattenedProduct"
+          requestBody: {
+            parameterPath: "resourceDictionary",
+            mapper: {
+              serializedName: "ResourceDictionary",
+              type: {
+                name: "Dictionary",
+                value: {
+                  serializedName: "FlattenedProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "FlattenedProduct"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "resourceDictionary",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -383,14 +363,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -410,7 +382,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/dictionary",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -499,14 +471,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this;
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -527,7 +491,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -537,8 +501,10 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
               }
             }
           ],
-          requestBodyMapper: Mappers.ResourceCollection,
-          requestBodyName: "resourceComplexObject",
+          requestBody: {
+            parameterPath: "resourceComplexObject",
+            mapper: Mappers.ResourceCollection
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -589,14 +555,6 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    */
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
     let client = this;
-    // Validate
-    try {
-      if (this.acceptLanguage !== null && this.acceptLanguage !== undefined && typeof this.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -616,7 +574,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           path: "azure/resource-flatten/resourcecollection",
           headerParameters: [
             {
-              parameterName: "this.acceptLanguage",
+              parameterPath: "this.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

@@ -122,14 +122,6 @@ export class Duration {
    */
   async putPositiveDurationWithHttpOperationResponse(durationBody: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!durationBody || !msRest.isDuration(durationBody)) {
-        throw new Error('durationBody cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -147,14 +139,16 @@ export class Duration {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "duration/positiveduration",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "durationBody",
-            type: {
-              name: "TimeSpan"
+          requestBody: {
+            parameterPath: "durationBody",
+            mapper: {
+              required: true,
+              serializedName: "durationBody",
+              type: {
+                name: "TimeSpan"
+              }
             }
           },
-          requestBodyName: "durationBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

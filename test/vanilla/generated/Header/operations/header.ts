@@ -43,14 +43,6 @@ export class Header {
    */
   async paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (userAgent === null || userAgent === undefined || typeof userAgent.valueOf() !== 'string') {
-        throw new Error('userAgent cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -70,7 +62,7 @@ export class Header {
           path: "header/param/existingkey",
           headerParameters: [
             {
-              parameterName: "userAgent",
+              parameterPath: "userAgent",
               mapper: {
                 required: true,
                 serializedName: "User-Agent",
@@ -196,14 +188,6 @@ export class Header {
    */
   async paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (contentType === null || contentType === undefined || typeof contentType.valueOf() !== 'string') {
-        throw new Error('contentType cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -223,7 +207,7 @@ export class Header {
           path: "header/param/protectedkey",
           headerParameters: [
             {
-              parameterName: "contentType",
+              parameterPath: "contentType",
               mapper: {
                 required: true,
                 serializedName: "Content-Type",
@@ -352,17 +336,6 @@ export class Header {
    */
   async paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value === null || value === undefined || typeof value !== 'number') {
-        throw new Error('value cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -383,7 +356,7 @@ export class Header {
           path: "header/param/prim/integer",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -393,7 +366,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -454,14 +427,6 @@ export class Header {
    */
   async responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -481,7 +446,7 @@ export class Header {
           path: "header/response/prim/integer",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -549,17 +514,6 @@ export class Header {
    */
   async paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value === null || value === undefined || typeof value !== 'number') {
-        throw new Error('value cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -580,7 +534,7 @@ export class Header {
           path: "header/param/prim/long",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -590,7 +544,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -651,14 +605,6 @@ export class Header {
    */
   async responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -678,7 +624,7 @@ export class Header {
           path: "header/response/prim/long",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -746,17 +692,6 @@ export class Header {
    */
   async paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value === null || value === undefined || typeof value !== 'number') {
-        throw new Error('value cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -777,7 +712,7 @@ export class Header {
           path: "header/param/prim/float",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -787,7 +722,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -848,14 +783,6 @@ export class Header {
    */
   async responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -875,7 +802,7 @@ export class Header {
           path: "header/response/prim/float",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -943,17 +870,6 @@ export class Header {
    */
   async paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value === null || value === undefined || typeof value !== 'number') {
-        throw new Error('value cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -974,7 +890,7 @@ export class Header {
           path: "header/param/prim/double",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -984,7 +900,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1045,14 +961,6 @@ export class Header {
    */
   async responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1072,7 +980,7 @@ export class Header {
           path: "header/response/prim/double",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1140,17 +1048,6 @@ export class Header {
    */
   async paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value === null || value === undefined || typeof value !== 'boolean') {
-        throw new Error('value cannot be null or undefined and it must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1171,7 +1068,7 @@ export class Header {
           path: "header/param/prim/bool",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1181,7 +1078,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1242,14 +1139,6 @@ export class Header {
    */
   async responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1269,7 +1158,7 @@ export class Header {
           path: "header/response/prim/bool",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1337,17 +1226,6 @@ export class Header {
   async paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value !== null && value !== undefined && typeof value.valueOf() !== 'string') {
-        throw new Error('value must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1368,7 +1246,7 @@ export class Header {
           path: "header/param/prim/string",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1378,7 +1256,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -1439,14 +1317,6 @@ export class Header {
    */
   async responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1466,7 +1336,7 @@ export class Header {
           path: "header/response/prim/string",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1535,18 +1405,6 @@ export class Header {
    */
   async paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if(!value || !(value instanceof Date ||
-          (typeof (value as string).valueOf() === 'string' && !isNaN(Date.parse(value as string))))) {
-            throw new Error('value cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1567,7 +1425,7 @@ export class Header {
           path: "header/param/prim/date",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1577,7 +1435,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1638,14 +1496,6 @@ export class Header {
    */
   async responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1665,7 +1515,7 @@ export class Header {
           path: "header/response/prim/date",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1734,18 +1584,6 @@ export class Header {
    */
   async paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if(!value || !(value instanceof Date ||
-          (typeof (value as string).valueOf() === 'string' && !isNaN(Date.parse(value as string))))) {
-            throw new Error('value cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1766,7 +1604,7 @@ export class Header {
           path: "header/param/prim/datetime",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1776,7 +1614,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -1838,14 +1676,6 @@ export class Header {
    */
   async responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1865,7 +1695,7 @@ export class Header {
           path: "header/response/prim/datetime",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1934,18 +1764,6 @@ export class Header {
   async paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value && !(value instanceof Date ||
-          (typeof (value as string).valueOf() === 'string' && !isNaN(Date.parse(value as string))))) {
-            throw new Error('value must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1966,7 +1784,7 @@ export class Header {
           path: "header/param/prim/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -1976,7 +1794,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -2037,14 +1855,6 @@ export class Header {
    */
   async responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2064,7 +1874,7 @@ export class Header {
           path: "header/response/prim/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2133,17 +1943,6 @@ export class Header {
    */
   async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if(!value || !msRest.isDuration(value)) {
-        throw new Error('value cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2164,7 +1963,7 @@ export class Header {
           path: "header/param/prim/duration",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2174,7 +1973,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -2235,14 +2034,6 @@ export class Header {
    */
   async responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2262,7 +2053,7 @@ export class Header {
           path: "header/response/prim/duration",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2331,17 +2122,6 @@ export class Header {
    */
   async paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (!(value instanceof Uint8Array)) {
-        throw new Error('value cannot be null or undefined and it must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2362,7 +2142,7 @@ export class Header {
           path: "header/param/prim/byte",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2372,7 +2152,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 required: true,
                 serializedName: "value",
@@ -2433,14 +2213,6 @@ export class Header {
    */
   async responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2460,7 +2232,7 @@ export class Header {
           path: "header/response/prim/byte",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2527,20 +2299,6 @@ export class Header {
   async paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-      if (value) {
-        let allowedValues = [ 'White', 'black', 'GREY' ];
-        if (!allowedValues.some( function(item) { return item === value; })) {
-          throw new Error(value + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2561,7 +2319,7 @@ export class Header {
           path: "header/param/prim/enum",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",
@@ -2571,7 +2329,7 @@ export class Header {
               }
             },
             {
-              parameterName: "value",
+              parameterPath: "value",
               mapper: {
                 serializedName: "value",
                 type: {
@@ -2636,14 +2394,6 @@ export class Header {
    */
   async responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (scenario === null || scenario === undefined || typeof scenario.valueOf() !== 'string') {
-        throw new Error('scenario cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2663,7 +2413,7 @@ export class Header {
           path: "header/response/prim/enum",
           headerParameters: [
             {
-              parameterName: "scenario",
+              parameterPath: "scenario",
               mapper: {
                 required: true,
                 serializedName: "scenario",

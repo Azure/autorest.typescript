@@ -54,14 +54,6 @@ class AutoRestReportService extends AutoRestReportServiceContext {
   async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
     let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
-    // Validate
-    try {
-      if (qualifier !== null && qualifier !== undefined && typeof qualifier.valueOf() !== 'string') {
-        throw new Error('qualifier must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -81,7 +73,7 @@ class AutoRestReportService extends AutoRestReportServiceContext {
           path: "report",
           queryParameters: [
             {
-              parameterName: "qualifier",
+              parameterPath: "qualifier",
               mapper: {
                 serializedName: "qualifier",
                 type: {

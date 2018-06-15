@@ -43,17 +43,6 @@ export class SubscriptionInMethod {
    */
   async postMethodLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -74,7 +63,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -86,7 +75,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -148,17 +137,6 @@ export class SubscriptionInMethod {
    */
   async postMethodLocalNullWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -179,7 +157,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -191,7 +169,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -253,17 +231,6 @@ export class SubscriptionInMethod {
    */
   async postPathLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -284,7 +251,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -296,7 +263,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -358,17 +325,6 @@ export class SubscriptionInMethod {
    */
   async postSwaggerLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (subscriptionId === null || subscriptionId === undefined || typeof subscriptionId.valueOf() !== 'string') {
-        throw new Error('subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -389,7 +345,7 @@ export class SubscriptionInMethod {
           path: "azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
           urlParameters: [
             {
-              parameterName: "subscriptionId",
+              parameterPath: "subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -401,7 +357,7 @@ export class SubscriptionInMethod {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

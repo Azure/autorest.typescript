@@ -60,7 +60,7 @@ export class Queries {
           path: "queries/bool/true",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -140,7 +140,7 @@ export class Queries {
           path: "queries/bool/false",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -201,14 +201,6 @@ export class Queries {
   async getBooleanNullWithHttpOperationResponse(options?: Models.QueriesGetBooleanNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let boolQuery = (options && options.boolQuery !== undefined) ? options.boolQuery : undefined;
-    // Validate
-    try {
-      if (boolQuery !== null && boolQuery !== undefined && typeof boolQuery !== 'boolean') {
-        throw new Error('boolQuery must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -228,7 +220,7 @@ export class Queries {
           path: "queries/bool/null",
           queryParameters: [
             {
-              parameterName: "boolQuery",
+              parameterPath: "boolQuery",
               mapper: {
                 serializedName: "boolQuery",
                 type: {
@@ -305,7 +297,7 @@ export class Queries {
           path: "queries/int/1000000",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -385,7 +377,7 @@ export class Queries {
           path: "queries/int/-1000000",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -446,14 +438,6 @@ export class Queries {
   async getIntNullWithHttpOperationResponse(options?: Models.QueriesGetIntNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let intQuery = (options && options.intQuery !== undefined) ? options.intQuery : undefined;
-    // Validate
-    try {
-      if (intQuery !== null && intQuery !== undefined && typeof intQuery !== 'number') {
-        throw new Error('intQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -473,7 +457,7 @@ export class Queries {
           path: "queries/int/null",
           queryParameters: [
             {
-              parameterName: "intQuery",
+              parameterPath: "intQuery",
               mapper: {
                 serializedName: "intQuery",
                 type: {
@@ -550,7 +534,7 @@ export class Queries {
           path: "queries/long/10000000000",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -630,7 +614,7 @@ export class Queries {
           path: "queries/long/-10000000000",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -691,14 +675,6 @@ export class Queries {
   async getLongNullWithHttpOperationResponse(options?: Models.QueriesGetLongNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let longQuery = (options && options.longQuery !== undefined) ? options.longQuery : undefined;
-    // Validate
-    try {
-      if (longQuery !== null && longQuery !== undefined && typeof longQuery !== 'number') {
-        throw new Error('longQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -718,7 +694,7 @@ export class Queries {
           path: "queries/long/null",
           queryParameters: [
             {
-              parameterName: "longQuery",
+              parameterPath: "longQuery",
               mapper: {
                 serializedName: "longQuery",
                 type: {
@@ -795,7 +771,7 @@ export class Queries {
           path: "queries/float/1.034E+20",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -875,7 +851,7 @@ export class Queries {
           path: "queries/float/-1.034E-20",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -936,14 +912,6 @@ export class Queries {
   async floatNullWithHttpOperationResponse(options?: Models.QueriesFloatNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let floatQuery = (options && options.floatQuery !== undefined) ? options.floatQuery : undefined;
-    // Validate
-    try {
-      if (floatQuery !== null && floatQuery !== undefined && typeof floatQuery !== 'number') {
-        throw new Error('floatQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -963,7 +931,7 @@ export class Queries {
           path: "queries/float/null",
           queryParameters: [
             {
-              parameterName: "floatQuery",
+              parameterPath: "floatQuery",
               mapper: {
                 serializedName: "floatQuery",
                 type: {
@@ -1040,7 +1008,7 @@ export class Queries {
           path: "queries/double/9999999.999",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1120,7 +1088,7 @@ export class Queries {
           path: "queries/double/-9999999.999",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1181,14 +1149,6 @@ export class Queries {
   async doubleNullWithHttpOperationResponse(options?: Models.QueriesDoubleNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let doubleQuery = (options && options.doubleQuery !== undefined) ? options.doubleQuery : undefined;
-    // Validate
-    try {
-      if (doubleQuery !== null && doubleQuery !== undefined && typeof doubleQuery !== 'number') {
-        throw new Error('doubleQuery must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1208,7 +1168,7 @@ export class Queries {
           path: "queries/double/null",
           queryParameters: [
             {
-              parameterName: "doubleQuery",
+              parameterPath: "doubleQuery",
               mapper: {
                 serializedName: "doubleQuery",
                 type: {
@@ -1285,7 +1245,7 @@ export class Queries {
           path: "queries/string/unicode/",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1365,7 +1325,7 @@ export class Queries {
           path: "queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1445,7 +1405,7 @@ export class Queries {
           path: "queries/string/empty",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1506,14 +1466,6 @@ export class Queries {
   async stringNullWithHttpOperationResponse(options?: Models.QueriesStringNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let stringQuery = (options && options.stringQuery !== undefined) ? options.stringQuery : undefined;
-    // Validate
-    try {
-      if (stringQuery !== null && stringQuery !== undefined && typeof stringQuery.valueOf() !== 'string') {
-        throw new Error('stringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1533,7 +1485,7 @@ export class Queries {
           path: "queries/string/null",
           queryParameters: [
             {
-              parameterName: "stringQuery",
+              parameterPath: "stringQuery",
               mapper: {
                 serializedName: "stringQuery",
                 type: {
@@ -1591,17 +1543,6 @@ export class Queries {
   async enumValidWithHttpOperationResponse(options?: Models.QueriesEnumValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-    // Validate
-    try {
-      if (enumQuery) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumQuery; })) {
-          throw new Error(enumQuery + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1621,7 +1562,7 @@ export class Queries {
           path: "queries/enum/green%20color",
           queryParameters: [
             {
-              parameterName: "enumQuery",
+              parameterPath: "enumQuery",
               mapper: {
                 serializedName: "enumQuery",
                 type: {
@@ -1684,17 +1625,6 @@ export class Queries {
   async enumNullWithHttpOperationResponse(options?: Models.QueriesEnumNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let enumQuery = (options && options.enumQuery !== undefined) ? options.enumQuery : undefined;
-    // Validate
-    try {
-      if (enumQuery) {
-        let allowedValues = [ 'red color', 'green color', 'blue color' ];
-        if (!allowedValues.some( function(item) { return item === enumQuery; })) {
-          throw new Error(enumQuery + ' is not a valid value. The valid values are: ' + allowedValues);
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1714,7 +1644,7 @@ export class Queries {
           path: "queries/enum/null",
           queryParameters: [
             {
-              parameterName: "enumQuery",
+              parameterPath: "enumQuery",
               mapper: {
                 serializedName: "enumQuery",
                 type: {
@@ -1777,14 +1707,6 @@ export class Queries {
   async byteMultiByteWithHttpOperationResponse(options?: Models.QueriesByteMultiByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-    // Validate
-    try {
-      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
-        throw new Error('byteQuery must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1804,7 +1726,7 @@ export class Queries {
           path: "queries/byte/multibyte",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 serializedName: "byteQuery",
                 type: {
@@ -1881,7 +1803,7 @@ export class Queries {
           path: "queries/byte/empty",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -1942,14 +1864,6 @@ export class Queries {
   async byteNullWithHttpOperationResponse(options?: Models.QueriesByteNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let byteQuery = (options && options.byteQuery !== undefined) ? options.byteQuery : undefined;
-    // Validate
-    try {
-      if (byteQuery && !(byteQuery instanceof Uint8Array)) {
-        throw new Error('byteQuery must be of type uint8array.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1969,7 +1883,7 @@ export class Queries {
           path: "queries/byte/null",
           queryParameters: [
             {
-              parameterName: "byteQuery",
+              parameterPath: "byteQuery",
               mapper: {
                 serializedName: "byteQuery",
                 type: {
@@ -2046,7 +1960,7 @@ export class Queries {
           path: "queries/date/2012-01-01",
           queryParameters: [
             {
-              parameterName: "dateQuery",
+              parameterPath: "dateQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -2107,15 +2021,6 @@ export class Queries {
   async dateNullWithHttpOperationResponse(options?: Models.QueriesDateNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let dateQuery = (options && options.dateQuery !== undefined) ? options.dateQuery : undefined;
-    // Validate
-    try {
-      if (dateQuery && !(dateQuery instanceof Date ||
-          (typeof (dateQuery as string).valueOf() === 'string' && !isNaN(Date.parse(dateQuery as string))))) {
-            throw new Error('dateQuery must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2135,7 +2040,7 @@ export class Queries {
           path: "queries/date/null",
           queryParameters: [
             {
-              parameterName: "dateQuery",
+              parameterPath: "dateQuery",
               mapper: {
                 serializedName: "dateQuery",
                 type: {
@@ -2212,7 +2117,7 @@ export class Queries {
           path: "queries/datetime/2012-01-01T01%3A01%3A01Z",
           queryParameters: [
             {
-              parameterName: "dateTimeQuery",
+              parameterPath: "dateTimeQuery",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -2273,15 +2178,6 @@ export class Queries {
   async dateTimeNullWithHttpOperationResponse(options?: Models.QueriesDateTimeNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let dateTimeQuery = (options && options.dateTimeQuery !== undefined) ? options.dateTimeQuery : undefined;
-    // Validate
-    try {
-      if (dateTimeQuery && !(dateTimeQuery instanceof Date ||
-          (typeof (dateTimeQuery as string).valueOf() === 'string' && !isNaN(Date.parse(dateTimeQuery as string))))) {
-            throw new Error('dateTimeQuery must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2301,7 +2197,7 @@ export class Queries {
           path: "queries/datetime/null",
           queryParameters: [
             {
-              parameterName: "dateTimeQuery",
+              parameterPath: "dateTimeQuery",
               mapper: {
                 serializedName: "dateTimeQuery",
                 type: {
@@ -2361,18 +2257,6 @@ export class Queries {
   async arrayStringCsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2392,7 +2276,7 @@ export class Queries {
           path: "queries/array/csv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2458,18 +2342,6 @@ export class Queries {
   async arrayStringCsvNullWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2489,7 +2361,7 @@ export class Queries {
           path: "queries/array/csv/string/null",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2555,18 +2427,6 @@ export class Queries {
   async arrayStringCsvEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringCsvEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2586,7 +2446,7 @@ export class Queries {
           path: "queries/array/csv/string/empty",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Csv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2653,18 +2513,6 @@ export class Queries {
   async arrayStringSsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringSsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2684,7 +2532,7 @@ export class Queries {
           path: "queries/array/ssv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Ssv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2751,18 +2599,6 @@ export class Queries {
   async arrayStringTsvValidWithHttpOperationResponse(options?: Models.QueriesArrayStringTsvValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2782,7 +2618,7 @@ export class Queries {
           path: "queries/array/tsv/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Tsv,
               mapper: {
                 serializedName: "arrayQuery",
@@ -2849,18 +2685,6 @@ export class Queries {
   async arrayStringPipesValidWithHttpOperationResponse(options?: Models.QueriesArrayStringPipesValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
-    // Validate
-    try {
-      if (Array.isArray(arrayQuery)) {
-        for (let i = 0; i < arrayQuery.length; i++) {
-          if (arrayQuery[i] !== null && arrayQuery[i] !== undefined && typeof arrayQuery[i].valueOf() !== 'string') {
-            throw new Error('arrayQuery[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2880,7 +2704,7 @@ export class Queries {
           path: "queries/array/pipes/string/valid",
           queryParameters: [
             {
-              parameterName: "arrayQuery",
+              parameterPath: "arrayQuery",
               collectionFormat: msRest.QueryCollectionFormat.Pipes,
               mapper: {
                 serializedName: "arrayQuery",

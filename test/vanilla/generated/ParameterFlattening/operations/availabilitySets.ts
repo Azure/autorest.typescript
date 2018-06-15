@@ -46,31 +46,6 @@ export class AvailabilitySets {
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (avset === null || avset === undefined || typeof avset.valueOf() !== 'string') {
-        throw new Error('avset cannot be null or undefined and it must be of type string.');
-      }
-      if (avset !== null && avset !== undefined) {
-        if (avset.length > 80)
-        {
-          throw new Error('"avset" should satisfy the constraint - "MaxLength": 80');
-        }
-      }
-      if (tags === null || tags === undefined || typeof tags !== 'object') {
-        throw new Error('tags cannot be null or undefined and it must be of type object.');
-      }
-      for(let valueElement in tags) {
-        if (tags[valueElement] !== null && tags[valueElement] !== undefined && typeof tags[valueElement].valueOf() !== 'string') {
-          throw new Error('tags[valueElement] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -92,7 +67,7 @@ export class AvailabilitySets {
           path: "parameterFlattening/{resourceGroupName}/{availabilitySetName}",
           urlParameters: [
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -102,7 +77,7 @@ export class AvailabilitySets {
               }
             },
             {
-              parameterName: "avset",
+              parameterPath: "avset",
               mapper: {
                 required: true,
                 serializedName: "availabilitySetName",
@@ -115,20 +90,16 @@ export class AvailabilitySets {
               }
             }
           ],
-          requestBodyMapper: Mappers.AvailabilitySetUpdateParameters,
-          requestBodyName: "tags1",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "tags"
-              ],
-              targetPath: [
-                "tags1",
-                "tags"
-              ]
+          requestBody: {
+            parameterPath: {
+              tags: "tags"
+            },
+            mapper: {
+              ...Mappers.AvailabilitySetUpdateParameters,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

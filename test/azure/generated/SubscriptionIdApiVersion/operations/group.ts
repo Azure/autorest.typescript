@@ -42,23 +42,6 @@ export class Group {
    */
   async getSampleResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SampleResourceGroup>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -81,7 +64,7 @@ export class Group {
           path: "subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
           urlParameters: [
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -91,7 +74,7 @@ export class Group {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -103,7 +86,7 @@ export class Group {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -115,7 +98,7 @@ export class Group {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',

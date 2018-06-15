@@ -40,14 +40,6 @@ export class Primitive {
    */
   async getIntWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.IntWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -67,7 +59,7 @@ export class Primitive {
           path: "complex/primitive/integer",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -142,17 +134,6 @@ export class Primitive {
    */
   async putIntWithHttpOperationResponse(complexBody: Models.IntWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -173,7 +154,7 @@ export class Primitive {
           path: "complex/primitive/integer",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -183,8 +164,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.IntWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.IntWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -234,14 +220,6 @@ export class Primitive {
    */
   async getLongWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LongWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -261,7 +239,7 @@ export class Primitive {
           path: "complex/primitive/long",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -336,17 +314,6 @@ export class Primitive {
    */
   async putLongWithHttpOperationResponse(complexBody: Models.LongWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -367,7 +334,7 @@ export class Primitive {
           path: "complex/primitive/long",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -377,8 +344,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.LongWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.LongWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -428,14 +400,6 @@ export class Primitive {
    */
   async getFloatWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FloatWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -455,7 +419,7 @@ export class Primitive {
           path: "complex/primitive/float",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -530,17 +494,6 @@ export class Primitive {
    */
   async putFloatWithHttpOperationResponse(complexBody: Models.FloatWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -561,7 +514,7 @@ export class Primitive {
           path: "complex/primitive/float",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -571,8 +524,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.FloatWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.FloatWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -622,14 +580,6 @@ export class Primitive {
    */
   async getDoubleWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DoubleWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -649,7 +599,7 @@ export class Primitive {
           path: "complex/primitive/double",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -725,17 +675,6 @@ export class Primitive {
    */
   async putDoubleWithHttpOperationResponse(complexBody: Models.DoubleWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -756,7 +695,7 @@ export class Primitive {
           path: "complex/primitive/double",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -766,8 +705,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.DoubleWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DoubleWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -817,14 +761,6 @@ export class Primitive {
    */
   async getBoolWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BooleanWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -844,7 +780,7 @@ export class Primitive {
           path: "complex/primitive/bool",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -919,17 +855,6 @@ export class Primitive {
    */
   async putBoolWithHttpOperationResponse(complexBody: Models.BooleanWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -950,7 +875,7 @@ export class Primitive {
           path: "complex/primitive/bool",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -960,8 +885,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.BooleanWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.BooleanWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1011,14 +941,6 @@ export class Primitive {
    */
   async getStringWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StringWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1038,7 +960,7 @@ export class Primitive {
           path: "complex/primitive/string",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1113,17 +1035,6 @@ export class Primitive {
    */
   async putStringWithHttpOperationResponse(complexBody: Models.StringWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1144,7 +1055,7 @@ export class Primitive {
           path: "complex/primitive/string",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1154,8 +1065,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.StringWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.StringWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1205,14 +1121,6 @@ export class Primitive {
    */
   async getDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DateWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1232,7 +1140,7 @@ export class Primitive {
           path: "complex/primitive/date",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1307,17 +1215,6 @@ export class Primitive {
    */
   async putDateWithHttpOperationResponse(complexBody: Models.DateWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1338,7 +1235,7 @@ export class Primitive {
           path: "complex/primitive/date",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1348,8 +1245,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.DateWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DateWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1399,14 +1301,6 @@ export class Primitive {
    */
   async getDateTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DatetimeWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1426,7 +1320,7 @@ export class Primitive {
           path: "complex/primitive/datetime",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1502,17 +1396,6 @@ export class Primitive {
    */
   async putDateTimeWithHttpOperationResponse(complexBody: Models.DatetimeWrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1533,7 +1416,7 @@ export class Primitive {
           path: "complex/primitive/datetime",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1543,8 +1426,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.DatetimeWrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.DatetimeWrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1594,14 +1482,6 @@ export class Primitive {
    */
   async getDateTimeRfc1123WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Datetimerfc1123Wrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1621,7 +1501,7 @@ export class Primitive {
           path: "complex/primitive/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1697,17 +1577,6 @@ export class Primitive {
    */
   async putDateTimeRfc1123WithHttpOperationResponse(complexBody: Models.Datetimerfc1123Wrapper, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1728,7 +1597,7 @@ export class Primitive {
           path: "complex/primitive/datetimerfc1123",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1738,8 +1607,13 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.Datetimerfc1123Wrapper,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.Datetimerfc1123Wrapper,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1789,14 +1663,6 @@ export class Primitive {
    */
   async getDurationWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DurationWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1816,7 +1682,7 @@ export class Primitive {
           path: "complex/primitive/duration",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1890,17 +1756,6 @@ export class Primitive {
   async putDurationWithHttpOperationResponse(options?: Models.PrimitivePutDurationOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
-    // Validate
-    try {
-      if(field && !msRest.isDuration(field)) {
-        throw new Error('field must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1921,7 +1776,7 @@ export class Primitive {
           path: "complex/primitive/duration",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -1931,20 +1786,16 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.DurationWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: {
+              ...Mappers.DurationWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1993,14 +1844,6 @@ export class Primitive {
    */
   async getByteWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ByteWrapper>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2020,7 +1863,7 @@ export class Primitive {
           path: "complex/primitive/byte",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2094,17 +1937,6 @@ export class Primitive {
   async putByteWithHttpOperationResponse(options?: Models.PrimitivePutByteOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let field = (options && options.field !== undefined) ? options.field : undefined;
-    // Validate
-    try {
-      if (field && !(field instanceof Uint8Array)) {
-        throw new Error('field must be of type uint8array.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2125,7 +1957,7 @@ export class Primitive {
           path: "complex/primitive/byte",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -2135,20 +1967,16 @@ export class Primitive {
               }
             }
           ],
-          requestBodyMapper: Mappers.ByteWrapper,
-          requestBodyName: "complexBody",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "field"
-              ],
-              targetPath: [
-                "complexBody",
-                "field"
-              ]
+          requestBody: {
+            parameterPath: {
+              field: "field"
+            },
+            mapper: {
+              ...Mappers.ByteWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;

@@ -52,29 +52,6 @@ export class PathItems {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-    // Validate
-    try {
-      if (localStringPath === null || localStringPath === undefined || typeof localStringPath.valueOf() !== 'string') {
-        throw new Error('localStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (localStringQuery !== null && localStringQuery !== undefined && typeof localStringQuery.valueOf() !== 'string') {
-        throw new Error('localStringQuery must be of type string.');
-      }
-      if (pathItemStringPath === null || pathItemStringPath === undefined || typeof pathItemStringPath.valueOf() !== 'string') {
-        throw new Error('pathItemStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (pathItemStringQuery !== null && pathItemStringQuery !== undefined && typeof pathItemStringQuery.valueOf() !== 'string') {
-        throw new Error('pathItemStringQuery must be of type string.');
-      }
-      if (this.client.globalStringPath === null || this.client.globalStringPath === undefined || typeof this.client.globalStringPath.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined && typeof this.client.globalStringQuery.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -99,7 +76,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -109,7 +86,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -119,7 +96,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -131,7 +108,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -140,7 +117,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -149,7 +126,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -217,29 +194,6 @@ export class PathItems {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-    // Validate
-    try {
-      if (localStringPath === null || localStringPath === undefined || typeof localStringPath.valueOf() !== 'string') {
-        throw new Error('localStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (localStringQuery !== null && localStringQuery !== undefined && typeof localStringQuery.valueOf() !== 'string') {
-        throw new Error('localStringQuery must be of type string.');
-      }
-      if (pathItemStringPath === null || pathItemStringPath === undefined || typeof pathItemStringPath.valueOf() !== 'string') {
-        throw new Error('pathItemStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (pathItemStringQuery !== null && pathItemStringQuery !== undefined && typeof pathItemStringQuery.valueOf() !== 'string') {
-        throw new Error('pathItemStringQuery must be of type string.');
-      }
-      if (this.client.globalStringPath === null || this.client.globalStringPath === undefined || typeof this.client.globalStringPath.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined && typeof this.client.globalStringQuery.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -264,7 +218,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -274,7 +228,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -284,7 +238,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -296,7 +250,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -305,7 +259,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -314,7 +268,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -382,29 +336,6 @@ export class PathItems {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-    // Validate
-    try {
-      if (localStringPath === null || localStringPath === undefined || typeof localStringPath.valueOf() !== 'string') {
-        throw new Error('localStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (localStringQuery !== null && localStringQuery !== undefined && typeof localStringQuery.valueOf() !== 'string') {
-        throw new Error('localStringQuery must be of type string.');
-      }
-      if (pathItemStringPath === null || pathItemStringPath === undefined || typeof pathItemStringPath.valueOf() !== 'string') {
-        throw new Error('pathItemStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (pathItemStringQuery !== null && pathItemStringQuery !== undefined && typeof pathItemStringQuery.valueOf() !== 'string') {
-        throw new Error('pathItemStringQuery must be of type string.');
-      }
-      if (this.client.globalStringPath === null || this.client.globalStringPath === undefined || typeof this.client.globalStringPath.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined && typeof this.client.globalStringQuery.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -429,7 +360,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -439,7 +370,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -449,7 +380,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -461,7 +392,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -470,7 +401,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -479,7 +410,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {
@@ -547,29 +478,6 @@ export class PathItems {
     let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
-    // Validate
-    try {
-      if (localStringPath === null || localStringPath === undefined || typeof localStringPath.valueOf() !== 'string') {
-        throw new Error('localStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (localStringQuery !== null && localStringQuery !== undefined && typeof localStringQuery.valueOf() !== 'string') {
-        throw new Error('localStringQuery must be of type string.');
-      }
-      if (pathItemStringPath === null || pathItemStringPath === undefined || typeof pathItemStringPath.valueOf() !== 'string') {
-        throw new Error('pathItemStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (pathItemStringQuery !== null && pathItemStringQuery !== undefined && typeof pathItemStringQuery.valueOf() !== 'string') {
-        throw new Error('pathItemStringQuery must be of type string.');
-      }
-      if (this.client.globalStringPath === null || this.client.globalStringPath === undefined || typeof this.client.globalStringPath.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringPath cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.globalStringQuery !== null && this.client.globalStringQuery !== undefined && typeof this.client.globalStringQuery.valueOf() !== 'string') {
-        throw new Error('this.client.globalStringQuery must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -594,7 +502,7 @@ export class PathItems {
           path: "pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
           urlParameters: [
             {
-              parameterName: "localStringPath",
+              parameterPath: "localStringPath",
               mapper: {
                 required: true,
                 serializedName: "localStringPath",
@@ -604,7 +512,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringPath",
+              parameterPath: "pathItemStringPath",
               mapper: {
                 required: true,
                 serializedName: "pathItemStringPath",
@@ -614,7 +522,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringPath",
+              parameterPath: "this.client.globalStringPath",
               mapper: {
                 required: true,
                 serializedName: "globalStringPath",
@@ -626,7 +534,7 @@ export class PathItems {
           ],
           queryParameters: [
             {
-              parameterName: "localStringQuery",
+              parameterPath: "localStringQuery",
               mapper: {
                 serializedName: "localStringQuery",
                 type: {
@@ -635,7 +543,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "pathItemStringQuery",
+              parameterPath: "pathItemStringQuery",
               mapper: {
                 serializedName: "pathItemStringQuery",
                 type: {
@@ -644,7 +552,7 @@ export class PathItems {
               }
             },
             {
-              parameterName: "this.client.globalStringQuery",
+              parameterPath: "this.client.globalStringQuery",
               mapper: {
                 serializedName: "globalStringQuery",
                 type: {

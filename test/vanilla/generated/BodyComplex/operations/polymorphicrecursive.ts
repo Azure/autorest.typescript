@@ -170,14 +170,6 @@ export class Polymorphicrecursive {
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -195,8 +187,13 @@ export class Polymorphicrecursive {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "complex/polymorphicrecursive/valid",
-          requestBodyMapper: Mappers.Fish,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.Fish,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

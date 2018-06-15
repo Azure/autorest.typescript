@@ -40,14 +40,6 @@ export class Inheritance {
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Siamese>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -67,7 +59,7 @@ export class Inheritance {
           path: "complex/inheritance/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -145,17 +137,6 @@ export class Inheritance {
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Siamese, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (complexBody === null || complexBody === undefined) {
-        throw new Error('complexBody cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -176,7 +157,7 @@ export class Inheritance {
           path: "complex/inheritance/valid",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -186,8 +167,13 @@ export class Inheritance {
               }
             }
           ],
-          requestBodyMapper: Mappers.Siamese,
-          requestBodyName: "complexBody",
+          requestBody: {
+            parameterPath: "complexBody",
+            mapper: {
+              ...Mappers.Siamese,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

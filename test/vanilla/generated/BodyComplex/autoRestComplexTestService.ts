@@ -26,6 +26,7 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
   polymorphism: operations.Polymorphism;
   polymorphicrecursive: operations.Polymorphicrecursive;
   readonlyproperty: operations.Readonlyproperty;
+  flattencomplex: operations.Flattencomplex;
 
   /**
    * @class
@@ -54,6 +55,7 @@ class AutoRestComplexTestService extends AutoRestComplexTestServiceContext {
     this.polymorphism = new operations.Polymorphism(this);
     this.polymorphicrecursive = new operations.Polymorphicrecursive(this);
     this.readonlyproperty = new operations.Readonlyproperty(this);
+    this.flattencomplex = new operations.Flattencomplex(this);
   }
 }
 

@@ -777,6 +777,57 @@ export const ReadonlyObj = {
   }
 };
 
+export const MyBaseType = {
+  serializedName: "MyBaseType",
+  type: {
+    name: "Composite",
+    polymorphicDiscriminator: {
+      serializedName: "kind",
+      clientName: "kind"
+    },
+    uberParent: "MyBaseType",
+    className: "MyBaseType",
+    modelProperties: {
+      propB1: {
+        serializedName: "propB1",
+        type: {
+          name: "String"
+        }
+      },
+      kind: {
+        required: true,
+        serializedName: "kind",
+        type: {
+          name: "String"
+        }
+      },
+      propBH1: {
+        serializedName: "helper.propBH1",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const MyDerivedType = {
+  serializedName: "Kind1",
+  type: {
+    name: "Composite",
+    className: "MyDerivedType",
+    modelProperties: {
+      ...MyBaseType.type.modelProperties,
+      propD1: {
+        serializedName: "propD1",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const AzureCompositeModelCreateOptionalParams = {
   serializedName: "CreateOptions",
   type: {
@@ -978,5 +1029,7 @@ export const discriminators = {
   'Fish.shark' : Shark,
   'Fish.sawshark' : Sawshark,
   'Fish.goblin' : Goblinshark,
-  'Fish.cookiecuttershark' : Cookiecuttershark
+  'Fish.cookiecuttershark' : Cookiecuttershark,
+  'MyBaseType' : MyBaseType,
+  'MyBaseType.Kind1' : MyDerivedType
 };

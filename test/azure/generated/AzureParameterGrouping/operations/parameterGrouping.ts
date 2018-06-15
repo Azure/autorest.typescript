@@ -44,53 +44,6 @@ export class ParameterGrouping {
    */
   async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (parameterGroupingPostRequiredParameters === null || parameterGroupingPostRequiredParameters === undefined) {
-        throw new Error('parameterGroupingPostRequiredParameters cannot be null or undefined.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let body: any;
-    let customHeader: any;
-    let query: any;
-    let path: any;
-    try {
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        body = parameterGroupingPostRequiredParameters.body;
-        if (body === null || body === undefined || typeof body !== 'number') {
-          throw new Error('body cannot be null or undefined and it must be of type number.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        customHeader = parameterGroupingPostRequiredParameters.customHeader;
-        if (customHeader !== null && customHeader !== undefined && typeof customHeader.valueOf() !== 'string') {
-          throw new Error('customHeader must be of type string.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        query = parameterGroupingPostRequiredParameters.query;
-        if (query !== null && query !== undefined && typeof query !== 'number') {
-          throw new Error('query must be of type number.');
-        }
-      }
-      if (parameterGroupingPostRequiredParameters !== null && parameterGroupingPostRequiredParameters !== undefined)
-      {
-        path = parameterGroupingPostRequiredParameters.path;
-        if (path === null || path === undefined || typeof path.valueOf() !== 'string') {
-          throw new Error('path cannot be null or undefined and it must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -111,7 +64,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postRequired/{path}",
           urlParameters: [
             {
-              parameterName: "path",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "path"
+              ],
               mapper: {
                 required: true,
                 serializedName: "path",
@@ -123,7 +79,10 @@ export class ParameterGrouping {
           ],
           queryParameters: [
             {
-              parameterName: "query",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "query"
+              ],
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -135,7 +94,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -145,7 +104,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "customHeader",
+              parameterPath: [
+                "parameterGroupingPostRequiredParameters",
+                "customHeader"
+              ],
               mapper: {
                 serializedName: "customHeader",
                 type: {
@@ -154,53 +116,20 @@ export class ParameterGrouping {
               }
             }
           ],
-          requestBodyMapper: {
-            required: true,
-            serializedName: "body",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: [
+              "parameterGroupingPostRequiredParameters",
+              "body"
+            ],
+            mapper: {
+              required: true,
+              serializedName: "body",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "body",
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "body"
-              ],
-              targetPath: [
-                "body"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "customHeader"
-              ],
-              targetPath: [
-                "customHeader"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "query"
-              ],
-              targetPath: [
-                "query"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostRequiredParameters",
-                "path"
-              ],
-              targetPath: [
-                "path"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -251,34 +180,6 @@ export class ParameterGrouping {
   async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let parameterGroupingPostOptionalParameters = (options && options.parameterGroupingPostOptionalParameters !== undefined) ? options.parameterGroupingPostOptionalParameters : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let customHeader: any;
-    let query: any;
-    try {
-      if (parameterGroupingPostOptionalParameters !== null && parameterGroupingPostOptionalParameters !== undefined)
-      {
-        customHeader = parameterGroupingPostOptionalParameters.customHeader;
-        if (customHeader !== null && customHeader !== undefined && typeof customHeader.valueOf() !== 'string') {
-          throw new Error('customHeader must be of type string.');
-        }
-      }
-      if (parameterGroupingPostOptionalParameters !== null && parameterGroupingPostOptionalParameters !== undefined)
-      {
-        query = parameterGroupingPostOptionalParameters.query;
-        if (query !== null && query !== undefined && typeof query !== 'number') {
-          throw new Error('query must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -299,7 +200,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postOptional",
           queryParameters: [
             {
-              parameterName: "query",
+              parameterPath: [
+                "parameterGroupingPostOptionalParameters",
+                "query"
+              ],
               mapper: {
                 serializedName: "query",
                 defaultValue: 30,
@@ -311,7 +215,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -321,33 +225,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "customHeader",
+              parameterPath: [
+                "parameterGroupingPostOptionalParameters",
+                "customHeader"
+              ],
               mapper: {
                 serializedName: "customHeader",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "parameterGroupingPostOptionalParameters",
-                "customHeader"
-              ],
-              targetPath: [
-                "customHeader"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostOptionalParameters",
-                "query"
-              ],
-              targetPath: [
-                "query"
-              ]
             }
           ],
           serializer: this.serializer
@@ -401,50 +288,6 @@ export class ParameterGrouping {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
     let parameterGroupingPostMultiParamGroupsSecondParamGroup = (options && options.parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined) ? options.parameterGroupingPostMultiParamGroupsSecondParamGroup : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let headerOne: any;
-    let queryOne: any;
-    let headerTwo: any;
-    let queryTwo: any;
-    try {
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        headerOne = firstParameterGroup.headerOne;
-        if (headerOne !== null && headerOne !== undefined && typeof headerOne.valueOf() !== 'string') {
-          throw new Error('headerOne must be of type string.');
-        }
-      }
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        queryOne = firstParameterGroup.queryOne;
-        if (queryOne !== null && queryOne !== undefined && typeof queryOne !== 'number') {
-          throw new Error('queryOne must be of type number.');
-        }
-      }
-      if (parameterGroupingPostMultiParamGroupsSecondParamGroup !== null && parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined)
-      {
-        headerTwo = parameterGroupingPostMultiParamGroupsSecondParamGroup.headerTwo;
-        if (headerTwo !== null && headerTwo !== undefined && typeof headerTwo.valueOf() !== 'string') {
-          throw new Error('headerTwo must be of type string.');
-        }
-      }
-      if (parameterGroupingPostMultiParamGroupsSecondParamGroup !== null && parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined)
-      {
-        queryTwo = parameterGroupingPostMultiParamGroupsSecondParamGroup.queryTwo;
-        if (queryTwo !== null && queryTwo !== undefined && typeof queryTwo !== 'number') {
-          throw new Error('queryTwo must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -466,7 +309,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/postMultipleParameterGroups",
           queryParameters: [
             {
-              parameterName: "queryOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -476,7 +322,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "queryTwo",
+              parameterPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "queryTwo"
+              ],
               mapper: {
                 serializedName: "query-two",
                 defaultValue: 30,
@@ -488,7 +337,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -498,7 +347,10 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
               mapper: {
                 serializedName: "header-one",
                 type: {
@@ -507,51 +359,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerTwo",
+              parameterPath: [
+                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
+                "headerTwo"
+              ],
               mapper: {
                 serializedName: "header-two",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              targetPath: [
-                "headerOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              targetPath: [
-                "queryOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "headerTwo"
-              ],
-              targetPath: [
-                "headerTwo"
-              ]
-            },
-            {
-              sourcePath: [
-                "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-                "queryTwo"
-              ],
-              targetPath: [
-                "queryTwo"
-              ]
             }
           ],
           serializer: this.serializer
@@ -604,34 +421,6 @@ export class ParameterGrouping {
   async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
-    let headerOne: any;
-    let queryOne: any;
-    try {
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        headerOne = firstParameterGroup.headerOne;
-        if (headerOne !== null && headerOne !== undefined && typeof headerOne.valueOf() !== 'string') {
-          throw new Error('headerOne must be of type string.');
-        }
-      }
-      if (firstParameterGroup !== null && firstParameterGroup !== undefined)
-      {
-        queryOne = firstParameterGroup.queryOne;
-        if (queryOne !== null && queryOne !== undefined && typeof queryOne !== 'number') {
-          throw new Error('queryOne must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -652,7 +441,10 @@ export class ParameterGrouping {
           path: "parameterGrouping/sharedParameterGroupObject",
           queryParameters: [
             {
-              parameterName: "queryOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "queryOne"
+              ],
               mapper: {
                 serializedName: "query-one",
                 defaultValue: 30,
@@ -664,7 +456,7 @@ export class ParameterGrouping {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -674,33 +466,16 @@ export class ParameterGrouping {
               }
             },
             {
-              parameterName: "headerOne",
+              parameterPath: [
+                "firstParameterGroup",
+                "headerOne"
+              ],
               mapper: {
                 serializedName: "header-one",
                 type: {
                   name: "String"
                 }
               }
-            }
-          ],
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "headerOne"
-              ],
-              targetPath: [
-                "headerOne"
-              ]
-            },
-            {
-              sourcePath: [
-                "firstParameterGroup",
-                "queryOne"
-              ],
-              targetPath: [
-                "queryOne"
-              ]
             }
           ],
           serializer: this.serializer

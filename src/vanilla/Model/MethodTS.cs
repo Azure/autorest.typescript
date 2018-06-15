@@ -491,7 +491,7 @@ namespace AutoRest.TypeScript.Model
                         }
                     }
                 }
-                return builder.ToString();
+                return "";
             }
         }
 
@@ -587,136 +587,8 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        /// <summary>
-        /// Generates input mapping code block.
-        /// </summary>
-        /// <returns></returns>
-        public virtual string BuildInputMappings()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            if (InputParameterTransformation.Count > 0)
-            {
-                if (!AreWeFlatteningParameters())
-                {
-                    return BuildGroupedParameterMappings();
-                }
-            }
-            return builder.ToString();
-        }
-
-        public virtual bool AreWeFlatteningParameters()
-        {
-            bool result = true;
-            foreach (var transformation in InputParameterTransformation)
-            {
-                var compositeOutputParameter = transformation.OutputParameter.ModelType as CompositeType;
-                if (compositeOutputParameter == null)
-                {
-                    result = false;
-                    break;
-                }
-                else
-                {
-                    foreach (var poperty in compositeOutputParameter.ComposedProperties.Select(p => p.Name))
-                    {
-                        if (!transformation.ParameterMappings.Select(m => m.InputParameter.Name).Contains(poperty))
-                        {
-                            result = false;
-                            break;
-                        }
-                    }
-                    if (!result) break;
-                }
-            }
-
-            return result;
-        }
-
-        public virtual string BuildGroupedParameterMappings()
-        {
-            var builder = new IndentedStringBuilder("  ");
-            if (InputParameterTransformation.Count > 0)
-            {
-                // Declare all the output paramaters outside the try block
-                foreach (var transformation in InputParameterTransformation)
-                {
-                    if (transformation.OutputParameter.ModelType is CompositeType &&
-                        transformation.OutputParameter.IsRequired)
-                    {
-                        builder.AppendLine("let {0}: any = {{}};",
-                            transformation.OutputParameter.Name,
-                            transformation.OutputParameter.ModelType.Name);
-                    }
-                    else
-                    {
-                        builder.AppendLine("let {0}: any;", transformation.OutputParameter.Name);
-                    }
-
-                }
-                builder.AppendLine("try {").Indent();
-                foreach (var transformation in InputParameterTransformation)
-                {
-                    builder.AppendLine("if ({0})", BuildNullCheckExpression(transformation))
-                           .AppendLine("{").Indent();
-                    var outputParameter = transformation.OutputParameter;
-                    bool noCompositeTypeInitialized = true;
-                    if (transformation.ParameterMappings.Any(m => !string.IsNullOrEmpty(m.OutputParameterProperty)) &&
-                        transformation.OutputParameter.ModelType is CompositeType)
-                    {
-                        //required outputParameter is initialized at the time of declaration
-                        if (!transformation.OutputParameter.IsRequired)
-                        {
-                            builder.AppendLine("{0} = {{}};",
-                                transformation.OutputParameter.Name,
-                                transformation.OutputParameter.ModelType.Name);
-                        }
-
-                        noCompositeTypeInitialized = false;
-                    }
-
-                    foreach (var mapping in transformation.ParameterMappings)
-                    {
-                        builder.AppendLine("{0};", mapping.CreateCode(transformation.OutputParameter));
-                        if (noCompositeTypeInitialized)
-                        {
-                            // If composite type is initialized based on the above logic then it should not be validated.
-                            builder.AppendLine(outputParameter.ModelType.ValidateType(this, outputParameter.Name, outputParameter.IsRequired));
-                        }
-                    }
-
-                    builder.Outdent()
-                           .AppendLine("}");
-                }
-                builder.Outdent()
-                       .AppendLine("} catch (error) {")
-                         .Indent()
-                         .AppendLine("return Promise.reject(error);")
-                       .Outdent()
-                       .AppendLine("}");
-            }
-            return builder.ToString();
-        }
-
-        private static string BuildNullCheckExpression(ParameterTransformation transformation)
-        {
-            if (transformation == null)
-            {
-                throw new ArgumentNullException(nameof(transformation));
-            }
-            if (transformation.ParameterMappings.Count == 1)
-            {
-                return string.Format(CultureInfo.InvariantCulture,
-                    "{0} !== null && {0} !== undefined",
-                    transformation.ParameterMappings[0].InputParameter.Name);
-            }
-            else
-            {
-                return string.Join(" || ",
-                transformation.ParameterMappings.Select(m =>
-                    string.Format(CultureInfo.InvariantCulture,
-                    "({0} !== null && {0} !== undefined)", m.InputParameter.Name)));
-            }
-        }
+        private ParameterTransformations GetParameterTransformations()
+            => new ParameterTransformations(InputParameterTransformation);
 
         private IEnumerable<Property> OptionsParameterProperties
         {
@@ -855,14 +727,12 @@ namespace AutoRest.TypeScript.Model
                     operationArgumentNames.Add(optionsProperty.Name);
                 }
 
-                ISet<string> unflattenedParameterNames = InputParameterTransformation
-                    .Select(parameterTransformation => parameterTransformation.OutputParameter.Name.ToString())
-                    .ToHashSet();
+                ParameterTransformations transformations = GetParameterTransformations();
 
                 foreach (string operationArgumentName in operationArgumentNames)
                 {
                     if (!obj.ContainsProperty(operationArgumentName) &&
-                        !unflattenedParameterNames.Contains(operationArgumentName) &&
+                        !transformations.IsCreatedFromTransformation(operationArgumentName) &&
                         operationArgumentName != "options")
                     {
                         obj.TextProperty(operationArgumentName, operationArgumentName);
@@ -891,8 +761,10 @@ namespace AutoRest.TypeScript.Model
             }
 
             Parameter[] logicalParameters = LogicalParameters.ToArray();
-            GenerateParameters(operationSpec, "urlParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Path), AddSkipEncodingProperty);
-            GenerateParameters(operationSpec, "queryParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Query),
+            ParameterTransformations parameterTransformations = GetParameterTransformations();
+
+            GenerateRequestParameters(operationSpec, "urlParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Path), AddSkipEncodingProperty);
+            GenerateRequestParameters(operationSpec, "queryParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Query),
                 (TSObject queryParameterObject, Parameter queryParameter) =>
                 {
                     AddSkipEncodingProperty(queryParameterObject, queryParameter);
@@ -901,12 +773,15 @@ namespace AutoRest.TypeScript.Model
                         queryParameterObject.TextProperty("collectionFormat", $"msRest.QueryCollectionFormat.{queryParameter.CollectionFormat}");
                     }
                 });
-            GenerateParameters(operationSpec, "headerParameters", logicalParameters.Where(p => p.Location == ParameterLocation.Header));
+            GenerateRequestParameters(operationSpec, "headerParameters", parameterTransformations, logicalParameters.Where(p => p.Location == ParameterLocation.Header));
 
             if (RequestBody != null)
             {
-                operationSpec.Property("requestBodyMapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, RequestBody));
-                operationSpec.QuotedStringProperty("requestBodyName", RequestBody.Name);
+                operationSpec.ObjectProperty("requestBody", requestBodyObject =>
+                {
+                    GenerateRequestParameterPath(requestBodyObject, RequestBody, parameterTransformations);
+                    requestBodyObject.Property("mapper", requestBodyMapper => ClientModelExtensions.ConstructRequestBodyMapper(requestBodyMapper, RequestBody));
+                });
                 operationSpec.QuotedStringProperty("contentType", RequestContentType);
             }
             else
@@ -914,12 +789,10 @@ namespace AutoRest.TypeScript.Model
                 IEnumerable<Parameter> formDataParameters = logicalParameters.Where(p => p.Location == ParameterLocation.FormData);
                 if (formDataParameters.Any())
                 {
-                    GenerateParameters(operationSpec, "formDataParameters", formDataParameters);
+                    GenerateRequestParameters(operationSpec, "formDataParameters", parameterTransformations, formDataParameters);
                     operationSpec.QuotedStringProperty("contentType", RequestContentType);
                 }
             }
-
-            GenerateParameterTransformations(operationSpec, InputParameterTransformation);
 
             if (CodeModel.ShouldGenerateXmlSerialization)
             {
@@ -927,46 +800,6 @@ namespace AutoRest.TypeScript.Model
             }
 
             operationSpec.TextProperty("serializer", "this.serializer");
-        }
-
-        private static void GenerateParameterTransformations(TSObject operationSpec, IEnumerable<ParameterTransformation> parameterTransformations)
-        {
-            if (parameterTransformations.Any())
-            {
-                operationSpec.ArrayProperty("parameterTransformations", parameterTransformationsArray =>
-                {
-                    foreach (ParameterTransformation parameterTransformation in parameterTransformations)
-                    {
-                        foreach (ParameterMapping parameterTransformationMapping in parameterTransformation.ParameterMappings)
-                        {
-                            parameterTransformationsArray.Object(parameterTransformationObject =>
-                            {
-                                Parameter inputParameter = parameterTransformationMapping.InputParameter;
-                                bool hasInputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.InputParameterProperty);
-                                parameterTransformationObject.ArrayProperty("sourcePath", sourcePathArray =>
-                                {
-                                    sourcePathArray.QuotedString(inputParameter.Name);
-                                    if (hasInputParameterProperty)
-                                    {
-                                        sourcePathArray.QuotedString(parameterTransformationMapping.InputParameterProperty);
-                                    }
-                                });
-
-                                Parameter outputParameter = parameterTransformation.OutputParameter;
-                                bool hasOutputParameterProperty = !string.IsNullOrEmpty(parameterTransformationMapping.OutputParameterProperty);
-                                parameterTransformationObject.ArrayProperty("targetPath", sourcePathArray =>
-                                {
-                                    sourcePathArray.QuotedString(outputParameter.Name);
-                                    if (hasOutputParameterProperty)
-                                    {
-                                        sourcePathArray.QuotedString(parameterTransformationMapping.OutputParameterProperty);
-                                    }
-                                });
-                            });
-                        }
-                    }
-                });
-            }
         }
 
         private static void AddSkipEncodingProperty(TSObject parameterObject, Parameter parameter)
@@ -977,22 +810,68 @@ namespace AutoRest.TypeScript.Model
             }
         }
 
-        private static void GenerateParameters(TSObject operationSpec, string propertyName, IEnumerable<Parameter> parameters, Action<TSObject, Parameter> extraParameterProperties = null)
+        private static void GenerateRequestParameters(TSObject operationSpec, string propertyName, ParameterTransformations parameterTransformations, IEnumerable<Parameter> requestParameters, Action<TSObject, Parameter> extraParameterProperties = null)
         {
-            if (parameters != null && parameters.Any())
+            if (requestParameters != null && requestParameters.Any())
             {
                 operationSpec.ArrayProperty(propertyName, parameterArray =>
                 {
-                    foreach (ParameterTS parameter in parameters)
+                    foreach (ParameterTS requestParameter in requestParameters)
                     {
                         parameterArray.Object(parameterObject =>
                         {
-                            parameterObject.QuotedStringProperty("parameterName", parameter.Name);
-                            extraParameterProperties?.Invoke(parameterObject, parameter);
-                            parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, parameter.ModelType, parameter.SerializedName, parameter, false, false, false));
+                            GenerateRequestParameterPath(parameterObject, requestParameter, parameterTransformations);
+                            extraParameterProperties?.Invoke(parameterObject, requestParameter);
+                            parameterObject.Property("mapper", mapper => ClientModelExtensions.ConstructMapper(mapper, requestParameter.ModelType, requestParameter.SerializedName, requestParameter, false, false, false));
                         });
                     }
                 });
+            }
+        }
+
+        private static void GenerateRequestParameterPath(TSObject parent, Parameter requestParameter, ParameterTransformations parameterTransformations)
+        {
+            GenerateRequestParameterPath(parent, "parameterPath", requestParameter.Name, parameterTransformations);
+        }
+
+        private static void GenerateRequestParameterPath(TSObject parent, string propertyName, string parameterName, ParameterTransformations parameterTransformations)
+        {
+            if (!parameterTransformations.IsCreatedFromTransformation(parameterName))
+            {
+                parent.QuotedStringProperty(propertyName, parameterName);
+            }
+            else if (parameterTransformations.IsUnflattenedVariable(parameterName))
+            {
+                // Unflattening
+                parent.ObjectProperty(propertyName, parameterPathObject =>
+                {
+                    IDictionary<string, string> unflattenedPropertyMappings = parameterTransformations.GetUnflattenedParameterPropertyMappings(parameterName);
+                    foreach (KeyValuePair<string, string> unflattenedPropertyMapping in unflattenedPropertyMappings)
+                    {
+                        string unflattenedPropertyName = unflattenedPropertyMapping.Key;
+                        string inputParameterName = unflattenedPropertyMapping.Value;
+                        GenerateRequestParameterPath(parameterPathObject, unflattenedPropertyName, inputParameterName, parameterTransformations);
+                    }
+                });
+            }
+            else
+            {
+                // Ungrouping
+                string[] inputParameterPath = parameterTransformations.GetUngroupedParameterPath(parameterName);
+                if (inputParameterPath.Length == 1)
+                {
+                    GenerateRequestParameterPath(parent, propertyName, inputParameterPath[0], parameterTransformations);
+                }
+                else
+                {
+                    parent.ArrayProperty(propertyName, parameterPathArray =>
+                    {
+                        foreach (string inputParameterPathPart in inputParameterPath)
+                        {
+                            parameterPathArray.QuotedString(inputParameterPathPart);
+                        }
+                    });
+                }
             }
         }
     }

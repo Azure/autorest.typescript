@@ -57,57 +57,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    */
   async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this;
-    // Validate
-    try {
-      if (this.subscriptionId === null || this.subscriptionId === undefined || typeof this.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName !== null && resourceGroupName !== undefined) {
-        if (resourceGroupName.length > 10)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "MaxLength": 10');
-        }
-        if (resourceGroupName.length < 3)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "MinLength": 3');
-        }
-        if (resourceGroupName.match(/[a-zA-Z0-9]+/) === null)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "Pattern": /[a-zA-Z0-9]+/');
-        }
-      }
-      if (id === null || id === undefined || typeof id !== 'number') {
-        throw new Error('id cannot be null or undefined and it must be of type number.');
-      }
-      if (id !== null && id !== undefined) {
-        if (id > 1000)
-        {
-          throw new Error('"id" should satisfy the constraint - "InclusiveMaximum": 1000');
-        }
-        if (id < 100)
-        {
-          throw new Error('"id" should satisfy the constraint - "InclusiveMinimum": 100');
-        }
-        if (id % 10 !== 0)
-        {
-          throw new Error('"id" should satisfy the constraint - "MultipleOf": 10');
-        }
-      }
-      if (this.apiVersion === null || this.apiVersion === undefined || typeof this.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.apiVersion !== null && this.apiVersion !== undefined) {
-        if (this.apiVersion.match(/\d{2}-\d{2}-\d{4}/) === null)
-        {
-          throw new Error('"this.apiVersion" should satisfy the constraint - "Pattern": /\d{2}-\d{2}-\d{4}/');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -130,7 +79,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -140,7 +89,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -155,7 +104,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "id",
+              parameterPath: "id",
               mapper: {
                 required: true,
                 serializedName: "id",
@@ -172,7 +121,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "apiVersion",
@@ -256,57 +205,6 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this;
     let body = (options && options.body !== undefined) ? options.body : undefined;
-    // Validate
-    try {
-      if (this.subscriptionId === null || this.subscriptionId === undefined || typeof this.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName === null || resourceGroupName === undefined || typeof resourceGroupName.valueOf() !== 'string') {
-        throw new Error('resourceGroupName cannot be null or undefined and it must be of type string.');
-      }
-      if (resourceGroupName !== null && resourceGroupName !== undefined) {
-        if (resourceGroupName.length > 10)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "MaxLength": 10');
-        }
-        if (resourceGroupName.length < 3)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "MinLength": 3');
-        }
-        if (resourceGroupName.match(/[a-zA-Z0-9]+/) === null)
-        {
-          throw new Error('"resourceGroupName" should satisfy the constraint - "Pattern": /[a-zA-Z0-9]+/');
-        }
-      }
-      if (id === null || id === undefined || typeof id !== 'number') {
-        throw new Error('id cannot be null or undefined and it must be of type number.');
-      }
-      if (id !== null && id !== undefined) {
-        if (id > 1000)
-        {
-          throw new Error('"id" should satisfy the constraint - "InclusiveMaximum": 1000');
-        }
-        if (id < 100)
-        {
-          throw new Error('"id" should satisfy the constraint - "InclusiveMinimum": 100');
-        }
-        if (id % 10 !== 0)
-        {
-          throw new Error('"id" should satisfy the constraint - "MultipleOf": 10');
-        }
-      }
-      if (this.apiVersion === null || this.apiVersion === undefined || typeof this.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.apiVersion !== null && this.apiVersion !== undefined) {
-        if (this.apiVersion.match(/\d{2}-\d{2}-\d{4}/) === null)
-        {
-          throw new Error('"this.apiVersion" should satisfy the constraint - "Pattern": /\d{2}-\d{2}-\d{4}/');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -330,7 +228,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "fakepath/{subscriptionId}/{resourceGroupName}/{id}",
           urlParameters: [
             {
-              parameterName: "this.subscriptionId",
+              parameterPath: "this.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -340,7 +238,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "resourceGroupName",
+              parameterPath: "resourceGroupName",
               mapper: {
                 required: true,
                 serializedName: "resourceGroupName",
@@ -355,7 +253,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             },
             {
-              parameterName: "id",
+              parameterPath: "id",
               mapper: {
                 required: true,
                 serializedName: "id",
@@ -372,7 +270,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           ],
           queryParameters: [
             {
-              parameterName: "this.apiVersion",
+              parameterPath: "this.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "apiVersion",
@@ -385,8 +283,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "body",
+          requestBody: {
+            parameterPath: "body",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -470,7 +370,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
-              parameterName: "constantParam",
+              parameterPath: "constantParam",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -548,7 +448,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           path: "validation/constantsInPath/{constantParam}/value",
           urlParameters: [
             {
-              parameterName: "constantParam",
+              parameterPath: "constantParam",
               mapper: {
                 required: true,
                 isConstant: true,
@@ -560,8 +460,10 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "body",
+          requestBody: {
+            parameterPath: "body",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

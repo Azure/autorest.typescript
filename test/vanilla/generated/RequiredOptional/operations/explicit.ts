@@ -43,14 +43,6 @@ export class Explicit {
    */
   async postRequiredIntegerParameterWithHttpOperationResponse(bodyParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (bodyParameter === null || bodyParameter === undefined || typeof bodyParameter !== 'number') {
-        throw new Error('bodyParameter cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -68,14 +60,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -139,14 +133,6 @@ export class Explicit {
   async postOptionalIntegerParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-    // Validate
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined && typeof bodyParameter !== 'number') {
-        throw new Error('bodyParameter must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -164,13 +150,15 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "Number"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "Number"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -224,14 +212,6 @@ export class Explicit {
    */
   async postRequiredIntegerPropertyWithHttpOperationResponse(value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (value === null || value === undefined || typeof value !== 'number') {
-        throw new Error('value cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -249,20 +229,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/integer/property",
-          requestBodyMapper: Mappers.IntWrapper,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: {
+              ...Mappers.IntWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -326,14 +302,6 @@ export class Explicit {
   async postOptionalIntegerPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (value !== null && value !== undefined && typeof value !== 'number') {
-        throw new Error('value must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -351,20 +319,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/integer/property",
-          requestBodyMapper: Mappers.IntOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.IntOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -416,14 +377,6 @@ export class Explicit {
    */
   async postRequiredIntegerHeaderWithHttpOperationResponse(headerParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (headerParameter === null || headerParameter === undefined || typeof headerParameter !== 'number') {
-        throw new Error('headerParameter cannot be null or undefined and it must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -443,7 +396,7 @@ export class Explicit {
           path: "reqopt/requied/integer/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -516,14 +469,6 @@ export class Explicit {
   async postOptionalIntegerHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
-    // Validate
-    try {
-      if (headerParameter !== null && headerParameter !== undefined && typeof headerParameter !== 'number') {
-        throw new Error('headerParameter must be of type number.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -543,7 +488,7 @@ export class Explicit {
           path: "reqopt/optional/integer/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 serializedName: "headerParameter",
                 type: {
@@ -603,14 +548,6 @@ export class Explicit {
    */
   async postRequiredStringParameterWithHttpOperationResponse(bodyParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (bodyParameter === null || bodyParameter === undefined || typeof bodyParameter.valueOf() !== 'string') {
-        throw new Error('bodyParameter cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -628,14 +565,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -699,14 +638,6 @@ export class Explicit {
   async postOptionalStringParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-    // Validate
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined && typeof bodyParameter.valueOf() !== 'string') {
-        throw new Error('bodyParameter must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -724,13 +655,15 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "String"
+              }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -784,14 +717,6 @@ export class Explicit {
    */
   async postRequiredStringPropertyWithHttpOperationResponse(value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (value === null || value === undefined || typeof value.valueOf() !== 'string') {
-        throw new Error('value cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -809,20 +734,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/string/property",
-          requestBodyMapper: Mappers.StringWrapper,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: {
+              ...Mappers.StringWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -886,14 +807,6 @@ export class Explicit {
   async postOptionalStringPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (value !== null && value !== undefined && typeof value.valueOf() !== 'string') {
-        throw new Error('value must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -911,20 +824,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/string/property",
-          requestBodyMapper: Mappers.StringOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.StringOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -976,14 +882,6 @@ export class Explicit {
    */
   async postRequiredStringHeaderWithHttpOperationResponse(headerParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (headerParameter === null || headerParameter === undefined || typeof headerParameter.valueOf() !== 'string') {
-        throw new Error('headerParameter cannot be null or undefined and it must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1003,7 +901,7 @@ export class Explicit {
           path: "reqopt/requied/string/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -1076,14 +974,6 @@ export class Explicit {
   async postOptionalStringHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-    // Validate
-    try {
-      if (bodyParameter !== null && bodyParameter !== undefined && typeof bodyParameter.valueOf() !== 'string') {
-        throw new Error('bodyParameter must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1103,7 +993,7 @@ export class Explicit {
           path: "reqopt/optional/string/header",
           headerParameters: [
             {
-              parameterName: "bodyParameter",
+              parameterPath: "bodyParameter",
               mapper: {
                 serializedName: "bodyParameter",
                 type: {
@@ -1163,14 +1053,6 @@ export class Explicit {
    */
   async postRequiredClassParameterWithHttpOperationResponse(bodyParameter: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (bodyParameter === null || bodyParameter === undefined) {
-        throw new Error('bodyParameter cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1188,8 +1070,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/parameter",
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              ...Mappers.Product,
+              required: true
+            }
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1270,8 +1157,10 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/parameter",
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1325,14 +1214,6 @@ export class Explicit {
    */
   async postRequiredClassPropertyWithHttpOperationResponse(value: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (value === null || value === undefined) {
-        throw new Error('value cannot be null or undefined.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1350,20 +1231,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/class/property",
-          requestBodyMapper: Mappers.ClassWrapper,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: {
+              ...Mappers.ClassWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1444,20 +1321,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/class/property",
-          requestBodyMapper: Mappers.ClassOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ClassOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1509,19 +1379,6 @@ export class Explicit {
    */
   async postRequiredArrayParameterWithHttpOperationResponse(bodyParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(bodyParameter)) {
-        throw new Error('bodyParameter cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < bodyParameter.length; i++) {
-        if (bodyParameter[i] !== null && bodyParameter[i] !== undefined && typeof bodyParameter[i].valueOf() !== 'string') {
-          throw new Error('bodyParameter[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1539,20 +1396,22 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/parameter",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "bodyParameter",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              required: true,
+              serializedName: "bodyParameter",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1616,18 +1475,6 @@ export class Explicit {
   async postOptionalArrayParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
-    // Validate
-    try {
-      if (Array.isArray(bodyParameter)) {
-        for (let i = 0; i < bodyParameter.length; i++) {
-          if (bodyParameter[i] !== null && bodyParameter[i] !== undefined && typeof bodyParameter[i].valueOf() !== 'string') {
-            throw new Error('bodyParameter[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1645,19 +1492,21 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/parameter",
-          requestBodyMapper: {
-            serializedName: "bodyParameter",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "bodyParameter",
+            mapper: {
+              serializedName: "bodyParameter",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "bodyParameter",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1711,19 +1560,6 @@ export class Explicit {
    */
   async postRequiredArrayPropertyWithHttpOperationResponse(value: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(value)) {
-        throw new Error('value cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < value.length; i++) {
-        if (value[i] !== null && value[i] !== undefined && typeof value[i].valueOf() !== 'string') {
-          throw new Error('value[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1741,20 +1577,16 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/requied/array/property",
-          requestBodyMapper: Mappers.ArrayWrapper,
-          requestBodyName: "bodyParameter",
-          contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: {
+              ...Mappers.ArrayWrapper,
+              required: true
             }
-          ],
+          },
+          contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1818,18 +1650,6 @@ export class Explicit {
   async postOptionalArrayPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
-    // Validate
-    try {
-      if (Array.isArray(value)) {
-        for (let i = 0; i < value.length; i++) {
-          if (value[i] !== null && value[i] !== undefined && typeof value[i].valueOf() !== 'string') {
-            throw new Error('value[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1847,20 +1667,13 @@ export class Explicit {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "reqopt/optional/array/property",
-          requestBodyMapper: Mappers.ArrayOptionalWrapper,
-          requestBodyName: "bodyParameter",
+          requestBody: {
+            parameterPath: {
+              value: "value"
+            },
+            mapper: Mappers.ArrayOptionalWrapper
+          },
           contentType: "application/json; charset=utf-8",
-          parameterTransformations: [
-            {
-              sourcePath: [
-                "value"
-              ],
-              targetPath: [
-                "bodyParameter",
-                "value"
-              ]
-            }
-          ],
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
@@ -1912,19 +1725,6 @@ export class Explicit {
    */
   async postRequiredArrayHeaderWithHttpOperationResponse(headerParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(headerParameter)) {
-        throw new Error('headerParameter cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < headerParameter.length; i++) {
-        if (headerParameter[i] !== null && headerParameter[i] !== undefined && typeof headerParameter[i].valueOf() !== 'string') {
-          throw new Error('headerParameter[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1944,7 +1744,7 @@ export class Explicit {
           path: "reqopt/requied/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 required: true,
                 serializedName: "headerParameter",
@@ -2023,18 +1823,6 @@ export class Explicit {
   async postOptionalArrayHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
-    // Validate
-    try {
-      if (Array.isArray(headerParameter)) {
-        for (let i = 0; i < headerParameter.length; i++) {
-          if (headerParameter[i] !== null && headerParameter[i] !== undefined && typeof headerParameter[i].valueOf() !== 'string') {
-            throw new Error('headerParameter[i] must be of type string.');
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2054,7 +1842,7 @@ export class Explicit {
           path: "reqopt/optional/array/header",
           headerParameters: [
             {
-              parameterName: "headerParameter",
+              parameterPath: "headerParameter",
               mapper: {
                 serializedName: "headerParameter",
                 type: {

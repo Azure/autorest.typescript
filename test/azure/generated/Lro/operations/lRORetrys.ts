@@ -328,14 +328,6 @@ export class LRORetrys {
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LRORetrysBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -356,7 +348,7 @@ export class LRORetrys {
           path: "lro/retryerror/put/201/creating/succeeded/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -366,8 +358,10 @@ export class LRORetrys {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -450,14 +444,6 @@ export class LRORetrys {
   async beginPutAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPutAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPutAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -478,7 +464,7 @@ export class LRORetrys {
           path: "lro/retryerror/putasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -488,8 +474,10 @@ export class LRORetrys {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -557,14 +545,6 @@ export class LRORetrys {
    */
   async beginDeleteProvisioning202Accepted200SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -584,7 +564,7 @@ export class LRORetrys {
           path: "lro/retryerror/delete/provisioning/202/accepted/200/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -675,14 +655,6 @@ export class LRORetrys {
    */
   async beginDelete202Retry200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDelete202Retry200Response> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -702,7 +674,7 @@ export class LRORetrys {
           path: "lro/retryerror/delete/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -765,14 +737,6 @@ export class LRORetrys {
    */
   async beginDeleteAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -792,7 +756,7 @@ export class LRORetrys {
           path: "lro/retryerror/deleteasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -857,14 +821,6 @@ export class LRORetrys {
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LRORetrysBeginPost202Retry200OptionalParams): Promise<Models.LRORetrysPost202Retry200Response> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -885,7 +841,7 @@ export class LRORetrys {
           path: "lro/retryerror/post/202/retry/200",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -895,8 +851,10 @@ export class LRORetrys {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -953,14 +911,6 @@ export class LRORetrys {
   async beginPostAsyncRelativeRetrySucceededWithHttpOperationResponse(options?: Models.LRORetrysBeginPostAsyncRelativeRetrySucceededOptionalParams): Promise<Models.LRORetrysPostAsyncRelativeRetrySucceededResponse> {
     let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
-    // Validate
-    try {
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -981,7 +931,7 @@ export class LRORetrys {
           path: "lro/retryerror/postasync/retry/succeeded",
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
@@ -991,8 +941,10 @@ export class LRORetrys {
               }
             }
           ],
-          requestBodyMapper: Mappers.Product,
-          requestBodyName: "product",
+          requestBody: {
+            parameterPath: "product",
+            mapper: Mappers.Product
+          },
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

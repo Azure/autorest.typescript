@@ -188,14 +188,6 @@ export class HttpServerFailure {
   async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -213,13 +205,15 @@ export class HttpServerFailure {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -283,14 +277,6 @@ export class HttpServerFailure {
   async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
     let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
-    // Validate
-    try {
-      if (booleanValue !== null && booleanValue !== undefined && typeof booleanValue !== 'boolean') {
-        throw new Error('booleanValue must be of type boolean.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -308,13 +294,15 @@ export class HttpServerFailure {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
           path: "http/failure/server/505",
-          requestBodyMapper: {
-            serializedName: "booleanValue",
-            type: {
-              name: "Boolean"
+          requestBody: {
+            parameterPath: "booleanValue",
+            mapper: {
+              serializedName: "booleanValue",
+              type: {
+                name: "Boolean"
+              }
             }
           },
-          requestBodyName: "booleanValue",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

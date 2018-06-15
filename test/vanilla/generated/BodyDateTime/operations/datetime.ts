@@ -365,15 +365,6 @@ export class Datetime {
    */
   async putUtcMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -391,14 +382,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/utc",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -613,15 +606,6 @@ export class Datetime {
    */
   async putLocalPositiveOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -639,14 +623,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localpositiveoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -863,15 +849,6 @@ export class Datetime {
    */
   async putLocalNegativeOffsetMaxDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -889,14 +866,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/max/localnegativeoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1112,15 +1091,6 @@ export class Datetime {
    */
   async putUtcMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1138,14 +1108,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/utc",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1278,15 +1250,6 @@ export class Datetime {
    */
   async putLocalPositiveOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1304,14 +1267,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localpositiveoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1444,15 +1409,6 @@ export class Datetime {
    */
   async putLocalNegativeOffsetMinDateTimeWithHttpOperationResponse(datetimeBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if(!datetimeBody || !(datetimeBody instanceof Date ||
-          (typeof (datetimeBody as string).valueOf() === 'string' && !isNaN(Date.parse(datetimeBody as string))))) {
-            throw new Error('datetimeBody cannot be null or undefined and it must be of type date.');
-          }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1470,14 +1426,16 @@ export class Datetime {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "datetime/min/localnegativeoffset",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "datetimeBody",
-            type: {
-              name: "DateTime"
+          requestBody: {
+            parameterPath: "datetimeBody",
+            mapper: {
+              required: true,
+              serializedName: "datetimeBody",
+              type: {
+                name: "DateTime"
+              }
             }
           },
-          requestBodyName: "datetimeBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

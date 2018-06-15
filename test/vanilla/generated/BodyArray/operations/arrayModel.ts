@@ -303,19 +303,6 @@ export class ArrayModel {
    */
   async putEmptyWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i].valueOf() !== 'string') {
-          throw new Error('arrayBody[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -333,20 +320,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/empty",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -485,19 +474,6 @@ export class ArrayModel {
    */
   async putBooleanTfftWithHttpOperationResponse(arrayBody: boolean[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i] !== 'boolean') {
-          throw new Error('arrayBody[i] must be of type boolean.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -515,20 +491,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/boolean/tfft",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "booleanElementType",
-                type: {
-                  name: "Boolean"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "booleanElementType",
+                  type: {
+                    name: "Boolean"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -841,19 +819,6 @@ export class ArrayModel {
    */
   async putIntegerValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i] !== 'number') {
-          throw new Error('arrayBody[i] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -871,20 +836,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/integer/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1197,19 +1164,6 @@ export class ArrayModel {
    */
   async putLongValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i] !== 'number') {
-          throw new Error('arrayBody[i] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1227,20 +1181,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/long/1.-1.3.300",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1553,19 +1509,6 @@ export class ArrayModel {
    */
   async putFloatValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i] !== 'number') {
-          throw new Error('arrayBody[i] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1583,20 +1526,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/float/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -1909,19 +1854,6 @@ export class ArrayModel {
    */
   async putDoubleValidWithHttpOperationResponse(arrayBody: number[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i] !== 'number') {
-          throw new Error('arrayBody[i] must be of type number.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1939,20 +1871,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/double/0--0.01-1.2e20",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "numberElementType",
-                type: {
-                  name: "Number"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "numberElementType",
+                  type: {
+                    name: "Number"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2265,19 +2199,6 @@ export class ArrayModel {
    */
   async putStringValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && typeof arrayBody[i].valueOf() !== 'string') {
-          throw new Error('arrayBody[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2295,20 +2216,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/string/foo1.foo2.foo3",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "String"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2625,19 +2548,6 @@ export class ArrayModel {
    */
   async putUuidValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] !== null && arrayBody[i] !== undefined && !(typeof arrayBody[i].valueOf() === 'string' && msRest.isValidUuid(arrayBody[i]))) {
-          throw new Error('arrayBody[i] must be of type string and must be a valid string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2655,20 +2565,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/uuid/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "Uuid"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "Uuid"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -2894,20 +2806,6 @@ export class ArrayModel {
    */
   async putDateValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && !(arrayBody[i] instanceof Date ||
-            (typeof (arrayBody[i] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[i] as string))))) {
-              throw new Error('arrayBody[i] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2925,20 +2823,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "Date"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "Date"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3253,20 +3153,6 @@ export class ArrayModel {
    */
   async putDateTimeValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && !(arrayBody[i] instanceof Date ||
-            (typeof (arrayBody[i] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[i] as string))))) {
-              throw new Error('arrayBody[i] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3284,20 +3170,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTime"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTime"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3612,20 +3500,6 @@ export class ArrayModel {
    */
   async putDateTimeRfc1123ValidWithHttpOperationResponse(arrayBody: Array<Date> | Array<string>, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && !(arrayBody[i] instanceof Date ||
-            (typeof (arrayBody[i] as string).valueOf() === 'string' && !isNaN(Date.parse(arrayBody[i] as string))))) {
-              throw new Error('arrayBody[i] must be of type date.');
-            }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3643,20 +3517,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/date-time-rfc1123/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "DateElementType",
-                type: {
-                  name: "DateTimeRfc1123"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "DateElementType",
+                  type: {
+                    name: "DateTimeRfc1123"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3795,19 +3671,6 @@ export class ArrayModel {
    */
   async putDurationValidWithHttpOperationResponse(arrayBody: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if(arrayBody[i] && !msRest.isDuration(arrayBody[i])) {
-          throw new Error('arrayBody[i] must be of type string.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3825,20 +3688,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/duration/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "stringElementType",
-                type: {
-                  name: "TimeSpan"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "stringElementType",
+                  type: {
+                    name: "TimeSpan"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -3979,19 +3844,6 @@ export class ArrayModel {
    */
   async putByteValidWithHttpOperationResponse(arrayBody: Uint8Array[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && !(arrayBody[i] instanceof Uint8Array)) {
-          throw new Error('arrayBody[i] must be of type uint8array.');
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -4009,20 +3861,22 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/prim/byte/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "Uint8ArrayElementType",
-                type: {
-                  name: "ByteArray"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "Uint8ArrayElementType",
+                  type: {
+                    name: "ByteArray"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -4711,21 +4565,23 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/complex/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ProductElementType",
-                type: {
-                  name: "Composite",
-                  className: "Product"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ProductElementType",
+                  type: {
+                    name: "Composite",
+                    className: "Product"
+                  }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5244,23 +5100,6 @@ export class ArrayModel {
    */
   async putArrayValidWithHttpOperationResponse(arrayBody: string[][], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (Array.isArray(arrayBody[i])) {
-          for (let i1 = 0; i1 < arrayBody[i].length; i1++) {
-            if (arrayBody[i][i1] !== null && arrayBody[i][i1] !== undefined && typeof arrayBody[i][i1].valueOf() !== 'string') {
-              throw new Error('arrayBody[i][i1] must be of type string.');
-            }
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5278,26 +5117,28 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/array/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ArrayElementType",
-                type: {
-                  name: "Sequence",
-                  element: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ArrayElementType",
+                  type: {
+                    name: "Sequence",
+                    element: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });
@@ -5822,23 +5663,6 @@ export class ArrayModel {
    */
   async putDictionaryValidWithHttpOperationResponse(arrayBody: { [propertyName: string]: string }[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
-    // Validate
-    try {
-      if (!Array.isArray(arrayBody)) {
-        throw new Error('arrayBody cannot be null or undefined and it must be of type array.');
-      }
-      for (let i = 0; i < arrayBody.length; i++) {
-        if (arrayBody[i] && typeof arrayBody[i] === 'object') {
-          for(let valueElement in arrayBody[i]) {
-            if (arrayBody[i][valueElement] !== null && arrayBody[i][valueElement] !== undefined && typeof arrayBody[i][valueElement].valueOf() !== 'string') {
-              throw new Error('arrayBody[i][valueElement] must be of type string.');
-            }
-          }
-        }
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -5856,26 +5680,28 @@ export class ArrayModel {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
           path: "array/dictionary/valid",
-          requestBodyMapper: {
-            required: true,
-            serializedName: "arrayBody",
-            type: {
-              name: "Sequence",
-              element: {
-                serializedName: "ObjectElementType",
-                type: {
-                  name: "Dictionary",
-                  value: {
-                    serializedName: "stringElementType",
-                    type: {
-                      name: "String"
+          requestBody: {
+            parameterPath: "arrayBody",
+            mapper: {
+              required: true,
+              serializedName: "arrayBody",
+              type: {
+                name: "Sequence",
+                element: {
+                  serializedName: "ObjectElementType",
+                  type: {
+                    name: "Dictionary",
+                    value: {
+                      serializedName: "stringElementType",
+                      type: {
+                        name: "String"
+                      }
                     }
                   }
                 }
               }
             }
           },
-          requestBodyName: "arrayBody",
           contentType: "application/json; charset=utf-8",
           serializer: this.serializer
         });

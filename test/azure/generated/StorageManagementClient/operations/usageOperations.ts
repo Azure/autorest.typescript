@@ -41,20 +41,6 @@ export class UsageOperations {
    */
   async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.UsageListResult>> {
     let client = this.client;
-    // Validate
-    try {
-      if (this.client.apiVersion === null || this.client.apiVersion === undefined || typeof this.client.apiVersion.valueOf() !== 'string') {
-        throw new Error('this.client.apiVersion cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.subscriptionId === null || this.client.subscriptionId === undefined || typeof this.client.subscriptionId.valueOf() !== 'string') {
-        throw new Error('this.client.subscriptionId cannot be null or undefined and it must be of type string.');
-      }
-      if (this.client.acceptLanguage !== null && this.client.acceptLanguage !== undefined && typeof this.client.acceptLanguage.valueOf() !== 'string') {
-        throw new Error('this.client.acceptLanguage must be of type string.');
-      }
-    } catch (error) {
-      return Promise.reject(error);
-    }
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -76,7 +62,7 @@ export class UsageOperations {
           path: "subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages",
           urlParameters: [
             {
-              parameterName: "this.client.subscriptionId",
+              parameterPath: "this.client.subscriptionId",
               mapper: {
                 required: true,
                 serializedName: "subscriptionId",
@@ -88,7 +74,7 @@ export class UsageOperations {
           ],
           queryParameters: [
             {
-              parameterName: "this.client.apiVersion",
+              parameterPath: "this.client.apiVersion",
               mapper: {
                 required: true,
                 serializedName: "api-version",
@@ -100,7 +86,7 @@ export class UsageOperations {
           ],
           headerParameters: [
             {
-              parameterName: "this.client.acceptLanguage",
+              parameterPath: "this.client.acceptLanguage",
               mapper: {
                 serializedName: "accept-language",
                 defaultValue: 'en-US',
