@@ -28,9 +28,44 @@ namespace AutoRest.TypeScript
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
-
+            TransformHeaderCollectionPropertyTypes(codeModel);
 
             return codeModel;
+        }
+
+        public void TransformHeaderCollectionPropertyTypes(CodeModelTS cm)
+        {
+            foreach (var modelType in cm.HeaderTypes)
+            {
+                foreach (var property in modelType.Properties)
+                {
+                    string prefix = property?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                    if (!string.IsNullOrEmpty(prefix) && !(property.ModelType is DictionaryTypeTS))
+                    {
+                        var dictionary = New<DictionaryTypeTS>().LoadFrom(property.ModelType);
+                        dictionary.ValueType = property.ModelType;
+                        property.ModelType = dictionary;
+                    }
+                }
+            }
+
+            foreach (var method in cm.Methods)
+            {
+                foreach (var parameter in method.Parameters)
+                {
+                    string prefix = parameter.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                    if (!string.IsNullOrEmpty(prefix))
+                    {
+                        Console.Error.WriteLine(prefix);
+                    }
+                    if (!string.IsNullOrEmpty(prefix) && !(parameter.ModelType is DictionaryTypeTS))
+                    {
+                        var dictionary = New<DictionaryTypeTS>().LoadFrom(parameter.ModelType);
+                        dictionary.ValueType = parameter.ModelType;
+                        parameter.ModelType = dictionary;
+                    }
+                }
+            }
         }
 
         public void AddEnumTypesToCodeModel(CodeModelTS cm)
