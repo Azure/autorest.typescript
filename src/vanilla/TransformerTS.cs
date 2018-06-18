@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
-// 
+//
 
 using System;
 using System.Linq;
@@ -28,6 +28,8 @@ namespace AutoRest.TypeScript
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
+
+
             return codeModel;
         }
 
@@ -62,7 +64,7 @@ namespace AutoRest.TypeScript
                         cm.Add(parameterAsEnum);
                     }
                 }
-                // If there is a response body or header in the response pair that is an EnumType and has not been 
+                // If there is a response body or header in the response pair that is an EnumType and has not been
                 // added to the EnumTypes then add it.
                 foreach (var responsePair in method.Responses)
                 {

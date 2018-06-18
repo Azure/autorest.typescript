@@ -682,6 +682,13 @@ namespace AutoRest.TypeScript
                 constraints = parameter.Constraints;
             }
 
+            string _prefix = property?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+            if (!string.IsNullOrEmpty(_prefix))
+            {
+                Console.Error.WriteLine("what's this?");
+                // typeObject.TextProperty("headerCollectionPrefix", prefix);
+            }
+
             value.Object(mapper =>
             {
                 bool addXmlNameFromParameterValue = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
@@ -850,6 +857,12 @@ namespace AutoRest.TypeScript
                     AddTypeProperty(mapper, "Dictionary", typeObject =>
                     {
                         typeObject.Property("value", dictionaryValue => ConstructMapper(dictionaryValue, dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
+
+                        string prefix = property.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                        if (!string.IsNullOrEmpty(prefix))
+                        {
+                            typeObject.TextProperty("headerCollectionPrefix", prefix);
+                        }
                     });
                 }
                 else if (composite != null)
