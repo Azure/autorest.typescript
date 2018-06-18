@@ -6,10 +6,5 @@
 async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParameterDeclarationTS(true, true))): Promise<@(Model.HttpOperationResponseName)> {
   let client = @(Model.ClientReference);
 
-  @if (Model.OptionsParameterModelType.Properties.Count > 0)
-  {
-  @:@(Model.BuildOptionalMappings())
-  }
-
   @(Model.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }

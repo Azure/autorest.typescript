@@ -698,6 +698,11 @@ namespace AutoRest.TypeScript.Model
             TSBuilder builder = new TSBuilder();
             TSBlock block = new TSBlock(builder);
 
+            if (OptionsParameterModelType.Properties.Any())
+            {
+                block.Line(BuildOptionalMappings());
+            }
+
             IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
 
             if (parameterTemplateModels.Any())

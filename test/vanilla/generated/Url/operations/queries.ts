@@ -94,7 +94,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -172,7 +172,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -247,7 +247,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -325,7 +325,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -403,7 +403,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -478,7 +478,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -556,7 +556,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -634,7 +634,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -709,7 +709,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -787,7 +787,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -865,7 +865,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -940,7 +940,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1018,7 +1018,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1096,7 +1096,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1171,7 +1171,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1249,7 +1249,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1327,7 +1327,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1405,7 +1405,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1480,7 +1480,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1560,7 +1560,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1640,7 +1640,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1715,7 +1715,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1793,7 +1793,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1868,7 +1868,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -1946,7 +1946,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2021,7 +2021,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2099,7 +2099,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2174,7 +2174,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2258,7 +2258,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2341,7 +2341,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2424,7 +2424,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2508,7 +2508,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2592,7 +2592,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
@@ -2676,7 +2676,7 @@ export class Queries {
           }
         } catch (defaultError) {
           error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
+            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
         return Promise.reject(error);
