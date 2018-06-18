@@ -22,13 +22,13 @@ namespace AutoRest.TypeScript
 
             // we're guaranteed to be in our language-specific context here.
             SwaggerExtensions.NormalizeClientModel(codeModel);
+            TransformHeaderCollectionPropertyTypes(codeModel);
             PopulateAdditionalProperties(codeModel);
             NormalizeOdataFilterParameter(codeModel);
             PerformParameterMapping(codeModel);
             CreateModelTypeForOptionalClientProperties(codeModel);
             CreateModelTypesForOptionalMethodParameters(codeModel);
             AddEnumTypesToCodeModel(codeModel);
-            TransformHeaderCollectionPropertyTypes(codeModel);
 
             return codeModel;
         }
@@ -39,7 +39,7 @@ namespace AutoRest.TypeScript
             {
                 foreach (var property in modelType.Properties)
                 {
-                    string prefix = property?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                    string prefix = property.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
                     if (!string.IsNullOrEmpty(prefix) && !(property.ModelType is DictionaryTypeTS))
                     {
                         var dictionary = New<DictionaryTypeTS>().LoadFrom(property.ModelType);

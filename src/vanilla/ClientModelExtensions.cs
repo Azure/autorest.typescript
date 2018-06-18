@@ -850,13 +850,13 @@ namespace AutoRest.TypeScript
                     AddTypeProperty(mapper, "Dictionary", typeObject =>
                     {
                         typeObject.Property("value", dictionaryValue => ConstructMapper(dictionaryValue, dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
-
-                        string prefix = parameter?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
-                        if (!string.IsNullOrEmpty(prefix))
-                        {
-                            typeObject.QuotedStringProperty("headerCollectionPrefix", prefix);
-                        }
                     });
+
+                    string prefix = parameter?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+                    if (!string.IsNullOrEmpty(prefix))
+                    {
+                        mapper.QuotedStringProperty("headerCollectionPrefix", prefix);
+                    }
                 }
                 else if (composite != null)
                 {
