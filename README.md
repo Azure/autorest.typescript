@@ -133,12 +133,12 @@ use-extension:
   "@microsoft.azure/autorest.modeler": "2.3.51"
 
 pipeline:
-  typescript/modeler:
-    input: swagger-document/identity
+  typescript/imodeler1:
+    input: openapi-document/identity
     output-artifact: code-model-v1
     scope: typescript
   typescript/commonmarker:
-    input: modeler
+    input: imodeler1
     output-artifact: code-model-v1
   typescript/cm/transform:
     input: commonmarker

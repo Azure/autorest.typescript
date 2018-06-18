@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.typescript/blob/master/README.md",
   "devDependencies": {
+    "@microsoft.azure/autorest.modeler": "^2.3.51",
     "@microsoft.azure/autorest.testserver": "^2.5.19",
     "@types/assert": "0.0.31",
     "@types/express": "^4.11.1",
