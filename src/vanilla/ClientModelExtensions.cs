@@ -854,7 +854,7 @@ namespace AutoRest.TypeScript
                         string prefix = parameter?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
                         if (!string.IsNullOrEmpty(prefix))
                         {
-                            typeObject.TextProperty("headerCollectionPrefix", prefix);
+                            typeObject.QuotedStringProperty("headerCollectionPrefix", prefix);
                         }
                     });
                 }

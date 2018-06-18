@@ -54,10 +54,6 @@ namespace AutoRest.TypeScript
                 foreach (var parameter in method.Parameters)
                 {
                     string prefix = parameter.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
-                    if (!string.IsNullOrEmpty(prefix))
-                    {
-                        Console.Error.WriteLine(prefix);
-                    }
                     if (!string.IsNullOrEmpty(prefix) && !(parameter.ModelType is DictionaryTypeTS))
                     {
                         var dictionary = New<DictionaryTypeTS>().LoadFrom(parameter.ModelType);
