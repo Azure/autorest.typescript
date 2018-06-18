@@ -1,6 +1,6 @@
-﻿@using System.Linq
+﻿@using AutoRest.Core.Utilities
+@using AutoRest.TypeScript.Model
 @using AutoRest.TypeScript.vanilla.Templates
-@using AutoRest.Core.Utilities
 @inherits AutoRest.Core.Template<AutoRest.TypeScript.Model.MethodGroupTS>
 /*
 @Header(" * ")
@@ -28,10 +28,10 @@ export class @(Model.TypeName) {
     this.client = client;
   }
 @EmptyLine
-@foreach (var method in Model.MethodTemplateModels)
+@foreach (MethodTS method in Model.MethodTemplateModels)
 {
-  @:@(Include(new MethodTemplate(), method))
-  @EmptyLine
+@:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
+@EmptyLine
 }
 @foreach (var method in Model.MethodWrappableTemplateModels)
 {

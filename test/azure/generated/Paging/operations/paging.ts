@@ -34,12 +34,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSinglePagesWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -50,7 +49,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -110,11 +109,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -125,12 +122,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
 
@@ -145,7 +141,7 @@ export class Paging {
           pagingGetMultiplePagesOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -239,29 +235,24 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that includes a nextLink in odata format that has 10
-   * pages
+   * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {PagingGetOdataMultiplePagesOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetOdataMultiplePagesOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOdataMultiplePagesWithHttpOperationResponse(options?: Models.PagingGetOdataMultiplePagesOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
 
@@ -276,7 +267,7 @@ export class Paging {
           pagingGetOdataMultiplePagesOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -370,32 +361,27 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptions}
-   * pagingGetMultiplePagesWithOffsetOptions Additional parameters for the
-   * operation
+   * @param {PagingGetMultiplePagesWithOffsetOptions} pagingGetMultiplePagesWithOffsetOptions
+   * Additional parameters for the operation
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesWithOffsetOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesWithOffsetWithHttpOperationResponse(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions, options?: Models.PagingGetMultiplePagesWithOffsetOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
 
     // Create HTTP transport objects
@@ -409,7 +395,7 @@ export class Paging {
           pagingGetMultiplePagesWithOffsetOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -518,28 +504,25 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that fails on the first call with 500 and then retries
-   * and then get a response including a nextLink that has 10 pages
+   * A paging operation that fails on the first call with 500 and then retries and then get a
+   * response including a nextLink that has 10 pages
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesRetryFirstWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -550,7 +533,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -610,29 +593,25 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the
-   * 2nd call fails first with 500. The client should retry and finish all 10
-   * pages eventually.
+   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
+   * with 500. The client should retry and finish all 10 pages eventually.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesRetrySecondWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -643,7 +622,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -703,11 +682,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -718,12 +695,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSinglePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -734,7 +710,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -794,11 +770,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -809,12 +783,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFailureWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -825,7 +798,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -885,11 +858,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -900,12 +871,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFailureUriWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -916,7 +886,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -976,11 +946,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -995,12 +963,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFragmentNextLinkWithHttpOperationResponse(apiVersion: string, tenant: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1013,7 +980,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1097,31 +1064,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that doesn't return a full URL, just a fragment with
-   * parameters grouped
+   * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for
-   * the operation
+   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFragmentWithGroupingNextLinkWithHttpOperationResponse(customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1133,7 +1095,7 @@ export class Paging {
           customParameterGroup
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1223,11 +1185,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1235,14 +1195,13 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1290,12 +1249,11 @@ export class Paging {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async nextFragmentWithHttpOperationResponse(apiVersion: string, tenant: string, nextLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1309,7 +1267,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1404,11 +1362,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1417,19 +1373,17 @@ export class Paging {
    *
    * @param {string} nextLink Next link for list operation.
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for
-   * the operation
+   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async nextFragmentWithGroupingWithHttpOperationResponse(nextLink: string, customParameterGroup: Models.CustomParameterGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1442,7 +1396,7 @@ export class Paging {
           customParameterGroup
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1543,28 +1497,24 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetMultiplePagesLROWithHttpOperationResponse(options?: Models.PagingBeginGetMultiplePagesLROOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
 
@@ -1579,7 +1529,7 @@ export class Paging {
           pagingGetMultiplePagesLROOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1673,30 +1623,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that finishes on the first call without a nextlink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSinglePagesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1708,7 +1654,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1781,31 +1727,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesNextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesNextOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesOptions = (options && options.pagingGetMultiplePagesOptions !== undefined) ? options.pagingGetMultiplePagesOptions : undefined;
 
@@ -1821,7 +1762,7 @@ export class Paging {
           pagingGetMultiplePagesOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1928,32 +1869,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that includes a nextLink in odata format that has 10
-   * pages
+   * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetOdataMultiplePagesNextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetOdataMultiplePagesNextOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOdataMultiplePagesNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetOdataMultiplePagesNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.OdataProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetOdataMultiplePagesOptions = (options && options.pagingGetOdataMultiplePagesOptions !== undefined) ? options.pagingGetOdataMultiplePagesOptions : undefined;
 
@@ -1969,7 +1904,7 @@ export class Paging {
           pagingGetOdataMultiplePagesOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2076,31 +2011,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesWithOffsetNextOptionalParams} [options]
-   * Optional Parameters.
+   * @param {PagingGetMultiplePagesWithOffsetNextOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesWithOffsetNextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesWithOffsetNextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesWithOffsetNextOptions = (options && options.pagingGetMultiplePagesWithOffsetNextOptions !== undefined) ? options.pagingGetMultiplePagesWithOffsetNextOptions : undefined;
 
@@ -2116,7 +2046,7 @@ export class Paging {
           pagingGetMultiplePagesWithOffsetNextOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2223,31 +2153,27 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that fails on the first call with 500 and then retries
-   * and then get a response including a nextLink that has 10 pages
+   * A paging operation that fails on the first call with 500 and then retries and then get a
+   * response including a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesRetryFirstNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2259,7 +2185,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2332,32 +2258,27 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the
-   * 2nd call fails first with 500. The client should retry and finish all 10
-   * pages eventually.
+   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
+   * with 500. The client should retry and finish all 10 pages eventually.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesRetrySecondNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2369,7 +2290,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2442,30 +2363,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that receives a 400 on the first call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSinglePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2477,7 +2394,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2550,30 +2467,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that receives a 400 on the second call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFailureNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2585,7 +2498,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2658,30 +2571,26 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * A paging operation that receives an invalid nextLink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesFailureUriNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2693,7 +2602,7 @@ export class Paging {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2766,11 +2675,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2778,17 +2685,15 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -2826,20 +2731,17 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetMultiplePagesLRONextWithHttpOperationResponse(nextPageLink: string, options?: Models.PagingBeginGetMultiplePagesLRONextOptionalParams): Promise<msRest.HttpOperationResponse<Models.ProductResult>> {
-    let client = this.client;
     let clientRequestId = (options && options.clientRequestId !== undefined) ? options.clientRequestId : undefined;
     let pagingGetMultiplePagesLROOptions = (options && options.pagingGetMultiplePagesLROOptions !== undefined) ? options.pagingGetMultiplePagesLROOptions : undefined;
 
@@ -2855,7 +2757,7 @@ export class Paging {
           pagingGetMultiplePagesLROOptions
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2962,11 +2864,9 @@ export class Paging {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2975,17 +2875,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSinglePages(): Promise<Models.ProductResult>;
@@ -3020,17 +2916,13 @@ export class Paging {
    *
    * @param {PagingGetMultiplePagesOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePages(): Promise<Models.ProductResult>;
@@ -3061,24 +2953,17 @@ export class Paging {
   }
 
   /**
-   * A paging operation that includes a nextLink in odata format that has 10
-   * pages
+   * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {PagingGetOdataMultiplePagesOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetOdataMultiplePagesOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOdataMultiplePages(): Promise<Models.OdataProductResult>;
@@ -3111,24 +2996,18 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptions}
-   * pagingGetMultiplePagesWithOffsetOptions Additional parameters for the
-   * operation
+   * @param {PagingGetMultiplePagesWithOffsetOptions} pagingGetMultiplePagesWithOffsetOptions
+   * Additional parameters for the operation
    *
-   * @param {PagingGetMultiplePagesWithOffsetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesWithOffsetOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesWithOffset(pagingGetMultiplePagesWithOffsetOptions: Models.PagingGetMultiplePagesWithOffsetOptions): Promise<Models.ProductResult>;
@@ -3159,22 +3038,18 @@ export class Paging {
   }
 
   /**
-   * A paging operation that fails on the first call with 500 and then retries
-   * and then get a response including a nextLink that has 10 pages
+   * A paging operation that fails on the first call with 500 and then retries and then get a
+   * response including a nextLink that has 10 pages
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesRetryFirst(): Promise<Models.ProductResult>;
@@ -3205,23 +3080,18 @@ export class Paging {
   }
 
   /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the
-   * 2nd call fails first with 500. The client should retry and finish all 10
-   * pages eventually.
+   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
+   * with 500. The client should retry and finish all 10 pages eventually.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesRetrySecond(): Promise<Models.ProductResult>;
@@ -3256,17 +3126,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSinglePagesFailure(): Promise<Models.ProductResult>;
@@ -3301,17 +3167,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFailure(): Promise<Models.ProductResult>;
@@ -3346,17 +3208,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFailureUri(): Promise<Models.ProductResult>;
@@ -3395,18 +3253,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFragmentNextLink(apiVersion: string, tenant: string): Promise<Models.OdataProductResult>;
@@ -3437,26 +3290,19 @@ export class Paging {
   }
 
   /**
-   * A paging operation that doesn't return a full URL, just a fragment with
-   * parameters grouped
+   * A paging operation that doesn't return a full URL, just a fragment with parameters grouped
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for
-   * the operation
+   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFragmentWithGroupingNextLink(customParameterGroup: Models.CustomParameterGroup): Promise<Models.OdataProductResult>;
@@ -3489,20 +3335,15 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesLRO(): Promise<Models.ProductResult>;
@@ -3543,18 +3384,13 @@ export class Paging {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   nextFragment(apiVersion: string, tenant: string, nextLink: string): Promise<Models.OdataProductResult>;
@@ -3589,23 +3425,17 @@ export class Paging {
    *
    * @param {string} nextLink Next link for list operation.
    *
-   * @param {CustomParameterGroup} customParameterGroup Additional parameters for
-   * the operation
+   * @param {CustomParameterGroup} customParameterGroup Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   nextFragmentWithGrouping(nextLink: string, customParameterGroup: Models.CustomParameterGroup): Promise<Models.OdataProductResult>;
@@ -3638,20 +3468,15 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingBeginGetMultiplePagesLROOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetMultiplePagesLRO(): Promise<Models.ProductResult>;
@@ -3684,22 +3509,17 @@ export class Paging {
   /**
    * A paging operation that finishes on the first call without a nextlink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSinglePagesNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -3732,23 +3552,17 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesNextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesNextOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -3779,27 +3593,19 @@ export class Paging {
   }
 
   /**
-   * A paging operation that includes a nextLink in odata format that has 10
-   * pages
+   * A paging operation that includes a nextLink in odata format that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetOdataMultiplePagesNextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetOdataMultiplePagesNextOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.OdataProductResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.OdataProductResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.OdataProductResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOdataMultiplePagesNext(nextPageLink: string): Promise<Models.OdataProductResult>;
@@ -3832,23 +3638,17 @@ export class Paging {
   /**
    * A paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesWithOffsetNextOptionalParams} [options]
-   * Optional Parameters.
+   * @param {PagingGetMultiplePagesWithOffsetNextOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesWithOffsetNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -3879,25 +3679,20 @@ export class Paging {
   }
 
   /**
-   * A paging operation that fails on the first call with 500 and then retries
-   * and then get a response including a nextLink that has 10 pages
+   * A paging operation that fails on the first call with 500 and then retries and then get a
+   * response including a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesRetryFirstNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -3928,26 +3723,20 @@ export class Paging {
   }
 
   /**
-   * A paging operation that includes a nextLink that has 10 pages, of which the
-   * 2nd call fails first with 500. The client should retry and finish all 10
-   * pages eventually.
+   * A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first
+   * with 500. The client should retry and finish all 10 pages eventually.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesRetrySecondNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -3980,22 +3769,17 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the first call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSinglePagesFailureNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -4028,22 +3812,17 @@ export class Paging {
   /**
    * A paging operation that receives a 400 on the second call
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFailureNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -4076,22 +3855,17 @@ export class Paging {
   /**
    * A paging operation that receives an invalid nextLink
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesFailureUriNext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -4124,23 +3898,17 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;
@@ -4173,23 +3941,17 @@ export class Paging {
   /**
    * A long-running paging operation that includes a nextLink that has 10 pages
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
-   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PagingBeginGetMultiplePagesLRONextOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ProductResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ProductResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetMultiplePagesLRONext(nextPageLink: string): Promise<Models.ProductResult>;

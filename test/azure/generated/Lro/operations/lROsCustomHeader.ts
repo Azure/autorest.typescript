@@ -29,20 +29,18 @@ export class LROsCustomHeader {
 
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 200 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 200 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPutAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPutAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -79,20 +77,18 @@ export class LROsCustomHeader {
 
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 201 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’.  Polls return this value until the last poll
-   * returns a ‘200’ with ProvisioningState=’Succeeded’
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 201 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
+   * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderPut201CreatingSucceeded200OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -129,19 +125,17 @@ export class LROsCustomHeader {
 
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with 'Location' and 'Retry-After' headers,
-   * Polls return a 200 with a response body after success
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with
+   * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderPost202Retry200OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROsCustomHeaderPost202Retry200OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderPost202Retry200OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -165,20 +159,18 @@ export class LROsCustomHeader {
 
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with an
+   * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPostAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderPostAsyncRetrySucceededOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -201,23 +193,21 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 200 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 200 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPutAsyncRetrySucceededResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -230,7 +220,7 @@ export class LROsCustomHeader {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -296,32 +286,28 @@ export class LROsCustomHeader {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 201 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’.  Polls return this value until the last poll
-   * returns a ‘200’ with ProvisioningState=’Succeeded’
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 201 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
+   * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPut201CreatingSucceeded200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -334,7 +320,7 @@ export class LROsCustomHeader {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -414,31 +400,26 @@ export class LROsCustomHeader {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with 'Location' and 'Retry-After' headers,
-   * Polls return a 200 with a response body after success
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with
+   * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderBeginPost202Retry200OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderBeginPost202Retry200OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPost202Retry200WithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPost202Retry200OptionalParams): Promise<Models.LROsCustomHeaderPost202Retry200Response> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -451,7 +432,7 @@ export class LROsCustomHeader {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -505,32 +486,28 @@ export class LROsCustomHeader {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with an
+   * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRetrySucceededWithHttpOperationResponse(options?: Models.LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams): Promise<Models.LROsCustomHeaderPostAsyncRetrySucceededResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -543,7 +520,7 @@ export class LROsCustomHeader {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -597,35 +574,27 @@ export class LROsCustomHeader {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 200 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 200 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPutAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPutAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRetrySucceeded(): Promise<Models.Product>;
@@ -656,26 +625,20 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 201 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’.  Polls return this value until the last poll
-   * returns a ‘200’ with ProvisioningState=’Succeeded’
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 201 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
+   * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderPut201CreatingSucceeded200OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPut201CreatingSucceeded200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put201CreatingSucceeded200(): Promise<Models.Product>;
@@ -706,24 +669,19 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with 'Location' and 'Retry-After' headers,
-   * Polls return a 200 with a response body after success
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with
+   * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderPost202Retry200OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROsCustomHeaderPost202Retry200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202Retry200(): Promise<void>;
@@ -754,25 +712,20 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with an
+   * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderPostAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderPostAsyncRetrySucceededOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRetrySucceeded(): Promise<void>;
@@ -803,26 +756,21 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 200 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 200 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderBeginPutAsyncRetrySucceededOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRetrySucceeded(): Promise<Models.Product>;
@@ -853,26 +801,21 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running put request, service returns a
-   * 201 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’.  Polls return this value until the last poll
-   * returns a ‘200’ with ProvisioningState=’Succeeded’
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running put request, service returns a 201 to the initial request, with an entity
+   * that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns
+   * a ‘200’ with ProvisioningState=’Succeeded’
    *
-   * @param {LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROsCustomHeaderBeginPut201CreatingSucceeded200OptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPut201CreatingSucceeded200(): Promise<Models.Product>;
@@ -903,24 +846,19 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with 'Location' and 'Retry-After' headers,
-   * Polls return a 200 with a response body after success
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with
+   * 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success
    *
-   * @param {LROsCustomHeaderBeginPost202Retry200OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROsCustomHeaderBeginPost202Retry200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202Retry200(): Promise<void>;
@@ -951,25 +889,21 @@ export class LROsCustomHeader {
   }
 
   /**
-   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required
-   * message header for all requests. Long running post request, service returns
-   * a 202 to the initial request, with an entity that contains
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
+   * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
+   * requests. Long running post request, service returns a 202 to the initial request, with an
+   * entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
    * Azure-AsyncOperation header for operation status
    *
-   * @param {LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROsCustomHeaderBeginPostAsyncRetrySucceededOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRetrySucceeded(): Promise<void>;

@@ -13,7 +13,8 @@ namespace AutoRest.TypeScript.DSL
         protected enum State
         {
             Start,
-            Statements,
+            Statement,
+            Comment,
             If,
             Try,
             Threw,
@@ -52,6 +53,12 @@ namespace AutoRest.TypeScript.DSL
             }
         }
 
+        public void Text(string text)
+        {
+            SetCurrentState(State.Statement);
+            builder.Text(text);
+        }
+
         public void Line()
         {
             builder.Line();
@@ -59,8 +66,20 @@ namespace AutoRest.TypeScript.DSL
 
         public void Line(string text)
         {
-            SetCurrentState(State.Statements);
+            SetCurrentState(State.Statement);
             builder.Line(text);
+        }
+
+        public void LineComment(string text)
+        {
+            SetCurrentState(State.Comment);
+            builder.LineComment(text);
+        }
+
+        public void FunctionCall(string functionName, Action<TSArgumentList> argumentListAction)
+        {
+            SetCurrentState(State.Statement);
+            builder.FunctionCall(functionName, argumentListAction);
         }
 
         public void Indent(Action action)
@@ -70,7 +89,7 @@ namespace AutoRest.TypeScript.DSL
 
         public void ConstObjectVariable(string variableName, string variableType, Action<TSObject> valueAction)
         {
-            SetCurrentState(State.Statements);
+            SetCurrentState(State.Statement);
             builder.Text($"const {variableName}: {variableType} = ");
             builder.Object(valueAction);
             builder.Line($";");
@@ -86,6 +105,11 @@ namespace AutoRest.TypeScript.DSL
         {
             SetCurrentState(State.Try);
             return builder.Try(tryAction);
+        }
+
+        public void Return(string text)
+        {
+            Return(value => value.Text(text));
         }
 
         public void Return(Action<TSValue> returnValueAction)

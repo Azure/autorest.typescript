@@ -100,7 +100,7 @@ namespace AutoRest.TypeScript.DSL
 
         public void InsertNewLine(int index)
         {
-            Insert(index, newLine);
+            Insert(index, newLine + linePrefix);
         }
 
         public void AddIndentToLinesAfter(int index)
@@ -159,9 +159,9 @@ namespace AutoRest.TypeScript.DSL
         /// </summary>
         /// <param name="wordWrapWidth">The word wrap width to apply to the provided action.</param>
         /// <param name="action">The action to invoke with the provided word wrap width.</param>
-        private void WithWordWrap(int wordWrapWidth, Action action)
+        public void WithWordWrap(int wordWrapWidth, Action action)
         {
-            int? previousWordWrapWidth = this.WordWrapWidth;
+            int? previousWordWrapWidth = WordWrapWidth;
             WordWrapWidth = wordWrapWidth;
             try
             {
@@ -491,6 +491,16 @@ namespace AutoRest.TypeScript.DSL
                 argumentListAction.Invoke(argumentList);
             }
             Text(")");
+        }
+
+        public void AsyncMethod(string methodName, string returnType, string parameterList, Action<TSBlock> methodBodyAction)
+        {
+            Line($"async {methodName}({parameterList}): {returnType} {{");
+            Indent(() =>
+            {
+                methodBodyAction.Invoke(new TSBlock(this));
+            });
+            Line($"}}");
         }
 
         public void AsyncMethod(string methodName, string returnType, Action<TSParameterList> parameterListAction, Action<TSBlock> methodBodyAction)

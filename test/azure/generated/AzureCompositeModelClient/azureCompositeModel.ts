@@ -73,9 +73,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
   /**
    * @summary Product Types
    *
-   * The Products endpoint returns information about the Uber products offered at
-   * a given location. The response includes the display name and other details
-   * about each product, and lists the products in the proper display order.
+   * The Products endpoint returns information about the Uber products offered at a given location.
+   * The response includes the display name and other details about each product, and lists the
+   * products in the proper display order.
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
@@ -83,12 +83,11 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let client = this;
     let apiVersion = '2014-04-01-preview';
 
     // Create HTTP transport objects
@@ -103,7 +102,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -202,11 +201,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -220,17 +217,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelCreateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {AzureCompositeModelCreateOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
-    let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
     let apiVersion = '2014-04-01-preview';
 
@@ -247,7 +242,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           productDictionaryOfArray
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -354,11 +349,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -372,17 +365,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelUpdateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {AzureCompositeModelUpdateOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.AzureCompositeModelUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
     let apiVersion = '2014-04-01-preview';
 
@@ -399,7 +390,7 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           productArrayOfDictionary
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -506,36 +497,30 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * @summary Product Types
    *
-   * The Products endpoint returns information about the Uber products offered at
-   * a given location. The response includes the display name and other details
-   * about each product, and lists the products in the proper display order.
+   * The Products endpoint returns information about the Uber products offered at a given location.
+   * The response includes the display name and other details about each product, and lists the
+   * products in the proper display order.
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.CatalogArray} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.CatalogArray>;
@@ -574,21 +559,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelCreateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {AzureCompositeModelCreateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogDictionary} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CatalogDictionary} for more
-   *                      information.
-   *
+   *                      See {@link Models.CatalogDictionary} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   create(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogDictionary>;
@@ -627,20 +606,15 @@ class AzureCompositeModel extends AzureCompositeModelContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {AzureCompositeModelUpdateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {AzureCompositeModelUpdateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.CatalogArray} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   update(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogArray>;

@@ -79,11 +79,9 @@ class @(Model.Name) extends @(Model.ContextName) {
   }
 @foreach (var method in Model.MethodTemplateModels)
 {
-<text>
-  // methods on the client.
+@:  // methods on the client.
 @EmptyLine
-  @(Include(new MethodTemplate(), method))
-</text>
+@:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }
 @foreach (var method in Model.MethodWrappableTemplateModels)
 {

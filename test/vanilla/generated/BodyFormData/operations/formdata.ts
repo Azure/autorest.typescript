@@ -31,19 +31,17 @@ export class Formdata {
    *
    * @param {msRest.HttpRequestBody} fileContent File to upload.
    *
-   * @param {string} fileName File name to upload. Name has to be spelled exactly
-   * as written here.
+   * @param {string} fileName File name to upload. Name has to be spelled exactly as written here.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async uploadFileWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, fileName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -56,7 +54,7 @@ export class Formdata {
           fileName
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -89,7 +87,6 @@ export class Formdata {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -112,14 +109,11 @@ export class Formdata {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -132,12 +126,11 @@ export class Formdata {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async uploadFileViaBodyWithHttpOperationResponse(fileContent: msRest.HttpRequestBody, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -149,7 +142,7 @@ export class Formdata {
           fileContent
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -170,7 +163,6 @@ export class Formdata {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -193,14 +185,11 @@ export class Formdata {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

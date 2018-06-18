@@ -30,20 +30,18 @@ export class ParameterGrouping {
   /**
    * Post a bunch of required parameters grouped
    *
-   * @param {ParameterGroupingPostRequiredParameters}
-   * parameterGroupingPostRequiredParameters Additional parameters for the
-   * operation
+   * @param {ParameterGroupingPostRequiredParameters} parameterGroupingPostRequiredParameters
+   * Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredWithHttpOperationResponse(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -55,7 +53,7 @@ export class ParameterGrouping {
           parameterGroupingPostRequiredParameters
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -157,28 +155,24 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Post a bunch of optional parameters grouped
    *
-   * @param {ParameterGroupingPostOptionalOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ParameterGroupingPostOptionalOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalWithHttpOperationResponse(options?: Models.ParameterGroupingPostOptionalOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let parameterGroupingPostOptionalParameters = (options && options.parameterGroupingPostOptionalParameters !== undefined) ? options.parameterGroupingPostOptionalParameters : undefined;
 
     // Create HTTP transport objects
@@ -191,7 +185,7 @@ export class ParameterGrouping {
           parameterGroupingPostOptionalParameters
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -264,28 +258,24 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Post parameters from multiple different parameter groups
    *
-   * @param {ParameterGroupingPostMultiParamGroupsOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ParameterGroupingPostMultiParamGroupsOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMultiParamGroupsWithHttpOperationResponse(options?: Models.ParameterGroupingPostMultiParamGroupsOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
     let parameterGroupingPostMultiParamGroupsSecondParamGroup = (options && options.parameterGroupingPostMultiParamGroupsSecondParamGroup !== undefined) ? options.parameterGroupingPostMultiParamGroupsSecondParamGroup : undefined;
 
@@ -300,7 +290,7 @@ export class ParameterGrouping {
           parameterGroupingPostMultiParamGroupsSecondParamGroup
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -398,28 +388,25 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Post parameters with a shared parameter group object
    *
-   * @param {ParameterGroupingPostSharedParameterGroupObjectOptionalParams}
-   * [options] Optional Parameters.
+   * @param {ParameterGroupingPostSharedParameterGroupObjectOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postSharedParameterGroupObjectWithHttpOperationResponse(options?: Models.ParameterGroupingPostSharedParameterGroupObjectOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let firstParameterGroup = (options && options.firstParameterGroup !== undefined) ? options.firstParameterGroup : undefined;
 
     // Create HTTP transport objects
@@ -432,7 +419,7 @@ export class ParameterGrouping {
           firstParameterGroup
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -505,33 +492,27 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Post a bunch of required parameters grouped
    *
-   * @param {ParameterGroupingPostRequiredParameters}
-   * parameterGroupingPostRequiredParameters Additional parameters for the
-   * operation
+   * @param {ParameterGroupingPostRequiredParameters} parameterGroupingPostRequiredParameters
+   * Additional parameters for the operation
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequired(parameterGroupingPostRequiredParameters: Models.ParameterGroupingPostRequiredParameters): Promise<void>;
@@ -564,19 +545,15 @@ export class ParameterGrouping {
   /**
    * Post a bunch of optional parameters grouped
    *
-   * @param {ParameterGroupingPostOptionalOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ParameterGroupingPostOptionalOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptional(): Promise<void>;
@@ -609,19 +586,15 @@ export class ParameterGrouping {
   /**
    * Post parameters from multiple different parameter groups
    *
-   * @param {ParameterGroupingPostMultiParamGroupsOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ParameterGroupingPostMultiParamGroupsOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMultiParamGroups(): Promise<void>;
@@ -654,19 +627,16 @@ export class ParameterGrouping {
   /**
    * Post parameters with a shared parameter group object
    *
-   * @param {ParameterGroupingPostSharedParameterGroupObjectOptionalParams}
-   * [options] Optional Parameters.
+   * @param {ParameterGroupingPostSharedParameterGroupObjectOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postSharedParameterGroupObject(): Promise<void>;

@@ -28,19 +28,17 @@ export class Odata {
   }
 
   /**
-   * Specify filter parameter with value '$filter=id gt 5 and name eq
-   * 'foo'&$orderby=id&$top=10'
+   * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    *
    * @param {OdataGetWithFilterOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithFilterWithHttpOperationResponse(options?: Models.OdataGetWithFilterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let filter = (options && options.filter !== undefined) ? options.filter : undefined;
     let top = (options && options.top !== undefined) ? options.top : undefined;
     let orderby = (options && options.orderby !== undefined) ? options.orderby : undefined;
@@ -57,7 +55,7 @@ export class Odata {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -132,30 +130,24 @@ export class Odata {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Specify filter parameter with value '$filter=id gt 5 and name eq
-   * 'foo'&$orderby=id&$top=10'
+   * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    *
    * @param {OdataGetWithFilterOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getWithFilter(): Promise<void>;

@@ -52,17 +52,16 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as an Array
    *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putArrayWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutArrayOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this;
     let resourceArray = (options && options.resourceArray !== undefined) ? options.resourceArray : undefined;
 
     // Create HTTP transport objects
@@ -75,7 +74,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -138,11 +137,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -154,12 +151,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getArrayWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlattenedProduct[]>> {
-    let client = this;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -170,7 +166,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -243,11 +239,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -255,17 +249,16 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a Dictionary
    *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putDictionaryWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this;
     let resourceDictionary = (options && options.resourceDictionary !== undefined) ? options.resourceDictionary : undefined;
 
     // Create HTTP transport objects
@@ -278,7 +271,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -341,11 +334,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -357,12 +348,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getDictionaryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: Models.FlattenedProduct }>> {
-    let client = this;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -373,7 +363,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -446,11 +436,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -458,18 +446,16 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a ResourceCollection
    *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
+   * Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putResourceCollectionWithHttpOperationResponse(options?: Models.AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this;
     let resourceComplexObject = (options && options.resourceComplexObject !== undefined) ? options.resourceComplexObject : undefined;
 
     // Create HTTP transport objects
@@ -482,7 +468,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -533,11 +519,9 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -549,12 +533,11 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getResourceCollectionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ResourceCollection>> {
-    let client = this;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -565,7 +548,7 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -626,30 +609,25 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Put External Resource as an Array
    *
-   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutArrayOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putArray(): Promise<void>;
@@ -684,16 +662,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.FlattenedProduct[]} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getArray(): Promise<Models.FlattenedProduct[]>;
@@ -726,19 +701,16 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a Dictionary
    *
-   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutDictionaryOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putDictionary(): Promise<void>;
@@ -773,16 +745,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {{ [propertyName: string]: Models.FlattenedProduct }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getDictionary(): Promise<{ [propertyName: string]: Models.FlattenedProduct }>;
@@ -815,20 +784,16 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
   /**
    * Put External Resource as a ResourceCollection
    *
-   * @param
-   * {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestResourceFlatteningTestServicePutResourceCollectionOptionalParams} [options]
+   * Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putResourceCollection(): Promise<void>;
@@ -863,18 +828,13 @@ class AutoRestResourceFlatteningTestService extends AutoRestResourceFlatteningTe
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ResourceCollection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ResourceCollection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ResourceCollection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getResourceCollection(): Promise<Models.ResourceCollection>;

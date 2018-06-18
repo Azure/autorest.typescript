@@ -28,26 +28,24 @@ export class EnumModel {
   }
 
   /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'.
+   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNotExpandableWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -106,31 +104,26 @@ export class EnumModel {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'
+   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} stringBody Possible values include: 'red color',
-   * 'green-color', 'blue_color'
+   * @param {Colors} stringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putNotExpandableWithHttpOperationResponse(stringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,7 +134,7 @@ export class EnumModel {
           stringBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -191,35 +184,31 @@ export class EnumModel {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'.
+   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getReferencedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Colors>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -278,31 +267,26 @@ export class EnumModel {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'
+   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} enumStringBody Possible values include: 'red color',
-   * 'green-color', 'blue_color'
+   * @param {Colors} enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putReferencedWithHttpOperationResponse(enumStringBody: Models.Colors, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -313,7 +297,7 @@ export class EnumModel {
           enumStringBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -363,11 +347,9 @@ export class EnumModel {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -378,19 +360,18 @@ export class EnumModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getReferencedConstantWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RefColorConstant>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -439,28 +420,24 @@ export class EnumModel {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Sends value 'green-color' from a constant
    *
-   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional
-   * Parameters.
+   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putReferencedConstantWithHttpOperationResponse(options?: Models.EnumModelPutReferencedConstantOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let field1 = (options && options.field1 !== undefined) ? options.field1 : undefined;
 
     // Create HTTP transport objects
@@ -472,7 +449,7 @@ export class EnumModel {
           field1
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -516,32 +493,24 @@ export class EnumModel {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'.
+   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Colors} [result]   - The deserialized result object if an error did not occur.
-   *                      Possible values for result are - red color,
-   *                      green-color, blue_color.
-   *
+   *                      Possible values for result are - red color, green-color, blue_color.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNotExpandable(): Promise<Models.Colors>;
@@ -572,24 +541,19 @@ export class EnumModel {
   }
 
   /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'
+   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} stringBody Possible values include: 'red color',
-   * 'green-color', 'blue_color'
+   * @param {Colors} stringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNotExpandable(stringBody: Models.Colors): Promise<void>;
@@ -620,23 +584,17 @@ export class EnumModel {
   }
 
   /**
-   * Get enum value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'.
+   * Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Colors} [result]   - The deserialized result object if an error did not occur.
-   *                      Possible values for result are - red color,
-   *                      green-color, blue_color.
-   *
+   *                      Possible values for result are - red color, green-color, blue_color.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getReferenced(): Promise<Models.Colors>;
@@ -667,24 +625,19 @@ export class EnumModel {
   }
 
   /**
-   * Sends value 'red color' from enumeration of 'red color', 'green-color',
-   * 'blue_color'
+   * Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'
    *
-   * @param {Colors} enumStringBody Possible values include: 'red color',
-   * 'green-color', 'blue_color'
+   * @param {Colors} enumStringBody Possible values include: 'red color', 'green-color', 'blue_color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putReferenced(enumStringBody: Models.Colors): Promise<void>;
@@ -719,18 +672,13 @@ export class EnumModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.RefColorConstant} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.RefColorConstant} for more
-   *                      information.
-   *
+   *                      See {@link Models.RefColorConstant} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getReferencedConstant(): Promise<Models.RefColorConstant>;
@@ -763,19 +711,15 @@ export class EnumModel {
   /**
    * Sends value 'green-color' from a constant
    *
-   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional
-   * Parameters.
+   * @param {EnumModelPutReferencedConstantOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putReferencedConstant(): Promise<void>;

@@ -27,22 +27,21 @@ export class SubscriptionInMethod {
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use
-   * value '1234-5678-9012-3456'
+   * @param {string} subscriptionId This should appear as a method parameter, use value
+   * '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMethodLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -54,7 +53,7 @@ export class SubscriptionInMethod {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -112,31 +111,28 @@ export class SubscriptionInMethod {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = null, client-side validation should prevent you from making this call
+   * POST method with subscriptionId modeled in the method.  pass in subscription id = null,
+   * client-side validation should prevent you from making this call
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use
-   * value null, client-side validation should prvenet the call
+   * @param {string} subscriptionId This should appear as a method parameter, use value null,
+   * client-side validation should prvenet the call
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMethodLocalNullWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -148,7 +144,7 @@ export class SubscriptionInMethod {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -206,31 +202,28 @@ export class SubscriptionInMethod {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId Should appear as a method parameter -use
-   * value '1234-5678-9012-3456'
+   * @param {string} subscriptionId Should appear as a method parameter -use value
+   * '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postPathLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -242,7 +235,7 @@ export class SubscriptionInMethod {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -300,31 +293,28 @@ export class SubscriptionInMethod {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId The subscriptionId, which appears in the
-   * path, the value is always '1234-5678-9012-3456'
+   * @param {string} subscriptionId The subscriptionId, which appears in the path, the value is
+   * always '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postSwaggerLocalValidWithHttpOperationResponse(subscriptionId: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -336,7 +326,7 @@ export class SubscriptionInMethod {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -394,33 +384,28 @@ export class SubscriptionInMethod {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use
-   * value '1234-5678-9012-3456'
+   * @param {string} subscriptionId This should appear as a method parameter, use value
+   * '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMethodLocalValid(subscriptionId: string): Promise<void>;
@@ -451,24 +436,21 @@ export class SubscriptionInMethod {
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = null, client-side validation should prevent you from making this call
+   * POST method with subscriptionId modeled in the method.  pass in subscription id = null,
+   * client-side validation should prevent you from making this call
    *
-   * @param {string} subscriptionId This should appear as a method parameter, use
-   * value null, client-side validation should prvenet the call
+   * @param {string} subscriptionId This should appear as a method parameter, use value null,
+   * client-side validation should prvenet the call
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMethodLocalNull(subscriptionId: string): Promise<void>;
@@ -499,24 +481,21 @@ export class SubscriptionInMethod {
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId Should appear as a method parameter -use
-   * value '1234-5678-9012-3456'
+   * @param {string} subscriptionId Should appear as a method parameter -use value
+   * '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postPathLocalValid(subscriptionId: string): Promise<void>;
@@ -547,24 +526,21 @@ export class SubscriptionInMethod {
   }
 
   /**
-   * POST method with subscriptionId modeled in the method.  pass in subscription
-   * id = '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in the method.  pass in subscription id =
+   * '1234-5678-9012-3456' to succeed
    *
-   * @param {string} subscriptionId The subscriptionId, which appears in the
-   * path, the value is always '1234-5678-9012-3456'
+   * @param {string} subscriptionId The subscriptionId, which appears in the path, the value is
+   * always '1234-5678-9012-3456'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postSwaggerLocalValid(subscriptionId: string): Promise<void>;

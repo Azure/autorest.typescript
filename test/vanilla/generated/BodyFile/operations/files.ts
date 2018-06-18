@@ -33,12 +33,11 @@ export class Files {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -46,7 +45,7 @@ export class Files {
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -56,7 +55,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -79,14 +77,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -97,12 +92,11 @@ export class Files {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getFileLargeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -110,7 +104,7 @@ export class Files {
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -120,7 +114,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -143,14 +136,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -161,12 +151,11 @@ export class Files {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getEmptyFileWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -174,7 +163,7 @@ export class Files {
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -184,7 +173,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -207,14 +195,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

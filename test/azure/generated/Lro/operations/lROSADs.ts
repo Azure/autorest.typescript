@@ -35,9 +35,9 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putNonRetry400WithHttpOperationResponse(options?: Models.LROSADsPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -74,17 +74,16 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -121,17 +120,17 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -168,18 +167,16 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 with
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
-   * Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+   * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -222,9 +219,9 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -254,9 +251,9 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -280,17 +277,16 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -320,9 +316,9 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postNonRetry400WithHttpOperationResponse(options?: Models.LROSADsPostNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -348,14 +344,13 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsPost202NonRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -379,18 +374,16 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request Poll
-   * the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running post request, service returns a 202 to the initial request Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetry400OptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -414,17 +407,16 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 201 to the initial request with
-   * no payload
+   * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -461,18 +453,17 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -509,18 +500,18 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -557,16 +548,15 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 204 to the initial request,
-   * indicating success.
+   * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -590,17 +580,16 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -624,17 +613,16 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * without a location header.
+   * Long running post request, service returns a 202 to the initial request, without a location
+   * header.
    *
-   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post202NoLocationWithHttpOperationResponse(options?: Models.LROSADsPost202NoLocationOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -658,18 +646,17 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -693,17 +680,16 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that is not a valid json
+   * Long running put request, service returns a 200 to the initial request, with an entity that is
+   * not a valid json
    *
-   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -740,18 +726,17 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. The endpoint indicated
-   * in the Azure-AsyncOperation header is invalid.
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -788,18 +773,18 @@ export class LROSADs {
 
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -836,16 +821,16 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 202 to the initial request
-   * receing a reponse with an invalid 'Location' and 'Retry-After' headers
+   * Long running delete request, service returns a 202 to the initial request receing a reponse with
+   * an invalid 'Location' and 'Retry-After' headers
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -869,16 +854,16 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * The endpoint indicated in the Azure-AsyncOperation header is invalid
+   * Long running delete request, service returns a 202 to the initial request. The endpoint
+   * indicated in the Azure-AsyncOperation header is invalid
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -902,17 +887,16 @@ export class LROSADs {
 
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -936,17 +920,16 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with invalid 'Location' and 'Retry-After' headers.
+   * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
+   * and 'Retry-After' headers.
    *
-   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPost202RetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -970,18 +953,17 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. The endpoint
-   * indicated in the Azure-AsyncOperation header is invalid.
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1005,18 +987,18 @@ export class LROSADs {
 
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1041,17 +1023,15 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 400 to the initial request
    *
-   * @param {LROSADsBeginPutNonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPutNonRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1064,7 +1044,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1144,29 +1124,25 @@ export class LROSADs {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry201Creating400WithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400OptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1179,7 +1155,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1259,29 +1235,26 @@ export class LROSADs {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutNonRetry201Creating400InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1294,7 +1267,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1374,30 +1347,25 @@ export class LROSADs {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 with
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
-   * Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+   * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetry400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetry400Response> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1410,7 +1378,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1476,11 +1444,9 @@ export class LROSADs {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1491,12 +1457,11 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteNonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteNonRetry400Response> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1507,7 +1472,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1556,11 +1521,9 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1571,12 +1534,11 @@ export class LROSADs {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDelete202NonRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202NonRetry400Response> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1587,7 +1549,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1636,29 +1598,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDelete202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetry400WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetry400Response> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1669,7 +1627,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1718,28 +1676,24 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Long running post request, service returns a 400 with no error body
    *
-   * @param {LROSADsBeginPostNonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPostNonRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostNonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostNonRetry400OptionalParams): Promise<Models.LROSADsPostNonRetry400Response> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1752,7 +1706,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1806,28 +1760,24 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostNonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsBeginPost202NonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPost202NonRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPost202NonRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPost202NonRetry400OptionalParams): Promise<Models.LROSADsPost202NonRetry400Response> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1840,7 +1790,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1894,30 +1844,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202NonRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request Poll
-   * the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running post request, service returns a 202 to the initial request Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetry400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetry400WithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetry400OptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetry400Response> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -1930,7 +1875,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1984,29 +1929,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetry400Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 201 to the initial request with
-   * no payload
+   * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutError201NoProvisioningStatePayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2019,7 +1960,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2099,30 +2040,26 @@ export class LROSADs {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2135,7 +2072,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2201,30 +2138,27 @@ export class LROSADs {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryNoStatusPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryNoStatusPayloadResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2237,7 +2171,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2303,28 +2237,24 @@ export class LROSADs {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryNoStatusPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 204 to the initial request,
-   * indicating success.
+   * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDelete204SucceededWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2335,7 +2265,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2380,29 +2310,25 @@ export class LROSADs {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryNoStatusWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryNoStatusResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2413,7 +2339,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2462,29 +2388,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryNoStatusHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * without a location header.
+   * Long running post request, service returns a 202 to the initial request, without a location
+   * header.
    *
-   * @param {LROSADsBeginPost202NoLocationOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPost202NoLocationOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPost202NoLocationWithHttpOperationResponse(options?: Models.LROSADsBeginPost202NoLocationOptionalParams): Promise<Models.LROSADsPost202NoLocationResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2497,7 +2419,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2551,30 +2473,27 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202NoLocationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryNoPayloadWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryNoPayloadResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2587,7 +2506,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2641,29 +2560,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryNoPayloadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that is not a valid json
+   * Long running put request, service returns a 200 to the initial request, with an entity that is
+   * not a valid json
    *
-   * @param {LROSADsBeginPut200InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPut200InvalidJsonOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPut200InvalidJsonWithHttpOperationResponse(options?: Models.LROSADsBeginPut200InvalidJsonOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2676,7 +2591,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2741,30 +2656,27 @@ export class LROSADs {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. The endpoint indicated
-   * in the Azure-AsyncOperation header is invalid.
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidHeaderResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2777,7 +2689,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2843,30 +2755,27 @@ export class LROSADs {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPutAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPutAsyncRelativeRetryInvalidJsonPollingResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -2879,7 +2788,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2945,28 +2854,25 @@ export class LROSADs {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPutAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request
-   * receing a reponse with an invalid 'Location' and 'Retry-After' headers
+   * Long running delete request, service returns a 202 to the initial request receing a reponse with
+   * an invalid 'Location' and 'Retry-After' headers
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDelete202RetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDelete202RetryInvalidHeaderResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2977,7 +2883,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3026,28 +2932,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDelete202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * The endpoint indicated in the Azure-AsyncOperation header is invalid
+   * Long running delete request, service returns a 202 to the initial request. The endpoint
+   * indicated in the Azure-AsyncOperation header is invalid
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidHeaderResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3058,7 +2961,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3107,29 +3010,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3140,7 +3039,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3189,29 +3088,25 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsDeleteAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with invalid 'Location' and 'Retry-After' headers.
+   * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
+   * and 'Retry-After' headers.
    *
-   * @param {LROSADsBeginPost202RetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPost202RetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPost202RetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPost202RetryInvalidHeaderResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -3224,7 +3119,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3278,30 +3173,27 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPost202RetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. The endpoint
-   * indicated in the Azure-AsyncOperation header is invalid.
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryInvalidHeaderWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidHeaderResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -3314,7 +3206,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3368,30 +3260,27 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidHeaderHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginPostAsyncRelativeRetryInvalidJsonPollingWithHttpOperationResponse(options?: Models.LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams): Promise<Models.LROSADsPostAsyncRelativeRetryInvalidJsonPollingResponse> {
-    let client = this.client;
     let product = (options && options.product !== undefined) ? options.product : undefined;
 
     // Create HTTP transport objects
@@ -3404,7 +3293,7 @@ export class LROSADs {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3458,11 +3347,9 @@ export class LROSADs {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROSADsPostAsyncRelativeRetryInvalidJsonPollingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -3471,17 +3358,13 @@ export class LROSADs {
    *
    * @param {LROSADsPutNonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry400(): Promise<Models.Product>;
@@ -3512,23 +3395,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry201Creating400(): Promise<Models.Product>;
@@ -3559,23 +3437,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putNonRetry201Creating400InvalidJson(): Promise<Models.Product>;
@@ -3606,24 +3480,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 with
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
-   * Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+   * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetry400(): Promise<Models.Product>;
@@ -3658,16 +3526,13 @@ export class LROSADs {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteNonRetry400(): Promise<void>;
@@ -3702,16 +3567,13 @@ export class LROSADs {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202NonRetry400(): Promise<void>;
@@ -3742,22 +3604,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetry400(): Promise<void>;
@@ -3792,16 +3650,13 @@ export class LROSADs {
    *
    * @param {LROSADsPostNonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postNonRetry400(): Promise<void>;
@@ -3834,19 +3689,15 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202NonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202NonRetry400(): Promise<void>;
@@ -3877,23 +3728,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request Poll
-   * the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running post request, service returns a 202 to the initial request Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetry400(): Promise<void>;
@@ -3924,23 +3770,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 201 to the initial request with
-   * no payload
+   * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putError201NoProvisioningStatePayload(): Promise<Models.Product>;
@@ -3971,24 +3812,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryNoStatus(): Promise<Models.Product>;
@@ -4019,24 +3855,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryNoStatusPayload(): Promise<Models.Product>;
@@ -4067,21 +3899,17 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 204 to the initial request,
-   * indicating success.
+   * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete204Succeeded(): Promise<void>;
@@ -4112,22 +3940,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryNoStatus(): Promise<void>;
@@ -4158,22 +3982,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * without a location header.
+   * Long running post request, service returns a 202 to the initial request, without a location
+   * header.
    *
-   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202NoLocationOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202NoLocation(): Promise<void>;
@@ -4204,23 +4024,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryNoPayload(): Promise<void>;
@@ -4251,23 +4067,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that is not a valid json
+   * Long running put request, service returns a 200 to the initial request, with an entity that is
+   * not a valid json
    *
-   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPut200InvalidJsonOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put200InvalidJson(): Promise<Models.Product>;
@@ -4298,24 +4109,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. The endpoint indicated
-   * in the Azure-AsyncOperation header is invalid.
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryInvalidHeader(): Promise<Models.Product>;
@@ -4346,24 +4152,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putAsyncRelativeRetryInvalidJsonPolling(): Promise<Models.Product>;
@@ -4394,21 +4196,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request
-   * receing a reponse with an invalid 'Location' and 'Retry-After' headers
+   * Long running delete request, service returns a 202 to the initial request receing a reponse with
+   * an invalid 'Location' and 'Retry-After' headers
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202RetryInvalidHeader(): Promise<void>;
@@ -4439,21 +4238,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * The endpoint indicated in the Azure-AsyncOperation header is invalid
+   * Long running delete request, service returns a 202 to the initial request. The endpoint
+   * indicated in the Azure-AsyncOperation header is invalid
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryInvalidHeader(): Promise<void>;
@@ -4484,22 +4280,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
@@ -4530,22 +4322,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with invalid 'Location' and 'Retry-After' headers.
+   * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
+   * and 'Retry-After' headers.
    *
-   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202RetryInvalidHeader(): Promise<void>;
@@ -4576,23 +4364,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. The endpoint
-   * indicated in the Azure-AsyncOperation header is invalid.
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryInvalidHeader(): Promise<void>;
@@ -4623,23 +4407,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
@@ -4672,20 +4453,15 @@ export class LROSADs {
   /**
    * Long running put request, service returns a 400 to the initial request
    *
-   * @param {LROSADsBeginPutNonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPutNonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry400(): Promise<Models.Product>;
@@ -4716,23 +4492,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutNonRetry201Creating400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry201Creating400(): Promise<Models.Product>;
@@ -4763,23 +4534,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a Product with 'ProvisioningState'
-   * = 'Creating' and 201 response code
+   * Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
+   * 201 response code
    *
-   * @param {LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutNonRetry201Creating400InvalidJsonOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutNonRetry201Creating400InvalidJson(): Promise<Models.Product>;
@@ -4810,24 +4577,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 with
-   * ProvisioningState=’Creating’. Poll the endpoint indicated in the
-   * Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
+   * endpoint indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetry400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetry400(): Promise<Models.Product>;
@@ -4862,16 +4623,13 @@ export class LROSADs {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteNonRetry400(): Promise<void>;
@@ -4906,16 +4664,13 @@ export class LROSADs {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete202NonRetry400(): Promise<void>;
@@ -4946,22 +4701,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetry400(): Promise<void>;
@@ -4994,19 +4745,15 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 400 with no error body
    *
-   * @param {LROSADsBeginPostNonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPostNonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostNonRetry400(): Promise<void>;
@@ -5039,19 +4786,15 @@ export class LROSADs {
   /**
    * Long running post request, service returns a 202 with a location header
    *
-   * @param {LROSADsBeginPost202NonRetry400OptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPost202NonRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202NonRetry400(): Promise<void>;
@@ -5082,23 +4825,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request Poll
-   * the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running post request, service returns a 202 to the initial request Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetry400OptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetry400OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetry400(): Promise<void>;
@@ -5129,23 +4867,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 201 to the initial request with
-   * no payload
+   * Long running put request, service returns a 201 to the initial request with no payload
    *
-   * @param {LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutError201NoProvisioningStatePayloadOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutError201NoProvisioningStatePayload(): Promise<Models.Product>;
@@ -5176,24 +4909,19 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryNoStatus(): Promise<Models.Product>;
@@ -5224,24 +4952,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryNoStatusPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryNoStatusPayload(): Promise<Models.Product>;
@@ -5272,21 +4996,17 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 204 to the initial request,
-   * indicating success.
+   * Long running delete request, service returns a 204 to the initial request, indicating success.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete204Succeeded(): Promise<void>;
@@ -5317,22 +5037,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryNoStatus(): Promise<void>;
@@ -5363,22 +5079,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * without a location header.
+   * Long running post request, service returns a 202 to the initial request, without a location
+   * header.
    *
-   * @param {LROSADsBeginPost202NoLocationOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPost202NoLocationOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202NoLocation(): Promise<void>;
@@ -5409,23 +5121,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryNoPayloadOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryNoPayload(): Promise<void>;
@@ -5456,23 +5165,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that is not a valid json
+   * Long running put request, service returns a 200 to the initial request, with an entity that is
+   * not a valid json
    *
-   * @param {LROSADsBeginPut200InvalidJsonOptionalParams} [options] Optional
-   * Parameters.
+   * @param {LROSADsBeginPut200InvalidJsonOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPut200InvalidJson(): Promise<Models.Product>;
@@ -5503,24 +5207,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. The endpoint indicated
-   * in the Azure-AsyncOperation header is invalid.
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryInvalidHeader(): Promise<Models.Product>;
@@ -5551,24 +5251,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running put request, service returns a 200 to the initial request, with
-   * an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running put request, service returns a 200 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPutAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPutAsyncRelativeRetryInvalidJsonPolling(): Promise<Models.Product>;
@@ -5599,21 +5295,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request
-   * receing a reponse with an invalid 'Location' and 'Retry-After' headers
+   * Long running delete request, service returns a 202 to the initial request receing a reponse with
+   * an invalid 'Location' and 'Retry-After' headers
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDelete202RetryInvalidHeader(): Promise<void>;
@@ -5644,21 +5337,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * The endpoint indicated in the Azure-AsyncOperation header is invalid
+   * Long running delete request, service returns a 202 to the initial request. The endpoint
+   * indicated in the Azure-AsyncOperation header is invalid
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryInvalidHeader(): Promise<void>;
@@ -5689,22 +5379,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running delete request, service returns a 202 to the initial request.
-   * Poll the endpoint indicated in the Azure-AsyncOperation header for operation
-   * status
+   * Long running delete request, service returns a 202 to the initial request. Poll the endpoint
+   * indicated in the Azure-AsyncOperation header for operation status
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;
@@ -5735,22 +5421,18 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with invalid 'Location' and 'Retry-After' headers.
+   * Long running post request, service returns a 202 to the initial request, with invalid 'Location'
+   * and 'Retry-After' headers.
    *
-   * @param {LROSADsBeginPost202RetryInvalidHeaderOptionalParams} [options]
-   * Optional Parameters.
+   * @param {LROSADsBeginPost202RetryInvalidHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPost202RetryInvalidHeader(): Promise<void>;
@@ -5781,23 +5463,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. The endpoint
-   * indicated in the Azure-AsyncOperation header is invalid.
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header
+   * is invalid.
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidHeaderOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryInvalidHeader(): Promise<void>;
@@ -5828,23 +5507,20 @@ export class LROSADs {
   }
 
   /**
-   * Long running post request, service returns a 202 to the initial request,
-   * with an entity that contains ProvisioningState=’Creating’. Poll the endpoint
-   * indicated in the Azure-AsyncOperation header for operation status
+   * Long running post request, service returns a 202 to the initial request, with an entity that
+   * contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+   * header for operation status
    *
-   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams}
-   * [options] Optional Parameters.
+   * @param {LROSADsBeginPostAsyncRelativeRetryInvalidJsonPollingOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginPostAsyncRelativeRetryInvalidJsonPolling(): Promise<void>;

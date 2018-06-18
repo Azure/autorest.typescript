@@ -28,19 +28,17 @@ export class ApiVersionLocal {
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMethodLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2.0';
 
     // Create HTTP transport objects
@@ -53,7 +51,7 @@ export class ApiVersionLocal {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -113,29 +111,24 @@ export class ApiVersionLocal {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * null to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = null to succeed
    *
-   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMethodLocalNullWithHttpOperationResponse(options?: Models.ApiVersionLocalGetMethodLocalNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = (options && options.apiVersion !== undefined) ? options.apiVersion : undefined;
 
     // Create HTTP transport objects
@@ -148,7 +141,7 @@ export class ApiVersionLocal {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -205,28 +198,24 @@ export class ApiVersionLocal {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getPathLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2.0';
 
     // Create HTTP transport objects
@@ -239,7 +228,7 @@ export class ApiVersionLocal {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -299,28 +288,24 @@ export class ApiVersionLocal {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerLocalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2.0';
 
     // Create HTTP transport objects
@@ -333,7 +318,7 @@ export class ApiVersionLocal {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -393,30 +378,24 @@ export class ApiVersionLocal {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMethodLocalValid(): Promise<void>;
@@ -447,22 +426,17 @@ export class ApiVersionLocal {
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * null to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = null to succeed
    *
-   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ApiVersionLocalGetMethodLocalNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMethodLocalNull(): Promise<void>;
@@ -493,21 +467,17 @@ export class ApiVersionLocal {
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getPathLocalValid(): Promise<void>;
@@ -538,21 +508,17 @@ export class ApiVersionLocal {
   }
 
   /**
-   * Get method with api-version modeled in the method.  pass in api-version =
-   * '2.0' to succeed
+   * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSwaggerLocalValid(): Promise<void>;

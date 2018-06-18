@@ -32,13 +32,13 @@ namespace AutoRest.TypeScript.DSL
         {
             if (currentState == State.Start)
             {
-                builder.Line("/**");
+                Line("/**");
                 builder.AddToPrefix(" * ");
                 builder.WordWrapWidth = TSBuilder.multiLineCommentWordWrapWidth;
             }
             else
             {
-                builder.Line();
+                Line();
             }
             currentState = newState;
         }
@@ -49,8 +49,13 @@ namespace AutoRest.TypeScript.DSL
             {
                 builder.WordWrapWidth = previousWordWrapWidth;
                 builder.RemoveFromPrefix(" * ");
-                builder.Line(" */");
+                Line(" */");
             }
+        }
+
+        public void WithWordWrap(int wordWrapWidth, Action action)
+        {
+            builder.WithWordWrap(wordWrapWidth, action);
         }
 
         public void Summary(string text)
@@ -58,7 +63,7 @@ namespace AutoRest.TypeScript.DSL
             if (!string.IsNullOrEmpty(text))
             {
                 SetCurrentState(State.Summary);
-                builder.Line($"@summary {text}");
+                Line($"@summary {text}");
             }
         }
 
@@ -67,32 +72,42 @@ namespace AutoRest.TypeScript.DSL
             if (!string.IsNullOrEmpty(text))
             {
                 SetCurrentState(State.Description);
-                builder.Line(text);
+                Line(text);
             }
         }
 
         public void Parameter(string parameterType, string parameterName, string parameterDocumentation, bool isOptional = false)
         {
             SetCurrentState(State.Parameters);
-            builder.Line($"@param {{{parameterType}}} {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
+            Line($"@param {{{parameterType}}} {(isOptional ? '[' + parameterName + ']' : parameterName)} {parameterDocumentation}");
         }
 
         public void Returns(string returnType, string returnDocumentation)
         {
             SetCurrentState(State.Returns);
-            builder.Line($"@returns {{{returnType}}} {returnDocumentation}");
+            Line($"@returns {{{returnType}}} {returnDocumentation}");
         }
 
         public void Resolve(string resolveType, string resolveDocumentation)
         {
             SetCurrentState(State.Resolve);
-            builder.Line($"@resolve {{{resolveType}}} {resolveDocumentation}");
+            Line($"@resolve {{{resolveType}}} {resolveDocumentation}");
         }
 
         public void Reject(string rejectType, string rejectDocumentation)
         {
             SetCurrentState(State.Reject);
-            builder.Line($"@reject {{{rejectType}}} {rejectDocumentation}");
+            Line($"@reject {{{rejectType}}} {rejectDocumentation}");
+        }
+
+        public void Line()
+        {
+            builder.Line();
+        }
+
+        public void Line(string text)
+        {
+            builder.Line(text);
         }
     }
 }
