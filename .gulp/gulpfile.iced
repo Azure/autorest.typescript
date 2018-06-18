@@ -43,6 +43,7 @@ task 'test/typecheck', 'type check generated code', [], (done) ->
   done();
 
 task 'set-tsnode-typecheck', 'set ts-node to type check mode', [], (done) ->
+  # This has to be set or else ts-node won't find const enum values.
   process.env.TS_NODE_TYPE_CHECK = 'Y'
   done()
 
