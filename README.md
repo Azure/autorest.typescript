@@ -68,6 +68,13 @@ After cloning the repo, execute:
 - `npm install -g gulp` (gulp should be installed globally too)
 - `npm run build`
 
+### IMPORTANT NOTE
+
+This project uses a git submodule for dependent code. When cloning this repository use `git clone --recursive ...` or perform a `git submodule init ` after the project is cloned.
+
+
+
+
 ### Testing the developed changes
 - `gulp regenerate`
 - `gulp test`

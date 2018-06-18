@@ -10,7 +10,7 @@
     "test": "gulp test",
     "testci": "gulp testci",
     "build": "gulp build",
-    "prepare": "gulp build",
+    "prepare": "gulp install_common && gulp build",
     "publish-preview": "gulp publish-preview",
     "regenerate": "gulp regenerate",
     "clean": "gulp clean",
