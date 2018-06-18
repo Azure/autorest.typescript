@@ -34,19 +34,18 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async head200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -93,19 +92,18 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async get200WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<boolean>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -172,12 +170,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put200WithHttpOperationResponse(options?: Models.HttpSuccessPut200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -189,7 +186,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -246,12 +243,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async patch200WithHttpOperationResponse(options?: Models.HttpSuccessPatch200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -263,7 +259,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -320,12 +316,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post200WithHttpOperationResponse(options?: Models.HttpSuccessPost200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -337,7 +332,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -394,12 +389,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete200WithHttpOperationResponse(options?: Models.HttpSuccessDelete200OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -411,7 +405,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -468,12 +462,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put201WithHttpOperationResponse(options?: Models.HttpSuccessPut201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -485,7 +478,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -542,12 +535,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post201WithHttpOperationResponse(options?: Models.HttpSuccessPost201OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -559,7 +551,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -616,12 +608,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put202WithHttpOperationResponse(options?: Models.HttpSuccessPut202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -633,7 +624,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -690,12 +681,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async patch202WithHttpOperationResponse(options?: Models.HttpSuccessPatch202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -707,7 +697,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -764,12 +754,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post202WithHttpOperationResponse(options?: Models.HttpSuccessPost202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -781,7 +770,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -838,12 +827,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete202WithHttpOperationResponse(options?: Models.HttpSuccessDelete202OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -855,7 +843,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -912,19 +900,18 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async head204WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -971,12 +958,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async put204WithHttpOperationResponse(options?: Models.HttpSuccessPut204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -988,7 +974,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1045,12 +1031,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async patch204WithHttpOperationResponse(options?: Models.HttpSuccessPatch204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -1062,7 +1047,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1119,12 +1104,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post204WithHttpOperationResponse(options?: Models.HttpSuccessPost204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -1136,7 +1120,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1193,12 +1177,11 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete204WithHttpOperationResponse(options?: Models.HttpSuccessDelete204OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -1210,7 +1193,7 @@ export class HttpSuccess {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1267,19 +1250,18 @@ export class HttpSuccess {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async head404WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1324,16 +1306,13 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head200(): Promise<void>;
@@ -1368,16 +1347,13 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {boolean} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get200(): Promise<boolean>;
@@ -1412,16 +1388,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPut200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put200(): Promise<void>;
@@ -1456,16 +1429,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPatch200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   patch200(): Promise<void>;
@@ -1500,16 +1470,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPost200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post200(): Promise<void>;
@@ -1544,16 +1511,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessDelete200OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete200(): Promise<void>;
@@ -1588,16 +1552,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPut201OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put201(): Promise<void>;
@@ -1632,16 +1593,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPost201OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post201(): Promise<void>;
@@ -1676,16 +1634,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPut202OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put202(): Promise<void>;
@@ -1720,16 +1675,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPatch202OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   patch202(): Promise<void>;
@@ -1764,16 +1716,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPost202OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post202(): Promise<void>;
@@ -1808,16 +1757,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessDelete202OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete202(): Promise<void>;
@@ -1852,16 +1798,13 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head204(): Promise<void>;
@@ -1896,16 +1839,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPut204OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   put204(): Promise<void>;
@@ -1940,16 +1880,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPatch204OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   patch204(): Promise<void>;
@@ -1984,16 +1921,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessPost204OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post204(): Promise<void>;
@@ -2028,16 +1962,13 @@ export class HttpSuccess {
    *
    * @param {HttpSuccessDelete204OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete204(): Promise<void>;
@@ -2072,16 +2003,13 @@ export class HttpSuccess {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head404(): Promise<void>;

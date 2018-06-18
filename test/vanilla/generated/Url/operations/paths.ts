@@ -34,12 +34,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getBooleanTrueWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let boolPath = true;
 
     // Create HTTP transport objects
@@ -51,7 +50,7 @@ export class Paths {
           boolPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -112,12 +111,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getBooleanFalseWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let boolPath = false;
 
     // Create HTTP transport objects
@@ -129,7 +127,7 @@ export class Paths {
           boolPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -190,12 +188,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getIntOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let intPath = 1000000;
 
     // Create HTTP transport objects
@@ -207,7 +204,7 @@ export class Paths {
           intPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -268,12 +265,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getIntNegativeOneMillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let intPath = -1000000;
 
     // Create HTTP transport objects
@@ -285,7 +281,7 @@ export class Paths {
           intPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -346,12 +342,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let longPath = 10000000000;
 
     // Create HTTP transport objects
@@ -363,7 +358,7 @@ export class Paths {
           longPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -424,12 +419,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNegativeTenBillionWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let longPath = -10000000000;
 
     // Create HTTP transport objects
@@ -441,7 +435,7 @@ export class Paths {
           longPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -502,12 +496,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async floatScientificPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let floatPath = 103400000000000000000;
 
     // Create HTTP transport objects
@@ -519,7 +512,7 @@ export class Paths {
           floatPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -580,12 +573,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async floatScientificNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let floatPath = -1.034e-20;
 
     // Create HTTP transport objects
@@ -597,7 +589,7 @@ export class Paths {
           floatPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -658,12 +650,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalPositiveWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let doublePath = 9999999.999;
 
     // Create HTTP transport objects
@@ -675,7 +666,7 @@ export class Paths {
           doublePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -736,12 +727,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async doubleDecimalNegativeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let doublePath = -9999999.999;
 
     // Create HTTP transport objects
@@ -753,7 +743,7 @@ export class Paths {
           doublePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -814,12 +804,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async stringUnicodeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let stringPath = '啊齄丂狛狜隣郎隣兀﨩';
 
     // Create HTTP transport objects
@@ -831,7 +820,7 @@ export class Paths {
           stringPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -892,12 +881,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async stringUrlEncodedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let stringPath = 'begin!*\'();:@ &=+$,/?#[]end';
 
     // Create HTTP transport objects
@@ -909,7 +897,7 @@ export class Paths {
           stringPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -970,12 +958,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async stringEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let stringPath = '';
 
     // Create HTTP transport objects
@@ -987,7 +974,7 @@ export class Paths {
           stringPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1050,12 +1037,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async stringNullWithHttpOperationResponse(stringPath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1066,7 +1052,7 @@ export class Paths {
           stringPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1121,19 +1107,18 @@ export class Paths {
   /**
    * Get using uri with 'green color' in path parameter
    *
-   * @param {UriColor} enumPath send the value green. Possible values include:
-   * 'red color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send the value green. Possible values include: 'red color', 'green
+   * color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async enumValidWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1144,7 +1129,7 @@ export class Paths {
           enumPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1204,19 +1189,18 @@ export class Paths {
   /**
    * Get null (should throw on the client before the request is sent on wire)
    *
-   * @param {UriColor} enumPath send null should throw. Possible values include:
-   * 'red color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send null should throw. Possible values include: 'red color', 'green
+   * color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async enumNullWithHttpOperationResponse(enumPath: Models.UriColor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1227,7 +1211,7 @@ export class Paths {
           enumPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1287,19 +1271,17 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
-   * byte array
+   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async byteMultiByteWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1310,7 +1292,7 @@ export class Paths {
           bytePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1369,12 +1351,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async byteEmptyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bytePath = new Uint8Array(0);
 
     // Create HTTP transport objects
@@ -1386,7 +1367,7 @@ export class Paths {
           bytePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1449,12 +1430,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async byteNullWithHttpOperationResponse(bytePath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1465,7 +1445,7 @@ export class Paths {
           bytePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1524,12 +1504,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async dateValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let datePath = new Date('2012-01-01');
 
     // Create HTTP transport objects
@@ -1541,7 +1520,7 @@ export class Paths {
           datePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1596,8 +1575,8 @@ export class Paths {
   }
 
   /**
-   * Get null as date - this should throw or be unusable on the client side,
-   * depending on date representation
+   * Get null as date - this should throw or be unusable on the client side, depending on date
+   * representation
    *
    * @param {Date | string} datePath null as date (should throw)
    *
@@ -1605,12 +1584,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async dateNullWithHttpOperationResponse(datePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1621,7 +1599,7 @@ export class Paths {
           datePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1680,12 +1658,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async dateTimeValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let dateTimePath = new Date('2012-01-01T01:01:01Z');
 
     // Create HTTP transport objects
@@ -1697,7 +1674,7 @@ export class Paths {
           dateTimePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1752,8 +1729,7 @@ export class Paths {
   }
 
   /**
-   * Get null as date-time, should be disallowed or throw depending on
-   * representation of date-time
+   * Get null as date-time, should be disallowed or throw depending on representation of date-time
    *
    * @param {Date | string} dateTimePath null as date-time
    *
@@ -1761,12 +1737,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async dateTimeNullWithHttpOperationResponse(dateTimePath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1777,7 +1752,7 @@ export class Paths {
           dateTimePath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1838,12 +1813,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async base64UrlWithHttpOperationResponse(base64UrlPath: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1854,7 +1828,7 @@ export class Paths {
           base64UrlPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1907,22 +1881,21 @@ export class Paths {
   }
 
   /**
-   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-   * ''] using the csv-array format
+   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+   * csv-array format
    *
-   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@
-   * &=+$,/?#[]end' , null, ''] using the csv-array format
+   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
+   * null, ''] using the csv-array format
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async arrayCsvInPathWithHttpOperationResponse(arrayPath: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1933,7 +1906,7 @@ export class Paths {
           arrayPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2000,12 +1973,11 @@ export class Paths {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async unixTimeUrlWithHttpOperationResponse(unixTimeUrlPath: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2016,7 +1988,7 @@ export class Paths {
           unixTimeUrlPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2073,16 +2045,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBooleanTrue(): Promise<void>;
@@ -2117,16 +2086,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBooleanFalse(): Promise<void>;
@@ -2161,16 +2127,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getIntOneMillion(): Promise<void>;
@@ -2205,16 +2168,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getIntNegativeOneMillion(): Promise<void>;
@@ -2249,16 +2209,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getTenBillion(): Promise<void>;
@@ -2293,16 +2250,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNegativeTenBillion(): Promise<void>;
@@ -2337,16 +2291,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   floatScientificPositive(): Promise<void>;
@@ -2381,16 +2332,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   floatScientificNegative(): Promise<void>;
@@ -2425,16 +2373,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   doubleDecimalPositive(): Promise<void>;
@@ -2469,16 +2414,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   doubleDecimalNegative(): Promise<void>;
@@ -2513,16 +2455,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   stringUnicode(): Promise<void>;
@@ -2557,16 +2496,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   stringUrlEncoded(): Promise<void>;
@@ -2601,16 +2537,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   stringEmpty(): Promise<void>;
@@ -2647,16 +2580,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   stringNull(stringPath: string): Promise<void>;
@@ -2689,21 +2619,18 @@ export class Paths {
   /**
    * Get using uri with 'green color' in path parameter
    *
-   * @param {UriColor} enumPath send the value green. Possible values include:
-   * 'red color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send the value green. Possible values include: 'red color', 'green
+   * color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   enumValid(enumPath: Models.UriColor): Promise<void>;
@@ -2736,21 +2663,18 @@ export class Paths {
   /**
    * Get null (should throw on the client before the request is sent on wire)
    *
-   * @param {UriColor} enumPath send null should throw. Possible values include:
-   * 'red color', 'green color', 'blue color'
+   * @param {UriColor} enumPath send null should throw. Possible values include: 'red color', 'green
+   * color', 'blue color'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   enumNull(enumPath: Models.UriColor): Promise<void>;
@@ -2783,21 +2707,17 @@ export class Paths {
   /**
    * Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
-   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded
-   * byte array
+   * @param {Uint8Array} bytePath '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   byteMultiByte(bytePath: Uint8Array): Promise<void>;
@@ -2832,16 +2752,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   byteEmpty(): Promise<void>;
@@ -2878,16 +2795,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   byteNull(bytePath: Uint8Array): Promise<void>;
@@ -2922,16 +2836,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   dateValid(): Promise<void>;
@@ -2962,23 +2873,20 @@ export class Paths {
   }
 
   /**
-   * Get null as date - this should throw or be unusable on the client side,
-   * depending on date representation
+   * Get null as date - this should throw or be unusable on the client side, depending on date
+   * representation
    *
    * @param {Date | string} datePath null as date (should throw)
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   dateNull(datePath: Date | string): Promise<void>;
@@ -3013,16 +2921,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   dateTimeValid(): Promise<void>;
@@ -3053,23 +2958,19 @@ export class Paths {
   }
 
   /**
-   * Get null as date-time, should be disallowed or throw depending on
-   * representation of date-time
+   * Get null as date-time, should be disallowed or throw depending on representation of date-time
    *
    * @param {Date | string} dateTimePath null as date-time
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   dateTimeNull(dateTimePath: Date | string): Promise<void>;
@@ -3106,16 +3007,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   base64Url(base64UrlPath: Uint8Array): Promise<void>;
@@ -3146,24 +3044,21 @@ export class Paths {
   }
 
   /**
-   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-   * ''] using the csv-array format
+   * Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+   * csv-array format
    *
-   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@
-   * &=+$,/?#[]end' , null, ''] using the csv-array format
+   * @param {string[]} arrayPath an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' ,
+   * null, ''] using the csv-array format
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   arrayCsvInPath(arrayPath: string[]): Promise<void>;
@@ -3200,16 +3095,13 @@ export class Paths {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   unixTimeUrl(unixTimeUrlPath: Date | string): Promise<void>;

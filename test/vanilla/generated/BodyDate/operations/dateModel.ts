@@ -33,19 +33,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -112,19 +111,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getInvalidDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -191,19 +189,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOverflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -270,19 +267,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -351,12 +347,11 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMaxDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -367,7 +362,7 @@ export class DateModel {
           dateBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -425,19 +420,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMaxDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -506,12 +500,11 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMinDateWithHttpOperationResponse(dateBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -522,7 +515,7 @@ export class DateModel {
           dateBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -580,19 +573,18 @@ export class DateModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMinDateWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -657,16 +649,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNull(): Promise<Date>;
@@ -701,16 +690,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getInvalidDate(): Promise<Date>;
@@ -745,16 +731,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOverflowDate(): Promise<Date>;
@@ -789,16 +772,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getUnderflowDate(): Promise<Date>;
@@ -835,16 +815,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMaxDate(dateBody: Date | string): Promise<void>;
@@ -879,16 +856,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMaxDate(): Promise<Date>;
@@ -925,16 +899,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMinDate(dateBody: Date | string): Promise<void>;
@@ -969,16 +940,13 @@ export class DateModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMinDate(): Promise<Date>;

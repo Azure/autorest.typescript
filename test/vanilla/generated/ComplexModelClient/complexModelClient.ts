@@ -42,9 +42,9 @@ class ComplexModelClient extends ComplexModelClientContext {
   /**
    * @summary Product Types
    *
-   * The Products endpoint returns information about the Uber products offered at
-   * a given location. The response includes the display name and other details
-   * about each product, and lists the products in the proper display order.
+   * The Products endpoint returns information about the Uber products offered at a given location.
+   * The response includes the display name and other details about each product, and lists the
+   * products in the proper display order.
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
@@ -52,12 +52,11 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let client = this;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -70,7 +69,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           "this.apiVersion": this.apiVersion
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -173,17 +172,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientCreateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientCreateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogDictionary>> {
-    let client = this;
     let productDictionaryOfArray = (options && options.productDictionaryOfArray !== undefined) ? options.productDictionaryOfArray : undefined;
 
     // Create HTTP transport objects
@@ -198,7 +195,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           productDictionaryOfArray
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -309,17 +306,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(subscriptionId: string, resourceGroupName: string, options?: Models.ComplexModelClientUpdateOptionalParams): Promise<msRest.HttpOperationResponse<Models.CatalogArray>> {
-    let client = this;
     let productArrayOfDictionary = (options && options.productArrayOfDictionary !== undefined) ? options.productArrayOfDictionary : undefined;
 
     // Create HTTP transport objects
@@ -334,7 +329,7 @@ class ComplexModelClient extends ComplexModelClientContext {
           productArrayOfDictionary
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -438,25 +433,21 @@ class ComplexModelClient extends ComplexModelClientContext {
   /**
    * @summary Product Types
    *
-   * The Products endpoint returns information about the Uber products offered at
-   * a given location. The response includes the display name and other details
-   * about each product, and lists the products in the proper display order.
+   * The Products endpoint returns information about the Uber products offered at a given location.
+   * The response includes the display name and other details about each product, and lists the
+   * products in the proper display order.
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.CatalogArray} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.CatalogArray>;
@@ -495,21 +486,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientCreateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ComplexModelClientCreateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogDictionary} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CatalogDictionary} for more
-   *                      information.
-   *
+   *                      See {@link Models.CatalogDictionary} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   create(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogDictionary>;
@@ -548,20 +533,15 @@ class ComplexModelClient extends ComplexModelClientContext {
    *
    * @param {string} resourceGroupName Resource Group ID.
    *
-   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ComplexModelClientUpdateOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CatalogArray} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.CatalogArray} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   update(subscriptionId: string, resourceGroupName: string): Promise<Models.CatalogArray>;

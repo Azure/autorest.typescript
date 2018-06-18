@@ -33,19 +33,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -112,19 +111,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getInvalidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -191,19 +189,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOverflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -270,19 +267,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowInt32WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -349,19 +345,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOverflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -428,19 +423,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getUnderflowInt64WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<number>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -509,12 +503,11 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMax32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -525,7 +518,7 @@ export class IntModel {
           intBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -585,12 +578,11 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMax64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -601,7 +593,7 @@ export class IntModel {
           intBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -661,12 +653,11 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMin32WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -677,7 +668,7 @@ export class IntModel {
           intBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -737,12 +728,11 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMin64WithHttpOperationResponse(intBody: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -753,7 +743,7 @@ export class IntModel {
           intBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -811,19 +801,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -892,12 +881,11 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putUnixTimeDateWithHttpOperationResponse(intBody: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -908,7 +896,7 @@ export class IntModel {
           intBody
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -966,19 +954,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getInvalidUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1045,19 +1032,18 @@ export class IntModel {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNullUnixTimeWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Date>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1122,16 +1108,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNull(): Promise<number>;
@@ -1166,16 +1149,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getInvalid(): Promise<number>;
@@ -1210,16 +1190,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOverflowInt32(): Promise<number>;
@@ -1254,16 +1231,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getUnderflowInt32(): Promise<number>;
@@ -1298,16 +1272,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOverflowInt64(): Promise<number>;
@@ -1342,16 +1313,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {number} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getUnderflowInt64(): Promise<number>;
@@ -1388,16 +1356,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMax32(intBody: number): Promise<void>;
@@ -1434,16 +1399,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMax64(intBody: number): Promise<void>;
@@ -1480,16 +1442,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMin32(intBody: number): Promise<void>;
@@ -1526,16 +1485,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMin64(intBody: number): Promise<void>;
@@ -1570,16 +1526,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getUnixTime(): Promise<Date>;
@@ -1616,16 +1569,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putUnixTimeDate(intBody: Date | string): Promise<void>;
@@ -1660,16 +1610,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getInvalidUnixTime(): Promise<Date>;
@@ -1704,16 +1651,13 @@ export class IntModel {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Date} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNullUnixTime(): Promise<Date>;

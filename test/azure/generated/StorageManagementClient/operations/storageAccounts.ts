@@ -30,21 +30,19 @@ export class StorageAccounts {
   /**
    * Checks that account name is valid and is not in use.
    *
-   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name
-   * of the storage account within the specified resource group. Storage account
-   * names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name of the storage
+   * account within the specified resource group. Storage account names must be between 3 and 24
+   * characters in length and use numbers and lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async checkNameAvailabilityWithHttpOperationResponse(accountName: Models.StorageAccountCheckNameAvailabilityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.CheckNameAvailabilityResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -58,7 +56,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -158,29 +156,27 @@ export class StorageAccounts {
 
 
   /**
-   * Asynchronously creates a new storage account with the specified parameters.
-   * Existing accounts cannot be updated with this API and should instead use the
-   * Update Storage Account API. If an account is already created and subsequent
-   * PUT request is issued with exact same set of properties, then HTTP 200 would
-   * be returned.
+   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
+   * cannot be updated with this API and should instead use the Update Storage Account API. If an
+   * account is already created and subsequent PUT request is issued with exact same set of
+   * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide
-   * for the created account.
+   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
+   * account.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -218,23 +214,21 @@ export class StorageAccounts {
   /**
    * Deletes a storage account in Microsoft Azure.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -249,7 +243,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -345,27 +339,25 @@ export class StorageAccounts {
   }
 
   /**
-   * Returns the properties for the specified storage account including but not
-   * limited to name, account type, location, and account status. The ListKeys
-   * operation should be used to retrieve storage keys.
+   * Returns the properties for the specified storage account including but not limited to name,
+   * account type, location, and account status. The ListKeys operation should be used to retrieve
+   * storage keys.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getPropertiesWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -380,7 +372,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -491,37 +483,32 @@ export class StorageAccounts {
   }
 
   /**
-   * Updates the account type or tags for a storage account. It can also be used
-   * to add a custom domain (note that custom domains cannot be added via the
-   * Create operation). Only one custom domain is supported per storage account.
-   * This API can only be used to update one of tags, accountType, or
-   * customDomain per call. To update multiple of these properties, call the API
-   * multiple times with one change per call. This call does not change the
-   * storage keys for the account. If you want to change storage account keys,
-   * use the RegenerateKey operation. The location and name of the storage
-   * account cannot be changed after creation.
+   * Updates the account type or tags for a storage account. It can also be used to add a custom
+   * domain (note that custom domains cannot be added via the Create operation). Only one custom
+   * domain is supported per storage account. This API can only be used to update one of tags,
+   * accountType, or customDomain per call. To update multiple of these properties, call the API
+   * multiple times with one change per call. This call does not change the storage keys for the
+   * account. If you want to change storage account keys, use the RegenerateKey operation. The
+   * location and name of the storage account cannot be changed after creation.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountUpdateParameters} parameters The parameters to update
-   * on the account. Note that only one property can be changed at a time using
-   * this API.
+   * @param {StorageAccountUpdateParameters} parameters The parameters to update on the account. Note
+   * that only one property can be changed at a time using this API.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -537,7 +524,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -658,8 +645,7 @@ export class StorageAccounts {
   /**
    * Lists the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
    * @param {string} accountName The name of the storage account.
    *
@@ -667,12 +653,11 @@ export class StorageAccounts {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listKeysWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -687,7 +672,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -798,19 +783,18 @@ export class StorageAccounts {
   }
 
   /**
-   * Lists all the storage accounts available under the subscription. Note that
-   * storage keys are not returned; use the ListKeys operation for this.
+   * Lists all the storage accounts available under the subscription. Note that storage keys are not
+   * returned; use the ListKeys operation for this.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -823,7 +807,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -914,23 +898,20 @@ export class StorageAccounts {
   }
 
   /**
-   * Lists all the storage accounts available under the given resource group.
-   * Note that storage keys are not returned; use the ListKeys operation for
-   * this.
+   * Lists all the storage accounts available under the given resource group. Note that storage keys
+   * are not returned; use the ListKeys operation for this.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccountListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -944,7 +925,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1047,24 +1028,21 @@ export class StorageAccounts {
   /**
    * Regenerates the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async regenerateKeyWithHttpOperationResponse(resourceGroupName: string, accountName: string, options?: Models.StorageAccountsRegenerateKeyOptionalParams): Promise<msRest.HttpOperationResponse<Models.StorageAccountKeys>> {
-    let client = this.client;
     let keyName = (options && options.keyName !== undefined) ? options.keyName : undefined;
 
     // Create HTTP transport objects
@@ -1081,7 +1059,7 @@ export class StorageAccounts {
           keyName
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1202,32 +1180,29 @@ export class StorageAccounts {
   }
 
   /**
-   * Asynchronously creates a new storage account with the specified parameters.
-   * Existing accounts cannot be updated with this API and should instead use the
-   * Update Storage Account API. If an account is already created and subsequent
-   * PUT request is issued with exact same set of properties, then HTTP 200 would
-   * be returned.
+   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
+   * cannot be updated with this API and should instead use the Update Storage Account API. If an
+   * account is already created and subsequent PUT request is issued with exact same set of
+   * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide
-   * for the created account.
+   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
+   * account.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateWithHttpOperationResponse(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.StorageAccount>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1243,7 +1218,7 @@ export class StorageAccounts {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1364,25 +1339,19 @@ export class StorageAccounts {
   /**
    * Checks that account name is valid and is not in use.
    *
-   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name
-   * of the storage account within the specified resource group. Storage account
-   * names must be between 3 and 24 characters in length and use numbers and
-   * lower-case letters only.
+   * @param {StorageAccountCheckNameAvailabilityParameters} accountName The name of the storage
+   * account within the specified resource group. Storage account names must be between 3 and 24
+   * characters in length and use numbers and lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.CheckNameAvailabilityResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.CheckNameAvailabilityResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.CheckNameAvailabilityResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   checkNameAvailability(accountName: Models.StorageAccountCheckNameAvailabilityParameters): Promise<Models.CheckNameAvailabilityResult>;
@@ -1413,35 +1382,29 @@ export class StorageAccounts {
   }
 
   /**
-   * Asynchronously creates a new storage account with the specified parameters.
-   * Existing accounts cannot be updated with this API and should instead use the
-   * Update Storage Account API. If an account is already created and subsequent
-   * PUT request is issued with exact same set of properties, then HTTP 200 would
-   * be returned.
+   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
+   * cannot be updated with this API and should instead use the Update Storage Account API. If an
+   * account is already created and subsequent PUT request is issued with exact same set of
+   * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide
-   * for the created account.
+   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
+   * account.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.StorageAccount} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   create(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters): Promise<Models.StorageAccount>;
@@ -1474,25 +1437,21 @@ export class StorageAccounts {
   /**
    * Deletes a storage account in Microsoft Azure.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, accountName: string): Promise<void>;
@@ -1523,30 +1482,25 @@ export class StorageAccounts {
   }
 
   /**
-   * Returns the properties for the specified storage account including but not
-   * limited to name, account type, location, and account status. The ListKeys
-   * operation should be used to retrieve storage keys.
+   * Returns the properties for the specified storage account including but not limited to name,
+   * account type, location, and account status. The ListKeys operation should be used to retrieve
+   * storage keys.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.StorageAccount} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getProperties(resourceGroupName: string, accountName: string): Promise<Models.StorageAccount>;
@@ -1577,40 +1531,32 @@ export class StorageAccounts {
   }
 
   /**
-   * Updates the account type or tags for a storage account. It can also be used
-   * to add a custom domain (note that custom domains cannot be added via the
-   * Create operation). Only one custom domain is supported per storage account.
-   * This API can only be used to update one of tags, accountType, or
-   * customDomain per call. To update multiple of these properties, call the API
-   * multiple times with one change per call. This call does not change the
-   * storage keys for the account. If you want to change storage account keys,
-   * use the RegenerateKey operation. The location and name of the storage
-   * account cannot be changed after creation.
+   * Updates the account type or tags for a storage account. It can also be used to add a custom
+   * domain (note that custom domains cannot be added via the Create operation). Only one custom
+   * domain is supported per storage account. This API can only be used to update one of tags,
+   * accountType, or customDomain per call. To update multiple of these properties, call the API
+   * multiple times with one change per call. This call does not change the storage keys for the
+   * account. If you want to change storage account keys, use the RegenerateKey operation. The
+   * location and name of the storage account cannot be changed after creation.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountUpdateParameters} parameters The parameters to update
-   * on the account. Note that only one property can be changed at a time using
-   * this API.
+   * @param {StorageAccountUpdateParameters} parameters The parameters to update on the account. Note
+   * that only one property can be changed at a time using this API.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.StorageAccount} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   update(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountUpdateParameters): Promise<Models.StorageAccount>;
@@ -1643,25 +1589,19 @@ export class StorageAccounts {
   /**
    * Lists the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
    * @param {string} accountName The name of the storage account.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccountKeys} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountKeys} for more
-   *                      information.
-   *
+   *                      See {@link Models.StorageAccountKeys} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listKeys(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountKeys>;
@@ -1692,23 +1632,18 @@ export class StorageAccounts {
   }
 
   /**
-   * Lists all the storage accounts available under the subscription. Note that
-   * storage keys are not returned; use the ListKeys operation for this.
+   * Lists all the storage accounts available under the subscription. Note that storage keys are not
+   * returned; use the ListKeys operation for this.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccountListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.StorageAccountListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(): Promise<Models.StorageAccountListResult>;
@@ -1739,27 +1674,20 @@ export class StorageAccounts {
   }
 
   /**
-   * Lists all the storage accounts available under the given resource group.
-   * Note that storage keys are not returned; use the ListKeys operation for
-   * this.
+   * Lists all the storage accounts available under the given resource group. Note that storage keys
+   * are not returned; use the ListKeys operation for this.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccountListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.StorageAccountListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listByResourceGroup(resourceGroupName: string): Promise<Models.StorageAccountListResult>;
@@ -1792,28 +1720,21 @@ export class StorageAccounts {
   /**
    * Regenerates the access keys for the specified storage account.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {StorageAccountsRegenerateKeyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccountKeys} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.StorageAccountKeys} for more
-   *                      information.
-   *
+   *                      See {@link Models.StorageAccountKeys} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   regenerateKey(resourceGroupName: string, accountName: string): Promise<Models.StorageAccountKeys>;
@@ -1844,35 +1765,29 @@ export class StorageAccounts {
   }
 
   /**
-   * Asynchronously creates a new storage account with the specified parameters.
-   * Existing accounts cannot be updated with this API and should instead use the
-   * Update Storage Account API. If an account is already created and subsequent
-   * PUT request is issued with exact same set of properties, then HTTP 200 would
-   * be returned.
+   * Asynchronously creates a new storage account with the specified parameters. Existing accounts
+   * cannot be updated with this API and should instead use the Update Storage Account API. If an
+   * account is already created and subsequent PUT request is issued with exact same set of
+   * properties, then HTTP 200 would be returned.
    *
-   * @param {string} resourceGroupName The name of the resource group within the
-   * user’s subscription.
+   * @param {string} resourceGroupName The name of the resource group within the user’s subscription.
    *
-   * @param {string} accountName The name of the storage account within the
-   * specified resource group. Storage account names must be between 3 and 24
-   * characters in length and use numbers and lower-case letters only.
+   * @param {string} accountName The name of the storage account within the specified resource group.
+   * Storage account names must be between 3 and 24 characters in length and use numbers and
+   * lower-case letters only.
    *
-   * @param {StorageAccountCreateParameters} parameters The parameters to provide
-   * for the created account.
+   * @param {StorageAccountCreateParameters} parameters The parameters to provide for the created
+   * account.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.StorageAccount} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.StorageAccount} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreate(resourceGroupName: string, accountName: string, parameters: Models.StorageAccountCreateParameters): Promise<Models.StorageAccount>;

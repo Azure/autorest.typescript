@@ -42,8 +42,8 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates input parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars
-   * with pattern [a-zA-Z0-9]+.
+   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
+   * [a-zA-Z0-9]+.
    *
    * @param {number} id Required int multiple of 10 from 100 to 1000.
    *
@@ -51,12 +51,11 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async validationOfMethodParametersWithHttpOperationResponse(resourceGroupName: string, id: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -70,7 +69,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           "this.apiVersion": this.apiVersion
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -186,22 +185,20 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates body parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars
-   * with pattern [a-zA-Z0-9]+.
+   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
+   * [a-zA-Z0-9]+.
    *
    * @param {number} id Required int multiple of 10 from 100 to 1000.
    *
-   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options]
-   * Optional Parameters.
+   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async validationOfBodyWithHttpOperationResponse(resourceGroupName: string, id: number, options?: Models.AutoRestValidationTestValidationOfBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this;
     let body = (options && options.body !== undefined) ? options.body : undefined;
 
     // Create HTTP transport objects
@@ -217,7 +214,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           "this.apiVersion": this.apiVersion
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -340,12 +337,11 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithConstantInPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this;
     let constantParam = 'constant';
 
     // Create HTTP transport objects
@@ -357,7 +353,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           constantParam
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -409,17 +405,16 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   // methods on the client.
 
   /**
-   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postWithConstantInBodyWithHttpOperationResponse(options?: Models.AutoRestValidationTestPostWithConstantInBodyOptionalParams): Promise<msRest.HttpOperationResponse<Models.Product>> {
-    let client = this;
     let body = (options && options.body !== undefined) ? options.body : undefined;
     let constantParam = 'constant';
 
@@ -433,7 +428,7 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
           body
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -506,24 +501,20 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates input parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars
-   * with pattern [a-zA-Z0-9]+.
+   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
+   * [a-zA-Z0-9]+.
    *
    * @param {number} id Required int multiple of 10 from 100 to 1000.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   validationOfMethodParameters(resourceGroupName: string, id: number): Promise<Models.Product>;
@@ -556,25 +547,20 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * Validates body parameters on the method. See swagger for details.
    *
-   * @param {string} resourceGroupName Required string between 3 and 10 chars
-   * with pattern [a-zA-Z0-9]+.
+   * @param {string} resourceGroupName Required string between 3 and 10 chars with pattern
+   * [a-zA-Z0-9]+.
    *
    * @param {number} id Required int multiple of 10 from 100 to 1000.
    *
-   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options]
-   * Optional Parameters.
+   * @param {AutoRestValidationTestValidationOfBodyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   validationOfBody(resourceGroupName: string, id: number): Promise<Models.Product>;
@@ -607,16 +593,13 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   /**
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getWithConstantInPath(): Promise<void>;
@@ -647,20 +630,16 @@ class AutoRestValidationTest extends AutoRestValidationTestContext {
   }
 
   /**
-   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams}
-   * [options] Optional Parameters.
+   * @param {AutoRestValidationTestPostWithConstantInBodyOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Product} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Product} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postWithConstantInBody(): Promise<Models.Product>;

@@ -36,12 +36,11 @@ export class Implicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getRequiredPathWithHttpOperationResponse(pathParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -52,7 +51,7 @@ export class Implicit {
           pathParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -119,17 +118,15 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putOptionalQueryWithHttpOperationResponse(options?: Models.ImplicitPutOptionalQueryOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
 
     // Create HTTP transport objects
@@ -141,7 +138,7 @@ export class Implicit {
           queryParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -195,17 +192,15 @@ export class Implicit {
   /**
    * Test implicitly optional header parameter
    *
-   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putOptionalHeaderWithHttpOperationResponse(options?: Models.ImplicitPutOptionalHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let queryParameter = (options && options.queryParameter !== undefined) ? options.queryParameter : undefined;
 
     // Create HTTP transport objects
@@ -217,7 +212,7 @@ export class Implicit {
           queryParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -271,17 +266,15 @@ export class Implicit {
   /**
    * Test implicitly optional body parameter
    *
-   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putOptionalBodyWithHttpOperationResponse(options?: Models.ImplicitPutOptionalBodyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -293,7 +286,7 @@ export class Implicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -350,12 +343,11 @@ export class Implicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getRequiredGlobalPathWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -366,7 +358,7 @@ export class Implicit {
           "this.client.requiredGlobalPath": this.client.requiredGlobalPath
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -437,12 +429,11 @@ export class Implicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getRequiredGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -453,7 +444,7 @@ export class Implicit {
           "this.client.requiredGlobalQuery": this.client.requiredGlobalQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -524,12 +515,11 @@ export class Implicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getOptionalGlobalQueryWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -540,7 +530,7 @@ export class Implicit {
           "this.client.optionalGlobalQuery": this.client.optionalGlobalQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -610,17 +600,13 @@ export class Implicit {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getRequiredPath(pathParameter: string): Promise<Models.ErrorModel>;
@@ -653,19 +639,15 @@ export class Implicit {
   /**
    * Test implicitly optional query parameter
    *
-   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalQueryOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putOptionalQuery(): Promise<void>;
@@ -698,19 +680,15 @@ export class Implicit {
   /**
    * Test implicitly optional header parameter
    *
-   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putOptionalHeader(): Promise<void>;
@@ -743,19 +721,15 @@ export class Implicit {
   /**
    * Test implicitly optional body parameter
    *
-   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ImplicitPutOptionalBodyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putOptionalBody(): Promise<void>;
@@ -790,17 +764,13 @@ export class Implicit {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getRequiredGlobalPath(): Promise<Models.ErrorModel>;
@@ -835,17 +805,13 @@ export class Implicit {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getRequiredGlobalQuery(): Promise<Models.ErrorModel>;
@@ -880,17 +846,13 @@ export class Implicit {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getOptionalGlobalQuery(): Promise<Models.ErrorModel>;

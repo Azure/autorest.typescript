@@ -33,19 +33,18 @@ export class AvailabilitySets {
    *
    * @param {string} avset The name of the storage availability set.
    *
-   * @param {{ [propertyName: string]: string }} tags A set of tags. A
-   * description about the set of tags.
+   * @param {{ [propertyName: string]: string }} tags A set of tags. A description about the set of
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateWithHttpOperationResponse(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -58,7 +57,7 @@ export class AvailabilitySets {
           tags
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -136,21 +135,18 @@ export class AvailabilitySets {
    *
    * @param {string} avset The name of the storage availability set.
    *
-   * @param {{ [propertyName: string]: string }} tags A set of tags. A
-   * description about the set of tags.
+   * @param {{ [propertyName: string]: string }} tags A set of tags. A description about the set of
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   update(resourceGroupName: string, avset: string, tags: { [propertyName: string]: string }): Promise<void>;

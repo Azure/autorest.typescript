@@ -2,7 +2,7 @@
 @using AutoRest.Core.Model
 @using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.vanilla.Templates
-@using AutoRest.TypeScript
+@using AutoRest.TypeScript.Model
 @using AutoRest.TypeScript.Azure.Model
 @inherits AutoRest.Core.Template<CodeModelTSa>
 /*
@@ -82,11 +82,11 @@ foreach (var methodGroup in Model.MethodGroupModels)
     @:this.@(methodGroup.NameForProperty) = new operations.@(methodGroup.TypeName)(this);
   }
   }
-@foreach (var method in Model.MethodTemplateModels)
+@foreach (MethodTS method in Model.MethodTemplateModels)
 {
-  @:// methods on the client.
-  @EmptyLine
-  @:@(Include(new MethodTemplate(), method))
+@:  // methods on the client.
+@EmptyLine
+@:  @(method.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }
 @foreach (var method in Model.MethodWrappableTemplateModels)
 {

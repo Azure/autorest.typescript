@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
 using AutoRest.TypeScript.DSL;
@@ -390,28 +391,6 @@ namespace AutoRest.TypeScript.Model
             return builder.ToString();
         }
 
-        /// <summary>
-        /// Provides the parameter name in the correct jsdoc notation depending on
-        /// whether it is required or optional
-        /// </summary>
-        /// <param name="parameter">Parameter to be documented</param>
-        /// <returns>Parameter name in the correct jsdoc notation</returns>
-        public static string GetParameterDocumentationName(Parameter parameter)
-        {
-            if (parameter == null)
-            {
-                throw new ArgumentNullException(nameof(parameter));
-            }
-            if (parameter.IsRequired)
-            {
-                return parameter.Name;
-            }
-            else
-            {
-                return string.Format(CultureInfo.InvariantCulture, "[{0}]", parameter.Name);
-            }
-        }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase")]
         public static string GetParameterDocumentationType(Parameter parameter)
         {
@@ -623,55 +602,53 @@ namespace AutoRest.TypeScript.Model
         /// <returns></returns>
         public string GenerateMethodDocumentation(MethodFlavor flavor)
         {
-            var template = new Core.Template<Object>();
-            var builder = new IndentedStringBuilder("  ");
-            builder.AppendLine("/**");
-            if (!String.IsNullOrEmpty(Summary))
-            {
-                builder.AppendLine(template.WrapComment(" * ", "@summary " + Summary)).AppendLine(" *");
-            }
-            if (!String.IsNullOrEmpty(Description))
-            {
-                builder.AppendLine(template.WrapComment(" * ", Description)).AppendLine(" *");
-            }
+            TSBuilder builder = new TSBuilder();
 
-            foreach (var parameter in LocalParametersWithOptions)
+            builder.DocumentationComment(comment =>
             {
-                var paramDoc = $"@param {{{ProvideParameterType(parameter.ModelType, true)}}} {GetParameterDocumentationName(parameter)} {parameter.Documentation}";
-                builder.AppendLine(ConstructParameterDocumentation(template.WrapComment(" * ", paramDoc)));
-            }
-            if (flavor == MethodFlavor.HttpOperationResponse)
-            {
-                var errorType = "Error|ServiceError";
-                builder.AppendLine(" * @returns {Promise} A promise is returned").AppendLine(" *")
-                    .AppendLine(" * @resolve {HttpOperationResponse} - The deserialized result object.").AppendLine(" *")
-                    .AppendLine(" * @reject {{{0}}} - The error object.", errorType);
-            }
-            else
-            {
-                if (flavor == MethodFlavor.Callback)
+                comment.WithWordWrap(Settings.Instance?.MaximumCommentColumns ?? Settings.DefaultMaximumCommentColumns, () =>
                 {
-                    builder.AppendLine(template.WrapComment(" * ", " @param {ServiceCallback} callback - The callback.")).AppendLine(" *")
-                        .AppendLine(template.WrapComment(" * ", " @returns {ServiceCallback} callback(err, result, request, operationRes)")).AppendLine(" *");
-                }
-                else if (flavor == MethodFlavor.Promise)
-                {
-                    builder.AppendLine(template.WrapComment(" * ", " @param {ServiceCallback} [optionalCallback] - The optional callback.")).AppendLine(" *")
-                        .AppendLine(template.WrapComment(" * ", " @returns {ServiceCallback|Promise} If a callback was passed as the last parameter " +
-                        "then it returns the callback else returns a Promise.")).AppendLine(" *")
-                        .AppendLine(" * {Promise} A promise is returned.").AppendLine(" *")
-                        .AppendLine(" *                      @resolve {{{0}}} - The deserialized result object.", ReturnTypeTSString).AppendLine(" *")
-                        .AppendLine(" *                      @reject {Error|ServiceError} - The error object.").AppendLine(" *")
-                        .AppendLine(template.WrapComment(" * ", "{ServiceCallback} optionalCallback(err, result, request, operationRes)")).AppendLine(" *");
-                }
-                builder.AppendLine(" *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.").AppendLine(" *")
-                    .AppendLine(" *                      {{{0}}} [result]   - The deserialized result object if an error did not occur.", ReturnTypeTSString)
-                    .AppendLine(template.WrapComment(" *                      ", ReturnTypeInfo)).AppendLine(" *")
-                    .AppendLine(" *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.").AppendLine(" *")
-                    .AppendLine(" *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.");
+                    comment.Summary(Summary);
+                    comment.Description(Description);
 
-            }
-            return builder.AppendLine(" */").ToString();
+                    foreach (Parameter parameter in LocalParametersWithOptions)
+                    {
+                        comment.Parameter(ProvideParameterType(parameter.ModelType, true), parameter.Name, parameter.Documentation, !parameter.IsRequired);
+                    }
+                });
+
+                if (flavor == MethodFlavor.HttpOperationResponse)
+                {
+                    comment.Returns("Promise", "A promise is returned");
+                    comment.Resolve("HttpOperationResponse", "The deserialized result object.");
+                    comment.Reject("Error|ServiceError", "The error object.");
+                }
+                else
+                {
+                    if (flavor == MethodFlavor.Callback)
+                    {
+                        comment.Parameter("ServiceCallback", "callback", "The callback.");
+                        comment.Returns("ServiceCallback", "callback(err, result, request, operationRes)");
+                    }
+                    else if (flavor == MethodFlavor.Promise)
+                    {
+                        comment.Parameter("ServiceClient", "optionalCallback", "The optional callback.", true);
+                        comment.Returns("ServiceCallback|Promise", "If a callback was passed as the last parameter, then it returns the callback, else returns a Promise.");
+                        comment.Line("{Promise} A promise is returned.");
+                        comment.Line($"                     @resolve {{{ReturnTypeTSString}}} - The deserialized result object.");
+                        comment.Line($"                     @reject {{Error | ServiceError}} - The error object.");
+                        comment.Line("{ServiceCallback} optionalCallback(err, result, request, operationRes)");
+                    }
+                    comment.Line($"                     {{Error|ServiceError}}  err        - The Error object if an error occurred, null otherwise.");
+                    comment.Line($"                     {{{ReturnTypeTSString}}} [result]   - The deserialized result object if an error did not occur.");
+                    comment.Line($"                     {ReturnTypeInfo}");
+                    comment.Line($"                     {{WebResource}} [request]  - The HTTP Request object if an error did not occur.");
+                    comment.Line($"                     {{HttpOperationResponse}} [response] - The HTTP Response stream if an error did not occur.");
+
+                }
+            });
+            
+            return builder.ToString();
         }
 
         public string BuildResultInitialization(string resultReference)
@@ -693,152 +670,160 @@ namespace AutoRest.TypeScript.Model
             return sb.ToString();
         }
 
+        public string GenerateWithHttpOperationResponseMethodComment()
+        {
+            return GenerateMethodDocumentation(MethodFlavor.HttpOperationResponse);
+        }
+
         public string GenerateWithHttpOperationResponseMethod(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
-            TSBlock block = new TSBlock(builder);
 
-            if (OptionsParameterModelType.Properties.Any())
+            builder.Line(GenerateWithHttpOperationResponseMethodComment());
+            builder.AsyncMethod($"{Name.ToCamelCase()}WithHttpOperationResponse", $"Promise<{HttpOperationResponseName}>", MethodParameterDeclarationTS(true, true), methodBody =>
             {
-                block.Line(BuildOptionalMappings());
-            }
-
-            IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
-
-            if (parameterTemplateModels.Any())
-            {
-                foreach (Parameter parameter in parameterTemplateModels.Where(p => !p.IsClientProperty))
+                if (OptionsParameterModelType.Properties.Any())
                 {
-                    if (parameter.IsConstant)
-                    {
-                        block.Line($"let {parameter.Name} = {parameter.DefaultValue};");
-                    }
-                    else if (parameter.IsRequired &&
-                        parameter.ModelType is CompositeType parameterCompositeModelType &&
-                        parameterCompositeModelType.ContainsConstantProperties)
-                    {
-                        block.If($"{parameter.Name} === null || {parameter.Name} === undefined", ifBlock =>
-                        {
-                            ifBlock.Line($"{parameter.Name} = {{}} as any;");
-                        });
-                    }
+                    methodBody.Line(BuildOptionalMappings());
                 }
 
-                string validationBlock = ValidationString;
-                if (!string.IsNullOrWhiteSpace(validationBlock))
+                IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
+
+                if (parameterTemplateModels.Any())
                 {
-                    block.LineComment("Validate");
-                    block.Try(tryBlock =>
+                    foreach (Parameter parameter in parameterTemplateModels.Where(p => !p.IsClientProperty))
                     {
-                        tryBlock.Line(validationBlock);
-                    })
-                    .Catch("error", catchBlock =>
-                    {
-                        catchBlock.Return("Promise.reject(error)");
-                    });
-                }
-            }
-
-            block.Line(emptyLine);
-
-            block.LineComment("Create HTTP transport objects");
-            block.Line("const httpRequest = new WebResource();");
-
-            bool hasStreamResponseType = HasStreamResponseType();
-
-            if (hasStreamResponseType)
-            {
-                block.Line("httpRequest.rawResponse = true;");
-            }
-
-            block.Line("let operationRes: msRest.HttpOperationResponse;");
-
-            block.Try(tryBlock =>
-            {
-                tryBlock.Text("const operationArguments: msRest.OperationArguments = ");
-                tryBlock.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
-                tryBlock.Line(";");
-                tryBlock.FunctionCall("operationRes = await client.sendOperationRequest", argumentList =>
-                {
-                    argumentList.Text("httpRequest");
-                    argumentList.Text("operationArguments");
-                    argumentList.Object(GenerateOperationSpec);
-                });
-                tryBlock.Line(";");
-
-                tryBlock.Line("let statusCode = operationRes.status;");
-                tryBlock.If(FailureStatusCodePredicate, ifBlock =>
-                {
-                    string initialErrorMessage = hasStreamResponseType
-                        ? "`Unexpected status code: ${statusCode}`"
-                        : "operationRes.bodyAsText as string";
-                    ifBlock.Line($"let error = new msRest.RestError({initialErrorMessage});");
-                    ifBlock.Line($"error.statusCode = operationRes.status;");
-                    ifBlock.Line($"error.request = msRest.stripRequest(httpRequest);");
-                    ifBlock.Line($"error.response = msRest.stripResponse(operationRes);");
-                    const string parsedErrorResponse = "parsedErrorResponse";
-                    ifBlock.Line($"let {parsedErrorResponse} = operationRes.parsedBody as {{ [key: string]: any }};");
-                    ifBlock.Try(tryBlock2 =>
-                    {
-                        tryBlock2.If(parsedErrorResponse, ifErrorBlock =>
+                        if (parameter.IsConstant)
                         {
-                            ifErrorBlock.Line(PopulateErrorCodeAndMessage());
-                        });
-
-                        if (DefaultResponse.Body != null)
-                        {
-                            string deserializeErrorBody = GetDeserializationString(DefaultResponse.Body, "error.body", "parsedErrorResponse");
-                            if (!string.IsNullOrEmpty(deserializeErrorBody))
-                            {
-                                tryBlock2.If($"{parsedErrorResponse} !== null && {parsedErrorResponse} !== undefined", ifErrorBlock =>
-                                {
-                                    ifErrorBlock.Line(deserializeErrorBody);
-                                });
-                            }
+                            methodBody.Line($"let {parameter.Name} = {parameter.DefaultValue};");
                         }
-                    })
-                    .Catch("defaultError", catchBlock =>
-                    {
-                        catchBlock.Line($"error.message = `Error \"${{defaultError.message}}\" occurred in deserializing the responseBody ` +");
-                        catchBlock.Line($"                 `- \"${{operationRes.bodyAsText}}\" for the default response.`;");
-                        catchBlock.Return("Promise.reject(error)");
-                    });
-                    ifBlock.Return("Promise.reject(error)");
-                });
-
-                if (!hasStreamResponseType)
-                {
-                    tryBlock.Line(InitializeResult);
-
-                    IEnumerable<KeyValuePair<HttpStatusCode, Response>> responsePairs = Responses.Where(response => response.Value.Body != null || response.Value.Headers != null);
-                    foreach (KeyValuePair<HttpStatusCode, Response> responsePair in responsePairs)
-                    {
-                        tryBlock.LineComment("Deserialize Response");
-                        tryBlock.If($"statusCode === {GetStatusCodeReference(responsePair.Key)}", ifBlock =>
+                        else if (parameter.IsRequired &&
+                            parameter.ModelType is CompositeType parameterCompositeModelType &&
+                            parameterCompositeModelType.ContainsConstantProperties)
                         {
-                            if (responsePair.Value.Body != null)
+                            methodBody.If($"{parameter.Name} === null || {parameter.Name} === undefined", ifBlock =>
                             {
-                                ifBlock.Line(DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"));
-                            }
-                            if (responsePair.Value.Headers != null)
-                            {
-                                ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{responsePair.Value.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
-                            }
+                                ifBlock.Line($"{parameter.Name} = {{}} as any;");
+                            });
+                        }
+                    }
+
+                    string validationBlock = ValidationString;
+                    if (!string.IsNullOrWhiteSpace(validationBlock))
+                    {
+                        methodBody.LineComment("Validate");
+                        methodBody.Try(tryBlock =>
+                        {
+                            tryBlock.Line(validationBlock);
+                        })
+                        .Catch("error", catchBlock =>
+                        {
+                            catchBlock.Return("Promise.reject(error)");
                         });
                     }
-
-                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
-                    {
-                        tryBlock.Line(DeserializeResponse(DefaultResponse.Body, "operationRes.parsedBody"));
-                    }
                 }
-            })
-            .Catch("err", catchBlock =>
-            {
-                catchBlock.Return("Promise.reject(err)");
-            });
 
-            block.Return("Promise.resolve(operationRes)");
+                methodBody.Line(emptyLine);
+
+                methodBody.LineComment("Create HTTP transport objects");
+                methodBody.Line("const httpRequest = new WebResource();");
+
+                bool hasStreamResponseType = HasStreamResponseType();
+
+                if (hasStreamResponseType)
+                {
+                    methodBody.Line("httpRequest.rawResponse = true;");
+                }
+
+                methodBody.Line("let operationRes: msRest.HttpOperationResponse;");
+
+                methodBody.Try(tryBlock =>
+                {
+                    tryBlock.Text("const operationArguments: msRest.OperationArguments = ");
+                    tryBlock.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
+                    tryBlock.Line(";");
+                    tryBlock.FunctionCall($"operationRes = await {ClientReference}.sendOperationRequest", argumentList =>
+                    {
+                        argumentList.Text("httpRequest");
+                        argumentList.Text("operationArguments");
+                        argumentList.Object(GenerateOperationSpec);
+                    });
+                    tryBlock.Line(";");
+
+                    tryBlock.Line("let statusCode = operationRes.status;");
+                    tryBlock.If(FailureStatusCodePredicate, ifBlock =>
+                    {
+                        string initialErrorMessage = hasStreamResponseType
+                            ? "`Unexpected status code: ${statusCode}`"
+                            : "operationRes.bodyAsText as string";
+                        ifBlock.Line($"let error = new msRest.RestError({initialErrorMessage});");
+                        ifBlock.Line($"error.statusCode = operationRes.status;");
+                        ifBlock.Line($"error.request = msRest.stripRequest(httpRequest);");
+                        ifBlock.Line($"error.response = msRest.stripResponse(operationRes);");
+                        const string parsedErrorResponse = "parsedErrorResponse";
+                        ifBlock.Line($"let {parsedErrorResponse} = operationRes.parsedBody as {{ [key: string]: any }};");
+                        ifBlock.Try(tryBlock2 =>
+                        {
+                            tryBlock2.If(parsedErrorResponse, ifErrorBlock =>
+                            {
+                                ifErrorBlock.Line(PopulateErrorCodeAndMessage());
+                            });
+
+                            if (DefaultResponse.Body != null)
+                            {
+                                string deserializeErrorBody = GetDeserializationString(DefaultResponse.Body, "error.body", "parsedErrorResponse");
+                                if (!string.IsNullOrEmpty(deserializeErrorBody))
+                                {
+                                    tryBlock2.If($"{parsedErrorResponse} !== null && {parsedErrorResponse} !== undefined", ifErrorBlock =>
+                                    {
+                                        ifErrorBlock.Line(deserializeErrorBody);
+                                    });
+                                }
+                            }
+                        })
+                        .Catch("defaultError", catchBlock =>
+                        {
+                            catchBlock.Line($"error.message = `Error \"${{defaultError.message}}\" occurred in deserializing the responseBody ` +");
+                            catchBlock.Line($"                 `- \"${{operationRes.bodyAsText}}\" for the default response.`;");
+                            catchBlock.Return("Promise.reject(error)");
+                        });
+                        ifBlock.Return("Promise.reject(error)");
+                    });
+
+                    if (!hasStreamResponseType)
+                    {
+                        tryBlock.Line(InitializeResult);
+
+                        IEnumerable<KeyValuePair<HttpStatusCode, Response>> responsePairs = Responses.Where(response => response.Value.Body != null || response.Value.Headers != null);
+                        foreach (KeyValuePair<HttpStatusCode, Response> responsePair in responsePairs)
+                        {
+                            tryBlock.LineComment("Deserialize Response");
+                            tryBlock.If($"statusCode === {GetStatusCodeReference(responsePair.Key)}", ifBlock =>
+                            {
+                                if (responsePair.Value.Body != null)
+                                {
+                                    ifBlock.Line(DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"));
+                                }
+                                if (responsePair.Value.Headers != null)
+                                {
+                                    ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{responsePair.Value.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
+                                }
+                            });
+                        }
+
+                        if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
+                        {
+                            tryBlock.Line(DeserializeResponse(DefaultResponse.Body, "operationRes.parsedBody"));
+                        }
+                    }
+                })
+                .Catch("err", catchBlock =>
+                {
+                    catchBlock.Return("Promise.reject(err)");
+                });
+
+                methodBody.Return("Promise.resolve(operationRes)");
+            });
 
             return builder.ToString();
         }

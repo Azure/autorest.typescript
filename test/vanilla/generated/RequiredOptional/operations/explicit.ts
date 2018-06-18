@@ -28,8 +28,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required integer. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {number} bodyParameter
    *
@@ -37,12 +37,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerParameterWithHttpOperationResponse(bodyParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -53,7 +52,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -119,17 +118,15 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put null.
    *
-   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -141,7 +138,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -192,9 +189,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put a valid int-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {number} value
    *
@@ -202,12 +198,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerPropertyWithHttpOperationResponse(value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -218,7 +213,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -281,20 +276,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a valid int-wrapper with
-   * 'value' = null.
+   * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -306,7 +298,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -354,8 +346,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {number} headerParameter
    *
@@ -363,12 +355,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredIntegerHeaderWithHttpOperationResponse(headerParameter: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -379,7 +370,7 @@ export class Explicit {
           headerParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -444,20 +435,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalIntegerHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalIntegerHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
 
     // Create HTTP transport objects
@@ -469,7 +457,7 @@ export class Explicit {
           headerParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -521,8 +509,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required string. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {string} bodyParameter
    *
@@ -530,12 +518,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringParameterWithHttpOperationResponse(bodyParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -546,7 +533,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -612,17 +599,15 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put null.
    *
-   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -634,7 +619,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -685,9 +670,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put a valid string-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {string} value
    *
@@ -695,12 +679,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringPropertyWithHttpOperationResponse(value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -711,7 +694,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -774,20 +757,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a valid string-wrapper with
-   * 'value' = null.
+   * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -799,7 +779,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -847,8 +827,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required string. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {string} headerParameter
    *
@@ -856,12 +836,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredStringHeaderWithHttpOperationResponse(headerParameter: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -872,7 +851,7 @@ export class Explicit {
           headerParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -937,20 +916,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional string. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional string. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalStringHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalStringHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -962,7 +938,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1014,8 +990,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required complex object. Please put null and the client
-   * library should throw before the request is sent.
+   * Test explicitly required complex object. Please put null and the client library should throw
+   * before the request is sent.
    *
    * @param {Product} bodyParameter
    *
@@ -1023,12 +999,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredClassParameterWithHttpOperationResponse(bodyParameter: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1039,7 +1014,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1102,17 +1077,15 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put null.
    *
-   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalClassParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -1124,7 +1097,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1170,9 +1143,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required complex object. Please put a valid class-wrapper
-   * with 'value' = null and the client library should throw before the request
-   * is sent.
+   * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+   * and the client library should throw before the request is sent.
    *
    * @param {Product} value
    *
@@ -1180,12 +1152,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredClassPropertyWithHttpOperationResponse(value: Models.Product, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1196,7 +1167,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1259,20 +1230,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional complex object. Please put a valid class-wrapper
-   * with 'value' = null.
+   * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalClassPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalClassPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -1284,7 +1252,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1332,8 +1300,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required array. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {string[]} bodyParameter
    *
@@ -1341,12 +1309,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayParameterWithHttpOperationResponse(bodyParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1357,7 +1324,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1429,17 +1396,15 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put null.
    *
-   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayParameterWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayParameterOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let bodyParameter = (options && options.bodyParameter !== undefined) ? options.bodyParameter : undefined;
 
     // Create HTTP transport objects
@@ -1451,7 +1416,7 @@ export class Explicit {
           bodyParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1508,9 +1473,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put a valid array-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {string[]} value
    *
@@ -1518,12 +1482,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayPropertyWithHttpOperationResponse(value: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1534,7 +1497,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1597,20 +1560,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional array. Please put a valid array-wrapper with
-   * 'value' = null.
+   * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayPropertyWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayPropertyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -1622,7 +1582,7 @@ export class Explicit {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1670,8 +1630,8 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required array. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {string[]} headerParameter
    *
@@ -1679,12 +1639,11 @@ export class Explicit {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postRequiredArrayHeaderWithHttpOperationResponse(headerParameter: string[], options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1695,7 +1654,7 @@ export class Explicit {
           headerParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1766,20 +1725,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postOptionalArrayHeaderWithHttpOperationResponse(options?: Models.ExplicitPostOptionalArrayHeaderOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let headerParameter = (options && options.headerParameter !== undefined) ? options.headerParameter : undefined;
 
     // Create HTTP transport objects
@@ -1791,7 +1747,7 @@ export class Explicit {
           headerParameter
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1849,24 +1805,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required integer. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {number} bodyParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredIntegerParameter(bodyParameter: number): Promise<Models.ErrorModel>;
@@ -1899,19 +1851,15 @@ export class Explicit {
   /**
    * Test explicitly optional integer. Please put null.
    *
-   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalIntegerParameterOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalIntegerParameter(): Promise<void>;
@@ -1942,25 +1890,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put a valid int-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {number} value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredIntegerProperty(value: number): Promise<Models.ErrorModel>;
@@ -1991,22 +1934,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a valid int-wrapper with
-   * 'value' = null.
+   * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalIntegerPropertyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalIntegerProperty(): Promise<void>;
@@ -2037,24 +1975,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required integer. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {number} headerParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredIntegerHeader(headerParameter: number): Promise<Models.ErrorModel>;
@@ -2085,22 +2019,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalIntegerHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalIntegerHeader(): Promise<void>;
@@ -2131,24 +2060,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required string. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {string} bodyParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredStringParameter(bodyParameter: string): Promise<Models.ErrorModel>;
@@ -2181,19 +2106,15 @@ export class Explicit {
   /**
    * Test explicitly optional string. Please put null.
    *
-   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options]
-   * Optional Parameters.
+   * @param {ExplicitPostOptionalStringParameterOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalStringParameter(): Promise<void>;
@@ -2224,25 +2145,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put a valid string-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {string} value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredStringProperty(value: string): Promise<Models.ErrorModel>;
@@ -2273,22 +2189,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a valid string-wrapper with
-   * 'value' = null.
+   * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalStringPropertyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalStringProperty(): Promise<void>;
@@ -2319,24 +2230,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required string. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required string. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {string} headerParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredStringHeader(headerParameter: string): Promise<Models.ErrorModel>;
@@ -2367,22 +2274,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional string. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional string. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalStringHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalStringHeader(): Promise<void>;
@@ -2413,24 +2315,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required complex object. Please put null and the client
-   * library should throw before the request is sent.
+   * Test explicitly required complex object. Please put null and the client library should throw
+   * before the request is sent.
    *
    * @param {Product} bodyParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredClassParameter(bodyParameter: Models.Product): Promise<Models.ErrorModel>;
@@ -2463,19 +2361,15 @@ export class Explicit {
   /**
    * Test explicitly optional complex object. Please put null.
    *
-   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalClassParameterOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalClassParameter(): Promise<void>;
@@ -2506,25 +2400,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required complex object. Please put a valid class-wrapper
-   * with 'value' = null and the client library should throw before the request
-   * is sent.
+   * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
+   * and the client library should throw before the request is sent.
    *
    * @param {Product} value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredClassProperty(value: Models.Product): Promise<Models.ErrorModel>;
@@ -2555,22 +2444,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional complex object. Please put a valid class-wrapper
-   * with 'value' = null.
+   * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalClassPropertyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalClassProperty(): Promise<void>;
@@ -2601,24 +2485,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put null and the client library
-   * should throw before the request is sent.
+   * Test explicitly required array. Please put null and the client library should throw before the
+   * request is sent.
    *
    * @param {string[]} bodyParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredArrayParameter(bodyParameter: string[]): Promise<Models.ErrorModel>;
@@ -2651,19 +2531,15 @@ export class Explicit {
   /**
    * Test explicitly optional array. Please put null.
    *
-   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayParameterOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalArrayParameter(): Promise<void>;
@@ -2694,25 +2570,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put a valid array-wrapper with
-   * 'value' = null and the client library should throw before the request is
-   * sent.
+   * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
+   * client library should throw before the request is sent.
    *
    * @param {string[]} value
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredArrayProperty(value: string[]): Promise<Models.ErrorModel>;
@@ -2743,22 +2614,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional array. Please put a valid array-wrapper with
-   * 'value' = null.
+   * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    *
-   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayPropertyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalArrayProperty(): Promise<void>;
@@ -2789,24 +2655,20 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly required array. Please put a header 'headerParameter' =>
-   * null and the client library should throw before the request is sent.
+   * Test explicitly required array. Please put a header 'headerParameter' => null and the client
+   * library should throw before the request is sent.
    *
    * @param {string[]} headerParameter
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postRequiredArrayHeader(headerParameter: string[]): Promise<Models.ErrorModel>;
@@ -2837,22 +2699,17 @@ export class Explicit {
   }
 
   /**
-   * Test explicitly optional integer. Please put a header 'headerParameter' =>
-   * null.
+   * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    *
-   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional
-   * Parameters.
+   * @param {ExplicitPostOptionalArrayHeaderOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postOptionalArrayHeader(): Promise<void>;

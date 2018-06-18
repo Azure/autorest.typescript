@@ -34,19 +34,18 @@ export class HttpServerFailure {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async head501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -105,19 +104,18 @@ export class HttpServerFailure {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async get501WithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -172,17 +170,15 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailurePost505OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async post505WithHttpOperationResponse(options?: Models.HttpServerFailurePost505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -194,7 +190,7 @@ export class HttpServerFailure {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -259,17 +255,15 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async delete505WithHttpOperationResponse(options?: Models.HttpServerFailureDelete505OptionalParams): Promise<msRest.HttpOperationResponse<Models.ErrorModel>> {
-    let client = this.client;
     let booleanValue = (options && options.booleanValue !== undefined) ? options.booleanValue : undefined;
 
     // Create HTTP transport objects
@@ -281,7 +275,7 @@ export class HttpServerFailure {
           booleanValue
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -348,17 +342,13 @@ export class HttpServerFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   head501(): Promise<Models.ErrorModel>;
@@ -393,17 +383,13 @@ export class HttpServerFailure {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get501(): Promise<Models.ErrorModel>;
@@ -436,20 +422,15 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailurePost505OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HttpServerFailurePost505OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   post505(): Promise<Models.ErrorModel>;
@@ -482,20 +463,15 @@ export class HttpServerFailure {
   /**
    * Return 505 status code - should be represented in the client as an error
    *
-   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HttpServerFailureDelete505OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ErrorModel} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.ErrorModel} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   delete505(): Promise<Models.ErrorModel>;

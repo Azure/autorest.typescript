@@ -34,12 +34,11 @@ export class Polymorphism {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Fish>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -50,7 +49,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -158,12 +157,11 @@ export class Polymorphism {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putValidWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -175,7 +173,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -236,19 +234,18 @@ export class Polymorphism {
   }
 
   /**
-   * Get complex types that are polymorphic, but not at the root of the
-   * hierarchy; also have additional properties
+   * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
+   * additional properties
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getComplicatedWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Salmon>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -259,7 +256,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -327,8 +324,8 @@ export class Polymorphism {
   }
 
   /**
-   * Put complex types that are polymorphic, but not at the root of the
-   * hierarchy; also have additional properties
+   * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+   * additional properties
    *
    * @param {Salmon} complexBody
    *
@@ -336,12 +333,11 @@ export class Polymorphism {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putComplicatedWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -353,7 +349,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -422,12 +418,11 @@ export class Polymorphism {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putMissingDiscriminatorWithHttpOperationResponse(complexBody: Models.Salmon, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Salmon>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -439,7 +434,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -515,11 +510,11 @@ export class Polymorphism {
   }
 
   /**
-   * Put complex types that are polymorphic, attempting to omit required
-   * 'birthday' field - the request should not be allowed from the client
+   * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+   * request should not be allowed from the client
    *
-   * @param {Fish} complexBody Please attempt put a sawshark that looks like
-   * this, the client should not allow this data to be sent:
+   * @param {Fish} complexBody Please attempt put a sawshark that looks like this, the client should
+   * not allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -550,12 +545,11 @@ export class Polymorphism {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async putValidMissingRequiredWithHttpOperationResponse(complexBody: Models.Fish, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -567,7 +561,7 @@ export class Polymorphism {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -632,17 +626,13 @@ export class Polymorphism {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Fish} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Fish} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getValid(): Promise<Models.Fish>;
@@ -711,16 +701,13 @@ export class Polymorphism {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putValid(complexBody: Models.Fish): Promise<void>;
@@ -751,22 +738,18 @@ export class Polymorphism {
   }
 
   /**
-   * Get complex types that are polymorphic, but not at the root of the
-   * hierarchy; also have additional properties
+   * Get complex types that are polymorphic, but not at the root of the hierarchy; also have
+   * additional properties
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Salmon} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Salmon} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getComplicated(): Promise<Models.Salmon>;
@@ -797,23 +780,20 @@ export class Polymorphism {
   }
 
   /**
-   * Put complex types that are polymorphic, but not at the root of the
-   * hierarchy; also have additional properties
+   * Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+   * additional properties
    *
    * @param {Salmon} complexBody
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putComplicated(complexBody: Models.Salmon): Promise<void>;
@@ -850,17 +830,13 @@ export class Polymorphism {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Salmon} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Salmon} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putMissingDiscriminator(complexBody: Models.Salmon): Promise<Models.Salmon>;
@@ -891,11 +867,11 @@ export class Polymorphism {
   }
 
   /**
-   * Put complex types that are polymorphic, attempting to omit required
-   * 'birthday' field - the request should not be allowed from the client
+   * Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+   * request should not be allowed from the client
    *
-   * @param {Fish} complexBody Please attempt put a sawshark that looks like
-   * this, the client should not allow this data to be sent:
+   * @param {Fish} complexBody Please attempt put a sawshark that looks like this, the client should
+   * not allow this data to be sent:
    * {
    * "fishtype": "sawshark",
    * "species": "snaggle toothed",
@@ -924,16 +900,13 @@ export class Polymorphism {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   putValidMissingRequired(complexBody: Models.Fish): Promise<void>;

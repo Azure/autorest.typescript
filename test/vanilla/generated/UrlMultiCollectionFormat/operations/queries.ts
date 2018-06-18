@@ -30,17 +30,15 @@ export class Queries {
   /**
    * Get a null array of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiNullWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
 
     // Create HTTP transport objects
@@ -52,7 +50,7 @@ export class Queries {
           arrayQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -113,17 +111,15 @@ export class Queries {
   /**
    * Get an empty array [] of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiEmptyWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiEmptyOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
 
     // Create HTTP transport objects
@@ -135,7 +131,7 @@ export class Queries {
           arrayQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -194,20 +190,18 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-   * ''] using the mult-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+   * mult-array format
    *
-   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async arrayStringMultiValidWithHttpOperationResponse(options?: Models.QueriesArrayStringMultiValidOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let arrayQuery = (options && options.arrayQuery !== undefined) ? options.arrayQuery : undefined;
 
     // Create HTTP transport objects
@@ -219,7 +213,7 @@ export class Queries {
           arrayQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -280,19 +274,15 @@ export class Queries {
   /**
    * Get a null array of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   arrayStringMultiNull(): Promise<void>;
@@ -325,19 +315,15 @@ export class Queries {
   /**
    * Get an empty array [] of string using the multi-array format
    *
-   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiEmptyOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   arrayStringMultiEmpty(): Promise<void>;
@@ -368,22 +354,18 @@ export class Queries {
   }
 
   /**
-   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-   * ''] using the mult-array format
+   * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
+   * mult-array format
    *
-   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional
-   * Parameters.
+   * @param {QueriesArrayStringMultiValidOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   arrayStringMultiValid(): Promise<void>;

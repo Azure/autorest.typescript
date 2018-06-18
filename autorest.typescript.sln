@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.typescript", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.common", "autorest.common\src\autorest.common.csproj", "{9E857E16-1000-2000-3000-CFA9D292D0B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "autorest.typescript.tests", "unittests\autorest.typescript.tests.csproj", "{F5378F5E-D7E6-4EF4-B193-E67C71505F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "autorest.typescript.tests", "unittests\autorest.typescript.tests.csproj", "{F5378F5E-D7E6-4EF4-B193-E67C71505F59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,18 +18,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x64.Build.0 = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x86.Build.0 = Debug|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x64.ActiveCfg = Release|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x64.Build.0 = Release|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x86.ActiveCfg = Release|Any CPU
-		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x86.Build.0 = Release|Any CPU    
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -42,6 +30,17 @@ Global
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x64.Build.0 = Release|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{9E857E16-E227-4311-8799-CFA9D292D0B6}.Release|x86.Build.0 = Release|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x64.Build.0 = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x64.ActiveCfg = Release|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x64.Build.0 = Release|Any CPU
+		{9E857E16-1000-2000-3000-CFA9D292D0B6}.Release|x86.ActiveCfg = Release|Any CPU
 		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5378F5E-D7E6-4EF4-B193-E67C71505F59}.Debug|x64.ActiveCfg = Debug|Any CPU

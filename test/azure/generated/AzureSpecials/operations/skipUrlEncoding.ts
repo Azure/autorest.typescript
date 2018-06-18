@@ -30,19 +30,17 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value
-   * 'path1/path2/path3'
+   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMethodPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -54,7 +52,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -122,19 +120,17 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value
-   * 'path1/path2/path3'
+   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getPathPathValidWithHttpOperationResponse(unencodedPathParam: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -146,7 +142,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -218,12 +214,11 @@ export class SkipUrlEncoding {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerPathValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let unencodedPathParam = 'path1/path2/path3';
 
     // Create HTTP transport objects
@@ -236,7 +231,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -304,22 +299,19 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMethodQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -331,7 +323,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -399,17 +391,15 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value null
    *
-   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getMethodQueryNullWithHttpOperationResponse(options?: Models.SkipUrlEncodingGetMethodQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let q1 = (options && options.q1 !== undefined) ? options.q1 : undefined;
 
     // Create HTTP transport objects
@@ -422,7 +412,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -487,22 +477,19 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getPathQueryValidWithHttpOperationResponse(q1: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -514,7 +501,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -580,19 +567,17 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSwaggerQueryValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let q1 = 'value1&q2=value2&q3=value3';
 
     // Create HTTP transport objects
@@ -605,7 +590,7 @@ export class SkipUrlEncoding {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -675,21 +660,17 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value
-   * 'path1/path2/path3'
+   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMethodPathValid(unencodedPathParam: string): Promise<void>;
@@ -722,21 +703,17 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    *
-   * @param {string} unencodedPathParam Unencoded path parameter with value
-   * 'path1/path2/path3'
+   * @param {string} unencodedPathParam Unencoded path parameter with value 'path1/path2/path3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getPathPathValid(unencodedPathParam: string): Promise<void>;
@@ -771,16 +748,13 @@ export class SkipUrlEncoding {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSwaggerPathValid(): Promise<void>;
@@ -811,24 +785,19 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMethodQueryValid(q1: string): Promise<void>;
@@ -861,19 +830,15 @@ export class SkipUrlEncoding {
   /**
    * Get method with unencoded query parameter with value null
    *
-   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {SkipUrlEncodingGetMethodQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getMethodQueryNull(): Promise<void>;
@@ -904,24 +869,19 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
-   * @param {string} q1 Unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * @param {string} q1 Unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getPathQueryValid(q1: string): Promise<void>;
@@ -952,21 +912,17 @@ export class SkipUrlEncoding {
   }
 
   /**
-   * Get method with unencoded query parameter with value
-   * 'value1&q2=value2&q3=value3'
+   * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSwaggerQueryValid(): Promise<void>;

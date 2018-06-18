@@ -27,19 +27,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -51,7 +50,7 @@ export class SubscriptionInCredentials {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -116,20 +115,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to null, and client-side validation should prevent you from
-   * making this call
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * null, and client-side validation should prevent you from making this call
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalNullWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -141,7 +138,7 @@ export class SubscriptionInCredentials {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -206,19 +203,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postMethodGlobalNotProvidedValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -231,7 +227,7 @@ export class SubscriptionInCredentials {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -308,19 +304,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postPathGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -332,7 +327,7 @@ export class SubscriptionInCredentials {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -397,19 +392,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async postSwaggerGlobalValidWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -421,7 +415,7 @@ export class SubscriptionInCredentials {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -486,21 +480,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMethodGlobalValid(): Promise<void>;
@@ -531,22 +522,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to null, and client-side validation should prevent you from
-   * making this call
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * null, and client-side validation should prevent you from making this call
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMethodGlobalNull(): Promise<void>;
@@ -577,21 +564,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postMethodGlobalNotProvidedValid(): Promise<void>;
@@ -622,21 +606,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postPathGlobalValid(): Promise<void>;
@@ -667,21 +648,18 @@ export class SubscriptionInCredentials {
   }
 
   /**
-   * POST method with subscriptionId modeled in credentials.  Set the credential
-   * subscriptionId to '1234-5678-9012-3456' to succeed
+   * POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
+   * '1234-5678-9012-3456' to succeed
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   postSwaggerGlobalValid(): Promise<void>;

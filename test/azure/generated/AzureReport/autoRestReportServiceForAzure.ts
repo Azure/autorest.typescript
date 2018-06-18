@@ -52,17 +52,15 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   /**
    * Get test coverage report
    *
-   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options]
-   * Optional Parameters.
+   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getReportWithHttpOperationResponse(options?: Models.AutoRestReportServiceForAzureGetReportOptionalParams): Promise<msRest.HttpOperationResponse<{ [propertyName: string]: number }>> {
-    let client = this;
     let qualifier = (options && options.qualifier !== undefined) ? options.qualifier : undefined;
 
     // Create HTTP transport objects
@@ -75,7 +73,7 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
           "this.acceptLanguage": this.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -167,19 +165,15 @@ class AutoRestReportServiceForAzure extends AutoRestReportServiceForAzureContext
   /**
    * Get test coverage report
    *
-   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options]
-   * Optional Parameters.
+   * @param {AutoRestReportServiceForAzureGetReportOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {{ [propertyName: string]: number }} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getReport(): Promise<{ [propertyName: string]: number }>;

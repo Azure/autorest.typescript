@@ -28,28 +28,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery='globalStringQuery',
-   * pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery='localStringQuery'
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getAllWithValuesWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetAllWithValuesOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
@@ -67,7 +62,7 @@ export class PathItems {
           "this.client.globalStringQuery": this.client.globalStringQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -169,27 +164,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery='localStringQuery'
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery=null,
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getGlobalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
@@ -207,7 +198,7 @@ export class PathItems {
           "this.client.globalStringQuery": this.client.globalStringQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -309,27 +300,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath=globalStringPath,
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery=null
+   * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery=null,
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options]
-   * Optional Parameters.
+   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getGlobalAndLocalQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetGlobalAndLocalQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
@@ -347,7 +334,7 @@ export class PathItems {
           "this.client.globalStringQuery": this.client.globalStringQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -449,27 +436,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery='globalStringQuery', pathItemStringQuery=null,
-   * localStringQuery=null
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+   * pathItemStringQuery=null, localStringQuery=null
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getLocalPathItemQueryNullWithHttpOperationResponse(localStringPath: string, pathItemStringPath: string, options?: Models.PathItemsGetLocalPathItemQueryNullOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let localStringQuery = (options && options.localStringQuery !== undefined) ? options.localStringQuery : undefined;
     let pathItemStringQuery = (options && options.pathItemStringQuery !== undefined) ? options.pathItemStringQuery : undefined;
 
@@ -487,7 +470,7 @@ export class PathItems {
           "this.client.globalStringQuery": this.client.globalStringQuery
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -589,30 +572,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery='globalStringQuery',
-   * pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery='localStringQuery'
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetAllWithValuesOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getAllWithValues(localStringPath: string, pathItemStringPath: string): Promise<void>;
@@ -643,29 +619,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery='localStringQuery'
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery=null,
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetGlobalQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getGlobalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;
@@ -696,29 +666,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath=globalStringPath,
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery=null, pathItemStringQuery='pathItemStringQuery',
-   * localStringQuery=null
+   * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery=null,
+   * pathItemStringQuery='pathItemStringQuery', localStringQuery=null
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options]
-   * Optional Parameters.
+   * @param {PathItemsGetGlobalAndLocalQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getGlobalAndLocalQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;
@@ -749,29 +713,23 @@ export class PathItems {
   }
 
   /**
-   * send globalStringPath='globalStringPath',
-   * pathItemStringPath='pathItemStringPath', localStringPath='localStringPath',
-   * globalStringQuery='globalStringQuery', pathItemStringQuery=null,
-   * localStringQuery=null
+   * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
+   * localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+   * pathItemStringQuery=null, localStringQuery=null
    *
    * @param {string} localStringPath should contain value 'localStringPath'
    *
-   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that
-   * appears in the path
+   * @param {string} pathItemStringPath A string value 'pathItemStringPath' that appears in the path
    *
-   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional
-   * Parameters.
+   * @param {PathItemsGetLocalPathItemQueryNullOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getLocalPathItemQueryNull(localStringPath: string, pathItemStringPath: string): Promise<void>;

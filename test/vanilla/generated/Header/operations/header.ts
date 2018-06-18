@@ -30,19 +30,17 @@ export class Header {
   /**
    * Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {string} userAgent Send a post request with header value
-   * "User-Agent": "overwrite"
+   * @param {string} userAgent Send a post request with header value "User-Agent": "overwrite"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramExistingKeyWithHttpOperationResponse(userAgent: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -53,7 +51,7 @@ export class Header {
           userAgent
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -112,19 +110,18 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseExistingKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseExistingKeyResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -171,19 +168,17 @@ export class Header {
   /**
    * Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {string} contentType Send a post request with header value
-   * "Content-Type": "text/html"
+   * @param {string} contentType Send a post request with header value "Content-Type": "text/html"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramProtectedKeyWithHttpOperationResponse(contentType: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -194,7 +189,7 @@ export class Header {
           contentType
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -253,19 +248,18 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseProtectedKeyWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseProtectedKeyResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -310,11 +304,11 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 1 or
-   * "scenario": "negative", "value": -2
+   * Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
+   * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 1 or -2
    *
@@ -322,12 +316,11 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramIntegerWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -339,7 +332,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -404,19 +397,18 @@ export class Header {
   /**
    * Get a response with header value "value": 1 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseIntegerWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseIntegerResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -427,7 +419,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -484,11 +476,11 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 105
-   * or "scenario": "negative", "value": -2
+   * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
+   * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 105 or -2
    *
@@ -496,12 +488,11 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramLongWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -513,7 +504,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -578,19 +569,18 @@ export class Header {
   /**
    * Get a response with header value "value": 105 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseLongWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseLongResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -601,7 +591,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -658,11 +648,11 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 0.07
-   * or "scenario": "negative", "value": -3.0
+   * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
+   * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 0.07 or -3.0
    *
@@ -670,12 +660,11 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramFloatWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -687,7 +676,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -752,19 +741,18 @@ export class Header {
   /**
    * Get a response with header value "value": 0.07 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseFloatWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseFloatResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -775,7 +763,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -832,11 +820,11 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value":
-   * 7e120 or "scenario": "negative", "value": -3.0
+   * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
+   * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 7e120 or -3.0
    *
@@ -844,12 +832,11 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramDoubleWithHttpOperationResponse(scenario: string, value: number, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -861,7 +848,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -926,19 +913,18 @@ export class Header {
   /**
    * Get a response with header value "value": 7e120 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseDoubleWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDoubleResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -949,7 +935,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1006,11 +992,10 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "true", "value": true or
-   * "scenario": "false", "value": false
+   * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
+   * "value": false
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "true" or "false"
+   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
    *
    * @param {boolean} value Send a post request with header values true or false
    *
@@ -1018,12 +1003,11 @@ export class Header {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramBoolWithHttpOperationResponse(scenario: string, value: boolean, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1035,7 +1019,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1100,19 +1084,17 @@ export class Header {
   /**
    * Get a response with header value "value": true or false
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "true" or "false"
+   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseBoolWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseBoolResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1123,7 +1105,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1180,23 +1162,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "The
-   * quick brown fox jumps over the lazy dog" or "scenario": "null", "value":
-   * null or "scenario": "empty", "value": ""
+   * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
+   * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramStringWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamStringOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -1209,7 +1189,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1271,22 +1251,20 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "The quick brown fox jumps over the lazy
-   * dog" or null or ""
+   * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseStringWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseStringResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1297,7 +1275,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1354,25 +1332,22 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "2010-01-01" or "scenario": "min", "value": "0001-01-01"
+   * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
+   * "min", "value": "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values
-   * "2010-01-01" or "0001-01-01"
+   * @param {Date | string} value Send a post request with header values "2010-01-01" or "0001-01-01"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramDateWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1384,7 +1359,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1449,19 +1424,17 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseDateWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDateResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1472,7 +1445,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1529,25 +1502,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z"
+   * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
+   * "scenario": "min", "value": "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values
-   * "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
+   * @param {Date | string} value Send a post request with header values "2010-01-01T12:34:56Z" or
+   * "0001-01-01T00:00:00Z"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramDatetimeWithHttpOperationResponse(scenario: string, value: Date | string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1559,7 +1530,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1622,22 +1593,19 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "2010-01-01T12:34:56Z" or
-   * "0001-01-01T00:00:00Z"
+   * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseDatetimeWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1648,7 +1616,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1705,24 +1673,20 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "Wed,
-   * 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001
-   * 00:00:00 GMT"
+   * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
+   * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: Models.HeaderParamDatetimeRfc1123OptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -1735,7 +1699,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1797,22 +1761,20 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-   * 01 Jan 0001 00:00:00 GMT"
+   * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
+   * GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseDatetimeRfc1123WithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDatetimeRfc1123Response> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1823,7 +1785,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1880,25 +1842,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "P123DT22H14M12.011S"
+   * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {string} value Send a post request with header values
-   * "P123DT22H14M12.011S"
+   * @param {string} value Send a post request with header values "P123DT22H14M12.011S"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramDurationWithHttpOperationResponse(scenario: string, value: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1910,7 +1868,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1975,19 +1933,17 @@ export class Header {
   /**
    * Get a response with header values "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseDurationWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseDurationResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1998,7 +1954,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2055,25 +2011,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "啊齄丂狛狜隣郎隣兀﨩"
+   * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {Uint8Array} value Send a post request with header values
-   * "啊齄丂狛狜隣郎隣兀﨩"
+   * @param {Uint8Array} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramByteWithHttpOperationResponse(scenario: string, value: Uint8Array, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2085,7 +2037,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2150,19 +2102,17 @@ export class Header {
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseByteWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseByteResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2173,7 +2123,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2230,22 +2180,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "GREY"
-   * or "scenario": "null", "value": null
+   * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
+   * "null", "value": null
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async paramEnumWithHttpOperationResponse(scenario: string, options?: Models.HeaderParamEnumOptionalParams): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let value = (options && options.value !== undefined) ? options.value : undefined;
 
     // Create HTTP transport objects
@@ -2258,7 +2207,7 @@ export class Header {
           value
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2327,19 +2276,18 @@ export class Header {
   /**
    * Get a response with header values "GREY" or null
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async responseEnumWithHttpOperationResponse(scenario: string, options?: msRest.RequestOptionsBase): Promise<Models.HeaderResponseEnumResponse> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -2350,7 +2298,7 @@ export class Header {
           scenario
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2407,26 +2355,24 @@ export class Header {
   }
 
   /**
-   * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the
-   * header of the request
+   * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async customRequestIdWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
       const operationArguments: msRest.OperationArguments = msRest.createOperationArguments({}, options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2469,21 +2415,17 @@ export class Header {
   /**
    * Send a post request with header value "User-Agent": "overwrite"
    *
-   * @param {string} userAgent Send a post request with header value
-   * "User-Agent": "overwrite"
+   * @param {string} userAgent Send a post request with header value "User-Agent": "overwrite"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramExistingKey(userAgent: string): Promise<void>;
@@ -2518,16 +2460,13 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseExistingKey(): Promise<void>;
@@ -2560,21 +2499,17 @@ export class Header {
   /**
    * Send a post request with header value "Content-Type": "text/html"
    *
-   * @param {string} contentType Send a post request with header value
-   * "Content-Type": "text/html"
+   * @param {string} contentType Send a post request with header value "Content-Type": "text/html"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramProtectedKey(contentType: string): Promise<void>;
@@ -2609,16 +2544,13 @@ export class Header {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseProtectedKey(): Promise<void>;
@@ -2649,26 +2581,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 1 or
-   * "scenario": "negative", "value": -2
+   * Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
+   * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 1 or -2
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramInteger(scenario: string, value: number): Promise<void>;
@@ -2701,21 +2630,18 @@ export class Header {
   /**
    * Get a response with header value "value": 1 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseInteger(scenario: string): Promise<void>;
@@ -2746,26 +2672,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 105
-   * or "scenario": "negative", "value": -2
+   * Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
+   * "negative", "value": -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 105 or -2
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramLong(scenario: string, value: number): Promise<void>;
@@ -2798,21 +2721,18 @@ export class Header {
   /**
    * Get a response with header value "value": 105 or -2
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseLong(scenario: string): Promise<void>;
@@ -2843,26 +2763,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value": 0.07
-   * or "scenario": "negative", "value": -3.0
+   * Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
+   * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 0.07 or -3.0
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramFloat(scenario: string, value: number): Promise<void>;
@@ -2895,21 +2812,18 @@ export class Header {
   /**
    * Get a response with header value "value": 0.07 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseFloat(scenario: string): Promise<void>;
@@ -2940,26 +2854,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "positive", "value":
-   * 7e120 or "scenario": "negative", "value": -3.0
+   * Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
+   * "negative", "value": -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {number} value Send a post request with header values 7e120 or -3.0
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramDouble(scenario: string, value: number): Promise<void>;
@@ -2992,21 +2903,18 @@ export class Header {
   /**
    * Get a response with header value "value": 7e120 or -3.0
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "positive" or "negative"
+   * @param {string} scenario Send a post request with header values "scenario": "positive" or
+   * "negative"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseDouble(scenario: string): Promise<void>;
@@ -3037,26 +2945,22 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "true", "value": true or
-   * "scenario": "false", "value": false
+   * Send a post request with header values "scenario": "true", "value": true or "scenario": "false",
+   * "value": false
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "true" or "false"
+   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
    *
    * @param {boolean} value Send a post request with header values true or false
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramBool(scenario: string, value: boolean): Promise<void>;
@@ -3089,21 +2993,17 @@ export class Header {
   /**
    * Get a response with header value "value": true or false
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "true" or "false"
+   * @param {string} scenario Send a post request with header values "scenario": "true" or "false"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseBool(scenario: string): Promise<void>;
@@ -3134,25 +3034,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "The
-   * quick brown fox jumps over the lazy dog" or "scenario": "null", "value":
-   * null or "scenario": "empty", "value": ""
+   * Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
+   * over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": ""
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {HeaderParamStringOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramString(scenario: string): Promise<void>;
@@ -3183,24 +3079,20 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "The quick brown fox jumps over the lazy
-   * dog" or null or ""
+   * Get a response with header values "The quick brown fox jumps over the lazy dog" or null or ""
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseString(scenario: string): Promise<void>;
@@ -3231,27 +3123,22 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "2010-01-01" or "scenario": "min", "value": "0001-01-01"
+   * Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario":
+   * "min", "value": "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values
-   * "2010-01-01" or "0001-01-01"
+   * @param {Date | string} value Send a post request with header values "2010-01-01" or "0001-01-01"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramDate(scenario: string, value: Date | string): Promise<void>;
@@ -3284,21 +3171,17 @@ export class Header {
   /**
    * Get a response with header values "2010-01-01" or "0001-01-01"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseDate(scenario: string): Promise<void>;
@@ -3329,27 +3212,23 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z"
+   * Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
+   * "scenario": "min", "value": "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {Date | string} value Send a post request with header values
-   * "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
+   * @param {Date | string} value Send a post request with header values "2010-01-01T12:34:56Z" or
+   * "0001-01-01T00:00:00Z"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramDatetime(scenario: string, value: Date | string): Promise<void>;
@@ -3380,24 +3259,19 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "2010-01-01T12:34:56Z" or
-   * "0001-01-01T00:00:00Z"
+   * Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseDatetime(scenario: string): Promise<void>;
@@ -3428,26 +3302,20 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "Wed,
-   * 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001
-   * 00:00:00 GMT"
+   * Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
+   * GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
-   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional
-   * Parameters.
+   * @param {HeaderParamDatetimeRfc1123OptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramDatetimeRfc1123(scenario: string): Promise<void>;
@@ -3478,24 +3346,20 @@ export class Header {
   }
 
   /**
-   * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
-   * 01 Jan 0001 00:00:00 GMT"
+   * Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
+   * GMT"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "min"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "min"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseDatetimeRfc1123(scenario: string): Promise<void>;
@@ -3526,27 +3390,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "P123DT22H14M12.011S"
+   * Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {string} value Send a post request with header values
-   * "P123DT22H14M12.011S"
+   * @param {string} value Send a post request with header values "P123DT22H14M12.011S"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramDuration(scenario: string, value: string): Promise<void>;
@@ -3579,21 +3437,17 @@ export class Header {
   /**
    * Get a response with header values "P123DT22H14M12.011S"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseDuration(scenario: string): Promise<void>;
@@ -3624,27 +3478,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value":
-   * "啊齄丂狛狜隣郎隣兀﨩"
+   * Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
-   * @param {Uint8Array} value Send a post request with header values
-   * "啊齄丂狛狜隣郎隣兀﨩"
+   * @param {Uint8Array} value Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramByte(scenario: string, value: Uint8Array): Promise<void>;
@@ -3677,21 +3525,17 @@ export class Header {
   /**
    * Get a response with header values "啊齄丂狛狜隣郎隣兀﨩"
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid"
+   * @param {string} scenario Send a post request with header values "scenario": "valid"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseByte(scenario: string): Promise<void>;
@@ -3722,24 +3566,21 @@ export class Header {
   }
 
   /**
-   * Send a post request with header values "scenario": "valid", "value": "GREY"
-   * or "scenario": "null", "value": null
+   * Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
+   * "null", "value": null
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {HeaderParamEnumOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   paramEnum(scenario: string): Promise<void>;
@@ -3772,21 +3613,18 @@ export class Header {
   /**
    * Get a response with header values "GREY" or null
    *
-   * @param {string} scenario Send a post request with header values "scenario":
-   * "valid" or "null" or "empty"
+   * @param {string} scenario Send a post request with header values "scenario": "valid" or "null" or
+   * "empty"
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   responseEnum(scenario: string): Promise<void>;
@@ -3817,21 +3655,17 @@ export class Header {
   }
 
   /**
-   * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the
-   * header of the request
+   * Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   customRequestId(): Promise<void>;
