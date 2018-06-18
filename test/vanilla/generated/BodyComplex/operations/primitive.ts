@@ -95,11 +95,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -170,11 +168,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -246,11 +242,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -321,11 +315,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -397,11 +389,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -472,11 +462,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -548,11 +536,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -624,11 +610,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -700,11 +684,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -775,11 +757,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -851,11 +831,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -926,11 +904,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1002,11 +978,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1077,11 +1051,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1153,11 +1125,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1229,11 +1199,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1305,11 +1273,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1381,11 +1347,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1457,11 +1421,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1533,11 +1495,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1609,11 +1569,9 @@ export class Primitive {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1685,11 +1643,9 @@ export class Primitive {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

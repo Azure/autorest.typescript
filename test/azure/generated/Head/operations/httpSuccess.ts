@@ -95,11 +95,9 @@ export class HttpSuccess {
         return Promise.reject(error);
       }
       operationRes.parsedBody = (statusCode === 200);
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -172,11 +170,9 @@ export class HttpSuccess {
         return Promise.reject(error);
       }
       operationRes.parsedBody = (statusCode === 204);
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -249,11 +245,9 @@ export class HttpSuccess {
         return Promise.reject(error);
       }
       operationRes.parsedBody = (statusCode === 204);
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

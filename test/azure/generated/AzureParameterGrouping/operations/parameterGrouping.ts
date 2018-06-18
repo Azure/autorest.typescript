@@ -157,11 +157,9 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -264,11 +262,9 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -398,11 +394,9 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -505,11 +499,9 @@ export class ParameterGrouping {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

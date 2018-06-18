@@ -114,11 +114,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -214,11 +212,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -314,11 +310,9 @@ export class Header {
       if (statusCode === 404) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderCustomNamedRequestIdHeadHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

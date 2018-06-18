@@ -92,11 +92,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -165,11 +163,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -254,11 +250,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -343,11 +337,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -432,11 +424,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -521,11 +511,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -594,11 +582,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -667,11 +653,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -740,11 +724,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -829,11 +811,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -918,11 +898,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1007,11 +985,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1096,11 +1072,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1185,11 +1159,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1258,11 +1230,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1331,11 +1301,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1404,11 +1372,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1493,11 +1459,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1582,11 +1546,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1671,11 +1633,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1744,11 +1704,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1833,11 +1791,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1906,11 +1862,9 @@ export class HttpClientFailure {
         deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

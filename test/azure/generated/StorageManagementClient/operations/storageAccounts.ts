@@ -150,11 +150,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -340,11 +338,9 @@ export class StorageAccounts {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -488,11 +484,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -655,11 +649,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -799,11 +791,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -917,11 +907,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1050,11 +1038,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1209,11 +1195,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1371,11 +1355,9 @@ export class StorageAccounts {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

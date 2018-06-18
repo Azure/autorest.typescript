@@ -100,7 +100,7 @@ namespace AutoRest.TypeScript.DSL
 
         public void InsertNewLine(int index)
         {
-            Insert(index, newLine);
+            Insert(index, newLine + linePrefix);
         }
 
         public void AddIndentToLinesAfter(int index)

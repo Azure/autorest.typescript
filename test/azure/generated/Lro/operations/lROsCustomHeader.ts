@@ -296,11 +296,9 @@ export class LROsCustomHeader {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -414,11 +412,9 @@ export class LROsCustomHeader {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -505,11 +501,9 @@ export class LROsCustomHeader {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -597,11 +591,9 @@ export class LROsCustomHeader {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

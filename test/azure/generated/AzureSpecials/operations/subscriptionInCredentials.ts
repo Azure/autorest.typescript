@@ -109,11 +109,9 @@ export class SubscriptionInCredentials {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -201,11 +199,9 @@ export class SubscriptionInCredentials {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -305,11 +301,9 @@ export class SubscriptionInCredentials {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -396,11 +390,9 @@ export class SubscriptionInCredentials {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -487,11 +479,9 @@ export class SubscriptionInCredentials {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

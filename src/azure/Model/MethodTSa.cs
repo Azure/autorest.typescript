@@ -37,15 +37,13 @@ namespace AutoRest.TypeScript.Azure.Model
         {
             get
             {
-                var sb = new IndentedStringBuilder();
-                if (this.HttpMethod == HttpMethod.Head &&
-                    this.ReturnType.Body != null)
+                string result = "";
+                if (HttpMethod == HttpMethod.Head && ReturnType.Body != null)
                 {
-                    HttpStatusCode code = this.Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
-                    sb.AppendFormat("operationRes.parsedBody = (statusCode === {0});", (int)code).AppendLine();
+                    HttpStatusCode code = Responses.Keys.FirstOrDefault(AzureExtensions.HttpHeadStatusCodeSuccessFunc);
+                    result = $"operationRes.parsedBody = (statusCode === {(int)code});";
                 }
-
-                return sb.ToString();
+                return result;
             }
         }
 

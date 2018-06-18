@@ -419,11 +419,9 @@ export class LRORetrys {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -521,11 +519,9 @@ export class LRORetrys {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -632,11 +628,9 @@ export class LRORetrys {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteProvisioning202Accepted200SucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -714,11 +708,9 @@ export class LRORetrys {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDelete202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -796,11 +788,9 @@ export class LRORetrys {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -886,11 +876,9 @@ export class LRORetrys {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPost202Retry200Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -976,11 +964,9 @@ export class LRORetrys {
       if (statusCode === 202) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

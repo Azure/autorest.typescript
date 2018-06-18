@@ -99,11 +99,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -180,11 +178,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -261,11 +257,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -342,11 +336,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -420,11 +412,9 @@ export class Datetimerfc1123 {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -501,11 +491,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -582,11 +570,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -660,11 +646,9 @@ export class Datetimerfc1123 {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -741,11 +725,9 @@ export class Datetimerfc1123 {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

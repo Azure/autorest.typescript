@@ -549,6 +549,7 @@ namespace AutoRest.TypeScript.Model
                 return string.Empty;
             }
         }
+
         [JsonIgnore]
         public string ReturnTypeInfo
         {
@@ -692,18 +693,148 @@ namespace AutoRest.TypeScript.Model
             return sb.ToString();
         }
 
-        public string GenerateSendOperationRequest()
+        public string GenerateWithHttpOperationResponseMethod(string emptyLine)
         {
             TSBuilder builder = new TSBuilder();
-            builder.Text("const operationArguments: msRest.OperationArguments = ");
-            builder.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
-            builder.Line(";");
-            builder.FunctionCall("operationRes = await client.sendOperationRequest", argumentList =>
+            TSBlock block = new TSBlock(builder);
+
+            IEnumerable<Parameter> parameterTemplateModels = ParameterTemplateModels;
+
+            if (parameterTemplateModels.Any())
             {
-                argumentList.Text("httpRequest");
-                argumentList.Text("operationArguments");
-                argumentList.Object(GenerateOperationSpec);
+                foreach (Parameter parameter in parameterTemplateModels.Where(p => !p.IsClientProperty))
+                {
+                    if (parameter.IsConstant)
+                    {
+                        block.Line($"let {parameter.Name} = {parameter.DefaultValue};");
+                    }
+                    else if (parameter.IsRequired &&
+                        parameter.ModelType is CompositeType parameterCompositeModelType &&
+                        parameterCompositeModelType.ContainsConstantProperties)
+                    {
+                        block.If($"{parameter.Name} === null || {parameter.Name} === undefined", ifBlock =>
+                        {
+                            ifBlock.Line($"{parameter.Name} = {{}} as any;");
+                        });
+                    }
+                }
+
+                string validationBlock = ValidationString;
+                if (!string.IsNullOrWhiteSpace(validationBlock))
+                {
+                    block.LineComment("Validate");
+                    block.Try(tryBlock =>
+                    {
+                        tryBlock.Line(validationBlock);
+                    })
+                    .Catch("error", catchBlock =>
+                    {
+                        catchBlock.Return("Promise.reject(error)");
+                    });
+                }
+            }
+
+            block.Line(emptyLine);
+
+            block.LineComment("Create HTTP transport objects");
+            block.Line("const httpRequest = new WebResource();");
+
+            bool hasStreamResponseType = HasStreamResponseType();
+
+            if (hasStreamResponseType)
+            {
+                block.Line("httpRequest.rawResponse = true;");
+            }
+
+            block.Line("let operationRes: msRest.HttpOperationResponse;");
+
+            block.Try(tryBlock =>
+            {
+                tryBlock.Text("const operationArguments: msRest.OperationArguments = ");
+                tryBlock.FunctionCall("msRest.createOperationArguments", GenerateOperationArguments);
+                tryBlock.Line(";");
+                tryBlock.FunctionCall("operationRes = await client.sendOperationRequest", argumentList =>
+                {
+                    argumentList.Text("httpRequest");
+                    argumentList.Text("operationArguments");
+                    argumentList.Object(GenerateOperationSpec);
+                });
+                tryBlock.Line(";");
+
+                tryBlock.Line("let statusCode = operationRes.status;");
+                tryBlock.If(FailureStatusCodePredicate, ifBlock =>
+                {
+                    string initialErrorMessage = hasStreamResponseType
+                        ? "`Unexpected status code: ${statusCode}`"
+                        : "operationRes.bodyAsText as string";
+                    ifBlock.Line($"let error = new msRest.RestError({initialErrorMessage});");
+                    ifBlock.Line($"error.statusCode = operationRes.status;");
+                    ifBlock.Line($"error.request = msRest.stripRequest(httpRequest);");
+                    ifBlock.Line($"error.response = msRest.stripResponse(operationRes);");
+                    const string parsedErrorResponse = "parsedErrorResponse";
+                    ifBlock.Line($"let {parsedErrorResponse} = operationRes.parsedBody as {{ [key: string]: any }};");
+                    ifBlock.Try(tryBlock2 =>
+                    {
+                        tryBlock2.If(parsedErrorResponse, ifErrorBlock =>
+                        {
+                            ifErrorBlock.Line(PopulateErrorCodeAndMessage());
+                        });
+
+                        if (DefaultResponse.Body != null)
+                        {
+                            string deserializeErrorBody = GetDeserializationString(DefaultResponse.Body, "error.body", "parsedErrorResponse");
+                            if (!string.IsNullOrEmpty(deserializeErrorBody))
+                            {
+                                tryBlock2.If($"{parsedErrorResponse} !== null && {parsedErrorResponse} !== undefined", ifErrorBlock =>
+                                {
+                                    ifErrorBlock.Line(deserializeErrorBody);
+                                });
+                            }
+                        }
+                    })
+                    .Catch("defaultError", catchBlock =>
+                    {
+                        catchBlock.Line($"error.message = `Error \"${{defaultError.message}}\" occurred in deserializing the responseBody ` +");
+                        catchBlock.Line($"                 `- \"${{operationRes.bodyAsText}}\" for the default response.`;");
+                        catchBlock.Return("Promise.reject(error)");
+                    });
+                    ifBlock.Return("Promise.reject(error)");
+                });
+
+                if (!hasStreamResponseType)
+                {
+                    tryBlock.Line(InitializeResult);
+
+                    IEnumerable<KeyValuePair<HttpStatusCode, Response>> responsePairs = Responses.Where(response => response.Value.Body != null || response.Value.Headers != null);
+                    foreach (KeyValuePair<HttpStatusCode, Response> responsePair in responsePairs)
+                    {
+                        tryBlock.LineComment("Deserialize Response");
+                        tryBlock.If($"statusCode === {GetStatusCodeReference(responsePair.Key)}", ifBlock =>
+                        {
+                            if (responsePair.Value.Body != null)
+                            {
+                                ifBlock.Line(DeserializeResponse(responsePair.Value.Body, "operationRes.parsedBody"));
+                            }
+                            if (responsePair.Value.Headers != null)
+                            {
+                                ifBlock.Line($"operationRes.parsedHeaders = this.serializer.deserialize(Mappers.{responsePair.Value.Headers.Name}, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');");
+                            }
+                        });
+                    }
+
+                    if (ReturnType.Body != null && DefaultResponse.Body != null && !Responses.Any())
+                    {
+                        tryBlock.Line(DeserializeResponse(DefaultResponse.Body, "operationRes.parsedBody"));
+                    }
+                }
+            })
+            .Catch("err", catchBlock =>
+            {
+                catchBlock.Return("Promise.reject(err)");
             });
+
+            block.Return("Promise.resolve(operationRes)");
+
             return builder.ToString();
         }
 
@@ -873,6 +1004,11 @@ namespace AutoRest.TypeScript.Model
                     });
                 }
             }
+        }
+
+        public bool HasStreamResponseType()
+        {
+            return Responses.Values.Any((Response r) => r.Body.IsPrimaryType(KnownPrimaryType.Stream));
         }
     }
 }

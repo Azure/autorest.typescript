@@ -1,9 +1,5 @@
-﻿@using System.Linq;
-@using AutoRest.Core.Model
-@using AutoRest.Core.Utilities
-@using AutoRest.TypeScript
+﻿@using AutoRest.Core.Utilities
 @using AutoRest.TypeScript.Model
-@using AutoRest.TypeScript.vanilla.Templates
 @inherits AutoRest.Core.Template<MethodTS>
 
 @(Model.GenerateMethodDocumentation(MethodTS.MethodFlavor.HttpOperationResponse))
@@ -15,51 +11,5 @@ async @(Model.Name.ToCamelCase())WithHttpOperationResponse(@(Model.MethodParamet
   @:@(Model.BuildOptionalMappings())
   }
 
-  @foreach(var parameter in Model.ParameterTemplateModels)
-  {
-    if (parameter.IsConstant && !parameter.IsClientProperty)
-    {
-  @:let @(parameter.Name) = @(parameter.DefaultValue);
-    }
-
-    if (parameter.ModelType is CompositeType
-      && !parameter.IsConstant
-      && parameter.IsRequired
-      && !parameter.IsClientProperty
-      && ((CompositeType)parameter.ModelType).ContainsConstantProperties)
-    {
-  @:if (@(parameter.Name) === null || @(parameter.Name) === undefined)
-  @:{
-  @:  @(parameter.Name) = {} as any;
-  @:}
-    }
-  }
-
-  @if (Model.ParameterTemplateModels.Any())
-  {
-      var validationBlock = Model.ValidationString;
-  if (!string.IsNullOrWhiteSpace(validationBlock))
-  {
-  <text>
-  // Validate
-  try {
-    @(validationBlock)
-  } catch (error) {
-    return Promise.reject(error);
-  }
-  </text>
-  }
-  }
-  @EmptyLine
-  // Create HTTP transport objects
-  const httpRequest = new WebResource();
-
-  @if (Model.Responses.Any(r => r.Value.Body.IsPrimaryType(KnownPrimaryType.Stream)))
-  {
-@:  @Include(new MethodStreamPipelineTemplate(), Model)
-  }
-  else
-  {
-@:  @Include(new MethodJsonPipelineTemplate(), Model)
-  }
+  @(Model.GenerateWithHttpOperationResponseMethod(EmptyLine))
 }

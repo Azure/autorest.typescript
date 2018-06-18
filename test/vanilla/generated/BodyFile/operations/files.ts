@@ -56,7 +56,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -79,14 +78,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -120,7 +116,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -143,14 +138,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -184,7 +176,6 @@ export class Files {
           serializer: this.serializer
         });
       let statusCode = operationRes.status;
-
       if (statusCode !== 200) {
         let error = new msRest.RestError(`Unexpected status code: ${statusCode}`);
         error.statusCode = operationRes.status;
@@ -207,14 +198,11 @@ export class Files {
                            `- "${operationRes.bodyAsText}" for the default response.`;
           return Promise.reject(error);
         }
-
         return Promise.reject(error);
       }
-
-    } catch(error) {
-      return Promise.reject(error);
+    } catch (err) {
+      return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

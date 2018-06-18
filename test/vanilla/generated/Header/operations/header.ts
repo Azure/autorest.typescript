@@ -99,11 +99,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -164,11 +162,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseExistingKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -244,11 +240,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -309,11 +303,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseProtectedKeyHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -403,11 +395,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -487,11 +477,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseIntegerHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -581,11 +569,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -665,11 +651,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseLongHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -759,11 +743,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -843,11 +825,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseFloatHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -937,11 +917,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1021,11 +999,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDoubleHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1115,11 +1091,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1199,11 +1173,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseBoolHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1292,11 +1264,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1377,11 +1347,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseStringHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1472,11 +1440,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1556,11 +1522,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDateHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1651,11 +1615,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1736,11 +1698,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDatetimeHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1830,11 +1790,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1915,11 +1873,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDatetimeRfc1123Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2010,11 +1966,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2094,11 +2048,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseDurationHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2189,11 +2141,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2273,11 +2223,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseByteHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2370,11 +2318,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2454,11 +2400,9 @@ export class Header {
       if (statusCode === 200) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HeaderResponseEnumHeaders, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2516,11 +2460,9 @@ export class Header {
         }
         return Promise.reject(error);
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

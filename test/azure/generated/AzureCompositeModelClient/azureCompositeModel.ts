@@ -202,11 +202,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -354,11 +352,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -506,11 +502,9 @@ class AzureCompositeModel extends AzureCompositeModelContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

@@ -157,11 +157,9 @@ class ComplexModelClient extends ComplexModelClientContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -295,11 +293,9 @@ class ComplexModelClient extends ComplexModelClientContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
   // methods on the client.
@@ -433,11 +429,9 @@ class ComplexModelClient extends ComplexModelClientContext {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 

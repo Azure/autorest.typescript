@@ -88,11 +88,9 @@ export class HttpRedirects {
       if (statusCode === 300) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -180,11 +178,9 @@ export class HttpRedirects {
         }
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet300Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -249,11 +245,9 @@ export class HttpRedirects {
       if (statusCode === 301) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -318,11 +312,9 @@ export class HttpRedirects {
       if (statusCode === 301) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -400,11 +392,9 @@ export class HttpRedirects {
       if (statusCode === 301) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPut301Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -469,11 +459,9 @@ export class HttpRedirects {
       if (statusCode === 302) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -538,11 +526,9 @@ export class HttpRedirects {
       if (statusCode === 302) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -620,11 +606,9 @@ export class HttpRedirects {
       if (statusCode === 302) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPatch302Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -705,11 +689,9 @@ export class HttpRedirects {
       if (statusCode === 303) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost303Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -774,11 +756,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsHead307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -843,11 +823,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsGet307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -927,11 +905,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPut307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1011,11 +987,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPatch307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1095,11 +1069,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsPost307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1179,11 +1151,9 @@ export class HttpRedirects {
       if (statusCode === 307) {
         operationRes.parsedHeaders = this.serializer.deserialize(Mappers.HttpRedirectsDelete307Headers, operationRes.headers.rawHeaders(), 'operationRes.parsedBody');
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
