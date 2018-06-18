@@ -7,6 +7,7 @@ Tasks "regeneration"
 Tasks "publishing"
 
 Install "child_process"
+Install "process"
 
 # ==============================================================================
 # Settings
@@ -22,10 +23,12 @@ task 'init', "" ,(done)->
   Fail "YOU MUST HAVE NODEJS VERSION GREATER THAN 7.10.0" if semver.lt( process.versions.node , "7.10.0" )
   done()
 
+task 'fetch_submodules',"", (done) ->
+  execute "git submodule update --init --recursive", done
+
 task 'install_common',"", (done) ->
   # global.verbose = true
   execute "npm install",{cwd:"#{basefolder}/autorest.common", silent:false }, done
-
 
 # Run language-specific tests:
 task 'test', '', ['test/generator-unit', 'test/typecheck', 'test/nodejs-unit'], (done) ->
@@ -39,7 +42,12 @@ task 'test/typecheck', 'type check generated code', [], (done) ->
   await execute "#{basefolder}/node_modules/.bin/tsc -p #{basefolder}/test/tsconfig.generated.json", defer _
   done();
 
-task 'test/nodejs-unit', 'run nodejs unit tests', [], (done) ->
+task 'set-tsnode-typecheck', 'set ts-node to type check mode', [], (done) ->
+  # This has to be set or else ts-node won't find const enum values.
+  process.env.TS_NODE_TYPE_CHECK = 'Y'
+  done()
+
+task 'test/nodejs-unit', 'run nodejs unit tests', ['set-tsnode-typecheck'], (done) ->
   await execute "#{basefolder}/node_modules/.bin/mocha --no-colors", defer _
   done();
 
