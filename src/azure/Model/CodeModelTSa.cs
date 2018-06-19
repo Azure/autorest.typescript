@@ -76,7 +76,7 @@ namespace AutoRest.TypeScript.Azure.Model
 
         public override string PackageDependencies()
         {
-            return "\"ms-rest-azure-js\": \"~0.6.75\"";
+            return "\"ms-rest-azure-js\": \"~0.7.78\"";
         }
     }
 }

@@ -668,6 +668,11 @@ namespace AutoRest.TypeScript
 
         public static void ConstructMapper(TSValue value, IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
         {
+            value.Object(mapper => ConstructMapper(mapper, type, serializedName, parameter, isPageable, expandComposite, isXML, isCaseSensitive, xmlName));
+        }
+
+        public static void ConstructMapper(TSObject mapper, IModelType type, string serializedName, IVariable parameter, bool isPageable, bool expandComposite, bool isXML, bool isCaseSensitive = true, string xmlName = null)
+        {
             string defaultValue = null;
             bool isRequired = false;
             bool isConstant = false;
@@ -682,90 +687,94 @@ namespace AutoRest.TypeScript
                 constraints = parameter.Constraints;
             }
 
-            value.Object(mapper =>
+            bool addXmlNameFromParameterValue = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
+            if (addXmlNameFromParameterValue)
             {
-                bool addXmlNameFromParameterValue = isXML && !string.IsNullOrEmpty(xmlName) && xmlName != serializedName;
-                if (addXmlNameFromParameterValue)
-                {
-                    mapper.QuotedStringProperty("xmlName", xmlName);
-                }
+                mapper.QuotedStringProperty("xmlName", xmlName);
+            }
 
-                if (!isCaseSensitive)
-                {
-                    serializedName = serializedName.ToLower();
-                }
+            if (!isCaseSensitive)
+            {
+                serializedName = serializedName.ToLower();
+            }
 
-                if (property != null)
-                {
-                    isReadOnly = property.IsReadOnly;
+            if (property != null)
+            {
+                isReadOnly = property.IsReadOnly;
 
-                    if (isXML)
+                if (isXML)
+                {
+                    if (property.XmlIsAttribute)
                     {
-                        if (property.XmlIsAttribute)
-                        {
-                            mapper.BooleanProperty("xmlIsAttribute", true);
-                        }
-
-                        if (property.XmlIsWrapped)
-                        {
-                            mapper.BooleanProperty("xmlIsWrapped", true);
-                        }
-
-                        if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(property.XmlName))
-                        {
-                            mapper.QuotedStringProperty("xmlName", property.XmlName);
-                        }
-                    }
-                }
-
-                CompositeType composite = type as CompositeType;
-                if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
-                {
-                    defaultValue = "{}";
-                }
-
-                SequenceType sequence = type as SequenceType;
-                if (sequence != null && isXML)
-                {
-                    if (sequence.ElementXmlIsWrapped)
-                    {
-                        mapper.BooleanProperty("xmlElementIsWrapped", true);
+                        mapper.BooleanProperty("xmlIsAttribute", true);
                     }
 
-                    if (!string.IsNullOrEmpty(sequence.ElementXmlName))
+                    if (property.XmlIsWrapped)
                     {
-                        mapper.QuotedStringProperty("xmlElementName", sequence.ElementXmlName);
+                        mapper.BooleanProperty("xmlIsWrapped", true);
+                    }
+
+                    if (!addXmlNameFromParameterValue && !string.IsNullOrEmpty(property.XmlName))
+                    {
+                        mapper.QuotedStringProperty("xmlName", property.XmlName);
                     }
                 }
+            }
 
-                if (isRequired)
+            CompositeType composite = type as CompositeType;
+            if (composite != null && composite.ContainsConstantProperties && (parameter != null && parameter.IsRequired))
+            {
+                defaultValue = "{}";
+            }
+
+            SequenceType sequence = type as SequenceType;
+            if (sequence != null && isXML)
+            {
+                if (sequence.ElementXmlIsWrapped)
                 {
-                    mapper.BooleanProperty("required", true);
+                    mapper.BooleanProperty("xmlElementIsWrapped", true);
                 }
 
-                if (isReadOnly)
+                if (!string.IsNullOrEmpty(sequence.ElementXmlName))
                 {
-                    mapper.BooleanProperty("readOnly", true);
+                    mapper.QuotedStringProperty("xmlElementName", sequence.ElementXmlName);
                 }
+            }
 
-                if (isConstant)
-                {
-                    mapper.BooleanProperty("isConstant", true);
-                }
+            if (isRequired)
+            {
+                mapper.BooleanProperty("required", true);
+            }
 
-                if (serializedName != null)
-                {
-                    mapper.QuotedStringProperty("serializedName", serializedName);
-                }
+            if (isReadOnly)
+            {
+                mapper.BooleanProperty("readOnly", true);
+            }
 
-                if (!string.IsNullOrEmpty(defaultValue))
-                {
-                    mapper.TextProperty("defaultValue", defaultValue);
-                }
+            if (isConstant)
+            {
+                mapper.BooleanProperty("isConstant", true);
+            }
 
+            if (serializedName != null)
+            {
+                mapper.QuotedStringProperty("serializedName", serializedName);
+            }
+
+            if (!string.IsNullOrEmpty(defaultValue))
+            {
+                mapper.TextProperty("defaultValue", defaultValue);
+            }
+
+            DictionaryType dictionary = type as DictionaryType;
+            PrimaryType primary = type as PrimaryType;
+            EnumType enumType = type as EnumType;
+
+            void applyConstraints(TSObject obj)
+            {
                 if (constraints != null && constraints.Any())
                 {
-                    mapper.ObjectProperty("constraints", constraintsObject =>
+                    obj.ObjectProperty("constraints", constraintsObject =>
                     {
                         foreach (KeyValuePair<Constraint,string> constraintEntry in constraints)
                         {
@@ -779,151 +788,163 @@ namespace AutoRest.TypeScript
                         }
                     });
                 }
+            }
 
-                DictionaryType dictionary = type as DictionaryType;
-                PrimaryType primary = type as PrimaryType;
-                EnumType enumType = type as EnumType;
+            // Apply header collection constraints only to dictionary values, not the dictionary itself
+            string prefix = parameter?.Extensions?.GetValue<string>(SwaggerExtensions.HeaderCollectionPrefix);
+            bool skipConstraints = !string.IsNullOrEmpty(prefix) && dictionary != null;
+            if (!skipConstraints)
+            {
+                applyConstraints(mapper);
+            }
 
-                // Add type information
-                if (primary != null)
+            if (primary != null)
+            {
+                switch (primary.KnownPrimaryType)
                 {
-                    switch (primary.KnownPrimaryType)
-                    {
-                        case KnownPrimaryType.Base64Url:
-                        case KnownPrimaryType.Boolean:
-                        case KnownPrimaryType.ByteArray:
-                        case KnownPrimaryType.Date:
-                        case KnownPrimaryType.DateTime:
-                        case KnownPrimaryType.DateTimeRfc1123:
-                        case KnownPrimaryType.Object:
-                        case KnownPrimaryType.Stream:
-                        case KnownPrimaryType.String:
-                        case KnownPrimaryType.TimeSpan:
-                        case KnownPrimaryType.UnixTime:
-                        case KnownPrimaryType.Uuid:
-                            AddTypeProperty(mapper, primary.KnownPrimaryType.ToString());
-                            break;
+                    case KnownPrimaryType.Base64Url:
+                    case KnownPrimaryType.Boolean:
+                    case KnownPrimaryType.ByteArray:
+                    case KnownPrimaryType.Date:
+                    case KnownPrimaryType.DateTime:
+                    case KnownPrimaryType.DateTimeRfc1123:
+                    case KnownPrimaryType.Object:
+                    case KnownPrimaryType.Stream:
+                    case KnownPrimaryType.String:
+                    case KnownPrimaryType.TimeSpan:
+                    case KnownPrimaryType.UnixTime:
+                    case KnownPrimaryType.Uuid:
+                        AddTypeProperty(mapper, primary.KnownPrimaryType.ToString());
+                        break;
 
-                        case KnownPrimaryType.Int:
-                        case KnownPrimaryType.Long:
-                        case KnownPrimaryType.Decimal:
-                        case KnownPrimaryType.Double:
-                            AddTypeProperty(mapper, "Number");
-                            break;
+                    case KnownPrimaryType.Int:
+                    case KnownPrimaryType.Long:
+                    case KnownPrimaryType.Decimal:
+                    case KnownPrimaryType.Double:
+                        AddTypeProperty(mapper, "Number");
+                        break;
 
-                        default:
-                            throw new NotImplementedException($"{primary} is not a supported Type.");
-                    }
+                    default:
+                        throw new NotImplementedException($"{primary} is not a supported Type.");
                 }
-                else if (enumType != null)
+            }
+            else if (enumType != null)
+            {
+                if (enumType.ModelAsString)
                 {
-                    if (enumType.ModelAsString)
-                    {
-                        AddTypeProperty(mapper, "String");
-                    }
-                    else
-                    {
-                        AddTypeProperty(mapper, "Enum", typeObject =>
-                        {
-                            typeObject.ArrayProperty("allowedValues", allowedValues =>
-                            {
-                                foreach (EnumValue enumValue in enumType.Values)
-                                {
-                                    allowedValues.QuotedString(enumValue.SerializedName);
-                                }
-                            });
-                        });
-                    }
-                }
-                else if (sequence != null)
-                {
-                    AddTypeProperty(mapper, "Sequence", typeObject =>
-                    {
-                        typeObject.Property("element", element =>
-                        {
-                            ConstructMapper(element, sequence.ElementType, sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive);
-                        });
-                    });
-                }
-                else if (dictionary != null)
-                {
-                    AddTypeProperty(mapper, "Dictionary", typeObject =>
-                    {
-                        typeObject.Property("value", dictionaryValue => ConstructMapper(dictionaryValue, dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive));
-                    });
-                }
-                else if (composite != null)
-                {
-                    AddTypeProperty(mapper, "Composite", typeObject =>
-                    {
-                        if (composite.IsPolymorphic)
-                        {
-                            // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
-                            // it's serializedName, the way it is done for other properties. This makes it easy to find the
-                            // discriminator property from the responseBody during deserialization. Please, do not get confused
-                            // between the definition of the discriminator and the definition of the property that is
-                            // marked as the discriminator.
-                            typeObject.ObjectProperty("polymorphicDiscriminator", polymorphicDiscriminator =>
-                            {
-                                polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
-                                polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
-                            });
-
-                            CompositeType polymorphicType = composite;
-                            while (polymorphicType.BaseModelType != null)
-                            {
-                                polymorphicType = polymorphicType.BaseModelType;
-                            }
-                            typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
-                        }
-
-                        typeObject.QuotedStringProperty("className", composite.Name);
-
-                        if (expandComposite)
-                        {
-                            typeObject.ObjectProperty("modelProperties", modelProperties =>
-                            {
-                                if (composite.BaseModelType != null && composite.BaseModelType.ComposedProperties.Any())
-                                {
-                                    modelProperties.Spread(composite.BaseModelType.Name + ".type.modelProperties");
-                                }
-                                foreach (Property prop in composite.Properties)
-                                {
-                                    var serializedPropertyName = prop.SerializedName;
-                                    if (isPageable)
-                                    {
-                                        PropertyInfo itemName = composite.GetType().GetProperty("ItemName");
-                                        PropertyInfo nextLinkName = composite.GetType().GetProperty("NextLinkName");
-                                        string nextLinkNameValue = (string)nextLinkName.GetValue(composite);
-                                        if (itemName != null && ((string)itemName.GetValue(composite) == prop.Name))
-                                        {
-                                            serializedPropertyName = "";
-                                        }
-
-                                        if (prop.Name.Contains("nextLink") && nextLinkName != null && nextLinkNameValue == null)
-                                        {
-                                            continue;
-                                        }
-                                    }
-
-                                    if (modelProperties.ContainsProperty(prop.Name))
-                                    {
-                                        // throw new InvalidOperationException($"Mapper \"{serializedName}\" contains multiple modelProperties with the name \"{prop.Name}\".");
-                                    }
-                                    else
-                                    {
-                                        modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
-                                    }
-                                }
-                            });
-                        }
-                    });
+                    AddTypeProperty(mapper, "String");
                 }
                 else
                 {
-                    throw new NotImplementedException($"{type} is not a supported Type.");
+                    AddTypeProperty(mapper, "Enum", typeObject =>
+                    {
+                        typeObject.ArrayProperty("allowedValues", allowedValues =>
+                        {
+                            foreach (EnumValue enumValue in enumType.Values)
+                            {
+                                allowedValues.QuotedString(enumValue.SerializedName);
+                            }
+                        });
+                    });
                 }
-            });
+            }
+            else if (sequence != null)
+            {
+                AddTypeProperty(mapper, "Sequence", typeObject =>
+                {
+                    typeObject.Property("element", element =>
+                    {
+                        ConstructMapper(element, sequence.ElementType, sequence.ElementType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive);
+                    });
+                });
+            }
+            else if (dictionary != null)
+            {
+                AddTypeProperty(mapper, "Dictionary", typeObject =>
+                {
+                    typeObject.ObjectProperty("value", dictionaryValue =>
+                    {
+                        ConstructMapper(dictionaryValue, dictionary.ValueType, dictionary.ValueType.DeclarationName + "ElementType", null, false, false, isXML, isCaseSensitive);
+                        applyConstraints(dictionaryValue);
+                    });
+                });
+
+                if (!string.IsNullOrEmpty(prefix))
+                {
+                    mapper.QuotedStringProperty("headerCollectionPrefix", prefix);
+                }
+            }
+            else if (composite != null)
+            {
+                AddTypeProperty(mapper, "Composite", typeObject =>
+                {
+                    if (composite.IsPolymorphic)
+                    {
+                        // Note: If the polymorphicDiscriminator has a dot in it's name then do not escape that dot for
+                        // it's serializedName, the way it is done for other properties. This makes it easy to find the
+                        // discriminator property from the responseBody during deserialization. Please, do not get confused
+                        // between the definition of the discriminator and the definition of the property that is
+                        // marked as the discriminator.
+                        typeObject.ObjectProperty("polymorphicDiscriminator", polymorphicDiscriminator =>
+                        {
+                            polymorphicDiscriminator.QuotedStringProperty("serializedName", composite.PolymorphicDiscriminator);
+                            polymorphicDiscriminator.QuotedStringProperty("clientName", Singleton<CodeNamerTS>.Instance.GetPropertyName(composite.PolymorphicDiscriminator));
+                        });
+
+                        CompositeType polymorphicType = composite;
+                        while (polymorphicType.BaseModelType != null)
+                        {
+                            polymorphicType = polymorphicType.BaseModelType;
+                        }
+                        typeObject.QuotedStringProperty("uberParent", polymorphicType.Name);
+                    }
+
+                    typeObject.QuotedStringProperty("className", composite.Name);
+
+                    if (expandComposite)
+                    {
+                        typeObject.ObjectProperty("modelProperties", modelProperties =>
+                        {
+                            if (composite.BaseModelType != null && composite.BaseModelType.ComposedProperties.Any())
+                            {
+                                modelProperties.Spread(composite.BaseModelType.Name + ".type.modelProperties");
+                            }
+                            foreach (Property prop in composite.Properties)
+                            {
+                                var serializedPropertyName = prop.SerializedName;
+                                if (isPageable)
+                                {
+                                    PropertyInfo itemName = composite.GetType().GetProperty("ItemName");
+                                    PropertyInfo nextLinkName = composite.GetType().GetProperty("NextLinkName");
+                                    string nextLinkNameValue = (string)nextLinkName.GetValue(composite);
+                                    if (itemName != null && ((string)itemName.GetValue(composite) == prop.Name))
+                                    {
+                                        serializedPropertyName = "";
+                                    }
+
+                                    if (prop.Name.Contains("nextLink") && nextLinkName != null && nextLinkNameValue == null)
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                if (modelProperties.ContainsProperty(prop.Name))
+                                {
+                                    // throw new InvalidOperationException($"Mapper \"{serializedName}\" contains multiple modelProperties with the name \"{prop.Name}\".");
+                                }
+                                else
+                                {
+                                    modelProperties.Property(prop.Name, propertyValue => ConstructMapper(propertyValue, prop.ModelType, serializedPropertyName, prop, false, false, isXML, isCaseSensitive));
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+            else
+            {
+                throw new NotImplementedException($"{type} is not a supported Type.");
+            }
         }
 
         private static void AddTypeProperty(TSObject mapper, string mapperTypeName, Action<TSObject> additionalTypeObjectPropertiesAction = null)
