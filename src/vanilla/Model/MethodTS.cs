@@ -11,7 +11,6 @@ using System.Text.RegularExpressions;
 using AutoRest.Core;
 using AutoRest.Core.Model;
 using AutoRest.Core.Utilities;
-using AutoRest.Extensions;
 using AutoRest.TypeScript.DSL;
 using Newtonsoft.Json;
 
